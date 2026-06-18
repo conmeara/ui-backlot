@@ -19,6 +19,8 @@ const packageJson = readJson(packagePath);
 const scripts = packageJson.scripts || {};
 const errors = [];
 const warnings = [];
+const requireCaptureFiles = process.argv.includes("--require-captures")
+  || process.env.UI_BACKLOT_REQUIRE_CAPTURES === "1";
 
 const addError = (surfaceId, message) => {
   errors.push(surfaceId ? `${surfaceId}: ${message}` : message);
@@ -137,7 +139,12 @@ for (const surface of surfaces) {
       if (!isNonEmptyString(surface.capture.path)) {
         addError(id, "ready capture requires capture.path");
       } else if (!exists(surface.capture.path)) {
-        addError(id, `capture path does not exist: ${surface.capture.path}`);
+        const message = `capture path is not generated locally: ${surface.capture.path}`;
+        if (requireCaptureFiles) {
+          addError(id, message);
+        } else {
+          warnings.push(`${id}: ${message}`);
+        }
       }
     } else if (!isNonEmptyString(surface.capture.note)) {
       warnings.push(`${id}: non-ready capture should include capture.note`);
@@ -192,6 +199,9 @@ const components = surfaces.filter((surface) => surface.kind === "component").le
 const workflows = surfaces.filter((surface) => surface.kind === "workflow").length;
 
 console.log(`Surface registry OK: ${surfaces.length} surfaces, ${components} components, ${workflows} workflows, ${readyCaptures} ready captures.`);
+if (!requireCaptureFiles) {
+  console.log("Capture PNG existence is advisory. Run `npm run registry:check:captures` after regenerating local captures to require files.");
+}
 if (warnings.length > 0) {
   console.log(`Warnings: ${warnings.length}`);
   for (const warning of warnings) {

@@ -85,3 +85,8 @@ git diff --check
 Use `npm run open-source:check` for the standard source/catalog/HyperFrames
 gate. Add at least one relevant capture command and one draft render command
 for visual proof.
+
+Capture PNGs are generated artifacts and are not committed. Use
+`npm run registry:check` for fresh-clone metadata validation, and use
+`npm run registry:check:captures` only after you have regenerated the local
+capture inventory and want every registered PNG to be present.

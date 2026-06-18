@@ -68,6 +68,7 @@
     "compare:sheets": "tools/make-comparison-sheet.sh",
     "catalog:generate": "node tools/generate-public-catalog.mjs",
     "registry:check": "node tools/check-surface-registry.mjs",
+    "registry:check:captures": "node tools/check-surface-registry.mjs --require-captures",
     "hf:lint": "npx hyperframes lint --verbose",
     "hf:validate": "npx hyperframes validate --no-contrast",
     "hf:inspect": "npx hyperframes inspect --samples 9 --json",

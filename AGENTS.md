@@ -69,6 +69,10 @@ npm run capture:quickstart-demo
 npm run example:quickstart:render
 ```
 
+Generated captures are ignored by git. `registry:check` validates capture
+metadata from a fresh clone; `npm run registry:check:captures` additionally
+requires generated capture PNGs on disk after a local capture sweep.
+
 For a smaller local pass after editing one surface, run its capture script plus
 the registry and HyperFrames checks.
 

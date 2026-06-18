@@ -16,6 +16,9 @@ npm run hf:inspect
 ```
 
 Node.js 22 or newer and FFmpeg are recommended for HyperFrames rendering.
+Generated captures are ignored by git. `registry:check` validates capture
+metadata in a fresh clone; run `npm run registry:check:captures` after a local
+capture sweep when you want the registry to require every PNG on disk.
 
 ## Add Or Improve A Surface
 

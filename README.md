@@ -40,6 +40,10 @@ npm run open-source:check
 
 `open-source:check` does not render video; add `npm run example:quickstart:render`
 or a workflow-specific render command when changing demos.
+Generated capture PNGs are intentionally ignored, so `registry:check` validates
+capture metadata and scripts without requiring those files. After regenerating a
+local capture inventory, run `npm run registry:check:captures` to require every
+registered capture PNG on disk.
 
 The focused target is a Claude-on-Mac demo environment:
 
@@ -105,6 +109,8 @@ Useful commands:
 
 ```bash
 npm run catalog:generate
+npm run registry:check
+npm run registry:check:captures
 npm run capture:web -- <url-or-local-file> --slug <name> [--selector "main"]
 npm run capture:quickstart-demo
 npm run capture:surface
