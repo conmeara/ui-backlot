@@ -65,7 +65,7 @@
         <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Marketing videos</span></div>
         <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Backlot primitives</span></div>
 
-        <div class="sidebar-sync-state">
+        <div class="sidebar-sync-state" data-layout-allow-occlusion="">
           <span class="sync-pulse"></span>
           <span>Claude can access selected folders and working files.</span>
         </div>
@@ -253,22 +253,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
     </section>
 
     <style>
-      @font-face {
-        font-family: "Anthropic Sans";
-        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
-        font-weight: 300 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "Anthropic Serif";
-        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
-        font-weight: 300 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
       #claude-app-surface {
         --bg-000: #fffdfa;
         --bg-100: #fbfaf6;
@@ -297,7 +281,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 780px;
         overflow: visible;
         color: var(--text-100);
-        font-family: "Anthropic Sans", sans-serif;
+        font-family: Inter, sans-serif;
       }
 
       #claude-app-surface[data-reference-focus="true"] {
@@ -1006,7 +990,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         display: grid;
         gap: 5px;
         color: var(--text-100);
-        font-family: "Anthropic Serif", serif;
+        font-family: Georgia, serif;
         font-size: 27px;
         line-height: 1.14;
         font-weight: 430;
@@ -1435,7 +1419,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         color: var(--text-400);
         font-size: 24px;
         line-height: 1.35;
-        font-family: "Anthropic Sans", sans-serif;
+        font-family: Inter, sans-serif;
         font-weight: 420;
       }
 
@@ -2218,7 +2202,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .part-label,
       .source-label {
         color: #756f66;
-        font-family: "Anthropic Sans", sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 13px;
         text-transform: none;
       }

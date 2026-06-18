@@ -8,7 +8,8 @@ by the public demo surfaces.
   scenes.
 
 Runtime font binaries copied from installed apps are intentionally kept local
-and ignored by git. Composition CSS can reference local fonts when present and
-fall back to bundled/system fonts when they are absent.
+and ignored by git. Public composition CSS should use renderer-safe font stacks
+such as `Inter`, `Georgia`, and platform monospace fonts instead of requiring
+ignored private binaries.
 
 Before adding new assets, read `docs/asset-policy.md`.

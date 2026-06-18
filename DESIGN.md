@@ -37,11 +37,14 @@ prefer extracting patterns, measurements, and component structure.
 
 ## Typography
 
-- Editorial voice: `Anthropic Serif` from the installed Claude app when
-  available; otherwise use a comparable warm serif.
-- Product UI: `Anthropic Sans` from the installed Claude app when available;
-  otherwise use the platform UI font.
+- Editorial voice: `Georgia` or another warm serif that HyperFrames can render
+  without private font files.
+- Product UI: `Inter` first, then platform UI fonts where the surface needs a
+  native app feel.
 - Code/status labels: `SFMono-Regular`, `Menlo`, `Monaco`, monospace.
+
+Private product fonts can inform fidelity research, but public runtime CSS must
+not require copied app font binaries.
 
 Use serif text for Claude narration and launch/title language. Use clean sans
 inside app surfaces. Avoid tiny web UI text except where it is decorative
