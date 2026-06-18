@@ -47,7 +47,7 @@
       "title": "macOS Calendar App",
       "kind": "surface",
       "status": "prototype",
-      "fidelity": "macos-web-informed Calendar shell",
+      "fidelity": "actual Apple Calendar screenshot-informed Week scheduling shell",
       "dimensions": {
         "width": 1920,
         "height": 1080
@@ -65,7 +65,7 @@
         "selector": ".calendar-window",
         "path": "captures/surface-calendar-app/target.png"
       },
-      "prototypeNote": "docs/prototypes/macos-web-calendar-surface-pass-016.md",
+      "prototypeNote": "docs/prototypes/calendar-toolbar-icon-refinement-pass-096.md",
       "tags": [
         "macos",
         "calendar",
@@ -74,8 +74,15 @@
       ],
       "dependencies": [],
       "sourceEvidence": [
+        "docs/prototypes/calendar-toolbar-icon-refinement-pass-096.md",
+        "docs/prototypes/calendar-actual-app-delta-pass-095.md",
+        "docs/prototypes/calendar-actual-app-reference-pass-094.md",
+        "docs/prototypes/apple-calendar-fidelity-pass-093.md",
         "docs/prototypes/macos-web-calendar-surface-pass-016.md",
-        "docs/research/open-source-ui-donor-repos.md"
+        "docs/research/open-source-ui-donor-repos.md",
+        "https://support.apple.com/guide/calendar/welcome/mac",
+        "https://support.apple.com/guide/calendar/add-modify-or-delete-events-icalwr13-events/mac",
+        "https://support.apple.com/guide/calendar/show-or-hide-a-calendar-icl1006/mac"
       ],
       "assetDecision": "Hand-authored HTML/CSS adapted from MIT-compatible macOS web references and local-only icon paths.",
       "recommendedUse": "Scheduling, coordination, and calendar-driven workflow scenes."
