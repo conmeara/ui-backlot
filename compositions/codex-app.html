@@ -8,185 +8,238 @@
     place-items: center;
     overflow: hidden;
     background:
-      radial-gradient(circle at 17% 14%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 22%),
-      radial-gradient(circle at 77% 83%, rgba(189, 212, 199, 0.42), rgba(189, 212, 199, 0) 30%),
-      linear-gradient(140deg, #f7f5ef 0%, #f1ebe1 52%, #dfe9e3 100%);
+      radial-gradient(circle at 18% 18%, rgba(82, 142, 255, 0.36), rgba(82, 142, 255, 0) 31%),
+      radial-gradient(circle at 82% 70%, rgba(151, 104, 245, 0.28), rgba(151, 104, 245, 0) 34%),
+      linear-gradient(135deg, #d9e8ff 0%, #f6f8fb 48%, #eee7ff 100%);
   }
 </style>
 
 <template id="codex-app-surface-template">
   <div id="codex-app-surface" data-composition-id="codex-app-surface" data-width="1280" data-height="820">
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="codex-icon-sidebar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"></rect><path d="M10 5v14"></path></symbol>
+      <symbol id="codex-icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"></path></symbol>
+      <symbol id="codex-icon-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></symbol>
+      <symbol id="codex-icon-edit-square" viewBox="0 0 24 24"><path d="M12 5H7a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-5"></path><path d="M14.5 4.8 19.2 9.5"></path><path d="M20.3 3.7 11 13l-1 4 4-1 9.3-9.3a2.1 2.1 0 0 0-3-3Z"></path></symbol>
+      <symbol id="codex-icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"></circle><path d="m15 15 5 5"></path></symbol>
+      <symbol id="codex-icon-grid" viewBox="0 0 24 24"><rect x="5" y="5" width="5" height="5" rx="1.4"></rect><rect x="14" y="5" width="5" height="5" rx="1.4"></rect><rect x="5" y="14" width="5" height="5" rx="1.4"></rect><rect x="14" y="14" width="5" height="5" rx="1.4"></rect></symbol>
+      <symbol id="codex-icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7.5V12l3.2 2.1"></path></symbol>
+      <symbol id="codex-icon-pin" viewBox="0 0 24 24"><path d="m9 4 7 7"></path><path d="m14.5 4.5 5 5-4 4 .7 3.2L14.7 18 6 9.3l1.3-1.5 3.2.7 4-4Z"></path><path d="m10 14-5 5"></path></symbol>
+      <symbol id="codex-icon-folder" viewBox="0 0 24 24"><path d="M4 8.5h6l2 2H20v7.2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"></path><path d="M4 8.5V7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1.5"></path></symbol>
+      <symbol id="codex-icon-list-filter" viewBox="0 0 24 24"><path d="M5 7h14"></path><path d="M7.5 12h9"></path><path d="M10 17h4"></path></symbol>
+      <symbol id="codex-icon-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol>
+      <symbol id="codex-icon-settings" viewBox="0 0 24 24"><path d="M9.7 4.6a2.2 2.2 0 0 1 4.6 0l.2 1a2 2 0 0 0 2.5 1.3l1-.4a2.2 2.2 0 0 1 2.3 4l-.8.6a2 2 0 0 0 0 2.8l.8.6a2.2 2.2 0 0 1-2.3 4l-1-.4a2 2 0 0 0-2.5 1.3l-.2 1a2.2 2.2 0 0 1-4.6 0l-.2-1A2 2 0 0 0 7 18.1l-1 .4a2.2 2.2 0 0 1-2.3-4l.8-.6a2 2 0 0 0 0-2.8l-.8-.6a2.2 2.2 0 0 1 2.3-4l1 .4a2 2 0 0 0 2.5-1.3Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+      <symbol id="codex-icon-more" viewBox="0 0 24 24"><circle cx="6.5" cy="12" r="1.2"></circle><circle cx="12" cy="12" r="1.2"></circle><circle cx="17.5" cy="12" r="1.2"></circle></symbol>
+      <symbol id="codex-icon-vscode" viewBox="0 0 24 24"><path d="M18.5 4.5 10 12l8.5 7.5V4.5Z" fill="currentColor" stroke="none"></path><path d="M10 8 5.5 12 10 16"></path></symbol>
+      <symbol id="codex-icon-sliders" viewBox="0 0 24 24"><path d="M4 7h16"></path><circle cx="9" cy="7" r="2"></circle><path d="M4 17h16"></path><circle cx="15" cy="17" r="2"></circle></symbol>
+      <symbol id="codex-icon-terminal" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2.5"></rect><path d="m8 10 2.5 2L8 14"></path><path d="M13 14h3.5"></path></symbol>
+      <symbol id="codex-icon-layout" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"></rect><path d="M14 5v14"></path></symbol>
+      <symbol id="codex-icon-shield" viewBox="0 0 24 24"><path d="M12 4 18 6.5v5.2c0 3.6-2.4 6.5-6 8.3-3.6-1.8-6-4.7-6-8.3V6.5Z"></path><path d="M9 12l2 2 4-4"></path></symbol>
+      <symbol id="codex-icon-spark" viewBox="0 0 24 24"><path d="M12 3.5 14.2 9l5.3 3-5.3 3L12 20.5 9.8 15l-5.3-3 5.3-3Z"></path><path d="M18.5 4.5v3"></path><path d="M17 6h3"></path></symbol>
+      <symbol id="codex-icon-mic" viewBox="0 0 24 24"><rect x="9" y="4" width="6" height="11" rx="3"></rect><path d="M6.5 11.5a5.5 5.5 0 0 0 11 0"></path><path d="M12 17v3"></path></symbol>
+      <symbol id="codex-icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"></path><path d="m6.5 10.5 5.5-5.5 5.5 5.5"></path></symbol>
+      <symbol id="codex-icon-monitor" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"></rect><path d="M9 20h6"></path><path d="M12 16v4"></path></symbol>
+      <symbol id="codex-icon-branch" viewBox="0 0 24 24"><circle cx="7" cy="6" r="2"></circle><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="12" r="2"></circle><path d="M7 8v8"></path><path d="M9 6c4 0 4 6 8 6"></path></symbol>
+      <symbol id="codex-icon-review" viewBox="0 0 24 24"><path d="M5 6h13"></path><path d="M5 12h9"></path><path d="M5 18h13"></path><path d="m15 10 3 2-3 2"></path></symbol>
+      <symbol id="codex-icon-file-plus" viewBox="0 0 24 24"><path d="M7 4h7l4 4v12H7Z"></path><path d="M14 4v4h4"></path><path d="M9.5 14h5"></path><path d="M12 11.5v5"></path></symbol>
+      <symbol id="codex-icon-expand" viewBox="0 0 24 24"><path d="M14 5h5v5"></path><path d="m19 5-6 6"></path><path d="M10 19H5v-5"></path><path d="m5 19 6-6"></path></symbol>
+      <symbol id="codex-icon-diff-color" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"></rect><path d="M9 5v14"></path><path d="M15 5v14"></path></symbol>
+      <symbol id="codex-icon-undo" viewBox="0 0 24 24"><path d="M9 8H5V4"></path><path d="M5 8c2.2-2.6 5.6-3.7 8.8-2.7a7 7 0 1 1-6 12.5"></path></symbol>
+      <symbol id="codex-icon-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></symbol>
+    </svg>
     <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
       <aside class="codex-sidebar" data-primitive="codex-sidebar">
-        <div class="window-traffic" aria-hidden="true">
-          <span class="red"></span>
-          <span class="yellow"></span>
-          <span class="green"></span>
+        <div class="sidebar-top">
+          <div class="window-traffic" aria-hidden="true">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+          <button class="sidebar-icon ghost icon-button" type="button" aria-label="Toggle sidebar"><svg><use href="#codex-icon-sidebar"></use></svg></button>
+          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#codex-icon-chevron-left"></use></svg></button>
+          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-chevron-right"></use></svg></button>
         </div>
 
-        <div class="codex-brand">
-          <span class="codex-mark" aria-hidden="true">Cx</span>
-          <span>Codex</span>
-        </div>
-
-        <button class="new-thread" type="button">
-          <span class="plus-glyph"></span>
-          <span>New task</span>
-        </button>
-
-        <nav class="sidebar-nav" aria-label="Codex navigation">
-          <button class="active" type="button"><span class="nav-glyph thread"></span>Threads</button>
-          <button type="button"><span class="nav-glyph cloud"></span>Cloud tasks</button>
-          <button type="button"><span class="nav-glyph review"></span>Reviews</button>
-          <button type="button"><span class="nav-glyph plugin"></span>Plugins</button>
+        <nav class="primary-nav" aria-label="Codex navigation">
+          <button type="button"><svg class="glyph"><use href="#codex-icon-edit-square"></use></svg>New chat</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-search"></use></svg>Search</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-grid"></use></svg>Plugins</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-clock"></use></svg>Automations</button>
         </nav>
 
-        <div class="section-label">Recent work</div>
-        <div class="thread-row selected">
-          <strong>UI Backlot surfaces</strong>
-          <span>Adding Codex app component</span>
-        </div>
-        <div class="thread-row">
-          <strong>Claude workflow wrappers</strong>
-          <span>Registry and captures</span>
-        </div>
-        <div class="thread-row">
-          <strong>HyperFrames render</strong>
-          <span>Draft verification</span>
-        </div>
+        <section class="sidebar-group">
+          <div class="sidebar-label">Pinned</div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Review and triage issues</strong>
+            <time>1w</time>
+          </div>
+          <div class="sidebar-row selected">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Redesign app modern UI</strong>
+            <time>1w</time>
+          </div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Create flow diagram</strong>
+            <time>2w</time>
+          </div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Add icons</strong>
+            <time>1mo</time>
+          </div>
+        </section>
 
-        <div class="sidebar-footer">
-          <span class="status-dot"></span>
-          <span>Local workspace connected</span>
-        </div>
+        <section class="sidebar-group projects">
+          <div class="sidebar-label with-actions">
+            <span>Projects</span>
+            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
+            <svg class="mini-action plus-small"><use href="#codex-icon-plus"></use></svg>
+          </div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>burger-restaurant</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>fitness-tracker</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codex-voxel</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codespottr</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>voxel-snake</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>jump-and-run</div>
+        </section>
+
+        <section class="sidebar-group chats">
+          <div class="sidebar-label with-actions">
+            <span>Chats</span>
+            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
+            <svg class="mini-action compose-small"><use href="#codex-icon-edit-square"></use></svg>
+          </div>
+          <div class="empty-chat">No chats</div>
+        </section>
+
+        <button class="settings-row" type="button"><svg class="gear"><use href="#codex-icon-settings"></use></svg>Settings</button>
       </aside>
 
-      <main class="codex-main" data-primitive="codex-thread-main">
-        <header class="codex-topbar">
-          <div>
-            <h1>UI Backlot refinement</h1>
-            <span>/Users/conmeara/Projects/ui-backlot</span>
+      <div class="codex-workspace">
+        <header class="topbar" data-primitive="codex-thread-topbar">
+          <div class="title-wrap">
+            <h1>Redesign app modern UI</h1>
+            <span>burger-restaurant</span>
           </div>
-          <div class="topbar-actions">
-            <button type="button" class="model-pill"><span></span>GPT-5</button>
-            <button type="button" class="mode-pill">Agent</button>
-            <button type="button" class="share-button">Share</button>
-          </div>
+          <button class="more-button icon-button" type="button" aria-label="Thread menu"><svg><use href="#codex-icon-more"></use></svg></button>
+          <div class="topbar-spacer"></div>
+          <button class="toolbar-button gear-button icon-button" type="button" aria-label="Settings"><svg><use href="#codex-icon-settings"></use></svg></button>
+          <button class="vscode-pill" type="button"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
+          <button class="commit-pill" type="button"><svg class="slider-icon"><use href="#codex-icon-sliders"></use></svg>Commit<span class="chev"></span></button>
+          <span class="toolbar-divider"></span>
+          <button class="terminal-button icon-button" type="button" aria-label="Terminal"><svg><use href="#codex-icon-terminal"></use></svg></button>
+          <div class="diff-counter"><span class="plus-count">+938</span><span class="minus-count">-664</span></div>
+          <button class="layout-toggle icon-button" type="button" aria-label="Toggle review"><svg><use href="#codex-icon-layout"></use></svg></button>
         </header>
 
-        <section class="conversation-panel" aria-label="Codex conversation">
-          <article class="message user-message">
-            <div class="avatar user-avatar">C</div>
-            <div class="bubble">Build a reusable Codex desktop app surface, not just the terminal.</div>
+        <main class="thread-pane" data-primitive="codex-active-thread">
+          <div class="prompt-bubble">Redesign the app to be more modern</div>
+          <button class="previous-link" type="button">33 previous messages <span></span></button>
+
+          <article class="assistant-response">
+            <p>Redesigned the site around a more image-led, editorial direction. The new layout gives Chuck's a stronger first impression with a photo-driven hero, sharper typography, cleaner menu grouping, better section rhythm, and a more polished final visit CTA in <a>index.html (line 38)</a>. The new visual system, responsive behavior, and motion styling live in <a>src/style.css (line 1)</a>, and the reveal behavior is now handled with an <code>IntersectionObserver</code> plus a subtle hero tilt interaction in <a>src/main.js (line 1)</a>.</p>
+            <p><code>npm run build</code> passes, and I spot-checked the live page with Playwright after the update. There's also an existing untracked <code>public/</code> directory in the repo that I left untouched.</p>
           </article>
 
-          <article class="message assistant-message">
-            <div class="avatar codex-avatar">Cx</div>
-            <div class="assistant-stack">
-              <p class="assistant-lead">I’ll add an editable Codex workbench component and verify it like the other Backlot surfaces.</p>
-              <div class="plan-card" data-primitive="codex-plan-card">
-                <div class="card-title">
-                  <span class="chevron open"></span>
-                  <strong>Plan</strong>
-                  <em>4 steps</em>
-                </div>
-                <div class="plan-row done"><span></span>Inspect CLI, app metadata, and existing terminal surface</div>
-                <div class="plan-row active"><span></span>Create standalone Codex app composition</div>
-                <div class="plan-row pending"><span></span>Register capture and prototype evidence</div>
-                <div class="plan-row pending"><span></span>Run HyperFrames gates and render</div>
-              </div>
+          <section class="change-card" data-primitive="codex-change-summary">
+            <header>
+              <strong>4 files changed <span class="plus-count">+1506</span> <span class="minus-count">-16</span></strong>
+              <button type="button">Undo <svg class="undo-icon"><use href="#codex-icon-undo"></use></svg></button>
+            </header>
+            <div class="change-row"><span>index.html</span><em class="plus-count">+324</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/main.js</span><em class="plus-count">+51</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/style.css</span><em class="plus-count">+1,108</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/style.css</span><em class="plus-count">+23</em><em class="minus-count">-16</em><i></i><b></b></div>
+          </section>
 
-              <div class="tool-card" data-primitive="codex-tool-card">
-                <div class="card-title">
-                  <span class="chevron open"></span>
-                  <strong>Reading local evidence</strong>
-                  <em>safe</em>
-                </div>
-                <div class="tool-row ok"><b>shell</b><span>codex app --help</span><time>ready</time></div>
-                <div class="tool-row ok"><b>read</b><span>Codex.app Info.plist</span><time>26.611.62324</time></div>
-                <div class="tool-row active"><b>edit</b><span>compositions/codex-app.html</span><time>now</time></div>
-              </div>
+          <footer class="composer" data-primitive="codex-composer">
+            <div class="composer-input">Ask for follow-up changes</div>
+            <div class="composer-bottom">
+              <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#codex-icon-plus"></use></svg></button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-shield"></use></svg>Default permissions <span class="chev"></span></button>
+              <span class="composer-fill"></span>
+              <button class="model-select" type="button"><svg class="spark"><use href="#codex-icon-spark"></use></svg>GPT-5.4 <span class="chev"></span></button>
+              <button class="effort-select" type="button">Extra High <span class="chev"></span></button>
+              <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#codex-icon-mic"></use></svg></button>
+              <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#codex-icon-arrow-up"></use></svg></button>
             </div>
-          </article>
-        </section>
+          </footer>
 
-        <footer class="composer" data-primitive="codex-composer">
-          <div class="composer-input">Ask Codex to change the next surface...</div>
-          <div class="composer-controls">
-            <button type="button" class="attach-button"><span></span>Attach</button>
-            <button type="button" class="context-button">ui-backlot</button>
-            <button type="button" class="send-button" aria-label="Send"></button>
+          <div class="thread-footer-meta">
+            <button type="button"><svg class="work-icon"><use href="#codex-icon-monitor"></use></svg>Work locally <span class="chev"></span></button>
+            <button type="button"><svg class="branch-mini"><use href="#codex-icon-branch"></use></svg>main <span class="chev"></span></button>
           </div>
-        </footer>
-      </main>
+        </main>
 
-      <aside class="codex-inspector" data-primitive="codex-inspector">
-        <section class="inspector-section goal-section">
-          <div class="inspector-title">Current Goal</div>
-          <p>Build modular editable UI surfaces for HyperFrames demo videos.</p>
-          <div class="goal-progress"><span></span></div>
-          <div class="goal-meta"><span>Active</span><strong>ui-backlot</strong></div>
-        </section>
+        <aside class="review-pane" data-primitive="codex-review-pane">
+          <header class="review-top">
+            <div class="review-title">
+              <svg class="review-glyph"><use href="#codex-icon-review"></use></svg>
+              <svg class="doc-glyph"><use href="#codex-icon-file-plus"></use></svg>
+              <strong>Review</strong>
+              <button type="button" class="add-review icon-button"><svg><use href="#codex-icon-plus"></use></svg></button>
+            </div>
+            <button class="expand-button icon-button" type="button" aria-label="Expand"><svg><use href="#codex-icon-expand"></use></svg></button>
+          </header>
 
-        <section class="inspector-section">
-          <div class="inspector-title">Files</div>
-          <div class="file-row selected"><span class="file-glyph html"></span><strong>codex-app.html</strong><em>new</em></div>
-          <div class="file-row"><span class="file-glyph json"></span><strong>registry.json</strong><em>edit</em></div>
-          <div class="file-row"><span class="file-glyph md"></span><strong>prototype note</strong><em>new</em></div>
-        </section>
+          <div class="review-scope">
+            <button type="button">Unstaged <span>4</span><i></i></button>
+            <button class="review-menu icon-button" type="button" aria-label="Review menu"><svg><use href="#codex-icon-more"></use></svg></button>
+            <button class="review-color icon-button" type="button" aria-label="Diff display"><svg><use href="#codex-icon-diff-color"></use></svg></button>
+          </div>
 
-        <section class="inspector-section diff-section">
-          <div class="inspector-title">Patch Preview</div>
-          <div class="diff-line add">+ Codex desktop surface</div>
-          <div class="diff-line add">+ capture command</div>
-          <div class="diff-line add">+ registry component entry</div>
-        </section>
+          <section class="diff-file">
+            <header>
+              <strong>index.html</strong>
+              <span class="plus-count">+230</span>
+              <span class="minus-count">-150</span>
+              <button class="icon-button" type="button"><svg><use href="#codex-icon-chevron-up"></use></svg></button>
+            </header>
+            <div class="fold-row"><span></span>2 unmodified lines</div>
+            <div class="code-row context"><em>3</em><code>&lt;head&gt;</code></div>
+            <div class="code-row remove"><em>6</em><code>&lt;title&gt;Chuck's Burgers | San Francisco Smash Counter&lt;/title&gt;</code></div>
+            <div class="code-row add"><em>6</em><code>&lt;title&gt;Chuck's Burgers | Late-Night Smash Counter in San Francisco&lt;/title&gt;</code></div>
+            <div class="code-row context"><em>8</em><code>&lt;meta</code></div>
+            <div class="code-row remove"><em>9</em><code>content="Chuck's Burgers is a San Francisco smash counter"</code></div>
+            <div class="code-row add"><em>9</em><code>content="Chuck's Burgers is a modern San Francisco smash counter"</code></div>
+            <div class="code-row context"><em>11</em><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;</code></div>
+            <div class="code-row add"><em>13</em><code>href="https://fonts.googleapis.com/css2?family=Bebas+Neue"</code></div>
+            <div class="code-row context"><em>16</em><code>&lt;/head&gt;</code></div>
+            <div class="fold-row"><span></span>3 unmodified lines</div>
+            <div class="code-row add"><em>23</em><code>&lt;span&gt;Chuck's &lt;strong&gt;Burgers&lt;/strong&gt;&lt;/span&gt;</code></div>
+            <div class="code-row add"><em>31</em><code>&lt;a href="#story"&gt;About&lt;/a&gt;</code></div>
+          </section>
 
-        <section class="inspector-section">
-          <div class="inspector-title">Local Reference</div>
-          <div class="meta-row"><span>Codex CLI</span><strong>0.139.0</strong></div>
-          <div class="meta-row"><span>Codex.app</span><strong>26.611.62324</strong></div>
-          <div class="meta-row"><span>CodexBar</span><strong>0.32.2</strong></div>
-        </section>
-
-        <section class="inspector-section verify-section">
-          <div class="inspector-title">Verification</div>
-          <div class="verify-row done"><span></span>capture</div>
-          <div class="verify-row active"><span></span>lint / inspect</div>
-          <div class="verify-row"><span></span>render</div>
-        </section>
-      </aside>
+          <div class="review-actions">
+            <button type="button"><svg class="undo-icon"><use href="#codex-icon-undo"></use></svg>Revert all</button>
+            <button type="button"><svg class="plus-mini"><use href="#codex-icon-plus"></use></svg>Stage all</button>
+          </div>
+        </aside>
+      </div>
     </section>
 
     <style>
-      @font-face {
-        font-family: "Anthropic Sans";
-        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
-        font-weight: 300 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
       #codex-app-surface {
-        --paper: #fffdfa;
-        --paper-2: #f7f4ee;
-        --paper-3: #eee7dc;
-        --ink: #16120f;
-        --ink-2: #34302b;
-        --muted: #746c62;
-        --faint: #a49a8e;
-        --line: rgba(50, 43, 35, 0.08);
-        --line-strong: rgba(50, 43, 35, 0.13);
-        --clay: #c65b47;
-        --clay-soft: #f4e2da;
-        --sage: #43b875;
-        --blue: #5db1dc;
-        --shadow-window: 0 34px 110px rgba(54, 42, 31, 0.18), 0 0 0 1px rgba(55, 42, 31, 0.08);
+        --window: #ffffff;
+        --sidebar: #e7eef8;
+        --sidebar-deeper: #dce6f3;
+        --ink: #1c1f23;
+        --muted: #6e7580;
+        --faint: #9aa2ad;
+        --line: rgba(29, 34, 41, 0.09);
+        --line-strong: rgba(29, 34, 41, 0.15);
+        --soft: #f6f7f9;
+        --soft-blue: #eef4fc;
+        --green: #28a562;
+        --red: #c65d58;
+        --blue: #4178d4;
         width: 1280px;
         height: 820px;
-        overflow: visible;
         color: var(--ink);
-        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+        font-size: 14px;
       }
 
       #codex-app-surface * {
@@ -202,694 +255,1449 @@
         height: 820px;
         overflow: hidden;
         display: grid;
-        grid-template-columns: 230px minmax(0, 1fr) 282px;
-        border-radius: 18px;
-        background:
-          linear-gradient(90deg, rgba(244, 239, 232, 0.78), rgba(244, 239, 232, 0.32) 18%, rgba(255, 253, 250, 1) 38%),
-          var(--paper);
-        box-shadow: var(--shadow-window);
+        grid-template-columns: 240px minmax(0, 1fr);
+        border-radius: 15px;
+        background: var(--window);
+        box-shadow: 0 32px 95px rgba(30, 57, 99, 0.28), 0 0 0 1px rgba(31, 38, 48, 0.11);
       }
 
       .codex-sidebar {
-        position: relative;
+        min-width: 0;
+        height: 820px;
         display: flex;
         flex-direction: column;
-        min-width: 0;
-        padding: 14px 10px 12px;
-        background: rgba(244, 239, 232, 0.72);
-        border-right: 1px solid rgba(50, 43, 35, 0.05);
+        padding: 13px 10px 10px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.12)), var(--sidebar);
+        color: #343941;
+      }
+
+      .sidebar-top {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
       }
 
       .window-traffic {
-        height: 14px;
         display: flex;
         align-items: center;
-        gap: 7px;
-        margin: 0 0 15px 3px;
+        gap: 8px;
+        margin-left: 3px;
       }
 
       .window-traffic span {
         width: 11px;
         height: 11px;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
       }
 
       .window-traffic .red { background: #ff5f57; }
-      .window-traffic .yellow { background: #ffbd2e; }
+      .window-traffic .yellow { background: #febc2e; }
       .window-traffic .green { background: #28c840; }
 
-      .codex-brand {
-        height: 34px;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding: 0 7px;
-        font-size: 15px;
-        font-weight: 720;
-        color: var(--ink-2);
-      }
-
-      .codex-mark,
-      .codex-avatar {
-        display: inline-grid;
-        place-items: center;
-        border-radius: 8px;
-        background: #171716;
-        color: #fff8ee;
-        font-size: 10px;
-        font-weight: 760;
-        letter-spacing: 0;
-      }
-
-      .codex-mark {
-        width: 24px;
-        height: 24px;
-      }
-
-      .new-thread {
-        height: 34px;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        margin: 10px 4px 15px;
-        padding: 0 11px;
-        border: 1px solid rgba(50, 43, 35, 0.08);
-        border-radius: 9px;
-        background: rgba(255, 254, 250, 0.78);
-        color: var(--ink);
-        font-size: 13px;
-        font-weight: 650;
-      }
-
-      .plus-glyph {
-        width: 14px;
-        height: 14px;
+      .sidebar-icon,
+      .nav-arrow {
+        width: 17px;
+        height: 17px;
+        border: 0;
+        background: transparent;
+        color: #7a8491;
         position: relative;
       }
 
-      .plus-glyph::before,
-      .plus-glyph::after {
+      .sidebar-icon::before {
         content: "";
         position: absolute;
-        left: 1px;
-        top: 6px;
-        width: 12px;
-        height: 2px;
-        border-radius: 2px;
-        background: currentColor;
+        inset: 3px 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
       }
 
-      .plus-glyph::after {
-        transform: rotate(90deg);
+      .sidebar-icon::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 4px;
+        bottom: 4px;
+        border-left: 1.5px solid currentColor;
       }
 
-      .sidebar-nav {
+      .nav-arrow::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 4px;
+        width: 7px;
+        height: 7px;
+        border-left: 1.6px solid currentColor;
+        border-bottom: 1.6px solid currentColor;
+        transform: rotate(45deg);
+      }
+
+      .nav-arrow.right::before {
+        transform: rotate(225deg);
+      }
+
+      .nav-arrow.disabled {
+        opacity: 0.28;
+      }
+
+      .primary-nav {
         display: grid;
         gap: 2px;
-        margin-bottom: 18px;
+        margin-bottom: 21px;
       }
 
-      .sidebar-nav button,
-      .thread-row {
-        width: 100%;
-        min-width: 0;
+      .primary-nav button,
+      .settings-row {
+        height: 29px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         border: 0;
         border-radius: 8px;
         background: transparent;
-        color: var(--muted);
+        color: #333943;
+        padding: 0 8px;
         text-align: left;
+        font-size: 13px;
+        font-weight: 500;
       }
 
-      .sidebar-nav button {
+      .glyph {
+        width: 15px;
+        height: 15px;
+        color: #566170;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .glyph.compose::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .glyph.compose::after {
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: 2px;
+        width: 7px;
+        height: 1.5px;
+        background: currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .glyph.search::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 8px;
+        height: 8px;
+        border: 1.6px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .glyph.search::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        width: 6px;
+        height: 1.6px;
+        background: currentColor;
+        transform: rotate(45deg);
+        border-radius: 2px;
+      }
+
+      .glyph.plugins {
+        background:
+          radial-gradient(circle at 3px 3px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 12px 3px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 3px 12px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 12px 12px, currentColor 0 2px, transparent 2.4px);
+      }
+
+      .glyph.clock::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border: 1.6px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .glyph.clock::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 4px;
+        width: 4px;
+        height: 4px;
+        border-left: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+      }
+
+      .sidebar-group {
+        display: grid;
+        gap: 4px;
+        margin-bottom: 18px;
+      }
+
+      .sidebar-label {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 22px;
+        padding: 0 8px;
+        color: #8a96a5;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .sidebar-label.with-actions {
+        justify-content: space-between;
+      }
+
+      .sidebar-label.with-actions span:first-child {
+        margin-right: auto;
+      }
+
+      .sidebar-row {
+        height: 30px;
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr) 32px;
+        align-items: center;
+        gap: 7px;
+        padding: 0 8px;
+        border-radius: 8px;
+        color: #343941;
+      }
+
+      .sidebar-row.selected {
+        background: rgba(43, 50, 59, 0.08);
+      }
+
+      .sidebar-row strong,
+      .project-item,
+      .empty-chat {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .sidebar-row time {
+        color: #6d7785;
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        color: #7d8794;
+        flex: 0 0 auto;
+      }
+
+      .pin::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 2px;
+        width: 7px;
+        height: 8px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px 3px 2px 2px;
+        transform: rotate(45deg);
+      }
+
+      .project-item {
         height: 30px;
         display: flex;
         align-items: center;
         gap: 9px;
         padding: 0 8px;
-        font-size: 13px;
-        font-weight: 560;
+        color: #525b68;
       }
 
-      .sidebar-nav button.active,
-      .thread-row.selected {
-        background: rgba(226, 218, 207, 0.78);
-        color: var(--ink);
+      .project-icon::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 3px;
+        width: 12px;
+        height: 9px;
+        border: 1.35px solid currentColor;
+        border-radius: 2px;
       }
 
-      .nav-glyph {
-        width: 15px;
-        height: 15px;
-        flex: 0 0 auto;
-        border: 1.5px solid currentColor;
-        opacity: 0.75;
+      .project-icon::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 5px;
+        height: 3px;
+        border: 1.35px solid currentColor;
+        border-bottom: 0;
+        border-radius: 2px 2px 0 0;
       }
 
-      .nav-glyph.thread { border-radius: 5px; }
-      .nav-glyph.cloud { border-radius: 9px; border-top-color: transparent; }
-      .nav-glyph.review { border-radius: 50%; }
-      .nav-glyph.plugin { border-radius: 3px; transform: rotate(45deg) scale(0.82); }
-
-      .section-label {
-        margin: 2px 8px 7px;
-        color: var(--faint);
-        font-size: 11px;
-        font-weight: 700;
+      .mini-action::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        right: 2px;
+        top: 4px;
+        height: 1.4px;
+        background: currentColor;
+        box-shadow: 0 3.5px 0 currentColor, 0 7px 0 currentColor;
       }
 
-      .thread-row {
-        display: grid;
-        gap: 3px;
-        padding: 9px 10px;
-        margin-bottom: 4px;
+      .plus-small::after,
+      .compose-small::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 2px;
+        bottom: 2px;
+        border-left: 1.4px solid currentColor;
       }
 
-      .thread-row strong,
-      .thread-row span {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .empty-chat {
+        height: 28px;
+        padding: 0 8px;
+        color: #a0a9b5;
       }
 
-      .thread-row strong {
-        color: var(--ink-2);
-        font-size: 12.5px;
-        font-weight: 650;
-      }
-
-      .thread-row span {
-        color: var(--muted);
-        font-size: 11.5px;
-      }
-
-      .sidebar-footer {
+      .settings-row {
         margin-top: auto;
-        display: grid;
-        grid-template-columns: 10px 1fr;
-        gap: 8px;
-        align-items: center;
-        padding: 10px;
-        border-radius: 10px;
-        background: rgba(255, 254, 250, 0.48);
-        color: var(--muted);
-        font-size: 11.5px;
-        line-height: 1.25;
+        padding-left: 8px;
       }
 
-      .status-dot {
-        width: 8px;
-        height: 8px;
+      .gear::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
         border-radius: 50%;
-        background: var(--sage);
-        box-shadow: 0 0 0 4px rgba(67, 184, 117, 0.13);
       }
 
-      .codex-main {
+      .gear::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .codex-workspace {
         min-width: 0;
         display: grid;
-        grid-template-rows: 64px minmax(0, 1fr) 116px;
-        background: rgba(255, 253, 250, 0.92);
+        grid-template-columns: minmax(0, 1fr) 422px;
+        grid-template-rows: 55px minmax(0, 1fr);
+        background: #fff;
       }
 
-      .codex-topbar {
+      .topbar {
+        grid-column: 1 / 3;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 64px 104px 1px 32px auto 30px;
+        gap: 9px;
+        align-items: center;
+        padding: 0 18px 0 13px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .title-wrap {
+        min-width: 0;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 0 22px;
-        border-bottom: 1px solid rgba(50, 43, 35, 0.055);
-      }
-
-      .codex-topbar h1 {
-        margin: 0 0 3px;
-        color: var(--ink);
-        font-size: 17px;
-        line-height: 1.1;
-        font-weight: 720;
-        letter-spacing: 0;
-      }
-
-      .codex-topbar span {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .topbar-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex: 0 0 auto;
-      }
-
-      .model-pill,
-      .mode-pill,
-      .share-button {
-        height: 32px;
-        border-radius: 999px;
-        border: 1px solid rgba(50, 43, 35, 0.08);
-        background: rgba(250, 248, 244, 0.76);
-        color: var(--ink-2);
-        padding: 0 12px;
-        font-size: 12px;
-        font-weight: 650;
-      }
-
-      .model-pill {
-        display: inline-flex;
-        align-items: center;
+        align-items: baseline;
         gap: 7px;
       }
 
-      .model-pill span {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--clay);
-      }
-
-      .conversation-panel {
-        min-height: 0;
-        overflow: hidden;
-        padding: 30px 34px 22px;
-        display: grid;
-        align-content: start;
-        gap: 22px;
-        background:
-          radial-gradient(circle at 92% 4%, rgba(189, 212, 199, 0.22), rgba(189, 212, 199, 0) 24%),
-          transparent;
-      }
-
-      .message {
-        display: grid;
-        grid-template-columns: 34px minmax(0, 1fr);
-        gap: 13px;
-        align-items: start;
-      }
-
-      .avatar {
-        width: 31px;
-        height: 31px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        font-size: 12px;
-        font-weight: 760;
-      }
-
-      .user-avatar {
-        background: #e4ded4;
-        color: var(--ink-2);
-      }
-
-      .codex-avatar {
-        border-radius: 9px;
-      }
-
-      .bubble {
-        justify-self: start;
-        max-width: 580px;
-        padding: 13px 16px;
-        border-radius: 16px;
-        background: #f0ede7;
-        color: var(--ink);
-        font-size: 15px;
-        line-height: 1.35;
-      }
-
-      .assistant-stack {
-        display: grid;
-        gap: 14px;
-        min-width: 0;
-      }
-
-      .assistant-lead {
-        max-width: 720px;
-        margin: 0 0 3px;
-        color: var(--ink);
-        font-size: 25px;
-        line-height: 1.18;
-        font-weight: 610;
+      .title-wrap h1 {
+        margin: 0;
+        color: #25282d;
+        font-size: 13px;
+        line-height: 1;
+        font-weight: 650;
         letter-spacing: 0;
       }
 
-      .plan-card,
-      .tool-card {
-        overflow: hidden;
-        border: 1px solid rgba(50, 43, 35, 0.075);
-        border-radius: 15px;
-        background: rgba(255, 254, 250, 0.72);
-        box-shadow: 0 8px 26px rgba(54, 42, 31, 0.045);
-      }
-
-      .card-title {
-        min-height: 35px;
-        display: grid;
-        grid-template-columns: 18px 1fr auto;
-        align-items: center;
-        gap: 9px;
-        padding: 0 13px;
-        border-bottom: 1px solid rgba(50, 43, 35, 0.055);
-        background: rgba(247, 244, 238, 0.56);
-      }
-
-      .card-title strong {
-        color: var(--ink-2);
+      .title-wrap span {
+        color: #9b9b9b;
         font-size: 13px;
-        font-weight: 720;
       }
 
-      .card-title em {
-        color: var(--faint);
-        font-size: 11.5px;
-        font-style: normal;
-        font-weight: 560;
-      }
-
-      .chevron {
-        width: 12px;
-        height: 12px;
+      .more-button,
+      .toolbar-button,
+      .terminal-button,
+      .layout-toggle,
+      .review-menu,
+      .expand-button,
+      .add-review {
+        border: 0;
+        background: transparent;
+        color: #7a828d;
         position: relative;
-        color: var(--muted);
       }
 
-      .chevron::before {
+      .more-button {
+        width: 28px;
+        height: 28px;
+      }
+
+      .more-button::before,
+      .review-menu::before {
+        content: "...";
+        position: absolute;
+        left: 5px;
+        top: 0;
+        color: currentColor;
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      .toolbar-button,
+      .terminal-button,
+      .layout-toggle {
+        width: 30px;
+        height: 30px;
+      }
+
+      .gear-button::before {
         content: "";
         position: absolute;
-        left: 3px;
-        top: 1px;
-        width: 6px;
-        height: 6px;
-        border-right: 1.5px solid currentColor;
-        border-bottom: 1.5px solid currentColor;
-        transform: rotate(45deg);
-      }
-
-      .plan-row,
-      .tool-row {
-        min-height: 33px;
-        display: grid;
-        align-items: center;
-        gap: 10px;
-        padding: 0 14px;
-        border-bottom: 1px solid rgba(50, 43, 35, 0.045);
-        color: var(--ink-2);
-        font-size: 13px;
-      }
-
-      .plan-row {
-        grid-template-columns: 17px 1fr;
-      }
-
-      .tool-row {
-        grid-template-columns: 58px 1fr auto;
-      }
-
-      .plan-row:last-child,
-      .tool-row:last-child {
-        border-bottom: 0;
-      }
-
-      .plan-row span,
-      .verify-row span {
-        width: 15px;
-        height: 15px;
+        inset: 7px;
+        border: 1.5px solid currentColor;
         border-radius: 50%;
-        border: 1.6px solid #d2c9bd;
+      }
+
+      .vscode-pill,
+      .commit-pill {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fafafa;
+        color: #25282d;
+        padding: 0 9px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .vscode-mark {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border-radius: 4px;
+        background: #4c83d9;
         position: relative;
       }
 
-      .plan-row.done span,
-      .verify-row.done span {
-        border-color: var(--sage);
-      }
-
-      .plan-row.done span::before,
-      .verify-row.done span::before {
+      .vscode-mark::before {
         content: "";
         position: absolute;
         left: 4px;
         top: 3px;
         width: 6px;
-        height: 3px;
-        border-left: 1.6px solid var(--sage);
-        border-bottom: 1.6px solid var(--sage);
-        transform: rotate(-45deg);
+        height: 7px;
+        border-left: 2px solid #fff;
+        border-top: 2px solid #fff;
+        transform: skewX(-12deg) rotate(-45deg);
       }
 
-      .plan-row.active {
-        background: rgba(198, 91, 71, 0.045);
+      .chev {
+        width: 7px;
+        height: 7px;
+        display: inline-block;
+        border-right: 1.4px solid currentColor;
+        border-bottom: 1.4px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        opacity: 0.65;
       }
 
-      .plan-row.active span,
-      .verify-row.active span {
-        border-color: var(--clay);
-        box-shadow: 0 0 0 4px rgba(198, 91, 71, 0.11);
+      .slider-icon {
+        width: 16px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
       }
 
-      .plan-row.pending {
-        color: var(--muted);
+      .slider-icon::before,
+      .slider-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: #3a3f46;
+        border-radius: 2px;
       }
 
-      .tool-row b {
+      .slider-icon::before {
+        top: 3px;
+      }
+
+      .slider-icon::after {
+        bottom: 3px;
+      }
+
+      .toolbar-divider {
+        width: 1px;
         height: 22px;
-        display: inline-flex;
+        background: var(--line);
+      }
+
+      .terminal-button::before {
+        content: "";
+        position: absolute;
+        inset: 8px 6px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .diff-counter {
+        display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        background: #f1eee8;
-        color: var(--muted);
-        font-size: 11px;
+        gap: 4px;
+        height: 28px;
+        padding: 0 7px;
+        border-radius: 8px;
+        background: #f3f5f6;
+        font-size: 12px;
         font-weight: 700;
       }
 
-      .tool-row time {
-        color: var(--faint);
-        font-size: 11.5px;
-        font-variant-numeric: tabular-nums;
+      .plus-count {
+        color: var(--green);
       }
 
-      .tool-row.ok b {
-        color: #3f7e53;
-        background: rgba(67, 184, 117, 0.12);
+      .minus-count {
+        color: var(--red);
       }
 
-      .tool-row.active {
-        background: rgba(198, 91, 71, 0.04);
+      .layout-toggle::before {
+        content: "";
+        position: absolute;
+        inset: 8px 5px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
       }
 
-      .composer {
-        margin: 0 34px 24px;
+      .layout-toggle::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        bottom: 9px;
+        right: 11px;
+        border-left: 1.5px solid currentColor;
+      }
+
+      .thread-pane {
         min-width: 0;
-        border: 1px solid rgba(50, 43, 35, 0.105);
-        border-radius: 24px;
-        background: rgba(255, 254, 250, 0.98);
-        box-shadow: 0 18px 44px rgba(54, 42, 31, 0.095);
-        display: grid;
-        grid-template-rows: 1fr 42px;
+        position: relative;
         overflow: hidden;
+        border-right: 1px solid var(--line);
+        padding: 40px 14px 86px;
+        background: #fff;
       }
 
-      .composer-input {
-        padding: 17px 18px 0;
-        color: var(--faint);
-        font-size: 24px;
+      .prompt-bubble {
+        width: fit-content;
+        max-width: 360px;
+        margin: 0 0 59px auto;
+        padding: 11px 18px;
+        border-radius: 14px;
+        background: #f4f4f4;
+        color: #303236;
+        font-size: 14px;
         line-height: 1.25;
+        font-weight: 620;
       }
 
-      .composer-controls {
+      .previous-link {
+        height: 28px;
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 0 11px 10px;
+        border: 0;
+        background: transparent;
+        color: #7f858e;
+        padding: 0 0 0 0;
+        margin: 0 0 18px;
+        font-size: 13px;
       }
 
-      .attach-button,
-      .context-button {
-        height: 30px;
+      .previous-link span {
+        width: 7px;
+        height: 7px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .assistant-response {
+        padding-top: 18px;
+        border-top: 1px solid rgba(29, 34, 41, 0.07);
+      }
+
+      .assistant-response p {
+        max-width: 705px;
+        margin: 0 6px 12px 0;
+        color: #24272c;
+        font-size: 14.2px;
+        line-height: 1.54;
+        font-weight: 450;
+      }
+
+      .assistant-response a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      code {
+        padding: 1px 4px;
+        border-radius: 4px;
+        background: #f2f2f2;
+        color: #262a30;
+        font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+        font-size: 12.4px;
+      }
+
+      .change-card {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 196px;
+        overflow: hidden;
+        border-radius: 13px;
+        background: #f5f5f5;
+        box-shadow: inset 0 0 0 1px rgba(29, 34, 41, 0.06);
+      }
+
+      .change-card header {
+        height: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        border-bottom: 1px solid rgba(29, 34, 41, 0.06);
+        color: #292c31;
+        font-size: 13px;
+      }
+
+      .change-card header button {
+        border: 0;
+        background: transparent;
+        color: #3d424a;
+        font-size: 12.5px;
+      }
+
+      .change-row {
+        height: 34px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto 12px 14px;
+        gap: 5px;
+        align-items: center;
+        padding: 0 12px 0 14px;
+        border-bottom: 1px solid rgba(29, 34, 41, 0.05);
+        color: #343941;
+        font-size: 13px;
+      }
+
+      .change-row:last-child {
+        border-bottom: 0;
+      }
+
+      .change-row span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 600;
+      }
+
+      .change-row em {
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .change-row i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+
+      .change-row b {
+        width: 8px;
+        height: 8px;
+        border-right: 1.6px solid #6d7480;
+        border-bottom: 1.6px solid #6d7480;
+        transform: rotate(45deg);
+      }
+
+      .composer {
+        position: absolute;
+        left: 13px;
+        right: 13px;
+        bottom: 42px;
+        height: 112px;
+        display: grid;
+        grid-template-rows: 1fr 38px;
+        overflow: hidden;
+        border: 1px solid rgba(29, 34, 41, 0.13);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 9px 26px rgba(30, 36, 44, 0.08);
+      }
+
+      .composer-input {
+        padding: 17px 15px 0;
+        color: #adb2b9;
+        font-size: 14px;
+      }
+
+      .composer-bottom {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 9px 9px 12px;
+      }
+
+      .plus-button,
+      .mic-button,
+      .send-button {
+        width: 28px;
+        height: 28px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        position: relative;
+        color: #747b86;
+      }
+
+      .plus-button::before,
+      .plus-button::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 13px;
+        width: 12px;
+        height: 1.5px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+
+      .plus-button::after {
+        transform: rotate(90deg);
+      }
+
+      .permission-select,
+      .model-select,
+      .effort-select,
+      .thread-footer-meta button {
+        height: 28px;
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        border: 1px solid rgba(50, 43, 35, 0.08);
-        border-radius: 999px;
-        background: #faf8f4;
-        color: var(--ink-2);
-        padding: 0 10px;
+        border: 0;
+        background: transparent;
+        color: #727983;
         font-size: 12px;
-        font-weight: 560;
+        font-weight: 500;
       }
 
-      .attach-button span {
-        width: 14px;
-        height: 14px;
-        border-radius: 4px;
-        background: #d7cfc3;
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini {
+        width: 13px;
+        height: 13px;
+        display: inline-block;
+        position: relative;
+      }
+
+      .hand-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px 3px;
+        border: 1.4px solid currentColor;
+        border-radius: 5px 5px 4px 4px;
+      }
+
+      .spark::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 0;
+        width: 4px;
+        height: 13px;
+        background: currentColor;
+        clip-path: polygon(50% 0, 100% 42%, 62% 42%, 84% 100%, 0 48%, 39% 48%);
+      }
+
+      .composer-fill {
+        flex: 1 1 auto;
+      }
+
+      .mic-button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 6px;
+        width: 7px;
+        height: 12px;
+        border: 1.4px solid currentColor;
+        border-radius: 5px;
+      }
+
+      .mic-button::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 16px;
+        width: 11px;
+        height: 6px;
+        border-bottom: 1.4px solid currentColor;
+        border-radius: 0 0 8px 8px;
       }
 
       .send-button {
-        margin-left: auto;
-        width: 34px;
-        height: 34px;
-        border: 0;
-        border-radius: 50%;
-        background: var(--clay);
-        position: relative;
-        box-shadow: 0 8px 18px rgba(198, 91, 71, 0.24);
+        background: #9b9fa6;
+        color: #fff;
       }
 
       .send-button::before {
         content: "";
         position: absolute;
-        left: 10px;
-        top: 9px;
-        width: 12px;
-        height: 12px;
-        border-left: 3px solid #fff;
-        border-top: 3px solid #fff;
+        left: 9px;
+        top: 8px;
+        width: 9px;
+        height: 9px;
+        border-left: 2px solid #fff;
+        border-top: 2px solid #fff;
         transform: rotate(45deg);
       }
 
-      .codex-inspector {
+      .thread-footer-meta {
+        position: absolute;
+        left: 17px;
+        bottom: 9px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .work-icon::before {
+        content: "";
+        position: absolute;
+        inset: 3px 1px;
+        border: 1.3px solid currentColor;
+        border-radius: 2px;
+      }
+
+      .branch-mini::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 1px;
+        bottom: 1px;
+        border-left: 1.3px solid currentColor;
+      }
+
+      .branch-mini::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 2px;
+        width: 5px;
+        height: 5px;
+        border: 1.3px solid currentColor;
+        border-radius: 50%;
+        box-shadow: 0 7px 0 -1px #fff, 0 7px 0 0 currentColor;
+      }
+
+      .review-pane {
         min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        padding: 76px 14px 16px;
-        background: rgba(250, 248, 244, 0.62);
-        border-left: 1px solid rgba(50, 43, 35, 0.055);
-      }
-
-      .inspector-section {
-        display: grid;
-        gap: 9px;
-      }
-
-      .inspector-title {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 760;
-      }
-
-      .goal-section {
-        padding: 13px;
-        border-radius: 14px;
-        background: rgba(255, 254, 250, 0.64);
-        border: 1px solid rgba(50, 43, 35, 0.07);
-      }
-
-      .goal-section p {
-        margin: 0;
-        color: var(--ink-2);
-        font-size: 13px;
-        line-height: 1.35;
-      }
-
-      .goal-progress {
-        height: 6px;
         overflow: hidden;
-        border-radius: 999px;
-        background: #e7dfd4;
+        position: relative;
+        padding: 0 12px 54px;
+        background: #fff;
       }
 
-      .goal-progress span {
-        display: block;
-        width: 62%;
-        height: 100%;
-        border-radius: inherit;
-        background: var(--clay);
-      }
-
-      .goal-meta {
+      .review-top {
+        height: 54px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        color: var(--faint);
-        font-size: 11px;
       }
 
-      .goal-meta strong {
-        color: var(--muted);
+      .review-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #2a2d32;
       }
 
-      .file-row,
-      .meta-row,
-      .verify-row {
-        min-height: 31px;
+      .review-title strong {
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .review-glyph,
+      .doc-glyph {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        color: #6f7782;
+      }
+
+      .review-glyph::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 3px;
+        width: 10px;
+        height: 1.4px;
+        background: currentColor;
+        box-shadow: 0 4px 0 currentColor;
+      }
+
+      .review-glyph::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 7px;
+        width: 5px;
+        height: 5px;
+        border-left: 1.4px solid currentColor;
+        border-bottom: 1.4px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .doc-glyph::before {
+        content: "";
+        position: absolute;
+        inset: 1px 2px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .doc-glyph::after {
+        content: "+";
+        position: absolute;
+        left: 4px;
+        top: -1px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .add-review {
+        width: 22px;
+        height: 22px;
+      }
+
+      .add-review::before,
+      .add-review::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        width: 12px;
+        height: 1.3px;
+        background: #6f7782;
+      }
+
+      .add-review::after {
+        transform: rotate(90deg);
+      }
+
+      .expand-button {
+        width: 24px;
+        height: 24px;
+      }
+
+      .expand-button::before,
+      .expand-button::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-color: currentColor;
+      }
+
+      .expand-button::before {
+        right: 4px;
+        top: 4px;
+        border-top: 1.4px solid;
+        border-right: 1.4px solid;
+      }
+
+      .expand-button::after {
+        left: 4px;
+        bottom: 4px;
+        border-left: 1.4px solid;
+        border-bottom: 1.4px solid;
+      }
+
+      .review-scope {
+        height: 32px;
         display: grid;
+        grid-template-columns: minmax(0, 1fr) 26px 26px;
         align-items: center;
         gap: 8px;
-        border-radius: 9px;
-        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .review-scope button {
+        border: 0;
+        background: transparent;
+        color: #25282d;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: left;
+        position: relative;
+      }
+
+      .review-scope span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 22px;
+        height: 22px;
+        margin-left: 5px;
+        border-radius: 999px;
+        background: #f0f0f0;
+        color: #777f8a;
         font-size: 12px;
       }
 
-      .file-row {
-        grid-template-columns: 20px 1fr auto;
-        padding: 0 9px;
-        background: rgba(255, 254, 250, 0.42);
+      .review-scope i {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-left: 7px;
+        border-right: 1.3px solid #6f7782;
+        border-bottom: 1.3px solid #6f7782;
+        transform: rotate(45deg) translateY(-2px);
       }
 
-      .file-row.selected {
-        background: rgba(198, 91, 71, 0.075);
-        color: var(--ink-2);
+      .review-color::before {
+        content: "";
+        position: absolute;
+        inset: 7px 5px;
+        border: 1px solid #aab2bd;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #e88888 0 33%, #8ac69a 33% 66%, #b6bce6 66%);
       }
 
-      .file-row strong {
-        min-width: 0;
+      .diff-file {
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        border-radius: 8px;
+      }
+
+      .diff-file header {
+        height: 36px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: #25282d;
+        font-size: 13px;
+      }
+
+      .diff-file header strong {
+        font-weight: 500;
+      }
+
+      .diff-file header button {
+        margin-left: auto;
+        width: 22px;
+        height: 22px;
+        border: 0;
+        background: transparent;
+        position: relative;
+      }
+
+      .diff-file header button::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 9px;
+        width: 7px;
+        height: 7px;
+        border-left: 1.4px solid #6f7782;
+        border-top: 1.4px solid #6f7782;
+        transform: rotate(45deg);
+      }
+
+      .fold-row {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 6px;
+        background: var(--soft-blue);
+        color: #6d7480;
+        padding: 0 12px;
+        font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
         font-size: 12px;
-        font-weight: 650;
       }
 
-      .file-row em {
-        color: var(--faint);
-        font-size: 10.5px;
+      .fold-row span {
+        width: 9px;
+        height: 9px;
+        border-left: 1.5px solid #6d7480;
+        border-top: 1.5px solid #6d7480;
+        transform: rotate(45deg);
+      }
+
+      .code-row {
+        min-height: 27px;
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        align-items: center;
+        font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        line-height: 1.25;
+      }
+
+      .code-row em {
+        color: #6b7480;
+        text-align: center;
         font-style: normal;
-        font-weight: 650;
       }
 
-      .file-glyph {
+      .code-row code {
+        overflow: hidden;
+        display: block;
+        background: transparent;
+        color: #42505f;
+        text-overflow: clip;
+        white-space: nowrap;
+      }
+
+      .code-row.remove {
+        background: #fde8e8;
+      }
+
+      .code-row.add {
+        background: #e4f4e7;
+      }
+
+      .code-row.remove code {
+        color: #8d4243;
+      }
+
+      .code-row.add code {
+        color: #2f7552;
+      }
+
+      .review-actions {
+        position: absolute;
+        right: 10px;
+        bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 7px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 7px 20px rgba(24, 31, 42, 0.12), 0 0 0 1px rgba(29, 34, 41, 0.08);
+      }
+
+      .review-actions button {
+        height: 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 0;
+        background: transparent;
+        color: #777f8a;
+        padding: 0 8px;
+        font-size: 12px;
+      }
+
+      .undo-icon,
+      .plus-mini {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
+        color: currentColor;
+      }
+
+      .undo-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.4px solid currentColor;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .undo-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 5px;
+        height: 5px;
+        border-left: 1.4px solid currentColor;
+        border-top: 1.4px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .plus-mini::before,
+      .plus-mini::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 5px;
+        width: 10px;
+        height: 1.3px;
+        background: currentColor;
+      }
+
+      .plus-mini::after {
+        transform: rotate(90deg);
+      }
+
+      .icon-sprite {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .icon-button {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .icon-button svg,
+      .glyph,
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action,
+      .slider-icon,
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini,
+      .review-glyph,
+      .doc-glyph,
+      .undo-icon,
+      .plus-mini {
+        display: block;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        overflow: visible;
+      }
+
+      .sidebar-icon::before,
+      .sidebar-icon::after,
+      .nav-arrow::before,
+      .glyph.compose::before,
+      .glyph.compose::after,
+      .glyph.search::before,
+      .glyph.search::after,
+      .glyph.clock::before,
+      .glyph.clock::after,
+      .pin::before,
+      .project-icon::before,
+      .project-icon::after,
+      .mini-action::before,
+      .plus-small::after,
+      .compose-small::after,
+      .gear::before,
+      .gear::after,
+      .more-button::before,
+      .review-menu::before,
+      .gear-button::before,
+      .vscode-mark::before,
+      .slider-icon::before,
+      .slider-icon::after,
+      .terminal-button::before,
+      .layout-toggle::before,
+      .layout-toggle::after,
+      .plus-button::before,
+      .plus-button::after,
+      .hand-icon::before,
+      .spark::before,
+      .mic-button::before,
+      .mic-button::after,
+      .send-button::before,
+      .work-icon::before,
+      .branch-mini::before,
+      .branch-mini::after,
+      .review-glyph::before,
+      .review-glyph::after,
+      .doc-glyph::before,
+      .doc-glyph::after,
+      .add-review::before,
+      .add-review::after,
+      .expand-button::before,
+      .expand-button::after,
+      .review-color::before,
+      .diff-file header button::before,
+      .undo-icon::before,
+      .undo-icon::after,
+      .plus-mini::before,
+      .plus-mini::after {
+        content: none;
+      }
+
+      .sidebar-top .icon-button svg {
         width: 17px;
         height: 17px;
-        border-radius: 5px;
-        background: #d8d0c4;
+        stroke-width: 1.75;
       }
 
-      .file-glyph.html { background: #d46e54; }
-      .file-glyph.json { background: #79b382; }
-      .file-glyph.md { background: #72c2e4; }
-
-      .diff-section {
-        padding: 11px 12px;
-        border-radius: 13px;
-        background: rgba(255, 254, 250, 0.42);
+      .primary-nav .glyph {
+        width: 16px;
+        height: 16px;
+        color: #566170;
       }
 
-      .diff-line {
-        min-height: 24px;
-        color: #3d7e55;
-        font-family: "JetBrains Mono", Menlo, Monaco, monospace;
-        font-size: 11.5px;
-        line-height: 1.3;
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action {
+        width: 15px;
+        height: 15px;
+        color: #788392;
       }
 
-      .meta-row {
-        grid-template-columns: 1fr auto;
-        min-height: 25px;
-        padding: 0 2px;
+      .pin {
+        stroke-width: 1.55;
       }
 
-      .meta-row strong {
-        color: var(--ink-2);
-        font-size: 11.5px;
+      .mini-action {
+        width: 14px;
+        height: 14px;
       }
 
-      .verify-row {
-        grid-template-columns: 16px 1fr;
-        min-height: 26px;
-        padding: 0 2px;
+      .more-button svg,
+      .terminal-button svg,
+      .layout-toggle svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .gear-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .vscode-mark {
+        display: inline-grid;
+        place-items: center;
+        overflow: hidden;
+        color: #fff;
+      }
+
+      .vscode-mark svg {
+        width: 12px;
+        height: 12px;
+        fill: currentColor;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .slider-icon {
+        width: 16px;
+        height: 16px;
+        color: #3a3f46;
+        stroke-width: 1.75;
+      }
+
+      .plus-button svg,
+      .mic-button svg,
+      .send-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini {
+        width: 14px;
+        height: 14px;
+        stroke-width: 1.65;
+      }
+
+      .spark {
+        stroke-width: 1.55;
+      }
+
+      .send-button svg {
+        stroke-width: 2;
+        transform: translateY(-1px);
+      }
+
+      .review-glyph,
+      .doc-glyph {
+        width: 16px;
+        height: 16px;
+        color: #68727f;
+        stroke-width: 1.65;
+      }
+
+      .add-review svg,
+      .expand-button svg,
+      .review-menu svg,
+      .diff-file header button svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .review-color {
+        border-radius: 7px;
+        background:
+          linear-gradient(90deg, rgba(227, 104, 104, 0.18) 0 33%, rgba(40, 165, 98, 0.18) 33% 66%, rgba(65, 120, 212, 0.18) 66% 100%);
+      }
+
+      .review-color svg {
+        width: 16px;
+        height: 16px;
+        color: #667085;
+        stroke-width: 1.25;
+      }
+
+      .undo-icon,
+      .plus-mini {
+        width: 13px;
+        height: 13px;
+        stroke-width: 1.7;
       }
     </style>
 
@@ -897,18 +1705,15 @@
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.from(".codex-app-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.48, ease: "power3.out" }, 0.12);
-      tl.from(".codex-sidebar", { opacity: 0, x: -14, duration: 0.34, ease: "sine.out" }, 0.24);
-      tl.from(".codex-topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.34);
-      tl.from(".user-message", { opacity: 0, y: 12, duration: 0.32, ease: "sine.out" }, 0.54);
-      tl.from(".assistant-message", { opacity: 0, y: 16, duration: 0.42, ease: "power2.out" }, 0.82);
-      tl.from(".plan-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 1.18);
-      tl.from(".plan-row", { opacity: 0, x: 8, stagger: 0.05, duration: 0.24, ease: "sine.out" }, 1.38);
-      tl.from(".tool-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 1.78);
-      tl.from(".codex-inspector .inspector-section", { opacity: 0, x: 10, stagger: 0.055, duration: 0.28, ease: "sine.out" }, 1.94);
-      tl.from(".composer", { opacity: 0, y: 16, duration: 0.34, ease: "power2.out" }, 2.26);
-      tl.to(".plan-row.active span, .verify-row.active span", { scale: 1.1, duration: 0.32, repeat: 5, yoyo: true, ease: "sine.inOut" }, 2.65);
-      tl.to(".goal-progress span", { width: "72%", duration: 1.2, ease: "sine.inOut" }, 3.0);
+      tl.from(".codex-app-window", { opacity: 0, y: 18, filter: "blur(4px)", duration: 0.48, ease: "power3.out" }, 0.1);
+      tl.from(".codex-sidebar", { opacity: 0, x: -12, duration: 0.34, ease: "sine.out" }, 0.22);
+      tl.from(".topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.32);
+      tl.from(".prompt-bubble", { opacity: 0, y: 10, duration: 0.32, ease: "sine.out" }, 0.52);
+      tl.from(".assistant-response", { opacity: 0, y: 12, duration: 0.38, ease: "power2.out" }, 0.82);
+      tl.from(".change-card", { opacity: 0, y: 12, duration: 0.34, ease: "power2.out" }, 1.16);
+      tl.from(".review-pane > *", { opacity: 0, x: 12, stagger: 0.045, duration: 0.28, ease: "sine.out" }, 1.32);
+      tl.from(".composer", { opacity: 0, y: 16, duration: 0.34, ease: "power2.out" }, 1.72);
+      tl.from(".review-actions", { opacity: 0, y: 8, duration: 0.28, ease: "sine.out" }, 2.08);
       window.__timelines["codex-app-surface"] = tl;
     </script>
   </div>
