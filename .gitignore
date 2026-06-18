@@ -1,0 +1,14 @@
+node_modules/
+captures/
+renders/
+snapshots/
+assets/fonts/*.ttf
+hyperframes-studio-preview.png
+reference/claude/images/
+reference/claude/videos/
+reference/claude/frame-study/
+reference/open-source/*/
+.hyperframes/
+.playwright-mcp/
+.thumbnails/
+.DS_Store

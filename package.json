@@ -1,0 +1,30 @@
+{
+  "name": "ui-backlot",
+  "version": "1.0.0",
+  "description": "UI Backlot is a workspace for scripted product-demo videos. The core idea is to rebuild the software surfaces we want to teach as deterministic React/HTML scenes, then render those scenes with Remotion or HyperFrames instead of relying on fragile live screen recordings.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "capture:hf": "npx hyperframes capture",
+    "capture:web": "node tools/capture-web-ui.mjs",
+    "capture:surface": "node tools/capture-web-ui.mjs surfaces/claude-mac-finder.html --slug surface-claude-mac-finder --selector '#backlot-surface'",
+    "capture:finder": "node tools/capture-web-ui.mjs \"file://$PWD/surfaces/claude-mac-finder.html?mode=finder\" --slug surface-finder-window --selector '.finder-window' --viewport 920x436 --scale 2",
+    "capture:browser-app": "node tools/capture-web-ui.mjs surfaces/browser-app-surface.html --slug surface-browser-app --selector '.browser-window'",
+    "compare:finder": "tools/make-comparison-sheet.sh captures/finder-launch-deck/window.png captures/surface-finder-window/target.png snapshots/finder-source-vs-surface.jpg 'REFERENCE - Finder Launch Deck window capture' 'PROTOTYPE - Editable Finder HTML surface'",
+    "compare:sheets": "tools/make-comparison-sheet.sh",
+    "hf:lint": "npx hyperframes lint --verbose",
+    "hf:validate": "npx hyperframes validate --no-contrast",
+    "hf:inspect": "npx hyperframes inspect --samples 9 --json",
+    "hf:snapshot": "npx hyperframes snapshot . --at=1,3,5.4,7.8,10.1,12.6,15 --describe=false",
+    "hf:render": "npx hyperframes render --quality draft --output renders/claude-keynote-workflow-draft.mp4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright": "^1.61.0"
+  }
+}

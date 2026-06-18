@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Backlot - Browser App Surface</title>
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Anthropic Serif";
+        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --stage-w: 1920px;
+        --stage-h: 1080px;
+        --paper: #fffdf7;
+        --ink: #17130f;
+        --muted: #655d55;
+        --line: rgba(34, 29, 24, 0.1);
+        --clay: #c65b47;
+        --sage: #bdd4c7;
+        --navy: #111326;
+        --blue: #1d86e8;
+        --green: #43b875;
+        --shadow-window: 0 34px 96px rgba(30, 35, 42, 0.22);
+        --shadow-soft: 0 18px 54px rgba(52, 39, 30, 0.11);
+      }
+
+      html,
+      body {
+        width: var(--stage-w);
+        height: var(--stage-h);
+        margin: 0;
+        overflow: hidden;
+        background: #111;
+      }
+
+      body {
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        color: var(--ink);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #browser-app-surface {
+        position: relative;
+        width: var(--stage-w);
+        height: var(--stage-h);
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 18%),
+          radial-gradient(circle at 78% 10%, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0) 20%),
+          linear-gradient(138deg, #76d2f2 0%, #4eb8e7 31%, #eaf6ee 32%, #fff6dc 57%, #f1d39b 100%);
+      }
+
+      .paper-field {
+        position: absolute;
+        inset: -80px;
+        opacity: 0.32;
+        background-image:
+          radial-gradient(ellipse at 18% 22%, rgba(255, 255, 255, 0) 0 48%, rgba(255, 255, 255, 0.78) 49% 50%, rgba(255, 255, 255, 0) 51%),
+          radial-gradient(ellipse at 73% 15%, rgba(255, 255, 255, 0) 0 48%, rgba(255, 255, 255, 0.52) 49% 50%, rgba(255, 255, 255, 0) 51%);
+        background-size: 900px 520px, 760px 460px;
+      }
+
+      .menu-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 30;
+        width: 100%;
+        height: 28px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 0 18px;
+        background: rgba(247, 251, 252, 0.68);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(18px) saturate(1.25);
+        color: rgba(0, 0, 0, 0.82);
+        font-size: 15px;
+        font-weight: 560;
+      }
+
+      .menu-left,
+      .menu-right {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        white-space: nowrap;
+      }
+
+      .apple-glyph {
+        width: 14px;
+        height: 17px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .apple-glyph::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        bottom: 0;
+        width: 12px;
+        height: 13px;
+        border-radius: 46% 46% 44% 44%;
+        background: #050505;
+      }
+
+      .apple-glyph::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 7px;
+        height: 6px;
+        border-radius: 7px 0 7px 0;
+        background: #050505;
+        transform: rotate(-24deg);
+      }
+
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .status-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 2px solid currentColor;
+      }
+
+      .status-pill {
+        width: 28px;
+        height: 14px;
+        border: 2px solid currentColor;
+        border-radius: 8px;
+      }
+
+      .browser-window {
+        position: absolute;
+        left: 168px;
+        top: 86px;
+        width: 1516px;
+        height: 864px;
+        border: 1px solid rgba(16, 18, 22, 0.11);
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow-window);
+      }
+
+      .traffic {
+        position: absolute;
+        left: 18px;
+        top: 15px;
+        display: flex;
+        gap: 9px;
+        z-index: 3;
+      }
+
+      .traffic span {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.13);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #febc2e; }
+      .traffic .green { background: #28c840; }
+
+      .browser-tabs {
+        height: 50px;
+        display: flex;
+        align-items: end;
+        gap: 0;
+        padding: 8px 14px 0 82px;
+        background: #dfe3e8;
+        border-bottom: 1px solid rgba(16, 18, 22, 0.1);
+        overflow: hidden;
+      }
+
+      .tab {
+        --tab-bg: rgba(255, 255, 255, 0.34);
+        position: relative;
+        z-index: 1;
+        height: 40px;
+        width: 238px;
+        max-width: 238px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-left: -8px;
+        padding: 0 32px 0 18px;
+        border-radius: 13px 13px 0 0;
+        color: #5f6670;
+        font-size: 13px;
+        background: var(--tab-bg);
+        user-select: none;
+      }
+
+      .tab:first-child {
+        margin-left: 0;
+      }
+
+      .tab.active {
+        --tab-bg: #fff;
+        z-index: 4;
+        color: #20242a;
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.82);
+      }
+
+      .tab.active::before,
+      .tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+      }
+
+      .tab.active::before {
+        left: -10px;
+        clip-path: path("M10 10H0C5.5 10 10 5.5 10 0Z");
+      }
+
+      .tab.active::after {
+        right: -10px;
+        clip-path: path("M0 10H10C4.5 10 0 5.5 0 0Z");
+      }
+
+      .tab:not(.active)::after {
+        content: "";
+        position: absolute;
+        right: 8px;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background: rgba(103, 112, 123, 0.34);
+      }
+
+      .tab-favicon {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 16px;
+        border-radius: 4px;
+        background: linear-gradient(135deg, var(--sage), var(--clay));
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+      }
+
+      .tab-favicon.csv {
+        background: linear-gradient(135deg, #e8f4ec, #43b875);
+      }
+
+      .tab-favicon.note {
+        background:
+          linear-gradient(#9aa3ad 0 1px, rgba(154, 163, 173, 0) 1px 5px),
+          #f8fafb;
+        background-size: 100% 5px;
+        border: 1px solid #d4dae0;
+      }
+
+      .tab-title {
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 20px), rgba(0, 0, 0, 0));
+        mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 20px), rgba(0, 0, 0, 0));
+      }
+
+      .tab-close {
+        position: absolute;
+        right: 11px;
+        top: 12px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+      }
+
+      .tab-close::before,
+      .tab-close::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 7px;
+        width: 8px;
+        height: 1.5px;
+        border-radius: 2px;
+        background: rgba(69, 74, 80, 0.72);
+      }
+
+      .tab-close::before {
+        transform: rotate(45deg);
+      }
+
+      .tab-close::after {
+        transform: rotate(-45deg);
+      }
+
+      .tab-add {
+        width: 28px;
+        height: 28px;
+        margin: 5px 0 0 8px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.32);
+        color: #59616b;
+        font-size: 18px;
+        line-height: 26px;
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+      }
+
+      .tab-spacer {
+        flex: 1;
+      }
+
+      .browser-toolbar {
+        height: 52px;
+        display: grid;
+        grid-template-columns: 112px 1fr 146px;
+        align-items: center;
+        gap: 14px;
+        padding: 0 16px;
+        background: #fff;
+        border-bottom: 1px solid rgba(16, 18, 22, 0.08);
+      }
+
+      .nav-controls,
+      .toolbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-button,
+      .toolbar-button {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #f1f3f5;
+        border: 1px solid rgba(16, 18, 22, 0.07);
+        position: relative;
+      }
+
+      .nav-button.back::before,
+      .nav-button.forward::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #68707b;
+        border-bottom: 2px solid #68707b;
+        transform: rotate(45deg);
+      }
+
+      .nav-button.forward::before {
+        left: 8px;
+        transform: rotate(-135deg);
+      }
+
+      .nav-button.reload::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        border: 2px solid #68707b;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .nav-button.reload::after {
+        content: "";
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid #68707b;
+        border-top: 4px solid rgba(104, 112, 123, 0);
+        border-bottom: 4px solid rgba(104, 112, 123, 0);
+        transform: rotate(32deg);
+      }
+
+      .url-bar {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 13px;
+        border-radius: 999px;
+        color: #59616b;
+        font-size: 13px;
+        background: #f4f6f8;
+        border: 1px solid rgba(16, 18, 22, 0.08);
+      }
+
+      .lock {
+        width: 10px;
+        height: 8px;
+        border-radius: 2px;
+        background: #8b939d;
+        position: relative;
+      }
+
+      .lock::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: -6px;
+        width: 6px;
+        height: 7px;
+        border: 2px solid #8b939d;
+        border-bottom: 0;
+        border-radius: 6px 6px 0 0;
+      }
+
+      .url-text {
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .url-badge {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 999px;
+        color: #47515d;
+        background: #e8ecef;
+        font-size: 11px;
+        font-weight: 620;
+      }
+
+      .star-icon {
+        width: 15px;
+        height: 15px;
+        clip-path: polygon(50% 0, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%);
+        background: #8b939d;
+      }
+
+      .toolbar-button.profile {
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: #c65b47;
+        border-color: rgba(166, 70, 52, 0.38);
+        font-size: 11px;
+        font-weight: 760;
+      }
+
+      .toolbar-button.more::before,
+      .toolbar-button.more::after,
+      .toolbar-button.more span {
+        content: "";
+        position: absolute;
+        top: 12px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #68707b;
+      }
+
+      .toolbar-button.more::before { left: 7px; }
+      .toolbar-button.more span { left: 12px; }
+      .toolbar-button.more::after { left: 17px; }
+
+      .toolbar-button.split::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        width: 12px;
+        height: 12px;
+        border: 2px solid #68707b;
+        border-radius: 4px;
+      }
+
+      .toolbar-button.split::after {
+        content: "";
+        position: absolute;
+        right: 5px;
+        bottom: 7px;
+        width: 5px;
+        height: 5px;
+        border-right: 1.5px solid #68707b;
+        border-bottom: 1.5px solid #68707b;
+        transform: rotate(45deg);
+      }
+
+      .app-shell {
+        height: calc(100% - 102px);
+        display: grid;
+        grid-template-columns: 236px 1fr 286px;
+        background: #f6f7f8;
+      }
+
+      .app-sidebar {
+        padding: 24px 18px;
+        background: #111326;
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 26px;
+        font-size: 18px;
+        font-weight: 620;
+      }
+
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--sage), var(--clay));
+      }
+
+      .side-label {
+        margin: 22px 0 8px;
+        color: rgba(255, 255, 255, 0.46);
+        font-size: 11px;
+        font-weight: 620;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .side-row {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 10px;
+        border-radius: 9px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 13px;
+      }
+
+      .side-row.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.11);
+      }
+
+      .side-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.75;
+      }
+
+      .app-main {
+        padding: 28px 30px;
+        overflow: hidden;
+      }
+
+      .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 20px;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 7px;
+        color: #7a838e;
+        font-size: 13px;
+      }
+
+      .breadcrumb span:not(:last-child)::after {
+        content: "/";
+        margin-left: 7px;
+        color: #b1b7be;
+      }
+
+      .eyebrow {
+        color: #8b929a;
+        font-size: 12px;
+        font-weight: 620;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .app-title {
+        margin-top: 8px;
+        font-family: "Anthropic Serif", serif;
+        font-size: 42px;
+        line-height: 1.02;
+        font-weight: 720;
+      }
+
+      .sync-pill {
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        border-radius: 999px;
+        color: #3e584c;
+        background: rgba(189, 212, 199, 0.42);
+        border: 1px solid rgba(67, 184, 117, 0.24);
+        font-size: 13px;
+        font-weight: 520;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .app-action {
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        border: 1px solid rgba(16, 18, 22, 0.09);
+        border-radius: 999px;
+        background: #fff;
+        color: #4e5660;
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .sync-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .metric-card {
+        min-height: 104px;
+        padding: 18px;
+        border: 1px solid rgba(16, 18, 22, 0.08);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(17, 19, 38, 0.05);
+      }
+
+      .metric-label {
+        color: #7b838d;
+        font-size: 12px;
+      }
+
+      .metric-value {
+        margin-top: 10px;
+        font-size: 31px;
+        font-weight: 690;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .metric-delta {
+        margin-top: 7px;
+        color: #2f8e5c;
+        font-size: 12px;
+      }
+
+      .data-table {
+        border: 1px solid rgba(16, 18, 22, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 14px 34px rgba(17, 19, 38, 0.05);
+      }
+
+      .table-head,
+      .table-row {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr 0.8fr 0.8fr 108px;
+        align-items: center;
+        min-height: 47px;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(16, 18, 22, 0.07);
+        font-size: 13px;
+      }
+
+      .table-head {
+        min-height: 42px;
+        color: #7b838d;
+        background: #f7f8f9;
+        font-weight: 620;
+      }
+
+      .table-row:last-child {
+        border-bottom: 0;
+      }
+
+      .table-row.selected {
+        background: #fff6f1;
+        box-shadow: inset 3px 0 0 var(--clay);
+      }
+
+      .status {
+        justify-self: start;
+        padding: 5px 8px;
+        border-radius: 999px;
+        color: #605348;
+        background: #f1eee8;
+      }
+
+      .status.ready {
+        color: #285f43;
+        background: #e6f3ea;
+      }
+
+      .right-panel {
+        padding: 24px;
+        border-left: 1px solid rgba(16, 18, 22, 0.08);
+        background: #fff;
+      }
+
+      .panel-title {
+        font-size: 17px;
+        font-weight: 640;
+        margin-bottom: 18px;
+      }
+
+      .preview-card {
+        height: 182px;
+        border-radius: 12px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, var(--clay) 0 34%, rgba(198, 91, 71, 0) 34%),
+          #fff8ef;
+        border: 1px solid rgba(16, 18, 22, 0.08);
+        box-shadow: var(--shadow-soft);
+        position: relative;
+      }
+
+      .preview-card::before {
+        content: "Q2 launch story";
+        position: absolute;
+        left: 94px;
+        top: 39px;
+        width: 132px;
+        color: #2c2520;
+        font-family: "Anthropic Serif", serif;
+        font-size: 24px;
+        line-height: 1.02;
+        font-weight: 720;
+      }
+
+      .preview-bars {
+        position: absolute;
+        left: 94px;
+        bottom: 26px;
+        display: flex;
+        align-items: end;
+        gap: 8px;
+      }
+
+      .preview-bars span {
+        width: 20px;
+        border-radius: 5px 5px 0 0;
+        background: #d7c5b3;
+      }
+
+      .preview-bars span:nth-child(1) { height: 24px; }
+      .preview-bars span:nth-child(2) { height: 35px; }
+      .preview-bars span:nth-child(3) { height: 30px; background: var(--clay); }
+
+      .inspector-list {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .inspector-row {
+        display: grid;
+        grid-template-columns: 20px 1fr auto;
+        align-items: center;
+        gap: 10px;
+        min-height: 34px;
+        color: #4c535c;
+        font-size: 13px;
+      }
+
+      .check {
+        width: 18px;
+        height: 18px;
+        border-radius: 6px;
+        background: var(--green);
+        position: relative;
+      }
+
+      .check::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 7px;
+        height: 4px;
+        border-left: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        transform: rotate(-45deg);
+      }
+
+      .edit-badge {
+        position: absolute;
+        left: 760px;
+        top: 490px;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 38px;
+        padding: 0 13px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(16, 18, 22, 0.08);
+        box-shadow: 0 18px 48px rgba(17, 19, 38, 0.16);
+        color: #34383f;
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .cursor {
+        position: absolute;
+        left: 914px;
+        top: 526px;
+        z-index: 6;
+        width: 24px;
+        height: 34px;
+        filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+      }
+
+      .cursor::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-left: 22px solid #101010;
+        border-top: 32px solid rgba(16, 16, 16, 0);
+      }
+
+      .cursor::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 9px;
+        width: 7px;
+        height: 16px;
+        background: #101010;
+        transform: rotate(-26deg);
+        transform-origin: top;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="browser-app-surface" data-surface="browser-app">
+      <div class="paper-field"></div>
+      <div class="menu-bar">
+        <div class="menu-left">
+          <span class="apple-glyph" aria-hidden="true"></span>
+          <span>Browser</span>
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>History</span>
+          <span>Window</span>
+          <span>Help</span>
+        </div>
+        <div></div>
+        <div class="menu-right">
+          <span class="status-icons" aria-hidden="true">
+            <span class="status-dot"></span>
+            <span class="status-dot"></span>
+            <span class="status-pill"></span>
+          </span>
+          <span>Wed Jun 17</span>
+          <span>4:15 PM</span>
+        </div>
+      </div>
+
+      <section class="browser-window" data-primitive="browser-app-window" aria-label="Editable browser app surface">
+        <div class="traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="browser-tabs">
+          <div class="tab active">
+            <span class="tab-favicon"></span>
+            <span class="tab-title">Launch Deck Review</span>
+            <span class="tab-close" aria-hidden="true"></span>
+          </div>
+          <div class="tab">
+            <span class="tab-favicon csv"></span>
+            <span class="tab-title">Q2 revenue.csv</span>
+            <span class="tab-close" aria-hidden="true"></span>
+          </div>
+          <div class="tab">
+            <span class="tab-favicon note"></span>
+            <span class="tab-title">slide-notes.md</span>
+            <span class="tab-close" aria-hidden="true"></span>
+          </div>
+          <button class="tab-add" type="button" aria-label="New tab">+</button>
+          <div class="tab-spacer"></div>
+        </div>
+        <div class="browser-toolbar">
+          <div class="nav-controls">
+            <span class="nav-button back"></span>
+            <span class="nav-button forward"></span>
+            <span class="nav-button reload"></span>
+          </div>
+          <div class="url-bar">
+            <span class="lock"></span>
+            <span class="url-text">review.local/launch-deck/board</span>
+            <span class="url-badge">local</span>
+            <span class="star-icon" aria-hidden="true"></span>
+          </div>
+          <div class="toolbar-actions">
+            <span class="toolbar-button split"></span>
+            <span class="toolbar-button profile">CB</span>
+            <span class="toolbar-button more"><span></span></span>
+          </div>
+        </div>
+
+        <div class="app-shell">
+          <aside class="app-sidebar">
+            <div class="app-brand"><span class="brand-mark"></span>Review Board</div>
+            <div class="side-label">Workspace</div>
+            <div class="side-row active"><span class="side-dot"></span>Launch Deck</div>
+            <div class="side-row"><span class="side-dot"></span>Research Notes</div>
+            <div class="side-row"><span class="side-dot"></span>Video Script</div>
+            <div class="side-label">Views</div>
+            <div class="side-row"><span class="side-dot"></span>Grid</div>
+            <div class="side-row"><span class="side-dot"></span>Timeline</div>
+            <div class="side-row"><span class="side-dot"></span>Approvals</div>
+          </aside>
+
+          <section class="app-main">
+            <header class="app-header">
+              <div>
+                <div class="eyebrow">Launch deck source of truth</div>
+                <div class="breadcrumb"><span>Boards</span><span>Launch Deck</span><span>Review</span></div>
+                <div class="app-title">Q2 narrative board</div>
+              </div>
+              <div class="header-actions">
+                <button class="app-action" type="button">Share</button>
+                <button class="app-action" type="button">Export deck</button>
+                <div class="sync-pill"><span class="sync-dot"></span>Synced from Finder</div>
+              </div>
+            </header>
+
+            <div class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-label">Rows reviewed</div>
+                <div class="metric-value">24</div>
+                <div class="metric-delta">+6 from slide notes</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Claims resolved</div>
+                <div class="metric-value">18</div>
+                <div class="metric-delta">ready for deck</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Deck updates</div>
+                <div class="metric-value">03</div>
+                <div class="metric-delta">title, chart, notes</div>
+              </div>
+            </div>
+
+            <div class="data-table">
+              <div class="table-head">
+                <span>Item</span>
+                <span>Source</span>
+                <span>Owner</span>
+                <span>Status</span>
+                <span>Slide</span>
+              </div>
+              <div class="table-row selected">
+                <span>Opening narrative</span>
+                <span>slide-notes.md</span>
+                <span>Claude</span>
+                <span class="status ready">Ready</span>
+                <span>01</span>
+              </div>
+              <div class="table-row">
+                <span>Revenue impact chart</span>
+                <span>Q2 revenue.csv</span>
+                <span>Claude</span>
+                <span class="status">Reviewing</span>
+                <span>01</span>
+              </div>
+              <div class="table-row">
+                <span>Customer quote cleanup</span>
+                <span>feedback.txt</span>
+                <span>Claude</span>
+                <span class="status ready">Ready</span>
+                <span>02</span>
+              </div>
+              <div class="table-row">
+                <span>Speaker notes</span>
+                <span>README.md</span>
+                <span>Claude</span>
+                <span class="status">Drafting</span>
+                <span>01</span>
+              </div>
+            </div>
+          </section>
+
+          <aside class="right-panel">
+            <div class="panel-title">Selected slide preview</div>
+            <div class="preview-card">
+              <div class="preview-bars"><span></span><span></span><span></span></div>
+            </div>
+            <div class="inspector-list">
+              <div class="inspector-row"><span class="check"></span><span>Title updated</span><span>now</span></div>
+              <div class="inspector-row"><span class="check"></span><span>Chart values mapped</span><span>now</span></div>
+              <div class="inspector-row"><span class="check"></span><span>Notes summarized</span><span>now</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="edit-badge"><span class="sync-dot"></span>Claude updated row 1</div>
+      <div class="cursor" aria-hidden="true"></div>
+    </main>
+  </body>
+</html>

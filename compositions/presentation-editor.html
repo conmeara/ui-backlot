@@ -1,0 +1,996 @@
+<template id="presentation-editor-surface-template">
+  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
+    <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
+      <div class="keynote-titlebar">
+        <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
+        <div class="dock-icon keynote power-app-icon">P</div>
+        <span class="presentation-name">Launch Deck.pptx</span>
+        <span class="sync-status"><span class="sync-spinner"></span>Saved</span>
+        <span class="autosave-toggle"><span></span>AutoSave</span>
+        <div class="titlebar-search">Search</div>
+        <div class="titlebar-actions"><span>Share</span><span>Comments</span></div>
+      </div>
+      <div class="ribbon-tabs">
+        <span>Home</span><span>Insert</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
+      </div>
+      <div class="powerpoint-ribbon">
+        <div class="ribbon-group slides">
+          <div class="ribbon-large split"><span class="cmd-icon slide"></span><em>New Slide</em><i></i></div>
+          <div class="ribbon-stack">
+            <span class="ribbon-mini">Layout</span>
+            <span class="ribbon-mini">Reset</span>
+          </div>
+          <strong>Slides</strong>
+        </div>
+        <div class="ribbon-group font">
+          <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">28</span></div>
+          <div class="button-group">
+            <span class="tool-toggle active">B</span><span class="tool-toggle">I</span><span class="tool-toggle">U</span><span class="tool-toggle color"></span>
+          </div>
+          <strong>Font</strong>
+        </div>
+        <div class="ribbon-group paragraph">
+          <div class="button-group dense">
+            <span class="para-lines"></span><span class="para-lines center"></span><span class="para-lines right"></span><span class="para-bullets"></span>
+          </div>
+          <div class="button-group dense">
+            <span class="para-indent out"></span><span class="para-indent in"></span><span class="line-spacing"></span>
+          </div>
+          <strong>Paragraph</strong>
+        </div>
+        <div class="ribbon-group drawing">
+          <div class="shape-gallery"><span></span><span></span><span></span><span></span></div>
+          <div class="ribbon-stack">
+            <span class="split-mini fill">Shape Fill</span>
+            <span class="split-mini outline">Outline</span>
+          </div>
+          <strong>Drawing</strong>
+        </div>
+        <div class="ribbon-group arrange">
+          <div class="button-group dense">
+            <span class="arrange-icon layer"></span><span class="arrange-icon align"></span><span class="arrange-icon rotate"></span>
+          </div>
+          <span class="split-mini">Selection Pane</span>
+          <strong>Arrange</strong>
+        </div>
+        <div class="ribbon-group editing">
+          <div class="ribbon-stack">
+            <span class="ribbon-mini">Find</span>
+            <span class="ribbon-mini">Replace</span>
+          </div>
+          <span class="split-mini">Select</span>
+          <strong>Editing</strong>
+        </div>
+      </div>
+      <div class="keynote-body">
+        <div class="slide-rail">
+          <div class="thumb-label">1</div><div class="slide-thumb active"><span></span><b></b></div>
+          <div class="thumb-label">2</div><div class="slide-thumb muted"><span></span><b></b></div>
+          <div class="thumb-label">3</div><div class="slide-thumb muted chart"><span></span><b></b></div>
+          <div class="thumb-label">4</div><div class="slide-thumb muted text"><span></span><b></b></div>
+        </div>
+        <div class="slide-stage">
+          <div class="slide-canvas">
+            <div class="slide-section-band"></div>
+            <div class="selection-box" data-layout-ignore></div>
+            <div class="slide-comment-pin" data-layout-ignore></div>
+            <div class="slide-title"><span class="before-title">Q2 launch notes</span><span class="after-title">Q2 launch story</span></div>
+            <div class="slide-subtitle">Revenue, adoption, and customer feedback cleaned into one executive narrative.</div>
+            <div class="slide-chart" aria-label="Revenue impact chart">
+              <div class="bar bar-a"></div>
+              <div class="bar bar-b"></div>
+              <div class="bar bar-c"></div>
+              <div class="bar bar-d"></div>
+            </div>
+            <div class="slide-axis"></div>
+          </div>
+          <div class="speaker-notes">Click to add speaker notes: open with customer proof, then land the revenue chart in one sentence.</div>
+          <div class="slide-status"><span>Slide 1 of 4</span><span>Notes</span><span>Comments</span><span class="zoom-track"></span></div>
+        </div>
+        <aside class="inspector">
+          <strong>Format Shape</strong>
+          <div class="inspector-tabs"><span class="active">Fill</span><span>Effects</span><span>Size</span></div>
+          <label>Shape Fill</label><div class="inspector-line color coral"></div>
+          <label>Outline</label><div class="inspector-line" style="width: 72%;"></div>
+          <label>Text Options</label><div class="inspector-line" style="width: 84%;"></div>
+          <label>Arrange</label><div class="inspector-line" style="width: 58%;"></div>
+          <div class="quick-actions"><span>Alt Text</span><span>Comments</span></div>
+          <div class="comments-card"><span class="comment-dot"></span><p>Claude updated the title, chart colors, and slide note.</p></div>
+        </aside>
+      </div>
+    </div>
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Anthropic Serif";
+        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #presentation-editor-surface {
+        --claude: #c65b47;
+        --coral: #cd6e57;
+        --sage: #bdd4c7;
+        width: 836px;
+        height: 438px;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #f4f5f7;
+        color: #16120f;
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+      }
+
+      #presentation-editor-surface * {
+        box-sizing: border-box;
+      }
+
+      .presentation-editor-surface {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #f4f5f7;
+      }
+
+      .dock-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 760;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 8px 18px rgba(0, 0, 0, 0.16);
+      }
+
+      .dock-icon.keynote { background: linear-gradient(135deg, #f47733, #b9301d); }
+
+      .keynote-titlebar {
+        height: 36px;
+        display: grid;
+        grid-template-columns: 58px 24px auto auto auto 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        color: #3d4248;
+        font-size: 12px;
+        font-weight: 650;
+        border-bottom: 1px solid #d8dce1;
+        background: #f8f8f8;
+      }
+
+      .powerpoint-traffic-spacer {
+        position: relative;
+        width: 50px;
+        height: 14px;
+      }
+
+      .powerpoint-traffic-spacer::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff5f57;
+        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+      }
+
+      .power-app-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        font-size: 10px;
+      }
+
+      .presentation-name {
+        min-width: 118px;
+        color: #282e35;
+      }
+
+      .sync-status {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #66707a;
+        font-size: 10px;
+        font-weight: 560;
+      }
+
+      .sync-spinner {
+        width: 11px;
+        height: 11px;
+        border: 2px solid #d4d9df;
+        border-top-color: #c65b47;
+        border-radius: 50%;
+      }
+
+      .autosave-toggle {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #5d6570;
+        font-size: 10px;
+        font-weight: 560;
+      }
+
+      .autosave-toggle span {
+        width: 28px;
+        height: 14px;
+        border-radius: 999px;
+        background: #dfe3e8;
+        position: relative;
+      }
+
+      .autosave-toggle span::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .titlebar-search {
+        justify-self: center;
+        width: 150px;
+        height: 21px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 999px;
+        color: #858d97;
+        background: #eceff2;
+        border: 1px solid #dde1e6;
+        font-size: 10px;
+        font-weight: 520;
+      }
+
+      .titlebar-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .titlebar-actions span {
+        height: 21px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 999px;
+        color: #424a53;
+        background: #ffffff;
+        border: 1px solid #d9dde2;
+        font-size: 10px;
+      }
+
+      .ribbon-tabs {
+        height: 28px;
+        display: flex;
+        align-items: end;
+        gap: 2px;
+        padding-left: 58px;
+        color: #464d55;
+        font-size: 11px;
+        font-weight: 620;
+        background: #fff;
+        border-bottom: 1px solid #d9dde2;
+      }
+
+      .ribbon-tabs span {
+        display: flex;
+        align-items: center;
+        height: 26px;
+        padding: 0 10px;
+        border-radius: 6px 6px 0 0;
+      }
+
+      .ribbon-tabs span:first-child {
+        color: #fff;
+        background: #c65b47;
+      }
+
+      .ribbon-tabs .contextual {
+        margin-left: auto;
+        margin-right: 12px;
+        color: #9a4c3c;
+        background: #fff5ef;
+        box-shadow: inset 0 -2px 0 #c65b47;
+      }
+
+      .powerpoint-ribbon {
+        height: 72px;
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        padding: 5px 8px 6px;
+        border-bottom: 1px solid #cfd4da;
+        background: #fbfbfc;
+      }
+
+      .ribbon-group {
+        height: 60px;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 0 7px 16px;
+        border-right: 1px solid #e0e3e7;
+        color: #56606b;
+        position: relative;
+      }
+
+      .ribbon-group.slides { width: 104px; }
+      .ribbon-group.font { width: 154px; flex-direction: column; }
+      .ribbon-group.paragraph { width: 114px; flex-direction: column; }
+      .ribbon-group.drawing { width: 138px; }
+      .ribbon-group.arrange { width: 118px; flex-direction: column; }
+      .ribbon-group.editing { width: 94px; }
+
+      .ribbon-group strong {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        color: #7b838d;
+        font-size: 9px;
+        line-height: 1.1;
+        font-weight: 700;
+        text-align: center;
+        border-top: 1px solid #eceff2;
+        padding-top: 2px;
+      }
+
+      .ribbon-large {
+        width: 42px;
+        min-height: 48px;
+        display: grid;
+        justify-items: center;
+        gap: 2px;
+        padding: 3px 4px 2px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        color: #424a53;
+        background: #fff;
+        position: relative;
+      }
+
+      .ribbon-large.split::after,
+      .split-mini::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid currentColor;
+      }
+
+      .ribbon-large.split::after {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      .cmd-icon {
+        width: 28px;
+        height: 25px;
+        border-radius: 4px;
+        background: #fff7f0;
+        border: 1px solid rgba(198, 91, 71, 0.28);
+        position: relative;
+      }
+
+      .cmd-icon.slide::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 6px;
+        width: 16px;
+        height: 11px;
+        border-radius: 2px;
+        background: #e9edf2;
+        box-shadow: 4px 4px 0 #d8dde3;
+      }
+
+      .ribbon-large em {
+        align-self: start;
+        color: #424a53;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 650;
+        text-align: center;
+      }
+
+      .ribbon-row,
+      .button-group {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .ribbon-stack {
+        display: grid;
+        align-content: start;
+        gap: 3px;
+      }
+
+      .ribbon-mini,
+      .split-mini {
+        height: 20px;
+        min-width: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0 6px;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        color: #4c545d;
+        font-size: 9px;
+        font-weight: 620;
+      }
+
+      .ribbon-group .ribbon-field {
+        width: 70px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        color: #3d444c;
+        font-size: 10px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        border-radius: 4px;
+      }
+
+      .ribbon-group .ribbon-field.small { width: 34px; }
+
+      .tool-toggle,
+      .button-group.dense > span,
+      .arrange-icon {
+        width: 20px;
+        height: 20px;
+        display: grid;
+        place-items: center;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        color: #59616b;
+        font-size: 9px;
+        font-weight: 800;
+        position: relative;
+      }
+
+      .tool-toggle.active {
+        color: #9a4c3c;
+        background: #fff1ea;
+        border-color: #c65b47;
+      }
+
+      .tool-toggle.color::before {
+        content: "";
+        width: 12px;
+        height: 3px;
+        background: #c65b47;
+        position: absolute;
+        bottom: 4px;
+      }
+
+      .para-lines::before,
+      .para-lines.center::before,
+      .para-lines.right::before {
+        content: "";
+        width: 12px;
+        height: 2px;
+        background: #6c7480;
+        box-shadow: 0 4px 0 #6c7480, 0 8px 0 #6c7480;
+      }
+
+      .para-lines.center::before { width: 10px; }
+      .para-lines.right::before { width: 8px; }
+
+      .para-bullets::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #6c7480;
+        box-shadow: 0 5px 0 #6c7480, 0 10px 0 #6c7480, 6px 0 0 #6c7480, 6px 5px 0 #6c7480, 6px 10px 0 #6c7480;
+      }
+
+      .para-indent::before {
+        content: "";
+        width: 12px;
+        height: 10px;
+        background:
+          linear-gradient(90deg, #6c7480 0 4px, transparent 4px),
+          linear-gradient(#6c7480 0 2px, transparent 2px 4px, #6c7480 4px 6px, transparent 6px 8px, #6c7480 8px 10px);
+      }
+
+      .line-spacing::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 2px solid #6c7480;
+        background:
+          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
+      }
+
+      .shape-gallery {
+        width: 58px;
+        display: grid;
+        grid-template-columns: repeat(2, 24px);
+        gap: 4px;
+      }
+
+      .shape-gallery span,
+      .shape-swatch {
+        width: 24px;
+        height: 20px;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+      }
+
+      .shape-gallery span:nth-child(1) { border-radius: 3px; background: #fff8f3; }
+      .shape-gallery span:nth-child(2) { border-radius: 50%; background: #eef3f0; }
+      .shape-gallery span:nth-child(3) { transform: skew(-12deg); background: #f5f1ea; }
+      .shape-gallery span:nth-child(4) { border-radius: 10px; background: #f7efe9; }
+
+      .split-mini.fill::before,
+      .split-mini.outline::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        background: #cd6e57;
+      }
+
+      .split-mini.outline::before {
+        background: transparent;
+        border: 2px solid #cd6e57;
+      }
+
+      .arrange-icon.layer::before {
+        content: "";
+        width: 11px;
+        height: 8px;
+        border: 1.5px solid #6c7480;
+        box-shadow: 3px 3px 0 -1px #fff, 3px 3px 0 0 #6c7480;
+      }
+
+      .arrange-icon.align::before {
+        content: "";
+        width: 13px;
+        height: 12px;
+        background:
+          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
+      }
+
+      .arrange-icon.rotate::before {
+        content: "";
+        width: 11px;
+        height: 11px;
+        border: 2px solid #6c7480;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .shape-swatch { background: #f7efe9; }
+      .shape-swatch.coral { background: #cd6e57; }
+      .shape-swatch.sage { background: #bdd4c7; }
+
+      .keynote-body {
+        height: calc(100% - 136px);
+        display: grid;
+        grid-template-columns: 112px 1fr 172px;
+        background: #e9edf2;
+      }
+
+      .slide-rail {
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        grid-auto-rows: min-content;
+        column-gap: 5px;
+        row-gap: 6px;
+        padding: 13px 10px 10px;
+        border-right: 1px solid #cfd5dc;
+        background: #f7f8fa;
+      }
+
+      .thumb-label {
+        color: #8b929a;
+        font-size: 9px;
+        line-height: 43px;
+        text-align: right;
+      }
+
+      .slide-thumb {
+        height: 43px;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(205, 110, 87, 0.92) 0 31%, rgba(205, 110, 87, 0) 31%),
+          #fffaf2;
+        border: 1px solid rgba(222, 96, 46, 0.38);
+        box-shadow: inset 0 0 0 2px rgba(222, 96, 46, 0.42);
+      }
+
+      .slide-thumb.muted {
+        border-color: rgba(0, 0, 0, 0.09);
+        box-shadow: none;
+        background:
+          linear-gradient(90deg, rgba(210, 213, 216, 0.86) 0 31%, rgba(210, 213, 216, 0) 31%),
+          #ffffff;
+      }
+
+      .slide-thumb span,
+      .slide-thumb b {
+        position: absolute;
+        left: 33px;
+        height: 5px;
+        border-radius: 3px;
+        background: #c8b7a7;
+      }
+
+      .slide-thumb span {
+        top: 13px;
+        width: 37px;
+      }
+
+      .slide-thumb b {
+        top: 24px;
+        width: 22px;
+      }
+
+      .slide-thumb.chart b {
+        top: 28px;
+        width: 30px;
+        height: 8px;
+        background: linear-gradient(90deg, #ccb8a7 0 28%, #cd6e57 28% 60%, #ccb8a7 60%);
+      }
+
+      .slide-thumb.text span {
+        width: 34px;
+        box-shadow: 0 9px 0 #d7d9dd;
+      }
+
+      .slide-stage {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        align-items: start;
+        padding-top: 14px;
+        background:
+          linear-gradient(#dde2e8 1px, rgba(221, 226, 232, 0) 1px),
+          linear-gradient(90deg, #dde2e8 1px, rgba(221, 226, 232, 0) 1px),
+          #edf0f3;
+        background-size: 32px 32px;
+      }
+
+      .slide-canvas {
+        position: relative;
+        width: 456px;
+        height: 256px;
+        border-radius: 3px;
+        background: #fffaf2;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 13px 30px rgba(0, 0, 0, 0.17);
+        overflow: hidden;
+      }
+
+      .slide-section-band {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 142px;
+        background: var(--coral);
+      }
+
+      .selection-box {
+        position: absolute;
+        left: 158px;
+        top: 42px;
+        width: 248px;
+        height: 148px;
+        border: 1.5px solid #1d86e8;
+        border-radius: 2px;
+        opacity: 0.78;
+      }
+
+      .selection-box::before,
+      .selection-box::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1.5px solid #1d86e8;
+      }
+
+      .selection-box::before {
+        left: -5px;
+        top: -5px;
+        box-shadow: 248px 0 0 0 #fff, 248px 0 0 1.5px #1d86e8;
+      }
+
+      .selection-box::after {
+        left: -5px;
+        bottom: -5px;
+        box-shadow: 248px 0 0 0 #fff, 248px 0 0 1.5px #1d86e8;
+      }
+
+      .slide-comment-pin {
+        position: absolute;
+        right: 42px;
+        top: 34px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #c65b47;
+        box-shadow: 0 0 0 3px rgba(198, 91, 71, 0.16);
+        opacity: 0.92;
+      }
+
+      .slide-comment-pin::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 8px;
+        height: 6px;
+        border-radius: 2px;
+        background: #fffaf6;
+      }
+
+      .slide-comment-pin::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 4px;
+        height: 4px;
+        background: #fffaf6;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
+
+      .slide-title {
+        position: absolute;
+        left: 168px;
+        top: 49px;
+        width: 230px;
+        height: 62px;
+        color: #2a241f;
+        font-family: "Anthropic Serif", serif;
+        font-size: 31px;
+        line-height: 1.02;
+        font-weight: 760;
+      }
+
+      .slide-title span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 230px;
+      }
+
+      .slide-subtitle {
+        position: absolute;
+        left: 168px;
+        top: 121px;
+        width: 220px;
+        color: #81756c;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .slide-chart {
+        position: absolute;
+        left: 168px;
+        bottom: 24px;
+        width: 206px;
+        height: 52px;
+        display: flex;
+        align-items: end;
+        gap: 10px;
+      }
+
+      .slide-axis {
+        position: absolute;
+        left: 164px;
+        bottom: 23px;
+        width: 236px;
+        height: 1px;
+        background: rgba(42, 36, 31, 0.16);
+      }
+
+      .speaker-notes {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 27px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0 11px;
+        border: 1px solid rgba(167, 174, 183, 0.7);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.76);
+        color: #8b929a;
+        font-size: 10px;
+      }
+
+      .bar {
+        width: 30px;
+        border-radius: 6px 6px 0 0;
+        background: #d8c7b5;
+      }
+
+      .bar:nth-child(1) { height: 30px; }
+      .bar:nth-child(2) { height: 40px; }
+      .bar:nth-child(3) { height: 24px; }
+      .bar:nth-child(4) { height: 34px; background: var(--claude); }
+
+      .inspector {
+        padding: 13px 13px;
+        border-left: 1px solid #cfd5dc;
+        color: #5e6670;
+        font-size: 10px;
+        background: #f9fafb;
+      }
+
+      .inspector strong {
+        display: block;
+        margin-bottom: 9px;
+        color: #393f46;
+        font-size: 12px;
+      }
+
+      .inspector-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+        margin-bottom: 11px;
+      }
+
+      .inspector-tabs span {
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 5px;
+        background: #eef1f4;
+        color: #6e7680;
+        font-size: 8px;
+        font-weight: 720;
+      }
+
+      .inspector-tabs .active {
+        color: #fff;
+        background: #c65b47;
+      }
+
+      .inspector label {
+        display: block;
+        margin-top: 8px;
+        color: #7b838d;
+        font-size: 8px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .inspector-line {
+        height: 9px;
+        margin: 5px 0;
+        border-radius: 5px;
+        background: rgba(86, 96, 108, 0.14);
+      }
+
+      .inspector-line.color { width: 68%; }
+      .inspector-line.coral { background: #cd6e57; }
+
+      .quick-actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 5px;
+      }
+
+      .quick-actions span {
+        height: 18px;
+        display: grid;
+        place-items: center;
+        padding: 0 7px;
+        border: 1px solid #e0e4e9;
+        border-radius: 5px;
+        background: #eef1f4;
+        color: #5e6670;
+        font-size: 8px;
+        font-weight: 720;
+      }
+
+      .comments-card {
+        margin-top: 14px;
+        min-height: 48px;
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 8px;
+        padding: 9px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid #e2e5e9;
+        color: #4c545d;
+        font-size: 9px;
+        line-height: 1.25;
+      }
+
+      .comments-card p {
+        margin: 0;
+      }
+
+      .comment-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--claude);
+      }
+
+      .slide-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 22px;
+        display: grid;
+        grid-template-columns: 1fr auto auto 92px;
+        align-items: center;
+        gap: 12px;
+        padding: 0 12px;
+        color: #6f7780;
+        background: #f6f7f8;
+        border-top: 1px solid #d8dde3;
+        font-size: 9px;
+      }
+
+      .zoom-track {
+        width: 82px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #c65b47 0 58%, #d7dce1 58%);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.set(".after-title", { opacity: 0 });
+      tl.set(".selection-box", { opacity: 0 });
+      tl.to(".before-title", { opacity: 0, duration: 0.24, ease: "sine.out" }, 7.62);
+      tl.to(".after-title", { opacity: 1, duration: 0.32, ease: "sine.out" }, 7.78);
+      tl.to(".bar-a", { height: 36, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.0);
+      tl.to(".bar-b", { height: 48, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.05);
+      tl.to(".bar-c", { height: 32, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.1);
+      tl.to(".selection-box", { opacity: 0.78, duration: 0.24, ease: "sine.out" }, 9.42);
+      tl.to(".inspector-line.color", { width: "88%", backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 9.72);
+      tl.to(".speaker-notes", { color: "#4f5964", backgroundColor: "rgba(255,255,255,0.9)", duration: 0.42, ease: "sine.inOut" }, 9.9);
+      window.__timelines["presentation-editor-surface"] = tl;
+    </script>
+  </div>
+</template>
