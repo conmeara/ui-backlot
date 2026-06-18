@@ -1895,7 +1895,7 @@
       "title": "Claude Plus Word Workflow",
       "kind": "workflow",
       "status": "prototype",
-      "fidelity": "modular assembly proof using current Claude working-thread and Word-style document editor components",
+      "fidelity": "modular assembly proof using current Claude working-thread and Word for web targeted document editor component",
       "dimensions": {
         "width": 1920,
         "height": 1080
@@ -1939,6 +1939,9 @@
         "runtime/backlot-component-loader.js",
         "docs/prototypes/claude-app-reference-breathing-room-pass-055.md",
         "docs/prototypes/word-editor-surface-pass-021.md",
+        "docs/prototypes/word-editor-m365-fidelity-pass-093.md",
+        "docs/prototypes/word-editor-actual-app-screenshot-inventory-pass-094.md",
+        "docs/prototypes/word-editor-word-web-fidelity-pass-095.md",
         "docs/prototypes/claude-word-workflow-pass-057.md"
       ],
       "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
@@ -2332,7 +2335,7 @@
       "title": "Word-style Document Editor",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "code-native Office-style document shell",
+      "fidelity": "Word for web targeted editable document shell grounded in Microsoft Support screenshot references",
       "dimensions": {
         "width": 1280,
         "height": 760
@@ -2350,7 +2353,7 @@
         "selector": ".word-window",
         "path": "captures/surface-word-editor/target.png"
       },
-      "prototypeNote": "docs/prototypes/word-editor-surface-pass-021.md",
+      "prototypeNote": "docs/prototypes/word-editor-word-web-fidelity-pass-095.md",
       "tags": [
         "word",
         "office",
@@ -2360,8 +2363,21 @@
       ],
       "dependencies": [],
       "sourceEvidence": [
+        "https://support.microsoft.com/en-us/word/customize-the-ribbon-in-word",
+        "https://support.microsoft.com/en-us/word/using-modern-comments-in-word",
+        "https://support.microsoft.com/en-us/word/training/accept-tracked-changes",
+        "https://fluent2.microsoft.design/components/web/react/core/toolbar/usage",
+        "https://github.com/microsoft/fluentui/blob/master/LICENSE",
+        "https://fluent2.microsoft.design/iconography",
         "docs/research/open-source-ui-donor-repos.md",
-        "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md"
+        "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md",
+        "docs/prototypes/word-editor-surface-pass-021.md",
+        "docs/prototypes/word-editor-m365-fidelity-pass-093.md",
+        "docs/prototypes/word-editor-actual-app-screenshot-inventory-pass-094.md",
+        "docs/prototypes/word-editor-word-web-fidelity-pass-095.md",
+        "reference/word/screenshots/word-ribbon-tabs-groups-commands.png",
+        "reference/word/screenshots/word-track-changes-dropdown.png",
+        "reference/word/screenshots/word-comments-pane-new-button.png"
       ],
       "assetDecision": "Hand-authored HTML/CSS informed by Fluent UI and ribbon donor references; no Microsoft code, fonts, icons, or private data copied.",
       "recommendedUse": "Document editing, review, comments, tracked-change, and memo workflow scenes."
