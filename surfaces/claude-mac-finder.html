@@ -22,6 +22,7 @@
         --claude-accent: #c45f43;
         --shadow-window: 0 34px 90px rgba(24, 36, 52, 0.22);
         --shadow-soft: 0 18px 54px rgba(55, 43, 32, 0.14);
+        --system-cursor-default: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
       }
 
       html,
@@ -74,78 +75,116 @@
         top: 0;
         z-index: 40;
         width: 100%;
-        height: 28px;
+        height: 29px;
         display: grid;
         grid-template-columns: auto 1fr auto;
         align-items: center;
-        gap: 24px;
-        padding: 0 18px;
-        background: rgba(246, 249, 250, 0.68);
+        gap: 0;
+        padding: 0 12px;
+        background: rgba(248, 249, 250, 0.34);
         color: rgba(0, 0, 0, 0.82);
-        font-size: 15px;
-        font-weight: 600;
-        backdrop-filter: blur(18px) saturate(1.25);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.34);
+        font-size: 13px;
+        font-weight: 500;
+        backdrop-filter: blur(12px) saturate(1.35);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.035);
+        text-shadow: 0 0 1px rgba(255, 255, 255, 0.22);
       }
 
       .menu-left,
       .menu-right {
         display: flex;
         align-items: center;
-        gap: 22px;
+        gap: 2px;
         white-space: nowrap;
       }
 
+      .menu-left > span:not(.apple-glyph),
+      .menu-right > span:not(.status-icons) {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 5px;
+      }
+
+      .menu-left > span:nth-child(2) {
+        margin-left: 5px;
+        margin-right: 6px;
+        font-weight: 650;
+      }
+
       .apple-glyph {
-        width: 14px;
-        height: 17px;
-        position: relative;
-        display: inline-block;
+        width: 18px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         margin-right: 2px;
+        color: #050505;
       }
 
       .apple-glyph::before {
         content: "";
-        position: absolute;
-        left: 1px;
-        bottom: 0;
-        width: 12px;
-        height: 13px;
-        border-radius: 46% 46% 44% 44%;
-        background: #050505;
+        display: block;
+        width: 15px;
+        height: 17px;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
       }
 
       .apple-glyph::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 7px;
-        height: 6px;
-        border-radius: 7px 0 7px 0;
-        background: #050505;
-        transform: rotate(-24deg);
+        content: none;
       }
 
       .status-icons {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 11px;
         color: rgba(0, 0, 0, 0.72);
       }
 
       .status-dot {
         width: 14px;
         height: 14px;
-        border-radius: 50%;
-        border: 2px solid currentColor;
+        border: 0;
         position: relative;
+      }
+
+      .status-dot.control-center {
+        width: 18px;
+        height: 14px;
+        border: 0;
+      }
+
+      .status-dot.control-center::before,
+      .status-dot.control-center::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        width: 15px;
+        height: 5px;
+        border: 1.6px solid currentColor;
+        border-radius: 8px;
+      }
+
+      .status-dot.control-center::before {
+        top: 1px;
+        box-shadow: inset 7px 0 0 currentColor;
+      }
+
+      .status-dot.control-center::after {
+        bottom: 1px;
+        box-shadow: inset -7px 0 0 currentColor;
       }
 
       .status-dot.wifi {
         border: 0;
         width: 18px;
-        height: 13px;
+        height: 15px;
+        background:
+          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
       }
 
       .status-dot.wifi::before,
@@ -174,36 +213,80 @@
       }
 
       .status-pill {
-        width: 28px;
+        position: relative;
+        width: 26px;
         height: 14px;
-        border: 2px solid currentColor;
-        border-radius: 8px;
+        border: 1.7px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .status-pill::before {
+        content: "";
+        position: absolute;
+        right: -4px;
+        top: 4px;
+        width: 2px;
+        height: 5px;
+        border-radius: 0 2px 2px 0;
+        background: currentColor;
+      }
+
+      .status-pill::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 17px;
+        height: 8px;
+        border-radius: 2px;
+        background: currentColor;
       }
 
       .dock {
         position: absolute;
         left: 50%;
-        bottom: 24px;
+        bottom: 16px;
         z-index: 45;
         display: flex;
         align-items: flex-end;
-        gap: 10px;
-        padding: 8px 14px 7px;
-        border: 1px solid rgba(255, 255, 255, 0.48);
-        border-radius: 22px;
-        background: rgba(248, 249, 250, 0.44);
+        gap: 8px;
+        min-height: 82px;
+        padding: 6px 10px 5px;
+        border: 0.5px solid rgba(255, 255, 255, 0.58);
+        border-radius: 20px;
+        background: rgba(248, 249, 250, 0.38);
         box-shadow:
-          inset 0 0 0 0.5px rgba(255, 255, 255, 0.72),
-          0 24px 74px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(22px) saturate(1.34);
-        transform: translateX(-50%);
+          inset 0 0 0 0.2px rgba(255, 255, 255, 0.82),
+          0 0 0 0.2px rgba(18, 22, 28, 0.45),
+          2px 7px 24px rgba(0, 0, 0, 0.26);
+        backdrop-filter: blur(14px) saturate(1.45);
+        translate: -50% 0;
+        transform-origin: center bottom;
       }
 
       .dock-app {
-        width: 52px;
+        width: 60px;
+        position: relative;
         display: grid;
         justify-items: center;
         gap: 4px;
+      }
+
+      .dock-app::before {
+        content: attr(data-title);
+        position: absolute;
+        left: 50%;
+        bottom: 73px;
+        padding: 8px 11px;
+        border-radius: 7px;
+        background: rgba(249, 249, 249, 0.58);
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.24), inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
+        color: rgba(0, 0, 0, 0.82);
+        font-size: 13px;
+        font-weight: 500;
+        opacity: 0;
+        translate: -50% 6px;
+        backdrop-filter: blur(8px) saturate(1.2);
       }
 
       .dock-open-dot {
@@ -221,14 +304,16 @@
       .dock-divider {
         width: 1px;
         align-self: stretch;
-        margin: 4px 1px 8px;
+        margin: 7px 2px 11px;
         border-radius: 1px;
-        background: rgba(22, 18, 15, 0.2);
+        background: rgba(22, 18, 15, 0.25);
       }
 
       .dock-icon {
-        width: 52px;
-        height: 52px;
+        width: 58px;
+        height: 58px;
+        position: relative;
+        overflow: hidden;
         border-radius: 14px;
         display: grid;
         place-items: center;
@@ -236,32 +321,109 @@
         font-size: 15px;
         font-weight: 760;
         letter-spacing: 0;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 8px 18px rgba(0, 0, 0, 0.16);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.36),
+          0 8px 16px rgba(0, 0, 0, 0.18);
+      }
+
+      .dock-icon span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .dock-icon.donor {
+        background-image:
+          var(--dock-icon-src),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(24, 35, 48, 0.16));
+      }
+
+      .dock-icon.donor span {
+        opacity: 0;
+      }
+
+      .dock-icon.donor.finder {
+        --dock-icon-src: url("../reference/open-source/macos-web/public/app-icons/finder/256.webp");
+      }
+
+      .dock-icon.donor.browser {
+        --dock-icon-src: url("../reference/open-source/macos-web/public/app-icons/safari/256.webp");
+      }
+
+      .dock-icon.donor.powerpoint {
+        --dock-icon-src: url("../reference/open-source/macos-web/public/app-icons/keynote/256.png");
+      }
+
+      .dock-icon.donor.notes {
+        --dock-icon-src: url("../reference/open-source/macos-web/public/app-icons/notes/256.png");
+      }
+
+      .ghost-app-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        color: transparent;
+        background-image:
+          url("../reference/open-source/macos-web/public/app-icons/keynote/256.png"),
+          linear-gradient(135deg, #f47733, #b9301d);
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
       }
 
       .dock-icon.finder {
-        background: linear-gradient(135deg, #48b7ff 0 50%, #0e84e5 50% 100%);
+        background-color: #0e84e5;
       }
 
       .dock-icon.claude {
-        background: #d26645;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 36%),
+          linear-gradient(145deg, #d56f4f, #b84734);
       }
+
+      .dock-icon.claude::before,
+      .dock-icon.claude::after,
+      .dock-icon.claude span::before,
+      .dock-icon.claude span::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 4px;
+        height: 34px;
+        border-radius: 8px;
+        background: rgba(255, 247, 239, 0.94);
+        translate: -50% -50%;
+        transform-origin: center;
+      }
+
+      .dock-icon.claude::after { transform: rotate(45deg); }
+      .dock-icon.claude span::before { transform: rotate(90deg); }
+      .dock-icon.claude span::after { transform: rotate(135deg); }
 
       .dock-icon.keynote,
       .dock-icon.powerpoint {
-        background: linear-gradient(135deg, #f47733, #b9301d);
+        background-color: #f47733;
       }
 
       .dock-icon.browser {
-        background: linear-gradient(135deg, #39a3ff, #0a5fd4);
+        background-color: #1479e8;
+      }
+
+      .dock-icon.notes {
+        background-color: #f4d24f;
       }
 
       .window {
         position: absolute;
         overflow: hidden;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
         background: rgba(255, 255, 255, 0.94);
-        box-shadow: var(--shadow-window);
+        box-shadow:
+          0 8.5px 10px rgba(0, 0, 0, 0.115),
+          0 68px 80px rgba(0, 0, 0, 0.23);
       }
 
       .traffic {
@@ -274,10 +436,54 @@
       }
 
       .traffic span {
-        width: 14px;
-        height: 14px;
+        width: 13px;
+        height: 13px;
+        position: relative;
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.14);
+      }
+
+      .traffic span::before,
+      .traffic span::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        opacity: 0;
+        background: rgba(60, 42, 31, 0.6);
+        transform-origin: center;
+        translate: -50% -50%;
+      }
+
+      .window:hover .traffic span::before,
+      .window:hover .traffic span::after {
+        opacity: 0.5;
+      }
+
+      .traffic .red::before,
+      .traffic .red::after {
+        width: 7px;
+        height: 1.2px;
+        border-radius: 2px;
+      }
+
+      .traffic .red::before { transform: rotate(45deg); }
+      .traffic .red::after { transform: rotate(-45deg); }
+
+      .traffic .yellow::before {
+        width: 7px;
+        height: 1.2px;
+        border-radius: 2px;
+      }
+
+      .traffic .green::before {
+        width: 6px;
+        height: 6px;
+        border: 1.3px solid rgba(40, 87, 36, 0.62);
+        border-left: 0;
+        border-bottom: 0;
+        background: transparent;
+        transform: rotate(-45deg);
       }
 
       .traffic .red { background: #ff5f57; }
@@ -1464,33 +1670,14 @@
         left: 1038px;
         top: 612px;
         z-index: 50;
-        width: 24px;
-        height: 34px;
-        filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+        width: 32px;
+        height: 32px;
+        background: var(--system-cursor-default) 0 0 / contain no-repeat;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
       }
 
-      .cursor::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-left: 22px solid #101010;
-        border-top: 32px solid transparent;
-      }
-
-      .cursor::after {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 9px;
-        width: 7px;
-        height: 16px;
-        background: #101010;
-        transform: rotate(-26deg);
-        transform-origin: top;
-      }
+      .cursor::before,
+      .cursor::after { content: none; }
 
       .powerpoint-ghost {
         position: absolute;
@@ -1565,7 +1752,7 @@
         <div></div>
         <div class="menu-right">
           <span class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
+            <span class="status-dot control-center"></span>
             <span class="status-dot wifi"></span>
             <span class="status-pill"></span>
           </span>
@@ -1655,7 +1842,7 @@
 
       <section class="powerpoint-ghost" data-surface="presentation-placeholder" aria-label="Presentation editor placeholder">
         <div class="ghost-title">
-          <div class="dock-icon powerpoint" style="width: 22px; height: 22px; border-radius: 6px; font-size: 10px;">P</div>
+          <div class="dock-icon ghost-app-icon" aria-hidden="true">P</div>
           <span>Launch Deck.pptx</span>
         </div>
         <div class="ghost-body">
@@ -1757,11 +1944,12 @@
       <div class="cursor" aria-hidden="true"></div>
 
       <nav class="dock" aria-label="Dock">
-        <div class="dock-app open"><div class="dock-icon finder">Fi</div><span class="dock-open-dot"></span></div>
-        <div class="dock-app open"><div class="dock-icon claude">Cl</div><span class="dock-open-dot"></span></div>
+        <div class="dock-app open" data-title="Finder"><div class="dock-icon donor finder"><span>Fi</span></div><span class="dock-open-dot"></span></div>
+        <div class="dock-app open" data-title="Claude"><div class="dock-icon claude"><span>Cl</span></div><span class="dock-open-dot"></span></div>
+        <div class="dock-app" data-title="Safari"><div class="dock-icon donor browser"><span>Sa</span></div><span class="dock-open-dot"></span></div>
         <span class="dock-divider" aria-hidden="true"></span>
-        <div class="dock-app open"><div class="dock-icon powerpoint">P</div><span class="dock-open-dot"></span></div>
-        <div class="dock-app"><div class="dock-icon browser">Br</div><span class="dock-open-dot"></span></div>
+        <div class="dock-app open" data-title="PowerPoint"><div class="dock-icon donor powerpoint"><span>P</span></div><span class="dock-open-dot"></span></div>
+        <div class="dock-app" data-title="Notes"><div class="dock-icon donor notes"><span>No</span></div><span class="dock-open-dot"></span></div>
       </nav>
     </main>
     <script>

@@ -1,0 +1,146 @@
+<div id="claude-code-figma-workflow" data-composition-id="claude-code-figma-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="10">
+  <section class="code-figma-workflow-stage" data-primitive="claude-code-figma-workflow" aria-label="Claude Code and Figma onboarding workflow composition">
+    <div class="dot-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame figma-onboarding-component"
+      data-primitive="figma-onboarding-editor-window"
+      data-backlot-mount-src="./figma-onboarding-editor.html"
+      data-backlot-mount-selector="#figma-onboarding-editor-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-code-terminal-component"
+      data-primitive="claude-code-terminal-session-window"
+      data-backlot-mount-src="./claude-code-terminal-session.html"
+      data-backlot-mount-selector="#claude-code-terminal-session-surface"
+    ></div>
+
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #f4f2ed;
+  }
+
+  #claude-code-figma-workflow {
+    --cursor: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  }
+
+  #claude-code-figma-workflow * {
+    box-sizing: border-box;
+  }
+
+  .code-figma-workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 78% 6%, rgba(66, 52, 178, 0.12), rgba(66, 52, 178, 0) 12%),
+      linear-gradient(180deg, #f8f7f2 0%, #f4f2ec 100%);
+  }
+
+  .dot-field {
+    position: absolute;
+    inset: 0;
+    opacity: 0.58;
+    background-image: radial-gradient(circle, rgba(106, 102, 94, 0.28) 0 2px, transparent 2.8px);
+    background-size: 35px 43px;
+    background-position: 0 5px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: visible;
+    transform-origin: top left;
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    display: block;
+    pointer-events: none;
+  }
+
+  .figma-onboarding-component {
+    left: 80px;
+    top: 160px;
+    z-index: 8;
+    width: 1120px;
+    height: 760px;
+    border-radius: 18px;
+  }
+
+  .claude-code-terminal-component {
+    left: 1220px;
+    top: 160px;
+    z-index: 16;
+    width: 660px;
+    height: 760px;
+    border-radius: 16px;
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 1334px;
+    top: 475px;
+    z-index: 40;
+    width: 34px;
+    height: 34px;
+    background: var(--cursor) 0 0 / contain no-repeat;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.28));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 1337px;
+    top: 479px;
+    z-index: 39;
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(191, 84, 74, 0.7);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="../runtime/backlot-component-loader.js"></script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".figma-onboarding-component", { opacity: 0, x: -32, y: 18, filter: "blur(8px)", duration: 0.62, ease: "power3.out" }, 0.18);
+  tl.from(".claude-code-terminal-component", { opacity: 0, x: 34, y: 18, filter: "blur(8px)", duration: 0.62, ease: "power3.out" }, 0.46);
+  tl.from(".workflow-cursor", { opacity: 0, x: 24, y: 18, duration: 0.28, ease: "sine.out" }, 1.05);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.35, duration: 0.18, ease: "sine.out" }, 1.42);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 1.64);
+  tl.to(".workflow-cursor", { x: -576, y: 76, duration: 1.05, ease: "power2.inOut" }, 2.08);
+  tl.to(".click-ring", { x: -576, y: 76, duration: 1.05, ease: "power2.inOut" }, 2.08);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.35, duration: 0.18, ease: "sine.out" }, 3.12);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 3.34);
+  tl.to(".figma-onboarding-component", { x: -10, y: 4, duration: 1.25, ease: "sine.inOut" }, 3.66);
+  tl.to(".claude-code-terminal-component", { x: 8, y: -4, duration: 1.25, ease: "sine.inOut" }, 3.66);
+  window.__timelines["claude-code-figma-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(4.4).pause();
+    gsap.set(".figma-onboarding-component", { x: -10, y: 4, opacity: 1, filter: "blur(0px)" });
+    gsap.set(".claude-code-terminal-component", { x: 8, y: -4, opacity: 1, filter: "blur(0px)" });
+    gsap.set(".workflow-cursor", { x: -576, y: 76, opacity: 1 });
+    gsap.set(".click-ring", { opacity: 0 });
+  }
+</script>

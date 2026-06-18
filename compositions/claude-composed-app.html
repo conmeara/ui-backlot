@@ -1,0 +1,236 @@
+<div id="claude-composed-app" data-composition-id="claude-composed-app" data-width="1440" data-height="900" data-start="0" data-duration="8">
+  <section class="composed-claude-stage" data-primitive="claude-composed-app-stage" aria-label="Componentized Claude app shell">
+    <div class="paper-field" aria-hidden="true"></div>
+
+    <article class="composed-claude-window" data-primitive="claude-composed-app">
+      <div
+        class="component-slot sidebar-slot"
+        data-primitive="claude-sidebar"
+        data-backlot-mount-src="./claude-sidebar.html"
+        data-backlot-mount-selector="#claude-sidebar-surface"
+      ></div>
+
+      <main class="composed-main-column" data-primitive="claude-composed-main-column">
+        <div
+          class="component-slot thread-slot"
+          data-primitive="claude-thread-core"
+          data-backlot-mount-src="./claude-thread-core.html"
+          data-backlot-mount-selector="#claude-thread-core-surface"
+        ></div>
+
+        <div
+          class="component-slot composer-slot"
+          data-primitive="claude-working-composer"
+          data-backlot-mount-src="./claude-composer.html"
+          data-backlot-mount-selector="#claude-composer-surface"
+        ></div>
+      </main>
+
+      <div
+        class="component-slot rail-slot"
+        data-primitive="claude-agent-context-rail"
+        data-backlot-mount-src="./claude-agent-rail.html"
+        data-backlot-mount-selector="#claude-agent-rail-surface"
+      ></div>
+    </article>
+  </section>
+
+<style>
+  @font-face {
+    font-family: "Anthropic Sans";
+    src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #f7f5ef;
+  }
+
+  #claude-composed-app {
+    --paper: #fffdfa;
+    --field: #f7f5ef;
+    --ink: #16120f;
+    --hairline: rgba(49, 43, 36, 0.085);
+    --soft-line: rgba(231, 224, 215, 0.44);
+    --shadow: rgba(72, 52, 39, 0.12);
+    --brand: #c65b47;
+    width: 1440px;
+    height: 900px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: "Anthropic Sans", sans-serif;
+  }
+
+  #claude-composed-app * {
+    box-sizing: border-box;
+  }
+
+  .composed-claude-stage {
+    position: relative;
+    width: 1440px;
+    height: 900px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 19% 13%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 25%),
+      radial-gradient(circle at 84% 16%, rgba(205, 110, 87, 0.11), rgba(205, 110, 87, 0) 25%),
+      radial-gradient(circle at 78% 82%, rgba(189, 212, 199, 0.34), rgba(189, 212, 199, 0) 31%),
+      linear-gradient(145deg, #f2eee7 0%, #fbfaf6 52%, #e5eee7 100%);
+  }
+
+  .paper-field {
+    position: absolute;
+    inset: 0;
+    opacity: 0.32;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.34) 1px, transparent 1px);
+    background-size: 88px 88px;
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .composed-claude-window {
+    position: relative;
+    width: 1228px;
+    height: 808px;
+    display: grid;
+    grid-template-columns: 232px 690px 240px;
+    gap: 18px;
+    align-items: start;
+    padding: 42px 24px 30px;
+    overflow: hidden;
+    border: 1px solid rgba(55, 42, 31, 0.07);
+    border-radius: 28px;
+    background:
+      linear-gradient(90deg, rgba(231, 224, 215, 0.3) 0 1px, transparent 1px 250px, rgba(231, 224, 215, 0.22) 250px 251px, transparent 251px 958px, rgba(231, 224, 215, 0.18) 958px 959px, transparent 959px),
+      rgba(255, 253, 250, 0.94);
+    box-shadow:
+      0 42px 130px rgba(54, 42, 31, 0.17),
+      0 0 0 1px rgba(255, 255, 255, 0.42) inset;
+  }
+
+  .composed-claude-window::before {
+    content: "";
+    position: absolute;
+    left: 256px;
+    right: 276px;
+    bottom: 26px;
+    height: 128px;
+    border-radius: 32px;
+    background: rgba(255, 253, 250, 0.78);
+    box-shadow: 0 18px 60px rgba(54, 42, 31, 0.085);
+    pointer-events: none;
+  }
+
+  .component-slot {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .component-slot > [data-backlot-mounted-component] {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    transform-origin: top left;
+  }
+
+  .sidebar-slot {
+    width: 232px;
+    height: 676px;
+    border-radius: 18px;
+    z-index: 3;
+  }
+
+  .sidebar-slot > [data-backlot-mounted-component] {
+    left: -42.24px;
+    top: -31.68px;
+    transform: scale(0.88);
+  }
+
+  .composed-main-column {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 596px 109px;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .thread-slot {
+    width: 690px;
+    height: 596px;
+    border-radius: 19px;
+    box-shadow: 0 26px 78px rgba(54, 42, 31, 0.09);
+  }
+
+  .thread-slot > [data-backlot-mounted-component] {
+    left: -37.44px;
+    top: -29.64px;
+    transform: scale(0.78);
+  }
+
+  .composer-slot {
+    width: 650px;
+    height: 109px;
+    margin-left: 20px;
+    overflow: visible;
+    border-radius: 28px;
+    z-index: 5;
+  }
+
+  .composer-slot > [data-backlot-mounted-component] {
+    left: -44.28px;
+    top: -29.52px;
+    transform: scale(0.82);
+  }
+
+  .rail-slot {
+    width: 240px;
+    height: 662px;
+    border-radius: 19px;
+    z-index: 3;
+  }
+
+  .rail-slot > [data-backlot-mounted-component] {
+    left: -20.72px;
+    top: -20.72px;
+    transform: scale(0.74);
+  }
+
+  .composed-claude-window[data-backlot-components="ready"] {
+    outline: 0;
+  }
+</style>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="../runtime/backlot-component-loader.js"></script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".composed-claude-window", { opacity: 0, y: 22, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.12);
+  tl.from(".sidebar-slot", { opacity: 0, x: -18, duration: 0.36, ease: "sine.out" }, 0.36);
+  tl.from(".thread-slot", { opacity: 0, y: 14, duration: 0.42, ease: "power2.out" }, 0.5);
+  tl.from(".rail-slot", { opacity: 0, x: 16, duration: 0.36, ease: "sine.out" }, 0.72);
+  tl.from(".composer-slot", { opacity: 0, y: 18, duration: 0.36, ease: "power3.out" }, 0.9);
+  tl.to(".thread-slot", { y: -6, duration: 1.8, ease: "sine.inOut" }, 2.1);
+  tl.to(".composer-slot", { y: -4, duration: 1.8, ease: "sine.inOut" }, 2.2);
+  tl.to(".rail-slot", { y: -4, duration: 1.8, ease: "sine.inOut" }, 2.28);
+  window.__timelines["claude-composed-app"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(1.45).pause();
+  }
+</script>

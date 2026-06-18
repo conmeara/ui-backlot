@@ -1,0 +1,757 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fffdfa;
+  }
+</style>
+
+<template id="claude-thread-core-template">
+  <div id="claude-thread-core-surface" data-composition-id="claude-thread-core-surface" data-width="980" data-height="840">
+    <section class="claude-thread-core-stage" data-primitive="claude-thread-core-stage" aria-label="Editable Claude working thread core">
+      <main class="thread-core-panel" data-primitive="claude-thread-core">
+        <header class="thread-topbar" data-primitive="claude-thread-topbar">
+          <div class="topbar-left">
+            <button class="topbar-icon menu" type="button" aria-label="Open sidebar"></button>
+            <div class="thread-title-stack">
+              <div class="conversation-title">Update Launch Deck opening slides</div>
+              <div class="conversation-subtitle">Working in Launch Deck</div>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <button class="model-selector" type="button">
+              <span class="model-dot"></span>
+              <span>Claude Sonnet 4.6</span>
+              <span class="chevron down"></span>
+            </button>
+            <button class="topbar-icon share" type="button" aria-label="Share"></button>
+            <button class="topbar-icon more" type="button" aria-label="More"></button>
+          </div>
+        </header>
+
+        <div class="thread-scroll">
+          <div class="thread-width">
+            <article class="message-row user">
+              <div class="sticky-prompt-bubble">Oh and update the revenue chart in my LP deck with the correct Q2 numbers.</div>
+            </article>
+
+            <div class="thread-context-strip" aria-label="Thread context">
+              <span class="context-pill active-context">Working in folder</span>
+              <span class="context-pill folder"><i></i>Launch Deck</span>
+              <span class="context-pill sheet"><i></i>Q2 revenue.csv</span>
+              <span class="context-pill doc"><i></i>slide-notes.md</span>
+            </div>
+
+            <article class="message-row assistant">
+              <div class="assistant-gutter">
+                <span class="claude-sunburst response-mark" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </span>
+              </div>
+              <div class="assistant-stack">
+                <div class="assistant-copy">
+                  <span class="typing-mask assistant-line">Sure, I can make those deck changes for you.</span>
+                  <span class="typing-mask assistant-line secondary">I'll inspect the folder context and prepare the deck update.</span>
+                </div>
+
+                <section class="thinking-card" data-primitive="message-part-group" aria-label="Thinking">
+                  <button class="card-trigger" type="button">
+                    <span class="chevron open"></span>
+                    <span>Reading the selected context</span>
+                    <span class="card-meta">3 parts</span>
+                  </button>
+                  <div class="thinking-body">
+                    <div class="part-section">
+                      <span class="part-label">Reasoning</span>
+                      <span>Read the project folder, map the data files to slide edits, then stage the presentation update.</span>
+                    </div>
+                    <div class="source-cluster" aria-label="Sources">
+                      <span class="source-label">Sources</span>
+                      <span class="source-chip">slide-notes.md</span>
+                      <span class="source-chip">Q2 revenue.csv</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="tool-card" data-primitive="progress-rows" aria-label="Taking action">
+                  <button class="card-trigger" type="button">
+                    <span class="chevron open"></span>
+                    <span>Making the deck update</span>
+                    <span class="card-meta">00:07</span>
+                  </button>
+                  <div class="tool-row done"><span class="tool-dot"></span><span>Read Launch Deck folder</span><span class="tool-status">4 files</span></div>
+                  <div class="tool-row done"><span class="tool-dot"></span><span>Found slide notes and Q2 data</span><span class="tool-status">ready</span></div>
+                  <div class="tool-row active"><span class="tool-dot"></span><span>Preparing PowerPoint edits</span><span class="tool-status">working</span></div>
+                </section>
+
+                <section class="command-card" data-primitive="command-output-card" aria-label="Command output">
+                  <div class="command-card-head">
+                    <span class="command-dot"></span>
+                    <span>Local plan preview</span>
+                    <span>preview</span>
+                  </div>
+                  <pre>{
+  "slides": ["title", "revenue"],
+  "edits": ["rename headline", "recolor chart", "add speaker note"]
+}</pre>
+                </section>
+
+                <div class="message-actions" aria-label="Assistant message actions">
+                  <button class="mini-action copy" type="button" aria-label="Copy"></button>
+                  <button class="mini-action retry" type="button" aria-label="Retry"></button>
+                  <button class="mini-action more" type="button" aria-label="More"></button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Anthropic Serif";
+        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #claude-thread-core-surface {
+        --bg-000: #fffdfa;
+        --bg-100: #fbfaf6;
+        --bg-150: #f8f5ef;
+        --bg-200: #f0ebe2;
+        --text-100: #181715;
+        --text-200: #34312d;
+        --text-300: #57534c;
+        --text-400: #777066;
+        --text-500: #978f84;
+        --brand-000: #c65b47;
+        --brand-100: #d66f59;
+        width: 980px;
+        height: 840px;
+        overflow: visible;
+        color: var(--text-100);
+        font-family: "Anthropic Sans", sans-serif;
+      }
+
+      #claude-thread-core-surface * {
+        box-sizing: border-box;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .claude-thread-core-stage {
+        width: 980px;
+        height: 840px;
+        display: grid;
+        place-items: center;
+        padding: 38px 48px;
+        background: #fffdfa;
+      }
+
+      .thread-core-panel {
+        width: 884px;
+        height: 764px;
+        display: grid;
+        grid-template-rows: 48px minmax(0, 1fr);
+        overflow: hidden;
+        border: 1px solid rgba(55, 42, 31, 0.07);
+        border-radius: 24px;
+        background:
+          linear-gradient(90deg, transparent 0 8.8%, rgba(231, 224, 215, 0.09) 8.8% calc(8.8% + 1px), transparent calc(8.8% + 1px) 91.2%, rgba(231, 224, 215, 0.08) 91.2% calc(91.2% + 1px), transparent calc(91.2% + 1px) 100%),
+          var(--bg-000);
+        box-shadow:
+          0 1px 1px rgba(49, 44, 38, 0.035),
+          0 32px 96px rgba(54, 42, 31, 0.14);
+      }
+
+      .thread-topbar {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 17px 0 13px;
+        border-bottom: 1px solid rgba(50, 44, 36, 0.032);
+        background: rgba(255, 253, 250, 0.42);
+      }
+
+      .topbar-left,
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .topbar-left {
+        gap: 8px;
+      }
+
+      .topbar-actions {
+        gap: 6px;
+      }
+
+      .topbar-icon,
+      .mini-action {
+        position: relative;
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: var(--text-400);
+      }
+
+      .topbar-icon {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 auto;
+        border-radius: 10px;
+      }
+
+      .topbar-icon.menu::before {
+        content: "";
+        width: 16px;
+        height: 12px;
+        border-top: 1.8px solid currentColor;
+        border-bottom: 1.8px solid currentColor;
+        box-shadow: 0 5px 0 -3.2px currentColor;
+      }
+
+      .topbar-icon.share::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border: 1.6px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .topbar-icon.share::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        width: 7px;
+        height: 7px;
+        border-top: 1.6px solid currentColor;
+        border-right: 1.6px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .topbar-icon.more::before,
+      .mini-action.more::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: -5px 0 0 currentColor, 5px 0 0 currentColor;
+      }
+
+      .thread-title-stack {
+        min-width: 0;
+        display: grid;
+        gap: 1px;
+      }
+
+      .conversation-title {
+        overflow: hidden;
+        color: var(--text-200);
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: 650;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .conversation-subtitle {
+        color: var(--text-500);
+        font-size: 11.5px;
+        line-height: 1.1;
+      }
+
+      .model-selector {
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 10px;
+        border: 1px solid rgba(39, 37, 34, 0.065);
+        border-radius: 999px;
+        background: rgba(250, 248, 244, 0.72);
+        color: var(--text-300);
+        font-size: 12.5px;
+      }
+
+      .model-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--brand-100);
+      }
+
+      .chevron {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        color: var(--text-500);
+      }
+
+      .chevron::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 2px;
+        width: 6px;
+        height: 6px;
+        border-right: 1.6px solid currentColor;
+        border-bottom: 1.6px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .chevron.open::before,
+      .chevron.down::before {
+        top: 1px;
+        transform: rotate(45deg);
+      }
+
+      .thread-scroll {
+        min-height: 0;
+        position: relative;
+        overflow: hidden;
+        padding: 31px 0 30px;
+        background:
+          linear-gradient(180deg, rgba(255, 253, 250, 1), rgba(255, 253, 250, 0) 92px),
+          transparent;
+      }
+
+      .thread-scroll::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 48px;
+        pointer-events: none;
+        background: linear-gradient(0deg, var(--bg-000), rgba(250, 248, 243, 0));
+      }
+
+      .thread-width {
+        width: min(calc(100% - 58px), 780px);
+        margin-inline: auto;
+      }
+
+      .message-row {
+        display: grid;
+        min-width: 0;
+        margin-bottom: 17px;
+      }
+
+      .message-row.user {
+        justify-items: end;
+      }
+
+      .message-row.assistant {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .sticky-prompt-bubble {
+        max-width: 620px;
+        padding: 12px 17px 13px;
+        border-radius: 15px;
+        background: #efede6;
+        color: var(--text-100);
+        font-size: 15.5px;
+        line-height: 1.34;
+        box-shadow: 0 1px 0 rgba(55, 48, 40, 0.035);
+      }
+
+      .thread-context-strip {
+        width: min(calc(100% - 54px), 690px);
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0 0 23px auto;
+      }
+
+      .context-pill {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 9px;
+        border: 1px solid rgba(39, 37, 34, 0.06);
+        border-radius: 999px;
+        background: rgba(250, 248, 244, 0.62);
+        color: var(--text-400);
+        font-size: 11.5px;
+        font-weight: 520;
+      }
+
+      .context-pill.active-context {
+        color: var(--brand-000);
+        background: rgba(214, 111, 89, 0.08);
+      }
+
+      .context-pill i {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        border-radius: 3px;
+        background: #d7cfc3;
+      }
+
+      .context-pill.folder i {
+        background: #64bfe7;
+      }
+
+      .context-pill.folder i::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -2px;
+        width: 6px;
+        height: 4px;
+        border-radius: 2px 2px 0 0;
+        background: #8dd2f0;
+      }
+
+      .context-pill.sheet i {
+        background: #84b889;
+      }
+
+      .assistant-gutter {
+        padding-top: 2px;
+      }
+
+      .assistant-stack {
+        min-width: 0;
+      }
+
+      .assistant-copy {
+        max-width: 760px;
+        display: grid;
+        gap: 4px;
+        color: var(--text-100);
+        font-family: "Anthropic Serif", serif;
+        font-size: 39px;
+        line-height: 1.04;
+        font-weight: 430;
+        letter-spacing: 0;
+      }
+
+      .assistant-line.secondary {
+        color: var(--text-300);
+        font-size: 0.68em;
+        line-height: 1.08;
+      }
+
+      .typing-mask {
+        display: inline-block;
+        clip-path: inset(0 0% 0 0);
+      }
+
+      .claude-sunburst {
+        position: relative;
+        display: inline-block;
+        width: 29px;
+        height: 29px;
+        color: var(--brand-000);
+        --ray-w: 2.6px;
+        --ray-h: 10px;
+        --ray-gap: 2.8px;
+      }
+
+      .claude-sunburst span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--ray-w);
+        height: var(--ray-h);
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% calc(100% + var(--ray-gap));
+        transform: translate(-50%, calc(-100% - var(--ray-gap))) rotate(calc(var(--i) * 30deg));
+      }
+
+      .claude-sunburst span:nth-child(1) { --i: 0; }
+      .claude-sunburst span:nth-child(2) { --i: 1; }
+      .claude-sunburst span:nth-child(3) { --i: 2; }
+      .claude-sunburst span:nth-child(4) { --i: 3; }
+      .claude-sunburst span:nth-child(5) { --i: 4; }
+      .claude-sunburst span:nth-child(6) { --i: 5; }
+      .claude-sunburst span:nth-child(7) { --i: 6; }
+      .claude-sunburst span:nth-child(8) { --i: 7; }
+      .claude-sunburst span:nth-child(9) { --i: 8; }
+      .claude-sunburst span:nth-child(10) { --i: 9; }
+      .claude-sunburst span:nth-child(11) { --i: 10; }
+      .claude-sunburst span:nth-child(12) { --i: 11; }
+
+      .thinking-card,
+      .tool-card {
+        width: 100%;
+        margin-top: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(39, 37, 34, 0.038);
+        border-radius: 15px;
+        background: rgba(255, 253, 249, 0.36);
+        box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
+      }
+
+      .tool-card {
+        background: rgba(255, 253, 249, 0.42);
+      }
+
+      .card-trigger {
+        width: 100%;
+        min-height: 32px;
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        border: 0;
+        border-bottom: 1px solid rgba(39, 37, 34, 0.035);
+        background: rgba(250, 248, 244, 0.24);
+        color: var(--text-400);
+        font-size: 12.5px;
+        font-weight: 570;
+        text-align: left;
+      }
+
+      .card-meta {
+        color: var(--text-500);
+        font-size: 11.5px;
+        font-weight: 460;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .thinking-body {
+        display: grid;
+        gap: 9px;
+        padding: 9px 12px 10px 38px;
+      }
+
+      .part-section {
+        display: grid;
+        gap: 3px;
+        color: var(--text-300);
+        font-size: 12.5px;
+        line-height: 1.34;
+      }
+
+      .part-label,
+      .source-label {
+        color: var(--text-500);
+        font-size: 10px;
+        font-weight: 680;
+        text-transform: uppercase;
+      }
+
+      .source-cluster {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .source-chip {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border: 1px solid rgba(39, 37, 34, 0.07);
+        border-radius: 999px;
+        background: #f1eee8;
+        color: var(--text-300);
+        font-size: 11.5px;
+      }
+
+      .tool-row {
+        min-height: 29px;
+        display: grid;
+        grid-template-columns: 23px 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 12px;
+        border-bottom: 1px solid rgba(39, 37, 34, 0.052);
+        color: var(--text-300);
+        font-size: 13px;
+      }
+
+      .tool-row:last-child {
+        border-bottom: 0;
+      }
+
+      .tool-row.active {
+        background: rgba(214, 111, 89, 0.038);
+      }
+
+      .tool-dot {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        border: 2px solid #cbbfae;
+        border-radius: 50%;
+      }
+
+      .tool-row.done .tool-dot {
+        border-color: #5fa36b;
+      }
+
+      .tool-row.done .tool-dot::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 3px;
+        width: 7px;
+        height: 4px;
+        border-left: 2px solid #5fa36b;
+        border-bottom: 2px solid #5fa36b;
+        transform: rotate(-45deg);
+      }
+
+      .tool-row.active .tool-dot {
+        border-color: var(--brand-100);
+        border-top-color: transparent;
+      }
+
+      .tool-status {
+        color: var(--text-500);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .command-card {
+        margin-top: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(39, 37, 34, 0.06);
+        border-radius: 13px;
+        background: rgba(251, 248, 242, 0.58);
+        box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
+      }
+
+      .command-card-head {
+        min-height: 30px;
+        display: grid;
+        grid-template-columns: 14px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        color: var(--text-400);
+        font-size: 12.5px;
+        font-weight: 570;
+      }
+
+      .command-card-head span:last-child {
+        color: var(--text-500);
+        font-size: 11px;
+        font-weight: 480;
+      }
+
+      .command-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--brand-100);
+        box-shadow: 0 0 0 4px rgba(214, 111, 89, 0.11);
+      }
+
+      .command-card pre {
+        margin: 0;
+        padding: 0 12px 10px 34px;
+        color: #6b6257;
+        font-family: Menlo, Monaco, monospace;
+        font-size: 11.5px;
+        line-height: 1.42;
+      }
+
+      .message-actions {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 9px;
+        color: var(--text-500);
+      }
+
+      .mini-action {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+      }
+
+      .mini-action.copy::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 7px;
+        width: 8px;
+        height: 10px;
+        border: 1.4px solid currentColor;
+        border-radius: 2px;
+        box-shadow: -3px 3px 0 -1px var(--bg-100), -3px 3px 0 0 currentColor;
+      }
+
+      .mini-action.retry::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1.5px solid currentColor;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".thread-core-panel", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.52, ease: "power3.out" }, 0.12);
+      tl.from(".thread-topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.25);
+      tl.from(".message-row.user", { opacity: 0, y: 12, duration: 0.32, ease: "sine.out" }, 0.38);
+      tl.from(".thread-context-strip .context-pill", { opacity: 0, y: 8, stagger: 0.04, duration: 0.24, ease: "sine.out" }, 0.54);
+      tl.from(".message-row.assistant", { opacity: 0, y: 16, duration: 0.42, ease: "power2.out" }, 0.74);
+      tl.from(".assistant-line", { clipPath: "inset(0 100% 0 0)", duration: 1.35, ease: "none" }, 1.06);
+      tl.from(".thinking-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 2.32);
+      tl.from(".tool-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 2.7);
+      tl.from(".command-card", { opacity: 0, y: 9, duration: 0.3, ease: "sine.out" }, 3.02);
+      tl.from(".message-actions .mini-action", { opacity: 0, y: 5, stagger: 0.04, duration: 0.2, ease: "sine.out" }, 3.2);
+      tl.to(".tool-row.active .tool-dot", { rotation: 360, duration: 0.75, repeat: 4, ease: "none" }, 3.08);
+      window.__timelines["claude-thread-core-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-thread-core\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-thread-core-template");
+      if (!template || document.querySelector("#claude-thread-core-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

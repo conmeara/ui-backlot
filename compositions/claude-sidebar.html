@@ -1,0 +1,657 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 6%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 30%),
+      #fffdfa;
+  }
+</style>
+
+<template id="claude-sidebar-template">
+  <div id="claude-sidebar-surface" data-composition-id="claude-sidebar-surface" data-width="360" data-height="840">
+    <section class="claude-sidebar-stage" data-primitive="claude-sidebar-stage" aria-label="Editable Claude sidebar component">
+      <aside class="claude-sidebar-panel" data-primitive="claude-sidebar">
+        <div class="claude-traffic" aria-hidden="true">
+          <span class="traffic-red"></span>
+          <span class="traffic-yellow"></span>
+          <span class="traffic-green"></span>
+        </div>
+
+        <header class="sidebar-head">
+          <div class="claude-brand">
+            <span class="claude-mark" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </span>
+            <span>Claude</span>
+          </div>
+          <button class="icon-button collapse" type="button" aria-label="Collapse sidebar"></button>
+        </header>
+
+        <nav class="mode-switch" aria-label="Claude mode">
+          <button type="button">Chat</button>
+          <button type="button">Code</button>
+          <button class="active" type="button">Cowork</button>
+        </nav>
+
+        <div class="primary-actions" aria-label="Primary actions">
+          <button class="sidebar-button new-task" type="button">
+            <span class="sidebar-icon compose"></span>
+            <span>New task</span>
+            <kbd>N</kbd>
+          </button>
+          <button class="sidebar-button search" type="button">
+            <span class="sidebar-icon search"></span>
+            <span>Search tasks</span>
+          </button>
+        </div>
+
+        <section class="sidebar-section">
+          <div class="section-label">Active tasks</div>
+          <button class="nav-row selected" type="button">
+            <span class="sidebar-icon project"></span>
+            <span class="row-text">Q2 deck chart</span>
+            <span class="row-dot working"></span>
+          </button>
+          <button class="nav-row" type="button">
+            <span class="sidebar-icon artifact"></span>
+            <span class="row-text">Browser metrics cleanup</span>
+          </button>
+        </section>
+
+        <section class="sidebar-section">
+          <div class="section-label">Today</div>
+          <button class="nav-row" type="button">
+            <span class="sidebar-icon chat"></span>
+            <span class="row-text">Finder attachment test</span>
+          </button>
+          <button class="nav-row" type="button">
+            <span class="sidebar-icon chat"></span>
+            <span class="row-text">Presentation cleanup</span>
+          </button>
+          <button class="nav-row faded" type="button">
+            <span class="sidebar-icon chat"></span>
+            <span class="row-text">Reference video notes</span>
+          </button>
+        </section>
+
+        <section class="sidebar-section">
+          <div class="section-label">Projects</div>
+          <button class="nav-row" type="button">
+            <span class="sidebar-icon folder"></span>
+            <span class="row-text">Marketing videos</span>
+          </button>
+          <button class="nav-row" type="button">
+            <span class="sidebar-icon folder"></span>
+            <span class="row-text">Backlot primitives</span>
+          </button>
+          <button class="nav-row quiet" type="button">
+            <span class="sidebar-icon plus-small"></span>
+            <span class="row-text">Add project</span>
+          </button>
+        </section>
+
+        <section class="context-note" aria-label="Local context status">
+          <span class="sidebar-sync-dot"></span>
+          <p>Claude can access selected folders and working files.</p>
+        </section>
+
+        <footer class="account-row">
+          <span class="account-avatar" aria-hidden="true"></span>
+          <span class="account-copy">
+            <strong>Demo workspace</strong>
+            <span>Pro plan</span>
+          </span>
+          <button class="icon-button kebab" type="button" aria-label="Workspace menu"></button>
+        </footer>
+      </aside>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #claude-sidebar-surface {
+        --paper: #fffdfa;
+        --panel: #faf7f1;
+        --panel-strong: #f4efe7;
+        --row: rgba(255, 254, 250, 0.66);
+        --row-selected: #e9e3d9;
+        --ink: #211f1c;
+        --ink-muted: #625d55;
+        --ink-soft: #8c8478;
+        --line: rgba(45, 39, 33, 0.082);
+        --brand: #c65b47;
+        --brand-soft: #f8e4dd;
+        width: 360px;
+        height: 840px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: "Anthropic Sans", sans-serif;
+      }
+
+      #claude-sidebar-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-sidebar-surface button {
+        font: inherit;
+      }
+
+      .claude-sidebar-stage {
+        width: 360px;
+        height: 840px;
+        display: grid;
+        place-items: center;
+        padding: 36px 48px;
+        background: var(--paper);
+      }
+
+      .claude-sidebar-panel {
+        width: 264px;
+        height: 768px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 13px 10px 12px;
+        border: 1px solid rgba(45, 39, 33, 0.075);
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255, 254, 250, 0.78), rgba(246, 241, 233, 0.78)),
+          var(--panel);
+        box-shadow:
+          inset -1px 0 0 rgba(255, 255, 255, 0.48),
+          0 28px 70px rgba(54, 42, 31, 0.13);
+        user-select: none;
+      }
+
+      .claude-traffic {
+        height: 15px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 14px 3px;
+      }
+
+      .claude-traffic span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.11);
+      }
+
+      .traffic-red { background: #ff5f57; }
+      .traffic-yellow { background: #ffbd2e; }
+      .traffic-green { background: #28c840; }
+
+      .sidebar-head {
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 0 2px 0 4px;
+        margin-bottom: 14px;
+      }
+
+      .claude-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+        color: #332e29;
+        font-size: 15px;
+        font-weight: 680;
+      }
+
+      .claude-mark {
+        position: relative;
+        width: 19px;
+        height: 19px;
+        color: var(--brand);
+        flex: 0 0 auto;
+      }
+
+      .claude-mark span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 1.65px;
+        height: 6.2px;
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% 8.9px;
+        transform: translate(-50%, -8.9px) rotate(calc(var(--ray) * 30deg));
+      }
+
+      .claude-mark span:nth-child(1) { --ray: 0; }
+      .claude-mark span:nth-child(2) { --ray: 1; }
+      .claude-mark span:nth-child(3) { --ray: 2; }
+      .claude-mark span:nth-child(4) { --ray: 3; }
+      .claude-mark span:nth-child(5) { --ray: 4; }
+      .claude-mark span:nth-child(6) { --ray: 5; }
+      .claude-mark span:nth-child(7) { --ray: 6; }
+      .claude-mark span:nth-child(8) { --ray: 7; }
+      .claude-mark span:nth-child(9) { --ray: 8; }
+      .claude-mark span:nth-child(10) { --ray: 9; }
+      .claude-mark span:nth-child(11) { --ray: 10; }
+      .claude-mark span:nth-child(12) { --ray: 11; }
+
+      .icon-button {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        position: relative;
+        border: 0;
+        border-radius: 9px;
+        color: var(--ink-soft);
+        background: transparent;
+      }
+
+      .collapse::before {
+        content: "";
+        width: 13px;
+        height: 10px;
+        border: 1.5px solid currentColor;
+        border-radius: 3px;
+        box-shadow: inset 4px 0 0 rgba(255, 253, 248, 0.9);
+      }
+
+      .collapse::after {
+        content: "";
+        position: absolute;
+        left: 13px;
+        width: 1.5px;
+        height: 10px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .mode-switch {
+        height: 32px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        padding: 2px;
+        margin: 0 0 13px;
+        border-radius: 10px;
+        background: rgba(232, 226, 217, 0.8);
+        box-shadow: inset 0 0 0 1px rgba(55, 48, 40, 0.05);
+      }
+
+      .mode-switch button {
+        min-width: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink-soft);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .mode-switch .active {
+        color: var(--ink);
+        background: rgba(255, 254, 250, 0.84);
+        box-shadow: 0 1px 5px rgba(55, 48, 40, 0.09);
+      }
+
+      .primary-actions {
+        display: grid;
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+
+      .sidebar-button,
+      .nav-row {
+        width: 100%;
+        min-width: 0;
+        height: 29px;
+        display: grid;
+        grid-template-columns: 18px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 8px;
+        color: var(--ink-muted);
+        background: transparent;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .sidebar-button {
+        height: 30px;
+        color: var(--ink);
+        font-size: 13.2px;
+        font-weight: 610;
+      }
+
+      .new-task {
+        background: rgba(255, 254, 250, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(55, 48, 40, 0.06);
+      }
+
+      .sidebar-button.search {
+        color: var(--ink-soft);
+        background: transparent;
+        font-weight: 500;
+      }
+
+      .sidebar-button kbd {
+        min-width: 17px;
+        height: 17px;
+        display: grid;
+        place-items: center;
+        border-radius: 5px;
+        color: #9a9185;
+        background: rgba(232, 226, 217, 0.58);
+        font-family: monospace;
+        font-size: 9px;
+        font-weight: 600;
+      }
+
+      .sidebar-section {
+        display: grid;
+        gap: 2px;
+        margin-top: 4px;
+      }
+
+      .section-label {
+        margin: 13px 8px 4px;
+        color: var(--ink-soft);
+        font-size: 10.5px;
+        font-weight: 680;
+      }
+
+      .nav-row {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .nav-row.selected {
+        color: var(--ink);
+        background: var(--row-selected);
+      }
+
+      .nav-row.faded {
+        color: #777066;
+      }
+
+      .nav-row.quiet {
+        color: #9a9185;
+      }
+
+      .row-text {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .row-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #d3c9bc;
+      }
+
+      .row-dot.working {
+        background: var(--brand);
+        box-shadow: 0 0 0 4px rgba(198, 91, 71, 0.11);
+      }
+
+      .sidebar-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        color: var(--ink-soft);
+        flex: 0 0 auto;
+      }
+
+      .selected .sidebar-icon {
+        color: #7b7165;
+      }
+
+      .sidebar-icon.compose::before,
+      .sidebar-icon.search::before,
+      .sidebar-icon.project::before,
+      .sidebar-icon.artifact::before,
+      .sidebar-icon.chat::before,
+      .sidebar-icon.folder::before {
+        content: "";
+        position: absolute;
+        border: 1.45px solid currentColor;
+      }
+
+      .sidebar-icon.compose::before {
+        inset: 2.5px;
+        border-radius: 4px;
+      }
+
+      .sidebar-icon.compose::after {
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: 2px;
+        width: 8px;
+        height: 1.6px;
+        border-radius: 2px;
+        background: currentColor;
+        transform: rotate(-35deg);
+      }
+
+      .sidebar-icon.search::before {
+        left: 2px;
+        top: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .sidebar-icon.search::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 3px;
+        width: 6px;
+        height: 1.45px;
+        border-radius: 2px;
+        background: currentColor;
+        transform: rotate(45deg);
+      }
+
+      .sidebar-icon.project::before {
+        inset: 3px;
+        border-radius: 4px;
+        background:
+          linear-gradient(currentColor 0 0) 50% 50% / 1.4px 100% no-repeat,
+          linear-gradient(currentColor 0 0) 50% 50% / 100% 1.4px no-repeat,
+          rgba(198, 91, 71, 0.1);
+      }
+
+      .sidebar-icon.artifact::before {
+        inset: 2px 3px 2px 4px;
+        border-radius: 3.5px;
+        border-color: rgba(198, 91, 71, 0.44);
+        background:
+          linear-gradient(135deg, transparent 0 72%, rgba(198, 91, 71, 0.36) 72% 100%),
+          rgba(198, 91, 71, 0.13);
+      }
+
+      .sidebar-icon.chat::before {
+        inset: 3px 2px 4px;
+        border-radius: 7px 7px 7px 3.5px;
+        background: rgba(80, 72, 62, 0.055);
+      }
+
+      .sidebar-icon.chat::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        bottom: 3px;
+        width: 5px;
+        height: 5px;
+        border-left: 1.45px solid currentColor;
+        border-bottom: 1.45px solid currentColor;
+        transform: skew(-18deg);
+      }
+
+      .sidebar-icon.folder::before {
+        inset: 5px 2px 2px;
+        border-radius: 3.5px;
+        background: rgba(80, 72, 62, 0.055);
+      }
+
+      .sidebar-icon.folder::after {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        width: 8px;
+        height: 4px;
+        border-radius: 2px 2px 0 0;
+        background: currentColor;
+        opacity: 0.3;
+      }
+
+      .sidebar-icon.plus-small::before,
+      .sidebar-icon.plus-small::after {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 7px;
+        width: 10px;
+        height: 1.5px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .sidebar-icon.plus-small::after {
+        transform: rotate(90deg);
+      }
+
+      .context-note {
+        display: grid;
+        grid-template-columns: 12px 1fr;
+        gap: 8px;
+        align-items: start;
+        margin: 17px 0 10px;
+        padding: 10px;
+        border: 1px solid rgba(45, 39, 33, 0.045);
+        border-radius: 12px;
+        background: rgba(255, 254, 250, 0.52);
+        color: var(--ink-soft);
+      }
+
+      .context-note p {
+        margin: 0;
+        font-size: 10.5px;
+        line-height: 1.34;
+        font-weight: 480;
+      }
+
+      .sidebar-sync-dot {
+        width: 8px;
+        height: 8px;
+        margin-top: 3px;
+        border-radius: 50%;
+        background: #5eb77d;
+        box-shadow: 0 0 0 4px rgba(94, 183, 125, 0.13);
+      }
+
+      .account-row {
+        min-height: 42px;
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr) 28px;
+        align-items: center;
+        gap: 8px;
+        margin-top: auto;
+        padding: 0 1px 0 4px;
+        color: var(--ink-soft);
+      }
+
+      .account-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 38% 33%, #fffdfa 0 13%, transparent 14%),
+          #dc7b66;
+        box-shadow: 0 0 0 1px rgba(55, 48, 40, 0.055);
+      }
+
+      .account-copy {
+        min-width: 0;
+        display: grid;
+        gap: 1px;
+      }
+
+      .account-copy strong {
+        overflow: hidden;
+        color: #635b52;
+        font-size: 12px;
+        font-weight: 650;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .account-copy span {
+        color: #9a9185;
+        font-size: 11px;
+      }
+
+      .kebab::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: -5px 0 0 currentColor, 5px 0 0 currentColor;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".claude-sidebar-panel", { opacity: 0, y: 22, filter: "blur(6px)", duration: 0.58, ease: "expo.out" }, 0.12);
+      tl.from(".claude-traffic span", { opacity: 0, y: -3, stagger: 0.035, duration: 0.22, ease: "sine.out" }, 0.34);
+      tl.from(".claude-brand, .collapse", { opacity: 0, y: 6, stagger: 0.06, duration: 0.26, ease: "sine.out" }, 0.42);
+      tl.from(".mode-switch", { opacity: 0, y: 8, duration: 0.3, ease: "power3.out" }, 0.52);
+      tl.from(".sidebar-button", { opacity: 0, x: -8, stagger: 0.05, duration: 0.28, ease: "power2.out" }, 0.64);
+      tl.from(".section-label, .nav-row", { opacity: 0, x: -8, stagger: 0.025, duration: 0.25, ease: "sine.out" }, 0.82);
+      tl.from(".context-note", { opacity: 0, y: 8, duration: 0.28, ease: "power2.out" }, 1.28);
+      tl.from(".account-row", { opacity: 0, y: 7, duration: 0.25, ease: "sine.out" }, 1.38);
+      tl.to(".sidebar-sync-dot", { scale: 1.18, duration: 0.5, repeat: 5, yoyo: true, ease: "sine.inOut" }, 1.62);
+      tl.to(".row-dot.working", { scale: 1.2, duration: 0.42, repeat: 6, yoyo: true, ease: "sine.inOut" }, 1.7);
+      window.__timelines["claude-sidebar-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-sidebar\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-sidebar-template");
+      if (!template || document.querySelector("#claude-sidebar-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

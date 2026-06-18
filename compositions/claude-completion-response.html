@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fbfaf6;
+  }
+</style>
+</head>
+<body>
+<template id="claude-completion-response-template">
+  <div id="claude-completion-response-surface" data-composition-id="claude-completion-response-surface" data-width="1920" data-height="1080">
+    <section class="claude-completion-response-frame" data-primitive="claude-completion-response" aria-label="Editable Claude completion response surface">
+      <main class="completion-response-copy" data-primitive="claude-completion-copy">
+        <p class="completion-response-line primary">Done. The launch page is tuned and the chart is updated.</p>
+        <p class="completion-response-line secondary">Ready for the demo review.</p>
+      </main>
+
+      <span
+        class="claude-response-mark"
+        data-primitive="claude-response-mark"
+        data-backlot-mount-src="./claude-response-mark.html"
+        data-backlot-mount-selector="#claude-response-mark-surface"
+        aria-hidden="true"
+      ></span>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Serif";
+        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #claude-completion-response-surface {
+        --paper: #fbfaf6;
+        --ink: #11100f;
+        --brand: #c65b47;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: "Anthropic Sans", sans-serif;
+      }
+
+      #claude-completion-response-surface * {
+        box-sizing: border-box;
+      }
+
+      .claude-completion-response-frame {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 72% 15%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 24%),
+          linear-gradient(180deg, #fffdf9 0%, var(--paper) 100%);
+      }
+
+      .completion-response-copy {
+        position: absolute;
+        left: 248px;
+        top: 224px;
+        width: 1450px;
+        color: var(--ink);
+        font-family: "Anthropic Serif", serif;
+        letter-spacing: 0;
+      }
+
+      .completion-response-line {
+        margin: 0;
+        font-size: 66px;
+        line-height: 1.22;
+        font-weight: 410;
+      }
+
+      .completion-response-line.primary {
+        max-width: 1350px;
+      }
+
+      .completion-response-line.secondary {
+        margin-top: 82px;
+        max-width: 1280px;
+      }
+
+      .claude-response-mark {
+        position: absolute;
+        left: 260px;
+        top: 667px;
+        width: 112px;
+        height: 112px;
+        color: var(--brand);
+        transform-origin: center;
+      }
+
+      .claude-response-mark > [data-backlot-mounted-component] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 128px;
+        height: 128px;
+        transform: scale(0.875);
+        transform-origin: top left;
+      }
+    </style>
+  </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+  const template = document.getElementById("claude-completion-response-template");
+  document.body.appendChild(template.content.cloneNode(true));
+  window.__backlotComponentsState = "loading";
+  const componentLoader = document.createElement("script");
+  componentLoader.src = "../runtime/backlot-component-loader.js";
+  document.head.appendChild(componentLoader);
+
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+  tl.fromTo(
+    ".completion-response-line.primary",
+    { opacity: 0, y: 22, filter: "blur(4px)" },
+    { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.56, immediateRender: false },
+    0.12
+  );
+  tl.fromTo(
+    ".completion-response-line.secondary",
+    { opacity: 0, y: 24, filter: "blur(4px)" },
+    { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.58, immediateRender: false },
+    0.46
+  );
+  tl.fromTo(
+    ".claude-response-mark",
+    { opacity: 0, scale: 0.88, rotation: -18 },
+    { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.28)", immediateRender: false },
+    0.82
+  );
+  tl.to(".claude-response-mark", { rotation: 9, duration: 2.8, repeat: 2, yoyo: true, ease: "sine.inOut" }, 1.36);
+  window.__timelines["claude-completion-response-surface"] = tl;
+</script>
+</body>
+</html>

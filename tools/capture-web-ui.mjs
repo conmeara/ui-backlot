@@ -51,7 +51,9 @@ async function main() {
   const outDir = path.join(root, "captures", slug);
   await fs.mkdir(outDir, { recursive: true });
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    args: ["--allow-file-access-from-files"]
+  });
   const page = await browser.newPage({
     viewport: { width: args.width, height: args.height },
     deviceScaleFactor: args.scale
@@ -59,6 +61,21 @@ async function main() {
 
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
+  await page
+    .waitForFunction(() => {
+      const state = window.__backlotComponentsState;
+      return !state || state === "ready" || state === "error";
+    }, { timeout: 15_000 })
+    .catch(() => {});
+
+  const backlotComponentState = await page.evaluate(() => ({
+    state: window.__backlotComponentsState || null,
+    error: window.__backlotComponentsError || null
+  }));
+  if (backlotComponentState.state === "error") {
+    throw new Error(`Backlot component mount failed: ${backlotComponentState.error || "unknown error"}`);
+  }
+
   await page.waitForTimeout(500);
 
   const captureTarget = args.selector ? page.locator(args.selector).first() : page;

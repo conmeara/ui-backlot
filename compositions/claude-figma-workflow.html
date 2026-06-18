@@ -1,0 +1,187 @@
+<div id="claude-figma-workflow" data-composition-id="claude-figma-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="9">
+  <section class="workflow-stage" data-primitive="claude-figma-workflow" aria-label="Claude and Figma workflow composition">
+    <div class="desktop-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame menu-bar-component"
+      data-primitive="mac-menu-bar"
+      data-backlot-mount-src="./mac-menu-bar.html"
+      data-backlot-mount-selector="#mac-menu-bar-surface"
+    ></div>
+
+    <div
+      class="component-frame figma-component"
+      data-primitive="figma-design-editor-window"
+      data-backlot-mount-src="./figma-editor.html"
+      data-backlot-mount-selector="#figma-editor-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-component"
+      data-primitive="claude-app-window"
+      data-backlot-mount-src="./claude-app.html"
+      data-backlot-mount-selector="#claude-app-surface"
+    ></div>
+
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+  @font-face {
+    font-family: "Anthropic Sans";
+    src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #eff2ed;
+  }
+
+  #claude-figma-workflow {
+    --ink: #181410;
+    --cursor: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: "Anthropic Sans", sans-serif;
+  }
+
+  #claude-figma-workflow * {
+    box-sizing: border-box;
+  }
+
+  .workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 16%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 22%),
+      radial-gradient(circle at 76% 18%, rgba(13, 153, 255, 0.12), rgba(13, 153, 255, 0) 27%),
+      radial-gradient(circle at 82% 77%, rgba(34, 197, 94, 0.18), rgba(34, 197, 94, 0) 30%),
+      radial-gradient(circle at 32% 86%, rgba(198, 91, 71, 0.1), rgba(198, 91, 71, 0) 27%),
+      linear-gradient(145deg, #f3eee7 0%, #fbfaf6 46%, #dfeae5 100%);
+  }
+
+  .desktop-field {
+    position: absolute;
+    inset: 30px 0 0;
+    opacity: 0.45;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 17%, #000 78%, transparent 100%);
+  }
+
+  .menu-bar-component {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    height: 30px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: hidden;
+    transform-origin: top left;
+  }
+
+  .figma-component {
+    left: 548px;
+    top: 86px;
+    z-index: 8;
+    width: 1440px;
+    height: 900px;
+    border-radius: 17px;
+    scale: 0.82;
+    opacity: 0.98;
+    box-shadow: 0 42px 132px rgba(37, 42, 55, 0.25);
+  }
+
+  .claude-component {
+    left: 116px;
+    top: 194px;
+    z-index: 16;
+    width: 1180px;
+    height: 780px;
+    border-radius: 18px;
+    scale: 0.78;
+    background: transparent;
+    box-shadow:
+      0 44px 138px rgba(54, 42, 31, 0.3),
+      0 0 0 1px rgba(55, 42, 31, 0.08);
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    display: block;
+    pointer-events: none;
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 1462px;
+    top: 654px;
+    z-index: 40;
+    width: 34px;
+    height: 34px;
+    background: var(--cursor) 0 0 / contain no-repeat;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.28));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 1465px;
+    top: 658px;
+    z-index: 39;
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(13, 153, 255, 0.72);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="../runtime/backlot-component-loader.js"></script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);
+  tl.from(".figma-component", { opacity: 0, x: 34, y: 18, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.22);
+  tl.from(".claude-component", { opacity: 0, x: -28, y: 20, filter: "blur(7px)", duration: 0.62, ease: "power3.out" }, 0.48);
+  tl.from(".workflow-cursor", { opacity: 0, x: -24, y: 20, duration: 0.28, ease: "sine.out" }, 1.08);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.3, duration: 0.18, ease: "sine.out" }, 1.52);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 1.74);
+  tl.to(".workflow-cursor", { x: -606, y: 246, duration: 1.02, ease: "power2.inOut" }, 2.12);
+  tl.to(".click-ring", { x: -606, y: 246, duration: 1.02, ease: "power2.inOut" }, 2.12);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.32, duration: 0.18, ease: "sine.out" }, 3.08);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 3.3);
+  tl.to(".claude-component", { x: -8, y: -4, duration: 1.2, ease: "sine.inOut" }, 3.6);
+  tl.to(".figma-component", { x: -18, y: 8, duration: 1.2, ease: "sine.inOut" }, 3.6);
+  tl.to(".workflow-cursor", { x: 12, y: -54, duration: 1.05, ease: "power2.inOut" }, 4.08);
+  window.__timelines["claude-figma-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(4.32).pause();
+    gsap.set(".claude-component", { x: -8, y: -4, opacity: 1, filter: "blur(0px)" });
+    gsap.set(".figma-component", { x: -18, y: 8, opacity: 0.98, filter: "blur(0px)" });
+    gsap.set(".workflow-cursor", { x: 12, y: -54, opacity: 1 });
+    gsap.set(".click-ring", { opacity: 0 });
+  }
+</script>

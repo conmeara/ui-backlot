@@ -1,0 +1,1558 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 24%),
+      linear-gradient(135deg, #efe9dd 0%, #f8f5ee 45%, #d9e6df 100%);
+  }
+</style>
+
+<template id="premiere-editor-surface-template">
+  <div id="premiere-editor-surface" data-composition-id="premiere-editor-surface" data-width="1440" data-height="900">
+    <section class="premiere-window" data-primitive="premiere-video-editor-window" aria-label="Editable Premiere-style video editor surface">
+      <header class="premiere-titlebar" data-primitive="premiere-titlebar">
+        <div class="traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="app-identity">
+          <span class="pr-mark">Pr</span>
+          <span>Neighborhood Launch Cut</span>
+          <span class="title-muted">Edited</span>
+        </div>
+        <div class="top-actions">
+          <button type="button" class="sync-pill"><span></span> Frame.io</button>
+          <button type="button" class="export-cta">Export</button>
+        </div>
+      </header>
+
+      <nav class="workspace-tabs" data-primitive="premiere-workspaces" aria-label="Premiere workspaces">
+        <button type="button">Import</button>
+        <button type="button" class="active">Edit</button>
+        <button type="button">Export</button>
+        <span class="workspace-divider"></span>
+        <button type="button">Assembly</button>
+        <button type="button">Color</button>
+        <button type="button">Effects</button>
+        <button type="button">Audio</button>
+        <button type="button">Graphics</button>
+        <span class="workspace-spacer"></span>
+        <button type="button" class="search-pill">Search</button>
+      </nav>
+
+      <main class="editor-grid">
+        <section class="panel source-monitor" data-primitive="premiere-source-monitor">
+          <div class="panel-tabs">
+            <button type="button" class="active">Source: interview_selects.mov</button>
+            <button type="button">Effect Controls</button>
+          </div>
+          <div class="monitor-frame source-frame">
+            <div class="video-still interview">
+              <div class="subject"></div>
+              <div class="background-card"></div>
+              <div class="source-timecode">00:01:14:09</div>
+            </div>
+            <div class="source-waveform" aria-hidden="true">
+              <span style="height: 19px"></span><span style="height: 31px"></span><span style="height: 24px"></span><span style="height: 41px"></span>
+              <span style="height: 18px"></span><span style="height: 34px"></span><span style="height: 28px"></span><span style="height: 45px"></span>
+              <span style="height: 22px"></span><span style="height: 36px"></span><span style="height: 27px"></span><span style="height: 50px"></span>
+              <span style="height: 26px"></span><span style="height: 33px"></span><span style="height: 21px"></span><span style="height: 39px"></span>
+            </div>
+          </div>
+          <div class="monitor-controls">
+            <span class="timecode active">00:00:14:18</span>
+            <span class="mark in">I</span>
+            <button type="button" class="control prev" aria-label="Previous frame"></button>
+            <button type="button" class="control play" aria-label="Play"></button>
+            <button type="button" class="control next" aria-label="Next frame"></button>
+            <span class="mark out">O</span>
+            <span class="duration">00:00:08:07</span>
+          </div>
+        </section>
+
+        <section class="panel program-monitor" data-primitive="premiere-program-monitor">
+          <div class="panel-tabs">
+            <button type="button" class="active">Program: Launch Deck</button>
+            <button type="button">Comparison View</button>
+          </div>
+          <div class="monitor-frame program-frame">
+            <div class="safe-guides"></div>
+            <div class="program-card">
+              <div class="program-title">Maple Grove Playground</div>
+              <div class="program-subtitle">Community launch video</div>
+              <div class="program-progress"><span></span></div>
+            </div>
+            <div class="lower-third">Amina Chen, project lead</div>
+            <div class="program-timecode">00:00:31:12</div>
+          </div>
+          <div class="monitor-controls">
+            <span class="timecode active">00:00:31:12</span>
+            <button type="button" class="control step-back" aria-label="Step back"></button>
+            <button type="button" class="control play active" aria-label="Play"></button>
+            <button type="button" class="control step-forward" aria-label="Step forward"></button>
+            <span class="resolution">1/2</span>
+            <span class="duration">00:01:08:00</span>
+          </div>
+        </section>
+
+        <aside class="audio-meters" data-primitive="premiere-audio-meters" aria-label="Audio meters">
+          <div class="meter-title">Audio</div>
+          <div class="meter-scale"><span>0</span><span>-6</span><span>-12</span><span>-24</span><span>-48</span></div>
+          <div class="meter-columns">
+            <div class="meter"><span class="level l"></span></div>
+            <div class="meter"><span class="level r"></span></div>
+          </div>
+          <div class="meter-labels"><span>L</span><span>R</span></div>
+        </aside>
+
+        <section class="panel project-panel" data-primitive="premiere-project-panel">
+          <div class="panel-tabs">
+            <button type="button" class="active">Project</button>
+            <button type="button">Media Browser</button>
+          </div>
+          <div class="project-toolbar">
+            <span class="bin-search">Search project</span>
+            <span class="view-toggle"></span>
+          </div>
+          <div class="bin-list">
+            <div class="bin-row folder open"><span></span><strong>Launch Deck</strong></div>
+            <div class="bin-row asset active video"><span></span><strong>interview_selects.mov</strong><em>00:03:18</em></div>
+            <div class="bin-row asset video"><span></span><strong>playground_broll.mp4</strong><em>00:02:41</em></div>
+            <div class="bin-row asset audio"><span></span><strong>ambient_block.wav</strong><em>00:01:42</em></div>
+            <div class="bin-row asset graphic"><span></span><strong>funding_card.png</strong><em>Still</em></div>
+            <div class="bin-row sequence"><span></span><strong>Launch Deck sequence</strong><em>1080p</em></div>
+          </div>
+          <div class="freeform-cards">
+            <div class="media-card active"><span></span><strong>Interview</strong></div>
+            <div class="media-card"><span></span><strong>B-roll</strong></div>
+            <div class="media-card"><span></span><strong>Graphics</strong></div>
+          </div>
+        </section>
+
+        <aside class="tools-panel" data-primitive="premiere-tools-panel" aria-label="Tools panel">
+          <button class="tool selection active" type="button" aria-label="Selection tool"></button>
+          <button class="tool track" type="button" aria-label="Track select tool"></button>
+          <button class="tool ripple" type="button" aria-label="Ripple edit tool"></button>
+          <button class="tool razor" type="button" aria-label="Razor tool"></button>
+          <button class="tool pen" type="button" aria-label="Pen tool"></button>
+          <button class="tool hand" type="button" aria-label="Hand tool"></button>
+          <button class="tool text" type="button" aria-label="Text tool"></button>
+          <button class="tool extend" type="button" aria-label="Generative Extend tool"></button>
+        </aside>
+
+        <section class="panel timeline-panel" data-primitive="premiere-timeline-editor">
+          <div class="panel-tabs timeline-tabs">
+            <button type="button" class="active">Launch Deck sequence</button>
+            <button type="button">Sequence Index</button>
+            <span class="timeline-status">00:01:08:00  |  23.976 fps</span>
+          </div>
+          <div class="timeline-toolbar">
+            <div class="patches">
+              <button type="button" class="patch active">V1</button>
+              <button type="button" class="patch active">A1</button>
+              <button type="button" class="patch">A2</button>
+            </div>
+            <div class="timeline-controls">
+              <span class="toggle active">Snap</span>
+              <span class="toggle">Linked</span>
+              <span class="toggle active">Markers</span>
+            </div>
+            <div class="zoom-track"><span></span></div>
+          </div>
+          <div class="timeline-ruler">
+            <div class="track-label-corner">00:00:00:00</div>
+            <div class="ruler-scales">
+              <span style="left: 0%">00:00</span>
+              <span style="left: 16%">00:10</span>
+              <span style="left: 32%">00:20</span>
+              <span style="left: 48%">00:30</span>
+              <span style="left: 64%">00:40</span>
+              <span style="left: 80%">00:50</span>
+              <span style="left: 96%">01:00</span>
+            </div>
+          </div>
+          <div class="timeline-body">
+            <div class="track-headers">
+              <div class="track-header"><strong>V3</strong><span></span><em>M</em></div>
+              <div class="track-header"><strong>V2</strong><span></span><em>M</em></div>
+              <div class="track-header"><strong>V1</strong><span></span><em>M</em></div>
+              <div class="track-header audio"><strong>A1</strong><span></span><em>S</em></div>
+              <div class="track-header audio"><strong>A2</strong><span></span><em>S</em></div>
+            </div>
+            <div class="tracks">
+              <div class="snap-line one"></div>
+              <div class="snap-line two"></div>
+              <div class="playhead"><span></span></div>
+              <div class="track-row video">
+                <div class="clip graphic selected" style="left: 48%; width: 17%">
+                  <span class="clip-handle left"></span><strong>funding_card.png</strong><em>Motion</em><span class="clip-handle right"></span>
+                </div>
+              </div>
+              <div class="track-row video">
+                <div class="clip title" style="left: 35%; width: 20%"><strong>Lower third</strong><em>Essential Graphics</em></div>
+              </div>
+              <div class="track-row video">
+                <div class="clip blue" style="left: 4%; width: 26%"><strong>playground_broll.mp4</strong><em>V</em></div>
+                <div class="clip teal" style="left: 32%; width: 22%"><strong>interview_selects.mov</strong><em>V</em></div>
+                <div class="clip amber" style="left: 56%; width: 28%"><strong>volunteer_day.mov</strong><em>V</em></div>
+              </div>
+              <div class="track-row audio">
+                <div class="clip audio green" style="left: 4%; width: 50%">
+                  <strong>interview_selects.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+                <div class="clip audio green" style="left: 56%; width: 28%">
+                  <strong>volunteer_day.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <div class="track-row audio">
+                <div class="clip audio music" style="left: 0%; width: 84%">
+                  <strong>ambient_block.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel properties-panel" data-primitive="premiere-properties-panel">
+          <div class="panel-tabs">
+            <button type="button" class="active">Properties</button>
+            <button type="button">Effects</button>
+          </div>
+          <section class="property-section active">
+            <div class="property-title">Selected graphic</div>
+            <div class="prop-row"><span>Position</span><strong>960, 544</strong></div>
+            <div class="prop-row"><span>Scale</span><strong>86%</strong></div>
+            <div class="prop-row"><span>Opacity</span><strong>100%</strong></div>
+            <div class="prop-slider"><span style="width: 68%"></span></div>
+          </section>
+          <section class="property-section">
+            <div class="property-title">Lumetri Color</div>
+            <div class="color-wheels">
+              <span class="wheel warm"></span>
+              <span class="wheel cool"></span>
+              <span class="wheel neutral"></span>
+            </div>
+          </section>
+          <section class="property-section">
+            <div class="property-title">Captions</div>
+            <div class="caption-chip">Open Captions</div>
+            <div class="caption-line">A neighborhood project...</div>
+          </section>
+        </aside>
+      </main>
+
+      <div class="premiere-cursor" data-layout-ignore=""></div>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #premiere-editor-surface {
+        --app-bg: #18181c;
+        --panel: #222329;
+        --panel-soft: #292a31;
+        --panel-dark: #16171b;
+        --panel-raised: #30313a;
+        --border: #3a3b45;
+        --border-strong: #535565;
+        --ink: #efeff4;
+        --muted: #a7a9b4;
+        --soft: #737682;
+        --accent: #8f7cff;
+        --accent-blue: #4fa1ff;
+        --teal: #43b5b0;
+        --green: #5bbf72;
+        --orange: #d89443;
+        --pink: #ca6fb1;
+        --yellow: #e5cc5d;
+        width: 1440px;
+        height: 900px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: "Anthropic Sans", sans-serif;
+      }
+
+      #premiere-editor-surface * {
+        box-sizing: border-box;
+      }
+
+      #premiere-editor-surface button {
+        font: inherit;
+      }
+
+      .premiere-window {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: 42px 38px 1fr;
+        border-radius: 17px;
+        background: var(--app-bg);
+        box-shadow:
+          0 34px 120px rgba(16, 16, 20, 0.38),
+          0 0 0 1px rgba(255, 255, 255, 0.11);
+      }
+
+      .premiere-titlebar {
+        display: grid;
+        grid-template-columns: 116px minmax(0, 1fr) auto;
+        align-items: center;
+        padding: 0 13px;
+        background: #111216;
+        border-bottom: 1px solid #30323b;
+      }
+
+      .traffic {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+
+      .traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #ffbd2e; }
+      .traffic .green { background: #28c840; }
+
+      .app-identity {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        color: #f7f7fb;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .pr-mark {
+        width: 22px;
+        height: 22px;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid #8f7cff;
+        border-radius: 5px;
+        color: #cabfff;
+        background: #211c3d;
+        font-size: 11px;
+        font-weight: 780;
+      }
+
+      .title-muted {
+        color: var(--soft);
+        font-weight: 520;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .top-actions button,
+      .workspace-tabs button,
+      .panel-tabs button,
+      .monitor-controls button,
+      .tools-panel button {
+        border: 0;
+        color: inherit;
+      }
+
+      .sync-pill,
+      .export-cta {
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 12px;
+        border-radius: 7px;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .sync-pill {
+        background: #24262d;
+        color: #d6d7df;
+      }
+
+      .sync-pill span {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 0 3px rgba(91, 191, 114, 0.12);
+      }
+
+      .export-cta {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .workspace-tabs {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 12px;
+        background: #1d1e24;
+        border-bottom: 1px solid #333541;
+      }
+
+      .workspace-tabs button {
+        height: 26px;
+        padding: 0 10px;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 640;
+      }
+
+      .workspace-tabs button.active {
+        background: #343642;
+        color: #fff;
+      }
+
+      .workspace-divider {
+        width: 1px;
+        height: 18px;
+        margin: 0 4px;
+        background: #3b3d47;
+      }
+
+      .workspace-spacer {
+        flex: 1;
+      }
+
+      .workspace-tabs .search-pill {
+        min-width: 120px;
+        justify-content: flex-start;
+        color: #838692;
+        background: #15161b;
+        box-shadow: inset 0 0 0 1px #333540;
+      }
+
+      .editor-grid {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 314px 48px minmax(0, 1fr) 270px 44px;
+        grid-template-rows: 306px minmax(0, 1fr);
+        gap: 7px;
+        padding: 7px;
+        background: #17181d;
+      }
+
+      .panel {
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      .source-monitor {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+
+      .program-monitor {
+        grid-column: 3 / 5;
+        grid-row: 1;
+      }
+
+      .audio-meters {
+        grid-column: 5;
+        grid-row: 1 / 3;
+        position: relative;
+        display: grid;
+        grid-template-rows: 30px 1fr 26px;
+        padding: 7px 5px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #15161a;
+      }
+
+      .project-panel {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .tools-panel {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 6px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #191a20;
+      }
+
+      .timeline-panel {
+        grid-column: 3;
+        grid-row: 2;
+      }
+
+      .properties-panel {
+        grid-column: 4;
+        grid-row: 2;
+      }
+
+      .panel-tabs {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        padding: 0 6px;
+        background: #1a1b21;
+        border-bottom: 1px solid #363843;
+      }
+
+      .panel-tabs button {
+        height: 24px;
+        max-width: 220px;
+        padding: 0 9px;
+        border-radius: 6px 6px 0 0;
+        background: transparent;
+        color: #92959f;
+        font-size: 11px;
+        font-weight: 650;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .panel-tabs button.active {
+        background: var(--panel);
+        color: #f2f2f6;
+        box-shadow: inset 0 2px 0 var(--accent);
+      }
+
+      .monitor-frame {
+        position: relative;
+        height: 229px;
+        margin: 8px;
+        overflow: hidden;
+        border: 1px solid #101116;
+        border-radius: 5px;
+        background: #08090c;
+      }
+
+      .source-frame {
+        display: grid;
+        grid-template-rows: 1fr 54px;
+      }
+
+      .video-still {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.08), transparent 38%),
+          linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
+      }
+
+      .video-still.interview::before {
+        content: "";
+        position: absolute;
+        left: 36px;
+        bottom: -12px;
+        width: 126px;
+        height: 158px;
+        border-radius: 64px 64px 22px 22px;
+        background: linear-gradient(180deg, #caa38a 0 39%, #533f45 40% 100%);
+        box-shadow: 38px 18px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .subject {
+        position: absolute;
+        left: 78px;
+        top: 54px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: #d9b79f;
+      }
+
+      .background-card {
+        position: absolute;
+        right: 30px;
+        top: 40px;
+        width: 116px;
+        height: 74px;
+        border-radius: 10px;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0 30%, transparent 30%),
+          linear-gradient(135deg, #46676d, #9b7c55);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+      }
+
+      .source-timecode,
+      .program-timecode {
+        position: absolute;
+        right: 10px;
+        bottom: 8px;
+        padding: 3px 7px;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .source-waveform {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 13px;
+        border-top: 1px solid #292b35;
+        background:
+          linear-gradient(90deg, rgba(143, 124, 255, 0.12), transparent 44%),
+          #0e0f14;
+      }
+
+      .source-waveform span {
+        flex: 1;
+        max-width: 13px;
+        border-radius: 5px;
+        background: #6fa2ff;
+        opacity: 0.72;
+      }
+
+      .program-frame {
+        height: 229px;
+        background:
+          radial-gradient(circle at 48% 36%, rgba(235, 201, 148, 0.34), transparent 24%),
+          linear-gradient(135deg, #0e171b 0%, #283840 58%, #111318 100%);
+      }
+
+      .safe-guides,
+      .safe-guides::before {
+        position: absolute;
+        inset: 25px 44px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        content: "";
+      }
+
+      .safe-guides::before {
+        inset: 17px 30px;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .program-card {
+        position: absolute;
+        left: 54px;
+        top: 48px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 13px;
+        background: rgba(244, 241, 232, 0.94);
+        color: #1c1a16;
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.25);
+      }
+
+      .program-title {
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1.05;
+      }
+
+      .program-subtitle {
+        margin-top: 7px;
+        color: #5b594f;
+        font-size: 12px;
+        font-weight: 620;
+      }
+
+      .program-progress {
+        height: 8px;
+        margin-top: 17px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #d8d1c3;
+      }
+
+      .program-progress span {
+        display: block;
+        width: 68%;
+        height: 100%;
+        border-radius: inherit;
+        background: #43b875;
+      }
+
+      .lower-third {
+        position: absolute;
+        left: 54px;
+        bottom: 36px;
+        padding: 8px 14px;
+        border-left: 4px solid var(--accent);
+        border-radius: 5px;
+        background: rgba(9, 10, 13, 0.76);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 680;
+      }
+
+      .monitor-controls {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 10px;
+        border-top: 1px solid #353742;
+        color: #888c97;
+        font-size: 11px;
+      }
+
+      .timecode,
+      .duration,
+      .resolution {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timecode.active {
+        color: #e9eafe;
+      }
+
+      .mark {
+        width: 18px;
+        height: 18px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 4px;
+        color: #111216;
+        font-size: 11px;
+        font-weight: 820;
+      }
+
+      .mark.in { background: var(--green); }
+      .mark.out { background: var(--orange); }
+
+      .control {
+        width: 21px;
+        height: 21px;
+        border-radius: 5px;
+        background: #2f3139;
+        position: relative;
+      }
+
+      .control::before,
+      .control::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .control.play::before {
+        border-left: 8px solid #dedfec;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        transform: translate(-35%, -50%);
+      }
+
+      .control.active {
+        background: var(--accent);
+      }
+
+      .control.prev::before,
+      .control.step-back::before {
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #dedfec;
+        border-bottom: 2px solid #dedfec;
+        transform: translate(-35%, -50%) rotate(45deg);
+      }
+
+      .control.next::before,
+      .control.step-forward::before {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid #dedfec;
+        border-top: 2px solid #dedfec;
+        transform: translate(-65%, -50%) rotate(45deg);
+      }
+
+      .meter-title {
+        color: #d7d9e2;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .meter-scale {
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 12px 0 30px;
+        color: #6f727d;
+        font-size: 9px;
+      }
+
+      .meter-columns {
+        position: absolute;
+        left: 17px;
+        right: 6px;
+        top: 44px;
+        bottom: 43px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+      }
+
+      .meter {
+        position: relative;
+        overflow: hidden;
+        border-radius: 3px;
+        background:
+          linear-gradient(180deg, #d9544f 0 10%, #e6c454 10% 27%, #315b38 27% 100%);
+        opacity: 0.85;
+      }
+
+      .level {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, #ffdd61, #5fd36f);
+      }
+
+      .level.l { height: 68%; }
+      .level.r { height: 58%; }
+
+      .meter-labels {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        color: #898c96;
+        font-size: 10px;
+      }
+
+      .project-toolbar {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 9px;
+        border-bottom: 1px solid #333540;
+      }
+
+      .bin-search {
+        flex: 1;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 5px;
+        background: #17181e;
+        color: #757884;
+        font-size: 11px;
+      }
+
+      .view-toggle {
+        width: 19px;
+        height: 19px;
+        border-radius: 4px;
+        background:
+          linear-gradient(90deg, transparent 45%, #7b7e89 45% 55%, transparent 55%),
+          linear-gradient(transparent 45%, #7b7e89 45% 55%, transparent 55%);
+        box-shadow: inset 0 0 0 1px #4a4c58;
+      }
+
+      .bin-list {
+        padding: 7px 7px 0;
+      }
+
+      .bin-row {
+        height: 29px;
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 6px;
+        padding: 0 7px;
+        border-radius: 6px;
+        color: #c4c7d0;
+        font-size: 11px;
+      }
+
+      .bin-row.active {
+        background: rgba(143, 124, 255, 0.23);
+        color: #fff;
+      }
+
+      .bin-row strong {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 650;
+      }
+
+      .bin-row em {
+        color: #777b86;
+        font-style: normal;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .bin-row span {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        background: #555862;
+      }
+
+      .bin-row.folder span {
+        background: var(--orange);
+      }
+
+      .bin-row.video span,
+      .media-card span {
+        background: var(--accent-blue);
+      }
+
+      .bin-row.audio span {
+        background: var(--green);
+      }
+
+      .bin-row.graphic span {
+        background: var(--pink);
+      }
+
+      .bin-row.sequence span {
+        background: var(--accent);
+      }
+
+      .freeform-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+        padding: 10px 8px;
+      }
+
+      .media-card {
+        min-width: 0;
+        height: 64px;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 4px;
+        padding: 7px;
+        border: 1px solid #383a44;
+        border-radius: 7px;
+        background: #1b1c22;
+        color: #babdc7;
+        font-size: 10px;
+      }
+
+      .media-card.active {
+        border-color: var(--accent);
+      }
+
+      .media-card span {
+        display: block;
+        border-radius: 5px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 45%),
+          var(--accent-blue);
+      }
+
+      .tool {
+        width: 32px;
+        height: 32px;
+        position: relative;
+        border-radius: 7px;
+        background: transparent;
+        color: #a7aab5;
+      }
+
+      .tool.active {
+        background: #373a46;
+        color: #fff;
+        box-shadow: inset 0 0 0 1px #5d6170;
+      }
+
+      .tool::before,
+      .tool::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .tool.selection::before {
+        border-left: 9px solid currentColor;
+        border-top: 15px solid transparent;
+        border-bottom: 4px solid transparent;
+        transform: translate(-38%, -42%) rotate(-16deg);
+      }
+
+      .tool.track::before {
+        width: 17px;
+        height: 10px;
+        border-top: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .tool.track::after {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-top: 2px solid currentColor;
+        transform: translate(-30%, -50%) rotate(45deg);
+      }
+
+      .tool.ripple::before {
+        width: 18px;
+        height: 13px;
+        border-left: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+      }
+
+      .tool.ripple::after {
+        width: 12px;
+        height: 2px;
+        background: currentColor;
+      }
+
+      .tool.razor::before {
+        width: 16px;
+        height: 7px;
+        border: 2px solid currentColor;
+        border-radius: 2px;
+        transform: translate(-50%, -50%) rotate(-28deg);
+      }
+
+      .tool.pen::before {
+        width: 15px;
+        height: 15px;
+        border-left: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      .tool.hand::before {
+        width: 13px;
+        height: 16px;
+        border: 2px solid currentColor;
+        border-radius: 7px 7px 5px 5px;
+      }
+
+      .tool.text::before {
+        content: "T";
+        color: currentColor;
+        font-size: 17px;
+        font-weight: 850;
+      }
+
+      .tool.extend::before {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, currentColor 0 2px, transparent 3px),
+          conic-gradient(currentColor 0 45deg, transparent 45deg 90deg, currentColor 90deg 135deg, transparent 135deg 180deg, currentColor 180deg 225deg, transparent 225deg 270deg, currentColor 270deg 315deg, transparent 315deg);
+      }
+
+      .timeline-tabs {
+        gap: 4px;
+      }
+
+      .timeline-status {
+        margin-left: auto;
+        color: #80838d;
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timeline-toolbar {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 9px;
+        border-bottom: 1px solid #333540;
+      }
+
+      .patches,
+      .timeline-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .patch {
+        height: 20px;
+        min-width: 26px;
+        border: 0;
+        border-radius: 5px;
+        background: #30323b;
+        color: #9fa2ad;
+        font-size: 10px;
+        font-weight: 750;
+      }
+
+      .patch.active {
+        background: rgba(143, 124, 255, 0.24);
+        color: #d7d1ff;
+      }
+
+      .toggle {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 7px;
+        border-radius: 5px;
+        background: #2d2f38;
+        color: #8f929e;
+        font-size: 10px;
+        font-weight: 680;
+      }
+
+      .toggle.active {
+        color: #fff;
+        background: #414452;
+      }
+
+      .zoom-track {
+        width: 110px;
+        height: 5px;
+        margin-left: auto;
+        border-radius: 999px;
+        background: #3a3c46;
+      }
+
+      .zoom-track span {
+        display: block;
+        width: 58%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+      }
+
+      .timeline-ruler {
+        height: 30px;
+        display: grid;
+        grid-template-columns: 116px 1fr;
+        border-bottom: 1px solid #363843;
+      }
+
+      .track-label-corner {
+        display: flex;
+        align-items: center;
+        padding-left: 9px;
+        border-right: 1px solid #363843;
+        color: #71747f;
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .ruler-scales {
+        position: relative;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px) 0 100% / 16% 8px no-repeat,
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 100% / 4% 4px repeat-x;
+      }
+
+      .ruler-scales span {
+        position: absolute;
+        top: 7px;
+        transform: translateX(-50%);
+        color: #7e818c;
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timeline-body {
+        height: calc(100% - 92px);
+        display: grid;
+        grid-template-columns: 116px 1fr;
+      }
+
+      .track-headers {
+        border-right: 1px solid #363843;
+        background: #1b1c21;
+      }
+
+      .track-header,
+      .track-row {
+        height: 51px;
+        border-bottom: 1px solid #31333c;
+      }
+
+      .track-header {
+        display: grid;
+        grid-template-columns: 32px 1fr 24px;
+        align-items: center;
+        gap: 5px;
+        padding: 0 8px;
+        color: #cfd1db;
+        font-size: 11px;
+      }
+
+      .track-header strong {
+        font-weight: 780;
+      }
+
+      .track-header span {
+        height: 6px;
+        border-radius: 999px;
+        background: #363844;
+      }
+
+      .track-header em {
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 4px;
+        background: #30323a;
+        color: #8d909b;
+        font-style: normal;
+        font-size: 10px;
+      }
+
+      .track-header.audio strong {
+        color: #aee0b7;
+      }
+
+      .tracks {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 0 / 8% 100% repeat,
+          #191a1f;
+      }
+
+      .track-row {
+        position: relative;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          linear-gradient(#1d1e24, #1d1e24);
+      }
+
+      .track-row.audio {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #181f1b;
+      }
+
+      .snap-line,
+      .playhead {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 8;
+        width: 0;
+        pointer-events: none;
+      }
+
+      .snap-line {
+        border-left: 1px dashed rgba(82, 151, 255, 0.55);
+      }
+
+      .snap-line.one { left: 48%; }
+      .snap-line.two { left: 65%; opacity: 0.42; }
+
+      .playhead {
+        left: 52%;
+        border-left: 2px solid #d85bff;
+        box-shadow: 0 0 0 1px rgba(216, 91, 255, 0.2);
+      }
+
+      .playhead span {
+        position: absolute;
+        top: -8px;
+        left: -7px;
+        width: 14px;
+        height: 14px;
+        background: #d85bff;
+        clip-path: polygon(50% 0, 100% 44%, 100% 100%, 0 100%, 0 44%);
+      }
+
+      .clip {
+        position: absolute;
+        top: 7px;
+        height: 36px;
+        min-width: 40px;
+        overflow: hidden;
+        padding: 5px 9px;
+        border-radius: 5px;
+        color: #f5f7fb;
+        font-size: 10px;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+          0 7px 15px rgba(0, 0, 0, 0.18);
+      }
+
+      .clip strong,
+      .clip em {
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .clip strong {
+        font-weight: 760;
+      }
+
+      .clip em {
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.72);
+        font-style: normal;
+      }
+
+      .clip.blue { background: #3f6aa9; }
+      .clip.teal { background: #247975; }
+      .clip.amber { background: #996c28; }
+      .clip.title { background: #8c5fa6; }
+      .clip.graphic { background: #b15f89; }
+
+      .clip.selected {
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
+      }
+
+      .clip-handle {
+        position: absolute;
+        top: 0;
+        width: 10px;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .clip-handle.left { left: 0; }
+      .clip-handle.right { right: 0; }
+
+      .clip-handle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 12px;
+        height: 28px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.16);
+        transform: translateY(-50%);
+      }
+
+      .clip-handle.left::after { left: -7px; }
+      .clip-handle.right::after { right: -7px; }
+
+      .clip.audio {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 74px;
+        align-items: center;
+        background: #2f7440;
+      }
+
+      .clip.audio.music {
+        background: #60722f;
+      }
+
+      .wave-mini {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .wave-mini span {
+        flex: 1;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.42);
+      }
+
+      .wave-mini span:nth-child(1) { height: 12px; }
+      .wave-mini span:nth-child(2) { height: 20px; }
+      .wave-mini span:nth-child(3) { height: 15px; }
+      .wave-mini span:nth-child(4) { height: 24px; }
+      .wave-mini span:nth-child(5) { height: 10px; }
+
+      .property-section {
+        margin: 10px;
+        padding: 11px;
+        border: 1px solid #3b3d48;
+        border-radius: 8px;
+        background: #1d1e24;
+      }
+
+      .property-section.active {
+        border-color: rgba(143, 124, 255, 0.55);
+      }
+
+      .property-title {
+        margin-bottom: 10px;
+        color: #e2e3ea;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .prop-row {
+        height: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #a6a9b4;
+        font-size: 11px;
+      }
+
+      .prop-row strong {
+        color: #f1f1f5;
+        font-weight: 650;
+      }
+
+      .prop-slider {
+        height: 6px;
+        margin-top: 8px;
+        border-radius: 999px;
+        background: #333642;
+      }
+
+      .prop-slider span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+      }
+
+      .color-wheels {
+        display: flex;
+        gap: 10px;
+      }
+
+      .wheel {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: conic-gradient(#f25e5e, #e4d86e, #5ed884, #65a1ff, #a074ff, #f25e5e);
+        box-shadow: inset 0 0 0 10px #24262d, inset 0 0 0 11px #555966;
+      }
+
+      .wheel.cool {
+        filter: hue-rotate(60deg);
+      }
+
+      .wheel.neutral {
+        filter: grayscale(0.8);
+      }
+
+      .caption-chip {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        padding: 0 8px;
+        border-radius: 6px;
+        background: rgba(143, 124, 255, 0.18);
+        color: #d8d2ff;
+        font-size: 11px;
+        font-weight: 690;
+      }
+
+      .caption-line {
+        margin-top: 9px;
+        padding: 8px;
+        border-radius: 6px;
+        background: #252730;
+        color: #bcc0ca;
+        font-size: 11px;
+      }
+
+      .premiere-cursor {
+        position: absolute;
+        left: 910px;
+        top: 560px;
+        z-index: 20;
+        width: 21px;
+        height: 31px;
+        filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+      }
+
+      .premiere-cursor::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        clip-path: polygon(0 0, 0 78%, 21% 62%, 34% 100%, 48% 95%, 35% 58%, 66% 58%);
+      }
+
+      .premiere-cursor::after {
+        content: "";
+        position: absolute;
+        inset: 2px 3px 4px 2px;
+        background: #111;
+        clip-path: polygon(0 0, 0 76%, 21% 59%, 35% 100%, 44% 95%, 31% 55%, 60% 55%);
+        opacity: 0.86;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+      tl.from(".premiere-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.46, ease: "power3.out" }, 0.12);
+      tl.from(".workspace-tabs", { opacity: 0, y: -8, duration: 0.28, ease: "sine.out" }, 0.36);
+      tl.from(".source-monitor, .program-monitor", { opacity: 0, y: 14, duration: 0.34, stagger: 0.08, ease: "power2.out" }, 0.52);
+      tl.from(".project-panel, .tools-panel, .properties-panel, .audio-meters", { opacity: 0, y: 14, duration: 0.34, stagger: 0.05, ease: "power2.out" }, 0.72);
+      tl.from(".timeline-panel", { opacity: 0, y: 22, duration: 0.38, ease: "power3.out" }, 0.94);
+      tl.from(".clip", { opacity: 0, y: 8, duration: 0.24, stagger: 0.035, ease: "sine.out" }, 1.18);
+      tl.from(".clip.selected", { outlineColor: "rgba(229,204,93,0)", duration: 0.28, ease: "sine.out" }, 1.56);
+      tl.from(".snap-line", { opacity: 0, duration: 0.24, stagger: 0.06, ease: "sine.out" }, 1.66);
+      tl.from(".playhead", { opacity: 0, duration: 0.22, ease: "sine.out" }, 1.84);
+      tl.to(".playhead", { left: "65%", duration: 1.35, ease: "power2.inOut" }, 2.05);
+      tl.to(".program-progress span", { width: "84%", duration: 0.72, ease: "power2.inOut" }, 2.34);
+      tl.to(".level.l", { height: "76%", duration: 0.34, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.08);
+      tl.to(".level.r", { height: "66%", duration: 0.31, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.12);
+      tl.to(".premiere-cursor", { x: 170, y: 82, duration: 1.08, ease: "power3.inOut" }, 2.42);
+      tl.to(".clip.selected", { scale: 1.012, duration: 0.2, repeat: 3, yoyo: true, ease: "sine.inOut" }, 3.02);
+      window.__timelines["premiere-editor-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/premiere-editor\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("premiere-editor-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#premiere-editor-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

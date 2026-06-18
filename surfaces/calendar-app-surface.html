@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Backlot - macOS Calendar Surface</title>
+    <style>
+      :root {
+        --stage-w: 1920px;
+        --stage-h: 1080px;
+        --window-shadow: 0 34px 96px rgba(23, 31, 46, 0.24);
+        --window-shadow-active: 0 44px 128px rgba(23, 31, 46, 0.29);
+        --system-line: rgba(0, 0, 0, 0.11);
+        --system-muted: #6e6e73;
+        --system-text: #1d1d1f;
+        --calendar-red: #ec4d3c;
+        --calendar-icon-src: url("../reference/open-source/macos-web/public/app-icons/calendar/256.webp");
+        --finder-icon-src: url("../reference/open-source/macos-web/public/app-icons/finder/256.webp");
+        --safari-icon-src: url("../reference/open-source/macos-web/public/app-icons/safari/256.webp");
+        --notes-icon-src: url("../reference/open-source/macos-web/public/app-icons/notes/256.png");
+        --system-cursor-default: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
+      }
+
+      html,
+      body {
+        width: var(--stage-w);
+        height: var(--stage-h);
+        margin: 0;
+        overflow: hidden;
+        background: #111;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        color: var(--system-text);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #calendar-app-surface {
+        position: relative;
+        width: var(--stage-w);
+        height: var(--stage-h);
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 19%),
+          radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 18%),
+          linear-gradient(145deg, #7bd2f1 0%, #4db4e4 34%, #e8f7f2 35%, #fff7dc 56%, #f4d59b 100%);
+      }
+
+      .menu-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 40;
+        width: 100%;
+        height: 29px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 0 12px;
+        background: rgba(248, 249, 250, 0.34);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.035);
+        backdrop-filter: blur(12px) saturate(1.35);
+        color: rgba(0, 0, 0, 0.82);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .menu-left,
+      .menu-right {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        white-space: nowrap;
+      }
+
+      .menu-left > span:not(.apple-glyph),
+      .menu-right > span:not(.status-icons) {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 5px;
+      }
+
+      .menu-left > span:nth-child(2) {
+        margin-left: 5px;
+        margin-right: 6px;
+        font-weight: 650;
+      }
+
+      .apple-glyph {
+        width: 18px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2px;
+        color: #050505;
+      }
+
+      .apple-glyph::before {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 17px;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .apple-glyph::after {
+        content: none;
+      }
+
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .status-dot {
+        width: 14px;
+        height: 14px;
+        border: 0;
+        position: relative;
+      }
+
+      .status-dot.control-center {
+        width: 18px;
+        height: 14px;
+      }
+
+      .status-dot.control-center::before,
+      .status-dot.control-center::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        width: 15px;
+        height: 5px;
+        border: 1.6px solid currentColor;
+        border-radius: 8px;
+      }
+
+      .status-dot.control-center::before {
+        top: 1px;
+        box-shadow: inset 7px 0 0 currentColor;
+      }
+
+      .status-dot.control-center::after {
+        bottom: 1px;
+        box-shadow: inset -7px 0 0 currentColor;
+      }
+
+      .status-dot.wifi {
+        width: 19px;
+        height: 15px;
+        background:
+          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
+      }
+
+      .status-dot.wifi::before,
+      .status-dot.wifi::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        border: 2px solid currentColor;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-radius: 50%;
+        transform: translateX(-50%);
+      }
+
+      .status-dot.wifi::before {
+        bottom: 0;
+        width: 18px;
+        height: 13px;
+      }
+
+      .status-dot.wifi::after {
+        bottom: 0;
+        width: 9px;
+        height: 7px;
+      }
+
+      .status-pill {
+        position: relative;
+        width: 26px;
+        height: 14px;
+        border: 1.7px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .status-pill::before {
+        content: "";
+        position: absolute;
+        right: -4px;
+        top: 4px;
+        width: 2px;
+        height: 5px;
+        border-radius: 0 2px 2px 0;
+        background: currentColor;
+      }
+
+      .status-pill::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 17px;
+        height: 8px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .calendar-window {
+        --title-bar-height: 40px;
+        position: absolute;
+        left: 400px;
+        top: 120px;
+        width: 1120px;
+        height: 720px;
+        overflow: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.13);
+        border-radius: 16px;
+        background: #fbfbfb;
+        box-shadow: var(--window-shadow-active);
+      }
+
+      .titlebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: var(--title-bar-height);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(244, 244, 244, 0.82));
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .traffic {
+        position: absolute;
+        left: 18px;
+        top: 14px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .traffic span {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.13);
+        box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.08);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #febc2e; }
+      .traffic .green { background: #28c840; }
+
+      .titlebar-title {
+        position: absolute;
+        left: 50%;
+        top: 11px;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(0, 0, 0, 0.68);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .calendar-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        background-image:
+          var(--calendar-icon-src),
+          linear-gradient(180deg, #f56758 0 31%, #fff 31% 100%);
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+      }
+
+      .main-area {
+        position: absolute;
+        left: 0;
+        top: var(--title-bar-height);
+        width: 100%;
+        height: calc(100% - var(--title-bar-height));
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        color: var(--system-text);
+      }
+
+      .calendar-sidebar {
+        width: 244px;
+        min-width: 244px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid rgba(0, 0, 0, 0.11);
+        background: rgba(244, 244, 246, 0.86);
+      }
+
+      .sidebar-header {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .sidebar-title {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .sidebar-plus {
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        color: #1d1d1f;
+        font-size: 18px;
+        font-weight: 520;
+        line-height: 1;
+      }
+
+      .sidebar-section {
+        padding: 12px 12px 4px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .sidebar-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: #6e6e73;
+        font-size: 11px;
+        font-weight: 720;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .calendar-source-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .calendar-source {
+        position: relative;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 7px;
+        border-radius: 7px;
+        color: #242426;
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .calendar-source.active {
+        background: rgba(0, 122, 255, 0.13);
+      }
+
+      .calendar-source.dragging {
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+        transform: translateX(7px);
+      }
+
+      .calendar-source.dragging::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        right: 7px;
+        bottom: -4px;
+        height: 2px;
+        border-radius: 999px;
+        background: #0a84ff;
+      }
+
+      .source-check {
+        width: 13px;
+        height: 13px;
+        border: 2px solid var(--source-color);
+        border-radius: 4px;
+        background:
+          linear-gradient(135deg, transparent 0 42%, #fff 43% 58%, transparent 59%),
+          var(--source-color);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+      }
+
+      .source-dot {
+        width: 8px;
+        height: 8px;
+        margin-left: auto;
+        border-radius: 50%;
+        background: var(--source-color);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--source-color), transparent 78%);
+      }
+
+      .mini-calendar {
+        padding: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .mini-header {
+        display: grid;
+        grid-template-columns: 24px 1fr 24px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .mini-month {
+        justify-self: center;
+        font-size: 12px;
+        font-weight: 720;
+      }
+
+      .mini-nav {
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.68);
+        color: #3a3a3c;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        justify-items: center;
+      }
+
+      .mini-weekday,
+      .mini-day {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 11px;
+      }
+
+      .mini-weekday {
+        color: #7a7a80;
+        font-weight: 650;
+      }
+
+      .mini-day {
+        position: relative;
+        color: #2d2d31;
+        font-weight: 560;
+      }
+
+      .mini-day.other {
+        color: #a6a6ad;
+      }
+
+      .mini-day.today {
+        background: var(--calendar-red);
+        color: #fff;
+        font-weight: 760;
+      }
+
+      .mini-day.has-event::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translateX(-50%);
+      }
+
+      .quick-create {
+        margin: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.68);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+
+      .quick-create-header {
+        padding: 9px 10px 7px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        color: #2d2d31;
+        font-size: 12px;
+        font-weight: 720;
+      }
+
+      .quick-create-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        color: #525258;
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .quick-create-line + .quick-create-line {
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .quick-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--quick-color);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding: 12px;
+        color: #797981;
+        font-size: 11px;
+        font-weight: 620;
+      }
+
+      .calendar-content {
+        min-width: 0;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .calendar-header {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px 0 22px;
+        border-bottom: 1px solid #c7c7cc;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .month-title {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .month {
+        font-size: 24px;
+        font-weight: 750;
+        letter-spacing: 0;
+      }
+
+      .year {
+        color: #343438;
+        font-size: 24px;
+        font-weight: 390;
+        letter-spacing: 0;
+      }
+
+      .control-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+      }
+
+      .calendar-button {
+        min-width: 28px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0.5px 2px rgba(0, 0, 0, 0.24);
+        color: #1d1d1f;
+        font-size: 13px;
+        font-weight: 680;
+        line-height: 1;
+      }
+
+      .calendar-button.today {
+        min-width: 54px;
+        padding: 0 12px;
+      }
+
+      .month-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: 30px repeat(6, 1fr);
+        flex: 1 1 auto;
+        min-height: 0;
+        background: #fff;
+        font-size: 14px;
+      }
+
+      .weekday {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 11px;
+        border-bottom: 1px solid #c7c7cc;
+        color: #4e4e53;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .weekday.weekend {
+        color: #808080;
+      }
+
+      .day {
+        position: relative;
+        min-width: 0;
+        padding: 7px 8px 8px;
+        border-right: 1px solid #e6e5e6;
+        border-bottom: 1px solid #e6e5e6;
+        background: #fff;
+      }
+
+      .day:nth-child(7n) {
+        border-right: 0;
+      }
+
+      .day.weekend {
+        background: #f6f6f6;
+      }
+
+      .day.out-month {
+        background: #fafafa;
+      }
+
+      .day.out-month.weekend {
+        background: #f2f2f2;
+      }
+
+      .date-number {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #171717;
+        font-size: 14px;
+        font-weight: 520;
+        line-height: 1;
+      }
+
+      .out-month .date-number {
+        color: #a3a3a8;
+      }
+
+      .today .date-number {
+        width: 27px;
+        height: 27px;
+        color: #fff;
+        background: var(--calendar-red);
+        font-weight: 700;
+      }
+
+      .event-stack {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 38px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .event {
+        height: 20px;
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 0 7px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-shadow: inset 0 -1px rgba(0, 0, 0, 0.12);
+      }
+
+      .event.blue { background: #0a84ff; }
+      .event.green { background: #34c759; }
+      .event.orange { background: #ff9500; }
+      .event.purple { background: #af52de; }
+      .event.red { background: #ff3b30; }
+
+      .dock {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        z-index: 25;
+        height: 82px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        border-radius: 24px;
+        background: rgba(245, 248, 250, 0.28);
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.72),
+          inset 0 -1px rgba(255, 255, 255, 0.22),
+          0 18px 42px rgba(38, 68, 95, 0.24);
+        backdrop-filter: blur(26px) saturate(1.45);
+        transform: translateX(-50%);
+      }
+
+      .dock-icon {
+        position: relative;
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.8),
+          0 9px 18px rgba(37, 54, 67, 0.2);
+      }
+
+      .dock-icon.calendar {
+        background-image:
+          var(--calendar-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.finder {
+        background-image:
+          var(--finder-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.safari {
+        background-image:
+          var(--safari-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.notes {
+        background-image:
+          var(--notes-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.58);
+        transform: translateX(-50%);
+      }
+
+      .cursor {
+        position: absolute;
+        left: 1268px;
+        top: 622px;
+        z-index: 45;
+        width: 32px;
+        height: 32px;
+        background: var(--system-cursor-default) 0 0 / contain no-repeat;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
+      }
+
+      .cursor::before,
+      .cursor::after { content: none; }
+    </style>
+  </head>
+  <body>
+    <main id="calendar-app-surface" aria-label="macOS Calendar editable surface">
+      <nav class="menu-bar" aria-label="macOS menu bar">
+        <div class="menu-left">
+          <span class="apple-glyph" aria-hidden="true"></span>
+          <span>Calendar</span>
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>Window</span>
+          <span>Help</span>
+        </div>
+        <div></div>
+        <div class="menu-right">
+          <span class="status-icons" aria-hidden="true">
+            <span class="status-dot control-center"></span>
+            <span class="status-dot wifi"></span>
+            <span class="status-pill"></span>
+          </span>
+          <span>Wed Jun 17 4:15 PM</span>
+        </div>
+      </nav>
+
+      <section class="calendar-window" data-primitive="macos-calendar-window" aria-label="Calendar month window">
+        <header class="titlebar">
+          <div class="traffic" aria-hidden="true">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+          <div class="titlebar-title">
+            <span class="calendar-icon" aria-hidden="true"></span>
+            <span>Calendar</span>
+          </div>
+        </header>
+
+        <section class="main-area">
+          <aside class="calendar-sidebar" data-primitive="calendar-sidebar" aria-label="Calendar sidebar">
+            <header class="sidebar-header">
+              <span class="sidebar-title">Calendars</span>
+              <span class="sidebar-plus" role="button" aria-label="Add calendar">+</span>
+            </header>
+
+            <section class="mini-calendar" aria-label="Mini calendar">
+              <div class="mini-header">
+                <span class="mini-nav" role="button" aria-label="Previous month">&lt;</span>
+                <span class="mini-month">June 2026</span>
+                <span class="mini-nav" role="button" aria-label="Next month">&gt;</span>
+              </div>
+              <div class="mini-grid">
+                <span class="mini-weekday">M</span>
+                <span class="mini-weekday">T</span>
+                <span class="mini-weekday">W</span>
+                <span class="mini-weekday">T</span>
+                <span class="mini-weekday">F</span>
+                <span class="mini-weekday">S</span>
+                <span class="mini-weekday">S</span>
+                <span class="mini-day">1</span>
+                <span class="mini-day">2</span>
+                <span class="mini-day">3</span>
+                <span class="mini-day">4</span>
+                <span class="mini-day">5</span>
+                <span class="mini-day">6</span>
+                <span class="mini-day">7</span>
+                <span class="mini-day">8</span>
+                <span class="mini-day">9</span>
+                <span class="mini-day">10</span>
+                <span class="mini-day">11</span>
+                <span class="mini-day">12</span>
+                <span class="mini-day">13</span>
+                <span class="mini-day">14</span>
+                <span class="mini-day">15</span>
+                <span class="mini-day">16</span>
+                <span class="mini-day today has-event">17</span>
+                <span class="mini-day has-event">18</span>
+                <span class="mini-day">19</span>
+                <span class="mini-day">20</span>
+                <span class="mini-day">21</span>
+                <span class="mini-day">22</span>
+                <span class="mini-day has-event">23</span>
+                <span class="mini-day">24</span>
+                <span class="mini-day">25</span>
+                <span class="mini-day">26</span>
+                <span class="mini-day">27</span>
+                <span class="mini-day">28</span>
+                <span class="mini-day">29</span>
+                <span class="mini-day">30</span>
+                <span class="mini-day other">1</span>
+                <span class="mini-day other">2</span>
+                <span class="mini-day other">3</span>
+                <span class="mini-day other">4</span>
+                <span class="mini-day other">5</span>
+              </div>
+            </section>
+
+            <section class="sidebar-section" aria-label="Calendar sources">
+              <div class="sidebar-section-title">
+                <span>My Calendars</span>
+                <span>4</span>
+              </div>
+              <ul class="calendar-source-list">
+                <li class="calendar-source active" style="--source-color: #0a84ff;">
+                  <span class="source-check"></span>
+                  <span>Workflow demos</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source dragging" style="--source-color: #ff9500;">
+                  <span class="source-check"></span>
+                  <span>Capture blocks</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #af52de;">
+                  <span class="source-check"></span>
+                  <span>Reviews</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #34c759;">
+                  <span class="source-check"></span>
+                  <span>Production</span>
+                  <span class="source-dot"></span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="quick-create" aria-label="Event edit card">
+              <div class="quick-create-header">Event Draft</div>
+              <div class="quick-create-line">
+                <span class="quick-dot" style="--quick-color: #0a84ff;"></span>
+                <span>Claude demo plan</span>
+              </div>
+              <div class="quick-create-line">
+                <span class="quick-dot" style="--quick-color: #ff9500;"></span>
+                <span>Drag to reschedule</span>
+              </div>
+            </section>
+
+            <footer class="sidebar-footer">All calendars synced</footer>
+          </aside>
+
+          <div class="calendar-content">
+            <header class="calendar-header">
+              <div class="month-title" aria-label="June 2026">
+                <span class="month">June</span>
+                <span class="year">2026</span>
+              </div>
+              <div class="control-buttons" aria-label="Calendar controls">
+                <span class="calendar-button" role="button" aria-label="Previous month">&lt;</span>
+                <span class="calendar-button today" role="button">Today</span>
+                <span class="calendar-button" role="button" aria-label="Next month">&gt;</span>
+              </div>
+            </header>
+
+            <section class="month-grid" aria-label="June 2026 month grid">
+              <div class="weekday">Mon</div>
+              <div class="weekday">Tue</div>
+              <div class="weekday">Wed</div>
+              <div class="weekday">Thu</div>
+              <div class="weekday">Fri</div>
+              <div class="weekday weekend">Sat</div>
+              <div class="weekday weekend">Sun</div>
+
+            <div class="day this-month"><span class="date-number">1</span></div>
+            <div class="day this-month"><span class="date-number">2</span></div>
+            <div class="day this-month"><span class="date-number">3</span></div>
+            <div class="day this-month"><span class="date-number">4</span></div>
+            <div class="day this-month"><span class="date-number">5</span></div>
+            <div class="day this-month weekend"><span class="date-number">6</span></div>
+            <div class="day this-month weekend"><span class="date-number">7</span></div>
+
+            <div class="day this-month"><span class="date-number">8</span></div>
+            <div class="day this-month"><span class="date-number">9</span></div>
+            <div class="day this-month"><span class="date-number">10</span></div>
+            <div class="day this-month"><span class="date-number">11</span></div>
+            <div class="day this-month"><span class="date-number">12</span></div>
+            <div class="day this-month weekend"><span class="date-number">13</span></div>
+            <div class="day this-month weekend"><span class="date-number">14</span></div>
+
+            <div class="day this-month"><span class="date-number">15</span></div>
+            <div class="day this-month"><span class="date-number">16</span></div>
+            <div class="day this-month today">
+              <span class="date-number">17</span>
+              <div class="event-stack">
+                <span class="event blue">9:00 Claude demo plan</span>
+                <span class="event orange">2:30 Capture review</span>
+              </div>
+            </div>
+            <div class="day this-month">
+              <span class="date-number">18</span>
+              <div class="event-stack">
+                <span class="event purple">Launch deck review</span>
+              </div>
+            </div>
+            <div class="day this-month"><span class="date-number">19</span></div>
+            <div class="day this-month weekend"><span class="date-number">20</span></div>
+            <div class="day this-month weekend"><span class="date-number">21</span></div>
+
+            <div class="day this-month"><span class="date-number">22</span></div>
+            <div class="day this-month">
+              <span class="date-number">23</span>
+              <div class="event-stack">
+                <span class="event green">Record workflow</span>
+              </div>
+            </div>
+            <div class="day this-month"><span class="date-number">24</span></div>
+            <div class="day this-month"><span class="date-number">25</span></div>
+            <div class="day this-month"><span class="date-number">26</span></div>
+            <div class="day this-month weekend"><span class="date-number">27</span></div>
+            <div class="day this-month weekend"><span class="date-number">28</span></div>
+
+            <div class="day this-month"><span class="date-number">29</span></div>
+            <div class="day this-month"><span class="date-number">30</span></div>
+            <div class="day out-month"><span class="date-number">1</span></div>
+            <div class="day out-month"><span class="date-number">2</span></div>
+            <div class="day out-month"><span class="date-number">3</span></div>
+            <div class="day out-month weekend"><span class="date-number">4</span></div>
+            <div class="day out-month weekend"><span class="date-number">5</span></div>
+
+            <div class="day out-month"><span class="date-number">6</span></div>
+            <div class="day out-month"><span class="date-number">7</span></div>
+            <div class="day out-month"><span class="date-number">8</span></div>
+            <div class="day out-month"><span class="date-number">9</span></div>
+            <div class="day out-month"><span class="date-number">10</span></div>
+            <div class="day out-month weekend"><span class="date-number">11</span></div>
+              <div class="day out-month weekend"><span class="date-number">12</span></div>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <aside class="dock" aria-label="macOS Dock">
+        <span class="dock-icon finder"></span>
+        <span class="dock-icon calendar active"></span>
+        <span class="dock-icon safari"></span>
+        <span class="dock-icon notes"></span>
+      </aside>
+
+      <div class="cursor" aria-hidden="true"></div>
+    </main>
+  </body>
+</html>

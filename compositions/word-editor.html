@@ -1,0 +1,879 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0) 19%),
+      linear-gradient(140deg, #f7f5ef 0%, #ede6db 54%, #dce9e1 100%);
+  }
+</style>
+
+<template id="word-editor-surface-template">
+  <div id="word-editor-surface" data-composition-id="word-editor-surface" data-width="1280" data-height="760">
+    <section class="word-window" data-primitive="word-editor-window" aria-label="Editable Word document editor surface">
+      <header class="word-titlebar">
+        <div class="word-traffic" aria-hidden="true"></div>
+        <div class="word-app-icon">W</div>
+        <div class="word-title">Launch Brief.docx</div>
+        <div class="save-state"><span class="sync-dot"></span>Saved to OneDrive</div>
+        <div class="autosave"><span></span>AutoSave</div>
+        <div class="title-search">Search</div>
+        <div class="title-actions"><span>Share</span><span>Comments</span></div>
+      </header>
+
+      <nav class="word-tabs" aria-label="Word ribbon tabs">
+        <span>Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Layout</span><span>References</span><span>Review</span><span>View</span><span class="contextual">Table Design</span>
+      </nav>
+
+      <div class="word-ribbon" aria-label="Word Home ribbon">
+        <div class="ribbon-group clipboard">
+          <div class="ribbon-large paste"><span class="cmd-icon paste"></span><em>Paste</em><i></i></div>
+          <div class="ribbon-stack"><span>Cut</span><span>Copy</span><span>Format Painter</span></div>
+          <strong>Clipboard</strong>
+        </div>
+        <div class="ribbon-group font">
+          <div class="ribbon-row"><span class="field font-name">Aptos</span><span class="field small">12</span></div>
+          <div class="button-row">
+            <span class="toggle active">B</span><span class="toggle">I</span><span class="toggle">U</span><span class="toggle strike">S</span><span class="toggle color"></span>
+          </div>
+          <strong>Font</strong>
+        </div>
+        <div class="ribbon-group paragraph">
+          <div class="button-row dense">
+            <span class="para bullets"></span><span class="para left active"></span><span class="para center"></span><span class="para right"></span><span class="para spacing"></span>
+          </div>
+          <div class="style-strip"><span>Normal</span><span>Heading 1</span><span>Quote</span></div>
+          <strong>Paragraph</strong>
+        </div>
+        <div class="ribbon-group styles">
+          <div class="style-card selected"><b>Aa</b><span>Normal</span></div>
+          <div class="style-card"><b>Aa</b><span>Heading</span></div>
+          <div class="style-card"><b>Aa</b><span>Title</span></div>
+          <strong>Styles</strong>
+        </div>
+        <div class="ribbon-group editing">
+          <div class="ribbon-stack"><span>Find</span><span>Replace</span><span>Select</span></div>
+          <strong>Editing</strong>
+        </div>
+      </div>
+
+      <div class="document-workspace">
+        <aside class="nav-pane">
+          <div class="pane-title">Navigation</div>
+          <div class="search-doc">Search document</div>
+          <div class="nav-heading active"><span></span>Launch brief</div>
+          <div class="nav-heading"><span></span>Positioning notes</div>
+          <div class="nav-heading"><span></span>Demo sequence</div>
+          <div class="nav-heading"><span></span>Next edits</div>
+        </aside>
+
+        <main class="document-stage">
+          <div class="ruler horizontal"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="page">
+            <div class="comment-anchor"></div>
+            <h1><span class="before-title">Q2 launch notes</span><span class="after-title">Q2 launch brief</span></h1>
+            <p class="lede">Claude revised the opening narrative into a sharper executive brief while preserving source-backed details from the Launch Deck folder.</p>
+            <p>The update connects revenue, adoption, and customer feedback into one page the team can reuse across the deck, video script, and launch memo.</p>
+            <div class="tracked-change">
+              <span class="change-bar"></span>
+              <strong>Updated positioning</strong>
+              <p>Lead with the workflow outcome first, then support it with the three strongest proof points.</p>
+            </div>
+            <table class="doc-table" aria-label="Launch proof points">
+              <tr><th>Signal</th><th>Source</th><th>Status</th></tr>
+              <tr><td>Revenue story</td><td>Q2 revenue.csv</td><td>Ready</td></tr>
+              <tr><td>Customer quote</td><td>feedback.txt</td><td>Edited</td></tr>
+            </table>
+          </div>
+        </main>
+
+        <aside class="review-pane">
+          <div class="review-title">Comments</div>
+          <div class="comment-card active">
+            <div class="comment-author">Claude</div>
+            <p>Rewrote the title and first paragraph for a clearer launch-video voice.</p>
+            <div class="comment-actions"><span>Resolve</span><span>Reply</span></div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-author">Review</div>
+            <p>Confirm the revenue table matches the final deck chart.</p>
+          </div>
+          <div class="changes-summary">
+            <strong>3 tracked changes</strong>
+            <span>2 text edits</span>
+            <span>1 table update</span>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="word-statusbar">
+        <span>Page 1 of 2</span><span>423 words</span><span>English (US)</span><span class="status-spacer"></span><span>Focus</span><span class="zoom-line"></span><span>118%</span>
+      </footer>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Anthropic Serif";
+        src: url("../assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #word-editor-surface {
+        --word-blue: #185abd;
+        --word-blue-2: #2b7cd3;
+        --panel: #f6f7f8;
+        --chrome: #f9f9f9;
+        --line: #d9dde4;
+        --ink: #16120f;
+        --muted: #65707c;
+        --paper: #ffffff;
+        --green: #43b875;
+        --clay: #c65b47;
+        width: 1280px;
+        height: 760px;
+        overflow: hidden;
+        color: var(--ink);
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+      }
+
+      #word-editor-surface * {
+        box-sizing: border-box;
+      }
+
+      .word-window {
+        width: 1280px;
+        height: 760px;
+        overflow: hidden;
+        border-radius: 15px;
+        background: #eef1f5;
+        border: 1px solid rgba(20, 30, 48, 0.12);
+        box-shadow: 0 32px 96px rgba(28, 34, 46, 0.22);
+      }
+
+      .word-titlebar {
+        height: 38px;
+        display: grid;
+        grid-template-columns: 58px 24px auto auto auto 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 13px;
+        background: var(--chrome);
+        border-bottom: 1px solid #d6dae0;
+        color: #2d3540;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .word-traffic {
+        position: relative;
+        width: 50px;
+        height: 14px;
+      }
+
+      .word-traffic::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff5f57;
+        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+      }
+
+      .word-app-icon {
+        width: 22px;
+        height: 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #2b7cd3, #185abd);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 850;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      }
+
+      .word-title {
+        min-width: 132px;
+      }
+
+      .save-state,
+      .autosave,
+      .title-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #68727e;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .sync-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 2px solid var(--green);
+        border-top-color: transparent;
+      }
+
+      .autosave span {
+        width: 26px;
+        height: 14px;
+        border-radius: 999px;
+        background: #d7ecdf;
+        border: 1px solid #98cfad;
+        position: relative;
+      }
+
+      .autosave span::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .title-search {
+        justify-self: center;
+        width: 240px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: #eef0f3;
+        color: #7c8792;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .title-actions span {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 9px;
+        border-radius: 7px;
+        background: #eef0f3;
+        color: #384450;
+        font-size: 11px;
+      }
+
+      .word-tabs {
+        height: 30px;
+        display: flex;
+        align-items: end;
+        gap: 3px;
+        padding: 0 12px;
+        background: #f3f4f6;
+        border-bottom: 1px solid #d7dbe1;
+      }
+
+      .word-tabs span {
+        height: 25px;
+        display: flex;
+        align-items: center;
+        padding: 0 13px;
+        border-radius: 7px 7px 0 0;
+        color: #33404c;
+        font-size: 12px;
+        font-weight: 620;
+      }
+
+      .word-tabs span:first-child {
+        background: #fff;
+        border: 1px solid #d7dbe1;
+        border-bottom-color: #fff;
+        color: var(--word-blue);
+      }
+
+      .word-tabs .contextual {
+        color: #8f4f2d;
+        background: rgba(198, 91, 71, 0.08);
+      }
+
+      .word-ribbon {
+        height: 100px;
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        padding: 5px 8px 0;
+        background: #fff;
+        border-bottom: 1px solid #d4d9e0;
+      }
+
+      .ribbon-group {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        min-width: 90px;
+        padding: 3px 9px 25px;
+        border-left: 1px solid #e3e6eb;
+      }
+
+      .ribbon-group:first-child {
+        border-left: 0;
+      }
+
+      .ribbon-group strong {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        color: #747d87;
+        font-size: 10px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .ribbon-large {
+        width: 54px;
+        min-height: 63px;
+        display: grid;
+        grid-template-rows: 34px auto;
+        justify-items: center;
+        gap: 4px;
+        padding: 4px;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        position: relative;
+        color: #283441;
+        font-size: 11px;
+        font-style: normal;
+      }
+
+      .ribbon-large em {
+        font-style: normal;
+      }
+
+      .ribbon-large i {
+        position: absolute;
+        right: 6px;
+        bottom: 8px;
+        width: 5px;
+        height: 5px;
+        border-right: 1.4px solid #606a74;
+        border-bottom: 1.4px solid #606a74;
+        transform: rotate(45deg);
+      }
+
+      .cmd-icon {
+        width: 29px;
+        height: 30px;
+        border-radius: 7px;
+        background: #e7eefb;
+        border: 1px solid #c8d8f0;
+        position: relative;
+      }
+
+      .cmd-icon.paste::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 13px;
+        height: 16px;
+        border-radius: 3px;
+        background: var(--word-blue);
+      }
+
+      .cmd-icon.paste::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 5px;
+        width: 9px;
+        height: 5px;
+        border-radius: 3px;
+        background: #f1d37c;
+      }
+
+      .ribbon-stack {
+        display: grid;
+        gap: 4px;
+      }
+
+      .ribbon-stack span,
+      .field,
+      .toggle,
+      .style-strip span {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        border: 1px solid #d8dce2;
+        background: #fbfcfd;
+        color: #34414f;
+        font-size: 11px;
+        font-weight: 580;
+      }
+
+      .ribbon-stack span {
+        justify-content: flex-start;
+        min-width: 86px;
+        padding: 0 8px;
+      }
+
+      .ribbon-row {
+        display: flex;
+        gap: 4px;
+      }
+
+      .field {
+        padding: 0 8px;
+      }
+
+      .font-name {
+        width: 82px;
+        justify-content: flex-start;
+      }
+
+      .field.small {
+        width: 36px;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 3px;
+        margin-top: 5px;
+      }
+
+      .button-row.dense {
+        margin-top: 0;
+      }
+
+      .toggle {
+        width: 25px;
+        font-size: 12px;
+      }
+
+      .toggle.active {
+        border-color: #a6c5ec;
+        background: #e6f1ff;
+        color: var(--word-blue);
+      }
+
+      .toggle.color {
+        background:
+          linear-gradient(#fbfcfd, #fbfcfd) padding-box,
+          linear-gradient(90deg, #185abd 0 33%, #c65b47 33% 66%, #43b875 66%) border-box;
+        border-color: transparent;
+      }
+
+      .para {
+        width: 26px;
+        height: 22px;
+        border: 1px solid #d8dce2;
+        border-radius: 5px;
+        background: #fbfcfd;
+        position: relative;
+      }
+
+      .para::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 13px;
+        height: 2px;
+        border-radius: 2px;
+        background: #4f5b66;
+        box-shadow: 0 5px 0 #4f5b66, 0 10px 0 #4f5b66;
+      }
+
+      .para.center::before { left: 7px; width: 11px; }
+      .para.right::before { left: 8px; width: 11px; }
+      .para.bullets::before { left: 11px; width: 10px; box-shadow: 0 5px 0 #4f5b66, 0 10px 0 #4f5b66, -6px 0 0 -1px #4f5b66, -6px 5px 0 -1px #4f5b66, -6px 10px 0 -1px #4f5b66; }
+      .para.spacing::before { left: 9px; width: 10px; }
+
+      .para.active {
+        border-color: #a6c5ec;
+        background: #e6f1ff;
+      }
+
+      .style-strip {
+        display: flex;
+        gap: 4px;
+        margin-top: 5px;
+      }
+
+      .style-strip span {
+        min-width: 58px;
+        padding: 0 7px;
+      }
+
+      .style-card {
+        width: 74px;
+        height: 56px;
+        display: grid;
+        grid-template-rows: 25px 1fr;
+        align-items: center;
+        justify-items: center;
+        padding: 4px;
+        border: 1px solid #d8dce2;
+        border-radius: 7px;
+        background: #fbfcfd;
+        color: #34414f;
+        font-size: 10px;
+      }
+
+      .style-card b {
+        font-family: "Anthropic Serif", Georgia, serif;
+        font-size: 18px;
+      }
+
+      .style-card.selected {
+        border-color: #a6c5ec;
+        background: #e6f1ff;
+      }
+
+      .document-workspace {
+        height: calc(100% - 38px - 30px - 100px - 24px);
+        display: grid;
+        grid-template-columns: 216px 1fr 262px;
+        background: #e8ebef;
+      }
+
+      .nav-pane,
+      .review-pane {
+        padding: 18px 16px;
+        background: #f8f9fb;
+        border-right: 1px solid #d4d9e0;
+      }
+
+      .review-pane {
+        border-right: 0;
+        border-left: 1px solid #d4d9e0;
+      }
+
+      .pane-title,
+      .review-title {
+        margin-bottom: 13px;
+        color: #2d3540;
+        font-size: 15px;
+        font-weight: 760;
+      }
+
+      .search-doc {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        margin-bottom: 16px;
+        border-radius: 8px;
+        background: #eef1f4;
+        color: #76818d;
+        font-size: 11px;
+      }
+
+      .nav-heading {
+        min-height: 31px;
+        display: grid;
+        grid-template-columns: 13px 1fr;
+        align-items: center;
+        gap: 8px;
+        padding: 0 9px;
+        border-radius: 8px;
+        color: #4d5964;
+        font-size: 12px;
+      }
+
+      .nav-heading span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #aeb8c2;
+      }
+
+      .nav-heading.active {
+        background: #e7f0fb;
+        color: var(--word-blue);
+        font-weight: 690;
+      }
+
+      .nav-heading.active span {
+        background: var(--word-blue);
+      }
+
+      .document-stage {
+        position: relative;
+        overflow: hidden;
+        padding: 32px 46px;
+      }
+
+      .ruler.horizontal {
+        position: absolute;
+        left: 46px;
+        right: 46px;
+        top: 10px;
+        height: 18px;
+        border-radius: 5px;
+        background: #f7f8fa;
+        border: 1px solid #d4d9e0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .ruler span {
+        width: 1px;
+        height: 8px;
+        background: #a7b0ba;
+      }
+
+      .page {
+        position: relative;
+        width: 620px;
+        min-height: 440px;
+        margin: 0 auto;
+        padding: 58px 70px 48px;
+        background: var(--paper);
+        box-shadow: 0 18px 42px rgba(44, 51, 61, 0.18);
+        border: 1px solid rgba(29, 39, 55, 0.08);
+      }
+
+      .page h1 {
+        position: relative;
+        height: 42px;
+        margin: 0 0 18px;
+        font-family: "Anthropic Serif", Georgia, serif;
+        font-size: 34px;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .before-title,
+      .after-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .after-title {
+        color: var(--word-blue);
+        opacity: 0;
+      }
+
+      .page p {
+        margin: 0 0 14px;
+        color: #2f3640;
+        font-size: 14px;
+        line-height: 1.58;
+      }
+
+      .lede {
+        font-size: 15px;
+        color: #252b32;
+      }
+
+      .tracked-change {
+        position: relative;
+        margin: 20px 0;
+        padding: 13px 16px 12px;
+        border-radius: 9px;
+        background: #f7fbff;
+        border: 1px solid #d6e6fa;
+      }
+
+      .change-bar {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 3px;
+        border-radius: 3px;
+        background: var(--word-blue);
+      }
+
+      .tracked-change strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--word-blue);
+        font-size: 13px;
+      }
+
+      .tracked-change p {
+        margin: 0;
+      }
+
+      .doc-table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #2f3640;
+        font-size: 12px;
+      }
+
+      .doc-table th,
+      .doc-table td {
+        height: 30px;
+        padding: 0 9px;
+        border: 1px solid #d7dce2;
+        text-align: left;
+      }
+
+      .doc-table th {
+        background: #edf4fd;
+        color: var(--word-blue);
+        font-weight: 720;
+      }
+
+      .comment-anchor {
+        position: absolute;
+        right: -16px;
+        top: 136px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--clay);
+        box-shadow: 0 0 0 4px rgba(198, 91, 71, 0.18);
+      }
+
+      .comment-card {
+        padding: 13px 13px 12px;
+        margin-bottom: 12px;
+        border-radius: 11px;
+        background: #fff;
+        border: 1px solid #d9dde4;
+        box-shadow: 0 8px 22px rgba(44, 51, 61, 0.06);
+      }
+
+      .comment-card.active {
+        border-color: #aac8ef;
+      }
+
+      .comment-author {
+        margin-bottom: 6px;
+        color: var(--word-blue);
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .comment-card p {
+        margin: 0;
+        color: #4c5661;
+        font-size: 12px;
+        line-height: 1.42;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 7px;
+        margin-top: 10px;
+      }
+
+      .comment-actions span {
+        height: 23px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 7px;
+        background: #eef4fc;
+        color: var(--word-blue);
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .changes-summary {
+        display: grid;
+        gap: 7px;
+        margin-top: 21px;
+        padding: 13px;
+        border-radius: 11px;
+        background: #edf4fd;
+        color: #4c5661;
+        font-size: 12px;
+      }
+
+      .changes-summary strong {
+        color: var(--word-blue);
+      }
+
+      .word-statusbar {
+        height: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 0 13px;
+        background: #f8f9fb;
+        border-top: 1px solid #d4d9e0;
+        color: #5e6974;
+        font-size: 11px;
+      }
+
+      .status-spacer {
+        flex: 1;
+      }
+
+      .zoom-line {
+        width: 88px;
+        height: 4px;
+        border-radius: 999px;
+        background:
+          linear-gradient(90deg, var(--word-blue) 0 66%, #c9d0d8 66% 100%);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const wordDuration = 12;
+      const syncRepeat = Math.max(0, Math.floor((wordDuration - 1.6) / 0.9) - 1);
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(".word-window", { opacity: 0, y: 20, scale: 0.987, duration: 0.42, ease: "power2.out" }, 0.12);
+      tl.from(".word-ribbon", { opacity: 0, y: -8, duration: 0.32, ease: "power2.out" }, 0.44);
+      tl.from(".nav-pane", { opacity: 0, x: -14, duration: 0.34, ease: "power3.out" }, 0.7);
+      tl.from(".review-pane", { opacity: 0, x: 14, duration: 0.34, ease: "power3.out" }, 0.78);
+      tl.from(".page", { opacity: 0, y: 16, duration: 0.36, ease: "power2.out" }, 0.98);
+      tl.to(".before-title", { opacity: 0, y: -5, duration: 0.32, ease: "power2.inOut" }, 1.75);
+      tl.to(".after-title", { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" }, 1.9);
+      tl.from(".tracked-change", { opacity: 0, x: -8, duration: 0.3, ease: "power2.out" }, 2.18);
+      tl.from(".comment-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 2.36);
+      tl.from(".doc-table", { opacity: 0, y: 8, duration: 0.3, ease: "power2.out" }, 2.62);
+      tl.to(".sync-dot", { rotation: 360, duration: 0.9, repeat: syncRepeat, ease: "none" }, 1.6);
+
+      window.__timelines["word-editor-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = decodeURIComponent(window.location.pathname).endsWith("/word-editor.html");
+    if (!isDirectPreview) return;
+
+    const mount = () => {
+      if (document.getElementById("word-editor-surface")) return;
+      const template = document.getElementById("word-editor-surface-template");
+      if (!template || !document.body) return;
+
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

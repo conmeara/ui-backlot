@@ -1,0 +1,174 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: start center;
+    overflow: hidden;
+    background: #f7f5ef;
+  }
+</style>
+
+<template id="mac-menu-bar-template">
+  <div id="mac-menu-bar-surface" data-composition-id="mac-menu-bar-surface" data-width="1920" data-height="30">
+    <header class="mac-menu-bar-stage" data-primitive="mac-menu-bar" aria-label="Editable macOS menu bar">
+      <div class="menu-left">
+        <span class="apple-glyph" aria-hidden="true"></span>
+        <span>Claude</span>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Window</span>
+      </div>
+      <div class="menu-right">
+        <span class="wifi-glyph" aria-hidden="true"></span>
+        <span class="battery-glyph" aria-hidden="true"></span>
+        <span>Thu Jun 18&nbsp;&nbsp;11:18 AM</span>
+      </div>
+    </header>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #mac-menu-bar-surface {
+        width: 1920px;
+        height: 30px;
+        color: rgba(0, 0, 0, 0.82);
+        font-family: "Anthropic Sans", sans-serif;
+      }
+
+      #mac-menu-bar-surface * {
+        box-sizing: border-box;
+      }
+
+      .mac-menu-bar-stage {
+        width: 1920px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        background: rgba(249, 249, 246, 0.66);
+        backdrop-filter: blur(20px) saturate(1.24);
+        color: rgba(0, 0, 0, 0.82);
+        font-size: 14px;
+        font-weight: 560;
+        line-height: 1;
+      }
+
+      .menu-left,
+      .menu-right {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        white-space: nowrap;
+      }
+
+      .apple-glyph {
+        width: 16px;
+        height: 17px;
+        display: inline-block;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .wifi-glyph,
+      .battery-glyph {
+        position: relative;
+        display: inline-block;
+        color: currentColor;
+      }
+
+      .wifi-glyph {
+        width: 17px;
+        height: 13px;
+        border: 2px solid currentColor;
+        border-color: currentColor transparent transparent transparent;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .wifi-glyph::before,
+      .wifi-glyph::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 2px solid currentColor;
+        border-color: currentColor transparent transparent transparent;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .wifi-glyph::before {
+        top: 4px;
+        width: 10px;
+        height: 8px;
+      }
+
+      .wifi-glyph::after {
+        top: 9px;
+        width: 3px;
+        height: 3px;
+        border: 0;
+        background: currentColor;
+        border-radius: 50%;
+      }
+
+      .battery-glyph {
+        width: 25px;
+        height: 12px;
+        border: 1.7px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .battery-glyph::before {
+        content: "";
+        position: absolute;
+        right: -4px;
+        top: 3px;
+        width: 2px;
+        height: 5px;
+        border-radius: 0 2px 2px 0;
+        background: currentColor;
+      }
+
+      .battery-glyph::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 17px;
+        height: 6px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/mac-menu-bar\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("mac-menu-bar-template");
+    const mount = () => {
+      if (!template || document.querySelector("#mac-menu-bar-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

@@ -7,7 +7,10 @@
         <span class="presentation-name">Launch Deck.pptx</span>
         <span class="sync-status"><span class="sync-spinner"></span>Saved</span>
         <span class="autosave-toggle"><span></span>AutoSave</span>
-        <div class="titlebar-search">Search</div>
+        <div class="titlebar-search">Search in Presentation</div>
+        <div class="collab-strip" aria-label="Collaborators">
+          <span>C</span><span>A</span><i></i>
+        </div>
         <div class="titlebar-actions"><span>Share</span><span>Comments</span></div>
       </div>
       <div class="ribbon-tabs">
@@ -64,6 +67,7 @@
       </div>
       <div class="keynote-body">
         <div class="slide-rail">
+          <div class="rail-header"><span>Slides</span><b>4</b></div>
           <div class="thumb-label">1</div><div class="slide-thumb active"><span></span><b></b></div>
           <div class="thumb-label">2</div><div class="slide-thumb muted"><span></span><b></b></div>
           <div class="thumb-label">3</div><div class="slide-thumb muted chart"><span></span><b></b></div>
@@ -71,31 +75,51 @@
         </div>
         <div class="slide-stage">
           <div class="slide-canvas">
+            <div class="slide-ruler horizontal" data-layout-ignore></div>
+            <div class="slide-ruler vertical" data-layout-ignore></div>
             <div class="slide-section-band"></div>
-            <div class="selection-box" data-layout-ignore></div>
+            <div class="alignment-guide vertical" data-layout-ignore></div>
+            <div class="alignment-guide horizontal" data-layout-ignore></div>
+            <div class="selection-box" data-layout-ignore>
+              <span class="handle nw"></span><span class="handle n"></span><span class="handle ne"></span>
+              <span class="handle e"></span><span class="handle se"></span><span class="handle s"></span>
+              <span class="handle sw"></span><span class="handle w"></span>
+            </div>
             <div class="slide-comment-pin" data-layout-ignore></div>
             <div class="slide-title"><span class="before-title">Q2 launch notes</span><span class="after-title">Q2 launch story</span></div>
-            <div class="slide-subtitle">Revenue, adoption, and customer feedback cleaned into one executive narrative.</div>
+            <div class="slide-subtitle">Revenue, adoption, and feedback in one executive story.</div>
             <div class="slide-chart" aria-label="Revenue impact chart">
               <div class="bar bar-a"></div>
               <div class="bar bar-b"></div>
               <div class="bar bar-c"></div>
               <div class="bar bar-d"></div>
             </div>
+            <div class="chart-labels"><span>$310K</span><span>$420K</span><span>$285K</span><span>$510K</span></div>
             <div class="slide-axis"></div>
           </div>
-          <div class="speaker-notes">Click to add speaker notes: open with customer proof, then land the revenue chart in one sentence.</div>
-          <div class="slide-status"><span>Slide 1 of 4</span><span>Notes</span><span>Comments</span><span class="zoom-track"></span></div>
+          <div class="speaker-notes"><strong>Notes</strong><span>Open with customer proof, then land the revenue chart in one sentence.</span></div>
+          <div class="slide-status">
+            <span>Slide 1 of 4</span>
+            <span>English (US)</span>
+            <span class="status-chip">2 comments</span>
+            <span class="view-buttons"><i></i><i></i><i></i></span>
+            <span class="zoom-percent">118%</span>
+            <span class="zoom-track"></span>
+          </div>
         </div>
         <aside class="inspector">
           <strong>Format Shape</strong>
+          <div class="inspector-breadcrumb">Shape Options / Text Box</div>
           <div class="inspector-tabs"><span class="active">Fill</span><span>Effects</span><span>Size</span></div>
           <label>Shape Fill</label><div class="inspector-line color coral"></div>
           <label>Outline</label><div class="inspector-line" style="width: 72%;"></div>
           <label>Text Options</label><div class="inspector-line" style="width: 84%;"></div>
           <label>Arrange</label><div class="inspector-line" style="width: 58%;"></div>
           <div class="quick-actions"><span>Alt Text</span><span>Comments</span></div>
-          <div class="comments-card"><span class="comment-dot"></span><p>Claude updated the title, chart colors, and slide note.</p></div>
+          <div class="comments-card">
+            <span class="comment-dot">C</span>
+            <p><b>@Claude</b> updated the title, chart colors, and slide note.</p>
+          </div>
         </aside>
       </div>
     </div>
@@ -120,6 +144,7 @@
         --claude: #c65b47;
         --coral: #cd6e57;
         --sage: #bdd4c7;
+        --keynote-icon-src: url("../reference/open-source/macos-web/public/app-icons/keynote/256.png");
         width: 836px;
         height: 438px;
         overflow: hidden;
@@ -153,14 +178,53 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 8px 18px rgba(0, 0, 0, 0.16);
       }
 
-      .dock-icon.keynote { background: linear-gradient(135deg, #f47733, #b9301d); }
+      .dock-icon.keynote {
+        background-image:
+          var(--keynote-icon-src),
+          linear-gradient(135deg, #f47733, #b9301d);
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.keynote {
+        color: transparent;
+      }
+
+      .power-app-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 0;
+        background-image:
+          linear-gradient(90deg, rgba(128, 43, 28, 0.5) 0 30%, transparent 30%),
+          linear-gradient(135deg, #df7c48, #b9472e);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .power-app-icon::before {
+        content: "P";
+        width: 14px;
+        height: 14px;
+        display: grid;
+        place-items: center;
+        border-radius: 3px;
+        background: rgba(154, 55, 36, 0.92);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 880;
+        box-shadow: 6px 0 0 rgba(255, 248, 239, 0.18);
+      }
 
       .keynote-titlebar {
         height: 36px;
         display: grid;
-        grid-template-columns: 58px 24px auto auto auto 1fr auto;
+        grid-template-columns: 58px 24px auto auto auto 1fr auto auto;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
         padding: 0 12px;
         color: #3d4248;
         font-size: 12px;
@@ -185,13 +249,6 @@
         border-radius: 50%;
         background: #ff5f57;
         box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
-      }
-
-      .power-app-icon {
-        width: 22px;
-        height: 22px;
-        border-radius: 6px;
-        font-size: 10px;
       }
 
       .presentation-name {
@@ -249,7 +306,7 @@
 
       .titlebar-search {
         justify-self: center;
-        width: 150px;
+        width: 154px;
         height: 21px;
         display: flex;
         align-items: center;
@@ -260,6 +317,41 @@
         border: 1px solid #dde1e6;
         font-size: 10px;
         font-weight: 520;
+      }
+
+      .collab-strip {
+        display: flex;
+        align-items: center;
+        padding-left: 2px;
+      }
+
+      .collab-strip span {
+        width: 19px;
+        height: 19px;
+        display: grid;
+        place-items: center;
+        margin-left: -5px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        background: #3a7f9f;
+        color: #fff;
+        font-size: 8px;
+        font-weight: 820;
+      }
+
+      .collab-strip span:first-child {
+        margin-left: 0;
+        background: #c65b47;
+      }
+
+      .collab-strip i {
+        width: 7px;
+        height: 7px;
+        margin-left: -3px;
+        align-self: end;
+        border-radius: 50%;
+        background: #2fc65f;
+        border: 1px solid #fff;
       }
 
       .titlebar-actions {
@@ -614,6 +706,28 @@
         background: #f7f8fa;
       }
 
+      .rail-header {
+        grid-column: 1 / -1;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #636b74;
+        font-size: 9px;
+        font-weight: 760;
+      }
+
+      .rail-header b {
+        min-width: 17px;
+        height: 15px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #e8ecf1;
+        color: #7c858f;
+        font-size: 8px;
+      }
+
       .thumb-label {
         color: #8b929a;
         font-size: 9px;
@@ -696,6 +810,38 @@
         overflow: hidden;
       }
 
+      .slide-ruler {
+        position: absolute;
+        z-index: 5;
+        background:
+          repeating-linear-gradient(90deg, rgba(51, 59, 68, 0.22) 0 1px, transparent 1px 24px),
+          rgba(255, 255, 255, 0.56);
+        border: 1px solid rgba(86, 96, 108, 0.12);
+      }
+
+      .slide-ruler.horizontal {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 13px;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+      }
+
+      .slide-ruler.vertical {
+        left: 0;
+        top: 0;
+        width: 13px;
+        height: 100%;
+        border-top: 0;
+        border-left: 0;
+        border-bottom: 0;
+        background:
+          repeating-linear-gradient(180deg, rgba(51, 59, 68, 0.22) 0 1px, transparent 1px 24px),
+          rgba(255, 255, 255, 0.56);
+      }
+
       .slide-section-band {
         position: absolute;
         left: 0;
@@ -705,20 +851,40 @@
         background: var(--coral);
       }
 
+      .alignment-guide {
+        position: absolute;
+        z-index: 8;
+        background: rgba(29, 134, 232, 0.46);
+        opacity: 0.55;
+      }
+
+      .alignment-guide.vertical {
+        left: 283px;
+        top: 13px;
+        width: 1px;
+        height: 228px;
+      }
+
+      .alignment-guide.horizontal {
+        left: 13px;
+        top: 116px;
+        width: 418px;
+        height: 1px;
+      }
+
       .selection-box {
         position: absolute;
         left: 158px;
         top: 42px;
         width: 248px;
         height: 148px;
+        z-index: 12;
         border: 1.5px solid #1d86e8;
         border-radius: 2px;
-        opacity: 0.78;
+        opacity: 0;
       }
 
-      .selection-box::before,
-      .selection-box::after {
-        content: "";
+      .selection-box .handle {
         position: absolute;
         width: 7px;
         height: 7px;
@@ -727,17 +893,14 @@
         border: 1.5px solid #1d86e8;
       }
 
-      .selection-box::before {
-        left: -5px;
-        top: -5px;
-        box-shadow: 248px 0 0 0 #fff, 248px 0 0 1.5px #1d86e8;
-      }
-
-      .selection-box::after {
-        left: -5px;
-        bottom: -5px;
-        box-shadow: 248px 0 0 0 #fff, 248px 0 0 1.5px #1d86e8;
-      }
+      .selection-box .nw { left: -5px; top: -5px; }
+      .selection-box .n { left: calc(50% - 4px); top: -5px; }
+      .selection-box .ne { right: -5px; top: -5px; }
+      .selection-box .e { right: -5px; top: calc(50% - 4px); }
+      .selection-box .se { right: -5px; bottom: -5px; }
+      .selection-box .s { left: calc(50% - 4px); bottom: -5px; }
+      .selection-box .sw { left: -5px; bottom: -5px; }
+      .selection-box .w { left: -5px; top: calc(50% - 4px); }
 
       .slide-comment-pin {
         position: absolute;
@@ -793,6 +956,10 @@
         width: 230px;
       }
 
+      .after-title {
+        opacity: 0;
+      }
+
       .slide-subtitle {
         position: absolute;
         left: 168px;
@@ -812,6 +979,23 @@
         display: flex;
         align-items: end;
         gap: 10px;
+      }
+
+      .chart-labels {
+        position: absolute;
+        left: 163px;
+        bottom: 80px;
+        width: 216px;
+        display: flex;
+        gap: 5px;
+        color: #8a7b70;
+        font-size: 7px;
+        font-weight: 760;
+      }
+
+      .chart-labels span {
+        width: 45px;
+        text-align: center;
       }
 
       .slide-axis {
@@ -839,6 +1023,19 @@
         font-size: 10px;
       }
 
+      .speaker-notes strong {
+        margin-right: 8px;
+        color: #59616b;
+        font-size: 9px;
+        text-transform: uppercase;
+      }
+
+      .speaker-notes span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
       .bar {
         width: 30px;
         border-radius: 6px 6px 0 0;
@@ -860,9 +1057,16 @@
 
       .inspector strong {
         display: block;
-        margin-bottom: 9px;
+        margin-bottom: 4px;
         color: #393f46;
         font-size: 12px;
+      }
+
+      .inspector-breadcrumb {
+        margin-bottom: 8px;
+        color: #8a929c;
+        font-size: 8px;
+        font-weight: 650;
       }
 
       .inspector-tabs {
@@ -927,12 +1131,12 @@
       }
 
       .comments-card {
-        margin-top: 14px;
-        min-height: 48px;
+        margin-top: 11px;
+        min-height: 45px;
         display: grid;
         grid-template-columns: 18px 1fr;
         gap: 8px;
-        padding: 9px;
+        padding: 8px 9px;
         border-radius: 8px;
         background: #fff;
         border: 1px solid #e2e5e9;
@@ -945,11 +1149,20 @@
         margin: 0;
       }
 
+      .comments-card b {
+        color: #343b43;
+      }
+
       .comment-dot {
         width: 18px;
         height: 18px;
+        display: grid;
+        place-items: center;
         border-radius: 50%;
         background: var(--claude);
+        color: #fff;
+        font-size: 8px;
+        font-weight: 820;
       }
 
       .slide-status {
@@ -959,14 +1172,41 @@
         bottom: 0;
         height: 22px;
         display: grid;
-        grid-template-columns: 1fr auto auto 92px;
+        grid-template-columns: 1fr auto auto auto auto 92px;
         align-items: center;
-        gap: 12px;
+        gap: 9px;
         padding: 0 12px;
         color: #6f7780;
         background: #f6f7f8;
         border-top: 1px solid #d8dde3;
         font-size: 9px;
+      }
+
+      .status-chip {
+        color: #9a4c3c;
+        font-weight: 740;
+      }
+
+      .view-buttons {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .view-buttons i {
+        width: 14px;
+        height: 12px;
+        border-radius: 2px;
+        background:
+          linear-gradient(90deg, #6f7780 0 3px, transparent 3px),
+          linear-gradient(#6f7780 0 2px, transparent 2px 5px, #6f7780 5px 7px, transparent 7px 10px, #6f7780 10px 12px);
+        opacity: 0.7;
+      }
+
+      .zoom-percent {
+        min-width: 26px;
+        text-align: right;
+        font-weight: 720;
       }
 
       .zoom-track {
@@ -994,3 +1234,22 @@
     </script>
   </div>
 </template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/presentation-editor\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("presentation-editor-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#presentation-editor-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

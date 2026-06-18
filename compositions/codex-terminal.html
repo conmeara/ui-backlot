@@ -1,0 +1,693 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 18%),
+      linear-gradient(140deg, #f7f5ef 0%, #ece6dc 52%, #dbe8e1 100%);
+  }
+</style>
+
+<template id="codex-terminal-surface-template">
+  <div id="codex-terminal-surface" data-composition-id="codex-terminal-surface" data-width="1120" data-height="840">
+    <section class="terminal-window" data-primitive="codex-terminal-window" aria-label="Editable Codex terminal surface">
+      <header class="terminal-titlebar">
+        <div class="terminal-traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="terminal-title">
+          <span class="terminal-app-icon" aria-hidden="true"></span>
+          <span>ui-backlot — codex --no-alt-screen — 126x38</span>
+        </div>
+        <div class="terminal-tab-strip">
+          <span class="terminal-tab active">agent</span>
+          <span class="terminal-tab">checks</span>
+        </div>
+      </header>
+
+      <div class="terminal-body">
+        <main class="terminal-pane">
+          <div class="prompt-line">
+            <span class="prompt-path">conmeara@mac</span>
+            <span class="prompt-cwd">ui-backlot</span>
+            <span class="prompt-percent">%</span>
+            <span class="prompt-command">codex --no-alt-screen --cd . --model gpt-5 --sandbox danger-full-access --ask-for-approval never</span>
+          </div>
+
+          <div class="codex-card hero">
+            <div class="codex-header">
+              <span class="codex-mark">⌁</span>
+              <span>Codex CLI</span>
+              <span class="codex-pill">codex-cli 0.139.0</span>
+            </div>
+            <div class="codex-goal">Goal: refine editable app surfaces for HyperFrames demo videos, with terminal work shown as a real Codex CLI session.</div>
+            <div class="session-meta">
+              <span>--cd /Users/conmeara/Projects/ui-backlot</span>
+              <span>--sandbox danger-full-access</span>
+              <span>--ask-for-approval never</span>
+              <span>--search off</span>
+            </div>
+          </div>
+
+          <div class="terminal-section">
+            <div class="section-label">Plan</div>
+            <div class="step done"><span class="step-icon"></span><span>Audit current Codex terminal component and capture</span></div>
+            <div class="step done"><span class="step-icon"></span><span>Collect safe local CLI and app metadata as reference evidence</span></div>
+            <div class="step active"><span class="step-icon"></span><span>Refine transcript, patch preview, and verification panes</span></div>
+            <div class="step pending"><span class="step-icon"></span><span>Run capture, registry, lint, inspect, snapshot, and render gates</span></div>
+          </div>
+
+          <div class="terminal-section transcript-section">
+            <div class="section-label">Transcript</div>
+            <div class="terminal-transcript">
+              <div class="log-line user"><span>›</span><span>make the terminal demo feel like a live Codex CLI workflow</span></div>
+              <div class="log-line assistant"><span>•</span><span>read DESIGN.md and the surface registry</span></div>
+              <div class="log-line assistant"><span>•</span><span>checked local `codex --version` and `codex --help`</span></div>
+              <div class="log-line active"><span>•</span><span>editing the reusable terminal composition</span></div>
+            </div>
+          </div>
+
+          <div class="terminal-section">
+            <div class="section-label">Tool Calls</div>
+            <div class="tool-line ok"><span class="tool-badge">shell</span><span>codex --version</span><span class="tool-time">0.139.0</span></div>
+            <div class="tool-line ok"><span class="tool-badge">shell</span><span>codex --help</span><span class="tool-time">live</span></div>
+            <div class="tool-line ok"><span class="tool-badge">read</span><span>Terminal.app and Codex.app metadata</span><span class="tool-time">safe</span></div>
+            <div class="tool-line ok"><span class="tool-badge">edit</span><span>compositions/codex-terminal.html</span><span class="tool-time">now</span></div>
+          </div>
+
+          <div class="terminal-output">
+            <div><span class="muted">$</span> codex --version</div>
+            <div class="output-line">codex-cli 0.139.0</div>
+            <div><span class="muted">$</span> codex --help | sed -n '1,18p'</div>
+            <div class="output-line">Commands: exec, review, login, logout, mcp, plugin, mcp-server, app-server, remote-control, app, completion, update, doctor, sandbox, debug, apply, resume, archive, fork, cloud</div>
+            <div class="output-line pending-output">Options: --cd, --sandbox, --ask-for-approval, --model, --image, --search, --no-alt-screen<span class="codex-cursor"></span></div>
+          </div>
+        </main>
+
+        <aside class="activity-pane">
+          <div class="activity-title">Patch Preview</div>
+          <div class="diff-file">compositions/codex-terminal.html</div>
+          <div class="diff-line add">+ CLI version badge</div>
+          <div class="diff-line add">+ transcript block</div>
+          <div class="diff-line add">+ help-command snippet</div>
+          <div class="diff-line add">+ verification queue</div>
+
+          <div class="activity-title lower">Reference</div>
+          <div class="reference-row"><span>Codex CLI</span><strong>0.139.0</strong></div>
+          <div class="reference-row"><span>Codex.app</span><strong>26.611.62324</strong></div>
+          <div class="reference-row"><span>Terminal.app</span><strong>2.15</strong></div>
+
+          <div class="activity-title lower">Verification</div>
+          <div class="verify-row done"><span></span>safe reference read</div>
+          <div class="verify-row done"><span></span>capture script</div>
+          <div class="verify-row active"><span></span>HyperFrames inspect</div>
+          <div class="verify-row"><span></span>draft render</div>
+          <div class="progress-track"><span class="progress-fill"></span></div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #codex-terminal-surface {
+        --paper: #f7f5ef;
+        --ink: #16120f;
+        --muted: #7a736a;
+        --line: rgba(255, 255, 255, 0.16);
+        --terminal-bg: #111317;
+        --terminal-bg-2: #171a20;
+        --terminal-panel: #20242c;
+        --terminal-text: #f1eee8;
+        --terminal-dim: #a9aaa9;
+        --green: #43b875;
+        --clay: #c65b47;
+        --amber: #dfb64f;
+        --blue: #78a7ff;
+        --shadow-window: 0 30px 92px rgba(20, 17, 14, 0.28);
+        width: 1120px;
+        height: 840px;
+        overflow: visible;
+        color: var(--terminal-text);
+        font-family: "JetBrains Mono", monospace;
+        font-variant-ligatures: none;
+      }
+
+      #codex-terminal-surface * {
+        box-sizing: border-box;
+      }
+
+      .terminal-window {
+        width: 1120px;
+        height: 840px;
+        overflow: hidden;
+        border-radius: 15px;
+        background: var(--terminal-bg);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        box-shadow: var(--shadow-window);
+      }
+
+      .terminal-titlebar {
+        height: 44px;
+        display: grid;
+        grid-template-columns: 84px 1fr auto;
+        align-items: center;
+        gap: 12px;
+        padding: 0 15px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035)),
+          #282b31;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .terminal-traffic {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .terminal-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+      }
+
+      .terminal-traffic .red { background: #ff5f57; }
+      .terminal-traffic .yellow { background: #febc2e; }
+      .terminal-traffic .green { background: #28c840; }
+
+      .terminal-title {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 13px;
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-weight: 630;
+      }
+
+      .terminal-app-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0)),
+          #101114;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+      }
+
+      .terminal-app-icon::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 4px;
+        width: 5px;
+        height: 5px;
+        border-right: 1.4px solid #f5f1e8;
+        border-bottom: 1.4px solid #f5f1e8;
+        transform: rotate(-45deg);
+      }
+
+      .terminal-tab-strip {
+        display: flex;
+        gap: 6px;
+      }
+
+      .terminal-tab {
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 7px;
+        color: rgba(255, 255, 255, 0.58);
+        background: rgba(255, 255, 255, 0.06);
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .terminal-tab.active {
+        color: rgba(255, 255, 255, 0.86);
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      .terminal-body {
+        height: calc(100% - 44px);
+        display: grid;
+        grid-template-columns: 1fr 306px;
+        background:
+          radial-gradient(circle at 10% 0%, rgba(198, 91, 71, 0.12), rgba(198, 91, 71, 0) 32%),
+          linear-gradient(120deg, #111317, #151820 60%, #101217);
+      }
+
+      .terminal-pane {
+        min-width: 0;
+        padding: 22px 30px 22px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .prompt-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        color: var(--terminal-text);
+        font-size: 16px;
+        line-height: 1.35;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .prompt-path {
+        color: #8ed7a1;
+        flex: 0 0 auto;
+      }
+
+      .prompt-cwd {
+        color: #b9e8c6;
+        flex: 0 0 auto;
+      }
+
+      .prompt-percent {
+        color: rgba(255, 255, 255, 0.48);
+        flex: 0 0 auto;
+      }
+
+      .prompt-command {
+        color: #f7f1e7;
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .codex-card {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+          rgba(255, 255, 255, 0.035);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+      }
+
+      .codex-card.hero {
+        padding: 13px 15px 12px;
+        margin-bottom: 13px;
+      }
+
+      .codex-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 9px;
+        color: #fff8ee;
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 740;
+      }
+
+      .codex-mark {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 7px;
+        background:
+          radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 28%),
+          #f1eee8;
+        color: #141414;
+        font-size: 17px;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .codex-pill {
+        height: 23px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 9px;
+        border-radius: 999px;
+        color: #ffd5ca;
+        background: rgba(198, 91, 71, 0.16);
+        border: 1px solid rgba(198, 91, 71, 0.28);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .codex-goal {
+        max-width: 680px;
+        color: rgba(255, 248, 238, 0.86);
+        font-size: 14px;
+        line-height: 1.38;
+      }
+
+      .session-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 9px;
+      }
+
+      .session-meta span {
+        min-height: 22px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.055);
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 11px;
+      }
+
+      .terminal-section {
+        margin-top: 12px;
+      }
+
+      .section-label {
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.44);
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 780;
+        text-transform: uppercase;
+      }
+
+      .step {
+        min-height: 27px;
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 13px;
+      }
+
+      .step-icon {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.24);
+        position: relative;
+      }
+
+      .step.done .step-icon {
+        border-color: var(--green);
+        background: rgba(67, 184, 117, 0.16);
+      }
+
+      .step.done .step-icon::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 3px;
+        width: 6px;
+        height: 4px;
+        border-left: 2px solid var(--green);
+        border-bottom: 2px solid var(--green);
+        transform: rotate(-45deg);
+      }
+
+      .step.active {
+        color: #fff8ee;
+      }
+
+      .step.active .step-icon {
+        border-color: var(--clay);
+        border-top-color: transparent;
+      }
+
+      .step.pending {
+        color: rgba(255, 255, 255, 0.44);
+      }
+
+      .tool-line {
+        min-height: 28px;
+        display: grid;
+        grid-template-columns: 62px 1fr 74px;
+        align-items: center;
+        gap: 10px;
+        padding: 0 10px;
+        margin-bottom: 4px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 12.5px;
+      }
+
+      .tool-line.running {
+        background: rgba(198, 91, 71, 0.12);
+        color: #fff8ee;
+      }
+
+      .tool-badge {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 10.5px;
+      }
+
+      .tool-time {
+        color: rgba(255, 255, 255, 0.44);
+        text-align: right;
+        font-size: 11px;
+      }
+
+      .terminal-output {
+        margin-top: 12px;
+        padding: 10px 13px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 11.3px;
+        line-height: 1.42;
+      }
+
+      .transcript-section {
+        margin-top: 11px;
+      }
+
+      .terminal-transcript {
+        display: grid;
+        gap: 4px;
+        padding: 9px 11px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .log-line {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 7px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 12px;
+        line-height: 1.34;
+      }
+
+      .log-line span:first-child {
+        color: rgba(255, 255, 255, 0.38);
+      }
+
+      .log-line.user {
+        color: rgba(255, 248, 238, 0.9);
+      }
+
+      .log-line.user span:first-child,
+      .log-line.active span:first-child {
+        color: var(--clay);
+      }
+
+      .log-line.active {
+        color: #f0c7ba;
+      }
+
+      .muted {
+        color: rgba(255, 255, 255, 0.42);
+      }
+
+      .pending-output {
+        color: #f0c7ba;
+      }
+
+      .codex-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        margin-left: 5px;
+        transform: translateY(2px);
+        background: var(--clay);
+      }
+
+      .activity-pane {
+        padding: 22px 23px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+          rgba(255, 255, 255, 0.035);
+      }
+
+      .activity-title {
+        margin-bottom: 11px;
+        color: rgba(255, 255, 255, 0.84);
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 780;
+      }
+
+      .activity-title.lower {
+        margin-top: 23px;
+      }
+
+      .diff-file {
+        margin-bottom: 10px;
+        color: var(--blue);
+        font-size: 13px;
+      }
+
+      .diff-line {
+        min-height: 27px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        margin-bottom: 5px;
+        border-radius: 8px;
+        background: rgba(67, 184, 117, 0.1);
+        color: #bff1cd;
+        font-size: 12.5px;
+      }
+
+      .reference-row {
+        min-height: 29px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12.5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+      }
+
+      .reference-row strong {
+        color: rgba(255, 248, 238, 0.84);
+        font-weight: 700;
+      }
+
+      .verify-row {
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: rgba(255, 255, 255, 0.56);
+        font-size: 12.5px;
+      }
+
+      .verify-row span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .verify-row.done {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .verify-row.done span {
+        border-color: var(--green);
+        background: rgba(67, 184, 117, 0.2);
+      }
+
+      .verify-row.active {
+        color: #ffd5ca;
+      }
+
+      .verify-row.active span {
+        border-color: var(--clay);
+        border-top-color: transparent;
+      }
+
+      .progress-track {
+        height: 8px;
+        margin-top: 13px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        display: block;
+        width: 52%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--clay), var(--amber));
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const terminalDuration = 12;
+      const planSpinnerRepeat = Math.max(0, Math.floor((terminalDuration - 1.1) / 0.9) - 1);
+      const verifySpinnerRepeat = Math.max(0, Math.floor((terminalDuration - 2.2) / 0.9) - 1);
+      const cursorBlinkRepeat = Math.max(0, Math.floor((terminalDuration - 2.85) / 0.56) - 1);
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(".terminal-window", { opacity: 0, y: 22, scale: 0.985, duration: 0.42, ease: "power2.out" }, 0.12);
+      tl.from(".prompt-line", { opacity: 0, y: 8, duration: 0.28, ease: "power2.out" }, 0.35);
+      tl.from(".codex-card.hero", { opacity: 0, y: 12, duration: 0.34, ease: "power2.out" }, 0.62);
+      tl.from(".step", { opacity: 0, x: -12, stagger: 0.08, duration: 0.24, ease: "power2.out" }, 1.0);
+      tl.from(".tool-line", { opacity: 0, x: -10, stagger: 0.08, duration: 0.24, ease: "power2.out" }, 1.62);
+      tl.from(".activity-pane", { opacity: 0, x: 18, duration: 0.36, ease: "power2.out" }, 1.9);
+      tl.from(".diff-line", { opacity: 0, x: 10, stagger: 0.06, duration: 0.22, ease: "power2.out" }, 2.2);
+      tl.from(".terminal-output", { opacity: 0, y: 10, duration: 0.3, ease: "power2.out" }, 2.55);
+      tl.from(".progress-fill", { scaleX: 0.2, transformOrigin: "left center", duration: 1.4, ease: "power2.out" }, 2.75);
+      tl.to(".step.active .step-icon", { rotation: 360, duration: 0.9, repeat: planSpinnerRepeat, ease: "none" }, 1.1);
+      tl.to(".verify-row.active span", { rotation: 360, duration: 0.9, repeat: verifySpinnerRepeat, ease: "none" }, 2.2);
+      tl.to(".codex-cursor", { opacity: 0.12, duration: 0.28, repeat: cursorBlinkRepeat, yoyo: true, ease: "steps(1)" }, 2.85);
+
+      window.__timelines["codex-terminal-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = decodeURIComponent(window.location.pathname).endsWith("/codex-terminal.html");
+    if (!isDirectPreview) return;
+
+    const mount = () => {
+      if (document.getElementById("codex-terminal-surface")) return;
+      const template = document.getElementById("codex-terminal-surface-template");
+      if (!template || !document.body) return;
+
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

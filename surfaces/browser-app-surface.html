@@ -35,6 +35,7 @@
         --green: #43b875;
         --shadow-window: 0 34px 96px rgba(30, 35, 42, 0.22);
         --shadow-soft: 0 18px 54px rgba(52, 39, 30, 0.11);
+        --system-cursor-default: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
       }
 
       html,
@@ -104,33 +105,26 @@
       }
 
       .apple-glyph {
-        width: 14px;
-        height: 17px;
-        position: relative;
-        display: inline-block;
+        width: 18px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #050505;
       }
 
       .apple-glyph::before {
         content: "";
-        position: absolute;
-        left: 1px;
-        bottom: 0;
-        width: 12px;
-        height: 13px;
-        border-radius: 46% 46% 44% 44%;
-        background: #050505;
+        display: block;
+        width: 15px;
+        height: 17px;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
       }
 
       .apple-glyph::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 7px;
-        height: 6px;
-        border-radius: 7px 0 7px 0;
-        background: #050505;
-        transform: rotate(-24deg);
+        content: none;
       }
 
       .status-icons {
@@ -142,15 +136,96 @@
       .status-dot {
         width: 14px;
         height: 14px;
-        border-radius: 50%;
+        border: 0;
+        position: relative;
+      }
+
+      .status-dot.control-center {
+        width: 18px;
+        height: 14px;
+      }
+
+      .status-dot.control-center::before,
+      .status-dot.control-center::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        width: 15px;
+        height: 5px;
+        border: 1.6px solid currentColor;
+        border-radius: 8px;
+      }
+
+      .status-dot.control-center::before {
+        top: 1px;
+        box-shadow: inset 7px 0 0 currentColor;
+      }
+
+      .status-dot.control-center::after {
+        bottom: 1px;
+        box-shadow: inset -7px 0 0 currentColor;
+      }
+
+      .status-dot.wifi {
+        width: 19px;
+        height: 15px;
+        background:
+          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
+      }
+
+      .status-dot.wifi::before,
+      .status-dot.wifi::after {
+        content: "";
+        position: absolute;
+        left: 50%;
         border: 2px solid currentColor;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-radius: 50%;
+        transform: translateX(-50%);
+      }
+
+      .status-dot.wifi::before {
+        bottom: 0;
+        width: 18px;
+        height: 13px;
+      }
+
+      .status-dot.wifi::after {
+        bottom: 0;
+        width: 9px;
+        height: 7px;
       }
 
       .status-pill {
-        width: 28px;
+        position: relative;
+        width: 26px;
         height: 14px;
-        border: 2px solid currentColor;
-        border-radius: 8px;
+        border: 1.7px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .status-pill::before {
+        content: "";
+        position: absolute;
+        right: -4px;
+        top: 4px;
+        width: 2px;
+        height: 5px;
+        border-radius: 0 2px 2px 0;
+        background: currentColor;
+      }
+
+      .status-pill::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 17px;
+        height: 8px;
+        border-radius: 2px;
+        background: currentColor;
       }
 
       .browser-window {
@@ -858,33 +933,14 @@
         left: 914px;
         top: 526px;
         z-index: 6;
-        width: 24px;
-        height: 34px;
-        filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+        width: 32px;
+        height: 32px;
+        background: var(--system-cursor-default) 0 0 / contain no-repeat;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
       }
 
-      .cursor::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-left: 22px solid #101010;
-        border-top: 32px solid rgba(16, 16, 16, 0);
-      }
-
-      .cursor::after {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 9px;
-        width: 7px;
-        height: 16px;
-        background: #101010;
-        transform: rotate(-26deg);
-        transform-origin: top;
-      }
+      .cursor::before,
+      .cursor::after { content: none; }
     </style>
   </head>
   <body>
@@ -904,8 +960,8 @@
         <div></div>
         <div class="menu-right">
           <span class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
+            <span class="status-dot control-center"></span>
+            <span class="status-dot wifi"></span>
             <span class="status-pill"></span>
           </span>
           <span>Wed Jun 17</span>

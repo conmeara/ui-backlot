@@ -1,0 +1,934 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 17% 14%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 22%),
+      radial-gradient(circle at 77% 83%, rgba(189, 212, 199, 0.42), rgba(189, 212, 199, 0) 30%),
+      linear-gradient(140deg, #f7f5ef 0%, #f1ebe1 52%, #dfe9e3 100%);
+  }
+</style>
+
+<template id="codex-app-surface-template">
+  <div id="codex-app-surface" data-composition-id="codex-app-surface" data-width="1280" data-height="820">
+    <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
+      <aside class="codex-sidebar" data-primitive="codex-sidebar">
+        <div class="window-traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+
+        <div class="codex-brand">
+          <span class="codex-mark" aria-hidden="true">Cx</span>
+          <span>Codex</span>
+        </div>
+
+        <button class="new-thread" type="button">
+          <span class="plus-glyph"></span>
+          <span>New task</span>
+        </button>
+
+        <nav class="sidebar-nav" aria-label="Codex navigation">
+          <button class="active" type="button"><span class="nav-glyph thread"></span>Threads</button>
+          <button type="button"><span class="nav-glyph cloud"></span>Cloud tasks</button>
+          <button type="button"><span class="nav-glyph review"></span>Reviews</button>
+          <button type="button"><span class="nav-glyph plugin"></span>Plugins</button>
+        </nav>
+
+        <div class="section-label">Recent work</div>
+        <div class="thread-row selected">
+          <strong>UI Backlot surfaces</strong>
+          <span>Adding Codex app component</span>
+        </div>
+        <div class="thread-row">
+          <strong>Claude workflow wrappers</strong>
+          <span>Registry and captures</span>
+        </div>
+        <div class="thread-row">
+          <strong>HyperFrames render</strong>
+          <span>Draft verification</span>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span>Local workspace connected</span>
+        </div>
+      </aside>
+
+      <main class="codex-main" data-primitive="codex-thread-main">
+        <header class="codex-topbar">
+          <div>
+            <h1>UI Backlot refinement</h1>
+            <span>/Users/conmeara/Projects/ui-backlot</span>
+          </div>
+          <div class="topbar-actions">
+            <button type="button" class="model-pill"><span></span>GPT-5</button>
+            <button type="button" class="mode-pill">Agent</button>
+            <button type="button" class="share-button">Share</button>
+          </div>
+        </header>
+
+        <section class="conversation-panel" aria-label="Codex conversation">
+          <article class="message user-message">
+            <div class="avatar user-avatar">C</div>
+            <div class="bubble">Build a reusable Codex desktop app surface, not just the terminal.</div>
+          </article>
+
+          <article class="message assistant-message">
+            <div class="avatar codex-avatar">Cx</div>
+            <div class="assistant-stack">
+              <p class="assistant-lead">I’ll add an editable Codex workbench component and verify it like the other Backlot surfaces.</p>
+              <div class="plan-card" data-primitive="codex-plan-card">
+                <div class="card-title">
+                  <span class="chevron open"></span>
+                  <strong>Plan</strong>
+                  <em>4 steps</em>
+                </div>
+                <div class="plan-row done"><span></span>Inspect CLI, app metadata, and existing terminal surface</div>
+                <div class="plan-row active"><span></span>Create standalone Codex app composition</div>
+                <div class="plan-row pending"><span></span>Register capture and prototype evidence</div>
+                <div class="plan-row pending"><span></span>Run HyperFrames gates and render</div>
+              </div>
+
+              <div class="tool-card" data-primitive="codex-tool-card">
+                <div class="card-title">
+                  <span class="chevron open"></span>
+                  <strong>Reading local evidence</strong>
+                  <em>safe</em>
+                </div>
+                <div class="tool-row ok"><b>shell</b><span>codex app --help</span><time>ready</time></div>
+                <div class="tool-row ok"><b>read</b><span>Codex.app Info.plist</span><time>26.611.62324</time></div>
+                <div class="tool-row active"><b>edit</b><span>compositions/codex-app.html</span><time>now</time></div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <footer class="composer" data-primitive="codex-composer">
+          <div class="composer-input">Ask Codex to change the next surface...</div>
+          <div class="composer-controls">
+            <button type="button" class="attach-button"><span></span>Attach</button>
+            <button type="button" class="context-button">ui-backlot</button>
+            <button type="button" class="send-button" aria-label="Send"></button>
+          </div>
+        </footer>
+      </main>
+
+      <aside class="codex-inspector" data-primitive="codex-inspector">
+        <section class="inspector-section goal-section">
+          <div class="inspector-title">Current Goal</div>
+          <p>Build modular editable UI surfaces for HyperFrames demo videos.</p>
+          <div class="goal-progress"><span></span></div>
+          <div class="goal-meta"><span>Active</span><strong>ui-backlot</strong></div>
+        </section>
+
+        <section class="inspector-section">
+          <div class="inspector-title">Files</div>
+          <div class="file-row selected"><span class="file-glyph html"></span><strong>codex-app.html</strong><em>new</em></div>
+          <div class="file-row"><span class="file-glyph json"></span><strong>registry.json</strong><em>edit</em></div>
+          <div class="file-row"><span class="file-glyph md"></span><strong>prototype note</strong><em>new</em></div>
+        </section>
+
+        <section class="inspector-section diff-section">
+          <div class="inspector-title">Patch Preview</div>
+          <div class="diff-line add">+ Codex desktop surface</div>
+          <div class="diff-line add">+ capture command</div>
+          <div class="diff-line add">+ registry component entry</div>
+        </section>
+
+        <section class="inspector-section">
+          <div class="inspector-title">Local Reference</div>
+          <div class="meta-row"><span>Codex CLI</span><strong>0.139.0</strong></div>
+          <div class="meta-row"><span>Codex.app</span><strong>26.611.62324</strong></div>
+          <div class="meta-row"><span>CodexBar</span><strong>0.32.2</strong></div>
+        </section>
+
+        <section class="inspector-section verify-section">
+          <div class="inspector-title">Verification</div>
+          <div class="verify-row done"><span></span>capture</div>
+          <div class="verify-row active"><span></span>lint / inspect</div>
+          <div class="verify-row"><span></span>render</div>
+        </section>
+      </aside>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: "Anthropic Sans";
+        src: url("../assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf") format("truetype");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      #codex-app-surface {
+        --paper: #fffdfa;
+        --paper-2: #f7f4ee;
+        --paper-3: #eee7dc;
+        --ink: #16120f;
+        --ink-2: #34302b;
+        --muted: #746c62;
+        --faint: #a49a8e;
+        --line: rgba(50, 43, 35, 0.08);
+        --line-strong: rgba(50, 43, 35, 0.13);
+        --clay: #c65b47;
+        --clay-soft: #f4e2da;
+        --sage: #43b875;
+        --blue: #5db1dc;
+        --shadow-window: 0 34px 110px rgba(54, 42, 31, 0.18), 0 0 0 1px rgba(55, 42, 31, 0.08);
+        width: 1280px;
+        height: 820px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: "Anthropic Sans", system-ui, sans-serif;
+      }
+
+      #codex-app-surface * {
+        box-sizing: border-box;
+      }
+
+      #codex-app-surface button {
+        font: inherit;
+      }
+
+      .codex-app-window {
+        width: 1280px;
+        height: 820px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr) 282px;
+        border-radius: 18px;
+        background:
+          linear-gradient(90deg, rgba(244, 239, 232, 0.78), rgba(244, 239, 232, 0.32) 18%, rgba(255, 253, 250, 1) 38%),
+          var(--paper);
+        box-shadow: var(--shadow-window);
+      }
+
+      .codex-sidebar {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 14px 10px 12px;
+        background: rgba(244, 239, 232, 0.72);
+        border-right: 1px solid rgba(50, 43, 35, 0.05);
+      }
+
+      .window-traffic {
+        height: 14px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 15px 3px;
+      }
+
+      .window-traffic span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+      }
+
+      .window-traffic .red { background: #ff5f57; }
+      .window-traffic .yellow { background: #ffbd2e; }
+      .window-traffic .green { background: #28c840; }
+
+      .codex-brand {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 7px;
+        font-size: 15px;
+        font-weight: 720;
+        color: var(--ink-2);
+      }
+
+      .codex-mark,
+      .codex-avatar {
+        display: inline-grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #171716;
+        color: #fff8ee;
+        font-size: 10px;
+        font-weight: 760;
+        letter-spacing: 0;
+      }
+
+      .codex-mark {
+        width: 24px;
+        height: 24px;
+      }
+
+      .new-thread {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 10px 4px 15px;
+        padding: 0 11px;
+        border: 1px solid rgba(50, 43, 35, 0.08);
+        border-radius: 9px;
+        background: rgba(255, 254, 250, 0.78);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .plus-glyph {
+        width: 14px;
+        height: 14px;
+        position: relative;
+      }
+
+      .plus-glyph::before,
+      .plus-glyph::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 6px;
+        width: 12px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .plus-glyph::after {
+        transform: rotate(90deg);
+      }
+
+      .sidebar-nav {
+        display: grid;
+        gap: 2px;
+        margin-bottom: 18px;
+      }
+
+      .sidebar-nav button,
+      .thread-row {
+        width: 100%;
+        min-width: 0;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        text-align: left;
+      }
+
+      .sidebar-nav button {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 8px;
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .sidebar-nav button.active,
+      .thread-row.selected {
+        background: rgba(226, 218, 207, 0.78);
+        color: var(--ink);
+      }
+
+      .nav-glyph {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        border: 1.5px solid currentColor;
+        opacity: 0.75;
+      }
+
+      .nav-glyph.thread { border-radius: 5px; }
+      .nav-glyph.cloud { border-radius: 9px; border-top-color: transparent; }
+      .nav-glyph.review { border-radius: 50%; }
+      .nav-glyph.plugin { border-radius: 3px; transform: rotate(45deg) scale(0.82); }
+
+      .section-label {
+        margin: 2px 8px 7px;
+        color: var(--faint);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .thread-row {
+        display: grid;
+        gap: 3px;
+        padding: 9px 10px;
+        margin-bottom: 4px;
+      }
+
+      .thread-row strong,
+      .thread-row span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .thread-row strong {
+        color: var(--ink-2);
+        font-size: 12.5px;
+        font-weight: 650;
+      }
+
+      .thread-row span {
+        color: var(--muted);
+        font-size: 11.5px;
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: 10px 1fr;
+        gap: 8px;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 254, 250, 0.48);
+        color: var(--muted);
+        font-size: 11.5px;
+        line-height: 1.25;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--sage);
+        box-shadow: 0 0 0 4px rgba(67, 184, 117, 0.13);
+      }
+
+      .codex-main {
+        min-width: 0;
+        display: grid;
+        grid-template-rows: 64px minmax(0, 1fr) 116px;
+        background: rgba(255, 253, 250, 0.92);
+      }
+
+      .codex-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 0 22px;
+        border-bottom: 1px solid rgba(50, 43, 35, 0.055);
+      }
+
+      .codex-topbar h1 {
+        margin: 0 0 3px;
+        color: var(--ink);
+        font-size: 17px;
+        line-height: 1.1;
+        font-weight: 720;
+        letter-spacing: 0;
+      }
+
+      .codex-topbar span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 0 0 auto;
+      }
+
+      .model-pill,
+      .mode-pill,
+      .share-button {
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid rgba(50, 43, 35, 0.08);
+        background: rgba(250, 248, 244, 0.76);
+        color: var(--ink-2);
+        padding: 0 12px;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .model-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .model-pill span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--clay);
+      }
+
+      .conversation-panel {
+        min-height: 0;
+        overflow: hidden;
+        padding: 30px 34px 22px;
+        display: grid;
+        align-content: start;
+        gap: 22px;
+        background:
+          radial-gradient(circle at 92% 4%, rgba(189, 212, 199, 0.22), rgba(189, 212, 199, 0) 24%),
+          transparent;
+      }
+
+      .message {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 13px;
+        align-items: start;
+      }
+
+      .avatar {
+        width: 31px;
+        height: 31px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .user-avatar {
+        background: #e4ded4;
+        color: var(--ink-2);
+      }
+
+      .codex-avatar {
+        border-radius: 9px;
+      }
+
+      .bubble {
+        justify-self: start;
+        max-width: 580px;
+        padding: 13px 16px;
+        border-radius: 16px;
+        background: #f0ede7;
+        color: var(--ink);
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .assistant-stack {
+        display: grid;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .assistant-lead {
+        max-width: 720px;
+        margin: 0 0 3px;
+        color: var(--ink);
+        font-size: 25px;
+        line-height: 1.18;
+        font-weight: 610;
+        letter-spacing: 0;
+      }
+
+      .plan-card,
+      .tool-card {
+        overflow: hidden;
+        border: 1px solid rgba(50, 43, 35, 0.075);
+        border-radius: 15px;
+        background: rgba(255, 254, 250, 0.72);
+        box-shadow: 0 8px 26px rgba(54, 42, 31, 0.045);
+      }
+
+      .card-title {
+        min-height: 35px;
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 13px;
+        border-bottom: 1px solid rgba(50, 43, 35, 0.055);
+        background: rgba(247, 244, 238, 0.56);
+      }
+
+      .card-title strong {
+        color: var(--ink-2);
+        font-size: 13px;
+        font-weight: 720;
+      }
+
+      .card-title em {
+        color: var(--faint);
+        font-size: 11.5px;
+        font-style: normal;
+        font-weight: 560;
+      }
+
+      .chevron {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        color: var(--muted);
+      }
+
+      .chevron::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 1px;
+        width: 6px;
+        height: 6px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg);
+      }
+
+      .plan-row,
+      .tool-row {
+        min-height: 33px;
+        display: grid;
+        align-items: center;
+        gap: 10px;
+        padding: 0 14px;
+        border-bottom: 1px solid rgba(50, 43, 35, 0.045);
+        color: var(--ink-2);
+        font-size: 13px;
+      }
+
+      .plan-row {
+        grid-template-columns: 17px 1fr;
+      }
+
+      .tool-row {
+        grid-template-columns: 58px 1fr auto;
+      }
+
+      .plan-row:last-child,
+      .tool-row:last-child {
+        border-bottom: 0;
+      }
+
+      .plan-row span,
+      .verify-row span {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1.6px solid #d2c9bd;
+        position: relative;
+      }
+
+      .plan-row.done span,
+      .verify-row.done span {
+        border-color: var(--sage);
+      }
+
+      .plan-row.done span::before,
+      .verify-row.done span::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 3px;
+        width: 6px;
+        height: 3px;
+        border-left: 1.6px solid var(--sage);
+        border-bottom: 1.6px solid var(--sage);
+        transform: rotate(-45deg);
+      }
+
+      .plan-row.active {
+        background: rgba(198, 91, 71, 0.045);
+      }
+
+      .plan-row.active span,
+      .verify-row.active span {
+        border-color: var(--clay);
+        box-shadow: 0 0 0 4px rgba(198, 91, 71, 0.11);
+      }
+
+      .plan-row.pending {
+        color: var(--muted);
+      }
+
+      .tool-row b {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: #f1eee8;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .tool-row time {
+        color: var(--faint);
+        font-size: 11.5px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .tool-row.ok b {
+        color: #3f7e53;
+        background: rgba(67, 184, 117, 0.12);
+      }
+
+      .tool-row.active {
+        background: rgba(198, 91, 71, 0.04);
+      }
+
+      .composer {
+        margin: 0 34px 24px;
+        min-width: 0;
+        border: 1px solid rgba(50, 43, 35, 0.105);
+        border-radius: 24px;
+        background: rgba(255, 254, 250, 0.98);
+        box-shadow: 0 18px 44px rgba(54, 42, 31, 0.095);
+        display: grid;
+        grid-template-rows: 1fr 42px;
+        overflow: hidden;
+      }
+
+      .composer-input {
+        padding: 17px 18px 0;
+        color: var(--faint);
+        font-size: 24px;
+        line-height: 1.25;
+      }
+
+      .composer-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 11px 10px;
+      }
+
+      .attach-button,
+      .context-button {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid rgba(50, 43, 35, 0.08);
+        border-radius: 999px;
+        background: #faf8f4;
+        color: var(--ink-2);
+        padding: 0 10px;
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .attach-button span {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        background: #d7cfc3;
+      }
+
+      .send-button {
+        margin-left: auto;
+        width: 34px;
+        height: 34px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--clay);
+        position: relative;
+        box-shadow: 0 8px 18px rgba(198, 91, 71, 0.24);
+      }
+
+      .send-button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 9px;
+        width: 12px;
+        height: 12px;
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: rotate(45deg);
+      }
+
+      .codex-inspector {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 76px 14px 16px;
+        background: rgba(250, 248, 244, 0.62);
+        border-left: 1px solid rgba(50, 43, 35, 0.055);
+      }
+
+      .inspector-section {
+        display: grid;
+        gap: 9px;
+      }
+
+      .inspector-title {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .goal-section {
+        padding: 13px;
+        border-radius: 14px;
+        background: rgba(255, 254, 250, 0.64);
+        border: 1px solid rgba(50, 43, 35, 0.07);
+      }
+
+      .goal-section p {
+        margin: 0;
+        color: var(--ink-2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .goal-progress {
+        height: 6px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e7dfd4;
+      }
+
+      .goal-progress span {
+        display: block;
+        width: 62%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--clay);
+      }
+
+      .goal-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--faint);
+        font-size: 11px;
+      }
+
+      .goal-meta strong {
+        color: var(--muted);
+      }
+
+      .file-row,
+      .meta-row,
+      .verify-row {
+        min-height: 31px;
+        display: grid;
+        align-items: center;
+        gap: 8px;
+        border-radius: 9px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .file-row {
+        grid-template-columns: 20px 1fr auto;
+        padding: 0 9px;
+        background: rgba(255, 254, 250, 0.42);
+      }
+
+      .file-row.selected {
+        background: rgba(198, 91, 71, 0.075);
+        color: var(--ink-2);
+      }
+
+      .file-row strong {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .file-row em {
+        color: var(--faint);
+        font-size: 10.5px;
+        font-style: normal;
+        font-weight: 650;
+      }
+
+      .file-glyph {
+        width: 17px;
+        height: 17px;
+        border-radius: 5px;
+        background: #d8d0c4;
+      }
+
+      .file-glyph.html { background: #d46e54; }
+      .file-glyph.json { background: #79b382; }
+      .file-glyph.md { background: #72c2e4; }
+
+      .diff-section {
+        padding: 11px 12px;
+        border-radius: 13px;
+        background: rgba(255, 254, 250, 0.42);
+      }
+
+      .diff-line {
+        min-height: 24px;
+        color: #3d7e55;
+        font-family: "JetBrains Mono", Menlo, Monaco, monospace;
+        font-size: 11.5px;
+        line-height: 1.3;
+      }
+
+      .meta-row {
+        grid-template-columns: 1fr auto;
+        min-height: 25px;
+        padding: 0 2px;
+      }
+
+      .meta-row strong {
+        color: var(--ink-2);
+        font-size: 11.5px;
+      }
+
+      .verify-row {
+        grid-template-columns: 16px 1fr;
+        min-height: 26px;
+        padding: 0 2px;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".codex-app-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.48, ease: "power3.out" }, 0.12);
+      tl.from(".codex-sidebar", { opacity: 0, x: -14, duration: 0.34, ease: "sine.out" }, 0.24);
+      tl.from(".codex-topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.34);
+      tl.from(".user-message", { opacity: 0, y: 12, duration: 0.32, ease: "sine.out" }, 0.54);
+      tl.from(".assistant-message", { opacity: 0, y: 16, duration: 0.42, ease: "power2.out" }, 0.82);
+      tl.from(".plan-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 1.18);
+      tl.from(".plan-row", { opacity: 0, x: 8, stagger: 0.05, duration: 0.24, ease: "sine.out" }, 1.38);
+      tl.from(".tool-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 1.78);
+      tl.from(".codex-inspector .inspector-section", { opacity: 0, x: 10, stagger: 0.055, duration: 0.28, ease: "sine.out" }, 1.94);
+      tl.from(".composer", { opacity: 0, y: 16, duration: 0.34, ease: "power2.out" }, 2.26);
+      tl.to(".plan-row.active span, .verify-row.active span", { scale: 1.1, duration: 0.32, repeat: 5, yoyo: true, ease: "sine.inOut" }, 2.65);
+      tl.to(".goal-progress span", { width: "72%", duration: 1.2, ease: "sine.inOut" }, 3.0);
+      window.__timelines["codex-app-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/codex-app\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("codex-app-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#codex-app-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

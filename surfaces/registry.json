@@ -1,0 +1,2352 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-18",
+  "description": "Machine-readable inventory of editable UI Backlot surfaces for focused HyperFrames assembly.",
+  "surfaces": [
+    {
+      "id": "browser-app",
+      "title": "Editable Browser App",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "generic browser/web-app shell, donor-informed",
+      "dimensions": {
+        "width": 1516,
+        "height": 864
+      },
+      "source": "compositions/browser-app.html",
+      "compositionId": "browser-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/browser-app.html",
+        "selector": "#browser-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:browser-app",
+        "selector": ".browser-window",
+        "path": "captures/surface-browser-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/browser-subcomposition-integration-pass-014.md",
+      "tags": [
+        "browser",
+        "web-app",
+        "tabs",
+        "dashboard"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/browser-app-surface-pass-006.md",
+        "docs/prototypes/browser-chrome-donor-refinement-pass-013.md",
+        "docs/research/open-source-ui-donor-repos.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; uses donor repos as geometry reference without vendoring runtime components.",
+      "recommendedUse": "Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows."
+    },
+    {
+      "id": "calendar-app",
+      "title": "macOS Calendar App",
+      "kind": "surface",
+      "status": "prototype",
+      "fidelity": "macos-web-informed Calendar shell",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "surfaces/calendar-app-surface.html",
+      "compositionId": null,
+      "import": {
+        "type": "standalone-html-surface",
+        "src": "surfaces/calendar-app-surface.html",
+        "selector": ".calendar-window"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:calendar",
+        "selector": ".calendar-window",
+        "path": "captures/surface-calendar-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/macos-web-calendar-surface-pass-016.md",
+      "tags": [
+        "macos",
+        "calendar",
+        "schedule",
+        "desktop"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/macos-web-calendar-surface-pass-016.md",
+        "docs/research/open-source-ui-donor-repos.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS adapted from MIT-compatible macOS web references and local-only icon paths.",
+      "recommendedUse": "Scheduling, coordination, and calendar-driven workflow scenes."
+    },
+    {
+      "id": "claude-agent-rail",
+      "title": "Claude Agent Context Rail",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against current Claude Cowork-style task rail reconstruction, pending sanitized live Claude task-rail capture",
+      "dimensions": {
+        "width": 380,
+        "height": 860
+      },
+      "source": "compositions/claude-agent-rail.html",
+      "compositionId": "claude-agent-rail-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-agent-rail.html",
+        "selector": "#claude-agent-rail-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-agent-rail",
+        "selector": ".claude-agent-rail-stage",
+        "path": "captures/surface-claude-agent-rail/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-agent-rail-surface-pass-065.md",
+      "tags": [
+        "claude",
+        "agent-status",
+        "task-rail",
+        "context",
+        "artifacts"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-app.html",
+        "compositions/claude-attachment-draft.html",
+        "compositions/claude-tool-result.html",
+        "captures/surface-claude-app/target.png",
+        "docs/prototypes/claude-cowork-sibling-states-pass-045.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
+      "recommendedUse": "Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell."
+    },
+    {
+      "id": "claude-app",
+      "title": "Claude Working Thread",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude Cowork layout evidence, pending sanitized live Claude capture",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-app.html",
+      "compositionId": "claude-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-app.html",
+        "selector": "#claude-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-app",
+        "selector": ".claude-app-window",
+        "path": "captures/surface-claude-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-app-reference-focus-pass-060.md",
+      "tags": [
+        "claude",
+        "chat",
+        "composer",
+        "tool-use",
+        "agent-status"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "captures/surface-claude-conversation/target.png",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "/Applications/Claude.app",
+        "docs/research/open-source-ui-donor-repos.md",
+        "docs/prototypes/claude-app-reference-focus-pass-060.md",
+        "docs/prototypes/claude-registry-metadata-pass-078.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
+      "recommendedUse": "Focused Claude working-thread scenes, especially clips that pair Claude with one other app surface."
+    },
+    {
+      "id": "claude-attachment-draft",
+      "title": "Claude Attached Folder Draft",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude Cowork layout evidence, pending sanitized live Claude attachment capture",
+      "dimensions": {
+        "width": 1180,
+        "height": 780
+      },
+      "source": "compositions/claude-attachment-draft.html",
+      "compositionId": "claude-attachment-draft-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-attachment-draft.html",
+        "selector": "#claude-attachment-draft-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-attachment-draft",
+        "selector": ".claude-attachment-window",
+        "path": "captures/surface-claude-attachment-draft/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-cowork-sibling-states-pass-045.md",
+      "tags": [
+        "claude",
+        "attachment",
+        "folder-context",
+        "composer",
+        "new-chat"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "/Applications/Claude.app",
+        "docs/prototypes/claude-app-cowork-rail-fidelity-pass-044.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, app assets, or private folder contents copied.",
+      "recommendedUse": "Pre-submit scenes where a user has attached a local folder or files before Claude starts working."
+    },
+    {
+      "id": "claude-browser-chat-pane-workflow",
+      "title": "Claude Chat Pane Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using the lean Claude chat pane and editable browser surface",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-browser-chat-pane-workflow.html",
+      "compositionId": "claude-browser-chat-pane-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-browser-chat-pane-workflow.html",
+        "selector": "#claude-browser-chat-pane-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-browser-chat-pane-workflow",
+        "selector": ".chat-pane-workflow-stage",
+        "path": "captures/surface-claude-browser-chat-pane-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-browser-chat-pane-workflow-menu-bar-pass-089.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "chat-pane",
+        "lean-pane",
+        "modular-assembly"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-chat-pane"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "compositions/browser-app.html",
+        "compositions/claude-chat-pane.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-mac-menu-bar/target.png",
+        "captures/surface-browser-app/target.png",
+        "captures/surface-claude-chat-pane/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/claude-browser-chat-pane-workflow-pass-082.md",
+        "docs/prototypes/claude-chat-pane-pass-081.md"
+      ],
+      "assetDecision": "Parent timeline mounts local hand-authored mac menu bar, browser, and Claude chat-pane components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "The lightest Claude-plus-browser instructional clips: active Claude topbar, message field, and composer over a browser surface, without sidebar, task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow."
+    },
+    {
+      "id": "claude-browser-chat-workflow",
+      "title": "Claude Chat Shell Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using the lean Claude chat shell and editable browser surface",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-browser-chat-workflow.html",
+      "compositionId": "claude-browser-chat-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-browser-chat-workflow.html",
+        "selector": "#claude-browser-chat-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-browser-chat-workflow",
+        "selector": ".chat-browser-workflow-stage",
+        "path": "captures/surface-claude-browser-chat-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-browser-chat-workflow-menu-bar-pass-090.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "chat-shell",
+        "lean-shell",
+        "modular-assembly"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-chat-shell"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "compositions/browser-app.html",
+        "compositions/claude-chat-shell.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-mac-menu-bar/target.png",
+        "captures/surface-browser-app/target.png",
+        "captures/surface-claude-chat-shell/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/claude-browser-chat-workflow-pass-080.md",
+        "docs/prototypes/claude-chat-shell-pass-079.md"
+      ],
+      "assetDecision": "Parent timeline mounts local hand-authored mac menu bar, browser, and Claude chat-shell components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short instructional clips that need only Claude plus a browser surface, without importing the task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow."
+    },
+    {
+      "id": "claude-browser-composed-workflow",
+      "title": "Claude Componentized Shell Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "nested modular assembly proof using the componentized Claude shell",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-browser-composed-workflow.html",
+      "compositionId": "claude-browser-composed-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-browser-composed-workflow.html",
+        "selector": "#claude-browser-composed-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-browser-composed-workflow",
+        "selector": ".composed-workflow-stage",
+        "path": "captures/surface-claude-browser-composed-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "composed-shell",
+        "nested-components",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-composed-app"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/browser-app.html",
+        "compositions/claude-composed-app.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-browser-app/target.png",
+        "captures/surface-claude-composed-app/target.png",
+        "docs/prototypes/claude-composed-app-pass-068.md",
+        "docs/prototypes/claude-browser-composed-workflow-pass-069.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short clips that need a full Claude shell plus a browser app while preserving the reusable sidebar, thread core, composer, and rail as independently editable child components."
+    },
+    {
+      "id": "claude-browser-thread-workflow",
+      "title": "Claude Working Thread Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using the current Claude working-thread component",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-browser-workflow.html",
+      "compositionId": "claude-browser-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-browser-workflow.html",
+        "selector": "#claude-browser-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-browser-thread-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-browser-thread-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "working-thread",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-app"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/browser-app.html",
+        "compositions/claude-app.html",
+        "compositions/claude-browser-workflow.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-launch-rhythm-fidelity-pass-049.md",
+        "docs/prototypes/claude-browser-thread-workflow-pass-050.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short demo clips that need only the current Claude working thread over a browser app, without Finder, PowerPoint, or the attachment-draft beat."
+    },
+    {
+      "id": "claude-browser-workflow",
+      "title": "Claude Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-browser-workflow.html",
+      "compositionId": "claude-browser-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-browser-workflow.html",
+        "selector": "#claude-browser-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-browser-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-browser-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-attachment-draft",
+        "claude-app"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/browser-app.html",
+        "compositions/claude-attachment-draft.html",
+        "compositions/claude-app.html",
+        "docs/prototypes/claude-browser-workflow-attachment-pass-038.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short demo clips that need only Claude with attached context and a browser app."
+    },
+    {
+      "id": "claude-chat-pane",
+      "title": "Claude Chat Pane",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "lean chat-pane reconstruction derived from the Claude chat shell and Sonnet 4.6 launch-frame rhythm",
+      "dimensions": {
+        "width": 1180,
+        "height": 900
+      },
+      "source": "compositions/claude-chat-pane.html",
+      "compositionId": "claude-chat-pane-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-chat-pane.html",
+        "selector": "#claude-chat-pane-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-chat-pane",
+        "selector": ".claude-chat-pane-window",
+        "path": "captures/surface-claude-chat-pane/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-chat-pane-pass-081.md",
+      "tags": [
+        "claude",
+        "chat",
+        "thread",
+        "composer",
+        "launch-reference",
+        "pane"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-chat-shell.html",
+        "captures/surface-claude-chat-shell/target.png",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-56s.jpg"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS extracted from the local lean Claude chat shell; no Claude product code, screenshots, video frames, private account data, app bundle assets, or donor code copied into the component.",
+      "recommendedUse": "Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome."
+    },
+    {
+      "id": "claude-chat-shell",
+      "title": "Claude Chat Shell",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "lean chat-app reconstruction informed by Sonnet 4.6 launch frames, pending sanitized live Claude shell capture",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-chat-shell.html",
+      "compositionId": "claude-chat-shell-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-chat-shell.html",
+        "selector": "#claude-chat-shell-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-chat-shell",
+        "selector": ".claude-chat-shell-window",
+        "path": "captures/surface-claude-chat-shell/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-chat-shell-pass-079.md",
+      "tags": [
+        "claude",
+        "chat",
+        "sidebar",
+        "composer",
+        "launch-reference",
+        "lean-shell"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-56s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-64s.jpg",
+        "captures/surface-claude-cinematic-reply/target.png",
+        "captures/surface-claude-home-launch/target.png"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by public launch-frame studies and local Claude reconstructions; no Claude product code, screenshots, video frames, private account data, app bundle assets, or donor code copied into the component.",
+      "recommendedUse": "Simple Claude chat demos that need a sidebar, thread, and composer without the Cowork/task rail, tool-card stack, Finder, browser, Office, Codex, or full desktop lab."
+    },
+    {
+      "id": "claude-cinematic-reply",
+      "title": "Claude Cinematic Reply",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 launch-frame reply rhythm, pending official product capture",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-cinematic-reply.html",
+      "compositionId": "claude-cinematic-reply-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-cinematic-reply.html",
+        "selector": "#claude-cinematic-reply-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-cinematic-reply",
+        "selector": ".claude-cinematic-window",
+        "path": "captures/surface-claude-cinematic-reply/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-response-mark-component-pass-092.md",
+      "tags": [
+        "claude",
+        "cinematic",
+        "reply",
+        "composer",
+        "launch-reference"
+      ],
+      "dependencies": [
+        "claude-response-mark"
+      ],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-32s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-40s.jpg",
+        "captures/surface-claude-cinematic-reply/target.png",
+        "docs/prototypes/claude-app-cinematic-reference-pass-062.md",
+        "docs/prototypes/claude-cinematic-reply-fidelity-pass-070.md",
+        "docs/prototypes/claude-registry-metadata-pass-078.md",
+        "compositions/claude-response-mark.html",
+        "captures/surface-claude-response-mark/target.png",
+        "docs/prototypes/claude-response-mark-component-pass-092.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with a mounted shared Claude response-mark primitive informed by public launch-frame studies; no Claude product code, official icon asset, screenshots, video frames, private account data, app bundle assets, donor code, or unclear-license assets copied.",
+      "recommendedUse": "Sparse launch-style Claude answer/composer beats when a clip does not need sidebar, task rail, or tool cards."
+    },
+    {
+      "id": "claude-code-desktop",
+      "title": "Claude Code Desktop",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "medium-high against the 2026-04-14 Claude Code desktop redesign video frames, pending broader official product capture review",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-code-desktop.html",
+      "compositionId": "claude-code-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-code-desktop.html",
+        "selector": "#claude-code-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-code-desktop",
+        "selector": ".claude-code-window",
+        "path": "captures/surface-claude-code-desktop/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-code-desktop-surface-pass-074.md",
+      "tags": [
+        "claude",
+        "claude-code",
+        "desktop-app",
+        "dark-ui",
+        "diff",
+        "terminal",
+        "tasks"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "reference/claude/frame-study/code-desktop-redesign/frame-16s.jpg",
+        "reference/claude/frame-study/code-desktop-redesign/frame-20s.jpg",
+        "reference/claude/frame-study/code-desktop-redesign/frame-24s.jpg",
+        "captures/surface-claude-code-desktop/target.png"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by local reference frames from the public Claude Code desktop redesign video; no Claude product code, screenshots, video frames, private account data, app assets, or donor code copied into the component.",
+      "recommendedUse": "Claude Code desktop clips that need the dark app shell with session rail, prompt transcript, diff, terminal, tasks, floating view menu, model state, and bottom composer without importing the warm Claude chat shell."
+    },
+    {
+      "id": "claude-code-figma-workflow",
+      "title": "Claude Code Plus Figma Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof informed by the 2026-02-18 Claude Code-to-Figma reference video",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-code-figma-workflow.html",
+      "compositionId": "claude-code-figma-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-code-figma-workflow.html",
+        "selector": "#claude-code-figma-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-code-figma-workflow",
+        "selector": ".code-figma-workflow-stage",
+        "path": "captures/surface-claude-code-figma-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-code-figma-workflow-pass-077.md",
+      "tags": [
+        "workflow",
+        "claude-code",
+        "claude",
+        "figma",
+        "design",
+        "terminal",
+        "modular-assembly"
+      ],
+      "dependencies": [
+        "claude-code-terminal-session",
+        "figma-onboarding-editor"
+      ],
+      "sourceEvidence": [
+        "reference/claude/videos/2026-02-18-claude-code-to-figma.mp4",
+        "reference/claude/frame-study/code-to-figma/contact-sheet.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-12s.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-16s.jpg",
+        "compositions/claude-code-terminal-session.html",
+        "compositions/figma-onboarding-editor.html",
+        "runtime/backlot-component-loader.js"
+      ],
+      "assetDecision": "Parent timeline mounts local editable Claude Code terminal-session and Figma onboarding editor components through runtime/backlot-component-loader.js; reference frames guide layout only, with no screenshot plates, product code, private account data, private Figma files, copied app assets, or restrictively licensed donor code copied.",
+      "recommendedUse": "Claude Code-to-design clips that need the light reference-style Claude Code terminal driving a dark Figma onboarding design editor without importing the warm Claude chat shell, Finder, Office, browser, Codex terminal, Premiere, or the full desktop lab."
+    },
+    {
+      "id": "claude-code-terminal-session",
+      "title": "Claude Code Terminal Session",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "reference-matched light terminal panel informed by the 2026-02-18 Claude Code-to-Figma video frames",
+      "dimensions": {
+        "width": 660,
+        "height": 760
+      },
+      "source": "compositions/claude-code-terminal-session.html",
+      "compositionId": "claude-code-terminal-session-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-code-terminal-session.html",
+        "selector": "#claude-code-terminal-session-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-code-terminal-session",
+        "selector": ".claude-code-terminal-session-window",
+        "path": "captures/surface-claude-code-terminal-session/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-code-terminal-session-pass-075.md",
+      "tags": [
+        "claude",
+        "claude-code",
+        "terminal",
+        "light-ui",
+        "figma-workflow",
+        "component"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/videos/2026-02-18-claude-code-to-figma.mp4",
+        "reference/claude/frame-study/code-to-figma/contact-sheet.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-12s.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-16s.jpg"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by local reference frames from the public Claude Code-to-Figma video; no Claude product code, screenshots, video frames, private terminal sessions, private account data, fonts from the source video, or app assets copied into the component.",
+      "recommendedUse": "Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell."
+    },
+    {
+      "id": "claude-codex-terminal-workflow",
+      "title": "Claude Plus Codex Terminal Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and Codex CLI terminal components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-codex-terminal-workflow.html",
+      "compositionId": "claude-codex-terminal-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-codex-terminal-workflow.html",
+        "selector": "#claude-codex-terminal-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-codex-terminal-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-codex-terminal-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "codex",
+        "terminal",
+        "cli",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "codex-terminal"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/codex-terminal.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-sparse-thread-rhythm-pass-052.md",
+        "docs/prototypes/codex-terminal-current-cli-pass-048.md",
+        "docs/prototypes/claude-codex-terminal-workflow-pass-053.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Instructional clips that need Claude supervising or describing work while Codex CLI executes in Terminal, without browser, Finder, Office, or full desktop surfaces."
+    },
+    {
+      "id": "claude-completion-response",
+      "title": "Claude Completion Response",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 launch completion response rhythm, with synthetic editable text and no composer dependency",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-completion-response.html",
+      "compositionId": "claude-completion-response-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-completion-response.html",
+        "selector": "#claude-completion-response-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-completion-response",
+        "selector": ".claude-completion-response-frame",
+        "path": "captures/surface-claude-completion-response/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-response-mark-component-pass-092.md",
+      "tags": [
+        "claude",
+        "cinematic",
+        "completion",
+        "response",
+        "launch-reference",
+        "composer-free"
+      ],
+      "dependencies": [
+        "claude-response-mark"
+      ],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "compositions/claude-launch-completion.html",
+        "captures/surface-claude-launch-completion/target.png",
+        "docs/prototypes/claude-launch-completion-fidelity-pass-072.md",
+        "reference/claude/frame-study/sonnet-4-6/frame-32s.jpg",
+        "compositions/claude-response-mark.html",
+        "captures/surface-claude-response-mark/target.png",
+        "docs/prototypes/claude-response-mark-component-pass-092.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with a mounted shared Claude response-mark primitive informed by public launch-frame studies; no Claude product code, official icon asset, screenshots, video frames, private account data, app bundle assets, donor code, or unclear-license assets copied.",
+      "recommendedUse": "Cinematic Claude done-state beats that need only the large serif response and red response mark, without composer, sidebar, browser, Finder, Office, Codex, Premiere, or desktop context."
+    },
+    {
+      "id": "claude-composed-app",
+      "title": "Claude Componentized App Shell",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against current split Claude components, pending sanitized live Claude full-shell capture",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-composed-app.html",
+      "compositionId": "claude-composed-app",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-composed-app.html",
+        "selector": "#claude-composed-app"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-composed-app",
+        "selector": ".composed-claude-window",
+        "path": "captures/surface-claude-composed-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-composed-app-pass-068.md",
+      "tags": [
+        "claude",
+        "component-loader",
+        "composed-shell",
+        "modularity",
+        "workspace"
+      ],
+      "dependencies": [
+        "claude-sidebar",
+        "claude-thread-core",
+        "claude-composer",
+        "claude-agent-rail"
+      ],
+      "sourceEvidence": [
+        "compositions/claude-sidebar.html",
+        "compositions/claude-thread-core.html",
+        "compositions/claude-composer.html",
+        "compositions/claude-agent-rail.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-claude-sidebar/target.png",
+        "captures/surface-claude-thread-core/target.png",
+        "captures/surface-claude-composer/target.png",
+        "captures/surface-claude-agent-rail/target.png"
+      ],
+      "assetDecision": "Composes local hand-authored Claude components through runtime/backlot-component-loader.js; no Claude product code, screenshots, video frames, private account data, app assets, or donor code copied.",
+      "recommendedUse": "Full Claude app beats assembled from reusable child components when a video needs the shell but should still keep sidebar, thread, composer, and rail independently editable."
+    },
+    {
+      "id": "claude-composer",
+      "title": "Claude Working Composer",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against current Claude working-thread composer reconstruction, pending sanitized live Claude composer capture",
+      "dimensions": {
+        "width": 900,
+        "height": 220
+      },
+      "source": "compositions/claude-composer.html",
+      "compositionId": "claude-composer-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-composer.html",
+        "selector": "#claude-composer-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-composer",
+        "selector": ".claude-composer-stage",
+        "path": "captures/surface-claude-composer/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-composer-surface-pass-064.md",
+      "tags": [
+        "claude",
+        "composer",
+        "attachment",
+        "folder-context",
+        "running-state"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-app.html",
+        "captures/surface-claude-app/target.png",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "docs/prototypes/claude-cinematic-reply-split-pass-063.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, or app assets copied.",
+      "recommendedUse": "Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell."
+    },
+    {
+      "id": "claude-conversation",
+      "title": "Claude Sparse Conversation Canvas",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 launch-frame rhythm, pending sanitized live Claude capture",
+      "dimensions": {
+        "width": 1280,
+        "height": 720
+      },
+      "source": "compositions/claude-conversation.html",
+      "compositionId": "claude-conversation-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-conversation.html",
+        "selector": "#claude-conversation-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-conversation",
+        "selector": ".claude-conversation-canvas",
+        "path": "captures/surface-claude-conversation/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-conversation-surface-pass-040.md",
+      "tags": [
+        "claude",
+        "conversation",
+        "reply-composer",
+        "launch-video",
+        "sparse-thread"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-32s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-64s.jpg",
+        "docs/prototypes/claude-app-reference-rhythm-pass-039.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; reference frames guide layout only, with no Claude product code, screenshots, private data, or app assets copied.",
+      "recommendedUse": "Launch-style Claude response clips that need the sparse conversation canvas without the desktop sidebar or full app shell."
+    },
+    {
+      "id": "claude-conversation-browser-workflow",
+      "title": "Claude Sparse Conversation Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof, high against Sonnet 4.6 launch composition rhythm",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-conversation-browser-workflow.html",
+      "compositionId": "claude-conversation-browser-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-conversation-browser-workflow.html",
+        "selector": "#claude-conversation-browser-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-conversation-browser-workflow",
+        "selector": ".launch-workflow-stage",
+        "path": "captures/surface-claude-conversation-browser-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "conversation",
+        "browser",
+        "launch-video",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-conversation"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/browser-app.html",
+        "compositions/claude-conversation.html",
+        "runtime/backlot-component-loader.js",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "docs/prototypes/claude-conversation-browser-workflow-pass-041.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Launch-style clips that need a browser app being updated in the background with the sparse Claude response canvas in front."
+    },
+    {
+      "id": "claude-deck-chat-pane",
+      "title": "Claude Deck Chat Pane",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "deck-specific lean chat-pane reconstruction derived from the Claude chat-pane shell and Sonnet 4.6 launch-frame rhythm",
+      "dimensions": {
+        "width": 1180,
+        "height": 900
+      },
+      "source": "compositions/claude-deck-chat-pane.html",
+      "compositionId": "claude-deck-chat-pane-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-deck-chat-pane.html",
+        "selector": "#claude-deck-chat-pane-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-deck-chat-pane",
+        "selector": ".claude-deck-chat-pane-window",
+        "path": "captures/surface-claude-deck-chat-pane/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-deck-chat-pane-pass-086.md",
+      "tags": [
+        "claude",
+        "chat",
+        "thread",
+        "composer",
+        "launch-reference",
+        "pane",
+        "deck",
+        "powerpoint"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-chat-pane.html",
+        "captures/surface-claude-chat-pane/target.png",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-56s.jpg",
+        "docs/prototypes/claude-chat-pane-pass-081.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS adapted from the local lean Claude chat-pane reconstruction with synthetic deck-update text; no Claude product code, screenshots, video frames, private account data, app bundle assets, donor code, or copied reference wording.",
+      "recommendedUse": "Claude plus PowerPoint/deck scenes that need only the active topbar, deck-focused message field, and composer without sidebar, task rail, browser, Finder, Codex, or desktop chrome."
+    },
+    {
+      "id": "claude-excel-workflow",
+      "title": "Claude Plus Excel Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and Excel-style workbook components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-excel-workflow.html",
+      "compositionId": "claude-excel-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-excel-workflow.html",
+        "selector": "#claude-excel-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-excel-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-excel-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "excel",
+        "spreadsheet",
+        "office",
+        "formula",
+        "chart",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "excel-workbook"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/excel-workbook.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-reference-breathing-room-pass-055.md",
+        "docs/prototypes/excel-workbook-surface-pass-022.md",
+        "docs/prototypes/claude-excel-workflow-pass-058.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Spreadsheet review, formula checking, chart-range, and workbook automation clips that need Claude with an Excel-style workbook, without browser, Finder, PowerPoint, Word, Figma, Premiere, Codex terminal, or the full desktop lab."
+    },
+    {
+      "id": "claude-figma-workflow",
+      "title": "Claude Plus Figma Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and Figma-style design editor components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-figma-workflow.html",
+      "compositionId": "claude-figma-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-figma-workflow.html",
+        "selector": "#claude-figma-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-figma-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-figma-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "figma",
+        "design",
+        "canvas",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "figma-editor"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/figma-editor.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-reference-breathing-room-pass-055.md",
+        "docs/prototypes/figma-editor-surface-pass-024.md",
+        "docs/prototypes/claude-figma-workflow-pass-056.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Design handoff and frame-editing clips that need Claude with a Figma-style editor, without browser, Finder, Office, Codex terminal, or the full desktop lab."
+    },
+    {
+      "id": "claude-finder-thread-workflow",
+      "title": "Claude Working Thread Plus Finder Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-finder-workflow.html",
+      "compositionId": "claude-finder-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-finder-workflow.html",
+        "selector": "#claude-finder-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-finder-thread-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-finder-thread-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "finder",
+        "files",
+        "working-thread",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "finder-window",
+        "claude-app"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/finder-window.html",
+        "compositions/claude-app.html",
+        "compositions/claude-finder-workflow.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-launch-rhythm-fidelity-pass-049.md",
+        "docs/prototypes/claude-finder-thread-workflow-pass-051.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short file/folder workflow clips that need the refined Claude working thread with Finder context, without browser, PowerPoint, attachment draft emphasis, or the full desktop lab."
+    },
+    {
+      "id": "claude-finder-workflow",
+      "title": "Claude Plus Finder Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-finder-workflow.html",
+      "compositionId": "claude-finder-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-finder-workflow.html",
+        "selector": "#claude-finder-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-finder-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-finder-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "finder",
+        "files",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "finder-window",
+        "claude-attachment-draft",
+        "claude-app"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/finder-window.html",
+        "compositions/claude-attachment-draft.html",
+        "compositions/claude-app.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-finder-workflow-attachment-pass-037.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short file/folder handoff clips that should not import browser, PowerPoint, or the full desktop lab."
+    },
+    {
+      "id": "claude-home",
+      "title": "Claude New Chat Home",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high, pending sanitized live Claude capture",
+      "dimensions": {
+        "width": 980,
+        "height": 760
+      },
+      "source": "compositions/claude-home.html",
+      "compositionId": "claude-home-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-home.html",
+        "selector": "#claude-home-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-home",
+        "selector": ".claude-home-window",
+        "path": "captures/surface-claude-home/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-home-dframe-sidebar-pass-035.md",
+      "tags": [
+        "claude",
+        "home",
+        "composer",
+        "new-chat"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "/Applications/Claude.app",
+        "docs/prototypes/claude-app-dframe-sidebar-pass-033.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
+      "recommendedUse": "Opening prompt scenes before a working Claude thread exists."
+    },
+    {
+      "id": "claude-home-launch",
+      "title": "Claude Launch Prompt Stack",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 frame-64s launch prompt stack, pending official product capture",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-home-launch.html",
+      "compositionId": "claude-home-launch-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-home-launch.html",
+        "selector": "#claude-home-launch-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-home-launch",
+        "selector": ".claude-home-launch-frame",
+        "path": "captures/surface-claude-home-launch/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-home-launch-fidelity-pass-071.md",
+      "tags": [
+        "claude",
+        "home",
+        "launch-video",
+        "prompt-stack",
+        "loader"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/frame-64s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "captures/surface-claude-home-launch/frame64-comparison.jpg",
+        "compositions/claude-conversation.html",
+        "docs/prototypes/claude-conversation-surface-pass-040.md",
+        "DESIGN.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; reference frame guides geometry only, with no Claude product code, screenshots, video frames, private data, app assets, or donor code copied.",
+      "recommendedUse": "Full-frame launch prompt beats where a video needs the Sonnet-style user request stack without the desktop/sidebar Claude app shell."
+    },
+    {
+      "id": "claude-launch-browser-workflow",
+      "title": "Claude Launch States Plus Browser Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using split Sonnet 4.6 prompt-stack and completion-response primitives",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-launch-browser-workflow.html",
+      "compositionId": "claude-launch-browser-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-launch-browser-workflow.html",
+        "selector": "#claude-launch-browser-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-launch-browser-workflow",
+        "selector": ".launch-browser-workflow-stage",
+        "path": "captures/surface-claude-launch-browser-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "launch-video",
+        "prompt-stack",
+        "completion",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "browser-app",
+        "claude-prompt-stack",
+        "claude-completion-response"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/browser-app.html",
+        "compositions/claude-prompt-stack.html",
+        "compositions/claude-completion-response.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-browser-app/target.png",
+        "captures/surface-claude-prompt-stack/target.png",
+        "captures/surface-claude-launch-browser-prompt-workflow/target.png",
+        "captures/surface-claude-completion-response/target.png",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "docs/prototypes/claude-launch-browser-workflow-prompt-stack-pass-084.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Short launch-style clips that need a browser app as the background work surface plus Claude prompt-to-completion states, without Finder, Office, Codex terminal, or the full desktop lab; use `capture:claude-launch-browser-workflow-prompt` for the prompt beat."
+    },
+    {
+      "id": "claude-launch-completion",
+      "title": "Claude Launch Completion",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 frame-24s launch completion, pending official product capture",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-launch-completion.html",
+      "compositionId": "claude-launch-completion-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-launch-completion.html",
+        "selector": "#claude-launch-completion-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-launch-completion",
+        "selector": ".claude-launch-completion-frame",
+        "path": "captures/surface-claude-launch-completion/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-launch-completion-fidelity-pass-072.md",
+      "tags": [
+        "claude",
+        "cinematic",
+        "completion",
+        "reply-composer",
+        "launch-reference"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "captures/surface-claude-launch-completion/frame24-comparison.jpg",
+        "compositions/claude-cinematic-reply.html",
+        "docs/prototypes/claude-cinematic-reply-fidelity-pass-070.md",
+        "DESIGN.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; reference frame guides geometry only, with no Claude product code, screenshots, video frames, private data, app assets, or donor code copied.",
+      "recommendedUse": "Full-frame Claude completion beats where a clip needs a launch-style done state and lower-edge Reply composer without the desktop/sidebar app shell."
+    },
+    {
+      "id": "claude-mac-finder",
+      "title": "Full Claude Mac Finder Lab",
+      "kind": "lab",
+      "status": "prototype",
+      "fidelity": "legacy full-scene lab, useful for comparison and older captures",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "surfaces/claude-mac-finder.html",
+      "compositionId": null,
+      "import": {
+        "type": "standalone-html-surface",
+        "src": "surfaces/claude-mac-finder.html",
+        "selector": "#backlot-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:surface",
+        "selector": "#backlot-surface",
+        "path": "captures/surface-claude-mac-finder/target.png"
+      },
+      "prototypeNote": "docs/prototypes/focused-surface-pass-001.md",
+      "tags": [
+        "macos",
+        "finder",
+        "claude",
+        "desktop",
+        "legacy-lab"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/open-source-goal-finder-fidelity-pass-009.md",
+        "docs/prototypes/macos-web-shell-fidelity-pass-015.md",
+        "docs/prototypes/macos-web-cursor-icons-pass-018.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS lab surface using local captures and donor references; not the preferred import path for focused clips.",
+      "recommendedUse": "Full desktop reference checks and regression comparison, not focused HyperFrames imports."
+    },
+    {
+      "id": "claude-premiere-workflow",
+      "title": "Claude Plus Premiere Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and Premiere-style video editor components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-premiere-workflow.html",
+      "compositionId": "claude-premiere-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-premiere-workflow.html",
+        "selector": "#claude-premiere-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-premiere-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-premiere-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "premiere",
+        "video",
+        "timeline",
+        "editing",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "premiere-editor"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/premiere-editor.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-reference-breathing-room-pass-055.md",
+        "docs/prototypes/premiere-editor-surface-pass-025.md",
+        "docs/prototypes/claude-premiere-workflow-pass-059.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Video editing, timeline review, trim, graphics, and export clips that need Claude with a Premiere-style editor, without browser, Finder, Office, Figma, Codex terminal, or the full desktop lab."
+    },
+    {
+      "id": "claude-presentation-chat-pane-workflow",
+      "title": "Claude Chat Pane Plus Presentation Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using the deck-specific lean Claude chat pane and PowerPoint-like presentation component",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-presentation-chat-pane-workflow.html",
+      "compositionId": "claude-presentation-chat-pane-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-presentation-chat-pane-workflow.html",
+        "selector": "#claude-presentation-chat-pane-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-presentation-chat-pane-workflow",
+        "selector": ".presentation-chat-pane-workflow-stage",
+        "path": "captures/surface-claude-presentation-chat-pane-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-presentation-chat-pane-workflow-pass-087.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "powerpoint",
+        "presentation",
+        "office",
+        "chat-pane",
+        "modular-assembly"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-deck-chat-pane",
+        "presentation-editor"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "compositions/claude-deck-chat-pane.html",
+        "compositions/presentation-editor.html",
+        "runtime/backlot-component-loader.js",
+        "captures/surface-mac-menu-bar/target.png",
+        "captures/surface-claude-deck-chat-pane/target.png",
+        "captures/surface-presentation-editor/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/claude-deck-chat-pane-pass-086.md",
+        "docs/prototypes/presentation-editor-office-fidelity-pass-046.md"
+      ],
+      "assetDecision": "Parent timeline mounts local editable menu bar, Claude deck chat pane, and presentation components through the Backlot loader; no screenshot plates, Microsoft assets, product code, private deck data, app bundle assets, donor icon files, or copied reference wording.",
+      "recommendedUse": "Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab."
+    },
+    {
+      "id": "claude-presentation-workflow",
+      "title": "Claude Plus Presentation Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and PowerPoint-like presentation components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-presentation-workflow.html",
+      "compositionId": "claude-presentation-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-presentation-workflow.html",
+        "selector": "#claude-presentation-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-presentation-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-presentation-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "powerpoint",
+        "presentation",
+        "office",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "presentation-editor"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/presentation-editor.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-sparse-thread-rhythm-pass-052.md",
+        "docs/prototypes/presentation-editor-office-fidelity-pass-046.md",
+        "docs/prototypes/claude-presentation-workflow-pass-054.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Instructional clips that need Claude guiding or reporting on a deck edit with a PowerPoint-like editor, without browser, Finder, Codex terminal, or the full desktop lab."
+    },
+    {
+      "id": "claude-prompt-stack",
+      "title": "Claude Launch Prompt Stack",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 launch-frame prompt bubble composition, with synthetic editable text",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-prompt-stack.html",
+      "compositionId": "claude-prompt-stack-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-prompt-stack.html",
+        "selector": "#claude-prompt-stack-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-prompt-stack",
+        "selector": ".claude-prompt-stack-frame",
+        "path": "captures/surface-claude-prompt-stack/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-prompt-stack-pass-083.md",
+      "tags": [
+        "claude",
+        "chat",
+        "prompt-stack",
+        "launch-reference",
+        "loading",
+        "cinematic"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-64s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-72s.jpg",
+        "captures/surface-claude-conversation/target.png",
+        "captures/surface-claude-chat-pane/target.png"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with synthetic editable prompt text informed by public launch-frame studies; no Claude product code, screenshots, video frames, private account data, app bundle assets, donor code, or copied reference wording.",
+      "recommendedUse": "Cinematic Claude launch beats that need only oversized right-aligned prompt bubbles and a loading mark, without app chrome, sidebar, composer, browser, Finder, Office, Codex, or desktop context."
+    },
+    {
+      "id": "claude-response-mark",
+      "title": "Claude Response Mark",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against Sonnet 4.6 launch-frame response mark proportions, hand-authored and pending official product capture",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      },
+      "source": "compositions/claude-response-mark.html",
+      "compositionId": "claude-response-mark-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-response-mark.html",
+        "selector": "#claude-response-mark-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-response-mark",
+        "selector": ".claude-response-mark-stage",
+        "path": "captures/surface-claude-response-mark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-response-mark-component-pass-092.md",
+      "tags": [
+        "claude",
+        "brand-mark",
+        "response",
+        "launch-reference",
+        "editable-css"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/frame-24s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/frame-32s.jpg",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "compositions/claude-response-mark.html",
+        "captures/surface-claude-response-mark/target.png",
+        "docs/prototypes/claude-response-mark-component-pass-092.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by public launch-frame studies; no Claude product code, official icon asset, screenshots, video frames, app bundle assets, donor code, or unclear-license assets copied.",
+      "recommendedUse": "Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry."
+    },
+    {
+      "id": "claude-sidebar",
+      "title": "Claude Sidebar",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against current Claude shell reconstruction, pending sanitized live Claude sidebar capture",
+      "dimensions": {
+        "width": 360,
+        "height": 840
+      },
+      "source": "compositions/claude-sidebar.html",
+      "compositionId": "claude-sidebar-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-sidebar.html",
+        "selector": "#claude-sidebar-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-sidebar",
+        "selector": ".claude-sidebar-stage",
+        "path": "captures/surface-claude-sidebar/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-sidebar-surface-pass-067.md",
+      "tags": [
+        "claude",
+        "sidebar",
+        "navigation",
+        "cowork",
+        "workspace"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-app.html",
+        "captures/surface-claude-app/target.png",
+        "compositions/claude-home.html",
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "docs/prototypes/claude-app-reference-focus-pass-060.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private account data, or app assets copied.",
+      "recommendedUse": "Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell."
+    },
+    {
+      "id": "claude-thread-core",
+      "title": "Claude Working Thread Core",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against current Claude working-thread reconstruction, pending sanitized live Claude thread capture",
+      "dimensions": {
+        "width": 980,
+        "height": 840
+      },
+      "source": "compositions/claude-thread-core.html",
+      "compositionId": "claude-thread-core-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-thread-core.html",
+        "selector": "#claude-thread-core-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-thread-core",
+        "selector": ".claude-thread-core-stage",
+        "path": "captures/surface-claude-thread-core/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-thread-core-surface-pass-066.md",
+      "tags": [
+        "claude",
+        "thread",
+        "tool-use",
+        "reasoning",
+        "message-parts"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-app.html",
+        "captures/surface-claude-app/target.png",
+        "compositions/claude-composer.html",
+        "compositions/claude-agent-rail.html",
+        "docs/prototypes/claude-app-reference-focus-pass-060.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
+      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window."
+    },
+    {
+      "id": "claude-tool-result",
+      "title": "Claude Completed Tool Result",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude Cowork layout evidence, pending sanitized live Claude tool-result capture",
+      "dimensions": {
+        "width": 1180,
+        "height": 780
+      },
+      "source": "compositions/claude-tool-result.html",
+      "compositionId": "claude-tool-result-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-tool-result.html",
+        "selector": "#claude-tool-result-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-tool-result",
+        "selector": ".claude-tool-window",
+        "path": "captures/surface-claude-tool-result/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-cowork-sibling-states-pass-045.md",
+      "tags": [
+        "claude",
+        "tool-result",
+        "completed-work",
+        "composer",
+        "artifact"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "/Applications/Claude.app",
+        "docs/prototypes/claude-app-cowork-rail-fidelity-pass-044.md",
+        "docs/prototypes/claude-app-context-rail-fidelity-pass-047.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
+      "recommendedUse": "Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary."
+    },
+    {
+      "id": "claude-word-workflow",
+      "title": "Claude Plus Word Workflow",
+      "kind": "workflow",
+      "status": "prototype",
+      "fidelity": "modular assembly proof using current Claude working-thread and Word-style document editor components",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/claude-word-workflow.html",
+      "compositionId": "claude-word-workflow",
+      "import": {
+        "type": "root-composition",
+        "src": "compositions/claude-word-workflow.html",
+        "selector": "#claude-word-workflow"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-word-workflow",
+        "selector": ".workflow-stage",
+        "path": "captures/surface-claude-word-workflow/target.png"
+      },
+      "prototypeNote": "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+      "tags": [
+        "workflow",
+        "claude",
+        "word",
+        "document",
+        "office",
+        "review",
+        "modular-assembly",
+        "mac-menu-bar"
+      ],
+      "dependencies": [
+        "mac-menu-bar",
+        "claude-app",
+        "word-editor"
+      ],
+      "sourceEvidence": [
+        "compositions/mac-menu-bar.html",
+        "captures/surface-mac-menu-bar/target.png",
+        "docs/prototypes/mac-menu-bar-component-pass-088.md",
+        "docs/prototypes/workflow-menu-bar-batch-pass-091.md",
+        "compositions/claude-app.html",
+        "compositions/word-editor.html",
+        "runtime/backlot-component-loader.js",
+        "docs/prototypes/claude-app-reference-breathing-room-pass-055.md",
+        "docs/prototypes/word-editor-surface-pass-021.md",
+        "docs/prototypes/claude-word-workflow-pass-057.md"
+      ],
+      "assetDecision": "Parent timeline mounts the reusable hand-authored mac-menu-bar component plus the existing local editable workflow components through runtime/backlot-component-loader.js; no screenshot plates, product code, private account data, copied app assets, missing donor icon paths, or donor code copied.",
+      "recommendedUse": "Document drafting, review, comments, and tracked-change clips that need Claude with a Word-style editor, without browser, Finder, PowerPoint, Excel, Figma, Premiere, Codex terminal, or the full desktop lab."
+    },
+    {
+      "id": "codex-app",
+      "title": "Codex Desktop Workbench",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "metadata-informed editable Codex desktop workbench, pending sanitized live Codex app capture",
+      "dimensions": {
+        "width": 1280,
+        "height": 820
+      },
+      "source": "compositions/codex-app.html",
+      "compositionId": "codex-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/codex-app.html",
+        "selector": "#codex-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:codex-app",
+        "selector": ".codex-app-window",
+        "path": "captures/surface-codex-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/codex-app-surface-pass-061.md",
+      "tags": [
+        "codex",
+        "desktop",
+        "app",
+        "agent-status",
+        "patch-preview",
+        "developer-workflow"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "`codex --version`",
+        "`codex --help`",
+        "`codex app --help`",
+        "`codex review --help`",
+        "/Applications/Codex.app/Contents/Info.plist",
+        "/Applications/CodexBar.app/Contents/Info.plist",
+        "DESIGN.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS using safe local CLI/app metadata and project style evidence; no OpenAI/Codex app assets, screenshots, app code, icon files, private sessions, account data, or copied app bundle assets.",
+      "recommendedUse": "Desktop Codex demos that need a workbench with conversation, plan, tool/evidence, patch, files, and verification panels, without Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces."
+    },
+    {
+      "id": "codex-terminal",
+      "title": "Codex Terminal",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "code-native Terminal/Codex CLI shell, informed by local Codex CLI help and app metadata",
+      "dimensions": {
+        "width": 1120,
+        "height": 840
+      },
+      "source": "compositions/codex-terminal.html",
+      "compositionId": "codex-terminal-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/codex-terminal.html",
+        "selector": "#codex-terminal-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:codex-terminal",
+        "selector": ".terminal-window",
+        "path": "captures/surface-codex-terminal/target.png"
+      },
+      "prototypeNote": "docs/prototypes/codex-terminal-current-cli-pass-048.md",
+      "tags": [
+        "codex",
+        "terminal",
+        "cli",
+        "agent-status",
+        "developer-workflow"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "`codex --version` and `codex --help`",
+        "/Applications/Codex.app/Contents/Info.plist",
+        "/System/Applications/Utilities/Terminal.app",
+        "DESIGN.md",
+        "docs/prototypes/codex-terminal-current-cli-pass-048.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS using local Codex CLI help, Codex app metadata, and Terminal availability as reference context; no Apple, OpenAI, or private session assets copied.",
+      "recommendedUse": "Command-line Codex demos, test runs, diffs, and agent execution status scenes."
+    },
+    {
+      "id": "excel-workbook",
+      "title": "Excel-style Workbook",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "code-native Office-style spreadsheet shell",
+      "dimensions": {
+        "width": 1280,
+        "height": 760
+      },
+      "source": "compositions/excel-workbook.html",
+      "compositionId": "excel-workbook-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/excel-workbook.html",
+        "selector": "#excel-workbook-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:excel-workbook",
+        "selector": ".excel-window",
+        "path": "captures/surface-excel-workbook/target.png"
+      },
+      "prototypeNote": "docs/prototypes/excel-workbook-surface-pass-022.md",
+      "tags": [
+        "excel",
+        "office",
+        "spreadsheet",
+        "formula",
+        "chart"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/research/open-source-ui-donor-repos.md",
+        "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by Fluent UI and ribbon donor references; no Microsoft code, fonts, icons, or private workbook data copied.",
+      "recommendedUse": "Spreadsheet analysis, formula editing, chart updates, and workbook automation scenes."
+    },
+    {
+      "id": "figma-editor",
+      "title": "Figma-style Design Editor",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "code-native design editor shell",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/figma-editor.html",
+      "compositionId": "figma-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/figma-editor.html",
+        "selector": "#figma-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:figma-editor",
+        "selector": ".figma-window",
+        "path": "captures/surface-figma-editor/target.png"
+      },
+      "prototypeNote": "docs/prototypes/figma-editor-surface-pass-024.md",
+      "tags": [
+        "figma",
+        "design",
+        "canvas",
+        "properties",
+        "frames"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/figma-editor-surface-pass-024.md",
+        "DESIGN.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by public Figma UI documentation; no private Figma account, file, code, or assets copied.",
+      "recommendedUse": "Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes."
+    },
+    {
+      "id": "figma-onboarding-editor",
+      "title": "Figma-style Onboarding Editor",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "reference-matched dark onboarding editor informed by the 2026-02-18 Claude Code-to-Figma video frames",
+      "dimensions": {
+        "width": 1120,
+        "height": 760
+      },
+      "source": "compositions/figma-onboarding-editor.html",
+      "compositionId": "figma-onboarding-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/figma-onboarding-editor.html",
+        "selector": "#figma-onboarding-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:figma-onboarding-editor",
+        "selector": ".figma-onboarding-window",
+        "path": "captures/surface-figma-onboarding-editor/target.png"
+      },
+      "prototypeNote": "docs/prototypes/figma-onboarding-editor-pass-076.md",
+      "tags": [
+        "figma",
+        "design",
+        "canvas",
+        "dark-ui",
+        "onboarding",
+        "mobile-frames"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/videos/2026-02-18-claude-code-to-figma.mp4",
+        "reference/claude/frame-study/code-to-figma/contact-sheet.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-12s.jpg",
+        "reference/claude/frame-study/code-to-figma/frame-16s.jpg",
+        "compositions/figma-editor.html"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by local reference frames from the public Claude Code-to-Figma video and the existing UI Backlot Figma editor; no Figma product code, screenshots, video frames, private Figma files, private account data, fonts from the source video, or app assets copied into the component.",
+      "recommendedUse": "Claude Code-to-design clips that need the dark onboarding design editor seen in the public reference video without importing the larger generic Figma editor shell."
+    },
+    {
+      "id": "finder-window",
+      "title": "Finder Launch Deck Window",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against synthetic Launch Deck reference capture",
+      "dimensions": {
+        "width": 920,
+        "height": 436
+      },
+      "source": "compositions/finder-window.html",
+      "compositionId": "finder-window-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/finder-window.html",
+        "selector": "#finder-window-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:finder-window",
+        "selector": ".finder-window",
+        "path": "captures/surface-finder-window-component/target.png"
+      },
+      "prototypeNote": "docs/prototypes/finder-window-subcomposition-pass-030.md",
+      "tags": [
+        "macos",
+        "finder",
+        "files",
+        "folder",
+        "launch-deck"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "captures/finder-launch-deck/window.png",
+        "snapshots/finder-source-vs-component.jpg",
+        "docs/research/open-source-ui-donor-repos.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by local Finder capture and MIT donor references; no Apple code copied.",
+      "recommendedUse": "File/folder handoff scenes that need Finder without a full desktop shell."
+    },
+    {
+      "id": "mac-menu-bar",
+      "title": "macOS Menu Bar",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "macos-web-informed editable menu-bar primitive with self-contained Apple glyph and status icons",
+      "dimensions": {
+        "width": 1920,
+        "height": 30
+      },
+      "source": "compositions/mac-menu-bar.html",
+      "compositionId": "mac-menu-bar-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/mac-menu-bar.html",
+        "selector": "#mac-menu-bar-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:mac-menu-bar",
+        "selector": ".mac-menu-bar-stage",
+        "path": "captures/surface-mac-menu-bar/target.png"
+      },
+      "prototypeNote": "docs/prototypes/mac-menu-bar-component-pass-088.md",
+      "tags": [
+        "mac",
+        "macos",
+        "menu-bar",
+        "desktop",
+        "component-loader"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/open-source/README.md",
+        "reference/open-source/macos-web/LICENSE",
+        "reference/open-source/macos-web/src/components/TopBar/TopBar.svelte",
+        "reference/open-source/macos-web/src/components/TopBar/MenuBar.svelte",
+        "reference/open-source/macos-web/src/components/TopBar/TopBarTime.svelte",
+        "docs/research/open-source-ui-donor-repos.md",
+        "compositions/claude-presentation-chat-pane-workflow.html"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by MIT-licensed macos-web menu-bar structure and existing Backlot wrappers. The Apple glyph is an inline CSS mask so this component does not depend on a missing donor icon asset; no macos-web source code, icon file, wallpaper, private app asset, or GPL reference code was copied.",
+      "recommendedUse": "Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab."
+    },
+    {
+      "id": "premiere-editor",
+      "title": "Premiere-style Video Editor",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "code-native video editor shell",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/premiere-editor.html",
+      "compositionId": "premiere-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/premiere-editor.html",
+        "selector": "#premiere-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:premiere-editor",
+        "selector": ".premiere-window",
+        "path": "captures/surface-premiere-editor/target.png"
+      },
+      "prototypeNote": "docs/prototypes/premiere-editor-surface-pass-025.md",
+      "tags": [
+        "premiere",
+        "video",
+        "timeline",
+        "editing",
+        "captions"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/premiere-editor-surface-pass-025.md",
+        "docs/research/open-source-ui-donor-repos.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by public Premiere documentation and MIT timeline donor patterns; no Adobe code, fonts, private projects, or assets copied.",
+      "recommendedUse": "Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes."
+    },
+    {
+      "id": "presentation-editor",
+      "title": "PowerPoint-like Presentation Editor",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "medium-high, pending source-captured PowerPoint geometry",
+      "dimensions": {
+        "width": 836,
+        "height": 438
+      },
+      "source": "compositions/presentation-editor.html",
+      "compositionId": "presentation-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/presentation-editor.html",
+        "selector": "#presentation-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:presentation-editor",
+        "selector": ".presentation-editor-surface",
+        "path": "captures/surface-presentation-editor/target.png"
+      },
+      "prototypeNote": "docs/prototypes/presentation-editor-office-fidelity-pass-046.md",
+      "tags": [
+        "powerpoint",
+        "presentation",
+        "office",
+        "ribbon",
+        "slides"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/powerpoint-ribbon-fidelity-pass-007.md",
+        "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md",
+        "docs/prototypes/presentation-editor-office-fidelity-pass-046.md",
+        "docs/research/open-source-ui-donor-repos.md"
+      ],
+      "assetDecision": "Hand-authored Office-like HTML/CSS informed by Fluent UI and ribbon donor references; no Microsoft code or assets copied.",
+      "recommendedUse": "Deck-editing demos and main Claude-to-PowerPoint workflow scenes."
+    },
+    {
+      "id": "word-editor",
+      "title": "Word-style Document Editor",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "code-native Office-style document shell",
+      "dimensions": {
+        "width": 1280,
+        "height": 760
+      },
+      "source": "compositions/word-editor.html",
+      "compositionId": "word-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/word-editor.html",
+        "selector": "#word-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:word-editor",
+        "selector": ".word-window",
+        "path": "captures/surface-word-editor/target.png"
+      },
+      "prototypeNote": "docs/prototypes/word-editor-surface-pass-021.md",
+      "tags": [
+        "word",
+        "office",
+        "document",
+        "comments",
+        "tracked-changes"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/research/open-source-ui-donor-repos.md",
+        "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by Fluent UI and ribbon donor references; no Microsoft code, fonts, icons, or private data copied.",
+      "recommendedUse": "Document editing, review, comments, tracked-change, and memo workflow scenes."
+    }
+  ]
+}
