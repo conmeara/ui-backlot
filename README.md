@@ -13,8 +13,9 @@ Open-source UI projects are now an explicit refinement lane. Use them as
 reference material and component donors for macOS, Claude/chat, browser, and
 Office-like surfaces, with license checks before copying code or assets.
 
-The canonical working goal is tracked in [GOAL.md](GOAL.md). It includes the
-donor-repo mandate and the current Claude + Finder + PowerPoint vertical slice.
+The long-term north star is tracked in [VISION.md](VISION.md). It includes the
+ultimate demo-production goal, operating principles, and first Claude + Finder +
+PowerPoint vertical slice.
 
 The focused target is a Claude-on-Mac demo environment:
 
