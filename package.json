@@ -62,18 +62,28 @@
     "capture:browser-app": "node tools/capture-web-ui.mjs surfaces/browser-app-surface.html --slug surface-browser-app --selector '.browser-window'",
     "capture:calendar": "node tools/capture-web-ui.mjs surfaces/calendar-app-surface.html --slug surface-calendar-app --selector '.calendar-window'",
     "capture:mac-menu-bar": "node tools/capture-web-ui.mjs compositions/mac-menu-bar.html --slug surface-mac-menu-bar --selector '.mac-menu-bar-stage' --viewport 1960x90",
+    "capture:quickstart-demo": "node tools/capture-web-ui.mjs \"file://$PWD/examples/quickstart-demo.html?capture=hero\" --slug example-quickstart-demo --selector '.quickstart-stage' --viewport 1920x1080",
     "compare:finder": "tools/make-comparison-sheet.sh captures/finder-launch-deck/window.png captures/surface-finder-window/target.png snapshots/finder-source-vs-surface.jpg 'REFERENCE - Finder Launch Deck window capture' 'PROTOTYPE - Editable Finder HTML surface'",
     "compare:finder-window": "tools/make-comparison-sheet.sh captures/finder-launch-deck/window.png captures/surface-finder-window-component/target.png snapshots/finder-source-vs-component.jpg 'REFERENCE - Finder Launch Deck window capture' 'COMPONENT - Finder HyperFrames subcomposition'",
     "compare:sheets": "tools/make-comparison-sheet.sh",
+    "catalog:generate": "node tools/generate-public-catalog.mjs",
     "registry:check": "node tools/check-surface-registry.mjs",
     "hf:lint": "npx hyperframes lint --verbose",
     "hf:validate": "npx hyperframes validate --no-contrast",
     "hf:inspect": "npx hyperframes inspect --samples 9 --json",
     "hf:snapshot": "npx hyperframes snapshot . --at=1,3,5.4,7.8,10.1,12.6,15 --describe=false",
-    "hf:render": "npx hyperframes render --quality draft --output renders/claude-keynote-workflow-draft.mp4"
+    "hf:render": "npx hyperframes render --quality draft --output renders/claude-keynote-workflow-draft.mp4",
+    "example:quickstart:render": "npx hyperframes render --composition examples/quickstart-demo.html --quality draft --output renders/quickstart-demo.mp4",
+    "open-source:check": "npm run catalog:generate && npm run registry:check && npm run hf:lint && npm run hf:validate && npm run hf:inspect"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "hyperframes",
+    "demo-video",
+    "ui-surfaces",
+    "agent-workflows",
+    "product-demos"
+  ],
+  "author": "UI Backlot contributors",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {

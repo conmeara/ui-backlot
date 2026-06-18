@@ -1,0 +1,84 @@
+# Agent Guide
+
+UI Backlot is an agent-first HyperFrames demo-surface kit. Treat the repo as a
+library of editable software sets, not as one monolithic video.
+
+## Fast Orientation
+
+Read these files first:
+
+1. `VISION.md` - product purpose and quality bar.
+2. `DESIGN.md` - visual identity and motion rules.
+3. `docs/catalog.md` - human and agent-readable surface catalog.
+4. `surfaces/registry.json` - authoritative machine-readable inventory.
+5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
+6. `docs/asset-policy.md` and `TRADEMARKS.md` - public asset and brand rules.
+
+## Pick Surfaces
+
+Use `surfaces/registry.json` as the source of truth. Each surface has:
+
+- `id` - stable identifier for prompts, plans, and docs.
+- `kind` - `component`, `workflow`, `surface`, or `lab`.
+- `source` - tracked HTML source.
+- `import.src` and `import.selector` - values for component mounting.
+- `capture.script` - npm script to refresh a visual proof.
+- `tags` - agent routing hints.
+- `assetDecision` - whether copied assets are involved.
+- `recommendedUse` - when to choose it.
+
+Good defaults:
+
+- Claude plus browser: `claude-browser-chat-pane-workflow`
+- Claude plus PowerPoint: `claude-presentation-chat-pane-workflow`
+- Claude plus Finder: `claude-finder-workflow`
+- Claude Code plus Figma: `claude-code-figma-workflow`
+- Codex terminal workflow: `claude-codex-terminal-workflow`
+- Custom assembly: combine `mac-menu-bar`, one app surface, and one Claude or
+  Codex component.
+
+## Build A Demo
+
+Start from `examples/quickstart-demo.html` when the prompt does not require a
+specific wrapper. It demonstrates the preferred pattern:
+
+- root composition in an HTML file
+- tracked components mounted with `data-backlot-mount-src`
+- selectors from `surfaces/registry.json`
+- timeline registered in `window.__timelines`
+- deterministic cursor and click-ring animation
+
+Render it with:
+
+```bash
+npm run example:quickstart:render
+```
+
+## Verify Work
+
+For public-ready changes, run:
+
+```bash
+npm install
+npm run catalog:generate
+npm run registry:check
+npm run hf:lint
+npm run hf:validate
+npm run hf:inspect
+npm run capture:quickstart-demo
+npm run example:quickstart:render
+```
+
+For a smaller local pass after editing one surface, run its capture script plus
+the registry and HyperFrames checks.
+
+## Edit Rules
+
+- Keep important demo UI editable in HTML/CSS/SVG.
+- Do not commit local-only reference media, generated captures, generated
+  renders, donor clones, copied proprietary fonts, or private screenshots.
+- Add new reusable surfaces to `surfaces/registry.json`.
+- Regenerate `docs/catalog.md` with `npm run catalog:generate` after registry
+  changes.
+- Keep examples small. A public starter should show how to compose surfaces,
+  not hide the pattern behind a large bespoke scene.

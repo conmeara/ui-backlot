@@ -30,10 +30,10 @@
   --green: #43b875;
   --mac-blue: #5cc3ec;
   --mac-sun: #f5d08a;
-  --system-cursor-default: url("../reference/open-source/macos-web/public/cursors/normal-select.svg");
-  --system-cursor-text: url("../reference/open-source/macos-web/public/cursors/text-select.svg");
-  --system-cursor-link: url("../reference/open-source/macos-web/public/cursors/link-select.svg");
-  --system-cursor-move: url("../reference/open-source/macos-web/public/cursors/move.svg");
+  --system-cursor-default: url("../assets/cursors/normal-select.svg");
+  --system-cursor-text: url("../assets/cursors/text-select.svg");
+  --system-cursor-link: url("../assets/cursors/link-select.svg");
+  --system-cursor-move: url("../assets/cursors/move.svg");
   --claude-bg-000: #ffffff;
   --claude-bg-100: #f7f7f5;
   --claude-bg-200: #efefec;

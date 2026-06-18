@@ -5,6 +5,12 @@ a code-native studio where Claude, Codex, and related workflow videos can be
 planned, rebuilt, animated, rendered, revised, and shipped without depending on
 perfect live screen recordings.
 
+It should also be usable as an open-source kit. A fresh contributor, and
+especially a coding agent, should be able to clone the repo, discover which
+surfaces exist, choose the right components for a workflow, compose a short
+HyperFrames video, run the verification gates, and understand which assets are
+safe to redistribute.
+
 The core bet is simple: the best instructional and launch demos will not be
 recorded one fragile take at a time. They will be assembled from editable
 software sets.
@@ -39,6 +45,7 @@ trying to perform a perfect screen recording.
 At maturity, UI Backlot should include:
 
 - A library of high-fidelity editable app surfaces.
+- An agent-readable catalog and registry that make surface selection obvious.
 - A primitive system for cursors, typing, dragging, clicking, tool calls,
   progress rows, app switching, focus pulls, and before/after changes.
 - A capture pipeline for turning real app screenshots, DOM, accessibility
@@ -51,6 +58,8 @@ At maturity, UI Backlot should include:
   preview, lint, inspect, snapshot, and video output commands.
 - A quality loop that compares prototypes against reference videos and real app
   captures instead of relying on vibes.
+- Public contribution, license, trademark, and asset-policy docs so the
+  reusable kit can be improved safely.
 
 ## First Vertical Slice
 
@@ -85,6 +94,9 @@ rebuild, primitive, and render patterns should generalize to many demo types.
    or side-by-side comparison.
 8. Optimize for future demo volume: once a surface is rebuilt, agents should be
    able to reuse it across many stories.
+9. Keep the repo agent-first: every reusable surface should have enough
+   metadata, source evidence, capture commands, and validation hooks for an
+   agent to pick it up without reading the whole history.
 
 ## Quality Bar
 
@@ -134,4 +146,3 @@ they teach a reusable surface pattern.
 The aim is a practical creative-production system: faithful enough to teach
 real workflows, structured enough for agents to operate, and editable enough
 that iteration becomes cheap.
-

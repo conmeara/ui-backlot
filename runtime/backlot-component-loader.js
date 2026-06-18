@@ -40,6 +40,26 @@
       });
     };
 
+    const sanitizeCompositionMetadata = (root) => {
+      const compositionElements = [];
+      if (root.matches && root.matches("[data-composition-id]")) {
+        compositionElements.push(root);
+      }
+      if (root.querySelectorAll) {
+        compositionElements.push(...root.querySelectorAll("[data-composition-id]"));
+      }
+
+      compositionElements.forEach((element) => {
+        [
+          "data-composition-id",
+          "data-start",
+          "data-duration",
+          "data-width",
+          "data-height"
+        ].forEach((attribute) => element.removeAttribute(attribute));
+      });
+    };
+
     const template = doc.querySelector("template");
     let sourceRoot;
 
@@ -58,7 +78,9 @@
       throw new Error(`Could not find ${selector || "component root"} in ${src}`);
     }
 
-    return sourceRoot.cloneNode(true);
+    const component = sourceRoot.cloneNode(true);
+    sanitizeCompositionMetadata(component);
+    return component;
   };
 
   const loadWithFetch = async (src, selector) => {

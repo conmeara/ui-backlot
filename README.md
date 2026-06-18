@@ -1,9 +1,9 @@
 # UI Backlot
 
-UI Backlot is a workspace for scripted product-demo videos. The core idea is to
-rebuild the software surfaces we want to teach as deterministic React/HTML
-scenes, then render those scenes with Remotion or HyperFrames instead of relying
-on fragile live screen recordings.
+UI Backlot is an open-source, agent-first workspace for scripted product-demo
+videos. The core idea is to rebuild the software surfaces we want to teach as
+deterministic HTML/HyperFrames scenes, then render those scenes instead of
+relying on fragile live screen recordings.
 
 The project is capture-first: reference videos set the taste bar, but live apps,
 DOM/CSS, screenshots, and accessibility trees are the preferred source of truth
@@ -13,9 +13,33 @@ Open-source UI projects are now an explicit refinement lane. Use them as
 reference material and component donors for macOS, Claude/chat, browser, and
 Office-like surfaces, with license checks before copying code or assets.
 
-The long-term north star is tracked in [VISION.md](VISION.md). It includes the
-ultimate demo-production goal, operating principles, and first Claude + Finder +
-PowerPoint vertical slice.
+The long-term north star is tracked in [VISION.md](VISION.md). Agents should
+start with [AGENTS.md](AGENTS.md), then use [docs/catalog.md](docs/catalog.md)
+and [surfaces/registry.json](surfaces/registry.json) to find reusable surfaces.
+
+## Quickstart
+
+```bash
+npm install
+npm run catalog:generate
+npm run registry:check
+npm run capture:quickstart-demo
+npm run example:quickstart:render
+```
+
+The quickstart demo lives at
+[examples/quickstart-demo.html](examples/quickstart-demo.html). It mounts the
+tracked macOS menu bar, browser surface, and Claude chat pane, then renders a
+14 second HyperFrames draft video.
+
+For the full source/catalog/HyperFrames gate, run:
+
+```bash
+npm run open-source:check
+```
+
+`open-source:check` does not render video; add `npm run example:quickstart:render`
+or a workflow-specific render command when changing demos.
 
 The focused target is a Claude-on-Mac demo environment:
 
@@ -26,7 +50,18 @@ The focused target is a Claude-on-Mac demo environment:
 - Reusable motion primitives for typing, cursor movement, drag/drop, file
   selection, tool calls, agent progress, and app switching.
 
-Current editable surface:
+## Surface Discovery
+
+- [docs/catalog.md](docs/catalog.md) - generated public catalog for humans and
+  agents.
+- [surfaces/registry.json](surfaces/registry.json) - authoritative
+  machine-readable surface inventory.
+- [docs/guides/build-hyperframes-demo.md](docs/guides/build-hyperframes-demo.md)
+  - guide for composing a HyperFrames demo from tracked components.
+
+Run `npm run catalog:generate` after editing `surfaces/registry.json`.
+
+## Current Editable Surfaces
 
 - [index.html](index.html) - current 16 second HyperFrames composition.
 - [styles/workflow.css](styles/workflow.css) - visual styling for the current
@@ -46,6 +81,18 @@ Current editable surface:
 - [surfaces/README.md](surfaces/README.md)
 - [PRIMITIVES.md](PRIMITIVES.md)
 
+## Public Project Boundaries
+
+- License: [ISC](LICENSE).
+- Trademark posture: [TRADEMARKS.md](TRADEMARKS.md).
+- Asset policy: [docs/asset-policy.md](docs/asset-policy.md).
+- Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Tracked surfaces should not require private captures, donor-repo clones,
+downloaded product videos, generated renders, or copied proprietary fonts to
+run. Optional local references can improve fidelity work, but the public kit
+should stay usable from a fresh clone.
+
 Research starts in:
 
 - [docs/research/claude-release-video-references.md](docs/research/claude-release-video-references.md)
@@ -57,7 +104,9 @@ Research starts in:
 Useful commands:
 
 ```bash
+npm run catalog:generate
 npm run capture:web -- <url-or-local-file> --slug <name> [--selector "main"]
+npm run capture:quickstart-demo
 npm run capture:surface
 npm run capture:finder
 npm run capture:browser-app
@@ -68,6 +117,7 @@ npm run hf:validate
 npm run hf:inspect
 npm run hf:snapshot
 npm run hf:render
+npm run example:quickstart:render
 ```
 
 Current render artifact:
