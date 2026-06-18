@@ -128,4 +128,3 @@ gaps:
 - `npm run capture:premiere-editor`
 - `npm run capture:claude-premiere-workflow`
 - `npm run registry:check`
-

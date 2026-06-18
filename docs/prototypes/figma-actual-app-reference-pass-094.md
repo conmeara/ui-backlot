@@ -17,7 +17,7 @@ source URLs and notes.
 
 - `reference/figma/actual-app/actual-figma-ui3-left-navigation-overview.png`
 - `reference/figma/actual-app/actual-figma-ui3-toolbar-editor-wide.png`
-- `reference/figma/actual-app/actual-figma-ui3-actions-toolbar.png`
+- `reference/figma/actual-app/actual-figma-ui3-actions-toolbar.webp`
 - `reference/figma/actual-app/actual-figma-properties-design-prototype.png`
 - `reference/figma/actual-app/actual-figma-left-panel-layers-pages.png`
 - `reference/figma/actual-app/actual-figma-minimized-ui-selection.png`
