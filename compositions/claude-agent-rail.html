@@ -18,8 +18,8 @@
         <section class="rail-section progress-section">
           <div class="rail-title-row">
             <div>
-              <div class="rail-title">Task</div>
-              <p>Preparing updates from selected local context.</p>
+              <div class="rail-title">Progress</div>
+              <p>Steps show as the task unfolds.</p>
             </div>
             <span>Working</span>
           </div>
@@ -34,7 +34,7 @@
           <div class="rail-step-list">
             <div class="rail-step done"><span></span><p>Read folder</p><b>done</b></div>
             <div class="rail-step done"><span></span><p>Map Q2 data</p><b>done</b></div>
-            <div class="rail-step active"><span></span><p>Prepare slides</p><b>now</b></div>
+            <div class="rail-step active"><span></span><p>Update slides</p><b>now</b></div>
             <div class="rail-step"><span></span><p>Return file</p><b>next</b></div>
           </div>
         </section>
@@ -71,7 +71,7 @@
 
         <section class="rail-section rail-note">
           <span class="sync-pulse"></span>
-          <p>Claude is using only the selected local project context.</p>
+          <p>Claude is using only the selected folder and working files.</p>
         </section>
       </aside>
     </section>
@@ -108,26 +108,29 @@
 
       .agent-rail-panel {
         width: 324px;
-        min-height: 800px;
+        min-height: 0;
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        padding: 18px 16px 16px;
-        border: 1px solid rgba(39, 37, 34, 0.085);
-        border-radius: 24px;
-        background: linear-gradient(180deg, rgba(255, 254, 251, 0.985), rgba(250, 248, 243, 0.95));
-        box-shadow:
-          0 1px 1px rgba(49, 44, 38, 0.035),
-          0 24px 70px rgba(72, 52, 39, 0.12);
+        gap: 18px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .rail-section {
         display: grid;
-        gap: 9px;
+        gap: 14px;
+        padding: 21px 20px;
+        border: 1px solid rgba(39, 37, 34, 0.085);
+        border-radius: 18px;
+        background: rgba(255, 253, 249, 0.78);
+        box-shadow: 0 12px 42px rgba(72, 52, 39, 0.055);
       }
 
       .progress-section {
-        gap: 12px;
+        gap: 19px;
       }
 
       .rail-title-row {
@@ -138,42 +141,33 @@
       }
 
       .rail-title-row > span {
-        height: 24px;
-        display: inline-flex;
-        align-items: center;
-        flex: 0 0 auto;
-        padding: 0 10px;
-        border-radius: 999px;
-        background: rgba(214, 111, 89, 0.12);
-        color: #a84535;
-        font-size: 12px;
-        font-weight: 700;
+        display: none;
       }
 
       .rail-title {
         color: #292520;
-        font-size: 15px;
+        font-size: 22px;
         line-height: 1.1;
-        font-weight: 720;
+        font-weight: 760;
       }
 
       .progress-section p,
       .rail-note p {
-        margin: 5px 0 0;
+        margin: 8px 0 0;
         color: #6a6259;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.35;
       }
 
       .progress-circles {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
       }
 
       .progress-circles span {
-        width: 27px;
-        height: 27px;
+        width: 31px;
+        height: 31px;
         position: relative;
         border: 1.5px solid #d8d2c9;
         border-radius: 50%;
@@ -188,10 +182,10 @@
       .progress-circles .done::before {
         content: "";
         position: absolute;
-        left: 9px;
-        top: 8px;
-        width: 8px;
-        height: 5px;
+        left: 10px;
+        top: 10px;
+        width: 9px;
+        height: 6px;
         border-left: 2px solid #4b4740;
         border-bottom: 2px solid #4b4740;
         transform: rotate(-45deg);
@@ -204,18 +198,18 @@
 
       .rail-step-list {
         display: grid;
-        gap: 6px;
+        gap: 18px;
       }
 
       .rail-step {
-        min-height: 34px;
+        min-height: 31px;
         display: grid;
-        grid-template-columns: 18px minmax(0, 1fr) auto;
+        grid-template-columns: 23px minmax(0, 1fr);
         align-items: center;
-        gap: 9px;
-        padding: 0 9px;
-        border-radius: 10px;
-        background: rgba(246, 243, 237, 0.42);
+        gap: 12px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
       }
 
       .rail-step span {
@@ -243,7 +237,7 @@
       }
 
       .rail-step.active {
-        background: rgba(214, 111, 89, 0.075);
+        background: transparent;
       }
 
       .rail-step.active span {
@@ -255,36 +249,35 @@
         min-width: 0;
         margin: 0;
         overflow: hidden;
-        color: #4f4942;
-        font-size: 13px;
+        color: #292520;
+        font-size: 16px;
         line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
 
       .rail-step b {
-        color: #736c63;
-        font-size: 11.5px;
-        font-weight: 620;
+        display: none;
       }
 
       .artifact-card {
-        min-height: 61px;
+        min-height: 54px;
         display: grid;
-        grid-template-columns: 30px minmax(0, 1fr);
+        grid-template-columns: 25px minmax(0, 1fr);
         align-items: center;
-        gap: 11px;
-        padding: 10px 11px;
-        border: 1px solid rgba(39, 37, 34, 0.07);
-        border-radius: 14px;
-        background: rgba(255, 254, 250, 0.74);
+        gap: 10px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .artifact-card strong {
         display: block;
         overflow: hidden;
         color: #292520;
-        font-size: 13.5px;
+        font-size: 16px;
         font-weight: 720;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -294,7 +287,7 @@
         display: block;
         margin-top: 3px;
         color: #736c63;
-        font-size: 12.5px;
+        font-size: 11px;
       }
 
       .rail-list {
@@ -305,15 +298,15 @@
       .rail-row,
       .connector-row,
       .working-file {
-        min-height: 32px;
+        min-height: 34px;
         display: flex;
         align-items: center;
         gap: 9px;
-        padding: 0 9px;
-        border-radius: 10px;
-        background: rgba(246, 243, 237, 0.45);
-        color: #4f4942;
-        font-size: 13px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #292520;
+        font-size: 16px;
       }
 
       .rail-row span:last-child,
@@ -326,23 +319,25 @@
       }
 
       .rail-file-icon {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         position: relative;
         flex: 0 0 auto;
+        border: 1.3px solid #a79e91;
         border-radius: 5px;
-        background: #ddd4c7;
+        background: transparent;
       }
 
       .rail-file-icon.deck {
-        width: 26px;
-        height: 26px;
-        border-radius: 7px;
-        background: linear-gradient(135deg, #d46e54, #a84835);
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        background: transparent;
       }
 
       .rail-file-icon.folder {
-        background: #72c2e4;
+        border-color: #88aebf;
+        background: #edf8fc;
       }
 
       .rail-file-icon.folder::before {
@@ -357,11 +352,12 @@
       }
 
       .rail-file-icon.sheet {
-        background: #84b889;
+        border-color: #80ae84;
+        background: #f2faf2;
       }
 
       .rail-file-icon.doc {
-        background: #d6cfc4;
+        background: transparent;
       }
 
       .connector-row strong {
@@ -386,10 +382,12 @@
       }
 
       .working-files {
+        display: none;
         margin-top: auto;
       }
 
       .rail-note {
+        display: none;
         min-height: 58px;
         grid-template-columns: 12px minmax(0, 1fr);
         align-items: start;
@@ -398,6 +396,7 @@
         border: 1px solid rgba(216, 117, 95, 0.09);
         border-radius: 14px;
         background: rgba(255, 246, 239, 0.64);
+        box-shadow: none;
       }
 
       .rail-note p {

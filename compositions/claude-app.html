@@ -14,7 +14,7 @@
 </style>
 
 <template id="claude-app-surface-template">
-  <div id="claude-app-surface" data-composition-id="claude-app-surface" data-width="1180" data-height="780">
+  <div id="claude-app-surface" data-composition-id="claude-app-surface" data-width="1280" data-height="860">
     <section class="claude-app-window dframe-root" data-primitive="claude-app-window" aria-label="Editable Claude app surface">
       <aside class="dframe-sidebar" data-primitive="claude-sidebar">
         <div class="claude-traffic" aria-hidden="true">
@@ -89,7 +89,7 @@
           <div class="topbar-actions">
             <button class="model-selector" type="button">
               <span class="model-dot"></span>
-              <span>Claude Sonnet 4.6</span>
+              <span>Opus 4.5</span>
               <span class="chevron down"></span>
             </button>
             <button class="topbar-icon share" type="button" aria-label="Share"></button>
@@ -120,23 +120,23 @@
               </div>
               <div class="assistant-stack">
                 <div class="assistant-copy">
-                  <span class="typing-mask assistant-line">Sure, I can make those deck changes for you.</span>
-                  <span class="typing-mask assistant-line secondary">I'll inspect the folder context and prepare the deck update.</span>
+                  <span class="typing-mask assistant-line">I'll update the launch deck from the selected folder.</span>
+                  <span class="typing-mask assistant-line secondary">I'm checking the notes, Q2 data, and deck file before returning the edited presentation.</span>
                 </div>
 
                 <section class="thinking-card" data-primitive="message-part-group" aria-label="Thinking">
                   <button class="card-trigger" type="button">
                     <span class="chevron open"></span>
-                    <span>Reading the selected context</span>
+                    <span>Running command</span>
                     <span class="card-meta">3 parts</span>
                   </button>
                   <div class="thinking-body">
                     <div class="part-section">
-                      <span class="part-label">Reasoning</span>
-                      <span>Read the project folder, map the data files to slide edits, then stage the presentation update.</span>
+                      <span class="part-label">Request JSON</span>
+                      <span>{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }</span>
                     </div>
                     <div class="source-cluster" aria-label="Sources">
-                      <span class="source-label">Sources</span>
+                      <span class="source-label">Selected context</span>
                       <span class="source-chip">slide-notes.md</span>
                       <span class="source-chip">Q2 revenue.csv</span>
                     </div>
@@ -146,24 +146,22 @@
                 <section class="tool-card epitaxy-task-card-surface" data-primitive="progress-rows" aria-label="Taking action">
                   <button class="card-trigger" type="button">
                     <span class="chevron open"></span>
-                    <span>Making the deck update</span>
+                    <span>Editing Deck.pptx</span>
                     <span class="card-meta">00:07</span>
                   </button>
                   <div class="tool-row done"><span class="tool-dot"></span><span>Read Launch Deck folder</span><span class="tool-status">4 files</span></div>
                   <div class="tool-row done second"><span class="tool-dot"></span><span>Found slide notes and Q2 data</span><span class="tool-status">ready</span></div>
-                  <div class="tool-row active"><span class="tool-dot"></span><span>Preparing PowerPoint edits</span><span class="tool-status">working</span></div>
+                  <div class="tool-row active"><span class="tool-dot"></span><span>Updating opening slides</span><span class="tool-status">working</span></div>
                 </section>
 
                 <section class="command-card" data-primitive="command-output-card" aria-label="Command output">
                   <div class="command-card-head">
                     <span class="command-dot"></span>
-                    <span>Local plan preview</span>
-                    <span>preview</span>
+                    <span>Response</span>
+                    <span>streaming</span>
                   </div>
-                  <pre>{
-  "slides": ["title", "revenue"],
-  "edits": ["rename headline", "recolor chart", "add speaker note"]
-}</pre>
+                  <pre>Found Launch Deck.pptx, slide-notes.md, and Q2 revenue.csv.
+Next I'll update the title slide and refresh the revenue chart.</pre>
                 </section>
 
                 <div class="message-actions" aria-label="Assistant message actions">
@@ -191,8 +189,12 @@
                   <button class="prompt-tool" type="button"><span class="folder-mini"></span>Work in a folder</button>
                   <button class="prompt-tool" type="button">Research</button>
                 </span>
+                <button class="composer-model-selector" type="button">
+                  <span>Opus 4.5</span>
+                  <span class="chevron down"></span>
+                </button>
                 <button class="prompt-icon-button mic" type="button" aria-label="Dictate"></button>
-                <button class="send-button is-running" type="button" aria-label="Stop generating"></button>
+                <button class="send-button" type="button" aria-label="Send"></button>
               </div>
             </div>
           </div>
@@ -201,14 +203,14 @@
 
       <aside class="agent-rail" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
         <section class="rail-section progress-section">
-          <div class="rail-title-row"><div class="rail-title">Task</div><span>Working</span></div>
+          <div class="rail-title-row"><div class="rail-title">Progress</div><span>Working</span></div>
           <div class="progress-circles" aria-hidden="true">
             <span class="done"></span><span class="done"></span><span class="active"></span><span></span>
           </div>
           <div class="rail-step-list">
             <div class="rail-step done"><span></span><p>Read folder</p><b>done</b></div>
             <div class="rail-step done"><span></span><p>Map Q2 data</p><b>done</b></div>
-            <div class="rail-step active"><span></span><p>Prepare slides</p><b>now</b></div>
+            <div class="rail-step active"><span></span><p>Update slides</p><b>now</b></div>
             <div class="rail-step"><span></span><p>Return file</p><b>next</b></div>
           </div>
         </section>
@@ -245,7 +247,7 @@
 
         <section class="rail-section rail-note">
           <span class="sync-pulse"></span>
-          <p>Claude is using only the selected local project context.</p>
+          <p>Claude is using only the selected folder and working files.</p>
         </section>
       </aside>
     </section>
@@ -300,9 +302,9 @@
 
       #claude-app-surface[data-reference-focus="true"] {
         --df-sidebar-width: 188px;
-        --df-agent-rail-width: 142px;
+        --df-agent-rail-width: 172px;
         --df-header-h: 38px;
-        --max-content-width: 850px;
+        --max-content-width: 780px;
       }
 
       #claude-app-surface * {
@@ -321,7 +323,7 @@
         display: grid;
         grid-template-columns: var(--df-sidebar-width) minmax(0, 1fr) var(--df-agent-rail-width);
         grid-template-rows: 100%;
-        border-radius: 18px;
+        border-radius: 14px;
         background:
           linear-gradient(90deg, transparent 0 9.8%, rgba(231, 224, 215, 0.18) 9.8% calc(9.8% + 1px), transparent calc(9.8% + 1px) 90.2%, rgba(231, 224, 215, 0.14) 90.2% calc(90.2% + 1px), transparent calc(90.2% + 1px) 100%),
           var(--bg-000);
@@ -345,16 +347,16 @@
         width: var(--df-sidebar-width);
         min-width: 0;
         padding: 13px 7px 12px;
-        background: linear-gradient(180deg, rgba(248, 245, 239, 0.62), rgba(244, 240, 232, 0.54));
-        border-right: 1px solid rgba(42, 35, 27, 0.026);
+        background: linear-gradient(180deg, rgba(249, 246, 240, 0.84), rgba(244, 239, 231, 0.72));
+        border-right: 1px solid rgba(42, 35, 27, 0.055);
         box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.32);
         user-select: none;
       }
 
       #claude-app-surface[data-reference-focus="true"] .dframe-sidebar {
         padding-inline: 6px;
-        opacity: 0.92;
-        background: linear-gradient(180deg, rgba(248, 245, 239, 0.45), rgba(244, 240, 232, 0.35));
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(248, 245, 239, 0.78), rgba(244, 240, 232, 0.64));
       }
 
       .claude-traffic {
@@ -775,7 +777,7 @@
         min-width: 0;
         height: 100%;
         display: grid;
-        grid-template-rows: var(--df-header-h) minmax(0, 1fr) 132px;
+        grid-template-rows: var(--df-header-h) minmax(0, 1fr) 112px;
         background:
           linear-gradient(90deg, transparent 0 9.2%, rgba(231, 224, 215, 0.14) 9.2% calc(9.2% + 1px), transparent calc(9.2% + 1px) 90.8%, rgba(231, 224, 215, 0.12) 90.8% calc(90.8% + 1px), transparent calc(90.8% + 1px) 100%),
           var(--bg-000);
@@ -1000,22 +1002,22 @@
       }
 
       .assistant-copy {
-        max-width: 742px;
+        max-width: 690px;
         display: grid;
         gap: 5px;
         color: var(--text-100);
         font-family: "Anthropic Serif", serif;
-        font-size: 36px;
-        line-height: 1.08;
+        font-size: 27px;
+        line-height: 1.14;
         font-weight: 430;
         letter-spacing: 0;
       }
 
       #claude-app-surface[data-reference-focus="true"] .assistant-copy {
-        max-width: 840px;
+        max-width: 735px;
         gap: 3px;
-        font-size: 39px;
-        line-height: 1.04;
+        font-size: 29px;
+        line-height: 1.12;
       }
 
       .assistant-line.secondary {
@@ -1097,7 +1099,7 @@
       .thinking-card,
       .tool-card {
         width: 100%;
-        margin-top: 18px;
+        margin-top: 14px;
         overflow: hidden;
         border: 1px solid rgba(39, 37, 34, 0.036);
         border-radius: 15px;
@@ -1107,7 +1109,7 @@
       #claude-app-surface[data-reference-focus="true"] .thinking-card,
       #claude-app-surface[data-reference-focus="true"] .tool-card {
         margin-top: 15px;
-        opacity: 0.68;
+        opacity: 1;
         border-color: rgba(39, 37, 34, 0.028);
         background: rgba(255, 253, 249, 0.24);
         box-shadow: none;
@@ -1248,13 +1250,13 @@
         overflow: hidden;
         border-radius: 12px;
         border: 1px solid rgba(39, 37, 34, 0.06);
-        background: rgba(251, 248, 242, 0.52);
+        background: rgba(251, 248, 242, 0.78);
         box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
       }
 
       #claude-app-surface[data-reference-focus="true"] .command-card {
         margin-top: 8px;
-        opacity: 0.42;
+        opacity: 1;
         box-shadow: none;
       }
 
@@ -1286,7 +1288,15 @@
       }
 
       .command-card pre {
-        display: none;
+        display: block;
+        margin: 0;
+        padding: 0 12px 11px 34px;
+        overflow: hidden;
+        color: var(--text-300);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11.5px;
+        line-height: 1.45;
+        white-space: pre-wrap;
       }
 
       .message-actions {
@@ -1335,9 +1345,9 @@
       }
 
       .epitaxy-prompt {
-        min-height: 126px;
+        min-height: 106px;
         display: grid;
-        grid-template-rows: 30px 1fr 40px;
+        grid-template-rows: 28px 1fr 38px;
         overflow: hidden;
         border: 1px solid rgba(39, 37, 34, 0.105);
         border-radius: 28px;
@@ -1348,8 +1358,8 @@
       }
 
       #claude-app-surface[data-reference-focus="true"] .epitaxy-prompt {
-        min-height: 138px;
-        border-radius: 30px;
+        min-height: 112px;
+        border-radius: 24px;
         box-shadow:
           0 1px 1px rgba(49, 44, 38, 0.035),
           0 28px 70px rgba(64, 48, 34, 0.105);
@@ -1423,7 +1433,7 @@
       .epitaxy-prompt-input {
         padding: 8px 16px 0;
         color: var(--text-400);
-        font-size: 31px;
+        font-size: 24px;
         line-height: 1.35;
         font-family: "Anthropic Sans", sans-serif;
         font-weight: 420;
@@ -1431,7 +1441,7 @@
 
       #claude-app-surface[data-reference-focus="true"] .epitaxy-prompt-input {
         padding-top: 7px;
-        font-size: 33px;
+        font-size: 25px;
       }
 
       .composer-controls {
@@ -1532,8 +1542,8 @@
       }
 
       .send-button {
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
         flex: 0 0 auto;
         border: 0;
         border-radius: 50%;
@@ -1571,27 +1581,27 @@
         display: flex;
         flex-direction: column;
         gap: 11px;
-        padding: 58px 10px 15px;
-        background: linear-gradient(180deg, rgba(253, 252, 248, 0.32), rgba(250, 248, 243, 0.24));
-        border-left: 1px solid rgba(42, 35, 27, 0.018);
+        padding: 58px 12px 15px;
+        background: linear-gradient(180deg, rgba(253, 252, 248, 0.74), rgba(250, 248, 243, 0.58));
+        border-left: 1px solid rgba(42, 35, 27, 0.055);
         color: var(--text-300);
       }
 
       #claude-app-surface[data-reference-focus="true"] .agent-rail {
         gap: 10px;
-        padding: 56px 8px 15px;
-        opacity: 0.54;
-        background: linear-gradient(180deg, rgba(253, 252, 248, 0.2), rgba(250, 248, 243, 0.12));
+        padding: 56px 10px 15px;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(253, 252, 248, 0.72), rgba(250, 248, 243, 0.54));
       }
 
       #claude-app-surface[data-reference-focus="true"] .agent-rail .rail-section:not(.progress-section):not(.rail-note) {
-        opacity: 0.72;
+        opacity: 1;
       }
 
       .rail-section {
         display: grid;
         gap: 6px;
-        opacity: 0.78;
+        opacity: 1;
       }
 
       .rail-title-row {
@@ -1862,6 +1872,565 @@
         color: var(--text-500);
         font-size: 10.5px;
         line-height: 1.3;
+      }
+
+      /* Actual Cowork reference pass 095. These overrides intentionally bias the
+         full Claude shell toward the real desktop/Cowork screenshots. */
+      #claude-app-surface {
+        --bg-000: #fdfbf6;
+        --bg-100: #fbf9f3;
+        --bg-150: #f7f4ed;
+        --text-100: #151412;
+        --text-200: #27231f;
+        --text-300: #4d4841;
+        --text-400: #756f66;
+        --text-500: #928a80;
+        --brand-000: #c95d47;
+        --brand-100: #df9b87;
+        --df-sidebar-width: 324px;
+        --df-agent-rail-width: 356px;
+        --df-header-h: 54px;
+        --df-row-h: 39px;
+        --df-radius-pill: 10px;
+        --max-content-width: 530px;
+        width: 1280px;
+        height: 860px;
+      }
+
+      #claude-app-surface[data-reference-focus="true"] {
+        --df-sidebar-width: 324px;
+        --df-agent-rail-width: 356px;
+        --df-header-h: 54px;
+        --max-content-width: 530px;
+      }
+
+      .claude-app-window {
+        width: 1280px;
+        height: 860px;
+        border-radius: 19px;
+        background: var(--bg-000);
+        box-shadow:
+          0 1px 0 rgba(50, 44, 37, 0.06),
+          0 0 0 1px rgba(43, 36, 30, 0.08);
+      }
+
+      #claude-app-surface[data-reference-focus="true"] .claude-app-window {
+        background: var(--bg-000);
+      }
+
+      .dframe-sidebar,
+      #claude-app-surface[data-reference-focus="true"] .dframe-sidebar {
+        padding: 24px 24px 18px;
+        background: #f9f7f0;
+        border-right: 1px solid rgba(47, 41, 35, 0.1);
+        box-shadow: none;
+      }
+
+      .claude-traffic {
+        height: 16px;
+        gap: 8px;
+        margin: 0 0 34px 5px;
+      }
+
+      .claude-traffic span {
+        width: 12px;
+        height: 12px;
+      }
+
+      .sidebar-head {
+        position: absolute;
+        left: 126px;
+        top: 22px;
+        width: 112px;
+        height: 22px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .claude-app-brand {
+        display: none;
+      }
+
+      .sidebar-icon-button {
+        width: 28px;
+        height: 28px;
+        color: #6e6860;
+      }
+
+      .mode-switch {
+        height: 46px;
+        gap: 0;
+        padding: 4px;
+        margin: 29px 0 28px;
+        border: 1px solid rgba(44, 38, 32, 0.08);
+        border-radius: 14px;
+        background: #eee9df;
+        box-shadow: none;
+      }
+
+      #claude-app-surface[data-reference-focus="true"] .mode-switch,
+      #claude-app-surface[data-reference-focus="true"] .sidebar-sync-state,
+      #claude-app-surface[data-reference-focus="true"] .sidebar-account {
+        opacity: 1;
+      }
+
+      .mode-switch button {
+        border-radius: 11px;
+        color: #6f675f;
+        font-size: 17px;
+        font-weight: 520;
+      }
+
+      .mode-switch .active {
+        background: rgba(255, 254, 251, 0.95);
+        box-shadow: 0 2px 8px rgba(45, 36, 28, 0.1);
+      }
+
+      .sidebar-primary-actions {
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .new-chat-button,
+      .search-chat-button,
+      .dframe-row {
+        height: var(--df-row-h);
+        gap: 15px;
+        padding: 0 13px;
+        border-radius: 10px;
+        font-size: 17px;
+      }
+
+      .new-chat-button {
+        height: 48px;
+        padding-left: 9px;
+        background: transparent;
+        box-shadow: none;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .new-chat-button .sidebar-symbol.compose {
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--brand-000);
+      }
+
+      .new-chat-button .sidebar-symbol.compose::before,
+      .new-chat-button .sidebar-symbol.compose::after {
+        border: 0;
+        background: #fff;
+      }
+
+      .new-chat-button .sidebar-symbol.compose::before {
+        left: 9px;
+        top: 14px;
+        width: 13px;
+        height: 2px;
+      }
+
+      .new-chat-button .sidebar-symbol.compose::after {
+        left: 14px;
+        top: 9px;
+        width: 2px;
+        height: 13px;
+        transform: none;
+      }
+
+      .search-chat-button {
+        display: none;
+      }
+
+      .sidebar-section-label {
+        margin: 22px 14px 8px;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .dframe-row.selected {
+        background: #ebe6dd;
+      }
+
+      .sidebar-sync-state {
+        display: block;
+        margin: 20px 13px 0;
+        padding: 0;
+        background: transparent;
+        color: #706960;
+        font-size: 16px;
+        line-height: 1.42;
+      }
+
+      .sidebar-sync-state .sync-pulse {
+        display: none;
+      }
+
+      .sidebar-account {
+        height: 64px;
+        grid-template-columns: 44px minmax(0, 1fr) 24px;
+        gap: 12px;
+        padding: 0 10px;
+        font-size: 15px;
+      }
+
+      .account-avatar {
+        width: 42px;
+        height: 42px;
+        background: #23201c;
+      }
+
+      .account-copy strong {
+        font-size: 17px;
+        font-weight: 520;
+      }
+
+      .account-copy span {
+        font-size: 15px;
+      }
+
+      .dframe-pane-primary,
+      #claude-app-surface[data-reference-focus="true"] .dframe-pane-primary {
+        grid-template-rows: var(--df-header-h) minmax(0, 1fr) 154px;
+        background:
+          linear-gradient(rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          #fffdf7;
+        background-size: 48px 48px;
+      }
+
+      .epitaxy-topbar,
+      #claude-app-surface[data-reference-focus="true"] .epitaxy-topbar {
+        padding: 0 20px;
+        border-bottom: 1px solid rgba(49, 43, 36, 0.08);
+        background: rgba(255, 253, 247, 0.82);
+      }
+
+      .topbar-actions .model-selector {
+        display: none;
+      }
+
+      .conversation-title {
+        font-size: 16px;
+        font-weight: 560;
+      }
+
+      .conversation-subtitle {
+        display: none;
+      }
+
+      .epitaxy-chat-panel-body,
+      #claude-app-surface[data-reference-focus="true"] .epitaxy-chat-panel-body {
+        padding-top: 38px;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .epitaxy-chat-panel-body::after {
+        display: none;
+      }
+
+      .epitaxy-transcript-width,
+      .epitaxy-composer-width {
+        width: min(calc(100% - 36px), var(--max-content-width));
+      }
+
+      .message-row {
+        margin-bottom: 22px;
+      }
+
+      .epitaxy-sticky-prompt-bubble,
+      #claude-app-surface[data-reference-focus="true"] .epitaxy-sticky-prompt-bubble {
+        max-width: 390px;
+        padding: 18px 22px;
+        border-radius: 18px;
+        background: #ece9e2;
+        font-size: 18px;
+        line-height: 1.32;
+      }
+
+      .thread-context-strip {
+        display: none;
+      }
+
+      .message-row.assistant {
+        grid-template-columns: 33px minmax(0, 1fr);
+        gap: 13px;
+      }
+
+      .claude-sunburst.response-mark {
+        width: 25px;
+        height: 25px;
+        --ray-w: 2.1px;
+        --ray-h: 9px;
+      }
+
+      .assistant-copy,
+      #claude-app-surface[data-reference-focus="true"] .assistant-copy {
+        max-width: 455px;
+        gap: 11px;
+        font-size: 24px;
+        line-height: 1.2;
+      }
+
+      .assistant-line.secondary,
+      #claude-app-surface[data-reference-focus="true"] .assistant-line.secondary {
+        font-size: 0.94em;
+        line-height: 1.22;
+        color: var(--text-200);
+      }
+
+      .thinking-card,
+      .tool-card,
+      #claude-app-surface[data-reference-focus="true"] .thinking-card,
+      #claude-app-surface[data-reference-focus="true"] .tool-card {
+        margin-top: 20px;
+        border-color: rgba(46, 39, 32, 0.12);
+        border-radius: 14px;
+        background: rgba(255, 254, 250, 0.92);
+        box-shadow: 0 2px 10px rgba(52, 43, 34, 0.06);
+      }
+
+      .card-trigger {
+        min-height: 44px;
+        grid-template-columns: 24px 1fr auto;
+        padding: 0 18px;
+        font-size: 17px;
+        color: var(--text-200);
+      }
+
+      .thinking-body {
+        min-height: 172px;
+        padding: 16px 18px 18px 49px;
+      }
+
+      .part-section {
+        padding: 16px 18px;
+        border-radius: 10px;
+        background: #f8f7f1;
+        color: #3f7b45;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .part-label,
+      .source-label {
+        color: #756f66;
+        font-family: "Anthropic Sans", sans-serif;
+        font-size: 13px;
+        text-transform: none;
+      }
+
+      .tool-row {
+        min-height: 39px;
+        padding: 0 18px;
+        font-size: 16px;
+      }
+
+      .command-card {
+        display: none;
+      }
+
+      .composer-shell,
+      #claude-app-surface[data-reference-focus="true"] .composer-shell {
+        padding: 0 0 26px;
+      }
+
+      .epitaxy-prompt,
+      #claude-app-surface[data-reference-focus="true"] .epitaxy-prompt {
+        min-height: 132px;
+        grid-template-rows: 1fr 48px;
+        border-radius: 21px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow:
+          0 1px 0 rgba(50, 44, 38, 0.08),
+          0 12px 34px rgba(54, 42, 31, 0.08);
+      }
+
+      .prompt-attachments {
+        display: none;
+      }
+
+      .epitaxy-prompt-input,
+      #claude-app-surface[data-reference-focus="true"] .epitaxy-prompt-input {
+        padding: 26px 24px 0;
+        font-size: 23px;
+      }
+
+      .composer-controls {
+        padding: 0 18px 18px;
+        gap: 16px;
+      }
+
+      .prompt-tool,
+      .prompt-icon-button.mic {
+        display: none;
+      }
+
+      .prompt-icon-button.plus {
+        width: 30px;
+        height: 30px;
+        border: 0;
+        background: transparent;
+      }
+
+      .composer-model-selector {
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+        border: 0;
+        background: transparent;
+        color: #27231f;
+        font-size: 20px;
+        font-weight: 470;
+      }
+
+      .send-button {
+        width: 43px;
+        height: 43px;
+        border-radius: 12px;
+        background: var(--brand-100);
+        box-shadow: none;
+      }
+
+      .send-button::before,
+      .send-button.is-running::before {
+        left: 14px;
+        top: 16px;
+        width: 14px;
+        height: 14px;
+        border-left: 2.5px solid #fff;
+        border-top: 2.5px solid #fff;
+        border-radius: 0;
+        background: transparent;
+        transform: rotate(45deg);
+      }
+
+      .agent-rail,
+      #claude-app-surface[data-reference-focus="true"] .agent-rail {
+        gap: 18px;
+        padding: 30px 18px 24px;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          #fffdf7;
+        background-size: 48px 48px;
+        border-left: 1px solid rgba(47, 41, 35, 0.1);
+      }
+
+      .rail-section,
+      .rail-note {
+        gap: 14px;
+        padding: 21px 20px;
+        border: 1px solid rgba(46, 39, 32, 0.11);
+        border-radius: 16px;
+        background: rgba(255, 254, 250, 0.92);
+        box-shadow: 0 1px 3px rgba(52, 43, 34, 0.04);
+      }
+
+      .rail-title-row > span {
+        display: none;
+      }
+
+      .rail-title {
+        color: var(--text-100);
+        font-size: 20px;
+        font-weight: 590;
+      }
+
+      .progress-circles {
+        gap: 8px;
+      }
+
+      .progress-circles span {
+        width: 31px;
+        height: 31px;
+      }
+
+      .progress-circles .done::before {
+        left: 10px;
+        top: 9px;
+        width: 10px;
+        height: 6px;
+        border-color: #8f887e;
+      }
+
+      .progress-circles .active {
+        border-color: #d0c8ba;
+        box-shadow: none;
+      }
+
+      .rail-step-list {
+        gap: 8px;
+      }
+
+      .rail-step {
+        min-height: 42px;
+        grid-template-columns: 26px minmax(0, 1fr);
+        gap: 12px;
+        padding: 0;
+        background: transparent;
+      }
+
+      .rail-step b {
+        display: none;
+      }
+
+      .rail-step span {
+        width: 24px;
+        height: 24px;
+      }
+
+      .rail-step p {
+        color: var(--text-200);
+        font-size: 16px;
+      }
+
+      .rail-step.active {
+        background: transparent;
+      }
+
+      .rail-step.active span {
+        border-color: #3b92d9;
+        box-shadow: none;
+      }
+
+      .artifact-card,
+      .context-row,
+      .connector-row,
+      .working-file {
+        min-height: 36px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        color: var(--text-200);
+        font-size: 16px;
+      }
+
+      .rail-file-icon,
+      .rail-file-icon.deck,
+      .rail-file-icon.folder,
+      .rail-file-icon.sheet,
+      .rail-file-icon.doc {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        background: transparent;
+        border: 1.8px solid #938c82;
+      }
+
+      .artifact-card strong {
+        font-size: 16px;
+        font-weight: 520;
+      }
+
+      .rail-note {
+        margin-top: auto;
       }
 
     </style>
