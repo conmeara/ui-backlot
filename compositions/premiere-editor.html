@@ -22,10 +22,24 @@
           <span class="yellow"></span>
           <span class="green"></span>
         </div>
+        <div class="home-icon" aria-hidden="true"></div>
+        <div class="mode-tabs" aria-label="Premiere mode tabs">
+          <button type="button">Import</button>
+          <button type="button" class="active">Edit</button>
+          <button type="button">Export</button>
+        </div>
         <div class="app-identity">
-          <span class="pr-mark">Pr</span>
           <span>Neighborhood Launch Cut</span>
           <span class="title-muted">Edited</span>
+        </div>
+        <div class="workspace-identity">
+          <span>ESSENTIALS</span>
+          <i class="top-icon layout"></i>
+          <i class="top-icon share"></i>
+          <i class="top-icon sliders"></i>
+          <i class="top-icon flask"></i>
+          <i class="top-icon comment"></i>
+          <i class="top-icon expand"></i>
         </div>
         <div class="top-actions">
           <button type="button" class="sync-pill"><span></span> Frame.io</button>
@@ -34,11 +48,8 @@
       </header>
 
       <nav class="workspace-tabs" data-primitive="premiere-workspaces" aria-label="Premiere workspaces">
-        <button type="button">Import</button>
-        <button type="button" class="active">Edit</button>
-        <button type="button">Export</button>
-        <span class="workspace-divider"></span>
         <button type="button">Assembly</button>
+        <button type="button" class="active">Editing</button>
         <button type="button">Color</button>
         <button type="button">Effects</button>
         <button type="button">Audio</button>
@@ -50,11 +61,13 @@
       <main class="editor-grid">
         <section class="panel source-monitor" data-primitive="premiere-source-monitor">
           <div class="panel-tabs">
-            <button type="button" class="active">Source: interview_selects.mov</button>
+            <button type="button" class="active">Source: A005_C037_0925SG_001.mp4</button>
             <button type="button">Effect Controls</button>
+            <span class="panel-menu"></span>
           </div>
           <div class="monitor-frame source-frame">
             <div class="video-still interview">
+              <div class="monitor-overlay top-left">V: interview_selects.mov</div>
               <div class="subject"></div>
               <div class="background-card"></div>
               <div class="source-timecode">00:01:14:09</div>
@@ -68,22 +81,28 @@
           </div>
           <div class="monitor-controls">
             <span class="timecode active">00:00:14:18</span>
+            <button type="button" class="control mark-in" aria-label="Mark in"></button>
             <span class="mark in">I</span>
             <button type="button" class="control prev" aria-label="Previous frame"></button>
             <button type="button" class="control play" aria-label="Play"></button>
             <button type="button" class="control next" aria-label="Next frame"></button>
             <span class="mark out">O</span>
+            <button type="button" class="control insert" aria-label="Insert"></button>
+            <button type="button" class="control overwrite" aria-label="Overwrite"></button>
+            <span class="monitor-scale">Fit</span>
             <span class="duration">00:00:08:07</span>
           </div>
         </section>
 
         <section class="panel program-monitor" data-primitive="premiere-program-monitor">
           <div class="panel-tabs">
-            <button type="button" class="active">Program: Launch Deck</button>
+            <button type="button" class="active">Program: Sequence 02</button>
             <button type="button">Comparison View</button>
+            <span class="panel-menu"></span>
           </div>
           <div class="monitor-frame program-frame">
             <div class="safe-guides"></div>
+            <div class="monitor-overlay top-left">Editing workspace · 1920 x 1080</div>
             <div class="program-card">
               <div class="program-title">Maple Grove Playground</div>
               <div class="program-subtitle">Community launch video</div>
@@ -94,9 +113,12 @@
           </div>
           <div class="monitor-controls">
             <span class="timecode active">00:00:31:12</span>
+            <button type="button" class="control safe" aria-label="Safe margins"></button>
             <button type="button" class="control step-back" aria-label="Step back"></button>
             <button type="button" class="control play active" aria-label="Play"></button>
             <button type="button" class="control step-forward" aria-label="Step forward"></button>
+            <button type="button" class="control export-frame" aria-label="Export frame"></button>
+            <span class="monitor-scale">Fit</span>
             <span class="resolution">1/2</span>
             <span class="duration">00:01:08:00</span>
           </div>
@@ -116,23 +138,30 @@
           <div class="panel-tabs">
             <button type="button" class="active">Project</button>
             <button type="button">Media Browser</button>
+            <button type="button">Libraries</button>
+            <span class="panel-menu"></span>
           </div>
           <div class="project-toolbar">
-            <span class="bin-search">Search project</span>
-            <span class="view-toggle"></span>
+            <span class="bin-folder">Sample Project.prproj</span>
+            <span class="bin-count">16 items</span>
           </div>
-          <div class="bin-list">
-            <div class="bin-row folder open"><span></span><strong>Launch Deck</strong></div>
-            <div class="bin-row asset active video"><span></span><strong>interview_selects.mov</strong><em>00:03:18</em></div>
-            <div class="bin-row asset video"><span></span><strong>playground_broll.mp4</strong><em>00:02:41</em></div>
-            <div class="bin-row asset audio"><span></span><strong>ambient_block.wav</strong><em>00:01:42</em></div>
-            <div class="bin-row asset graphic"><span></span><strong>funding_card.png</strong><em>Still</em></div>
-            <div class="bin-row sequence"><span></span><strong>Launch Deck sequence</strong><em>1080p</em></div>
+          <div class="bin-search-row"><span class="bin-search">Search</span><span class="view-toggle icon"></span></div>
+          <div class="project-icon-grid">
+            <div class="thumb-card active"><span class="thumb lake"></span><strong>A005_C037_0925SG...</strong><em>5:15</em></div>
+            <div class="thumb-card"><span class="thumb park"></span><strong>A004_C010_0924AL...</strong><em>0:06</em></div>
+            <div class="thumb-card"><span class="thumb wide"></span><strong>A002_C076_0922S1...</strong><em>1:22</em></div>
+            <div class="thumb-card"><span class="thumb arch"></span><strong>A004_C002_0924Q...</strong><em>1:02</em></div>
+            <div class="thumb-card"><span class="thumb green"></span><strong>A002_C018_0922BW...</strong><em>7:13</em></div>
+            <div class="thumb-card"><span class="thumb field"></span><strong>A001_C064_09224Y...</strong><em>2:08</em></div>
+            <div class="thumb-card"><span class="thumb water"></span><strong>A005_C029_0925T...</strong><em>12:14</em></div>
+            <div class="thumb-card"><span class="thumb path"></span><strong>A002_C052_0922T7...</strong><em>2:03</em></div>
+            <div class="thumb-card"><span class="thumb city"></span><strong>A002_C018_0922BW...</strong><em>1:02</em></div>
           </div>
-          <div class="freeform-cards">
-            <div class="media-card active"><span></span><strong>Interview</strong></div>
-            <div class="media-card"><span></span><strong>B-roll</strong></div>
-            <div class="media-card"><span></span><strong>Graphics</strong></div>
+          <div class="project-footer-tools">
+            <span class="footer-icon pen"></span><span class="footer-icon list active"></span><span class="footer-icon grid"></span>
+            <span class="footer-slider"></span>
+            <span class="footer-spacer"></span>
+            <span class="footer-icon folder"></span><span class="footer-icon trash"></span>
           </div>
         </section>
 
@@ -151,18 +180,26 @@
           <div class="panel-tabs timeline-tabs">
             <button type="button" class="active">Launch Deck sequence</button>
             <button type="button">Sequence Index</button>
+            <button type="button">Markers</button>
             <span class="timeline-status">00:01:08:00  |  23.976 fps</span>
           </div>
           <div class="timeline-toolbar">
             <div class="patches">
+              <span class="patch-label">Source</span>
+              <button type="button" class="patch active">V1</button>
+              <button type="button" class="patch active">A1</button>
+              <span class="patch-label">Target</span>
               <button type="button" class="patch active">V1</button>
               <button type="button" class="patch active">A1</button>
               <button type="button" class="patch">A2</button>
             </div>
             <div class="timeline-controls">
+              <button type="button" class="timeline-icon insert-mini" aria-label="Insert edit"></button>
+              <button type="button" class="timeline-icon overwrite-mini" aria-label="Overwrite edit"></button>
               <span class="toggle active">Snap</span>
               <span class="toggle">Linked</span>
               <span class="toggle active">Markers</span>
+              <span class="toggle active">Keyframes</span>
             </div>
             <div class="zoom-track"><span></span></div>
           </div>
@@ -180,28 +217,34 @@
           </div>
           <div class="timeline-body">
             <div class="track-headers">
-              <div class="track-header"><strong>V3</strong><span></span><em>M</em></div>
-              <div class="track-header"><strong>V2</strong><span></span><em>M</em></div>
-              <div class="track-header"><strong>V1</strong><span></span><em>M</em></div>
-              <div class="track-header audio"><strong>A1</strong><span></span><em>S</em></div>
-              <div class="track-header audio"><strong>A2</strong><span></span><em>S</em></div>
+              <div class="track-header video"><strong>V4</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V3</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V2</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V1</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio targeted"><strong>A1</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio"><strong>A2</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
             </div>
             <div class="tracks">
               <div class="snap-line one"></div>
               <div class="snap-line two"></div>
               <div class="playhead"><span></span></div>
+              <div class="timeline-marker marker-a"></div>
+              <div class="timeline-marker marker-b"></div>
+              <div class="track-row captions">
+                <div class="clip caption" style="left: 39%; width: 19%"><strong>Caption: A neighborhood project...</strong><em>C1</em></div>
+              </div>
               <div class="track-row video">
                 <div class="clip graphic selected" style="left: 48%; width: 17%">
-                  <span class="clip-handle left"></span><strong>funding_card.png</strong><em>Motion</em><span class="clip-handle right"></span>
+                  <span class="clip-fx">fx</span><span class="clip-handle left"></span><strong>funding_card.png</strong><em>Motion · Scale keyframes</em><span class="clip-handle right"></span>
                 </div>
               </div>
               <div class="track-row video">
-                <div class="clip title" style="left: 35%; width: 20%"><strong>Lower third</strong><em>Essential Graphics</em></div>
+                <div class="clip title" style="left: 35%; width: 20%"><span class="clip-fx">T</span><strong>Lower third</strong><em>Graphics · 2 layers</em></div>
               </div>
               <div class="track-row video">
-                <div class="clip blue" style="left: 4%; width: 26%"><strong>playground_broll.mp4</strong><em>V</em></div>
-                <div class="clip teal" style="left: 32%; width: 22%"><strong>interview_selects.mov</strong><em>V</em></div>
-                <div class="clip amber" style="left: 56%; width: 28%"><strong>volunteer_day.mov</strong><em>V</em></div>
+                <div class="clip blue" style="left: 4%; width: 26%"><span class="clip-fx">fx</span><strong>playground_broll.mp4</strong><em>V · Warp Stabilizer</em><span class="transition right"></span></div>
+                <div class="clip teal" style="left: 32%; width: 22%"><span class="clip-fx">fx</span><strong>interview_selects.mov</strong><em>V · Lumetri</em></div>
+                <div class="clip amber" style="left: 56%; width: 28%"><strong>volunteer_day.mov</strong><em>V</em><span class="transition left"></span></div>
               </div>
               <div class="track-row audio">
                 <div class="clip audio green" style="left: 4%; width: 50%">
@@ -226,27 +269,23 @@
         <aside class="panel properties-panel" data-primitive="premiere-properties-panel">
           <div class="panel-tabs">
             <button type="button" class="active">Properties</button>
-            <button type="button">Effects</button>
+            <button type="button">Effect Controls</button>
+            <button type="button">Lumetri Color</button>
+            <span class="panel-menu"></span>
           </div>
-          <section class="property-section active">
-            <div class="property-title">Selected graphic</div>
-            <div class="prop-row"><span>Position</span><strong>960, 544</strong></div>
-            <div class="prop-row"><span>Scale</span><strong>86%</strong></div>
-            <div class="prop-row"><span>Opacity</span><strong>100%</strong></div>
-            <div class="prop-slider"><span style="width: 68%"></span></div>
-          </section>
-          <section class="property-section">
-            <div class="property-title">Lumetri Color</div>
-            <div class="color-wheels">
-              <span class="wheel warm"></span>
-              <span class="wheel cool"></span>
-              <span class="wheel neutral"></span>
-            </div>
-          </section>
-          <section class="property-section">
-            <div class="property-title">Captions</div>
-            <div class="caption-chip">Open Captions</div>
-            <div class="caption-line">A neighborhood project...</div>
+          <section class="property-stack">
+            <div class="property-heading"><span class="multi-icon"></span><strong>Multiple clips selected</strong><i></i></div>
+            <div class="disclosure open">Transform</div>
+            <div class="mini-icons"><span></span><span></span></div>
+            <div class="prop-line keyframed"><span>Position</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
+            <div class="prop-line keyframed"><span>Anchor point</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
+            <div class="prop-line"><span>Scale</span><strong>101%</strong><strong>100%</strong><i></i></div>
+            <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i></i></div>
+            <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i></i></div>
+            <div class="disclosure open audio">Audio</div>
+            <div class="prop-line volume"><span>Volume</span><strong>0.0 dB</strong><i></i></div>
+            <div class="audio-slider"><span></span></div>
+            <button type="button" class="adjust-speed">Adjust speed...</button>
           </section>
         </aside>
       </main>
@@ -264,28 +303,28 @@
       }
 
       #premiere-editor-surface {
-        --app-bg: #18181c;
-        --panel: #222329;
-        --panel-soft: #292a31;
-        --panel-dark: #16171b;
-        --panel-raised: #30313a;
-        --border: #3a3b45;
-        --border-strong: #535565;
-        --ink: #efeff4;
-        --muted: #a7a9b4;
-        --soft: #737682;
-        --accent: #8f7cff;
-        --accent-blue: #4fa1ff;
-        --teal: #43b5b0;
-        --green: #5bbf72;
-        --orange: #d89443;
-        --pink: #ca6fb1;
+        --app-bg: #181818;
+        --panel: #202020;
+        --panel-soft: #252525;
+        --panel-dark: #141414;
+        --panel-raised: #2a2a2a;
+        --border: #343434;
+        --border-strong: #4a4a4a;
+        --ink: #d8d8d8;
+        --muted: #9d9d9d;
+        --soft: #737373;
+        --accent: #0a84ff;
+        --accent-blue: #4aa3ff;
+        --teal: #36a7a2;
+        --green: #08c733;
+        --orange: #c18436;
+        --pink: #ff5ca8;
         --yellow: #e5cc5d;
         width: 1440px;
         height: 900px;
         overflow: visible;
         color: var(--ink);
-        font-family: "Anthropic Sans", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       #premiere-editor-surface * {
@@ -302,8 +341,8 @@
         height: 900px;
         overflow: hidden;
         display: grid;
-        grid-template-rows: 42px 38px 1fr;
-        border-radius: 17px;
+        grid-template-rows: 38px 32px 1fr;
+        border-radius: 10px;
         background: var(--app-bg);
         box-shadow:
           0 34px 120px rgba(16, 16, 20, 0.38),
@@ -312,11 +351,12 @@
 
       .premiere-titlebar {
         display: grid;
-        grid-template-columns: 116px minmax(0, 1fr) auto;
+        grid-template-columns: 92px 34px auto minmax(0, 1fr) auto auto;
         align-items: center;
-        padding: 0 13px;
-        background: #111216;
-        border-bottom: 1px solid #30323b;
+        column-gap: 13px;
+        padding: 0 10px;
+        background: #1d1d1d;
+        border-bottom: 1px solid #333;
       }
 
       .traffic {
@@ -326,8 +366,8 @@
       }
 
       .traffic span {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         border-radius: 999px;
         box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
       }
@@ -336,6 +376,46 @@
       .traffic .yellow { background: #ffbd2e; }
       .traffic .green { background: #28c840; }
 
+      .home-icon {
+        width: 18px;
+        height: 18px;
+        position: relative;
+        opacity: 0.78;
+      }
+
+      .home-icon::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 6px;
+        width: 14px;
+        height: 10px;
+        background: #cfcfcf;
+        clip-path: polygon(0 44%, 50% 0, 100% 44%, 88% 44%, 88% 100%, 12% 100%, 12% 44%);
+      }
+
+      .mode-tabs {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        height: 100%;
+      }
+
+      .mode-tabs button {
+        height: 100%;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: #d0d0d0;
+        font-size: 12px;
+        font-weight: 590;
+      }
+
+      .mode-tabs button.active {
+        border-bottom-color: #e8e8e8;
+        color: #fff;
+      }
+
       .app-identity {
         min-width: 0;
         display: flex;
@@ -343,21 +423,17 @@
         justify-content: center;
         gap: 9px;
         color: #f7f7fb;
-        font-size: 13px;
-        font-weight: 650;
+        font-size: 11px;
+        font-weight: 560;
       }
 
-      .pr-mark {
-        width: 22px;
-        height: 22px;
-        display: inline-grid;
-        place-items: center;
-        border: 1px solid #8f7cff;
-        border-radius: 5px;
-        color: #cabfff;
-        background: #211c3d;
-        font-size: 11px;
-        font-weight: 780;
+      .workspace-identity {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #d1d1d1;
+        font-size: 10px;
+        font-weight: 700;
       }
 
       .title-muted {
@@ -368,7 +444,7 @@
       .top-actions {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
       }
 
       .top-actions button,
@@ -382,18 +458,18 @@
 
       .sync-pill,
       .export-cta {
-        height: 28px;
+        height: 24px;
         display: inline-flex;
         align-items: center;
         gap: 7px;
         padding: 0 12px;
-        border-radius: 7px;
-        font-size: 12px;
+        border-radius: 4px;
+        font-size: 11px;
         font-weight: 650;
       }
 
       .sync-pill {
-        background: #24262d;
+        background: #2a2a2a;
         color: #d6d7df;
       }
 
@@ -406,31 +482,77 @@
       }
 
       .export-cta {
-        background: var(--accent);
+        background: #7b61ff;
         color: #fff;
+      }
+
+      .top-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        display: inline-block;
+        color: #b7b7b7;
+      }
+
+      .top-icon::before,
+      .top-icon::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border: 1.5px solid currentColor;
+      }
+
+      .top-icon.share::before {
+        border: 0;
+        border-top: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .top-icon.sliders::before {
+        inset: 4px 2px;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .top-icon.flask::before {
+        inset: 1px 4px 3px;
+        border-radius: 0 0 5px 5px;
+      }
+
+      .top-icon.comment::before {
+        border-radius: 3px;
+      }
+
+      .top-icon.expand::before {
+        inset: 2px;
+        border-left: 0;
+        border-bottom: 0;
       }
 
       .workspace-tabs {
         display: flex;
         align-items: center;
-        gap: 5px;
-        padding: 0 12px;
-        background: #1d1e24;
-        border-bottom: 1px solid #333541;
+        gap: 18px;
+        padding: 0 18px;
+        background: #202020;
+        border-bottom: 1px solid #363636;
       }
 
       .workspace-tabs button {
-        height: 26px;
-        padding: 0 10px;
-        border-radius: 7px;
+        height: 100%;
+        padding: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
         background: transparent;
         color: var(--muted);
         font-size: 12px;
-        font-weight: 640;
+        font-weight: 560;
       }
 
       .workspace-tabs button.active {
-        background: #343642;
+        background: transparent;
+        border-bottom-color: #d8d8d8;
         color: #fff;
       }
 
@@ -446,21 +568,25 @@
       }
 
       .workspace-tabs .search-pill {
-        min-width: 120px;
+        min-width: 118px;
+        height: 22px;
+        padding: 0 12px;
         justify-content: flex-start;
-        color: #838692;
-        background: #15161b;
-        box-shadow: inset 0 0 0 1px #333540;
+        border: 1px solid #393939;
+        border-radius: 5px;
+        color: #8b8b8b;
+        background: #171717;
+        box-shadow: none;
       }
 
       .editor-grid {
         min-height: 0;
         display: grid;
-        grid-template-columns: 314px 48px minmax(0, 1fr) 270px 44px;
+        grid-template-columns: 38px 272px 330px minmax(0, 1fr) 286px 34px;
         grid-template-rows: 306px minmax(0, 1fr);
-        gap: 7px;
-        padding: 7px;
-        background: #17181d;
+        gap: 3px;
+        padding: 3px;
+        background: #151515;
       }
 
       .panel {
@@ -468,104 +594,130 @@
         min-height: 0;
         overflow: hidden;
         border: 1px solid var(--border);
-        border-radius: 8px;
+        border-radius: 2px;
         background: var(--panel);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
       }
 
       .source-monitor {
-        grid-column: 1 / 3;
+        grid-column: 3;
         grid-row: 1;
       }
 
       .program-monitor {
-        grid-column: 3 / 5;
+        grid-column: 4;
         grid-row: 1;
       }
 
       .audio-meters {
-        grid-column: 5;
+        grid-column: 6;
         grid-row: 1 / 3;
         position: relative;
         display: grid;
         grid-template-rows: 30px 1fr 26px;
         padding: 7px 5px;
         border: 1px solid var(--border);
-        border-radius: 8px;
-        background: #15161a;
+        border-radius: 2px;
+        background: #111;
       }
 
       .project-panel {
-        grid-column: 1;
-        grid-row: 2;
+        grid-column: 1 / 3;
+        grid-row: 1;
       }
 
       .tools-panel {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 6px;
-        padding: 8px 6px;
+        gap: 3px;
+        padding: 6px 4px;
         border: 1px solid var(--border);
-        border-radius: 8px;
-        background: #191a20;
+        border-radius: 2px;
+        background: #191919;
       }
 
       .timeline-panel {
-        grid-column: 3;
+        grid-column: 2 / 6;
         grid-row: 2;
       }
 
       .properties-panel {
-        grid-column: 4;
-        grid-row: 2;
+        grid-column: 5;
+        grid-row: 1;
       }
 
       .panel-tabs {
-        height: 30px;
+        height: 26px;
         display: flex;
         align-items: center;
         gap: 1px;
-        padding: 0 6px;
-        background: #1a1b21;
-        border-bottom: 1px solid #363843;
+        padding: 0 5px;
+        background: #1d1d1d;
+        border-bottom: 1px solid #333;
       }
 
       .panel-tabs button {
-        height: 24px;
+        height: 22px;
         max-width: 220px;
-        padding: 0 9px;
-        border-radius: 6px 6px 0 0;
+        padding: 0 7px;
+        border-radius: 0;
         background: transparent;
         color: #92959f;
-        font-size: 11px;
-        font-weight: 650;
+        font-size: 10.5px;
+        font-weight: 540;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
       .panel-tabs button.active {
-        background: var(--panel);
+        background: #242424;
         color: #f2f2f6;
-        box-shadow: inset 0 2px 0 var(--accent);
+        box-shadow: inset 0 1px 0 var(--accent);
+      }
+
+      .panel-menu {
+        width: 19px;
+        height: 19px;
+        margin-left: auto;
+        border-radius: 3px;
+        background:
+          radial-gradient(circle, #8f929e 0 1px, transparent 1.5px) 5px 5px / 5px 5px repeat;
+        opacity: 0.72;
       }
 
       .monitor-frame {
         position: relative;
-        height: 229px;
-        margin: 8px;
+        height: 235px;
+        margin: 6px;
         overflow: hidden;
         border: 1px solid #101116;
-        border-radius: 5px;
+        border-radius: 1px;
         background: #08090c;
+      }
+
+      .monitor-overlay {
+        position: absolute;
+        z-index: 2;
+        padding: 3px 6px;
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.44);
+        color: rgba(240, 242, 248, 0.72);
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .monitor-overlay.top-left {
+        left: 9px;
+        top: 8px;
       }
 
       .source-frame {
         display: grid;
-        grid-template-rows: 1fr 54px;
+        grid-template-rows: 1fr 46px;
       }
 
       .video-still {
@@ -627,9 +779,9 @@
       .source-waveform {
         display: flex;
         align-items: center;
-        gap: 4px;
-        padding: 0 13px;
-        border-top: 1px solid #292b35;
+        gap: 3px;
+        padding: 0 10px;
+        border-top: 1px solid #292929;
         background:
           linear-gradient(90deg, rgba(143, 124, 255, 0.12), transparent 44%),
           #0e0f14;
@@ -638,7 +790,7 @@
       .source-waveform span {
         flex: 1;
         max-width: 13px;
-        border-radius: 5px;
+        border-radius: 3px;
         background: #6fa2ff;
         opacity: 0.72;
       }
@@ -718,19 +870,20 @@
       }
 
       .monitor-controls {
-        height: 30px;
+        height: 27px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 0 10px;
-        border-top: 1px solid #353742;
-        color: #888c97;
-        font-size: 11px;
+        gap: 6px;
+        padding: 0 8px;
+        border-top: 1px solid #333;
+        color: #888;
+        font-size: 10px;
       }
 
       .timecode,
       .duration,
-      .resolution {
+      .resolution,
+      .monitor-scale {
         font-variant-numeric: tabular-nums;
       }
 
@@ -753,10 +906,10 @@
       .mark.out { background: var(--orange); }
 
       .control {
-        width: 21px;
-        height: 21px;
-        border-radius: 5px;
-        background: #2f3139;
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background: transparent;
         position: relative;
       }
 
@@ -777,7 +930,7 @@
       }
 
       .control.active {
-        background: var(--accent);
+        background: #4f56ff;
       }
 
       .control.prev::before,
@@ -796,6 +949,67 @@
         border-right: 2px solid #dedfec;
         border-top: 2px solid #dedfec;
         transform: translate(-65%, -50%) rotate(45deg);
+      }
+
+      .control.mark-in::before,
+      .control.safe::before,
+      .control.export-frame::before,
+      .control.insert::before,
+      .control.overwrite::before {
+        width: 12px;
+        height: 12px;
+        border: 1px solid #c8cad5;
+      }
+
+      .control.mark-in::before {
+        border-right: 0;
+        border-top: 0;
+      }
+
+      .control.safe::before {
+        width: 13px;
+        height: 9px;
+        border-style: dashed;
+      }
+
+      .control.export-frame::before {
+        width: 12px;
+        height: 9px;
+        border-radius: 2px;
+      }
+
+      .control.export-frame::after {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c8cad5;
+      }
+
+      .control.insert::before {
+        width: 0;
+        height: 0;
+        border-left: 8px solid #c8cad5;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 0;
+      }
+
+      .control.overwrite::before {
+        width: 12px;
+        height: 8px;
+        border-radius: 2px;
+      }
+
+      .monitor-scale,
+      .resolution {
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 6px;
+        border-radius: 2px;
+        background: #171717;
+        color: #aeb1bc;
+        font-size: 10px;
       }
 
       .meter-title {
@@ -856,24 +1070,57 @@
       }
 
       .project-toolbar {
-        height: 34px;
+        height: 27px;
         display: flex;
         align-items: center;
-        gap: 9px;
-        padding: 0 9px;
-        border-bottom: 1px solid #333540;
+        gap: 6px;
+        padding: 0 8px;
+        border-bottom: 1px solid #303030;
+        color: #c7c7c7;
+        font-size: 10px;
+      }
+
+      .bin-folder {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .bin-folder::before {
+        content: "";
+        width: 13px;
+        height: 9px;
+        display: inline-block;
+        margin-right: 7px;
+        background: #747474;
+        clip-path: polygon(0 18%, 38% 18%, 44% 0, 100% 0, 100% 100%, 0 100%);
+        vertical-align: -1px;
+      }
+
+      .bin-count {
+        margin-left: auto;
+        color: #8c8c8c;
+      }
+
+      .bin-search-row {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 8px;
+        border-bottom: 1px solid #303030;
       }
 
       .bin-search {
         flex: 1;
-        height: 22px;
+        height: 20px;
         display: flex;
         align-items: center;
         padding: 0 8px;
-        border-radius: 5px;
-        background: #17181e;
-        color: #757884;
-        font-size: 11px;
+        border-radius: 2px;
+        background: #0d0d0d;
+        color: #777;
+        font-size: 10px;
       }
 
       .view-toggle {
@@ -886,115 +1133,125 @@
         box-shadow: inset 0 0 0 1px #4a4c58;
       }
 
-      .bin-list {
-        padding: 7px 7px 0;
+      .view-toggle.icon {
+        background:
+          radial-gradient(circle, #7b7e89 0 2px, transparent 2.5px) 4px 4px / 8px 8px repeat;
       }
 
-      .bin-row {
-        height: 29px;
+      .project-icon-grid {
+        height: calc(100% - 116px);
+        overflow: hidden;
         display: grid;
-        grid-template-columns: 20px minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 6px;
-        padding: 0 7px;
-        border-radius: 6px;
-        color: #c4c7d0;
-        font-size: 11px;
+        grid-template-columns: repeat(3, 1fr);
+        align-content: start;
+        gap: 9px 10px;
+        padding: 9px 8px;
       }
 
-      .bin-row.active {
-        background: rgba(143, 124, 255, 0.23);
-        color: #fff;
-      }
-
-      .bin-row strong {
+      .thumb-card {
         min-width: 0;
+        position: relative;
+        color: #c7c7c7;
+        font-size: 10px;
+      }
+
+      .thumb-card strong,
+      .thumb-card em {
+        display: block;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-weight: 650;
       }
 
-      .bin-row em {
-        color: #777b86;
+      .thumb-card strong {
+        margin-top: 4px;
+        font-weight: 520;
+      }
+
+      .thumb-card em {
+        position: absolute;
+        right: 2px;
+        bottom: 0;
+        color: #d0d0d0;
         font-style: normal;
         font-variant-numeric: tabular-nums;
       }
 
-      .bin-row span {
+      .thumb {
+        display: block;
+        height: 53px;
+        position: relative;
+        border: 1px solid #303030;
+        background: #2b2b2b;
+      }
+
+      .thumb::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        width: 16px;
+        height: 10px;
+        border: 1px solid #6cc3ff;
+        background:
+          linear-gradient(90deg, #237acc 1px, transparent 1px) 0 0 / 5px 100% repeat-x;
+      }
+
+      .thumb.lake { background: linear-gradient(145deg, #273b45 0 35%, #7fa6bd 36% 64%, #405a31 65%); }
+      .thumb.park { background: linear-gradient(145deg, #799a59, #d9d4b3 45%, #3e663e); }
+      .thumb.wide { background: linear-gradient(145deg, #6285a9 0 45%, #273443 46%, #6d8052); }
+      .thumb.arch { background: linear-gradient(135deg, #7c6c5f 0 30%, #d0b39a 31% 58%, #382f2c 59%); }
+      .thumb.green { background: linear-gradient(145deg, #315c2d, #95aa71 55%, #1f3e28); }
+      .thumb.field { background: linear-gradient(145deg, #687a54, #b2b381 50%, #335239); }
+      .thumb.water { background: linear-gradient(145deg, #79a7c0, #e5c5b0 45%, #6d7e4d); }
+      .thumb.path { background: linear-gradient(145deg, #304f34, #9eb89f 50%, #2b3f31); }
+      .thumb.city { background: linear-gradient(145deg, #9fb9bf, #5b776d 45%, #d4c8a7); }
+
+      .project-footer-tools {
+        height: 31px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 8px;
+        border-top: 1px solid #303030;
+      }
+
+      .footer-spacer { flex: 1; }
+      .footer-slider {
+        width: 58px;
+        height: 2px;
+        background: #535353;
+      }
+
+      .footer-icon {
         width: 14px;
         height: 14px;
-        border-radius: 3px;
-        background: #555862;
+        position: relative;
+        color: #9d9d9d;
       }
 
-      .bin-row.folder span {
-        background: var(--orange);
-      }
+      .footer-icon.active { color: #e2e2e2; }
 
-      .bin-row.video span,
-      .media-card span {
-        background: var(--accent-blue);
-      }
-
-      .bin-row.audio span {
-        background: var(--green);
-      }
-
-      .bin-row.graphic span {
-        background: var(--pink);
-      }
-
-      .bin-row.sequence span {
-        background: var(--accent);
-      }
-
-      .freeform-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7px;
-        padding: 10px 8px;
-      }
-
-      .media-card {
-        min-width: 0;
-        height: 64px;
-        display: grid;
-        grid-template-rows: 1fr auto;
-        gap: 4px;
-        padding: 7px;
-        border: 1px solid #383a44;
-        border-radius: 7px;
-        background: #1b1c22;
-        color: #babdc7;
-        font-size: 10px;
-      }
-
-      .media-card.active {
-        border-color: var(--accent);
-      }
-
-      .media-card span {
-        display: block;
-        border-radius: 5px;
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 45%),
-          var(--accent-blue);
+      .footer-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
       }
 
       .tool {
-        width: 32px;
-        height: 32px;
+        width: 27px;
+        height: 27px;
         position: relative;
-        border-radius: 7px;
+        border-radius: 2px;
         background: transparent;
-        color: #a7aab5;
+        color: #c7c7c7;
       }
 
       .tool.active {
-        background: #373a46;
+        background: #0a84ff;
         color: #fff;
-        box-shadow: inset 0 0 0 1px #5d6170;
+        box-shadow: inset 0 0 0 1px #3199ff;
       }
 
       .tool::before,
@@ -1092,12 +1349,12 @@
       }
 
       .timeline-toolbar {
-        height: 32px;
+        height: 27px;
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 0 9px;
-        border-bottom: 1px solid #333540;
+        gap: 7px;
+        padding: 0 8px;
+        border-bottom: 1px solid #333;
       }
 
       .patches,
@@ -1107,45 +1364,82 @@
         gap: 5px;
       }
 
+      .patch-label {
+        color: #8a8a8a;
+        font-size: 9.5px;
+        font-weight: 520;
+      }
+
       .patch {
         height: 20px;
-        min-width: 26px;
+        min-width: 24px;
         border: 0;
-        border-radius: 5px;
-        background: #30323b;
-        color: #9fa2ad;
+        border-radius: 2px;
+        background: #303030;
+        color: #aaa;
         font-size: 10px;
-        font-weight: 750;
+        font-weight: 700;
       }
 
       .patch.active {
-        background: rgba(143, 124, 255, 0.24);
-        color: #d7d1ff;
+        background: #075ec8;
+        color: #fff;
       }
 
       .toggle {
-        height: 20px;
+        height: 18px;
         display: inline-flex;
         align-items: center;
-        padding: 0 7px;
-        border-radius: 5px;
-        background: #2d2f38;
-        color: #8f929e;
-        font-size: 10px;
-        font-weight: 680;
+        padding: 0 6px;
+        border-radius: 2px;
+        background: #2b2b2b;
+        color: #9b9b9b;
+        font-size: 9px;
+        font-weight: 650;
       }
 
       .toggle.active {
         color: #fff;
-        background: #414452;
+        background: #4a4a4a;
+      }
+
+      .timeline-icon {
+        width: 18px;
+        height: 18px;
+        border: 0;
+        border-radius: 2px;
+        background: #2a2a2a;
+        position: relative;
+      }
+
+      .timeline-icon::before,
+      .timeline-icon::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .timeline-icon.insert-mini::before {
+        border-left: 8px solid #c7cad4;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        transform: translate(-38%, -50%);
+      }
+
+      .timeline-icon.overwrite-mini::before {
+        width: 12px;
+        height: 8px;
+        border: 1px solid #c7cad4;
       }
 
       .zoom-track {
         width: 110px;
-        height: 5px;
+        height: 4px;
         margin-left: auto;
         border-radius: 999px;
-        background: #3a3c46;
+        background: #444;
       }
 
       .zoom-track span {
@@ -1157,63 +1451,64 @@
       }
 
       .timeline-ruler {
-        height: 30px;
+        height: 27px;
         display: grid;
-        grid-template-columns: 116px 1fr;
-        border-bottom: 1px solid #363843;
+        grid-template-columns: 118px 1fr;
+        border-bottom: 1px solid #333;
       }
 
       .track-label-corner {
         display: flex;
         align-items: center;
         padding-left: 9px;
-        border-right: 1px solid #363843;
-        color: #71747f;
-        font-size: 10px;
+        border-right: 1px solid #333;
+        color: #7d7d7d;
+        font-size: 9.5px;
         font-variant-numeric: tabular-nums;
       }
 
       .ruler-scales {
         position: relative;
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px) 0 100% / 16% 8px no-repeat,
-          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 100% / 4% 4px repeat-x;
+          linear-gradient(#d9c836, #d9c836) 0 2px / 100% 2px no-repeat,
+          linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px) 0 100% / 8% 8px repeat-x,
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 100% / 2% 4px repeat-x;
       }
 
       .ruler-scales span {
         position: absolute;
-        top: 7px;
+        top: 8px;
         transform: translateX(-50%);
-        color: #7e818c;
-        font-size: 10px;
+        color: #858585;
+        font-size: 9px;
         font-variant-numeric: tabular-nums;
       }
 
       .timeline-body {
-        height: calc(100% - 92px);
+        height: calc(100% - 84px);
         display: grid;
-        grid-template-columns: 116px 1fr;
+        grid-template-columns: 118px 1fr;
       }
 
       .track-headers {
-        border-right: 1px solid #363843;
-        background: #1b1c21;
+        border-right: 1px solid #333;
+        background: #171717;
       }
 
       .track-header,
       .track-row {
-        height: 51px;
-        border-bottom: 1px solid #31333c;
+        height: 39px;
+        border-bottom: 1px solid #303030;
       }
 
       .track-header {
         display: grid;
-        grid-template-columns: 32px 1fr 24px;
+        grid-template-columns: 25px 1fr 16px 16px 16px;
         align-items: center;
-        gap: 5px;
-        padding: 0 8px;
-        color: #cfd1db;
-        font-size: 11px;
+        gap: 4px;
+        padding: 0 6px;
+        color: #cfcfcf;
+        font-size: 10px;
       }
 
       .track-header strong {
@@ -1221,46 +1516,76 @@
       }
 
       .track-header span {
-        height: 6px;
+        height: 5px;
         border-radius: 999px;
         background: #363844;
       }
 
       .track-header em {
-        width: 18px;
-        height: 18px;
+        width: 15px;
+        height: 15px;
         display: grid;
         place-items: center;
-        border-radius: 4px;
-        background: #30323a;
-        color: #8d909b;
+        border-radius: 2px;
+        background: #2b2b2b;
+        color: #8c8c8c;
         font-style: normal;
-        font-size: 10px;
+        font-size: 9px;
+      }
+
+      .track-header.targeted {
+        background: rgba(10, 132, 255, 0.12);
+      }
+
+      .track-header.targeted strong {
+        color: #fff;
       }
 
       .track-header.audio strong {
         color: #aee0b7;
       }
 
+      .track-eye::before {
+        content: "";
+        width: 10px;
+        height: 6px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .track-lock::before {
+        content: "";
+        width: 8px;
+        height: 7px;
+        border: 1px solid currentColor;
+        border-radius: 2px;
+      }
+
       .tracks {
         position: relative;
         overflow: hidden;
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 0 / 8% 100% repeat,
-          #191a1f;
+          linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #161616;
       }
 
       .track-row {
         position: relative;
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px) 0 0 / 4% 100% repeat,
-          linear-gradient(#1d1e24, #1d1e24);
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 2% 100% repeat,
+          linear-gradient(#191919, #191919);
       }
 
       .track-row.audio {
         background:
           linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px) 0 0 / 4% 100% repeat,
-          #181f1b;
+          #152015;
+      }
+
+      .track-row.captions {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #211820;
       }
 
       .snap-line,
@@ -1282,33 +1607,45 @@
 
       .playhead {
         left: 52%;
-        border-left: 2px solid #d85bff;
-        box-shadow: 0 0 0 1px rgba(216, 91, 255, 0.2);
+        border-left: 1px solid #0a84ff;
+        box-shadow: 0 0 0 1px rgba(10, 132, 255, 0.18);
       }
 
       .playhead span {
         position: absolute;
         top: -8px;
-        left: -7px;
-        width: 14px;
-        height: 14px;
-        background: #d85bff;
+        left: -5px;
+        width: 10px;
+        height: 10px;
+        background: #0a84ff;
         clip-path: polygon(50% 0, 100% 44%, 100% 100%, 0 100%, 0 44%);
       }
 
+      .timeline-marker {
+        position: absolute;
+        top: 0;
+        z-index: 9;
+        width: 10px;
+        height: 10px;
+        background: #5ca0ff;
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      }
+
+      .timeline-marker.marker-a { left: 18%; }
+      .timeline-marker.marker-b { left: 72%; background: #e2bf52; }
+
       .clip {
         position: absolute;
-        top: 7px;
-        height: 36px;
+        top: 4px;
+        height: 31px;
         min-width: 40px;
         overflow: hidden;
-        padding: 5px 9px;
-        border-radius: 5px;
+        padding: 3px 7px;
+        border-radius: 1px;
         color: #f5f7fb;
         font-size: 10px;
         box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.18),
-          0 7px 15px rgba(0, 0, 0, 0.18);
+          inset 0 0 0 1px rgba(255, 255, 255, 0.18);
       }
 
       .clip strong,
@@ -1325,21 +1662,44 @@
       }
 
       .clip em {
-        margin-top: 3px;
+        margin-top: 2px;
         color: rgba(255, 255, 255, 0.72);
         font-style: normal;
       }
 
-      .clip.blue { background: #3f6aa9; }
-      .clip.teal { background: #247975; }
-      .clip.amber { background: #996c28; }
-      .clip.title { background: #8c5fa6; }
-      .clip.graphic { background: #b15f89; }
+      .clip.blue { background: #4ba8ff; color: #07121d; }
+      .clip.teal { background: #45b9b2; color: #031918; }
+      .clip.amber { background: #a8792d; }
+      .clip.title { background: #a86ad8; }
+      .clip.graphic { background: #ff5ca8; color: #17040d; }
+      .clip.caption { background: #d87933; color: #180b02; }
 
       .clip.selected {
-        outline: 2px solid var(--yellow);
-        outline-offset: 2px;
+        outline: 1px solid var(--yellow);
+        outline-offset: 1px;
       }
+
+      .clip-fx {
+        position: absolute;
+        right: 5px;
+        top: 4px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 9px;
+        font-weight: 800;
+      }
+
+      .transition {
+        position: absolute;
+        top: 0;
+        width: 16px;
+        height: 100%;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0 50%, rgba(0, 0, 0, 0.15) 50%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+      }
+
+      .transition.left { left: 0; }
+      .transition.right { right: 0; }
 
       .clip-handle {
         position: absolute;
@@ -1370,11 +1730,13 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) 74px;
         align-items: center;
-        background: #2f7440;
+        background: #08c733;
+        color: #041004;
       }
 
       .clip.audio.music {
-        background: #60722f;
+        background: #19bfff;
+        color: #041015;
       }
 
       .wave-mini {
@@ -1387,7 +1749,7 @@
       .wave-mini span {
         flex: 1;
         border-radius: 4px;
-        background: rgba(255, 255, 255, 0.42);
+        background: rgba(0, 0, 0, 0.62);
       }
 
       .wave-mini span:nth-child(1) { height: 12px; }
@@ -1396,93 +1758,150 @@
       .wave-mini span:nth-child(4) { height: 24px; }
       .wave-mini span:nth-child(5) { height: 10px; }
 
-      .property-section {
-        margin: 10px;
-        padding: 11px;
-        border: 1px solid #3b3d48;
-        border-radius: 8px;
-        background: #1d1e24;
-      }
-
-      .property-section.active {
-        border-color: rgba(143, 124, 255, 0.55);
-      }
-
-      .property-title {
-        margin-bottom: 10px;
-        color: #e2e3ea;
-        font-size: 12px;
-        font-weight: 760;
-      }
-
-      .prop-row {
-        height: 27px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #a6a9b4;
+      .property-stack {
+        padding: 12px 12px 0;
+        color: #d4d4d4;
         font-size: 11px;
       }
 
-      .prop-row strong {
-        color: #f1f1f5;
+      .property-heading {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #e0e0e0;
         font-weight: 650;
       }
 
-      .prop-slider {
-        height: 6px;
-        margin-top: 8px;
-        border-radius: 999px;
-        background: #333642;
+      .property-heading i {
+        width: 16px;
+        height: 16px;
+        margin-left: auto;
+        background:
+          radial-gradient(circle, #c7c7c7 0 1px, transparent 1.5px) 3px 7px / 5px 5px repeat-x;
       }
 
-      .prop-slider span {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: var(--accent);
+      .multi-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
       }
 
-      .color-wheels {
+      .multi-icon::before,
+      .multi-icon::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #bbb;
+      }
+
+      .multi-icon::before { left: 1px; top: 1px; }
+      .multi-icon::after { right: 1px; bottom: 1px; }
+
+      .disclosure {
+        height: 32px;
         display: flex;
-        gap: 10px;
-      }
-
-      .wheel {
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        background: conic-gradient(#f25e5e, #e4d86e, #5ed884, #65a1ff, #a074ff, #f25e5e);
-        box-shadow: inset 0 0 0 10px #24262d, inset 0 0 0 11px #555966;
-      }
-
-      .wheel.cool {
-        filter: hue-rotate(60deg);
-      }
-
-      .wheel.neutral {
-        filter: grayscale(0.8);
-      }
-
-      .caption-chip {
-        display: inline-flex;
         align-items: center;
-        height: 24px;
-        padding: 0 8px;
-        border-radius: 6px;
-        background: rgba(143, 124, 255, 0.18);
-        color: #d8d2ff;
-        font-size: 11px;
-        font-weight: 690;
+        gap: 8px;
+        border-top: 1px solid #303030;
+        color: #cfcfcf;
+        font-size: 12px;
+        font-weight: 650;
       }
 
-      .caption-line {
-        margin-top: 9px;
-        padding: 8px;
-        border-radius: 6px;
-        background: #252730;
-        color: #bcc0ca;
+      .disclosure::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .mini-icons {
+        height: 21px;
+        display: flex;
+        gap: 12px;
+        padding-left: 24px;
+      }
+
+      .mini-icons span {
+        width: 14px;
+        height: 12px;
+        border: 1px solid #848484;
+        border-radius: 1px;
+      }
+
+      .prop-line {
+        height: 28px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 56px 56px 18px;
+        align-items: center;
+        gap: 8px;
+        color: #c9c9c9;
         font-size: 11px;
+      }
+
+      .prop-line span {
+        color: #bdbdbd;
+      }
+
+      .prop-line strong {
+        color: #42a5ff;
+        font-weight: 520;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .prop-line i {
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid #a6a6a6;
+        border-radius: 50%;
+        opacity: 0.85;
+      }
+
+      .prop-line.volume {
+        grid-template-columns: minmax(0, 1fr) 70px 18px;
+      }
+
+      .audio-slider {
+        height: 30px;
+        position: relative;
+        margin: 0 4px 8px 24px;
+      }
+
+      .audio-slider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 13px;
+        height: 2px;
+        background: #555;
+      }
+
+      .audio-slider span {
+        position: absolute;
+        left: 72%;
+        top: 7px;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #bbb;
+        border-radius: 50%;
+        background: #202020;
+      }
+
+      .adjust-speed {
+        height: 23px;
+        margin-top: 182px;
+        border: 1px solid #3a3a3a;
+        border-radius: 2px;
+        background: #181818;
+        color: #c8c8c8;
+        font-size: 10px;
+        font-weight: 560;
       }
 
       .premiere-cursor {
