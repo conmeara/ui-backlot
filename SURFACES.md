@@ -229,9 +229,10 @@ imports the reusable macOS menu bar, Claude working-thread component, and
 Premiere-style video editor, proving that timeline review, trim, graphics, and
 export clips can be assembled without browser, Finder, Office, Figma, Codex
 terminal, or the full desktop workflow.
-`compositions/codex-app.html` is the first reusable Codex desktop workbench
+`compositions/codex-app.html` is the reusable Codex desktop app command-center
 sub-composition and direct-capturable component for app-style agent workflow
-videos.
+videos, with an official screenshot-informed light shell and editable thin-line
+icon system.
 `compositions/codex-terminal.html` is the reusable Codex CLI/Terminal
 sub-composition and direct-capturable component for command-line workflow
 videos.
@@ -403,13 +404,17 @@ lab.
   Calendar icon path. It also borrows DayFlow-style scheduling structure:
   calendar source list, mini calendar, drag/reorder cue, event dots, and event
   edit card. It is not yet mounted into the main workflow.
-- Codex desktop workbench is a hand-authored app-style surface for agent
-  planning, tool/evidence reads, file/patch preview, and verification scenes.
-  It uses safe local `codex app --help`, `codex review --help`, Codex app
-  metadata, and CodexBar metadata as reference context. Computer Use could not
-  access the live Codex app for safety, so the surface does not claim pixel
-  parity and copies no app assets, screenshots, app code, private sessions, or
-  account data.
+- Codex desktop app is a hand-authored light-mode command-center surface rebuilt
+  against official OpenAI Codex screenshot plates. It now follows the actual app
+  shell more closely: pale blue macOS sidebar, New chat/Search/Plugins/
+  Automations rows, pinned threads, projects, chats, single top toolbar,
+  plain active-thread transcript, change summary card, model/permission
+  composer, work-local footer, and code-diff Review pane. It uses official
+  Codex screenshots, official docs, safe local `codex --help` / `codex app
+  --help` / `codex cloud --help`, and Codex app metadata as reference context.
+  Computer Use could not access the live Codex app for safety, so the surface
+  still does not claim pixel parity and copies no app assets, screenshot pixels,
+  app code, private sessions, or account data.
 - Codex terminal is a code-native Terminal/Codex CLI surface for agent-command
   demos. It now uses safe local `codex --version` / `codex --help`, Codex app
   metadata, and macOS Terminal metadata as reference context, with a taller

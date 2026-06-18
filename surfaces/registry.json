@@ -1949,7 +1949,7 @@
       "title": "Codex Desktop Workbench",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "metadata-informed editable Codex desktop workbench, pending sanitized live Codex app capture",
+      "fidelity": "official screenshot-informed editable Codex desktop app reconstruction, matching the light-mode project sidebar, active thread, composer, toolbar, review pane structure, and thin rounded icon language; pending sanitized live account capture",
       "dimensions": {
         "width": 1280,
         "height": 820
@@ -1967,7 +1967,7 @@
         "selector": ".codex-app-window",
         "path": "captures/surface-codex-app/target.png"
       },
-      "prototypeNote": "docs/prototypes/codex-app-surface-pass-061.md",
+      "prototypeNote": "docs/prototypes/codex-app-icon-fidelity-pass-095.md",
       "tags": [
         "codex",
         "desktop",
@@ -1978,16 +1978,27 @@
       ],
       "dependencies": [],
       "sourceEvidence": [
+        "https://developers.openai.com/codex/app",
+        "https://developers.openai.com/codex/app/features",
+        "https://developers.openai.com/codex/app/review",
+        "https://developers.openai.com/codex/app/worktrees",
+        "https://developers.openai.com/codex/appshots",
+        "https://developers.openai.com/codex/cli/reference#command-overview",
+        "reference/codex/app-screenshots/README.md",
+        "reference/codex/app-screenshots/app-screenshot-light.webp",
+        "reference/codex/app-screenshots/git-commit-light.webp",
+        "reference/codex/app-screenshots/modes-light.webp",
+        "docs/prototypes/codex-app-icon-fidelity-pass-095.md",
         "`codex --version`",
         "`codex --help`",
         "`codex app --help`",
-        "`codex review --help`",
+        "`codex cloud --help`",
         "/Applications/Codex.app/Contents/Info.plist",
-        "/Applications/CodexBar.app/Contents/Info.plist",
-        "DESIGN.md"
+        "captures/surface-codex-app/target.png",
+        "docs/prototypes/codex-app-surface-pass-061.md"
       ],
-      "assetDecision": "Hand-authored HTML/CSS using safe local CLI/app metadata and project style evidence; no OpenAI/Codex app assets, screenshots, app code, icon files, private sessions, account data, or copied app bundle assets.",
-      "recommendedUse": "Desktop Codex demos that need a workbench with conversation, plan, tool/evidence, patch, files, and verification panels, without Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces."
+      "assetDecision": "Hand-authored HTML/CSS using official OpenAI screenshot plates, documentation, safe local CLI/app metadata, and Backlot captures as reference evidence only; no OpenAI/Codex app assets, screenshot pixels, product CSS, app code, icon files, private sessions, account data, or copied app bundle assets.",
+      "recommendedUse": "Desktop Codex demos that need a light-mode current app shell with real-product-like sidebar navigation, active thread, model/permission composer, toolbar controls, Git diff review pane, and local-work metadata, without importing Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces."
     },
     {
       "id": "codex-terminal",
