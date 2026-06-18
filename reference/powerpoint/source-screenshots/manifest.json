@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-06-18T17:31:04.141Z",
+  "refs": [
+    {
+      "id": "notes-ribbon-status",
+      "page": "https://support.microsoft.com/en-us/powerpoint/training/add-speaker-notes-to-your-slides",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/powerpoint-16-add-notes.png",
+      "alt": "Shows the speaker Notes pane in PowerPoint",
+      "use": "ribbon density, left thumbnails, notes pane, status bar",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/powerpoint-16-add-notes.png",
+      "local": "reference/powerpoint/source-screenshots/notes-ribbon-status.png",
+      "width": 1740,
+      "height": 891,
+      "captured": true
+    },
+    {
+      "id": "mac-thumbnails-ribbon",
+      "page": "https://support.microsoft.com/en-us/powerpoint/training/add-speaker-notes-to-your-slides",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/ppt16m-selectslide.png",
+      "alt": "Shows a slide selected in the thumbnail pane in PowerPoint 2016 for Mac",
+      "use": "Mac traffic lights, red app/ribbon chrome, slide thumbnail selection",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/ppt16m-selectslide.png",
+      "local": "reference/powerpoint/source-screenshots/mac-thumbnails-ribbon.png",
+      "width": 276,
+      "height": 368,
+      "captured": true
+    },
+    {
+      "id": "mac-presenter-notes",
+      "page": "https://support.microsoft.com/en-us/powerpoint/training/add-speaker-notes-to-your-slides",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/ppt16m-presenterview.png",
+      "alt": "Shows notes in Presenter View in PowerPoint 2016 for Mac",
+      "use": "PowerPoint Mac presenter typography and notes area treatment",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/ppt16m-presenterview.png",
+      "local": "reference/powerpoint/source-screenshots/mac-presenter-notes.png",
+      "width": 600,
+      "height": 512,
+      "captured": true
+    },
+    {
+      "id": "modern-comments-pane",
+      "page": "https://support.microsoft.com/en-us/powerpoint/modern-comments-in-powerpoint",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/ppt-comments-text-anchoring.jpg",
+      "alt": "Text-anchored comment on slide",
+      "use": "right comments pane, anchored selection handles, comment card geometry",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/ppt-comments-text-anchoring.jpg",
+      "local": "reference/powerpoint/source-screenshots/modern-comments-pane.png",
+      "width": 553,
+      "height": 254,
+      "captured": true
+    },
+    {
+      "id": "add-comment-ribbon",
+      "page": "https://support.microsoft.com/en-us/powerpoint/modern-comments-in-powerpoint",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/add-a-comment.png",
+      "alt": "Add a comment on PowerPoint ribbon.",
+      "use": "Review tab comment command icon and ribbon treatment",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/add-a-comment.png",
+      "local": "reference/powerpoint/source-screenshots/add-comment-ribbon.png",
+      "width": 684,
+      "height": 147,
+      "captured": true
+    },
+    {
+      "id": "mac-alt-text-pane",
+      "page": "https://support.microsoft.com/en-us/accessibility/office-accessibility/add-alternative-text-to-a-shape-picture-chart-smartart-graphic-or-other-object",
+      "src": "https://support.microsoft.com/en-us/accessibility/media/powerpoint-alt-text-pane.png",
+      "alt": "The Alt Text pane in PowerPoint for Mac.",
+      "use": "Mac side pane typography, close button, text area, checkbox, action button",
+      "resolvedSrc": "https://support.microsoft.com/en-us/accessibility/media/powerpoint-alt-text-pane.png",
+      "local": "reference/powerpoint/source-screenshots/mac-alt-text-pane.png",
+      "width": 300,
+      "height": 460,
+      "captured": true
+    },
+    {
+      "id": "mac-alt-text-ribbon-button",
+      "page": "https://support.microsoft.com/en-us/accessibility/office-accessibility/add-alternative-text-to-a-shape-picture-chart-smartart-graphic-or-other-object",
+      "src": "https://support.microsoft.com/en-us/accessibility/media/ppt-mac-alttextbutton.png",
+      "alt": "Alt Text button on the ribbon in PowerPoint for Mac",
+      "use": "Mac ribbon icon size and label treatment for Alt Text",
+      "resolvedSrc": "https://support.microsoft.com/en-us/accessibility/media/ppt-mac-alttextbutton.png",
+      "local": "reference/powerpoint/source-screenshots/mac-alt-text-ribbon-button.png",
+      "width": 225,
+      "height": 99,
+      "captured": true
+    },
+    {
+      "id": "selection-pane-objects",
+      "page": "https://support.microsoft.com/en-us/powerpoint/use-the-selection-pane-to-manage-objects-in-documents",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/selection-pane-with-objects.png",
+      "alt": "Selection pane with three objects in order of insert",
+      "use": "selection pane list typography, row heights, eye icons",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/selection-pane-with-objects.png",
+      "local": "reference/powerpoint/source-screenshots/selection-pane-objects.png",
+      "width": 248,
+      "height": 164,
+      "captured": true
+    },
+    {
+      "id": "mac-selection-pane-ribbon-button",
+      "page": "https://support.microsoft.com/en-us/powerpoint/use-the-selection-pane-to-manage-objects-in-documents",
+      "src": "https://support.microsoft.com/en-us/powerpoint/media/word-mac-selection-pane-button-on-ribbon.png",
+      "alt": "Selection Pane button on ribbon",
+      "use": "Mac Shape Format ribbon button geometry",
+      "resolvedSrc": "https://support.microsoft.com/en-us/powerpoint/media/word-mac-selection-pane-button-on-ribbon.png",
+      "local": "reference/powerpoint/source-screenshots/mac-selection-pane-ribbon-button.png",
+      "width": 345,
+      "height": 130,
+      "captured": true
+    }
+  ]
+}
