@@ -8,10 +8,10 @@
       "title": "Editable Browser App",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "generic browser/web-app shell, donor-informed",
+      "fidelity": "actual-reference-informed browser chrome plus Airtable-like editable app surface",
       "dimensions": {
-        "width": 1516,
-        "height": 864
+        "width": 1712,
+        "height": 944
       },
       "source": "compositions/browser-app.html",
       "compositionId": "browser-app-surface",
@@ -37,6 +37,8 @@
       "sourceEvidence": [
         "docs/prototypes/browser-app-surface-pass-006.md",
         "docs/prototypes/browser-chrome-donor-refinement-pass-013.md",
+        "docs/prototypes/browser-app-polish-pass-093.md",
+        "docs/prototypes/browser-app-actual-reference-rebuild-pass-094.md",
         "docs/research/open-source-ui-donor-repos.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; uses donor repos as geometry reference without vendoring runtime components.",
