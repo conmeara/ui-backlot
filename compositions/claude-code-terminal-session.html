@@ -22,6 +22,8 @@
           <span class="yellow"></span>
           <span class="green"></span>
         </div>
+        <div class="terminal-title">claude — ui-backlot — 92x32</div>
+        <div class="terminal-mode">plan</div>
       </header>
 
       <main class="terminal-paper" data-primitive="claude-code-terminal-paper">
@@ -33,64 +35,64 @@
             <span></span><span></span><span></span><span></span>
           </div>
           <div>
-            <h1>Claude Code <span>v2.1.42</span></h1>
-            <p>Opus 4.6 - Claude Enterprise</p>
-            <p>/Users/np/code/claude-cli-internal</p>
+            <h1>Claude Code <span>2.1.117</span></h1>
+            <p>Sonnet 4.6 - permission-mode plan</p>
+            <p>/Users/conmeara/Projects/ui-backlot</p>
           </div>
         </section>
 
         <div class="prompt-line active" data-primitive="claude-code-user-prompt">
           <span>&gt;</span>
-          <strong>visualize all states of our onboarding flow and push each screen to figma</strong>
+          <strong>tighten the terminal demo: approvals, diffs, streaming output, status panes</strong>
         </div>
 
         <section class="terminal-events" data-primitive="claude-code-event-log">
           <article class="event-row">
-            <span class="event-dot"></span>
+            <span class="event-dot done"></span>
             <div>
-              <p><strong>Edit</strong><em>(src/screens/Onboarding/Welcome.tsx)</em></p>
-              <small>| +38 lines</small>
+              <p><strong>Read</strong><em>(compositions/codex-terminal.html)</em></p>
+              <small>| 693 lines</small>
             </div>
           </article>
           <article class="event-row">
-            <span class="event-dot"></span>
+            <span class="event-dot done"></span>
             <div>
-              <p><strong>generate_figma_design</strong><em>(Welcome)</em></p>
-              <small>| success</small>
+              <p><strong>Bash</strong><em>(claude --version)</em></p>
+              <small>| 2.1.117 (Claude Code)</small>
+            </div>
+          </article>
+          <article class="event-row approval">
+            <span class="event-dot ask"></span>
+            <div>
+              <p><strong>Approve Bash?</strong><em>(npm run capture:claude-code-terminal-session)</em></p>
+              <small>| writes generated capture files</small>
             </div>
           </article>
           <article class="event-row">
-            <span class="event-dot"></span>
+            <span class="event-dot done"></span>
             <div>
-              <p><strong>Edit</strong><em>(src/screens/Onboarding/SignUp.tsx)</em></p>
-              <small>| +71 lines</small>
+              <p><strong>Edit</strong><em>(compositions/claude-code-terminal-session.html)</em></p>
+              <small>| titlebar, prompt, diff, status rows</small>
             </div>
           </article>
-          <article class="event-row">
-            <span class="event-dot"></span>
+          <article class="event-row diff-row">
+            <span class="event-dot edit"></span>
             <div>
-              <p><strong>generate_figma_design</strong><em>(Sign up)</em></p>
-              <small>| success</small>
-            </div>
-          </article>
-          <article class="event-row">
-            <span class="event-dot"></span>
-            <div>
-              <p><strong>Edit</strong><em>(src/screens/Onboarding/EmailVerify.tsx)</em></p>
-              <small>| +54 lines</small>
+              <p><strong>Diff</strong><em>@@ terminal-events @@</em></p>
+              <small><span class="add">+ approval row</span><span class="remove">- stale Figma-only transcript</span></small>
             </div>
           </article>
           <article class="event-row active">
             <span class="event-star">*</span>
             <div>
-              <p><strong>Scheming...</strong><em>(esc to interrupt)</em></p>
+              <p><strong>Running checks...</strong><em>(esc to interrupt)</em></p>
             </div>
           </article>
         </section>
 
         <footer class="terminal-input" data-primitive="claude-code-terminal-input">
-          <div class="input-row"><span>&gt;</span><span>Try "fix lint errors"</span></div>
-          <div class="help-row"><span>?</span><span>for shortcuts</span></div>
+          <div class="input-row"><span>&gt;</span><span>npm run registry:check<span class="terminal-cursor"></span></span></div>
+          <div class="help-row"><span>?</span><span>shift+enter newline · ctrl+c interrupt · /config settings</span></div>
         </footer>
       </main>
     </section>
@@ -102,7 +104,9 @@
         --ink: #25211d;
         --muted: #8e8881;
         --rule: #cfc9be;
-        --active: #dedbd3;
+        --active: #e3dfd6;
+        --green: #4f9f69;
+        --amber: #b68122;
         --red: #bf544a;
         --titlebar: #eceae5;
         width: 660px;
@@ -130,7 +134,8 @@
 
       .terminal-titlebar {
         height: 52px;
-        display: flex;
+        display: grid;
+        grid-template-columns: 92px 1fr 58px;
         align-items: center;
         padding: 0 17px;
         background: linear-gradient(#efede9, var(--titlebar));
@@ -139,12 +144,12 @@
 
       .traffic {
         display: flex;
-        gap: 11px;
+        gap: 8px;
       }
 
       .traffic span {
-        width: 20px;
-        height: 20px;
+        width: 13px;
+        height: 13px;
         display: block;
         border-radius: 50%;
       }
@@ -152,6 +157,23 @@
       .traffic .red { background: #ed5f5a; }
       .traffic .yellow { background: #edbf4f; }
       .traffic .green { background: #67c960; }
+
+      .terminal-title {
+        color: #6f6960;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .terminal-mode {
+        justify-self: end;
+        padding: 3px 7px;
+        border-radius: 6px;
+        background: rgba(191, 84, 74, 0.1);
+        color: var(--red);
+        font-size: 12px;
+        font-weight: 650;
+      }
 
       .terminal-paper {
         height: calc(100% - 52px);
@@ -164,16 +186,16 @@
 
       .terminal-identity {
         display: grid;
-        grid-template-columns: 82px 1fr;
+        grid-template-columns: 62px 1fr;
         gap: 12px;
-        padding: 0 22px 14px;
-        min-height: 116px;
+        padding: 10px 18px 11px;
+        min-height: 92px;
         align-items: start;
       }
 
       .pixel-mark {
-        width: 74px;
-        height: 70px;
+        width: 54px;
+        height: 52px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(4, 1fr);
@@ -208,31 +230,31 @@
 
       .terminal-identity h1 {
         padding-top: 7px;
-        font-size: 23px;
+        font-size: 19px;
         line-height: 1.18;
         font-weight: 500;
       }
 
       .terminal-identity h1 span {
         color: var(--muted);
-        font-size: 21px;
+        font-size: 18px;
         font-weight: 430;
       }
 
       .terminal-identity p {
         color: var(--muted);
-        font-size: 23px;
-        line-height: 1.22;
+        font-size: 15px;
+        line-height: 1.34;
       }
 
       .prompt-line {
         display: grid;
-        grid-template-columns: 24px 1fr;
+        grid-template-columns: 20px 1fr;
         gap: 0;
-        margin: 0 9px 18px;
-        padding: 7px 10px 8px;
-        font-size: 22px;
-        line-height: 1.26;
+        margin: 0 9px 12px;
+        padding: 8px 10px 9px;
+        font-size: 16px;
+        line-height: 1.35;
       }
 
       .prompt-line.active {
@@ -253,12 +275,12 @@
 
       .event-row {
         display: grid;
-        grid-template-columns: 22px 1fr;
+        grid-template-columns: 20px 1fr;
         gap: 4px;
-        min-height: 68px;
+        min-height: 60px;
         color: var(--ink);
-        font-size: 22px;
-        line-height: 1.22;
+        font-size: 16px;
+        line-height: 1.28;
       }
 
       .event-row p,
@@ -269,15 +291,30 @@
       .event-dot {
         width: 5px;
         height: 5px;
-        margin: 13px 0 0 2px;
+        margin: 10px 0 0 2px;
         border-radius: 50%;
         background: var(--red);
+      }
+
+      .event-dot.done {
+        background: var(--green);
+      }
+
+      .event-dot.ask {
+        width: 8px;
+        height: 8px;
+        margin-top: 8px;
+        background: var(--amber);
+      }
+
+      .event-dot.edit {
+        background: #7f80d8;
       }
 
       .event-star {
         color: var(--red);
         padding-top: 1px;
-        font-size: 24px;
+        font-size: 19px;
       }
 
       .event-row strong {
@@ -294,24 +331,41 @@
         display: block;
         padding-left: 2px;
         color: var(--muted);
-        font-size: 21px;
+        font-size: 14px;
       }
 
       .event-row.active {
-        min-height: 44px;
+        min-height: 36px;
+        color: var(--red);
+      }
+
+      .event-row.approval {
+        color: #6a4b13;
+      }
+
+      .diff-row small {
+        display: flex;
+        gap: 10px;
+      }
+
+      .diff-row .add {
+        color: var(--green);
+      }
+
+      .diff-row .remove {
         color: var(--red);
       }
 
       .terminal-input {
         border-top: 2px solid rgba(71, 67, 59, 0.46);
         background: rgba(250, 249, 245, 0.88);
-        font-size: 22px;
+        font-size: 16px;
         color: var(--muted);
       }
 
       .input-row,
       .help-row {
-        min-height: 48px;
+        min-height: 41px;
         display: grid;
         grid-template-columns: 32px 1fr;
         align-items: center;
@@ -320,6 +374,15 @@
 
       .help-row {
         border-top: 1px solid rgba(71, 67, 59, 0.38);
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 18px;
+        margin-left: 6px;
+        transform: translateY(3px);
+        background: var(--red);
       }
     </style>
   </div>
