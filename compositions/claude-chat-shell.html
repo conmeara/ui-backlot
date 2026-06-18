@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="topbar-actions">
-            <button type="button" class="model-pill"><span class="model-dot"></span>Claude Sonnet 4.6</button>
+            <button type="button" class="model-pill"><span class="model-dot"></span>Opus 4.5</button>
             <button type="button" aria-label="Share" class="topbar-icon share-icon"></button>
             <button type="button" aria-label="More" class="topbar-icon more-icon"><span></span></button>
           </div>
@@ -88,10 +88,8 @@
           <div class="composer-placeholder">Reply...</div>
           <div class="composer-controls">
             <button type="button" aria-label="Attach" class="round-control plus-control"></button>
-            <button type="button" class="folder-button"><span class="folder-mini"></span>Work in a folder</button>
-            <button type="button" class="tool-button">Research</button>
             <span class="composer-spacer"></span>
-            <button type="button" aria-label="Dictate" class="round-control mic-control"></button>
+            <button type="button" class="composer-model-selector">Opus 4.5<span class="selector-chevron"></span></button>
             <button type="button" aria-label="Send" class="send-control"></button>
           </div>
         </footer>
@@ -148,7 +146,7 @@
         display: grid;
         grid-template-columns: 260px 1fr;
         overflow: hidden;
-        border-radius: 28px;
+        border-radius: 18px;
         background: var(--paper);
         box-shadow:
           0 42px 140px rgba(55, 42, 30, 0.17),
@@ -617,7 +615,7 @@
       .assistant-reply {
         position: absolute;
         left: 146px;
-        top: 258px;
+        top: 274px;
         width: 820px;
         min-height: 170px;
         padding-left: 78px;
@@ -628,17 +626,17 @@
         margin: 0;
         max-width: 760px;
         font-family: "Anthropic Serif", serif;
-        font-size: 48px;
-        line-height: 1.13;
+        font-size: 38px;
+        line-height: 1.16;
         font-weight: 460;
         letter-spacing: 0;
       }
 
       .assistant-reply p.secondary {
         max-width: 780px;
-        margin-top: 33px;
+        margin-top: 24px;
         color: #342e28;
-        font-size: 34px;
+        font-size: 27px;
         line-height: 1.23;
         font-weight: 430;
       }
@@ -647,13 +645,13 @@
         align-self: end;
         justify-self: center;
         width: min(900px, calc(100% - 112px));
-        height: 142px;
-        margin-bottom: 28px;
+        height: 122px;
+        margin-bottom: 24px;
         display: grid;
         grid-template-rows: 28px 1fr 38px;
         padding: 13px 17px 13px;
         border: 1px solid rgba(43, 35, 27, 0.16);
-        border-radius: 28px;
+        border-radius: 24px;
         background: rgba(255, 254, 251, 0.99);
         box-shadow:
           0 1px 0 rgba(54, 45, 38, 0.06),
@@ -718,7 +716,7 @@
       .composer-placeholder {
         align-self: center;
         color: #767068;
-        font-size: 32px;
+        font-size: 25px;
         line-height: 1;
         font-weight: 430;
       }
@@ -804,23 +802,67 @@
 
       .send-control {
         position: relative;
-        width: 38px;
-        height: 38px;
+        width: 42px;
+        height: 42px;
         border: 0;
-        border-radius: 50%;
-        background: var(--brand-strong);
-        box-shadow: 0 9px 20px rgba(210, 105, 83, 0.25);
+        border-radius: 11px;
+        background: #df927f;
+        color: #fffefa;
+        box-shadow: none;
       }
 
       .send-control::before {
         content: "";
         position: absolute;
-        left: 12px;
-        top: 12px;
+        left: 14px;
+        top: 16px;
+        width: 12px;
+        height: 12px;
+        border-left: 2px solid currentColor;
+        border-top: 2px solid currentColor;
+        transform: rotate(45deg);
+      }
+
+      .send-control::after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 14px;
+        width: 2px;
+        height: 17px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .composer-model-selector {
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 4px 0 10px;
+        border: 0;
+        background: transparent;
+        color: #1f1d1a;
+        font-size: 20px;
+        font-weight: 450;
+      }
+
+      .selector-chevron {
         width: 13px;
         height: 13px;
-        border-left: 3px solid #fff;
-        border-top: 3px solid #fff;
+        position: relative;
+        color: #8a8379;
+      }
+
+      .selector-chevron::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 1px;
+        width: 7px;
+        height: 7px;
+        border-right: 1.8px solid currentColor;
+        border-bottom: 1.8px solid currentColor;
         transform: rotate(45deg);
       }
     </style>

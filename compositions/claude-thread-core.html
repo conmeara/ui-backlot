@@ -26,7 +26,7 @@
           <div class="topbar-actions">
             <button class="model-selector" type="button">
               <span class="model-dot"></span>
-              <span>Claude Sonnet 4.6</span>
+              <span>Opus 4.5</span>
               <span class="chevron down"></span>
             </button>
             <button class="topbar-icon share" type="button" aria-label="Share"></button>
@@ -56,23 +56,23 @@
               </div>
               <div class="assistant-stack">
                 <div class="assistant-copy">
-                  <span class="typing-mask assistant-line">Sure, I can make those deck changes for you.</span>
-                  <span class="typing-mask assistant-line secondary">I'll inspect the folder context and prepare the deck update.</span>
+                  <span class="typing-mask assistant-line">I'll update the launch deck from the selected folder.</span>
+                  <span class="typing-mask assistant-line secondary">I'm checking the notes, Q2 data, and deck file before returning the edited presentation.</span>
                 </div>
 
                 <section class="thinking-card" data-primitive="message-part-group" aria-label="Thinking">
                   <button class="card-trigger" type="button">
                     <span class="chevron open"></span>
-                    <span>Reading the selected context</span>
+                    <span>Running command</span>
                     <span class="card-meta">3 parts</span>
                   </button>
                   <div class="thinking-body">
                     <div class="part-section">
-                      <span class="part-label">Reasoning</span>
-                      <span>Read the project folder, map the data files to slide edits, then stage the presentation update.</span>
+                      <span class="part-label">Request JSON</span>
+                      <span>{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }</span>
                     </div>
                     <div class="source-cluster" aria-label="Sources">
-                      <span class="source-label">Sources</span>
+                      <span class="source-label">Selected context</span>
                       <span class="source-chip">slide-notes.md</span>
                       <span class="source-chip">Q2 revenue.csv</span>
                     </div>
@@ -82,24 +82,22 @@
                 <section class="tool-card" data-primitive="progress-rows" aria-label="Taking action">
                   <button class="card-trigger" type="button">
                     <span class="chevron open"></span>
-                    <span>Making the deck update</span>
+                    <span>Editing Deck.pptx</span>
                     <span class="card-meta">00:07</span>
                   </button>
                   <div class="tool-row done"><span class="tool-dot"></span><span>Read Launch Deck folder</span><span class="tool-status">4 files</span></div>
                   <div class="tool-row done"><span class="tool-dot"></span><span>Found slide notes and Q2 data</span><span class="tool-status">ready</span></div>
-                  <div class="tool-row active"><span class="tool-dot"></span><span>Preparing PowerPoint edits</span><span class="tool-status">working</span></div>
+                  <div class="tool-row active"><span class="tool-dot"></span><span>Updating opening slides</span><span class="tool-status">working</span></div>
                 </section>
 
                 <section class="command-card" data-primitive="command-output-card" aria-label="Command output">
                   <div class="command-card-head">
                     <span class="command-dot"></span>
-                    <span>Local plan preview</span>
-                    <span>preview</span>
+                    <span>Response</span>
+                    <span>streaming</span>
                   </div>
-                  <pre>{
-  "slides": ["title", "revenue"],
-  "edits": ["rename headline", "recolor chart", "add speaker note"]
-}</pre>
+                  <pre>Found Launch Deck.pptx, slide-notes.md, and Q2 revenue.csv.
+Next I'll update the title slide and refresh the revenue chart.</pre>
                 </section>
 
                 <div class="message-actions" aria-label="Assistant message actions">
@@ -174,10 +172,12 @@
         grid-template-rows: 48px minmax(0, 1fr);
         overflow: hidden;
         border: 1px solid rgba(55, 42, 31, 0.07);
-        border-radius: 24px;
+        border-radius: 18px;
         background:
-          linear-gradient(90deg, transparent 0 8.8%, rgba(231, 224, 215, 0.09) 8.8% calc(8.8% + 1px), transparent calc(8.8% + 1px) 91.2%, rgba(231, 224, 215, 0.08) 91.2% calc(91.2% + 1px), transparent calc(91.2% + 1px) 100%),
+          linear-gradient(rgba(231, 224, 215, 0.58) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(231, 224, 215, 0.58) 1px, transparent 1px),
           var(--bg-000);
+        background-size: 48px 48px, 48px 48px, auto;
         box-shadow:
           0 1px 1px rgba(49, 44, 38, 0.035),
           0 32px 96px rgba(54, 42, 31, 0.14);
@@ -288,7 +288,7 @@
 
       .model-selector {
         height: 32px;
-        display: inline-flex;
+        display: none;
         align-items: center;
         gap: 7px;
         padding: 0 10px;
@@ -335,7 +335,7 @@
         min-height: 0;
         position: relative;
         overflow: hidden;
-        padding: 31px 0 30px;
+        padding: 37px 0 30px;
         background:
           linear-gradient(180deg, rgba(255, 253, 250, 1), rgba(255, 253, 250, 0) 92px),
           transparent;
@@ -353,7 +353,7 @@
       }
 
       .thread-width {
-        width: min(calc(100% - 58px), 780px);
+        width: min(calc(100% - 76px), 640px);
         margin-inline: auto;
       }
 
@@ -368,24 +368,24 @@
       }
 
       .message-row.assistant {
-        grid-template-columns: 38px minmax(0, 1fr);
-        gap: 12px;
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 10px;
       }
 
       .sticky-prompt-bubble {
-        max-width: 620px;
-        padding: 12px 17px 13px;
-        border-radius: 15px;
+        max-width: 566px;
+        padding: 15px 19px 16px;
+        border-radius: 16px;
         background: #efede6;
         color: var(--text-100);
-        font-size: 15.5px;
+        font-size: 17px;
         line-height: 1.34;
         box-shadow: 0 1px 0 rgba(55, 48, 40, 0.035);
       }
 
       .thread-context-strip {
+        display: none;
         width: min(calc(100% - 54px), 690px);
-        display: flex;
         justify-content: flex-end;
         flex-wrap: wrap;
         gap: 6px;
@@ -447,21 +447,21 @@
       }
 
       .assistant-copy {
-        max-width: 760px;
+        max-width: 520px;
         display: grid;
         gap: 4px;
         color: var(--text-100);
         font-family: "Anthropic Serif", serif;
-        font-size: 39px;
-        line-height: 1.04;
+        font-size: 26px;
+        line-height: 1.12;
         font-weight: 430;
         letter-spacing: 0;
       }
 
       .assistant-line.secondary {
         color: var(--text-300);
-        font-size: 0.68em;
-        line-height: 1.08;
+        font-size: 0.78em;
+        line-height: 1.14;
       }
 
       .typing-mask {
@@ -472,11 +472,11 @@
       .claude-sunburst {
         position: relative;
         display: inline-block;
-        width: 29px;
-        height: 29px;
+        width: 24px;
+        height: 24px;
         color: var(--brand-000);
-        --ray-w: 2.6px;
-        --ray-h: 10px;
+        --ray-w: 2.2px;
+        --ray-h: 8px;
         --ray-gap: 2.8px;
       }
 
@@ -508,12 +508,12 @@
       .thinking-card,
       .tool-card {
         width: 100%;
-        margin-top: 16px;
+        margin-top: 14px;
         overflow: hidden;
-        border: 1px solid rgba(39, 37, 34, 0.038);
+        border: 1px solid rgba(39, 37, 34, 0.075);
         border-radius: 15px;
-        background: rgba(255, 253, 249, 0.36);
-        box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
+        background: rgba(255, 253, 249, 0.64);
+        box-shadow: none;
       }
 
       .tool-card {
@@ -522,18 +522,18 @@
 
       .card-trigger {
         width: 100%;
-        min-height: 32px;
+        min-height: 40px;
         display: grid;
         grid-template-columns: 18px 1fr auto;
         align-items: center;
         gap: 8px;
-        padding: 0 12px;
+        padding: 0 18px;
         border: 0;
         border-bottom: 1px solid rgba(39, 37, 34, 0.035);
         background: rgba(250, 248, 244, 0.24);
         color: var(--text-400);
-        font-size: 12.5px;
-        font-weight: 570;
+        font-size: 16px;
+        font-weight: 680;
         text-align: left;
       }
 
@@ -546,16 +546,21 @@
 
       .thinking-body {
         display: grid;
-        gap: 9px;
-        padding: 9px 12px 10px 38px;
+        gap: 14px;
+        min-height: 138px;
+        padding: 16px 18px 18px 50px;
       }
 
       .part-section {
         display: grid;
-        gap: 3px;
-        color: var(--text-300);
-        font-size: 12.5px;
-        line-height: 1.34;
+        gap: 7px;
+        padding: 16px 19px;
+        border-radius: 11px;
+        background: #f8f6ef;
+        color: #2f7a3a;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 15px;
+        line-height: 1.5;
       }
 
       .part-label,
@@ -574,7 +579,7 @@
       }
 
       .source-chip {
-        height: 22px;
+        height: 23px;
         display: inline-flex;
         align-items: center;
         padding: 0 8px;
@@ -586,15 +591,15 @@
       }
 
       .tool-row {
-        min-height: 29px;
+        min-height: 38px;
         display: grid;
         grid-template-columns: 23px 1fr auto;
         align-items: center;
         gap: 9px;
-        padding: 0 12px;
+        padding: 0 18px;
         border-bottom: 1px solid rgba(39, 37, 34, 0.052);
         color: var(--text-300);
-        font-size: 13px;
+        font-size: 16px;
       }
 
       .tool-row:last-child {
@@ -641,11 +646,12 @@
       }
 
       .command-card {
+        display: none;
         margin-top: 12px;
         overflow: hidden;
         border: 1px solid rgba(39, 37, 34, 0.06);
         border-radius: 13px;
-        background: rgba(251, 248, 242, 0.58);
+        background: rgba(251, 248, 242, 0.78);
         box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
       }
 
@@ -678,8 +684,9 @@
       .command-card pre {
         margin: 0;
         padding: 0 12px 10px 34px;
-        color: #6b6257;
-        font-family: Menlo, Monaco, monospace;
+        overflow: hidden;
+        color: var(--text-300);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         font-size: 11.5px;
         line-height: 1.42;
       }
