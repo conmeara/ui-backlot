@@ -1,0 +1,54 @@
+{
+  "capturedAt": "2026-06-18T17:28:07.591Z",
+  "assetDecision": "Official/public Figma documentation and blog screenshots saved for visual reference only. Do not copy proprietary Figma source code, vector assets, icons, or screenshot pixels into editable surfaces; use these references to measure layout, density, typography, panel structure, and interaction affordances.",
+  "refs": [
+    {
+      "file": "actual-figma-ui3-left-navigation-overview.png",
+      "page": "https://help.figma.com/hc/en-us/articles/23954856027159-Navigating-UI3",
+      "url": "https://help.figma.com/hc/article_attachments/37507058339351",
+      "note": "Official Figma Help Center UI3 screenshot focused on the new left navigation bar and editor layout."
+    },
+    {
+      "file": "actual-figma-ui3-toolbar-editor-wide.png",
+      "page": "https://help.figma.com/hc/en-us/articles/23954856027159-Navigating-UI3",
+      "url": "https://help.figma.com/hc/article_attachments/30912749347735",
+      "note": "Official Figma Help Center editor screenshot from Navigating UI3; useful for toolbar/canvas spacing and fixed panel treatment."
+    },
+    {
+      "file": "actual-figma-ui3-actions-toolbar.png",
+      "page": "https://help.figma.com/hc/en-us/articles/23954856027159-Navigating-UI3",
+      "url": "https://help.figma.com/hc/article_attachments/30912749351319",
+      "note": "Official Figma Help Center UI3 screenshot for Actions/bottom toolbar treatment."
+    },
+    {
+      "file": "actual-figma-properties-design-prototype.png",
+      "page": "https://help.figma.com/hc/en-us/articles/360039832014-Design-prototype-and-explore-layer-properties-in-the-right-sidebar",
+      "url": "https://help.figma.com/hc/article_attachments/31937313497879",
+      "note": "Official Figma Help Center right sidebar screenshot showing Design and Prototype tabs and panel density."
+    },
+    {
+      "file": "actual-figma-left-panel-layers-pages.png",
+      "page": "https://help.figma.com/hc/en-us/articles/360039831974-View-layers-and-pages-in-the-left-sidebar",
+      "url": "https://help.figma.com/hc/article_attachments/24376960530839",
+      "note": "Official Figma Help Center screenshot of left panel pages/layers structure."
+    },
+    {
+      "file": "actual-figma-minimized-ui-selection.png",
+      "page": "https://help.figma.com/hc/en-us/articles/360039831974-View-layers-and-pages-in-the-left-sidebar",
+      "url": "https://help.figma.com/hc/article_attachments/24376974686999",
+      "note": "Official Figma Help Center screenshot showing minimized UI behavior and selected canvas frame."
+    },
+    {
+      "file": "actual-figma-assets-panel.png",
+      "page": "https://help.figma.com/hc/en-us/articles/360039831974-View-layers-and-pages-in-the-left-sidebar",
+      "url": "https://help.figma.com/hc/article_attachments/24376965531543",
+      "note": "Official Figma Help Center screenshot of Assets panel and libraries."
+    },
+    {
+      "file": "actual-figma-ui3-blog-full-editor.jpg",
+      "page": "https://www.figma.com/blog/our-approach-to-designing-ui3/",
+      "url": "https://cdn.sanity.io/images/599r6htc/regionalized/3225dab2b34419e6bc17bf52633ed13b4e86cd6d-3262x1836.jpg?w=1632&q=75&fit=max&auto=format",
+      "note": "Official Figma blog UI3 editor screenshot on a colorful background; useful for high-level look and feel."
+    }
+  ]
+}
