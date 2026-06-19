@@ -1,0 +1,1365 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 20%),
+      linear-gradient(140deg, #f1ede5 0%, #fbfaf6 58%, #e7f0ea 100%);
+  }
+</style>
+
+<template id="claude-tool-result-template">
+  <div id="claude-tool-result-surface" data-composition-id="claude-tool-result-surface" data-width="1180" data-height="780">
+    <section class="claude-tool-window dframe-root" data-primitive="claude-tool-result-window" aria-label="Editable Claude tool-result surface">
+      <aside class="dframe-sidebar" data-primitive="claude-sidebar">
+        <div class="claude-traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="sidebar-head">
+          <div class="claude-app-brand">
+            <span class="claude-sunburst small" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span>
+            </span>
+            <span>Claude</span>
+          </div>
+          <button class="sidebar-icon-button" type="button" aria-label="Collapse sidebar"></button>
+        </div>
+
+        <div class="mode-switch" aria-label="Claude mode">
+          <button type="button">Chat</button>
+          <button type="button">Code</button>
+          <button class="active" type="button">Cowork</button>
+        </div>
+
+        <div class="sidebar-primary-actions">
+          <button class="new-chat-button" type="button"><span class="sidebar-symbol compose"></span><span>New task</span></button>
+          <button class="search-chat-button" type="button"><span class="sidebar-symbol search"></span><span>Search tasks</span></button>
+        </div>
+
+        <div class="sidebar-section-label">Active tasks</div>
+        <div class="dframe-row selected"><span class="sidebar-symbol project"></span><span>Launch deck opening slides</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol artifact"></span><span>Browser metrics cleanup</span></div>
+        <div class="sidebar-section-label">Today</div>
+        <div class="dframe-row active-thread"><span class="sidebar-symbol chat"></span><span>Completed PowerPoint edit</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol chat"></span><span>Finder attachment test</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol chat"></span><span>Reference video notes</span></div>
+        <div class="sidebar-section-label">Projects</div>
+        <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Marketing videos</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Backlot primitives</span></div>
+
+        <div class="sidebar-sync-state">
+          <span class="sync-pulse"></span>
+          <span>Deck updates are complete and ready to open.</span>
+        </div>
+
+        <div class="sidebar-account">
+          <span class="account-avatar"></span>
+          <span class="account-copy"><strong>Demo workspace</strong><span>Pro plan</span></span>
+          <span class="sidebar-kebab"></span>
+        </div>
+      </aside>
+
+      <main class="dframe-pane-primary epitaxy-root" data-primitive="claude-thread-pane">
+        <header class="epitaxy-topbar">
+          <div class="topbar-left">
+            <button class="topbar-icon menu" type="button" aria-label="Open sidebar"></button>
+            <div class="thread-title-stack">
+              <div class="conversation-title">Launch Deck folder</div>
+              <div class="conversation-subtitle">Presentation update complete</div>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <button class="model-selector" type="button">
+              <span class="model-dot"></span>
+              <span>Claude Sonnet 4.6</span>
+              <span class="chevron down"></span>
+            </button>
+            <button class="topbar-icon share" type="button" aria-label="Share"></button>
+            <button class="topbar-icon more" type="button" aria-label="More"></button>
+          </div>
+        </header>
+
+        <div class="epitaxy-chat-panel-body">
+          <div class="epitaxy-transcript-width">
+            <article class="message-row user">
+              <div class="epitaxy-sticky-prompt-bubble">Use the Launch Deck folder to update the opening slide, chart values, and speaker note for the demo handoff.</div>
+            </article>
+
+            <article class="message-row assistant">
+              <div class="assistant-gutter">
+                <span class="claude-sunburst response-mark" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span>
+                </span>
+              </div>
+              <div class="assistant-stack">
+                <div class="assistant-copy">
+                  <span class="typing-mask assistant-line">Done. I updated the deck so the opening slide now tells a clear Q2 launch story, uses the corrected revenue chart, and includes a speaker note for the demo.</span>
+                </div>
+
+                <section class="result-card" data-primitive="claude-result-card" aria-label="Completed changes">
+                  <button class="card-trigger" type="button">
+                    <span class="chevron open"></span>
+                    <span>Completed changes</span>
+                    <span class="card-meta">3 updates</span>
+                  </button>
+                  <div class="result-row done"><span class="result-dot"></span><span>Updated title slide to Q2 launch story</span><span>Slide 1</span></div>
+                  <div class="result-row done"><span class="result-dot"></span><span>Mapped Q2 revenue chart from CSV</span><span>Chart</span></div>
+                  <div class="result-row done"><span class="result-dot"></span><span>Added concise speaker note for the opening</span><span>Notes</span></div>
+                </section>
+
+                <section class="artifact-card" data-primitive="claude-artifact-card" aria-label="Updated file">
+                  <div class="artifact-icon">P</div>
+                  <div class="artifact-copy">
+                    <strong>Launch Deck.pptx</strong>
+                    <span>Saved changes from slide-notes.md and Q2 revenue.csv</span>
+                  </div>
+                  <button class="artifact-button" type="button">Open</button>
+                </section>
+
+                <div class="message-actions" aria-label="Assistant message actions">
+                  <button class="mini-action copy" type="button" aria-label="Copy"></button>
+                  <button class="mini-action retry" type="button" aria-label="Retry"></button>
+                  <button class="mini-action more" type="button" aria-label="More"></button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <footer class="composer-shell" data-primitive="composer">
+          <div class="epitaxy-composer-width">
+            <div class="epitaxy-prompt conway-glass-frame">
+              <div class="prompt-attachments">
+                <span class="attachment-chip"><span class="file-chip folder"></span>Launch Deck</span>
+                <span class="attachment-chip"><span class="file-chip doc"></span>Q2 revenue.csv</span>
+                <span class="attachment-count">2 attached</span>
+              </div>
+              <div class="epitaxy-prompt-input" aria-label="Prompt">Ask Claude to make another deck change...</div>
+              <div class="composer-controls">
+                <span class="composer-tools">
+                  <button class="prompt-icon-button plus" type="button" aria-label="Attach"></button>
+                  <button class="prompt-tool" type="button"><span class="folder-mini"></span>Work in a folder</button>
+                  <button class="prompt-tool" type="button">Research</button>
+                </span>
+                <button class="prompt-icon-button mic" type="button" aria-label="Dictate"></button>
+                <button class="send-button" type="button" aria-label="Send"></button>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      <aside class="agent-rail" data-primitive="claude-agent-context-rail" aria-label="Claude completed task context">
+        <section class="rail-section progress-section">
+          <div class="rail-title">Progress</div>
+          <div class="progress-circles" aria-hidden="true">
+            <span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span>
+          </div>
+          <p>All requested slide updates finished.</p>
+        </section>
+
+        <section class="rail-section">
+          <div class="rail-title">Artifacts</div>
+          <div class="rail-artifact-card">
+            <span class="rail-file-icon deck"></span>
+            <div><strong>Launch Deck.pptx</strong><span>updated 1 min ago</span></div>
+          </div>
+        </section>
+
+        <section class="rail-section">
+          <div class="rail-title">Completed</div>
+          <div class="rail-list">
+            <div class="rail-row checked"><span class="rail-check"></span><span>Title updated</span></div>
+            <div class="rail-row checked"><span class="rail-check"></span><span>Chart values mapped</span></div>
+            <div class="rail-row checked"><span class="rail-check"></span><span>Speaker note added</span></div>
+          </div>
+        </section>
+
+        <section class="rail-section">
+          <div class="rail-title">Context</div>
+          <div class="rail-list">
+            <div class="rail-row"><span class="rail-file-icon folder"></span><span>Launch Deck</span></div>
+            <div class="rail-row"><span class="rail-file-icon sheet"></span><span>Q2 revenue.csv</span></div>
+            <div class="rail-row"><span class="rail-file-icon doc"></span><span>slide-notes.md</span></div>
+          </div>
+        </section>
+
+        <section class="rail-section working-files">
+          <div class="rail-title">Working files</div>
+          <div class="working-file">Launch Deck.pptx</div>
+          <div class="working-file">Q2 revenue.csv</div>
+        </section>
+      </aside>
+    </section>
+
+    <style>
+      #claude-tool-result-surface {
+        --bg-000: #ffffff;
+        --bg-100: #faf9f5;
+        --bg-200: #f2eee7;
+        --text-100: #171715;
+        --text-200: #35332f;
+        --text-300: #59564f;
+        --text-400: #777169;
+        --text-500: #928b82;
+        --border-100: rgba(49, 44, 38, 0.1);
+        --brand-000: #c75f48;
+        --brand-100: #d8755f;
+        --success: #5fa36b;
+        --df-sidebar-width: 260px;
+        --df-agent-rail-width: 238px;
+        --df-header-h: 48px;
+        --df-row-h: 26px;
+        --df-radius-pill: 6px;
+        --df-shadow-card: inset 0 0 0 0 transparent, 0 0 0 1px rgba(20, 16, 12, 0.055), 0 4px 24px rgba(20, 16, 12, 0.055);
+        --max-content-width: 596px;
+        width: 1180px;
+        height: 780px;
+        overflow: visible;
+        color: var(--text-100);
+        font-family: Inter, sans-serif;
+      }
+
+      #claude-tool-result-surface * {
+        box-sizing: border-box;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .claude-tool-window {
+        position: relative;
+        width: 1180px;
+        height: 780px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: var(--df-sidebar-width) minmax(0, 1fr) var(--df-agent-rail-width);
+        grid-template-rows: 100%;
+        border-radius: 18px;
+        background: var(--bg-100);
+        box-shadow: 0 38px 110px rgba(54, 42, 31, 0.22), 0 0 0 1px rgba(55, 42, 31, 0.08);
+      }
+
+      .dframe-sidebar {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: var(--df-sidebar-width);
+        min-width: 0;
+        padding: 13px 10px 12px;
+        background: #f6f3ed;
+        border-right: 1px solid rgba(42, 35, 27, 0.06);
+        box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.42);
+        user-select: none;
+      }
+
+      .claude-traffic {
+        height: 14px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 10px 4px;
+      }
+
+      .claude-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+      }
+
+      .claude-traffic .red { background: #ff5f57; }
+      .claude-traffic .yellow { background: #ffbd2e; }
+      .claude-traffic .green { background: #28c840; }
+
+      .sidebar-head {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-left: 5px;
+      }
+
+      .mode-switch {
+        height: 31px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        padding: 2px;
+        margin: 0 4px 14px;
+        border-radius: 9px;
+        background: rgba(232, 226, 217, 0.74);
+        box-shadow: inset 0 0 0 1px rgba(55, 48, 40, 0.045);
+      }
+
+      .mode-switch button {
+        min-width: 0;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--text-400);
+        font-size: 11.5px;
+        font-weight: 560;
+      }
+
+      .mode-switch .active {
+        color: var(--text-100);
+        background: rgba(255, 254, 250, 0.78);
+        box-shadow: 0 1px 4px rgba(55, 48, 40, 0.08);
+      }
+
+      .claude-app-brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: #342f2a;
+        font-size: 14px;
+        font-weight: 680;
+      }
+
+      .claude-sunburst {
+        position: relative;
+        display: inline-block;
+        --ray-w: 2.4px;
+        --ray-h: 8px;
+        --ray-gap: 3px;
+        color: var(--brand-000);
+        flex: 0 0 auto;
+      }
+
+      .claude-sunburst.small {
+        width: 18px;
+        height: 18px;
+        --ray-w: 1.8px;
+        --ray-h: 6.5px;
+        --ray-gap: 2px;
+      }
+
+      .claude-sunburst.response-mark {
+        width: 30px;
+        height: 30px;
+        --ray-w: 3px;
+        --ray-h: 11px;
+        --ray-gap: 3px;
+      }
+
+      .claude-sunburst span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--ray-w);
+        height: var(--ray-h);
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% calc(100% + var(--ray-gap));
+        transform: translate(-50%, calc(-100% - var(--ray-gap))) rotate(calc(var(--i) * 30deg));
+      }
+
+      .claude-sunburst span:nth-child(1) { --i: 0; }
+      .claude-sunburst span:nth-child(2) { --i: 1; }
+      .claude-sunburst span:nth-child(3) { --i: 2; }
+      .claude-sunburst span:nth-child(4) { --i: 3; }
+      .claude-sunburst span:nth-child(5) { --i: 4; }
+      .claude-sunburst span:nth-child(6) { --i: 5; }
+      .claude-sunburst span:nth-child(7) { --i: 6; }
+      .claude-sunburst span:nth-child(8) { --i: 7; }
+      .claude-sunburst span:nth-child(9) { --i: 8; }
+      .claude-sunburst span:nth-child(10) { --i: 9; }
+      .claude-sunburst span:nth-child(11) { --i: 10; }
+      .claude-sunburst span:nth-child(12) { --i: 11; }
+
+      .sidebar-icon-button,
+      .topbar-icon,
+      .prompt-icon-button,
+      .mini-action {
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: var(--text-400);
+        position: relative;
+      }
+
+      .sidebar-icon-button {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
+      .sidebar-icon-button::before {
+        content: "";
+        width: 12px;
+        height: 9px;
+        border-radius: 2px;
+        border: 1.5px solid currentColor;
+        box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.9);
+      }
+
+      .sidebar-primary-actions {
+        display: grid;
+        gap: 3px;
+        margin-bottom: 13px;
+      }
+
+      .new-chat-button,
+      .search-chat-button,
+      .dframe-row {
+        height: var(--df-row-h);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+        padding: 0 7px;
+        border: 0;
+        border-radius: var(--df-radius-pill);
+        background: transparent;
+        color: var(--text-300);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .new-chat-button {
+        color: var(--text-100);
+        background: rgba(248, 246, 242, 0.98);
+        box-shadow: inset 0 0 0 1px rgba(55, 48, 40, 0.055);
+        font-weight: 590;
+      }
+
+      .search-chat-button {
+        color: var(--text-400);
+      }
+
+      .dframe-row {
+        margin-bottom: 1px;
+      }
+
+      .dframe-row.selected,
+      .dframe-row.active-thread {
+        color: var(--text-100);
+        background: rgba(244, 241, 235, 0.98);
+      }
+
+      .dframe-row span:last-child,
+      .new-chat-button span:last-child,
+      .search-chat-button span:last-child {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .sidebar-section-label {
+        margin: 12px 7px 5px;
+        color: var(--text-500);
+        font-size: 10.5px;
+        font-weight: 600;
+      }
+
+      .sidebar-symbol {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        color: var(--text-400);
+        position: relative;
+      }
+
+      .sidebar-symbol::before {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .sidebar-symbol.compose::after,
+      .sidebar-symbol.search::after,
+      .sidebar-symbol.chat::after,
+      .sidebar-symbol.folder::after {
+        content: "";
+        position: absolute;
+        background: currentColor;
+      }
+
+      .sidebar-symbol.compose::after {
+        right: 2px;
+        top: 3px;
+        width: 7px;
+        height: 1.5px;
+        border-radius: 2px;
+        transform: rotate(-35deg);
+      }
+
+      .sidebar-symbol.search::before {
+        width: 8px;
+        height: 8px;
+        inset: 2px auto auto 2px;
+        border-radius: 50%;
+      }
+
+      .sidebar-symbol.search::after {
+        right: 2px;
+        bottom: 3px;
+        width: 6px;
+        height: 1.5px;
+        border-radius: 2px;
+        transform: rotate(45deg);
+      }
+
+      .sidebar-symbol.folder::before {
+        inset: 5px 2px 2px;
+      }
+
+      .sidebar-symbol.folder::after {
+        left: 3px;
+        top: 3px;
+        width: 7px;
+        height: 4px;
+        border-radius: 2px 2px 0 0;
+        opacity: 0.3;
+      }
+
+      .sidebar-account {
+        margin-top: auto;
+        height: 36px;
+        display: grid;
+        grid-template-columns: 24px minmax(0, 1fr) 20px;
+        align-items: center;
+        gap: 8px;
+        padding: 0 7px;
+        color: var(--text-400);
+        font-size: 12px;
+      }
+
+      .sidebar-sync-state {
+        display: grid;
+        grid-template-columns: 12px 1fr;
+        gap: 7px;
+        align-items: start;
+        margin: 18px 7px 10px;
+        padding: 10px 9px;
+        border-radius: 10px;
+        background: rgba(255, 254, 250, 0.46);
+        color: var(--text-500);
+        font-size: 10.5px;
+        line-height: 1.35;
+      }
+
+      .sync-pulse {
+        width: 8px;
+        height: 8px;
+        margin-top: 3px;
+        border-radius: 50%;
+        background: #6aa76d;
+        box-shadow: 0 0 0 4px rgba(106, 167, 109, 0.13);
+      }
+
+      .account-avatar {
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 38% 32%, #fff 0 13%, rgba(255, 255, 255, 0) 15%),
+          var(--brand-100);
+      }
+
+      .account-copy {
+        display: grid;
+        gap: 1px;
+        min-width: 0;
+      }
+
+      .account-copy strong {
+        color: var(--text-300);
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .account-copy span {
+        color: var(--text-500);
+        font-size: 11px;
+      }
+
+      .sidebar-kebab {
+        position: relative;
+        width: 18px;
+        height: 18px;
+      }
+
+      .sidebar-kebab::before,
+      .topbar-icon.more::before,
+      .mini-action.more::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translate(-50%, -50%);
+        box-shadow: -5px 0 0 currentColor, 5px 0 0 currentColor;
+      }
+
+      .dframe-pane-primary {
+        position: relative;
+        min-width: 0;
+        height: 100%;
+        display: grid;
+        grid-template-rows: var(--df-header-h) minmax(0, 1fr) 126px;
+        background: var(--bg-100);
+      }
+
+      .epitaxy-topbar {
+        height: var(--df-header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 18px 0 12px;
+        border-bottom: 1px solid rgba(50, 44, 36, 0.045);
+      }
+
+      .topbar-left,
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .topbar-left { gap: 8px; }
+      .topbar-actions { gap: 6px; }
+
+      .topbar-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+      }
+
+      .topbar-icon.menu::before {
+        content: "";
+        width: 16px;
+        height: 12px;
+        border-top: 1.8px solid currentColor;
+        border-bottom: 1.8px solid currentColor;
+        box-shadow: 0 5px 0 -3.2px currentColor;
+      }
+
+      .topbar-icon.share::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border: 1.6px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .topbar-icon.share::after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        width: 7px;
+        height: 7px;
+        border-top: 1.6px solid currentColor;
+        border-right: 1.6px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .thread-title-stack {
+        min-width: 0;
+        display: grid;
+        gap: 1px;
+      }
+
+      .conversation-title {
+        color: var(--text-200);
+        font-size: 13.5px;
+        font-weight: 620;
+        line-height: 1.1;
+      }
+
+      .conversation-subtitle {
+        color: var(--text-500);
+        font-size: 11px;
+        line-height: 1.1;
+      }
+
+      .model-selector {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 9px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--text-300);
+        font-size: 12px;
+      }
+
+      .model-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--brand-100);
+      }
+
+      .chevron {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        color: var(--text-500);
+      }
+
+      .chevron::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 2px;
+        width: 6px;
+        height: 6px;
+        border-right: 1.6px solid currentColor;
+        border-bottom: 1.6px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .chevron.open::before,
+      .chevron.down::before {
+        top: 1px;
+        transform: rotate(45deg);
+      }
+
+      .epitaxy-chat-panel-body {
+        min-height: 0;
+        position: relative;
+        overflow: hidden;
+        padding: 26px 0 12px;
+        background:
+          linear-gradient(180deg, rgba(250, 249, 245, 1), rgba(250, 249, 245, 0) 84px),
+          var(--bg-100);
+      }
+
+      .epitaxy-transcript-width,
+      .epitaxy-composer-width {
+        width: min(calc(100% - 48px), var(--max-content-width));
+        margin-inline: auto;
+      }
+
+      .message-row {
+        display: grid;
+        min-width: 0;
+        margin-bottom: 20px;
+      }
+
+      .message-row.user {
+        justify-items: end;
+      }
+
+      .message-row.assistant {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .epitaxy-sticky-prompt-bubble {
+        max-width: 552px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: #efebe4;
+        color: var(--text-100);
+        font-size: 13.5px;
+        line-height: 1.35;
+      }
+
+      .assistant-gutter {
+        padding-top: 3px;
+      }
+
+      .assistant-stack {
+        min-width: 0;
+      }
+
+      .assistant-copy {
+        max-width: 580px;
+        color: var(--text-100);
+        font-family: Georgia, serif;
+        font-size: 22px;
+        line-height: 1.29;
+        font-weight: 480;
+      }
+
+      .typing-mask {
+        display: inline-block;
+        clip-path: inset(0 0% 0 0);
+      }
+
+      .result-card,
+      .artifact-card {
+        width: 100%;
+        margin-top: 13px;
+        overflow: hidden;
+        border: 1px solid rgba(39, 37, 34, 0.07);
+        border-radius: 11px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 7px 22px rgba(45, 36, 27, 0.038);
+      }
+
+      .card-trigger {
+        width: 100%;
+        min-height: 33px;
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 11px;
+        border: 0;
+        border-bottom: 1px solid rgba(39, 37, 34, 0.07);
+        background: rgba(251, 249, 245, 0.72);
+        color: var(--text-400);
+        font-size: 12px;
+        font-weight: 570;
+        text-align: left;
+      }
+
+      .card-meta,
+      .attachment-count {
+        color: var(--text-500);
+        font-size: 11px;
+        font-weight: 450;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .result-row {
+        min-height: 33px;
+        display: grid;
+        grid-template-columns: 23px 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 11px;
+        border-bottom: 1px solid rgba(39, 37, 34, 0.07);
+        color: var(--text-300);
+        font-size: 13px;
+      }
+
+      .result-row:last-child {
+        border-bottom: 0;
+      }
+
+      .result-row span:last-child {
+        color: var(--text-500);
+        font-size: 12px;
+      }
+
+      .result-dot {
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--success);
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .result-dot::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 3px;
+        width: 7px;
+        height: 4px;
+        border-left: 2px solid var(--success);
+        border-bottom: 2px solid var(--success);
+        transform: rotate(-45deg);
+      }
+
+      .artifact-card {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 11px;
+        padding: 12px;
+      }
+
+      .artifact-icon {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #c65b47, #e08b6f);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 760;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      }
+
+      .artifact-copy {
+        min-width: 0;
+        display: grid;
+        gap: 3px;
+      }
+
+      .artifact-copy strong {
+        color: var(--text-200);
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .artifact-copy span {
+        color: var(--text-500);
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .artifact-button {
+        height: 29px;
+        padding: 0 12px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 999px;
+        background: #f8f6f2;
+        color: var(--text-300);
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .message-actions {
+        height: 24px;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-500);
+      }
+
+      .mini-action {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+      }
+
+      .mini-action.copy::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 7px;
+        width: 8px;
+        height: 10px;
+        border: 1.4px solid currentColor;
+        border-radius: 2px;
+        box-shadow: -3px 3px 0 -1px var(--bg-100), -3px 3px 0 0 currentColor;
+      }
+
+      .mini-action.retry::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1.5px solid currentColor;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .composer-shell {
+        padding: 0 0 22px;
+        background: var(--bg-100);
+      }
+
+      .epitaxy-prompt {
+        min-height: 121px;
+        display: grid;
+        grid-template-rows: 28px 1fr 38px;
+        overflow: hidden;
+        border: 1px solid rgba(39, 37, 34, 0.11);
+        border-radius: 20px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow: 0 1px 1px rgba(49, 44, 38, 0.04), 0 10px 30px rgba(64, 48, 34, 0.062);
+      }
+
+      .prompt-attachments {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 12px 0;
+      }
+
+      .attachment-chip {
+        height: 21px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 150px;
+        padding: 0 8px;
+        border-radius: 7px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        background: #f1eee8;
+        color: var(--text-300);
+        font-size: 12px;
+      }
+
+      .attachment-count {
+        margin-left: auto;
+      }
+
+      .file-chip,
+      .folder-mini {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        background: #d7cfc3;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .file-chip.folder {
+        background: #64bfe7;
+      }
+
+      .file-chip.folder::before,
+      .folder-mini::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -2px;
+        width: 7px;
+        height: 4px;
+        border-radius: 2px 2px 0 0;
+        background: #8dd2f0;
+      }
+
+      .file-chip.doc::before {
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        border-left: 4px solid transparent;
+        border-top: 4px solid #f7f5f0;
+      }
+
+      .epitaxy-prompt-input {
+        padding: 10px 16px 2px;
+        color: var(--text-400);
+        font-size: 16.5px;
+        line-height: 1.35;
+      }
+
+      .composer-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 10px 9px;
+        color: var(--text-400);
+      }
+
+      .composer-tools {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .prompt-icon-button {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 50%;
+        background: #f4f1eb;
+      }
+
+      .prompt-icon-button.plus::before,
+      .prompt-icon-button.plus::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .prompt-icon-button.plus::after {
+        transform: rotate(90deg);
+      }
+
+      .prompt-tool {
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 9px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 999px;
+        background: #f8f6f2;
+        color: var(--text-300);
+        font-size: 12px;
+      }
+
+      .folder-mini {
+        width: 13px;
+        height: 10px;
+        border-radius: 2px;
+      }
+
+      .folder-mini::before {
+        top: -3px;
+        background: #c6bbad;
+      }
+
+      .prompt-icon-button.mic::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        width: 8px;
+        height: 12px;
+        border: 2px solid currentColor;
+        border-top-width: 3px;
+        border-radius: 6px;
+      }
+
+      .prompt-icon-button.mic::after {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 19px;
+        width: 12px;
+        height: 6px;
+        border-bottom: 2px solid currentColor;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .send-button {
+        width: 33px;
+        height: 33px;
+        flex: 0 0 auto;
+        border: 0;
+        border-radius: 50%;
+        background: var(--brand-100);
+        position: relative;
+        box-shadow: 0 9px 18px rgba(216, 117, 95, 0.24);
+      }
+
+      .send-button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 9px;
+        width: 12px;
+        height: 12px;
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: rotate(45deg);
+      }
+
+      .agent-rail {
+        min-width: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 62px 16px 18px;
+        background: #fbfaf6;
+        border-left: 1px solid rgba(42, 35, 27, 0.06);
+        color: var(--text-300);
+      }
+
+      .rail-section {
+        display: grid;
+        gap: 9px;
+      }
+
+      .rail-title {
+        color: var(--text-300);
+        font-size: 13px;
+        font-weight: 660;
+      }
+
+      .progress-section p {
+        margin: 0;
+        max-width: 170px;
+        color: var(--text-500);
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .progress-circles {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .progress-circles span {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1.5px solid #d8d2c9;
+        background: #f1eee8;
+        position: relative;
+      }
+
+      .progress-circles .done::before,
+      .rail-check::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 6px;
+        width: 7px;
+        height: 4px;
+        border-left: 1.8px solid var(--text-500);
+        border-bottom: 1.8px solid var(--text-500);
+        transform: rotate(-45deg);
+      }
+
+      .rail-artifact-card {
+        min-height: 55px;
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border-radius: 11px;
+        border: 1px solid rgba(39, 37, 34, 0.07);
+        background: #fffefa;
+      }
+
+      .rail-artifact-card strong {
+        display: block;
+        color: var(--text-200);
+        font-size: 12px;
+        font-weight: 650;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .rail-artifact-card span:last-child {
+        display: block;
+        color: var(--text-500);
+        font-size: 11px;
+      }
+
+      .rail-list {
+        display: grid;
+        gap: 4px;
+      }
+
+      .rail-row,
+      .working-file {
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 8px;
+        border-radius: 8px;
+        color: var(--text-400);
+        font-size: 11.5px;
+        background: rgba(246, 243, 237, 0.56);
+      }
+
+      .rail-row span:last-child,
+      .working-file {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .rail-check {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #f1eee8;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .rail-check::before {
+        left: 6px;
+        top: 5px;
+      }
+
+      .rail-file-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        background: #ddd4c7;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .rail-file-icon.deck {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #d46e54, #a84835);
+      }
+
+      .rail-file-icon.folder {
+        background: #72c2e4;
+      }
+
+      .rail-file-icon.folder::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: -3px;
+        width: 9px;
+        height: 5px;
+        border-radius: 3px 3px 0 0;
+        background: #98d5ee;
+      }
+
+      .rail-file-icon.sheet {
+        background: #84b889;
+      }
+
+      .working-files {
+        margin-top: auto;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".claude-tool-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.48, ease: "power3.out" }, 0.12);
+      tl.from(".dframe-sidebar", { opacity: 0, x: -12, duration: 0.34, ease: "sine.out" }, 0.22);
+      tl.from(".message-row.user", { opacity: 0, y: 12, duration: 0.32, ease: "sine.out" }, 0.36);
+      tl.from(".message-row.assistant", { opacity: 0, y: 16, duration: 0.42, ease: "power2.out" }, 0.68);
+      tl.from(".assistant-line", { clipPath: "inset(0 100% 0 0)", duration: 1.55, ease: "none" }, 0.98);
+      tl.from(".result-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 2.52);
+      tl.from(".result-row", { opacity: 0, x: -8, stagger: 0.08, duration: 0.22, ease: "sine.out" }, 2.82);
+      tl.from(".artifact-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 3.28);
+      tl.to(".artifact-button", { scale: 1.04, duration: 0.24, repeat: 2, yoyo: true, ease: "sine.inOut" }, 3.7);
+      window.__timelines["claude-tool-result-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-tool-result\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-tool-result-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-tool-result-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

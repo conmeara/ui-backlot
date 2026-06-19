@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-sidebar",
+  "type": "hyperframes:component",
+  "title": "Claude Sidebar",
+  "description": "Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.",
+  "tags": [
+    "claude",
+    "sidebar",
+    "navigation",
+    "cowork",
+    "workspace"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compositions/claude-sidebar.html",
+      "target": "compositions/claude-sidebar.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fdfcf8;
+  }
+</style>
+</head>
+<body>
+
+<template id="claude-prompt-stack-template">
+  <div id="claude-prompt-stack-surface" data-composition-id="claude-prompt-stack-surface" data-width="1920" data-height="1080">
+    <section class="claude-prompt-stack-frame" data-primitive="claude-prompt-stack" aria-label="Editable Claude prompt stack surface">
+      <div class="prompt-bubbles" data-primitive="claude-large-user-bubbles">
+        <div class="prompt-bubble prompt-one">Ah good catch. Can you check the launch page and tighten the mobile navigation?</div>
+        <div class="prompt-bubble prompt-two">and prep the deck for the demo?</div>
+        <div class="prompt-bubble prompt-three">Oh and update the revenue chart in the deck with the corrected Q2 numbers</div>
+        <div class="prompt-bubble prompt-four">I also need the customer email draft cleaned up before Friday</div>
+      </div>
+
+      <div class="claude-loading-mark" data-primitive="claude-loading-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <style>
+      #claude-prompt-stack-surface {
+        --paper: #fdfcf8;
+        --bubble: #eeeee7;
+        --ink: #11100e;
+        --brand: #cf6f5d;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+      }
+
+      #claude-prompt-stack-surface * {
+        box-sizing: border-box;
+      }
+
+      .claude-prompt-stack-frame {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 72% 10%, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0) 24%),
+          linear-gradient(180deg, #fffdf9 0%, var(--paper) 100%);
+      }
+
+      .prompt-bubbles {
+        position: absolute;
+        left: 448px;
+        top: 100px;
+        width: 1290px;
+        height: 780px;
+      }
+
+      .prompt-bubble {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        min-height: 130px;
+        padding: 34px 52px 38px;
+        border-radius: 27px;
+        background: var(--bubble);
+        color: var(--ink);
+        font-size: 46px;
+        line-height: 1.2;
+        font-weight: 390;
+        letter-spacing: 0;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.42),
+          0 1px 0 rgba(55, 45, 35, 0.025);
+      }
+
+      .prompt-one {
+        top: 0;
+        width: 1290px;
+        min-height: 196px;
+      }
+
+      .prompt-two {
+        top: 214px;
+        width: 1016px;
+        min-height: 130px;
+      }
+
+      .prompt-three {
+        top: 364px;
+        width: 1144px;
+        min-height: 196px;
+      }
+
+      .prompt-four {
+        top: 580px;
+        width: 1000px;
+        min-height: 194px;
+      }
+
+      .claude-loading-mark {
+        position: absolute;
+        left: 217px;
+        bottom: 105px;
+        width: 86px;
+        height: 86px;
+        color: var(--brand);
+      }
+
+      .claude-loading-mark span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: calc(0.18 + (var(--i) * 0.042));
+        transform:
+          translate(-50%, -50%)
+          rotate(calc(var(--i) * 20deg))
+          translateY(-38px);
+      }
+
+      .claude-loading-mark span:nth-child(1) { --i: 0; }
+      .claude-loading-mark span:nth-child(2) { --i: 1; }
+      .claude-loading-mark span:nth-child(3) { --i: 2; }
+      .claude-loading-mark span:nth-child(4) { --i: 3; }
+      .claude-loading-mark span:nth-child(5) { --i: 4; }
+      .claude-loading-mark span:nth-child(6) { --i: 5; }
+      .claude-loading-mark span:nth-child(7) { --i: 6; }
+      .claude-loading-mark span:nth-child(8) { --i: 7; }
+      .claude-loading-mark span:nth-child(9) { --i: 8; }
+      .claude-loading-mark span:nth-child(10) { --i: 9; }
+      .claude-loading-mark span:nth-child(11) { --i: 10; }
+      .claude-loading-mark span:nth-child(12) { --i: 11; }
+      .claude-loading-mark span:nth-child(13) { --i: 12; }
+      .claude-loading-mark span:nth-child(14) { --i: 13; }
+      .claude-loading-mark span:nth-child(15) { --i: 14; }
+      .claude-loading-mark span:nth-child(16) { --i: 15; }
+      .claude-loading-mark span:nth-child(17) { --i: 16; }
+      .claude-loading-mark span:nth-child(18) { --i: 17; }
+    </style>
+  </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+  const template = document.getElementById("claude-prompt-stack-template");
+  document.body.appendChild(template.content.cloneNode(true));
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+  tl.fromTo(
+    ".prompt-bubble",
+    { opacity: 0, y: 18, filter: "blur(6px)" },
+    { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.2, duration: 0.62, immediateRender: false },
+    0.12
+  );
+  tl.fromTo(
+    ".claude-loading-mark",
+    { opacity: 0, scale: 0.84, filter: "blur(3px)" },
+    { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.48, immediateRender: false },
+    0.86
+  );
+  tl.to(".claude-loading-mark", { rotation: 360, duration: 4.8, ease: "none" }, 1.04);
+  tl.to(".claude-loading-mark", { rotation: 720, duration: 4.8, ease: "none" }, 5.84);
+  window.__timelines["claude-prompt-stack-surface"] = tl;
+</script>
+</body>
+</html>

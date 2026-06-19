@@ -1,0 +1,47 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-codex-terminal-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Codex Terminal Workflow",
+  "description": "Instructional clips that need Claude supervising or describing work while Codex CLI executes in Terminal, without browser, Finder, Office, or full desktop surfaces.",
+  "tags": [
+    "workflow",
+    "claude",
+    "codex",
+    "terminal",
+    "cli",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "mac-menu-bar",
+    "claude-app",
+    "codex-terminal"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-codex-terminal-workflow.html",
+      "target": "compositions/claude-codex-terminal-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

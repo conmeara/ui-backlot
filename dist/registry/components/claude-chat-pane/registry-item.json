@@ -1,0 +1,37 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-chat-pane",
+  "type": "hyperframes:component",
+  "title": "Claude Chat Pane",
+  "description": "Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
+  "tags": [
+    "claude",
+    "chat",
+    "thread",
+    "composer",
+    "launch-reference",
+    "pane"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compositions/claude-chat-pane.html",
+      "target": "compositions/claude-chat-pane.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

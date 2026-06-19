@@ -1,0 +1,2241 @@
+<template id="presentation-editor-surface-template">
+  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
+    <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
+      <div class="powerpoint-titlebar">
+        <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
+        <div class="power-app-icon">P</div>
+        <div class="quick-access" aria-label="Quick access toolbar">
+          <span class="qa-save"></span><span class="qa-undo"></span><span class="qa-redo"></span>
+        </div>
+        <span class="presentation-name">Launch Deck.pptx <em>PowerPoint</em></span>
+        <span class="sync-status"><span class="sync-spinner"></span>Saved</span>
+        <span class="autosave-toggle"><span></span>AutoSave</span>
+        <div class="titlebar-search">Search in Presentation</div>
+        <div class="collab-strip" aria-label="Collaborators">
+          <span>C</span><span>A</span><i></i>
+        </div>
+        <div class="titlebar-actions"><span>Share</span><span>Comments</span></div>
+      </div>
+      <div class="ribbon-tabs">
+        <span class="file-tab">File</span><span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
+      </div>
+      <div class="powerpoint-ribbon">
+        <div class="ribbon-group clipboard">
+          <div class="ribbon-large paste"><span class="cmd-icon paste"></span><em>Paste</em></div>
+          <strong>Clipboard</strong>
+        </div>
+        <div class="ribbon-group slides">
+          <div class="ribbon-large split"><span class="cmd-icon slide"></span><em>New Slide</em><i></i></div>
+          <div class="ribbon-stack">
+            <span class="ribbon-mini">Layout</span>
+            <span class="ribbon-mini">Reset</span>
+          </div>
+          <strong>Slides</strong>
+        </div>
+        <div class="ribbon-group font">
+          <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">28</span></div>
+          <div class="button-group">
+            <span class="tool-toggle active">B</span><span class="tool-toggle">I</span><span class="tool-toggle">U</span><span class="tool-toggle color"></span>
+          </div>
+          <strong>Font</strong>
+        </div>
+        <div class="ribbon-group paragraph">
+          <div class="button-group dense">
+            <span class="para-lines"></span><span class="para-lines center"></span><span class="para-lines right"></span><span class="para-bullets"></span>
+          </div>
+          <div class="button-group dense">
+            <span class="para-indent out"></span><span class="para-indent in"></span><span class="line-spacing"></span>
+          </div>
+          <strong>Paragraph</strong>
+        </div>
+        <div class="ribbon-group drawing">
+          <div class="shape-gallery"><span></span><span></span><span></span><span></span></div>
+          <div class="ribbon-stack">
+            <span class="split-mini fill">Shape Fill</span>
+            <span class="split-mini outline">Outline</span>
+          </div>
+          <strong>Drawing</strong>
+        </div>
+        <div class="ribbon-group ink">
+          <div class="button-group dense ink-tools">
+            <span class="ink-pen"></span><span class="ink-highlighter"></span><span class="ink-eraser"></span>
+          </div>
+          <span class="split-mini ink-color">Ink Color</span>
+          <strong>Draw</strong>
+        </div>
+        <div class="ribbon-group arrange">
+          <div class="button-group dense">
+            <span class="arrange-icon layer"></span><span class="arrange-icon align"></span><span class="arrange-icon rotate"></span>
+          </div>
+          <span class="split-mini">Selection Pane</span>
+          <strong>Arrange</strong>
+        </div>
+        <div class="ribbon-group editing">
+          <div class="ribbon-stack">
+            <span class="ribbon-mini">Find</span>
+            <span class="ribbon-mini">Replace</span>
+          </div>
+          <span class="split-mini">Select</span>
+          <strong>Editing</strong>
+        </div>
+      </div>
+      <div class="powerpoint-body">
+        <div class="slide-rail">
+          <div class="rail-header"><span>Slides</span><b>4</b></div>
+          <div class="section-chip">Launch Readout</div>
+          <div class="thumb-label">1</div><div class="slide-thumb active"><span></span><b></b><em>Q1 Budget Analysis</em></div>
+          <div class="thumb-label">2</div><div class="slide-thumb muted"><span></span><b></b><em>September sales forecast</em></div>
+          <div class="thumb-label">3</div><div class="slide-thumb muted chart"><span></span><b></b><em>Great Lakes Region</em></div>
+          <div class="thumb-label">4</div><div class="slide-thumb muted text"><span></span><b></b><em>Action items</em></div>
+        </div>
+        <div class="slide-stage">
+          <div class="slide-canvas">
+            <div class="slide-ruler horizontal" data-layout-ignore></div>
+            <div class="slide-ruler vertical" data-layout-ignore></div>
+            <div class="slide-section-band"></div>
+            <div class="alignment-guide vertical" data-layout-ignore></div>
+            <div class="alignment-guide horizontal" data-layout-ignore></div>
+            <div class="selection-box" data-layout-ignore>
+              <span class="rotate-handle"></span>
+              <span class="handle nw"></span><span class="handle n"></span><span class="handle ne"></span>
+              <span class="handle e"></span><span class="handle se"></span><span class="handle s"></span>
+              <span class="handle sw"></span><span class="handle w"></span>
+            </div>
+            <div class="slide-comment-pin" data-layout-ignore></div>
+            <div class="slide-title"><span class="before-title">Q1 Budget Analysis</span><span class="after-title">Q1 Budget Analysis</span></div>
+            <div class="slide-subtitle">Review and analysis by region for Q1 2024</div>
+            <div class="slide-chart" aria-label="Revenue impact chart">
+              <div class="bar bar-a"></div>
+              <div class="bar bar-b"></div>
+              <div class="bar bar-c"></div>
+              <div class="bar bar-d"></div>
+            </div>
+            <div class="chart-labels"><span>$310K</span><span>$420K</span><span>$285K</span><span>$510K</span></div>
+            <div class="slide-axis"></div>
+          </div>
+          <div class="speaker-notes"><strong>Notes</strong><span>Thank everyone for last years numbers. Introduce the regional forecast changes.</span></div>
+          <div class="slide-status">
+            <span>Slide 1 of 4</span>
+            <span>English (US)</span>
+            <span class="status-chip good">Accessibility: Good</span>
+            <span class="status-chip">2 comments</span>
+            <span class="view-buttons"><i></i><i></i><i></i></span>
+            <span class="zoom-percent">118%</span>
+            <span class="zoom-track"></span>
+          </div>
+        </div>
+        <aside class="inspector comments-pane">
+          <div class="pane-title"><strong>Comments</strong><button>New</button></div>
+          <div class="comments-card active-thread">
+            <span class="comment-dot">C</span>
+            <p><b>Claude</b><small>Just now</small>Updated the opening title and matched the chart to the Q1 numbers.<em>Resolve</em></p>
+          </div>
+          <div class="comments-card">
+            <span class="comment-dot user">A</span>
+            <p><b>Avery</b><small>2m ago</small>Can we keep the regional forecast in the speaker notes?</p>
+          </div>
+          <div class="reply-field">Mention or reply...</div>
+          <div class="comments-footer">2 comments on this slide</div>
+        </aside>
+      </div>
+    </div>
+    <style>
+      #presentation-editor-surface {
+        --claude: #c65b47;
+        --coral: #cd6e57;
+        --sage: #bdd4c7;
+        --powerpoint: #c9472b;
+        --powerpoint-dark: #9a321f;
+        width: 836px;
+        height: 438px;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #f4f5f7;
+        color: #16120f;
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      #presentation-editor-surface * {
+        box-sizing: border-box;
+      }
+
+      .presentation-editor-surface {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #f4f5f7;
+      }
+
+      .power-app-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 0;
+        background-image:
+          linear-gradient(90deg, rgba(128, 43, 28, 0.5) 0 30%, transparent 30%),
+          linear-gradient(135deg, #ed8650, var(--powerpoint));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 1px 2px rgba(91, 42, 31, 0.2);
+      }
+
+      .power-app-icon::before {
+        content: "P";
+        width: 14px;
+        height: 14px;
+        display: grid;
+        place-items: center;
+        border-radius: 3px;
+        background: rgba(154, 55, 36, 0.92);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 880;
+        box-shadow: 6px 0 0 rgba(255, 248, 239, 0.18);
+      }
+
+      .powerpoint-titlebar {
+        height: 36px;
+        display: grid;
+        grid-template-columns: 58px 24px 62px minmax(118px, auto) auto auto 1fr auto auto;
+        align-items: center;
+        gap: 6px;
+        padding: 0 12px;
+        color: #3d4248;
+        font-size: 12px;
+        font-weight: 650;
+        border-bottom: 1px solid #d8dce1;
+        background: #f8f8f8;
+      }
+
+      .powerpoint-traffic-spacer {
+        position: relative;
+        width: 50px;
+        height: 14px;
+      }
+
+      .powerpoint-traffic-spacer::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff5f57;
+        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+      }
+
+      .presentation-name {
+        min-width: 118px;
+        color: #282e35;
+      }
+
+      .presentation-name em {
+        margin-left: 5px;
+        color: #9aa2ac;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 560;
+      }
+
+      .quick-access {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0 5px;
+        border-radius: 6px;
+        background: rgba(238, 241, 244, 0.72);
+        border: 1px solid rgba(214, 219, 225, 0.86);
+      }
+
+      .quick-access span {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        display: inline-block;
+        color: #65707b;
+      }
+
+      .qa-save::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 2px;
+        box-shadow: inset 0 4px 0 rgba(101, 112, 123, 0.18);
+      }
+
+      .qa-undo::before,
+      .qa-redo::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 4px;
+        width: 9px;
+        height: 7px;
+        border: 1.5px solid currentColor;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-radius: 8px 0 0;
+        transform: rotate(-35deg);
+      }
+
+      .qa-undo::after,
+      .qa-redo::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 4px;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-right: 5px solid currentColor;
+      }
+
+      .qa-redo {
+        transform: scaleX(-1);
+      }
+
+      .sync-status {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #66707a;
+        font-size: 10px;
+        font-weight: 560;
+      }
+
+      .sync-spinner {
+        width: 11px;
+        height: 11px;
+        border: 2px solid #d4d9df;
+        border-top-color: #c65b47;
+        border-radius: 50%;
+      }
+
+      .autosave-toggle {
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #5d6570;
+        font-size: 10px;
+        font-weight: 560;
+      }
+
+      .autosave-toggle span {
+        width: 28px;
+        height: 14px;
+        border-radius: 999px;
+        background: #dfe3e8;
+        position: relative;
+      }
+
+      .autosave-toggle span::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .titlebar-search {
+        justify-self: center;
+        width: 154px;
+        height: 21px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 999px;
+        color: #858d97;
+        background: #eceff2;
+        border: 1px solid #dde1e6;
+        font-size: 10px;
+        font-weight: 520;
+      }
+
+      .collab-strip {
+        display: flex;
+        align-items: center;
+        padding-left: 2px;
+      }
+
+      .collab-strip span {
+        width: 19px;
+        height: 19px;
+        display: grid;
+        place-items: center;
+        margin-left: -5px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        background: #3a7f9f;
+        color: #fff;
+        font-size: 8px;
+        font-weight: 820;
+      }
+
+      .collab-strip span:first-child {
+        margin-left: 0;
+        background: #c65b47;
+      }
+
+      .collab-strip i {
+        width: 7px;
+        height: 7px;
+        margin-left: -3px;
+        align-self: end;
+        border-radius: 50%;
+        background: #2fc65f;
+        border: 1px solid #fff;
+      }
+
+      .titlebar-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .titlebar-actions span {
+        height: 21px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 999px;
+        color: #424a53;
+        background: #ffffff;
+        border: 1px solid #d9dde2;
+        font-size: 10px;
+      }
+
+      .ribbon-tabs {
+        height: 28px;
+        display: flex;
+        align-items: end;
+        gap: 1px;
+        padding-left: 12px;
+        color: #464d55;
+        font-size: 10px;
+        font-weight: 620;
+        background: #fff;
+        border-bottom: 1px solid #d9dde2;
+      }
+
+      .ribbon-tabs span {
+        display: flex;
+        align-items: center;
+        height: 26px;
+        padding: 0 8px;
+        border-radius: 6px 6px 0 0;
+        position: relative;
+      }
+
+      .ribbon-tabs .active {
+        color: #fff;
+        background: #c65b47;
+      }
+
+      .ribbon-tabs .file-tab {
+        color: #8a3b2b;
+        font-weight: 780;
+      }
+
+      .ribbon-tabs .contextual {
+        margin-left: auto;
+        margin-right: 12px;
+        color: #9a4c3c;
+        background: #fff5ef;
+        box-shadow: inset 0 -2px 0 #c65b47;
+      }
+
+      .powerpoint-ribbon {
+        height: 72px;
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        padding: 5px 6px 6px;
+        border-bottom: 1px solid #cfd4da;
+        background: #fbfbfc;
+      }
+
+      .ribbon-group {
+        height: 60px;
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 0 5px 16px;
+        border-right: 1px solid #e0e3e7;
+        color: #56606b;
+        position: relative;
+      }
+
+      .ribbon-group.clipboard { width: 70px; }
+      .ribbon-group.slides { width: 92px; }
+      .ribbon-group.font { width: 138px; flex-direction: column; }
+      .ribbon-group.paragraph { width: 108px; flex-direction: column; }
+      .ribbon-group.drawing { width: 128px; }
+      .ribbon-group.ink { width: 88px; flex-direction: column; }
+      .ribbon-group.arrange { width: 104px; flex-direction: column; }
+      .ribbon-group.editing { width: 82px; }
+
+      .ribbon-group strong {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        color: #7b838d;
+        font-size: 9px;
+        line-height: 1.1;
+        font-weight: 700;
+        text-align: center;
+        border-top: 1px solid #eceff2;
+        padding-top: 2px;
+      }
+
+      .ribbon-large {
+        width: 40px;
+        min-height: 48px;
+        display: grid;
+        justify-items: center;
+        gap: 2px;
+        padding: 3px 4px 2px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        color: #424a53;
+        background: #fff;
+        position: relative;
+      }
+
+      .ribbon-large.split::after,
+      .split-mini::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid currentColor;
+      }
+
+      .ribbon-large.split::after {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      .cmd-icon {
+        width: 28px;
+        height: 25px;
+        border-radius: 4px;
+        background: #fff7f0;
+        border: 1px solid rgba(198, 91, 71, 0.28);
+        position: relative;
+      }
+
+      .cmd-icon.slide::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 6px;
+        width: 16px;
+        height: 11px;
+        border-radius: 2px;
+        background: #e9edf2;
+        box-shadow: 4px 4px 0 #d8dde3;
+      }
+
+      .cmd-icon.paste::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 5px;
+        width: 13px;
+        height: 15px;
+        border-radius: 2px;
+        background: #f8dfcf;
+        border: 1px solid rgba(198, 91, 71, 0.42);
+        box-shadow: 0 -4px 0 -1px #d89b78;
+      }
+
+      .ribbon-large em {
+        align-self: start;
+        color: #424a53;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 650;
+        text-align: center;
+      }
+
+      .ribbon-row,
+      .button-group {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .ribbon-stack {
+        display: grid;
+        align-content: start;
+        gap: 3px;
+      }
+
+      .ribbon-mini,
+      .split-mini {
+        height: 20px;
+        min-width: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0 6px;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        color: #4c545d;
+        font-size: 9px;
+        font-weight: 620;
+      }
+
+      .ribbon-group .ribbon-field {
+        width: 70px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        color: #3d444c;
+        font-size: 10px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        border-radius: 4px;
+      }
+
+      .ribbon-group .ribbon-field.small { width: 34px; }
+
+      .tool-toggle,
+      .button-group.dense > span,
+      .arrange-icon {
+        width: 20px;
+        height: 20px;
+        display: grid;
+        place-items: center;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+        color: #59616b;
+        font-size: 9px;
+        font-weight: 800;
+        position: relative;
+      }
+
+      .tool-toggle.active {
+        color: #9a4c3c;
+        background: #fff1ea;
+        border-color: #c65b47;
+      }
+
+      .tool-toggle.color::before {
+        content: "";
+        width: 12px;
+        height: 3px;
+        background: #c65b47;
+        position: absolute;
+        bottom: 4px;
+      }
+
+      .para-lines::before,
+      .para-lines.center::before,
+      .para-lines.right::before {
+        content: "";
+        width: 12px;
+        height: 2px;
+        background: #6c7480;
+        box-shadow: 0 4px 0 #6c7480, 0 8px 0 #6c7480;
+      }
+
+      .para-lines.center::before { width: 10px; }
+      .para-lines.right::before { width: 8px; }
+
+      .para-bullets::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #6c7480;
+        box-shadow: 0 5px 0 #6c7480, 0 10px 0 #6c7480, 6px 0 0 #6c7480, 6px 5px 0 #6c7480, 6px 10px 0 #6c7480;
+      }
+
+      .para-indent::before {
+        content: "";
+        width: 12px;
+        height: 10px;
+        background:
+          linear-gradient(90deg, #6c7480 0 4px, transparent 4px),
+          linear-gradient(#6c7480 0 2px, transparent 2px 4px, #6c7480 4px 6px, transparent 6px 8px, #6c7480 8px 10px);
+      }
+
+      .line-spacing::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-left: 2px solid #6c7480;
+        background:
+          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
+      }
+
+      .shape-gallery {
+        width: 58px;
+        display: grid;
+        grid-template-columns: repeat(2, 24px);
+        gap: 4px;
+      }
+
+      .shape-gallery span,
+      .shape-swatch {
+        width: 24px;
+        height: 20px;
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid #d7dce2;
+      }
+
+      .shape-gallery span:nth-child(1) { border-radius: 3px; background: #fff8f3; }
+      .shape-gallery span:nth-child(2) { border-radius: 50%; background: #eef3f0; }
+      .shape-gallery span:nth-child(3) { transform: skew(-12deg); background: #f5f1ea; }
+      .shape-gallery span:nth-child(4) { border-radius: 10px; background: #f7efe9; }
+
+      .split-mini.fill::before,
+      .split-mini.outline::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        background: #cd6e57;
+      }
+
+      .split-mini.outline::before {
+        background: transparent;
+        border: 2px solid #cd6e57;
+      }
+
+      .arrange-icon.layer::before {
+        content: "";
+        width: 11px;
+        height: 8px;
+        border: 1.5px solid #6c7480;
+        box-shadow: 3px 3px 0 -1px #fff, 3px 3px 0 0 #6c7480;
+      }
+
+      .arrange-icon.align::before {
+        content: "";
+        width: 13px;
+        height: 12px;
+        background:
+          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
+      }
+
+      .arrange-icon.rotate::before {
+        content: "";
+        width: 11px;
+        height: 11px;
+        border: 2px solid #6c7480;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .shape-swatch { background: #f7efe9; }
+      .shape-swatch.coral { background: #cd6e57; }
+      .shape-swatch.sage { background: #bdd4c7; }
+
+      .ink-tools span::before {
+        content: "";
+        width: 4px;
+        height: 14px;
+        border-radius: 4px;
+        background: #3b4652;
+        transform: rotate(34deg);
+        box-shadow: 0 9px 0 -2px currentColor;
+      }
+
+      .ink-pen { color: #c65b47; }
+      .ink-highlighter { color: #e0bc57; }
+      .ink-eraser { color: #7c858f; }
+
+      .ink-color::before {
+        content: "";
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #c65b47;
+      }
+
+      .powerpoint-body {
+        height: 294px;
+        display: grid;
+        grid-template-columns: 112px 1fr 172px;
+        background: #e9edf2;
+      }
+
+      .slide-rail {
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        grid-auto-rows: min-content;
+        column-gap: 5px;
+        row-gap: 6px;
+        padding: 11px 10px 10px;
+        border-right: 1px solid #cfd5dc;
+        background: #f7f8fa;
+      }
+
+      .section-chip {
+        grid-column: 1 / -1;
+        height: 15px;
+        display: flex;
+        align-items: center;
+        padding-left: 4px;
+        border-radius: 4px;
+        color: #8b4a3c;
+        background: #fff0e9;
+        font-size: 7px;
+        font-weight: 820;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+
+      .rail-header {
+        grid-column: 1 / -1;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #636b74;
+        font-size: 9px;
+        font-weight: 760;
+      }
+
+      .rail-header b {
+        min-width: 17px;
+        height: 15px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #e8ecf1;
+        color: #7c858f;
+        font-size: 8px;
+      }
+
+      .thumb-label {
+        color: #8b929a;
+        font-size: 9px;
+        line-height: 43px;
+        text-align: right;
+      }
+
+      .slide-thumb {
+        height: 43px;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(205, 110, 87, 0.92) 0 31%, rgba(205, 110, 87, 0) 31%),
+          #fffaf2;
+        border: 1px solid rgba(222, 96, 46, 0.38);
+        box-shadow: inset 0 0 0 2px rgba(222, 96, 46, 0.42);
+      }
+
+      .slide-thumb em {
+        position: absolute;
+        left: 33px;
+        bottom: 3px;
+        color: #92877f;
+        font-size: 6px;
+        font-style: normal;
+        font-weight: 740;
+      }
+
+      .slide-thumb.muted {
+        border-color: rgba(0, 0, 0, 0.09);
+        box-shadow: none;
+        background:
+          linear-gradient(90deg, rgba(210, 213, 216, 0.86) 0 31%, rgba(210, 213, 216, 0) 31%),
+          #ffffff;
+      }
+
+      .slide-thumb span,
+      .slide-thumb b {
+        position: absolute;
+        left: 33px;
+        height: 5px;
+        border-radius: 3px;
+        background: #c8b7a7;
+      }
+
+      .slide-thumb span {
+        top: 13px;
+        width: 37px;
+      }
+
+      .slide-thumb b {
+        top: 24px;
+        width: 22px;
+      }
+
+      .slide-thumb.chart b {
+        top: 28px;
+        width: 30px;
+        height: 8px;
+        background: linear-gradient(90deg, #ccb8a7 0 28%, #cd6e57 28% 60%, #ccb8a7 60%);
+      }
+
+      .slide-thumb.text span {
+        width: 34px;
+        box-shadow: 0 9px 0 #d7d9dd;
+      }
+
+      .slide-stage {
+        position: relative;
+        height: 294px;
+        min-height: 0;
+        overflow: hidden;
+        display: grid;
+        justify-items: center;
+        align-items: start;
+        padding-top: 14px;
+        background:
+          linear-gradient(rgba(145, 154, 166, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(145, 154, 166, 0.1) 1px, transparent 1px),
+          linear-gradient(#dde2e8 1px, rgba(221, 226, 232, 0) 1px),
+          linear-gradient(90deg, #dde2e8 1px, rgba(221, 226, 232, 0) 1px),
+          #edf0f3;
+        background-size: 16px 16px, 16px 16px, 64px 64px, 64px 64px, auto;
+      }
+
+      .slide-canvas {
+        position: relative;
+        width: 456px;
+        height: 256px;
+        border-radius: 3px;
+        background: #fffaf2;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 13px 30px rgba(0, 0, 0, 0.17);
+        overflow: hidden;
+      }
+
+      .slide-ruler {
+        position: absolute;
+        z-index: 5;
+        background:
+          repeating-linear-gradient(90deg, rgba(51, 59, 68, 0.22) 0 1px, transparent 1px 24px),
+          rgba(255, 255, 255, 0.56);
+        border: 1px solid rgba(86, 96, 108, 0.12);
+      }
+
+      .slide-ruler.horizontal {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 13px;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+      }
+
+      .slide-ruler.horizontal::before {
+        content: "0        1        2        3        4        5        6";
+        position: absolute;
+        left: 16px;
+        top: 1px;
+        color: rgba(64, 73, 84, 0.45);
+        font-size: 6px;
+        letter-spacing: 2px;
+        white-space: nowrap;
+      }
+
+      .slide-ruler.vertical {
+        left: 0;
+        top: 0;
+        width: 13px;
+        height: 100%;
+        border-top: 0;
+        border-left: 0;
+        border-bottom: 0;
+        background:
+          repeating-linear-gradient(180deg, rgba(51, 59, 68, 0.22) 0 1px, transparent 1px 24px),
+          rgba(255, 255, 255, 0.56);
+      }
+
+      .slide-section-band {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 142px;
+        background: var(--coral);
+      }
+
+      .alignment-guide {
+        position: absolute;
+        z-index: 8;
+        background: rgba(29, 134, 232, 0.46);
+        opacity: 0.55;
+      }
+
+      .alignment-guide.vertical {
+        left: 283px;
+        top: 13px;
+        width: 1px;
+        height: 228px;
+      }
+
+      .alignment-guide.horizontal {
+        left: 13px;
+        top: 116px;
+        width: 418px;
+        height: 1px;
+      }
+
+      .selection-box {
+        position: absolute;
+        left: 158px;
+        top: 42px;
+        width: 248px;
+        height: 148px;
+        z-index: 12;
+        border: 1.5px solid #1d86e8;
+        border-radius: 2px;
+        opacity: 0.84;
+      }
+
+      .selection-box .handle {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1.5px solid #1d86e8;
+      }
+
+      .selection-box .rotate-handle {
+        position: absolute;
+        left: calc(50% - 5px);
+        top: -21px;
+        width: 10px;
+        height: 10px;
+        border: 1.5px solid #1d86e8;
+        border-radius: 50%;
+        background: #fff;
+      }
+
+      .selection-box .rotate-handle::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 9px;
+        width: 1px;
+        height: 10px;
+        background: #1d86e8;
+      }
+
+      .selection-box .nw { left: -5px; top: -5px; }
+      .selection-box .n { left: calc(50% - 4px); top: -5px; }
+      .selection-box .ne { right: -5px; top: -5px; }
+      .selection-box .e { right: -5px; top: calc(50% - 4px); }
+      .selection-box .se { right: -5px; bottom: -5px; }
+      .selection-box .s { left: calc(50% - 4px); bottom: -5px; }
+      .selection-box .sw { left: -5px; bottom: -5px; }
+      .selection-box .w { left: -5px; top: calc(50% - 4px); }
+
+      .slide-comment-pin {
+        position: absolute;
+        right: 42px;
+        top: 34px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #c65b47;
+        box-shadow: 0 0 0 3px rgba(198, 91, 71, 0.16);
+        opacity: 0.92;
+      }
+
+      .slide-comment-pin::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 8px;
+        height: 6px;
+        border-radius: 2px;
+        background: #fffaf6;
+      }
+
+      .slide-comment-pin::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 4px;
+        height: 4px;
+        background: #fffaf6;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
+
+      .slide-title {
+        position: absolute;
+        left: 168px;
+        top: 49px;
+        width: 230px;
+        height: 62px;
+        color: #2a241f;
+        font-family: Georgia, serif;
+        font-size: 31px;
+        line-height: 1.02;
+        font-weight: 760;
+      }
+
+      .slide-title span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 230px;
+      }
+
+      .after-title {
+        opacity: 0;
+      }
+
+      .slide-subtitle {
+        position: absolute;
+        left: 168px;
+        top: 121px;
+        width: 220px;
+        color: #81756c;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .slide-chart {
+        position: absolute;
+        left: 168px;
+        bottom: 24px;
+        width: 206px;
+        height: 52px;
+        display: flex;
+        align-items: end;
+        gap: 10px;
+      }
+
+      .chart-labels {
+        position: absolute;
+        left: 163px;
+        bottom: 80px;
+        width: 216px;
+        display: flex;
+        gap: 5px;
+        color: #8a7b70;
+        font-size: 7px;
+        font-weight: 760;
+      }
+
+      .chart-labels span {
+        width: 45px;
+        text-align: center;
+      }
+
+      .slide-axis {
+        position: absolute;
+        left: 164px;
+        bottom: 23px;
+        width: 236px;
+        height: 1px;
+        background: rgba(42, 36, 31, 0.16);
+      }
+
+      .speaker-notes {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 27px;
+        z-index: 22;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0 11px;
+        border: 1px solid rgba(167, 174, 183, 0.7);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.76);
+        color: #8b929a;
+        font-size: 10px;
+      }
+
+      .speaker-notes strong {
+        margin-right: 8px;
+        color: #59616b;
+        font-size: 9px;
+        text-transform: uppercase;
+      }
+
+      .speaker-notes span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .bar {
+        width: 30px;
+        border-radius: 6px 6px 0 0;
+        background: #d8c7b5;
+      }
+
+      .bar:nth-child(1) { height: 30px; }
+      .bar:nth-child(2) { height: 40px; }
+      .bar:nth-child(3) { height: 24px; }
+      .bar:nth-child(4) { height: 34px; background: var(--claude); }
+
+      .inspector {
+        padding: 10px 13px;
+        border-left: 1px solid #cfd5dc;
+        color: #5e6670;
+        font-size: 10px;
+        background: #f9fafb;
+      }
+
+      .pane-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .inspector strong {
+        display: block;
+        color: #393f46;
+        font-size: 12px;
+      }
+
+      .pane-title button {
+        height: 19px;
+        min-width: 44px;
+        padding: 0 6px;
+        border: 1px solid #d9dee4;
+        border-radius: 5px;
+        background: #fff;
+        color: #58616c;
+        font-size: 8px;
+        font-weight: 760;
+      }
+
+      .inspector-breadcrumb {
+        margin: 3px 0 7px;
+        color: #8a929c;
+        font-size: 8px;
+        font-weight: 650;
+      }
+
+      .inspector-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+        margin-bottom: 8px;
+      }
+
+      .inspector-tabs span {
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 5px;
+        background: #eef1f4;
+        color: #6e7680;
+        font-size: 8px;
+        font-weight: 720;
+      }
+
+      .inspector-tabs .active {
+        color: #fff;
+        background: #c65b47;
+      }
+
+      .inspector label {
+        display: block;
+        margin-top: 6px;
+        color: #7b838d;
+        font-size: 8px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .inspector-line {
+        height: 9px;
+        margin: 5px 0;
+        border-radius: 5px;
+        background: rgba(86, 96, 108, 0.14);
+      }
+
+      .inspector-line.color { width: 68%; }
+      .inspector-line.coral { background: #cd6e57; }
+
+      .inspector-select,
+      .size-grid span {
+        height: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 5px;
+        padding: 0 7px;
+        border: 1px solid #dfe4e9;
+        border-radius: 5px;
+        background: #fff;
+        color: #4d5661;
+        font-size: 8px;
+        font-weight: 720;
+      }
+
+      .inspector-select::after {
+        content: "";
+        margin-left: auto;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid #7e8791;
+      }
+
+      .inspector-select i {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+
+      .fill-dot { background: #cd6e57; }
+
+      .outline-dot {
+        border: 2px solid #9ca5af;
+        background: transparent;
+      }
+
+      .size-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        margin-top: 5px;
+      }
+
+      .quick-actions {
+        margin-top: 8px;
+        display: flex;
+        gap: 5px;
+      }
+
+      .quick-actions span {
+        height: 18px;
+        display: grid;
+        place-items: center;
+        padding: 0 7px;
+        border: 1px solid #e0e4e9;
+        border-radius: 5px;
+        background: #eef1f4;
+        color: #5e6670;
+        font-size: 8px;
+        font-weight: 720;
+      }
+
+      .comments-card {
+        margin-top: 8px;
+        min-height: 42px;
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 8px;
+        padding: 7px 8px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid #e2e5e9;
+        color: #4c545d;
+        font-size: 9px;
+        line-height: 1.25;
+      }
+
+      .comments-card p {
+        margin: 0;
+      }
+
+      .comments-card p em {
+        display: block;
+        margin-top: 4px;
+        color: #9a4c3c;
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 820;
+      }
+
+      .comments-card b {
+        color: #343b43;
+      }
+
+      .comment-dot {
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--claude);
+        color: #fff;
+        font-size: 8px;
+        font-weight: 820;
+      }
+
+      .reply-field {
+        height: 19px;
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border: 1px solid #dfe4e9;
+        border-radius: 6px;
+        background: #fff;
+        color: #9aa2ac;
+        font-size: 8px;
+        font-weight: 650;
+      }
+
+      .slide-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 24;
+        height: 22px;
+        display: grid;
+        grid-template-columns: 1fr auto auto auto auto auto 92px;
+        align-items: center;
+        gap: 9px;
+        padding: 0 12px;
+        color: #6f7780;
+        background: #f6f7f8;
+        border-top: 1px solid #d8dde3;
+        font-size: 9px;
+      }
+
+      .status-chip {
+        color: #9a4c3c;
+        font-weight: 740;
+      }
+
+      .status-chip.good {
+        color: #467666;
+      }
+
+      .view-buttons {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .view-buttons i {
+        width: 14px;
+        height: 12px;
+        border-radius: 2px;
+        background:
+          linear-gradient(90deg, #6f7780 0 3px, transparent 3px),
+          linear-gradient(#6f7780 0 2px, transparent 2px 5px, #6f7780 5px 7px, transparent 7px 10px, #6f7780 10px 12px);
+        opacity: 0.7;
+      }
+
+      .zoom-percent {
+        min-width: 26px;
+        text-align: right;
+        font-weight: 720;
+      }
+
+      .zoom-track {
+        width: 82px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #c65b47 0 58%, #d7dce1 58%);
+      }
+
+      /* Source-grounded PowerPoint pass: rebuild the visible surface from
+         Microsoft Support reference screenshots while keeping editable HTML. */
+      #presentation-editor-surface {
+        --powerpoint: #c6421f;
+        --office-line: #d7d7d7;
+        --office-text: #202020;
+        --office-muted: #616161;
+        --office-blue: #2b78d4;
+        border-radius: 8px;
+        background: #efefef;
+        color: var(--office-text);
+        font-family: Inter, sans-serif;
+      }
+
+      .presentation-editor-surface {
+        border-radius: 8px;
+        background: #f2f2f2;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.13);
+      }
+
+      .powerpoint-titlebar {
+        height: 28px;
+        grid-template-columns: 52px 20px 54px minmax(126px, auto) auto auto 1fr auto auto;
+        gap: 5px;
+        padding: 0 8px;
+        border-bottom-color: #d0d0d0;
+        background: #f7f7f7;
+        color: #242424;
+        font-size: 10px;
+        font-weight: 500;
+      }
+
+      .powerpoint-traffic-spacer {
+        width: 42px;
+        height: 12px;
+      }
+
+      .powerpoint-traffic-spacer::before {
+        top: 1px;
+        width: 10px;
+        height: 10px;
+        box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #28c840;
+      }
+
+      .power-app-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        background-image:
+          linear-gradient(90deg, rgba(118, 36, 24, 0.45) 0 33%, transparent 33%),
+          linear-gradient(135deg, #da6d42, var(--powerpoint));
+      }
+
+      .power-app-icon::before {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        font-size: 8px;
+        box-shadow: 5px 0 0 rgba(255, 255, 255, 0.14);
+      }
+
+      .quick-access {
+        height: 18px;
+        gap: 3px;
+        padding: 0 4px;
+        border-radius: 5px;
+        background: #f0f0f0;
+        border-color: #d1d1d1;
+      }
+
+      .quick-access span {
+        width: 12px;
+        height: 12px;
+        color: #5a5f66;
+      }
+
+      .presentation-name {
+        min-width: 120px;
+        color: #202020;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .presentation-name em {
+        color: #777;
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .sync-status,
+      .autosave-toggle {
+        height: 18px;
+        gap: 4px;
+        color: #5f6368;
+        font-size: 9px;
+        font-weight: 500;
+      }
+
+      .sync-spinner {
+        width: 9px;
+        height: 9px;
+        border-width: 1.5px;
+        border-top-color: var(--powerpoint);
+      }
+
+      .autosave-toggle span {
+        width: 22px;
+        height: 11px;
+        background: #d8dce0;
+      }
+
+      .autosave-toggle span::before {
+        width: 7px;
+        height: 7px;
+      }
+
+      .titlebar-search {
+        width: 146px;
+        height: 18px;
+        padding: 0 8px;
+        border-radius: 10px;
+        background: #eceff1;
+        border-color: #d5d9de;
+        color: #767676;
+        font-size: 9px;
+        font-weight: 500;
+      }
+
+      .collab-strip span {
+        width: 16px;
+        height: 16px;
+        font-size: 7px;
+      }
+
+      .titlebar-actions {
+        gap: 4px;
+      }
+
+      .titlebar-actions span {
+        height: 18px;
+        padding: 0 7px;
+        border-radius: 5px;
+        color: #222;
+        border-color: #d0d0d0;
+        font-size: 9px;
+        font-weight: 600;
+      }
+
+      .titlebar-actions span:first-child {
+        color: #fff;
+        background: var(--powerpoint);
+        border-color: var(--powerpoint);
+      }
+
+      .ribbon-tabs {
+        height: 24px;
+        align-items: end;
+        padding-left: 6px;
+        background: #f7f7f7;
+        border-bottom-color: #d3d3d3;
+        color: #1f1f1f;
+        font-size: 10px;
+        font-weight: 500;
+      }
+
+      .ribbon-tabs span {
+        height: 22px;
+        padding: 0 7px;
+        border-radius: 0;
+      }
+
+      .ribbon-tabs .active,
+      .ribbon-tabs .contextual {
+        color: #111;
+        background: transparent;
+        box-shadow: inset 0 -2px 0 var(--powerpoint);
+      }
+
+      .ribbon-tabs .file-tab {
+        color: #222;
+        font-weight: 500;
+      }
+
+      .ribbon-tabs .contextual {
+        margin-right: 8px;
+        color: #8f2f1f;
+      }
+
+      .powerpoint-ribbon {
+        height: 76px;
+        padding: 3px 5px 4px;
+        background: #ffffff;
+        border-bottom-color: #cfcfcf;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.11);
+      }
+
+      .ribbon-group {
+        height: 68px;
+        gap: 4px;
+        padding: 0 5px 15px;
+        border-right-color: #d9d9d9;
+        color: #2d2d2d;
+      }
+
+      .ribbon-group.clipboard { width: 62px; }
+      .ribbon-group.slides { width: 86px; }
+      .ribbon-group.font { width: 128px; }
+      .ribbon-group.paragraph { width: 102px; }
+      .ribbon-group.drawing { width: 114px; }
+      .ribbon-group.ink { width: 80px; }
+      .ribbon-group.arrange { width: 100px; }
+      .ribbon-group.editing { width: 74px; }
+
+      .ribbon-group strong {
+        bottom: 0;
+        color: #666;
+        border-top: 0;
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .ribbon-large {
+        width: 34px;
+        min-height: 48px;
+        padding: 2px 2px 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .ribbon-large em,
+      .ribbon-mini,
+      .split-mini,
+      .ribbon-field,
+      .tool-toggle {
+        color: #222;
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .cmd-icon {
+        width: 24px;
+        height: 22px;
+        border-radius: 1px;
+        background: transparent;
+        border: 0;
+      }
+
+      .cmd-icon.paste::before {
+        left: 5px;
+        top: 3px;
+        width: 14px;
+        height: 16px;
+        border-radius: 1px;
+        background: #f6d89e;
+        border: 1px solid #7c6a44;
+        box-shadow: 0 -4px 0 -1px #e3b85e, 6px 4px 0 -4px #fff;
+      }
+
+      .cmd-icon.slide::before {
+        left: 4px;
+        top: 4px;
+        width: 16px;
+        height: 11px;
+        border-radius: 1px;
+        background: #eef3f8;
+        border: 1px solid #7f8b97;
+        box-shadow: 4px 4px 0 #d7dfe6;
+      }
+
+      .ribbon-mini,
+      .split-mini,
+      .ribbon-group .ribbon-field,
+      .tool-toggle,
+      .button-group.dense > span,
+      .arrange-icon {
+        height: 17px;
+        border-radius: 2px;
+        border-color: #cfd4d9;
+        background: #fff;
+      }
+
+      .ribbon-mini,
+      .split-mini {
+        min-width: 34px;
+        padding: 0 4px;
+      }
+
+      .ribbon-group .ribbon-field {
+        width: 62px;
+        height: 18px;
+        padding-left: 5px;
+        font-size: 9px;
+      }
+
+      .ribbon-group .ribbon-field.small {
+        width: 30px;
+      }
+
+      .tool-toggle,
+      .button-group.dense > span,
+      .arrange-icon {
+        width: 18px;
+        font-size: 9px;
+      }
+
+      .tool-toggle.active {
+        color: #7f2d20;
+        background: #fff;
+        border-color: #cfd4d9;
+        box-shadow: inset 0 -2px 0 var(--powerpoint);
+      }
+
+      .shape-gallery {
+        width: 48px;
+        grid-template-columns: repeat(2, 21px);
+        gap: 3px;
+      }
+
+      .shape-gallery span {
+        width: 21px;
+        height: 18px;
+        border-radius: 2px;
+      }
+
+      .powerpoint-body {
+        height: 310px;
+        grid-template-columns: 126px 1fr 158px;
+        background: #e9e9e9;
+      }
+
+      .slide-rail {
+        grid-template-columns: 18px 1fr;
+        row-gap: 6px;
+        column-gap: 5px;
+        padding: 8px 9px;
+        background: #f2f2f2;
+        border-right-color: #d1d1d1;
+      }
+
+      .rail-header {
+        height: 13px;
+        color: #444;
+        font-size: 9px;
+        font-weight: 600;
+      }
+
+      .rail-header b,
+      .section-chip {
+        display: none;
+      }
+
+      .thumb-label {
+        color: #404040;
+        font-size: 10px;
+        line-height: 52px;
+        font-weight: 400;
+      }
+
+      .slide-thumb {
+        height: 52px;
+        border-radius: 3px;
+        background: #fff;
+        border: 1px solid #cfcfcf;
+        box-shadow: none;
+      }
+
+      .slide-thumb.active {
+        border-color: var(--powerpoint);
+        box-shadow: 0 0 0 2px var(--powerpoint);
+      }
+
+      .slide-thumb::before {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        background:
+          linear-gradient(90deg, transparent 0 58%, rgba(124, 176, 211, 0.85) 58% 86%, transparent 86%),
+          linear-gradient(90deg, #79b243 0 6%, transparent 6% 92%, #79b243 92% 100%),
+          linear-gradient(120deg, transparent 0 62%, rgba(126, 184, 53, 0.22) 62% 76%, rgba(126, 184, 53, 0.55) 76% 88%, transparent 88%),
+          #fff;
+      }
+
+      .slide-thumb span,
+      .slide-thumb b {
+        left: 11px;
+        height: 3px;
+        border-radius: 1px;
+        background: #78ae32;
+      }
+
+      .slide-thumb span {
+        top: 14px;
+        width: 38px;
+        box-shadow: 0 7px 0 #78ae32, 0 14px 0 #78ae32;
+      }
+
+      .slide-thumb b {
+        top: 34px;
+        width: 56px;
+        height: 7px;
+        background: linear-gradient(90deg, #7bbd25 0 18%, #e5b200 18% 30%, #7bbd25 30% 50%, #e5b200 50% 62%, #7bbd25 62% 100%);
+      }
+
+      .slide-thumb.muted {
+        border-color: #cfcfcf;
+        background: #fff;
+      }
+
+      .slide-thumb.muted::before {
+        opacity: 0.72;
+      }
+
+      .slide-thumb em {
+        left: 10px;
+        top: 6px;
+        bottom: auto;
+        max-width: 74px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: #555;
+        font-size: 5px;
+        font-weight: 600;
+      }
+
+      .slide-stage {
+        height: 310px;
+        padding-top: 8px;
+        background: #ededed;
+        background-image: none;
+      }
+
+      .slide-canvas {
+        width: 438px;
+        height: 246px;
+        border-radius: 1px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+      }
+
+      .slide-ruler {
+        display: none;
+      }
+
+      .slide-section-band {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
+          radial-gradient(circle at 53% 44%, rgba(255, 255, 255, 0.42) 0 13%, transparent 14%),
+          linear-gradient(16deg, transparent 0 28%, rgba(30, 30, 30, 0.35) 28% 30%, transparent 30%),
+          linear-gradient(105deg, transparent 0 56%, rgba(160, 160, 160, 0.42) 56% 59%, transparent 59%),
+          linear-gradient(145deg, #313131 0%, #d4d4d4 50%, #505050 100%);
+      }
+
+      .slide-title {
+        left: 145px;
+        top: 68px;
+        width: 210px;
+        height: 31px;
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 20px;
+        line-height: 1.12;
+        font-weight: 400;
+      }
+
+      .slide-title span {
+        width: 210px;
+      }
+
+      .slide-subtitle {
+        left: 152px;
+        top: 186px;
+        width: 230px;
+        color: #fff;
+        font-size: 8px;
+        line-height: 1.2;
+        font-weight: 400;
+      }
+
+      .slide-chart {
+        left: 86px;
+        bottom: 38px;
+        width: 250px;
+        height: 58px;
+        gap: 0;
+        opacity: 0.45;
+      }
+
+      .bar {
+        width: 18px;
+        margin-right: 8px;
+        border-radius: 0;
+        background: #4f6a7c;
+      }
+
+      .bar:nth-child(4) {
+        background: #404040;
+      }
+
+      .chart-labels,
+      .slide-axis {
+        opacity: 0.42;
+      }
+
+      .alignment-guide {
+        background: #55a5ff;
+        opacity: 0.55;
+      }
+
+      .alignment-guide.vertical {
+        left: 286px;
+        top: 24px;
+        height: 200px;
+      }
+
+      .alignment-guide.horizontal {
+        left: 44px;
+        top: 123px;
+        width: 342px;
+      }
+
+      .selection-box {
+        left: 42px;
+        top: 28px;
+        width: 352px;
+        height: 194px;
+        border: 1px solid #f8f8f8;
+        box-shadow: 0 0 0 1px var(--office-blue);
+        opacity: 0.92;
+      }
+
+      .selection-box .handle,
+      .selection-box .rotate-handle {
+        width: 5px;
+        height: 5px;
+        border-radius: 0;
+        border: 1px solid var(--office-blue);
+      }
+
+      .selection-box .rotate-handle {
+        left: calc(50% - 3px);
+        top: -14px;
+        border-radius: 50%;
+      }
+
+      .selection-box .rotate-handle::after {
+        left: 2px;
+        top: 5px;
+        height: 8px;
+        background: var(--office-blue);
+      }
+
+      .selection-box .nw { left: -4px; top: -4px; }
+      .selection-box .n { left: calc(50% - 3px); top: -4px; }
+      .selection-box .ne { right: -4px; top: -4px; }
+      .selection-box .e { right: -4px; top: calc(50% - 3px); }
+      .selection-box .se { right: -4px; bottom: -4px; }
+      .selection-box .s { left: calc(50% - 3px); bottom: -4px; }
+      .selection-box .sw { left: -4px; bottom: -4px; }
+      .selection-box .w { left: -4px; top: calc(50% - 3px); }
+
+      .slide-comment-pin {
+        right: 31px;
+        top: 49px;
+        width: 15px;
+        height: 15px;
+        background: #fff;
+        border: 1px solid #b4b4b4;
+        border-radius: 2px;
+        box-shadow: none;
+      }
+
+      .slide-comment-pin::before {
+        left: 3px;
+        top: 3px;
+        width: 8px;
+        height: 5px;
+        background: #8b3aa6;
+      }
+
+      .slide-comment-pin::after {
+        left: 7px;
+        top: 8px;
+        width: 4px;
+        height: 4px;
+        background: #8b3aa6;
+      }
+
+      .speaker-notes {
+        left: 0;
+        right: 0;
+        bottom: 22px;
+        height: 42px;
+        align-items: flex-start;
+        padding: 8px 12px;
+        border: 0;
+        border-top: 1px solid #d2d2d2;
+        border-radius: 0;
+        background: #f7f7f7;
+        color: #444;
+        font-size: 11px;
+      }
+
+      .speaker-notes strong {
+        margin-right: 8px;
+        color: #2b2b2b;
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: none;
+      }
+
+      .slide-status {
+        height: 22px;
+        grid-template-columns: auto auto 1fr auto auto auto 76px;
+        gap: 8px;
+        padding: 0 8px;
+        background: #f7f7f7;
+        color: #313131;
+        border-top-color: #d1d1d1;
+        font-size: 8px;
+      }
+
+      .status-chip {
+        color: #222;
+        font-weight: 600;
+      }
+
+      .status-chip.good {
+        color: #222;
+      }
+
+      .view-buttons i {
+        width: 12px;
+        height: 10px;
+        background:
+          linear-gradient(90deg, #595959 0 2px, transparent 2px),
+          linear-gradient(#595959 0 1px, transparent 1px 4px, #595959 4px 5px, transparent 5px 8px, #595959 8px 9px);
+      }
+
+      .zoom-percent {
+        min-width: 22px;
+        font-weight: 400;
+      }
+
+      .zoom-track {
+        width: 70px;
+        height: 2px;
+        border-radius: 0;
+        background: linear-gradient(90deg, #666 0 52%, #bfbfbf 52%);
+      }
+
+      .inspector.comments-pane {
+        padding: 7px 8px;
+        border-left-color: #d1d1d1;
+        background: #f7f7f7;
+        color: #262626;
+        font-size: 9px;
+      }
+
+      .pane-title {
+        height: 20px;
+        align-items: center;
+      }
+
+      .inspector strong {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .pane-title button {
+        height: 18px;
+        min-width: 34px;
+        border-radius: 2px;
+        color: #222;
+        background: #fff;
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .comments-card {
+        margin-top: 7px;
+        min-height: 48px;
+        grid-template-columns: 16px 1fr;
+        gap: 6px;
+        padding: 7px;
+        border-radius: 2px;
+        border-color: #d0d0d0;
+        color: #333;
+        font-size: 8px;
+        line-height: 1.28;
+      }
+
+      .comments-card.active-thread {
+        border-color: #b056b5;
+        box-shadow: inset 2px 0 0 #b056b5;
+      }
+
+      .comments-card b {
+        display: block;
+        color: #222;
+        font-weight: 600;
+      }
+
+      .comments-card small {
+        display: block;
+        margin-bottom: 2px;
+        color: #777;
+        font-size: 7px;
+        font-weight: 400;
+      }
+
+      .comments-card p em {
+        color: #6b2a7a;
+        font-weight: 600;
+      }
+
+      .comment-dot {
+        width: 16px;
+        height: 16px;
+        background: #b056b5;
+        font-size: 7px;
+      }
+
+      .comment-dot.user {
+        background: #3f7cae;
+      }
+
+      .reply-field {
+        height: 22px;
+        margin-top: 7px;
+        border-radius: 2px;
+        color: #777;
+        font-size: 8px;
+        font-weight: 400;
+      }
+
+      .comments-footer {
+        margin-top: 7px;
+        color: #666;
+        font-size: 8px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.set(".after-title", { opacity: 0 });
+      tl.set(".selection-box", { opacity: 0.84 });
+      tl.to(".before-title", { opacity: 0, duration: 0.24, ease: "sine.out" }, 7.62);
+      tl.to(".after-title", { opacity: 1, duration: 0.32, ease: "sine.out" }, 7.78);
+      tl.to(".bar-a", { height: 36, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.0);
+      tl.to(".bar-b", { height: 48, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.05);
+      tl.to(".bar-c", { height: 32, backgroundColor: "#c65b47", duration: 0.42, ease: "power2.inOut" }, 8.1);
+      tl.to(".selection-box", { opacity: 0.94, duration: 0.24, ease: "sine.out" }, 9.42);
+      tl.to(".comments-card.active-thread", { borderColor: "#b056b5", duration: 0.42, ease: "power2.inOut" }, 9.72);
+      tl.to(".speaker-notes", { color: "#4f5964", backgroundColor: "rgba(255,255,255,0.9)", duration: 0.42, ease: "sine.inOut" }, 9.9);
+      window.__timelines["presentation-editor-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/presentation-editor\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("presentation-editor-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#presentation-editor-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

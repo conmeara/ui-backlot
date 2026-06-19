@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "excel-workbook",
+  "type": "hyperframes:component",
+  "title": "Excel-style Workbook",
+  "description": "Spreadsheet analysis, formula editing, chart updates, and workbook automation scenes.",
+  "tags": [
+    "excel",
+    "office",
+    "spreadsheet",
+    "formula",
+    "chart"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compositions/excel-workbook.html",
+      "target": "compositions/excel-workbook.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

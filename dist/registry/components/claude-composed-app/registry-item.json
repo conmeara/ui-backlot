@@ -1,0 +1,41 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-composed-app",
+  "type": "hyperframes:component",
+  "title": "Claude Componentized App Shell",
+  "description": "Full Claude app beats assembled from reusable child components when a video needs the shell but should still keep sidebar, thread, composer, and rail independently editable.",
+  "tags": [
+    "claude",
+    "component-loader",
+    "composed-shell",
+    "modularity",
+    "workspace"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "claude-sidebar",
+    "claude-thread-core",
+    "claude-composer",
+    "claude-agent-rail"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-composed-app.html",
+      "target": "compositions/claude-composed-app.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

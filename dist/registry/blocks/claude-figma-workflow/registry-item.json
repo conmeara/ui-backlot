@@ -1,0 +1,47 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-figma-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Figma Workflow",
+  "description": "Design handoff and frame-editing clips that need Claude with a Figma-style editor, without browser, Finder, Office, Codex terminal, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "figma",
+    "design",
+    "canvas",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "mac-menu-bar",
+    "claude-app",
+    "figma-editor"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-figma-workflow.html",
+      "target": "compositions/claude-figma-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

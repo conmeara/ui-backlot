@@ -1,0 +1,37 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "figma-onboarding-editor",
+  "type": "hyperframes:component",
+  "title": "Figma-style Onboarding Editor",
+  "description": "Claude Code-to-design clips that need the dark onboarding design editor seen in the public reference video without importing the larger generic Figma editor shell.",
+  "tags": [
+    "figma",
+    "design",
+    "canvas",
+    "dark-ui",
+    "onboarding",
+    "mobile-frames"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compositions/figma-onboarding-editor.html",
+      "target": "compositions/figma-onboarding-editor.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

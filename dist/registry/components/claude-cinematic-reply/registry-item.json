@@ -1,0 +1,38 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-cinematic-reply",
+  "type": "hyperframes:component",
+  "title": "Claude Cinematic Reply",
+  "description": "Sparse launch-style Claude answer/composer beats when a clip does not need sidebar, task rail, or tool cards.",
+  "tags": [
+    "claude",
+    "cinematic",
+    "reply",
+    "composer",
+    "launch-reference"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "claude-response-mark"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-cinematic-reply.html",
+      "target": "compositions/claude-cinematic-reply.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

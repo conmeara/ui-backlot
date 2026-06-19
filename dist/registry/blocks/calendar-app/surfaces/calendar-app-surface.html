@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Backlot - macOS Calendar Surface</title>
+    <style>
+      :root {
+        --stage-w: 1920px;
+        --stage-h: 1080px;
+        --window-shadow: 0 34px 96px rgba(23, 31, 46, 0.24);
+        --window-shadow-active: 0 44px 128px rgba(23, 31, 46, 0.29);
+        --system-line: rgba(0, 0, 0, 0.11);
+        --system-muted: #6e6e73;
+        --system-text: #1d1d1f;
+        --calendar-red: #ec4d3c;
+        --calendar-icon-src: url("../assets/app-icons/calendar.svg");
+        --finder-icon-src: url("../assets/app-icons/finder.svg");
+        --safari-icon-src: url("../assets/app-icons/browser.svg");
+        --notes-icon-src: url("../assets/app-icons/notes.svg");
+        --system-cursor-default: url("../assets/cursors/normal-select.svg");
+      }
+
+      html,
+      body {
+        width: var(--stage-w);
+        height: var(--stage-h);
+        margin: 0;
+        overflow: hidden;
+        background: #111;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        color: var(--system-text);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #calendar-app-surface {
+        position: relative;
+        width: var(--stage-w);
+        height: var(--stage-h);
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 19%),
+          radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 18%),
+          linear-gradient(145deg, #7bd2f1 0%, #4db4e4 34%, #e8f7f2 35%, #fff7dc 56%, #f4d59b 100%);
+      }
+
+      .menu-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 40;
+        width: 100%;
+        height: 29px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 0 12px;
+        background: rgba(248, 249, 250, 0.34);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.035);
+        backdrop-filter: blur(12px) saturate(1.35);
+        color: rgba(0, 0, 0, 0.82);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .menu-left,
+      .menu-right {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        white-space: nowrap;
+      }
+
+      .menu-left > span:not(.apple-glyph),
+      .menu-right > span:not(.status-icons) {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 5px;
+      }
+
+      .menu-left > span:nth-child(2) {
+        margin-left: 5px;
+        margin-right: 6px;
+        font-weight: 650;
+      }
+
+      .apple-glyph {
+        width: 18px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2px;
+        color: #050505;
+      }
+
+      .apple-glyph::before {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 17px;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .apple-glyph::after {
+        content: none;
+      }
+
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .status-dot {
+        width: 14px;
+        height: 14px;
+        border: 0;
+        position: relative;
+      }
+
+      .status-dot.control-center {
+        width: 18px;
+        height: 14px;
+      }
+
+      .status-dot.control-center::before,
+      .status-dot.control-center::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        width: 15px;
+        height: 5px;
+        border: 1.6px solid currentColor;
+        border-radius: 8px;
+      }
+
+      .status-dot.control-center::before {
+        top: 1px;
+        box-shadow: inset 7px 0 0 currentColor;
+      }
+
+      .status-dot.control-center::after {
+        bottom: 1px;
+        box-shadow: inset -7px 0 0 currentColor;
+      }
+
+      .status-dot.wifi {
+        width: 19px;
+        height: 15px;
+        background:
+          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
+      }
+
+      .status-dot.wifi::before,
+      .status-dot.wifi::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        border: 2px solid currentColor;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-radius: 50%;
+        transform: translateX(-50%);
+      }
+
+      .status-dot.wifi::before {
+        bottom: 0;
+        width: 18px;
+        height: 13px;
+      }
+
+      .status-dot.wifi::after {
+        bottom: 0;
+        width: 9px;
+        height: 7px;
+      }
+
+      .status-pill {
+        position: relative;
+        width: 26px;
+        height: 14px;
+        border: 1.7px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .status-pill::before {
+        content: "";
+        position: absolute;
+        right: -4px;
+        top: 4px;
+        width: 2px;
+        height: 5px;
+        border-radius: 0 2px 2px 0;
+        background: currentColor;
+      }
+
+      .status-pill::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 17px;
+        height: 8px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .calendar-window {
+        --title-bar-height: 40px;
+        position: absolute;
+        left: 330px;
+        top: 86px;
+        width: 1260px;
+        height: 788px;
+        overflow: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.13);
+        border-radius: 18px;
+        background: rgba(252, 252, 253, 0.97);
+        box-shadow: var(--window-shadow-active);
+        backdrop-filter: blur(30px) saturate(1.25);
+      }
+
+      .titlebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: var(--title-bar-height);
+        background: rgba(248, 248, 249, 0.86);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+        backdrop-filter: blur(26px) saturate(1.2);
+      }
+
+      .traffic {
+        position: absolute;
+        left: 18px;
+        top: 14px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .traffic span {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.13);
+        box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.08);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #febc2e; }
+      .traffic .green { background: #28c840; }
+
+      .window-tools {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+
+      .window-tools.left {
+        left: 126px;
+        top: 6px;
+      }
+
+      .window-tools.right {
+        right: 12px;
+        top: 5px;
+      }
+
+      .tool-icon,
+      .toolbar-add,
+      .toolbar-search {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.055),
+          0 1px 2px rgba(0, 0, 0, 0.07);
+        color: #202124;
+        font-size: 13px;
+        font-weight: 680;
+      }
+
+      .window-tools.left .tool-icon {
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .window-tools.left .tool-icon.calendar-list {
+        width: 42px;
+        height: 32px;
+        border-radius: 16px 0 0 16px;
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.055),
+          0 1px 2px rgba(0, 0, 0, 0.07);
+      }
+
+      .window-tools.left .tool-icon.inbox {
+        width: 42px;
+        height: 32px;
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 0 16px 16px 0;
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow:
+          inset -1px 0 rgba(0, 0, 0, 0.055),
+          inset 0 1px rgba(0, 0, 0, 0.055),
+          inset 0 -1px rgba(0, 0, 0, 0.055),
+          0 1px 2px rgba(0, 0, 0, 0.07);
+      }
+
+      .tool-icon::before,
+      .toolbar-search::before {
+        content: "";
+        display: block;
+        width: 19px;
+        height: 19px;
+        background: currentColor;
+      }
+
+      .tool-icon.calendar-list::before {
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.2'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.2'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .tool-icon.inbox::before {
+        width: 21px;
+        height: 18px;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 7.3 6.9 3.4h10.2l2.7 3.9v8.1c0 1-.8 1.8-1.8 1.8H6c-1 0-1.8-.8-1.8-1.8Z'/%3E%3Cpath d='M4.2 7.3h5.1c.4 1.4 1.3 2.2 2.7 2.2s2.3-.8 2.7-2.2h5.1'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 7.3 6.9 3.4h10.2l2.7 3.9v8.1c0 1-.8 1.8-1.8 1.8H6c-1 0-1.8-.8-1.8-1.8Z'/%3E%3Cpath d='M4.2 7.3h5.1c.4 1.4 1.3 2.2 2.7 2.2s2.3-.8 2.7-2.2h5.1'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .toolbar-add {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.64);
+        font-size: 0;
+        margin-left: 12px;
+      }
+
+      .toolbar-add::before,
+      .toolbar-add::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 2.2px;
+        border-radius: 2px;
+        background: currentColor;
+        transform: translate(-50%, -50%);
+      }
+
+      .toolbar-add::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+
+      .toolbar-search {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+      }
+
+      .toolbar-search::before {
+        width: 21px;
+        height: 21px;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9.4' cy='9.4' r='6.2'/%3E%3Cpath d='m14.1 14.1 5 5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9.4' cy='9.4' r='6.2'/%3E%3Cpath d='m14.1 14.1 5 5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .toolbar-search::after {
+        content: none;
+      }
+
+      .view-switcher {
+        position: absolute;
+        left: 50%;
+        top: 6px;
+        height: 34px;
+        display: grid;
+        grid-template-columns: repeat(4, 74px);
+        align-items: center;
+        border-radius: 17px;
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.055),
+          0 8px 20px rgba(0, 0, 0, 0.045);
+        transform: translateX(-50%);
+      }
+
+      .view-option {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 13px;
+        color: #232326;
+        font-size: 15px;
+        font-weight: 520;
+      }
+
+      .view-option + .view-option {
+        border-left: 1px solid rgba(0, 0, 0, 0.055);
+      }
+
+      .view-option.active {
+        margin: 2px;
+        background: rgba(222, 222, 224, 0.92);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.045);
+        font-weight: 620;
+      }
+
+      .view-option.active + .view-option,
+      .view-option:has(+ .active) {
+        border-left-color: transparent;
+      }
+
+      .main-area {
+        position: absolute;
+        left: 0;
+        top: var(--title-bar-height);
+        width: 100%;
+        height: calc(100% - var(--title-bar-height));
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        color: var(--system-text);
+      }
+
+      .calendar-sidebar {
+        width: 306px;
+        min-width: 306px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(247, 247, 248, 0.78);
+        backdrop-filter: blur(24px) saturate(1.12);
+      }
+
+      .sidebar-header {
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+      }
+
+      .sidebar-title {
+        color: #67676d;
+        font-size: 14px;
+        font-weight: 680;
+      }
+
+      .sidebar-plus {
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        color: #1d1d1f;
+        font-size: 18px;
+        font-weight: 520;
+        line-height: 1;
+      }
+
+      .sidebar-section {
+        padding: 2px 18px 8px;
+      }
+
+      .sidebar-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 32px;
+        padding: 0 2px;
+        color: #77777d;
+        font-size: 13px;
+        font-weight: 680;
+      }
+
+      .sidebar-section-title .section-count {
+        color: #8d8d93;
+        font-size: 11px;
+        font-weight: 620;
+      }
+
+      .calendar-source-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .calendar-source {
+        position: relative;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 8px;
+        border-radius: 9px;
+        color: #28282d;
+        font-size: 18px;
+        font-weight: 510;
+      }
+
+      .calendar-source.active {
+        background: rgba(0, 0, 0, 0.045);
+        color: var(--source-color);
+      }
+
+      .calendar-source.dragging {
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+        transform: translateX(7px);
+      }
+
+      .calendar-source.dragging::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        right: 7px;
+        bottom: -4px;
+        height: 2px;
+        border-radius: 999px;
+        background: #0a84ff;
+      }
+
+      .source-check {
+        width: 18px;
+        height: 18px;
+        border: 0;
+        border-radius: 4px;
+        background: var(--source-color);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      }
+
+      .source-check::before {
+        content: "";
+        display: block;
+        width: 9px;
+        height: 5px;
+        margin: 5px 0 0 4px;
+        border-left: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        border-radius: 1px;
+        transform: rotate(-45deg);
+      }
+
+      .source-dot {
+        width: 17px;
+        height: 17px;
+        margin-left: auto;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 50%, currentColor 0 1.5px, transparent 1.7px),
+          color-mix(in srgb, var(--source-color), white 84%);
+        color: var(--source-color);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--source-color), transparent 45%);
+      }
+
+      .mini-calendar {
+        margin: auto 14px 12px;
+        padding: 10px 14px 12px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .mini-header {
+        display: grid;
+        grid-template-columns: 24px 1fr 24px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .mini-month {
+        justify-self: center;
+        color: #67676d;
+        font-size: 15px;
+        font-weight: 650;
+      }
+
+      .mini-nav {
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: #8e8e93;
+        font-size: 0;
+        font-weight: 760;
+      }
+
+      .mini-nav::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-top: 1.7px solid currentColor;
+        border-left: 1.7px solid currentColor;
+      }
+
+      .mini-nav[aria-label="Previous month"]::before {
+        transform: translateX(2px) rotate(-45deg);
+      }
+
+      .mini-nav[aria-label="Next month"]::before {
+        transform: translateX(-2px) rotate(135deg);
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px;
+        justify-items: center;
+      }
+
+      .mini-weekday,
+      .mini-day {
+        width: 25px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 13px;
+      }
+
+      .mini-weekday {
+        color: #7a7a80;
+        font-weight: 520;
+      }
+
+      .mini-day {
+        position: relative;
+        color: #2d2d31;
+        font-weight: 510;
+      }
+
+      .mini-day.other {
+        color: #a6a6ad;
+      }
+
+      .mini-day.today {
+        background: var(--calendar-red);
+        color: #fff;
+        font-weight: 760;
+      }
+
+      .mini-day.has-event::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translateX(-50%);
+      }
+
+      .sidebar-footer {
+        padding: 0 18px 12px;
+        color: #797981;
+        font-size: 11px;
+        font-weight: 620;
+      }
+
+      .calendar-content {
+        min-width: 0;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+      }
+
+      .calendar-header {
+        height: 116px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px 0 32px;
+        border-bottom: 0;
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .month-title {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .month {
+        font-size: 42px;
+        font-weight: 760;
+        letter-spacing: 0;
+      }
+
+      .year {
+        color: #343438;
+        font-size: 42px;
+        font-weight: 340;
+        letter-spacing: 0;
+      }
+
+      .control-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+      }
+
+      .calendar-button {
+        min-width: 34px;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 17px;
+        background: rgba(239, 239, 241, 0.94);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+        color: #1d1d1f;
+        font-size: 16px;
+        font-weight: 650;
+        line-height: 1;
+      }
+
+      .calendar-button[aria-label="Previous month"],
+      .calendar-button[aria-label="Next month"] {
+        font-size: 0;
+      }
+
+      .calendar-button[aria-label="Previous month"]::before,
+      .calendar-button[aria-label="Next month"]::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-top: 2px solid currentColor;
+        border-left: 2px solid currentColor;
+      }
+
+      .calendar-button[aria-label="Previous month"]::before {
+        transform: translateX(2px) rotate(-45deg);
+      }
+
+      .calendar-button[aria-label="Next month"]::before {
+        transform: translateX(-2px) rotate(135deg);
+      }
+
+      .calendar-button.today {
+        min-width: 78px;
+        padding: 0 12px;
+        font-weight: 650;
+      }
+
+      .week-view {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: 38px 62px 1fr;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .week-days,
+      .all-day-row {
+        display: grid;
+        grid-template-columns: 72px repeat(7, 1fr);
+      }
+
+      .week-days {
+        border-bottom: 1px solid #d5d5d8;
+      }
+
+      .week-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border-left: 1px solid #e5e5e7;
+        color: #6f6f75;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .week-day .today-badge {
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--calendar-red);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 690;
+      }
+
+      .all-day-row {
+        border-bottom: 3px solid #d7d7d9;
+      }
+
+      .all-day-label {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 10px 9px 0 0;
+        color: #75757c;
+        font-size: 13px;
+        font-weight: 520;
+      }
+
+      .all-day-cell {
+        position: relative;
+        min-width: 0;
+        padding: 5px 4px;
+        border-left: 1px solid #e7e7e9;
+      }
+
+      .all-day-event,
+      .all-day-reminder {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        overflow: hidden;
+        border-radius: 7px;
+        padding: 0 7px;
+        background: color-mix(in srgb, var(--event-color), white 77%);
+        color: color-mix(in srgb, var(--event-color), black 28%);
+        font-size: 13px;
+        font-weight: 680;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .all-day-reminder::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        flex: 0 0 auto;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .all-day-event::before {
+        content: "✦";
+        width: 14px;
+        height: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--event-color);
+        color: #fff;
+        font-size: 10px;
+        line-height: 1;
+      }
+
+      .schedule-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 72px repeat(7, 1fr);
+        grid-template-rows: repeat(9, 58px);
+        overflow: hidden;
+      }
+
+      .time-cell {
+        grid-column: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 7px 10px 0 0;
+        border-top: 1px solid #e9e9eb;
+        color: #77777d;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .time-cell.noon {
+        font-size: 13px;
+        font-weight: 640;
+      }
+
+      .day-lane {
+        position: relative;
+        border-left: 1px solid #e7e7e9;
+        background:
+          repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 57px,
+            #e9e9eb 57px,
+            #e9e9eb 58px
+          );
+      }
+
+      .current-time {
+        position: absolute;
+        left: 72px;
+        right: 0;
+        top: 94px;
+        height: 2px;
+        background: var(--calendar-red);
+        z-index: 3;
+      }
+
+      .current-time::before {
+        content: "9:41";
+        position: absolute;
+        left: -48px;
+        top: -12px;
+        min-width: 39px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--calendar-red);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 690;
+      }
+
+      .current-time::after {
+        content: "";
+        position: absolute;
+        left: calc((100% / 7) * 2);
+        top: -4px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--calendar-red);
+        transform: translateX(-50%);
+      }
+
+      .week-event {
+        position: absolute;
+        left: calc(72px + ((100% - 72px) / 7 * (var(--col) - 1)) + 5px);
+        top: var(--top);
+        width: calc((100% - 72px) / 7 - 10px);
+        height: var(--height);
+        z-index: 2;
+        overflow: hidden;
+        border-left: 4px solid var(--event-color);
+        border-radius: 5px;
+        padding: 5px 7px;
+        background: color-mix(in srgb, var(--event-color), white 80%);
+        color: color-mix(in srgb, var(--event-color), black 32%);
+        font-size: 13px;
+        line-height: 1.14;
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--event-color), transparent 72%);
+      }
+
+      .week-event strong {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 740;
+      }
+
+      .week-event span {
+        display: block;
+        margin-top: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .week-event::after {
+        content: "↪";
+        position: absolute;
+        right: 6px;
+        top: 4px;
+        color: color-mix(in srgb, var(--event-color), black 12%);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .month-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: 32px repeat(6, 1fr);
+        flex: 1 1 auto;
+        min-height: 0;
+        background: #fff;
+        font-size: 14px;
+      }
+
+      .weekday {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 11px;
+        border-bottom: 1px solid #d7d7dc;
+        color: #6f6f75;
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .weekday.weekend {
+        color: #808080;
+      }
+
+      .day {
+        position: relative;
+        min-width: 0;
+        padding: 8px 8px 8px;
+        border-right: 1px solid #e6e5e6;
+        border-bottom: 1px solid #e6e5e6;
+        background: #fff;
+      }
+
+      .day:nth-child(7n) {
+        border-right: 0;
+      }
+
+      .day.weekend {
+        background: #f8f8f9;
+      }
+
+      .day.out-month {
+        background: #fafafa;
+      }
+
+      .day.out-month.weekend {
+        background: #f2f2f2;
+      }
+
+      .date-number {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #171717;
+        font-size: 16px;
+        font-weight: 540;
+        line-height: 1;
+      }
+
+      .out-month .date-number {
+        color: #a3a3a8;
+      }
+
+      .today .date-number {
+        width: 29px;
+        height: 29px;
+        color: #fff;
+        background: var(--calendar-red);
+        font-weight: 700;
+      }
+
+      .event-stack {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .event {
+        height: 19px;
+        overflow: hidden;
+        border-left: 3px solid var(--event-color);
+        border-radius: 4px;
+        padding: 0 6px;
+        background: color-mix(in srgb, var(--event-color), white 82%);
+        color: color-mix(in srgb, var(--event-color), black 35%);
+        font-size: 12px;
+        font-weight: 680;
+        line-height: 19px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--event-color), transparent 76%);
+      }
+
+      .event.blue { --event-color: #0a84ff; }
+      .event.green { --event-color: #34c759; }
+      .event.orange { --event-color: #ff9500; }
+      .event.purple { --event-color: #af52de; }
+      .event.red { --event-color: #ff3b30; }
+
+      .event.all-day {
+        border-left: 0;
+        border-radius: 999px;
+        padding-left: 8px;
+      }
+
+      .event.recurring::after {
+        content: "↻";
+        float: right;
+        color: color-mix(in srgb, var(--event-color), black 10%);
+        font-size: 11px;
+      }
+
+      .event-popover {
+        position: absolute;
+        right: 22px;
+        bottom: 24px;
+        z-index: 4;
+        width: 318px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        border-radius: 16px;
+        background: rgba(250, 250, 251, 0.93);
+        box-shadow: 0 22px 58px rgba(26, 32, 44, 0.18);
+        backdrop-filter: blur(26px) saturate(1.18);
+      }
+
+      .popover-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(244, 244, 246, 0.76));
+      }
+
+      .event-emoji {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: #ffe8b5;
+        font-size: 16px;
+      }
+
+      .popover-title {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .popover-title strong {
+        color: #313134;
+        font-size: 17px;
+        font-weight: 720;
+      }
+
+      .popover-title span {
+        color: #7b7b82;
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .popover-section {
+        margin: 10px 12px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(238, 238, 240, 0.68);
+        color: #4c4c51;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .popover-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .popover-row + .popover-row {
+        margin-top: 7px;
+        padding-top: 7px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+      }
+
+      .popover-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        padding: 0 12px 12px;
+      }
+
+      .popover-action {
+        min-width: 62px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: rgba(224, 228, 233, 0.92);
+        color: #414146;
+        font-size: 13px;
+        font-weight: 620;
+      }
+
+      .dock {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        z-index: 25;
+        height: 82px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        border-radius: 24px;
+        background: rgba(245, 248, 250, 0.28);
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.72),
+          inset 0 -1px rgba(255, 255, 255, 0.22),
+          0 18px 42px rgba(38, 68, 95, 0.24);
+        backdrop-filter: blur(26px) saturate(1.45);
+        transform: translateX(-50%);
+      }
+
+      .dock-icon {
+        position: relative;
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        box-shadow:
+          inset 0 1px rgba(255, 255, 255, 0.8),
+          0 9px 18px rgba(37, 54, 67, 0.2);
+      }
+
+      .dock-icon.calendar {
+        background-image:
+          var(--calendar-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.finder {
+        background-image:
+          var(--finder-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.safari {
+        background-image:
+          var(--safari-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.notes {
+        background-image:
+          var(--notes-icon-src),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(222, 231, 239, 0.82));
+        background-position: center, center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+      }
+
+      .dock-icon.active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.58);
+        transform: translateX(-50%);
+      }
+
+      .cursor {
+        position: absolute;
+        left: 1268px;
+        top: 622px;
+        z-index: 45;
+        width: 32px;
+        height: 32px;
+        background: var(--system-cursor-default) 0 0 / contain no-repeat;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
+      }
+
+      .cursor::before,
+      .cursor::after { content: none; }
+    </style>
+  </head>
+  <body>
+    <main id="calendar-app-surface" aria-label="macOS Calendar editable surface">
+      <nav class="menu-bar" aria-label="macOS menu bar">
+        <div class="menu-left">
+          <span class="apple-glyph" aria-hidden="true"></span>
+          <span>Calendar</span>
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>Window</span>
+          <span>Help</span>
+        </div>
+        <div></div>
+        <div class="menu-right">
+          <span class="status-icons" aria-hidden="true">
+            <span class="status-dot control-center"></span>
+            <span class="status-dot wifi"></span>
+            <span class="status-pill"></span>
+          </span>
+          <span>Wed Jun 17 4:15 PM</span>
+        </div>
+      </nav>
+
+      <section class="calendar-window" data-primitive="macos-calendar-window" aria-label="Calendar month window">
+        <header class="titlebar">
+          <div class="traffic" aria-hidden="true">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+          <div class="window-tools left" aria-hidden="true">
+            <span class="tool-icon calendar-list"></span>
+            <span class="tool-icon inbox"></span>
+            <span class="toolbar-add">+</span>
+          </div>
+          <div class="view-switcher" aria-label="Calendar view switcher">
+            <span class="view-option">Day</span>
+            <span class="view-option active">Week</span>
+            <span class="view-option">Month</span>
+            <span class="view-option">Year</span>
+          </div>
+          <div class="window-tools right" aria-hidden="true">
+            <span class="toolbar-search"></span>
+          </div>
+        </header>
+
+        <section class="main-area">
+          <aside class="calendar-sidebar" data-primitive="calendar-sidebar" aria-label="Calendar sidebar">
+            <header class="sidebar-header">
+              <span class="sidebar-title">iCloud</span>
+            </header>
+
+            <section class="sidebar-section" aria-label="Calendar sources">
+              <div class="sidebar-section-title">
+                <span>My Calendars</span>
+                <span class="section-count">5</span>
+              </div>
+              <ul class="calendar-source-list">
+                <li class="calendar-source active" style="--source-color: #0a84ff;">
+                  <span class="source-check"></span>
+                  <span>Calendar</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #0a84ff;">
+                  <span class="source-check"></span>
+                  <span>Personal</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #ff3b30;">
+                  <span class="source-check"></span>
+                  <span>Work</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #34c759;">
+                  <span class="source-check"></span>
+                  <span>Family</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #ffcc00;">
+                  <span class="source-check"></span>
+                  <span>School</span>
+                  <span class="source-dot"></span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="sidebar-section" aria-label="Other calendars">
+              <div class="sidebar-section-title">
+                <span>Other</span>
+                <span class="section-count">2</span>
+              </div>
+              <ul class="calendar-source-list">
+                <li class="calendar-source" style="--source-color: #ff3b30;">
+                  <span class="source-check"></span>
+                  <span>Scheduled Reminders</span>
+                  <span class="source-dot"></span>
+                </li>
+                <li class="calendar-source" style="--source-color: #8e8e93;">
+                  <span class="source-check"></span>
+                  <span>Birthdays</span>
+                  <span class="source-dot"></span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="mini-calendar" aria-label="Mini calendar">
+              <div class="mini-header">
+                <span class="mini-nav" role="button" aria-label="Previous month">&lt;</span>
+                <span class="mini-month">April 2025</span>
+                <span class="mini-nav" role="button" aria-label="Next month">&gt;</span>
+              </div>
+              <div class="mini-grid">
+                <span class="mini-weekday">S</span>
+                <span class="mini-weekday">M</span>
+                <span class="mini-weekday">T</span>
+                <span class="mini-weekday">W</span>
+                <span class="mini-weekday">T</span>
+                <span class="mini-weekday">F</span>
+                <span class="mini-weekday">S</span>
+                <span class="mini-day other">30</span>
+                <span class="mini-day other">31</span>
+                <span class="mini-day today has-event">1</span>
+                <span class="mini-day">2</span>
+                <span class="mini-day">3</span>
+                <span class="mini-day">4</span>
+                <span class="mini-day">5</span>
+                <span class="mini-day">6</span>
+                <span class="mini-day">7</span>
+                <span class="mini-day">8</span>
+                <span class="mini-day">9</span>
+                <span class="mini-day">10</span>
+                <span class="mini-day">11</span>
+                <span class="mini-day">12</span>
+                <span class="mini-day">13</span>
+                <span class="mini-day">14</span>
+                <span class="mini-day">15</span>
+                <span class="mini-day">16</span>
+                <span class="mini-day">17</span>
+                <span class="mini-day">18</span>
+                <span class="mini-day">19</span>
+                <span class="mini-day">20</span>
+                <span class="mini-day">21</span>
+                <span class="mini-day">22</span>
+                <span class="mini-day">23</span>
+                <span class="mini-day">24</span>
+                <span class="mini-day">25</span>
+                <span class="mini-day">26</span>
+                <span class="mini-day">27</span>
+                <span class="mini-day">28</span>
+                <span class="mini-day">29</span>
+                <span class="mini-day">30</span>
+                <span class="mini-day other">1</span>
+                <span class="mini-day other">2</span>
+                <span class="mini-day other">3</span>
+                <span class="mini-day other">4</span>
+                <span class="mini-day other">5</span>
+              </div>
+            </section>
+
+            <footer class="sidebar-footer">Updated 4:15 PM</footer>
+          </aside>
+
+          <div class="calendar-content">
+            <header class="calendar-header">
+              <div class="month-title" aria-label="April 2025">
+                <span class="month">April</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="control-buttons" aria-label="Calendar controls">
+                <span class="calendar-button" role="button" aria-label="Previous month">&lt;</span>
+                <span class="calendar-button today" role="button">Today</span>
+                <span class="calendar-button" role="button" aria-label="Next month">&gt;</span>
+              </div>
+            </header>
+
+            <section class="week-view" aria-label="April 2025 week schedule">
+              <div class="week-days" aria-label="Week dates">
+                <span></span>
+                <span class="week-day">Sun 30</span>
+                <span class="week-day">Mon 31</span>
+                <span class="week-day">Tue <span class="today-badge">1</span></span>
+                <span class="week-day">Wed 2</span>
+                <span class="week-day">Thu 3</span>
+                <span class="week-day">Fri 4</span>
+                <span class="week-day">Sat 5</span>
+              </div>
+
+              <div class="all-day-row" aria-label="All-day events">
+                <span class="all-day-label">all-day</span>
+                <span class="all-day-cell">
+                  <span class="all-day-event" style="--event-color: #af52de;">Eid al-Fitr</span>
+                  <span class="all-day-reminder" style="--event-color: #af52de;">Pick up arts...</span>
+                </span>
+                <span class="all-day-cell">
+                  <span class="all-day-event" style="--event-color: #af52de;">Eid al-Fit...</span>
+                </span>
+                <span class="all-day-cell">
+                  <span class="all-day-event" style="--event-color: #af52de;">April Foo...</span>
+                  <span class="all-day-reminder" style="--event-color: #af52de;">Take out...</span>
+                </span>
+                <span class="all-day-cell"></span>
+                <span class="all-day-cell"></span>
+                <span class="all-day-cell"></span>
+                <span class="all-day-cell"></span>
+              </div>
+
+              <div class="schedule-grid" aria-label="Timed week events">
+                <span class="time-cell">8 AM</span>
+                <span class="time-cell">9 AM</span>
+                <span class="time-cell">10 AM</span>
+                <span class="time-cell">11 AM</span>
+                <span class="time-cell noon">Noon</span>
+                <span class="time-cell">1 PM</span>
+                <span class="time-cell">2 PM</span>
+                <span class="time-cell">3 PM</span>
+                <span class="time-cell">4 PM</span>
+
+                <span class="day-lane" style="grid-column: 2; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 3; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 4; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 5; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 6; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 7; grid-row: 1 / -1;"></span>
+                <span class="day-lane" style="grid-column: 8; grid-row: 1 / -1;"></span>
+
+                <span class="current-time"></span>
+
+                <span class="week-event" style="--col: 1; --top: 0px; --height: 52px; --event-color: #0a84ff;">
+                  <strong>Morning ride</strong>
+                </span>
+                <span class="week-event" style="--col: 2; --top: 116px; --height: 48px; --event-color: #ff3b30;">
+                  <strong>Portfolio...</strong>
+                </span>
+                <span class="week-event" style="--col: 2; --top: 176px; --height: 58px; --event-color: #ff3b30;">
+                  <strong>Leadership skills work...</strong>
+                </span>
+                <span class="week-event" style="--col: 2; --top: 306px; --height: 46px; --event-color: #ff3b30;">
+                  <strong>Presentation p...</strong>
+                </span>
+                <span class="week-event" style="--col: 3; --top: 0px; --height: 34px; --event-color: #0a84ff;">
+                  <strong>Meet Orkun...</strong>
+                </span>
+                <span class="week-event" style="--col: 3; --top: 40px; --height: 58px; --event-color: #ff3b30;">
+                  <strong>Artist workshop...</strong>
+                </span>
+                <span class="week-event" style="--col: 3; --top: 100px; --height: 40px; --event-color: #ff3b30;">
+                  <strong>Academic...</strong>
+                </span>
+                <span class="week-event" style="--col: 3; --top: 186px; --height: 104px; --event-color: #0a84ff;">
+                  <strong>Stretching + weights</strong>
+                  <span>11AM - 1PM</span>
+                </span>
+                <span class="week-event" style="--col: 4; --top: 98px; --height: 48px; --event-color: #34c759;">
+                  <strong>Face Ti...</strong>
+                </span>
+                <span class="week-event" style="--col: 4; --top: 292px; --height: 52px; --event-color: #0a84ff;">
+                  <strong>Lunchtime</strong>
+                </span>
+                <span class="week-event" style="--col: 5; --top: 186px; --height: 104px; --event-color: #0a84ff;">
+                  <strong>Stretching + weights</strong>
+                  <span>11AM - 1PM</span>
+                </span>
+                <span class="week-event" style="--col: 5; --top: 338px; --height: 42px; --event-color: #ff3b30;">
+                  <strong>Writing...</strong>
+                </span>
+                <span class="week-event" style="--col: 6; --top: 40px; --height: 36px; --event-color: #ff3b30;">
+                  <strong>Weekly s...</strong>
+                </span>
+                <span class="week-event" style="--col: 6; --top: 103px; --height: 42px; --event-color: #ff3b30;">
+                  <strong>Budget...</strong>
+                </span>
+                <span class="week-event" style="--col: 6; --top: 244px; --height: 64px; --event-color: #ffcc00;">
+                  <strong>Sign Language Club</strong>
+                  <span>12 - 2PM</span>
+                </span>
+                <span class="week-event" style="--col: 7; --top: 58px; --height: 76px; --event-color: #34c759;">
+                  <strong>Plant garden</strong>
+                  <span>9 - 10AM</span>
+                </span>
+                <span class="week-event" style="--col: 7; --top: 100px; --height: 92px; --event-color: #0a84ff;">
+                  <strong>Hike with Rigo</strong>
+                  <span>10AM - 12PM</span>
+                </span>
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <aside class="dock" aria-label="macOS Dock">
+        <span class="dock-icon finder"></span>
+        <span class="dock-icon calendar active"></span>
+        <span class="dock-icon safari"></span>
+        <span class="dock-icon notes"></span>
+      </aside>
+
+      <div class="cursor" aria-hidden="true"></div>
+    </main>
+  </body>
+</html>

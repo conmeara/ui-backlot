@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "name": "browser-app",
+      "type": "hyperframes:component",
+      "title": "Editable Browser App",
+      "description": "Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows.",
+      "tags": [
+        "browser",
+        "web-app",
+        "tabs",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "calendar-app",
+      "type": "hyperframes:block",
+      "title": "macOS Calendar App",
+      "description": "Scheduling, coordination, and calendar-driven workflow scenes.",
+      "tags": [
+        "macos",
+        "calendar",
+        "schedule",
+        "desktop"
+      ]
+    },
+    {
+      "name": "claude-agent-rail",
+      "type": "hyperframes:component",
+      "title": "Claude Agent Context Rail",
+      "description": "Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.",
+      "tags": [
+        "claude",
+        "agent-status",
+        "task-rail",
+        "context",
+        "artifacts"
+      ]
+    },
+    {
+      "name": "claude-app",
+      "type": "hyperframes:component",
+      "title": "Claude Working Thread",
+      "description": "Focused Claude working-thread scenes, especially clips that pair Claude with one other app surface.",
+      "tags": [
+        "claude",
+        "chat",
+        "composer",
+        "tool-use",
+        "agent-status"
+      ]
+    },
+    {
+      "name": "claude-attachment-draft",
+      "type": "hyperframes:component",
+      "title": "Claude Attached Folder Draft",
+      "description": "Pre-submit scenes where a user has attached a local folder or files before Claude starts working.",
+      "tags": [
+        "claude",
+        "attachment",
+        "folder-context",
+        "composer",
+        "new-chat"
+      ]
+    },
+    {
+      "name": "claude-browser-chat-pane-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Chat Pane Plus Browser Workflow",
+      "description": "The lightest Claude-plus-browser instructional clips: active Claude topbar, message field, and composer over a browser surface, without sidebar, task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "chat-pane",
+        "lean-pane",
+        "modular-assembly"
+      ]
+    },
+    {
+      "name": "claude-browser-chat-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Chat Shell Plus Browser Workflow",
+      "description": "Short instructional clips that need only Claude plus a browser surface, without importing the task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "chat-shell",
+        "lean-shell",
+        "modular-assembly"
+      ]
+    },
+    {
+      "name": "claude-browser-composed-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Componentized Shell Plus Browser Workflow",
+      "description": "Short clips that need a full Claude shell plus a browser app while preserving the reusable sidebar, thread core, composer, and rail as independently editable child components.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "composed-shell",
+        "nested-components",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-browser-thread-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Working Thread Plus Browser Workflow",
+      "description": "Short demo clips that need only the current Claude working thread over a browser app, without Finder, PowerPoint, or the attachment-draft beat.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "working-thread",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-browser-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Browser Workflow",
+      "description": "Short demo clips that need only Claude with attached context and a browser app.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-chat-pane",
+      "type": "hyperframes:component",
+      "title": "Claude Chat Pane",
+      "description": "Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
+      "tags": [
+        "claude",
+        "chat",
+        "thread",
+        "composer",
+        "launch-reference",
+        "pane"
+      ]
+    },
+    {
+      "name": "claude-chat-shell",
+      "type": "hyperframes:component",
+      "title": "Claude Chat Shell",
+      "description": "Simple Claude chat demos that need a sidebar, thread, and composer without the Cowork/task rail, tool-card stack, Finder, browser, Office, Codex, or full desktop lab.",
+      "tags": [
+        "claude",
+        "chat",
+        "sidebar",
+        "composer",
+        "launch-reference",
+        "lean-shell"
+      ]
+    },
+    {
+      "name": "claude-cinematic-reply",
+      "type": "hyperframes:component",
+      "title": "Claude Cinematic Reply",
+      "description": "Sparse launch-style Claude answer/composer beats when a clip does not need sidebar, task rail, or tool cards.",
+      "tags": [
+        "claude",
+        "cinematic",
+        "reply",
+        "composer",
+        "launch-reference"
+      ]
+    },
+    {
+      "name": "claude-code-desktop",
+      "type": "hyperframes:component",
+      "title": "Claude Code Desktop",
+      "description": "Claude Code desktop clips that need the dark app shell with session rail, prompt transcript, diff, terminal, tasks, floating view menu, model state, and bottom composer without importing the warm Claude chat shell.",
+      "tags": [
+        "claude",
+        "claude-code",
+        "desktop-app",
+        "dark-ui",
+        "diff",
+        "terminal",
+        "tasks"
+      ]
+    },
+    {
+      "name": "claude-code-figma-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Code Plus Figma Workflow",
+      "description": "Claude Code-to-design clips that need the light reference-style Claude Code terminal driving a dark Figma onboarding design editor without importing the warm Claude chat shell, Finder, Office, browser, Codex terminal, Premiere, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude-code",
+        "claude",
+        "figma",
+        "design",
+        "terminal",
+        "modular-assembly"
+      ]
+    },
+    {
+      "name": "claude-code-terminal-session",
+      "type": "hyperframes:component",
+      "title": "Claude Code Terminal Session",
+      "description": "Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell.",
+      "tags": [
+        "claude",
+        "claude-code",
+        "terminal",
+        "light-ui",
+        "figma-workflow",
+        "component"
+      ]
+    },
+    {
+      "name": "claude-codex-terminal-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Codex Terminal Workflow",
+      "description": "Instructional clips that need Claude supervising or describing work while Codex CLI executes in Terminal, without browser, Finder, Office, or full desktop surfaces.",
+      "tags": [
+        "workflow",
+        "claude",
+        "codex",
+        "terminal",
+        "cli",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-completion-response",
+      "type": "hyperframes:component",
+      "title": "Claude Completion Response",
+      "description": "Cinematic Claude done-state beats that need only the large serif response and red response mark, without composer, sidebar, browser, Finder, Office, Codex, Premiere, or desktop context.",
+      "tags": [
+        "claude",
+        "cinematic",
+        "completion",
+        "response",
+        "launch-reference",
+        "composer-free"
+      ]
+    },
+    {
+      "name": "claude-composed-app",
+      "type": "hyperframes:component",
+      "title": "Claude Componentized App Shell",
+      "description": "Full Claude app beats assembled from reusable child components when a video needs the shell but should still keep sidebar, thread, composer, and rail independently editable.",
+      "tags": [
+        "claude",
+        "component-loader",
+        "composed-shell",
+        "modularity",
+        "workspace"
+      ]
+    },
+    {
+      "name": "claude-composer",
+      "type": "hyperframes:component",
+      "title": "Claude Working Composer",
+      "description": "Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell.",
+      "tags": [
+        "claude",
+        "composer",
+        "attachment",
+        "folder-context",
+        "running-state"
+      ]
+    },
+    {
+      "name": "claude-conversation",
+      "type": "hyperframes:component",
+      "title": "Claude Sparse Conversation Canvas",
+      "description": "Launch-style Claude response clips that need the sparse conversation canvas without the desktop sidebar or full app shell.",
+      "tags": [
+        "claude",
+        "conversation",
+        "reply-composer",
+        "launch-video",
+        "sparse-thread"
+      ]
+    },
+    {
+      "name": "claude-conversation-browser-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Sparse Conversation Plus Browser Workflow",
+      "description": "Launch-style clips that need a browser app being updated in the background with the sparse Claude response canvas in front.",
+      "tags": [
+        "workflow",
+        "claude",
+        "conversation",
+        "browser",
+        "launch-video",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-deck-chat-pane",
+      "type": "hyperframes:component",
+      "title": "Claude Deck Chat Pane",
+      "description": "Claude plus PowerPoint/deck scenes that need only the active topbar, deck-focused message field, and composer without sidebar, task rail, browser, Finder, Codex, or desktop chrome.",
+      "tags": [
+        "claude",
+        "chat",
+        "thread",
+        "composer",
+        "launch-reference",
+        "pane",
+        "deck",
+        "powerpoint"
+      ]
+    },
+    {
+      "name": "claude-excel-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Excel Workflow",
+      "description": "Spreadsheet review, formula checking, chart-range, and workbook automation clips that need Claude with an Excel-style workbook, without browser, Finder, PowerPoint, Word, Figma, Premiere, Codex terminal, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "excel",
+        "spreadsheet",
+        "office",
+        "formula",
+        "chart",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-figma-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Figma Workflow",
+      "description": "Design handoff and frame-editing clips that need Claude with a Figma-style editor, without browser, Finder, Office, Codex terminal, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "figma",
+        "design",
+        "canvas",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-finder-thread-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Working Thread Plus Finder Workflow",
+      "description": "Short file/folder workflow clips that need the refined Claude working thread with Finder context, without browser, PowerPoint, attachment draft emphasis, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "finder",
+        "files",
+        "working-thread",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-finder-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Finder Workflow",
+      "description": "Short file/folder handoff clips that should not import browser, PowerPoint, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "finder",
+        "files",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-home",
+      "type": "hyperframes:component",
+      "title": "Claude New Chat Home",
+      "description": "Opening prompt scenes before a working Claude thread exists.",
+      "tags": [
+        "claude",
+        "home",
+        "composer",
+        "new-chat"
+      ]
+    },
+    {
+      "name": "claude-home-launch",
+      "type": "hyperframes:component",
+      "title": "Claude Launch Prompt Stack",
+      "description": "Full-frame launch prompt beats where a video needs the Sonnet-style user request stack without the desktop/sidebar Claude app shell.",
+      "tags": [
+        "claude",
+        "home",
+        "launch-video",
+        "prompt-stack",
+        "loader"
+      ]
+    },
+    {
+      "name": "claude-launch-browser-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Launch States Plus Browser Workflow",
+      "description": "Short launch-style clips that need a browser app as the background work surface plus Claude prompt-to-completion states, without Finder, Office, Codex terminal, or the full desktop lab; use `capture:claude-launch-browser-workflow-prompt` for the prompt beat.",
+      "tags": [
+        "workflow",
+        "claude",
+        "browser",
+        "launch-video",
+        "prompt-stack",
+        "completion",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-launch-completion",
+      "type": "hyperframes:component",
+      "title": "Claude Launch Completion",
+      "description": "Full-frame Claude completion beats where a clip needs a launch-style done state and lower-edge Reply composer without the desktop/sidebar app shell.",
+      "tags": [
+        "claude",
+        "cinematic",
+        "completion",
+        "reply-composer",
+        "launch-reference"
+      ]
+    },
+    {
+      "name": "claude-premiere-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Premiere Workflow",
+      "description": "Video editing, timeline review, trim, graphics, and export clips that need Claude with a Premiere-style editor, without browser, Finder, Office, Figma, Codex terminal, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "premiere",
+        "video",
+        "timeline",
+        "editing",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-presentation-chat-pane-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Chat Pane Plus Presentation Workflow",
+      "description": "Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "powerpoint",
+        "presentation",
+        "office",
+        "chat-pane",
+        "modular-assembly"
+      ]
+    },
+    {
+      "name": "claude-presentation-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Presentation Workflow",
+      "description": "Instructional clips that need Claude guiding or reporting on a deck edit with a PowerPoint-like editor, without browser, Finder, Codex terminal, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "powerpoint",
+        "presentation",
+        "office",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "claude-prompt-stack",
+      "type": "hyperframes:component",
+      "title": "Claude Launch Prompt Stack",
+      "description": "Cinematic Claude launch beats that need only oversized right-aligned prompt bubbles and a loading mark, without app chrome, sidebar, composer, browser, Finder, Office, Codex, or desktop context.",
+      "tags": [
+        "claude",
+        "chat",
+        "prompt-stack",
+        "launch-reference",
+        "loading",
+        "cinematic"
+      ]
+    },
+    {
+      "name": "claude-response-mark",
+      "type": "hyperframes:component",
+      "title": "Claude Response Mark",
+      "description": "Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry.",
+      "tags": [
+        "claude",
+        "brand-mark",
+        "response",
+        "launch-reference",
+        "editable-css"
+      ]
+    },
+    {
+      "name": "claude-sidebar",
+      "type": "hyperframes:component",
+      "title": "Claude Sidebar",
+      "description": "Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.",
+      "tags": [
+        "claude",
+        "sidebar",
+        "navigation",
+        "cowork",
+        "workspace"
+      ]
+    },
+    {
+      "name": "claude-thread-core",
+      "type": "hyperframes:component",
+      "title": "Claude Working Thread Core",
+      "description": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window.",
+      "tags": [
+        "claude",
+        "thread",
+        "tool-use",
+        "reasoning",
+        "message-parts"
+      ]
+    },
+    {
+      "name": "claude-tool-result",
+      "type": "hyperframes:component",
+      "title": "Claude Completed Tool Result",
+      "description": "Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.",
+      "tags": [
+        "claude",
+        "tool-result",
+        "completed-work",
+        "composer",
+        "artifact"
+      ]
+    },
+    {
+      "name": "claude-word-workflow",
+      "type": "hyperframes:block",
+      "title": "Claude Plus Word Workflow",
+      "description": "Document drafting, review, comments, and tracked-change clips that need Claude with a Word-style editor, without browser, Finder, PowerPoint, Excel, Figma, Premiere, Codex terminal, or the full desktop lab.",
+      "tags": [
+        "workflow",
+        "claude",
+        "word",
+        "document",
+        "office",
+        "review",
+        "modular-assembly",
+        "mac-menu-bar"
+      ]
+    },
+    {
+      "name": "codex-app",
+      "type": "hyperframes:component",
+      "title": "Codex Desktop Workbench",
+      "description": "Desktop Codex demos that need a light-mode current app shell with real-product-like sidebar navigation, active thread, model/permission composer, toolbar controls, Git diff review pane, and local-work metadata, without importing Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces.",
+      "tags": [
+        "codex",
+        "desktop",
+        "app",
+        "agent-status",
+        "patch-preview",
+        "developer-workflow"
+      ]
+    },
+    {
+      "name": "codex-terminal",
+      "type": "hyperframes:component",
+      "title": "Codex Terminal",
+      "description": "Command-line Codex demos, test runs, diffs, and agent execution status scenes.",
+      "tags": [
+        "codex",
+        "terminal",
+        "cli",
+        "agent-status",
+        "developer-workflow"
+      ]
+    },
+    {
+      "name": "excel-workbook",
+      "type": "hyperframes:component",
+      "title": "Excel-style Workbook",
+      "description": "Spreadsheet analysis, formula editing, chart updates, and workbook automation scenes.",
+      "tags": [
+        "excel",
+        "office",
+        "spreadsheet",
+        "formula",
+        "chart"
+      ]
+    },
+    {
+      "name": "figma-editor",
+      "type": "hyperframes:component",
+      "title": "Figma-style Design Editor",
+      "description": "Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes.",
+      "tags": [
+        "figma",
+        "design",
+        "canvas",
+        "properties",
+        "frames"
+      ]
+    },
+    {
+      "name": "figma-onboarding-editor",
+      "type": "hyperframes:component",
+      "title": "Figma-style Onboarding Editor",
+      "description": "Claude Code-to-design clips that need the dark onboarding design editor seen in the public reference video without importing the larger generic Figma editor shell.",
+      "tags": [
+        "figma",
+        "design",
+        "canvas",
+        "dark-ui",
+        "onboarding",
+        "mobile-frames"
+      ]
+    },
+    {
+      "name": "finder-window",
+      "type": "hyperframes:component",
+      "title": "Finder Launch Deck Window",
+      "description": "File/folder handoff scenes that need Finder without a full desktop shell.",
+      "tags": [
+        "macos",
+        "finder",
+        "files",
+        "folder",
+        "launch-deck"
+      ]
+    },
+    {
+      "name": "mac-menu-bar",
+      "type": "hyperframes:component",
+      "title": "macOS Menu Bar",
+      "description": "Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab.",
+      "tags": [
+        "mac",
+        "macos",
+        "menu-bar",
+        "desktop",
+        "component-loader"
+      ]
+    },
+    {
+      "name": "premiere-editor",
+      "type": "hyperframes:component",
+      "title": "Premiere-style Video Editor",
+      "description": "Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes.",
+      "tags": [
+        "premiere",
+        "video",
+        "timeline",
+        "editing",
+        "captions"
+      ]
+    },
+    {
+      "name": "presentation-editor",
+      "type": "hyperframes:component",
+      "title": "PowerPoint-like Presentation Editor",
+      "description": "Deck-editing demos and main Claude-to-PowerPoint workflow scenes.",
+      "tags": [
+        "powerpoint",
+        "presentation",
+        "office",
+        "ribbon",
+        "slides"
+      ]
+    },
+    {
+      "name": "word-editor",
+      "type": "hyperframes:component",
+      "title": "Word-style Document Editor",
+      "description": "Document editing, review, comments, tracked-change, and memo workflow scenes.",
+      "tags": [
+        "word",
+        "office",
+        "document",
+        "comments",
+        "tracked-changes"
+      ]
+    },
+    {
+      "name": "quickstart-demo",
+      "type": "hyperframes:example",
+      "title": "UI Backlot Claude plus Browser Quickstart",
+      "description": "Complete starter video assembling macOS menu bar, browser app, Claude chat pane, cursor, and click feedback.",
+      "tags": [
+        "starter",
+        "claude",
+        "browser",
+        "example"
+      ]
+    }
+  ]
+}

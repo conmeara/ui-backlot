@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-backlot.local/schemas/backlot-surface-api.schema.json",
+  "title": "UI Backlot Surface Agent API",
+  "type": "object",
+  "required": ["mount", "files", "metadata", "docs"],
+  "additionalProperties": false,
+  "properties": {
+    "mount": {
+      "type": "object",
+      "required": ["src", "selector"],
+      "additionalProperties": false,
+      "properties": { "src": { "type": "string", "minLength": 1 }, "selector": { "type": "string", "minLength": 1 }, "snippet": { "type": "string" } }
+    },
+    "files": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "metadata": { "type": "object", "required": ["title", "recommendedUse", "assetDecision"], "additionalProperties": true },
+    "docs": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  }
+}

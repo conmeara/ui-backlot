@@ -73,15 +73,15 @@ const lines = [
   "",
   "## Recommended Starters",
   "",
-  "| id | kind | title | source | capture | tags |",
-  "| --- | --- | --- | --- | --- | --- |",
+  "| id | kind | publish | title | source | capture | tags |",
+  "| --- | --- | --- | --- | --- | --- | --- |",
   ...recommended.map(row),
   ""
 ];
 
 for (const group of groups) {
   const surfaces = registry.surfaces.filter(group.match);
-  lines.push(`## ${group.title}`, "", group.note, "", "| id | kind | title | source | capture | tags |", "| --- | --- | --- | --- | --- | --- |", ...surfaces.map(row), "");
+  lines.push(`## ${group.title}`, "", group.note, "", "| id | kind | publish | title | source | capture | tags |", "| --- | --- | --- | --- | --- | --- | --- |", ...surfaces.map(row), "");
 }
 
 lines.push(

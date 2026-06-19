@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-launch-completion",
+  "type": "hyperframes:component",
+  "title": "Claude Launch Completion",
+  "description": "Full-frame Claude completion beats where a clip needs a launch-style done state and lower-edge Reply composer without the desktop/sidebar app shell.",
+  "tags": [
+    "claude",
+    "cinematic",
+    "completion",
+    "reply-composer",
+    "launch-reference"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compositions/claude-launch-completion.html",
+      "target": "compositions/claude-launch-completion.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

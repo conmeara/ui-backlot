@@ -1,0 +1,1969 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 24%),
+      linear-gradient(135deg, #efe9dd 0%, #f8f5ee 45%, #d9e6df 100%);
+  }
+</style>
+
+<template id="premiere-editor-surface-template">
+  <div id="premiere-editor-surface" data-composition-id="premiere-editor-surface" data-width="1440" data-height="900">
+    <section class="premiere-window" data-primitive="premiere-video-editor-window" aria-label="Editable Premiere-style video editor surface">
+      <header class="premiere-titlebar" data-primitive="premiere-titlebar">
+        <div class="traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="home-icon" aria-hidden="true"></div>
+        <div class="mode-tabs" aria-label="Premiere mode tabs">
+          <button type="button">Import</button>
+          <button type="button" class="active">Edit</button>
+          <button type="button">Export</button>
+        </div>
+        <div class="app-identity">
+          <span>Neighborhood Launch Cut</span>
+          <span class="title-muted">Edited</span>
+        </div>
+        <div class="workspace-identity">
+          <span>ESSENTIALS</span>
+          <i class="top-icon layout"></i>
+          <i class="top-icon share"></i>
+          <i class="top-icon sliders"></i>
+          <i class="top-icon flask"></i>
+          <i class="top-icon comment"></i>
+          <i class="top-icon expand"></i>
+        </div>
+        <div class="top-actions">
+          <button type="button" class="sync-pill"><span></span> Frame.io</button>
+          <button type="button" class="export-cta">Export</button>
+        </div>
+      </header>
+
+      <nav class="workspace-tabs" data-primitive="premiere-workspaces" aria-label="Premiere workspaces">
+        <button type="button">Assembly</button>
+        <button type="button" class="active">Editing</button>
+        <button type="button">Color</button>
+        <button type="button">Effects</button>
+        <button type="button">Audio</button>
+        <button type="button">Graphics</button>
+        <span class="workspace-spacer"></span>
+        <button type="button" class="search-pill">Search</button>
+      </nav>
+
+      <main class="editor-grid">
+        <section class="panel source-monitor" data-primitive="premiere-source-monitor">
+          <div class="panel-tabs">
+            <button type="button" class="active">Source: A005_C037_0925SG_001.mp4</button>
+            <button type="button">Effect Controls</button>
+            <span class="panel-menu"></span>
+          </div>
+          <div class="monitor-frame source-frame">
+            <div class="video-still interview">
+              <div class="monitor-overlay top-left">V: interview_selects.mov</div>
+              <div class="subject"></div>
+              <div class="background-card"></div>
+              <div class="source-timecode">00:01:14:09</div>
+            </div>
+            <div class="source-waveform" aria-hidden="true">
+              <span style="height: 19px"></span><span style="height: 31px"></span><span style="height: 24px"></span><span style="height: 41px"></span>
+              <span style="height: 18px"></span><span style="height: 34px"></span><span style="height: 28px"></span><span style="height: 45px"></span>
+              <span style="height: 22px"></span><span style="height: 36px"></span><span style="height: 27px"></span><span style="height: 50px"></span>
+              <span style="height: 26px"></span><span style="height: 33px"></span><span style="height: 21px"></span><span style="height: 39px"></span>
+            </div>
+          </div>
+          <div class="monitor-controls">
+            <span class="timecode active">00:00:14:18</span>
+            <button type="button" class="control mark-in" aria-label="Mark in"></button>
+            <span class="mark in">I</span>
+            <button type="button" class="control prev" aria-label="Previous frame"></button>
+            <button type="button" class="control play" aria-label="Play"></button>
+            <button type="button" class="control next" aria-label="Next frame"></button>
+            <span class="mark out">O</span>
+            <button type="button" class="control insert" aria-label="Insert"></button>
+            <button type="button" class="control overwrite" aria-label="Overwrite"></button>
+            <span class="monitor-scale">Fit</span>
+            <span class="duration">00:00:08:07</span>
+          </div>
+        </section>
+
+        <section class="panel program-monitor" data-primitive="premiere-program-monitor">
+          <div class="panel-tabs">
+            <button type="button" class="active">Program: Sequence 02</button>
+            <button type="button">Comparison View</button>
+            <span class="panel-menu"></span>
+          </div>
+          <div class="monitor-frame program-frame">
+            <div class="safe-guides"></div>
+            <div class="monitor-overlay top-left">Editing workspace · 1920 x 1080</div>
+            <div class="program-card">
+              <div class="program-title">Maple Grove Playground</div>
+              <div class="program-subtitle">Community launch video</div>
+              <div class="program-progress"><span></span></div>
+            </div>
+            <div class="lower-third">Amina Chen, project lead</div>
+            <div class="program-timecode">00:00:31:12</div>
+          </div>
+          <div class="monitor-controls">
+            <span class="timecode active">00:00:31:12</span>
+            <button type="button" class="control safe" aria-label="Safe margins"></button>
+            <button type="button" class="control step-back" aria-label="Step back"></button>
+            <button type="button" class="control play active" aria-label="Play"></button>
+            <button type="button" class="control step-forward" aria-label="Step forward"></button>
+            <button type="button" class="control export-frame" aria-label="Export frame"></button>
+            <span class="monitor-scale">Fit</span>
+            <span class="resolution">1/2</span>
+            <span class="duration">00:01:08:00</span>
+          </div>
+        </section>
+
+        <aside class="audio-meters" data-primitive="premiere-audio-meters" aria-label="Audio meters">
+          <div class="meter-title">Audio</div>
+          <div class="meter-scale"><span>0</span><span>-6</span><span>-12</span><span>-24</span><span>-48</span></div>
+          <div class="meter-columns">
+            <div class="meter"><span class="level l"></span></div>
+            <div class="meter"><span class="level r"></span></div>
+          </div>
+          <div class="meter-labels"><span>L</span><span>R</span></div>
+        </aside>
+
+        <section class="panel project-panel" data-primitive="premiere-project-panel">
+          <div class="panel-tabs">
+            <button type="button" class="active">Project</button>
+            <button type="button">Media Browser</button>
+            <button type="button">Libraries</button>
+            <span class="panel-menu"></span>
+          </div>
+          <div class="project-toolbar">
+            <span class="bin-folder">Sample Project.prproj</span>
+            <span class="bin-count">16 items</span>
+          </div>
+          <div class="bin-search-row"><span class="bin-search">Search</span><span class="view-toggle icon"></span></div>
+          <div class="project-icon-grid">
+            <div class="thumb-card active"><span class="thumb lake"></span><strong>A005_C037_0925SG...</strong><em>5:15</em></div>
+            <div class="thumb-card"><span class="thumb park"></span><strong>A004_C010_0924AL...</strong><em>0:06</em></div>
+            <div class="thumb-card"><span class="thumb wide"></span><strong>A002_C076_0922S1...</strong><em>1:22</em></div>
+            <div class="thumb-card"><span class="thumb arch"></span><strong>A004_C002_0924Q...</strong><em>1:02</em></div>
+            <div class="thumb-card"><span class="thumb green"></span><strong>A002_C018_0922BW...</strong><em>7:13</em></div>
+            <div class="thumb-card"><span class="thumb field"></span><strong>A001_C064_09224Y...</strong><em>2:08</em></div>
+            <div class="thumb-card"><span class="thumb water"></span><strong>A005_C029_0925T...</strong><em>12:14</em></div>
+            <div class="thumb-card"><span class="thumb path"></span><strong>A002_C052_0922T7...</strong><em>2:03</em></div>
+            <div class="thumb-card"><span class="thumb city"></span><strong>A002_C018_0922BW...</strong><em>1:02</em></div>
+          </div>
+          <div class="project-footer-tools">
+            <span class="footer-icon pen"></span><span class="footer-icon list active"></span><span class="footer-icon grid"></span>
+            <span class="footer-slider"></span>
+            <span class="footer-spacer"></span>
+            <span class="footer-icon folder"></span><span class="footer-icon trash"></span>
+          </div>
+        </section>
+
+        <aside class="tools-panel" data-primitive="premiere-tools-panel" aria-label="Tools panel">
+          <button class="tool selection active" type="button" aria-label="Selection tool"></button>
+          <button class="tool track" type="button" aria-label="Track select tool"></button>
+          <button class="tool ripple" type="button" aria-label="Ripple edit tool"></button>
+          <button class="tool razor" type="button" aria-label="Razor tool"></button>
+          <button class="tool pen" type="button" aria-label="Pen tool"></button>
+          <button class="tool hand" type="button" aria-label="Hand tool"></button>
+          <button class="tool text" type="button" aria-label="Text tool"></button>
+          <button class="tool extend" type="button" aria-label="Generative Extend tool"></button>
+        </aside>
+
+        <section class="panel timeline-panel" data-primitive="premiere-timeline-editor">
+          <div class="panel-tabs timeline-tabs">
+            <button type="button" class="active">Launch Deck sequence</button>
+            <button type="button">Sequence Index</button>
+            <button type="button">Markers</button>
+            <span class="timeline-status">00:01:08:00  |  23.976 fps</span>
+          </div>
+          <div class="timeline-toolbar">
+            <div class="patches">
+              <span class="patch-label">Source</span>
+              <button type="button" class="patch active">V1</button>
+              <button type="button" class="patch active">A1</button>
+              <span class="patch-label">Target</span>
+              <button type="button" class="patch active">V1</button>
+              <button type="button" class="patch active">A1</button>
+              <button type="button" class="patch">A2</button>
+            </div>
+            <div class="timeline-controls">
+              <button type="button" class="timeline-icon insert-mini" aria-label="Insert edit"></button>
+              <button type="button" class="timeline-icon overwrite-mini" aria-label="Overwrite edit"></button>
+              <span class="toggle active">Snap</span>
+              <span class="toggle">Linked</span>
+              <span class="toggle active">Markers</span>
+              <span class="toggle active">Keyframes</span>
+            </div>
+            <div class="zoom-track"><span></span></div>
+          </div>
+          <div class="timeline-ruler">
+            <div class="track-label-corner">00:00:00:00</div>
+            <div class="ruler-scales">
+              <span style="left: 0%">00:00</span>
+              <span style="left: 16%">00:10</span>
+              <span style="left: 32%">00:20</span>
+              <span style="left: 48%">00:30</span>
+              <span style="left: 64%">00:40</span>
+              <span style="left: 80%">00:50</span>
+              <span style="left: 96%">01:00</span>
+            </div>
+          </div>
+          <div class="timeline-body">
+            <div class="track-headers">
+              <div class="track-header video"><strong>V4</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V3</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V2</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V1</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio targeted"><strong>A1</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio"><strong>A2</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
+            </div>
+            <div class="tracks">
+              <div class="snap-line one"></div>
+              <div class="snap-line two"></div>
+              <div class="playhead"><span></span></div>
+              <div class="timeline-marker marker-a"></div>
+              <div class="timeline-marker marker-b"></div>
+              <div class="track-row captions">
+                <div class="clip caption" style="left: 39%; width: 19%"><strong>Caption: A neighborhood project...</strong><em>C1</em></div>
+              </div>
+              <div class="track-row video">
+                <div class="clip graphic selected" style="left: 48%; width: 17%">
+                  <span class="clip-fx">fx</span><span class="clip-handle left"></span><strong>funding_card.png</strong><em>Motion · Scale keyframes</em><span class="clip-handle right"></span>
+                </div>
+              </div>
+              <div class="track-row video">
+                <div class="clip title" style="left: 35%; width: 20%"><span class="clip-fx">T</span><strong>Lower third</strong><em>Graphics · 2 layers</em></div>
+              </div>
+              <div class="track-row video">
+                <div class="clip blue" style="left: 4%; width: 26%"><span class="clip-fx">fx</span><strong>playground_broll.mp4</strong><em>V · Warp Stabilizer</em><span class="transition right"></span></div>
+                <div class="clip teal" style="left: 32%; width: 22%"><span class="clip-fx">fx</span><strong>interview_selects.mov</strong><em>V · Lumetri</em></div>
+                <div class="clip amber" style="left: 56%; width: 28%"><strong>volunteer_day.mov</strong><em>V</em><span class="transition left"></span></div>
+              </div>
+              <div class="track-row audio">
+                <div class="clip audio green" style="left: 4%; width: 50%">
+                  <strong>interview_selects.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+                <div class="clip audio green" style="left: 56%; width: 28%">
+                  <strong>volunteer_day.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <div class="track-row audio">
+                <div class="clip audio music" style="left: 0%; width: 84%">
+                  <strong>ambient_block.wav</strong>
+                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel properties-panel" data-primitive="premiere-properties-panel">
+          <div class="panel-tabs">
+            <button type="button" class="active">Properties</button>
+            <button type="button">Effect Controls</button>
+            <button type="button">Lumetri Color</button>
+            <span class="panel-menu"></span>
+          </div>
+          <section class="property-stack">
+            <div class="property-heading"><span class="multi-icon"></span><strong>Multiple clips selected</strong><i></i></div>
+            <div class="disclosure open">Transform</div>
+            <div class="mini-icons"><span></span><span></span></div>
+            <div class="prop-line keyframed"><span>Position</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
+            <div class="prop-line keyframed"><span>Anchor point</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
+            <div class="prop-line"><span>Scale</span><strong>101%</strong><strong>100%</strong><i></i></div>
+            <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i></i></div>
+            <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i></i></div>
+            <div class="disclosure open audio">Audio</div>
+            <div class="prop-line volume"><span>Volume</span><strong>0.0 dB</strong><i></i></div>
+            <div class="audio-slider"><span></span></div>
+            <button type="button" class="adjust-speed">Adjust speed...</button>
+          </section>
+        </aside>
+      </main>
+
+      <div class="premiere-cursor" data-layout-ignore=""></div>
+    </section>
+
+    <style>
+      #premiere-editor-surface {
+        --app-bg: #181818;
+        --panel: #202020;
+        --panel-soft: #252525;
+        --panel-dark: #141414;
+        --panel-raised: #2a2a2a;
+        --border: #343434;
+        --border-strong: #4a4a4a;
+        --ink: #d8d8d8;
+        --muted: #9d9d9d;
+        --soft: #737373;
+        --accent: #0a84ff;
+        --accent-blue: #4aa3ff;
+        --teal: #36a7a2;
+        --green: #08c733;
+        --orange: #c18436;
+        --pink: #ff5ca8;
+        --yellow: #e5cc5d;
+        width: 1440px;
+        height: 900px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+      }
+
+      #premiere-editor-surface * {
+        box-sizing: border-box;
+      }
+
+      #premiere-editor-surface button {
+        font: inherit;
+      }
+
+      .premiere-window {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: 38px 32px 1fr;
+        border-radius: 10px;
+        background: var(--app-bg);
+        box-shadow:
+          0 34px 120px rgba(16, 16, 20, 0.38),
+          0 0 0 1px rgba(255, 255, 255, 0.11);
+      }
+
+      .premiere-titlebar {
+        display: grid;
+        grid-template-columns: 92px 34px auto minmax(0, 1fr) auto auto;
+        align-items: center;
+        column-gap: 13px;
+        padding: 0 10px;
+        background: #1d1d1d;
+        border-bottom: 1px solid #333;
+      }
+
+      .traffic {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+
+      .traffic span {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #ffbd2e; }
+      .traffic .green { background: #28c840; }
+
+      .home-icon {
+        width: 18px;
+        height: 18px;
+        position: relative;
+        opacity: 0.78;
+      }
+
+      .home-icon::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 6px;
+        width: 14px;
+        height: 10px;
+        background: #cfcfcf;
+        clip-path: polygon(0 44%, 50% 0, 100% 44%, 88% 44%, 88% 100%, 12% 100%, 12% 44%);
+      }
+
+      .mode-tabs {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        height: 100%;
+      }
+
+      .mode-tabs button {
+        height: 100%;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: #d0d0d0;
+        font-size: 12px;
+        font-weight: 590;
+      }
+
+      .mode-tabs button.active {
+        border-bottom-color: #e8e8e8;
+        color: #fff;
+      }
+
+      .app-identity {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        color: #f7f7fb;
+        font-size: 11px;
+        font-weight: 560;
+      }
+
+      .workspace-identity {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #d1d1d1;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .title-muted {
+        color: var(--soft);
+        font-weight: 520;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .top-actions button,
+      .workspace-tabs button,
+      .panel-tabs button,
+      .monitor-controls button,
+      .tools-panel button {
+        border: 0;
+        color: inherit;
+      }
+
+      .sync-pill,
+      .export-cta {
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 12px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .sync-pill {
+        background: #2a2a2a;
+        color: #d6d7df;
+      }
+
+      .sync-pill span {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 0 3px rgba(91, 191, 114, 0.12);
+      }
+
+      .export-cta {
+        background: #7b61ff;
+        color: #fff;
+      }
+
+      .top-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        display: inline-block;
+        color: #b7b7b7;
+      }
+
+      .top-icon::before,
+      .top-icon::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border: 1.5px solid currentColor;
+      }
+
+      .top-icon.share::before {
+        border: 0;
+        border-top: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .top-icon.sliders::before {
+        inset: 4px 2px;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .top-icon.flask::before {
+        inset: 1px 4px 3px;
+        border-radius: 0 0 5px 5px;
+      }
+
+      .top-icon.comment::before {
+        border-radius: 3px;
+      }
+
+      .top-icon.expand::before {
+        inset: 2px;
+        border-left: 0;
+        border-bottom: 0;
+      }
+
+      .workspace-tabs {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 18px;
+        background: #202020;
+        border-bottom: 1px solid #363636;
+      }
+
+      .workspace-tabs button {
+        height: 100%;
+        padding: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 560;
+      }
+
+      .workspace-tabs button.active {
+        background: transparent;
+        border-bottom-color: #d8d8d8;
+        color: #fff;
+      }
+
+      .workspace-divider {
+        width: 1px;
+        height: 18px;
+        margin: 0 4px;
+        background: #3b3d47;
+      }
+
+      .workspace-spacer {
+        flex: 1;
+      }
+
+      .workspace-tabs .search-pill {
+        min-width: 118px;
+        height: 22px;
+        padding: 0 12px;
+        justify-content: flex-start;
+        border: 1px solid #393939;
+        border-radius: 5px;
+        color: #8b8b8b;
+        background: #171717;
+        box-shadow: none;
+      }
+
+      .editor-grid {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 38px 272px 330px minmax(0, 1fr) 286px 34px;
+        grid-template-rows: 306px minmax(0, 1fr);
+        gap: 3px;
+        padding: 3px;
+        background: #151515;
+      }
+
+      .panel {
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        background: var(--panel);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      .source-monitor {
+        grid-column: 3;
+        grid-row: 1;
+      }
+
+      .program-monitor {
+        grid-column: 4;
+        grid-row: 1;
+      }
+
+      .audio-meters {
+        grid-column: 6;
+        grid-row: 1 / 3;
+        position: relative;
+        display: grid;
+        grid-template-rows: 30px 1fr 26px;
+        padding: 7px 5px;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        background: #111;
+      }
+
+      .project-panel {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+
+      .tools-panel {
+        grid-column: 1;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        padding: 6px 4px;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        background: #191919;
+      }
+
+      .timeline-panel {
+        grid-column: 2 / 6;
+        grid-row: 2;
+      }
+
+      .properties-panel {
+        grid-column: 5;
+        grid-row: 1;
+      }
+
+      .panel-tabs {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        padding: 0 5px;
+        background: #1d1d1d;
+        border-bottom: 1px solid #333;
+      }
+
+      .panel-tabs button {
+        height: 22px;
+        max-width: 220px;
+        padding: 0 7px;
+        border-radius: 0;
+        background: transparent;
+        color: #92959f;
+        font-size: 10.5px;
+        font-weight: 540;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .panel-tabs button.active {
+        background: #242424;
+        color: #f2f2f6;
+        box-shadow: inset 0 1px 0 var(--accent);
+      }
+
+      .panel-menu {
+        width: 19px;
+        height: 19px;
+        margin-left: auto;
+        border-radius: 3px;
+        background:
+          radial-gradient(circle, #8f929e 0 1px, transparent 1.5px) 5px 5px / 5px 5px repeat;
+        opacity: 0.72;
+      }
+
+      .monitor-frame {
+        position: relative;
+        height: 235px;
+        margin: 6px;
+        overflow: hidden;
+        border: 1px solid #101116;
+        border-radius: 1px;
+        background: #08090c;
+      }
+
+      .monitor-overlay {
+        position: absolute;
+        z-index: 2;
+        padding: 3px 6px;
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.44);
+        color: rgba(240, 242, 248, 0.72);
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .monitor-overlay.top-left {
+        left: 9px;
+        top: 8px;
+      }
+
+      .source-frame {
+        display: grid;
+        grid-template-rows: 1fr 46px;
+      }
+
+      .video-still {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.08), transparent 38%),
+          linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
+      }
+
+      .video-still.interview::before {
+        content: "";
+        position: absolute;
+        left: 36px;
+        bottom: -12px;
+        width: 126px;
+        height: 158px;
+        border-radius: 64px 64px 22px 22px;
+        background: linear-gradient(180deg, #caa38a 0 39%, #533f45 40% 100%);
+        box-shadow: 38px 18px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .subject {
+        position: absolute;
+        left: 78px;
+        top: 54px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: #d9b79f;
+      }
+
+      .background-card {
+        position: absolute;
+        right: 30px;
+        top: 40px;
+        width: 116px;
+        height: 74px;
+        border-radius: 10px;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0 30%, transparent 30%),
+          linear-gradient(135deg, #46676d, #9b7c55);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+      }
+
+      .source-timecode,
+      .program-timecode {
+        position: absolute;
+        right: 10px;
+        bottom: 8px;
+        padding: 3px 7px;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .source-waveform {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 0 10px;
+        border-top: 1px solid #292929;
+        background:
+          linear-gradient(90deg, rgba(143, 124, 255, 0.12), transparent 44%),
+          #0e0f14;
+      }
+
+      .source-waveform span {
+        flex: 1;
+        max-width: 13px;
+        border-radius: 3px;
+        background: #6fa2ff;
+        opacity: 0.72;
+      }
+
+      .program-frame {
+        height: 229px;
+        background:
+          radial-gradient(circle at 48% 36%, rgba(235, 201, 148, 0.34), transparent 24%),
+          linear-gradient(135deg, #0e171b 0%, #283840 58%, #111318 100%);
+      }
+
+      .safe-guides,
+      .safe-guides::before {
+        position: absolute;
+        inset: 25px 44px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        content: "";
+      }
+
+      .safe-guides::before {
+        inset: 17px 30px;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .program-card {
+        position: absolute;
+        left: 54px;
+        top: 48px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 13px;
+        background: rgba(244, 241, 232, 0.94);
+        color: #1c1a16;
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.25);
+      }
+
+      .program-title {
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1.05;
+      }
+
+      .program-subtitle {
+        margin-top: 7px;
+        color: #5b594f;
+        font-size: 12px;
+        font-weight: 620;
+      }
+
+      .program-progress {
+        height: 8px;
+        margin-top: 17px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #d8d1c3;
+      }
+
+      .program-progress span {
+        display: block;
+        width: 68%;
+        height: 100%;
+        border-radius: inherit;
+        background: #43b875;
+      }
+
+      .lower-third {
+        position: absolute;
+        left: 54px;
+        bottom: 36px;
+        padding: 8px 14px;
+        border-left: 4px solid var(--accent);
+        border-radius: 5px;
+        background: rgba(9, 10, 13, 0.76);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 680;
+      }
+
+      .monitor-controls {
+        height: 27px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px;
+        border-top: 1px solid #333;
+        color: #888;
+        font-size: 10px;
+      }
+
+      .timecode,
+      .duration,
+      .resolution,
+      .monitor-scale {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timecode.active {
+        color: #e9eafe;
+      }
+
+      .mark {
+        width: 18px;
+        height: 18px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 4px;
+        color: #111216;
+        font-size: 11px;
+        font-weight: 820;
+      }
+
+      .mark.in { background: var(--green); }
+      .mark.out { background: var(--orange); }
+
+      .control {
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background: transparent;
+        position: relative;
+      }
+
+      .control::before,
+      .control::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .control.play::before {
+        border-left: 8px solid #dedfec;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        transform: translate(-35%, -50%);
+      }
+
+      .control.active {
+        background: #4f56ff;
+      }
+
+      .control.prev::before,
+      .control.step-back::before {
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #dedfec;
+        border-bottom: 2px solid #dedfec;
+        transform: translate(-35%, -50%) rotate(45deg);
+      }
+
+      .control.next::before,
+      .control.step-forward::before {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid #dedfec;
+        border-top: 2px solid #dedfec;
+        transform: translate(-65%, -50%) rotate(45deg);
+      }
+
+      .control.mark-in::before,
+      .control.safe::before,
+      .control.export-frame::before,
+      .control.insert::before,
+      .control.overwrite::before {
+        width: 12px;
+        height: 12px;
+        border: 1px solid #c8cad5;
+      }
+
+      .control.mark-in::before {
+        border-right: 0;
+        border-top: 0;
+      }
+
+      .control.safe::before {
+        width: 13px;
+        height: 9px;
+        border-style: dashed;
+      }
+
+      .control.export-frame::before {
+        width: 12px;
+        height: 9px;
+        border-radius: 2px;
+      }
+
+      .control.export-frame::after {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c8cad5;
+      }
+
+      .control.insert::before {
+        width: 0;
+        height: 0;
+        border-left: 8px solid #c8cad5;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 0;
+      }
+
+      .control.overwrite::before {
+        width: 12px;
+        height: 8px;
+        border-radius: 2px;
+      }
+
+      .monitor-scale,
+      .resolution {
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 6px;
+        border-radius: 2px;
+        background: #171717;
+        color: #aeb1bc;
+        font-size: 10px;
+      }
+
+      .meter-title {
+        color: #d7d9e2;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .meter-scale {
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 12px 0 30px;
+        color: #6f727d;
+        font-size: 9px;
+      }
+
+      .meter-columns {
+        position: absolute;
+        left: 17px;
+        right: 6px;
+        top: 44px;
+        bottom: 43px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+      }
+
+      .meter {
+        position: relative;
+        overflow: hidden;
+        border-radius: 3px;
+        background:
+          linear-gradient(180deg, #d9544f 0 10%, #e6c454 10% 27%, #315b38 27% 100%);
+        opacity: 0.85;
+      }
+
+      .level {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, #ffdd61, #5fd36f);
+      }
+
+      .level.l { height: 68%; }
+      .level.r { height: 58%; }
+
+      .meter-labels {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        color: #898c96;
+        font-size: 10px;
+      }
+
+      .project-toolbar {
+        height: 27px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px;
+        border-bottom: 1px solid #303030;
+        color: #c7c7c7;
+        font-size: 10px;
+      }
+
+      .bin-folder {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .bin-folder::before {
+        content: "";
+        width: 13px;
+        height: 9px;
+        display: inline-block;
+        margin-right: 7px;
+        background: #747474;
+        clip-path: polygon(0 18%, 38% 18%, 44% 0, 100% 0, 100% 100%, 0 100%);
+        vertical-align: -1px;
+      }
+
+      .bin-count {
+        margin-left: auto;
+        color: #8c8c8c;
+      }
+
+      .bin-search-row {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 8px;
+        border-bottom: 1px solid #303030;
+      }
+
+      .bin-search {
+        flex: 1;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 2px;
+        background: #0d0d0d;
+        color: #777;
+        font-size: 10px;
+      }
+
+      .view-toggle {
+        width: 19px;
+        height: 19px;
+        border-radius: 4px;
+        background:
+          linear-gradient(90deg, transparent 45%, #7b7e89 45% 55%, transparent 55%),
+          linear-gradient(transparent 45%, #7b7e89 45% 55%, transparent 55%);
+        box-shadow: inset 0 0 0 1px #4a4c58;
+      }
+
+      .view-toggle.icon {
+        background:
+          radial-gradient(circle, #7b7e89 0 2px, transparent 2.5px) 4px 4px / 8px 8px repeat;
+      }
+
+      .project-icon-grid {
+        height: calc(100% - 116px);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-content: start;
+        gap: 9px 10px;
+        padding: 9px 8px;
+      }
+
+      .thumb-card {
+        min-width: 0;
+        position: relative;
+        color: #c7c7c7;
+        font-size: 10px;
+      }
+
+      .thumb-card strong,
+      .thumb-card em {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .thumb-card strong {
+        margin-top: 4px;
+        font-weight: 520;
+      }
+
+      .thumb-card em {
+        position: absolute;
+        right: 2px;
+        bottom: 0;
+        color: #d0d0d0;
+        font-style: normal;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .thumb {
+        display: block;
+        height: 53px;
+        position: relative;
+        border: 1px solid #303030;
+        background: #2b2b2b;
+      }
+
+      .thumb::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        width: 16px;
+        height: 10px;
+        border: 1px solid #6cc3ff;
+        background:
+          linear-gradient(90deg, #237acc 1px, transparent 1px) 0 0 / 5px 100% repeat-x;
+      }
+
+      .thumb.lake { background: linear-gradient(145deg, #273b45 0 35%, #7fa6bd 36% 64%, #405a31 65%); }
+      .thumb.park { background: linear-gradient(145deg, #799a59, #d9d4b3 45%, #3e663e); }
+      .thumb.wide { background: linear-gradient(145deg, #6285a9 0 45%, #273443 46%, #6d8052); }
+      .thumb.arch { background: linear-gradient(135deg, #7c6c5f 0 30%, #d0b39a 31% 58%, #382f2c 59%); }
+      .thumb.green { background: linear-gradient(145deg, #315c2d, #95aa71 55%, #1f3e28); }
+      .thumb.field { background: linear-gradient(145deg, #687a54, #b2b381 50%, #335239); }
+      .thumb.water { background: linear-gradient(145deg, #79a7c0, #e5c5b0 45%, #6d7e4d); }
+      .thumb.path { background: linear-gradient(145deg, #304f34, #9eb89f 50%, #2b3f31); }
+      .thumb.city { background: linear-gradient(145deg, #9fb9bf, #5b776d 45%, #d4c8a7); }
+
+      .project-footer-tools {
+        height: 31px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 8px;
+        border-top: 1px solid #303030;
+      }
+
+      .footer-spacer { flex: 1; }
+      .footer-slider {
+        width: 58px;
+        height: 2px;
+        background: #535353;
+      }
+
+      .footer-icon {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        color: #9d9d9d;
+      }
+
+      .footer-icon.active { color: #e2e2e2; }
+
+      .footer-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
+      }
+
+      .tool {
+        width: 27px;
+        height: 27px;
+        position: relative;
+        border-radius: 2px;
+        background: transparent;
+        color: #c7c7c7;
+      }
+
+      .tool.active {
+        background: #0a84ff;
+        color: #fff;
+        box-shadow: inset 0 0 0 1px #3199ff;
+      }
+
+      .tool::before,
+      .tool::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .tool.selection::before {
+        border-left: 9px solid currentColor;
+        border-top: 15px solid transparent;
+        border-bottom: 4px solid transparent;
+        transform: translate(-38%, -42%) rotate(-16deg);
+      }
+
+      .tool.track::before {
+        width: 17px;
+        height: 10px;
+        border-top: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .tool.track::after {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-top: 2px solid currentColor;
+        transform: translate(-30%, -50%) rotate(45deg);
+      }
+
+      .tool.ripple::before {
+        width: 18px;
+        height: 13px;
+        border-left: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+      }
+
+      .tool.ripple::after {
+        width: 12px;
+        height: 2px;
+        background: currentColor;
+      }
+
+      .tool.razor::before {
+        width: 16px;
+        height: 7px;
+        border: 2px solid currentColor;
+        border-radius: 2px;
+        transform: translate(-50%, -50%) rotate(-28deg);
+      }
+
+      .tool.pen::before {
+        width: 15px;
+        height: 15px;
+        border-left: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      .tool.hand::before {
+        width: 13px;
+        height: 16px;
+        border: 2px solid currentColor;
+        border-radius: 7px 7px 5px 5px;
+      }
+
+      .tool.text::before {
+        content: "T";
+        color: currentColor;
+        font-size: 17px;
+        font-weight: 850;
+      }
+
+      .tool.extend::before {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, currentColor 0 2px, transparent 3px),
+          conic-gradient(currentColor 0 45deg, transparent 45deg 90deg, currentColor 90deg 135deg, transparent 135deg 180deg, currentColor 180deg 225deg, transparent 225deg 270deg, currentColor 270deg 315deg, transparent 315deg);
+      }
+
+      .timeline-tabs {
+        gap: 4px;
+      }
+
+      .timeline-status {
+        margin-left: auto;
+        color: #80838d;
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timeline-toolbar {
+        height: 27px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 8px;
+        border-bottom: 1px solid #333;
+      }
+
+      .patches,
+      .timeline-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .patch-label {
+        color: #8a8a8a;
+        font-size: 9.5px;
+        font-weight: 520;
+      }
+
+      .patch {
+        height: 20px;
+        min-width: 24px;
+        border: 0;
+        border-radius: 2px;
+        background: #303030;
+        color: #aaa;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .patch.active {
+        background: #075ec8;
+        color: #fff;
+      }
+
+      .toggle {
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 6px;
+        border-radius: 2px;
+        background: #2b2b2b;
+        color: #9b9b9b;
+        font-size: 9px;
+        font-weight: 650;
+      }
+
+      .toggle.active {
+        color: #fff;
+        background: #4a4a4a;
+      }
+
+      .timeline-icon {
+        width: 18px;
+        height: 18px;
+        border: 0;
+        border-radius: 2px;
+        background: #2a2a2a;
+        position: relative;
+      }
+
+      .timeline-icon::before,
+      .timeline-icon::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .timeline-icon.insert-mini::before {
+        border-left: 8px solid #c7cad4;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        transform: translate(-38%, -50%);
+      }
+
+      .timeline-icon.overwrite-mini::before {
+        width: 12px;
+        height: 8px;
+        border: 1px solid #c7cad4;
+      }
+
+      .zoom-track {
+        width: 110px;
+        height: 4px;
+        margin-left: auto;
+        border-radius: 999px;
+        background: #444;
+      }
+
+      .zoom-track span {
+        display: block;
+        width: 58%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+      }
+
+      .timeline-ruler {
+        height: 27px;
+        display: grid;
+        grid-template-columns: 118px 1fr;
+        border-bottom: 1px solid #333;
+      }
+
+      .track-label-corner {
+        display: flex;
+        align-items: center;
+        padding-left: 9px;
+        border-right: 1px solid #333;
+        color: #7d7d7d;
+        font-size: 9.5px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .ruler-scales {
+        position: relative;
+        background:
+          linear-gradient(#d9c836, #d9c836) 0 2px / 100% 2px no-repeat,
+          linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px) 0 100% / 8% 8px repeat-x,
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) 0 100% / 2% 4px repeat-x;
+      }
+
+      .ruler-scales span {
+        position: absolute;
+        top: 8px;
+        transform: translateX(-50%);
+        color: #858585;
+        font-size: 9px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .timeline-body {
+        height: calc(100% - 84px);
+        display: grid;
+        grid-template-columns: 118px 1fr;
+      }
+
+      .track-headers {
+        border-right: 1px solid #333;
+        background: #171717;
+      }
+
+      .track-header,
+      .track-row {
+        height: 39px;
+        border-bottom: 1px solid #303030;
+      }
+
+      .track-header {
+        display: grid;
+        grid-template-columns: 25px 1fr 16px 16px 16px;
+        align-items: center;
+        gap: 4px;
+        padding: 0 6px;
+        color: #cfcfcf;
+        font-size: 10px;
+      }
+
+      .track-header strong {
+        font-weight: 780;
+      }
+
+      .track-header span {
+        height: 5px;
+        border-radius: 999px;
+        background: #363844;
+      }
+
+      .track-header em {
+        width: 15px;
+        height: 15px;
+        display: grid;
+        place-items: center;
+        border-radius: 2px;
+        background: #2b2b2b;
+        color: #8c8c8c;
+        font-style: normal;
+        font-size: 9px;
+      }
+
+      .track-header.targeted {
+        background: rgba(10, 132, 255, 0.12);
+      }
+
+      .track-header.targeted strong {
+        color: #fff;
+      }
+
+      .track-header.audio strong {
+        color: #aee0b7;
+      }
+
+      .track-eye::before {
+        content: "";
+        width: 10px;
+        height: 6px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .track-lock::before {
+        content: "";
+        width: 8px;
+        height: 7px;
+        border: 1px solid currentColor;
+        border-radius: 2px;
+      }
+
+      .tracks {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #161616;
+      }
+
+      .track-row {
+        position: relative;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 2% 100% repeat,
+          linear-gradient(#191919, #191919);
+      }
+
+      .track-row.audio {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #152015;
+      }
+
+      .track-row.captions {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px) 0 0 / 4% 100% repeat,
+          #211820;
+      }
+
+      .snap-line,
+      .playhead {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 8;
+        width: 0;
+        pointer-events: none;
+      }
+
+      .snap-line {
+        border-left: 1px dashed rgba(82, 151, 255, 0.55);
+      }
+
+      .snap-line.one { left: 48%; }
+      .snap-line.two { left: 65%; opacity: 0.42; }
+
+      .playhead {
+        left: 52%;
+        border-left: 1px solid #0a84ff;
+        box-shadow: 0 0 0 1px rgba(10, 132, 255, 0.18);
+      }
+
+      .playhead span {
+        position: absolute;
+        top: -8px;
+        left: -5px;
+        width: 10px;
+        height: 10px;
+        background: #0a84ff;
+        clip-path: polygon(50% 0, 100% 44%, 100% 100%, 0 100%, 0 44%);
+      }
+
+      .timeline-marker {
+        position: absolute;
+        top: 0;
+        z-index: 9;
+        width: 10px;
+        height: 10px;
+        background: #5ca0ff;
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      }
+
+      .timeline-marker.marker-a { left: 18%; }
+      .timeline-marker.marker-b { left: 72%; background: #e2bf52; }
+
+      .clip {
+        position: absolute;
+        top: 4px;
+        height: 31px;
+        min-width: 40px;
+        overflow: hidden;
+        padding: 3px 7px;
+        border-radius: 1px;
+        color: #f5f7fb;
+        font-size: 10px;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+      }
+
+      .clip strong,
+      .clip em {
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .clip strong {
+        font-weight: 760;
+      }
+
+      .clip em {
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.72);
+        font-style: normal;
+      }
+
+      .clip.blue { background: #4ba8ff; color: #07121d; }
+      .clip.teal { background: #45b9b2; color: #031918; }
+      .clip.amber { background: #a8792d; }
+      .clip.title { background: #a86ad8; }
+      .clip.graphic { background: #ff5ca8; color: #17040d; }
+      .clip.caption { background: #d87933; color: #180b02; }
+
+      .clip.selected {
+        outline: 1px solid var(--yellow);
+        outline-offset: 1px;
+      }
+
+      .clip-fx {
+        position: absolute;
+        right: 5px;
+        top: 4px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 9px;
+        font-weight: 800;
+      }
+
+      .transition {
+        position: absolute;
+        top: 0;
+        width: 16px;
+        height: 100%;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0 50%, rgba(0, 0, 0, 0.15) 50%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+      }
+
+      .transition.left { left: 0; }
+      .transition.right { right: 0; }
+
+      .clip-handle {
+        position: absolute;
+        top: 0;
+        width: 10px;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .clip-handle.left { left: 0; }
+      .clip-handle.right { right: 0; }
+
+      .clip-handle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 12px;
+        height: 28px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.16);
+        transform: translateY(-50%);
+      }
+
+      .clip-handle.left::after { left: -7px; }
+      .clip-handle.right::after { right: -7px; }
+
+      .clip.audio {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 74px;
+        align-items: center;
+        background: #08c733;
+        color: #041004;
+      }
+
+      .clip.audio.music {
+        background: #19bfff;
+        color: #041015;
+      }
+
+      .wave-mini {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .wave-mini span {
+        flex: 1;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.62);
+      }
+
+      .wave-mini span:nth-child(1) { height: 12px; }
+      .wave-mini span:nth-child(2) { height: 20px; }
+      .wave-mini span:nth-child(3) { height: 15px; }
+      .wave-mini span:nth-child(4) { height: 24px; }
+      .wave-mini span:nth-child(5) { height: 10px; }
+
+      .property-stack {
+        padding: 12px 12px 0;
+        color: #d4d4d4;
+        font-size: 11px;
+      }
+
+      .property-heading {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #e0e0e0;
+        font-weight: 650;
+      }
+
+      .property-heading i {
+        width: 16px;
+        height: 16px;
+        margin-left: auto;
+        background:
+          radial-gradient(circle, #c7c7c7 0 1px, transparent 1.5px) 3px 7px / 5px 5px repeat-x;
+      }
+
+      .multi-icon {
+        width: 16px;
+        height: 16px;
+        position: relative;
+      }
+
+      .multi-icon::before,
+      .multi-icon::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #bbb;
+      }
+
+      .multi-icon::before { left: 1px; top: 1px; }
+      .multi-icon::after { right: 1px; bottom: 1px; }
+
+      .disclosure {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-top: 1px solid #303030;
+        color: #cfcfcf;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .disclosure::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .mini-icons {
+        height: 21px;
+        display: flex;
+        gap: 12px;
+        padding-left: 24px;
+      }
+
+      .mini-icons span {
+        width: 14px;
+        height: 12px;
+        border: 1px solid #848484;
+        border-radius: 1px;
+      }
+
+      .prop-line {
+        height: 28px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 56px 56px 18px;
+        align-items: center;
+        gap: 8px;
+        color: #c9c9c9;
+        font-size: 11px;
+      }
+
+      .prop-line span {
+        color: #bdbdbd;
+      }
+
+      .prop-line strong {
+        color: #42a5ff;
+        font-weight: 520;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .prop-line i {
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid #a6a6a6;
+        border-radius: 50%;
+        opacity: 0.85;
+      }
+
+      .prop-line.volume {
+        grid-template-columns: minmax(0, 1fr) 70px 18px;
+      }
+
+      .audio-slider {
+        height: 30px;
+        position: relative;
+        margin: 0 4px 8px 24px;
+      }
+
+      .audio-slider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 13px;
+        height: 2px;
+        background: #555;
+      }
+
+      .audio-slider span {
+        position: absolute;
+        left: 72%;
+        top: 7px;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #bbb;
+        border-radius: 50%;
+        background: #202020;
+      }
+
+      .adjust-speed {
+        height: 23px;
+        margin-top: 182px;
+        border: 1px solid #3a3a3a;
+        border-radius: 2px;
+        background: #181818;
+        color: #c8c8c8;
+        font-size: 10px;
+        font-weight: 560;
+      }
+
+      .premiere-cursor {
+        position: absolute;
+        left: 910px;
+        top: 560px;
+        z-index: 20;
+        width: 21px;
+        height: 31px;
+        filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+      }
+
+      .premiere-cursor::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        clip-path: polygon(0 0, 0 78%, 21% 62%, 34% 100%, 48% 95%, 35% 58%, 66% 58%);
+      }
+
+      .premiere-cursor::after {
+        content: "";
+        position: absolute;
+        inset: 2px 3px 4px 2px;
+        background: #111;
+        clip-path: polygon(0 0, 0 76%, 21% 59%, 35% 100%, 44% 95%, 31% 55%, 60% 55%);
+        opacity: 0.86;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+      tl.from(".premiere-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.46, ease: "power3.out" }, 0.12);
+      tl.from(".workspace-tabs", { opacity: 0, y: -8, duration: 0.28, ease: "sine.out" }, 0.36);
+      tl.from(".source-monitor, .program-monitor", { opacity: 0, y: 14, duration: 0.34, stagger: 0.08, ease: "power2.out" }, 0.52);
+      tl.from(".project-panel, .tools-panel, .properties-panel, .audio-meters", { opacity: 0, y: 14, duration: 0.34, stagger: 0.05, ease: "power2.out" }, 0.72);
+      tl.from(".timeline-panel", { opacity: 0, y: 22, duration: 0.38, ease: "power3.out" }, 0.94);
+      tl.from(".clip", { opacity: 0, y: 8, duration: 0.24, stagger: 0.035, ease: "sine.out" }, 1.18);
+      tl.from(".clip.selected", { outlineColor: "rgba(229,204,93,0)", duration: 0.28, ease: "sine.out" }, 1.56);
+      tl.from(".snap-line", { opacity: 0, duration: 0.24, stagger: 0.06, ease: "sine.out" }, 1.66);
+      tl.from(".playhead", { opacity: 0, duration: 0.22, ease: "sine.out" }, 1.84);
+      tl.to(".playhead", { left: "65%", duration: 1.35, ease: "power2.inOut" }, 2.05);
+      tl.to(".program-progress span", { width: "84%", duration: 0.72, ease: "power2.inOut" }, 2.34);
+      tl.to(".level.l", { height: "76%", duration: 0.34, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.08);
+      tl.to(".level.r", { height: "66%", duration: 0.31, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.12);
+      tl.to(".premiere-cursor", { x: 170, y: 82, duration: 1.08, ease: "power3.inOut" }, 2.42);
+      tl.to(".clip.selected", { scale: 1.012, duration: 0.2, repeat: 3, yoyo: true, ease: "sine.inOut" }, 3.02);
+      window.__timelines["premiere-editor-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/premiere-editor\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("premiere-editor-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#premiere-editor-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

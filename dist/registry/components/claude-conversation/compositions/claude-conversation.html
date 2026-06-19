@@ -1,0 +1,368 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 22%),
+      linear-gradient(140deg, #f1ede5 0%, #fbfaf6 58%, #e7f0ea 100%);
+  }
+</style>
+
+<template id="claude-conversation-surface-template">
+  <div id="claude-conversation-surface" data-composition-id="claude-conversation-surface" data-width="1280" data-height="720">
+    <section class="claude-conversation-canvas" data-primitive="claude-conversation-canvas" aria-label="Editable sparse Claude conversation surface">
+      <div class="conversation-field" aria-hidden="true"></div>
+
+      <div class="user-bubble-stack" data-primitive="claude-user-bubbles">
+        <div class="user-bubble">Oh and update the revenue chart in my launch deck with the correct Q2 numbers.</div>
+        <div class="user-bubble compact">Can you make it ready for a short demo video?</div>
+      </div>
+
+      <main class="conversation-body" data-primitive="claude-sparse-thread">
+        <article class="assistant-response" data-primitive="claude-large-response">
+          <p class="assistant-line primary">Sure, I can make those changes for you.</p>
+          <p class="assistant-line secondary">I’ll update the launch deck, map the Q2 numbers, and leave the slides ready to present.</p>
+        </article>
+
+        <span class="claude-sunburst response-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </span>
+      </main>
+
+      <footer class="reply-composer conway-glass-frame" data-primitive="claude-reply-composer">
+        <div class="composer-placeholder">Reply...</div>
+        <div class="composer-actions">
+          <button class="composer-round plus" type="button" aria-label="Attach"></button>
+          <button class="folder-pill" type="button"><span class="folder-mini"></span>Work in a folder</button>
+          <span class="composer-spacer"></span>
+          <button class="composer-round mic" type="button" aria-label="Dictate"></button>
+          <button class="send-button" type="button" aria-label="Send"></button>
+        </div>
+      </footer>
+    </section>
+
+    <style>
+      #claude-conversation-surface {
+        --paper: #fbfaf6;
+        --paper-deep: #f4efe8;
+        --ink: #16120f;
+        --muted: #6a6258;
+        --hairline: rgba(45, 36, 28, 0.14);
+        --brand: #c65b47;
+        --brand-soft: #d8755f;
+        width: 1280px;
+        height: 720px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+      }
+
+      #claude-conversation-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-conversation-surface button {
+        font: inherit;
+      }
+
+      .claude-conversation-canvas {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 22%),
+          linear-gradient(180deg, #fffefa 0%, var(--paper) 100%);
+        box-shadow:
+          0 34px 120px rgba(54, 42, 31, 0.14),
+          0 0 0 1px rgba(55, 42, 31, 0.07);
+      }
+
+      .conversation-field {
+        position: absolute;
+        inset: 0;
+        opacity: 0.42;
+        background:
+          linear-gradient(90deg, transparent 0 9%, rgba(231, 224, 215, 0.42) 9% calc(9% + 1px), transparent calc(9% + 1px) 100%),
+          linear-gradient(90deg, transparent 0 91%, rgba(231, 224, 215, 0.34) 91% calc(91% + 1px), transparent calc(91% + 1px) 100%);
+        pointer-events: none;
+      }
+
+      .user-bubble-stack {
+        position: absolute;
+        right: 66px;
+        top: 72px;
+        z-index: 3;
+        width: 306px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .user-bubble {
+        justify-self: end;
+        max-width: 306px;
+        padding: 12px 16px;
+        border-radius: 16px;
+        background: #f0ede6;
+        color: #2b2621;
+        box-shadow: 0 1px 0 rgba(55, 48, 40, 0.04);
+        font-size: 15px;
+        line-height: 1.28;
+      }
+
+      .user-bubble.compact {
+        max-width: 276px;
+      }
+
+      .conversation-body {
+        position: absolute;
+        left: 164px;
+        top: 160px;
+        z-index: 2;
+        width: 742px;
+        min-height: 302px;
+      }
+
+      .assistant-response {
+        display: grid;
+        gap: 46px;
+        max-width: 736px;
+        color: var(--ink);
+        font-family: Georgia, serif;
+        letter-spacing: 0;
+      }
+
+      .assistant-line {
+        margin: 0;
+        font-size: 43px;
+        line-height: 1.15;
+        font-weight: 455;
+      }
+
+      .assistant-line.secondary {
+        max-width: 720px;
+      }
+
+      .claude-sunburst {
+        position: relative;
+        display: inline-block;
+        color: var(--brand);
+        --ray-w: 5px;
+        --ray-h: 24px;
+        --ray-gap: 5px;
+      }
+
+      .claude-sunburst.response-mark {
+        position: absolute;
+        left: 6px;
+        top: 314px;
+        width: 62px;
+        height: 62px;
+      }
+
+      .claude-sunburst span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--ray-w);
+        height: var(--ray-h);
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% calc(100% + var(--ray-gap));
+        transform: translate(-50%, calc(-100% - var(--ray-gap))) rotate(calc(var(--i) * 36deg));
+      }
+
+      .claude-sunburst span:nth-child(1) { --i: 0; }
+      .claude-sunburst span:nth-child(2) { --i: 1; }
+      .claude-sunburst span:nth-child(3) { --i: 2; }
+      .claude-sunburst span:nth-child(4) { --i: 3; }
+      .claude-sunburst span:nth-child(5) { --i: 4; }
+      .claude-sunburst span:nth-child(6) { --i: 5; }
+      .claude-sunburst span:nth-child(7) { --i: 6; }
+      .claude-sunburst span:nth-child(8) { --i: 7; }
+      .claude-sunburst span:nth-child(9) { --i: 8; }
+      .claude-sunburst span:nth-child(10) { --i: 9; }
+
+      .reply-composer {
+        position: absolute;
+        left: 124px;
+        right: 124px;
+        bottom: 48px;
+        z-index: 4;
+        min-height: 126px;
+        display: grid;
+        grid-template-rows: 1fr 42px;
+        padding: 21px 22px 16px;
+        border: 1px solid var(--hairline);
+        border-radius: 26px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow:
+          0 1px 1px rgba(49, 44, 38, 0.04),
+          0 18px 48px rgba(64, 48, 34, 0.07);
+      }
+
+      .composer-placeholder {
+        color: #777169;
+        font-size: 35px;
+        line-height: 1.2;
+        font-weight: 430;
+      }
+
+      .composer-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      .composer-round {
+        position: relative;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border: 1px solid rgba(39, 37, 34, 0.1);
+        border-radius: 50%;
+        background: #f7f4ee;
+        color: var(--muted);
+      }
+
+      .composer-round.plus::before,
+      .composer-round.plus::after {
+        content: "";
+        position: absolute;
+        width: 13px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .composer-round.plus::after {
+        transform: rotate(90deg);
+      }
+
+      .folder-pill {
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 13px;
+        border: 1px solid rgba(39, 37, 34, 0.1);
+        border-radius: 999px;
+        background: #faf8f4;
+        color: #403a33;
+        font-size: 14px;
+      }
+
+      .folder-mini {
+        position: relative;
+        width: 14px;
+        height: 11px;
+        border-radius: 2px;
+        background: #d8d1c5;
+      }
+
+      .folder-mini::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -4px;
+        width: 8px;
+        height: 5px;
+        border-radius: 2px 2px 0 0;
+        background: #c8bdae;
+      }
+
+      .composer-spacer {
+        flex: 1 1 auto;
+      }
+
+      .composer-round.mic::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 8px;
+        width: 8px;
+        height: 14px;
+        border-radius: 7px;
+        border: 2px solid currentColor;
+        border-top-width: 3px;
+      }
+
+      .composer-round.mic::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 21px;
+        width: 13px;
+        height: 7px;
+        border-bottom: 2px solid currentColor;
+        border-radius: 0 0 12px 12px;
+      }
+
+      .send-button {
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        border: 0;
+        border-radius: 50%;
+        background: var(--brand-soft);
+        position: relative;
+        box-shadow: 0 8px 18px rgba(216, 117, 95, 0.22);
+      }
+
+      .send-button::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 13px;
+        height: 13px;
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: rotate(45deg);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      tl.from(".claude-conversation-canvas", { opacity: 0, y: 20, filter: "blur(7px)", duration: 0.62, ease: "expo.out" }, 0.14);
+      tl.from(".user-bubble", { opacity: 0, x: 28, y: 8, stagger: 0.12, duration: 0.36, ease: "sine.out" }, 0.44);
+      tl.from(".assistant-line.primary", { opacity: 0, y: 18, duration: 0.54, ease: "power4.out" }, 0.86);
+      tl.from(".assistant-line.secondary", { opacity: 0, y: 24, duration: 0.68, ease: "circ.out" }, 1.18);
+      tl.from(".response-mark", { opacity: 0, scale: 0.72, rotation: -14, duration: 0.5, ease: "back.out(1.25)" }, 1.48);
+      tl.from(".reply-composer", { opacity: 0, y: 34, filter: "blur(5px)", duration: 0.58, ease: "expo.out" }, 1.74);
+      tl.to(".response-mark", { rotation: 10, duration: 2.8, ease: "sine.inOut" }, 2.25);
+      tl.to(".send-button", { scale: 1.055, duration: 0.34, repeat: 2, yoyo: true, ease: "sine.inOut" }, 2.6);
+      window.__timelines["claude-conversation-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-conversation\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-conversation-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-conversation-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

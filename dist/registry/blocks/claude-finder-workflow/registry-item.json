@@ -1,0 +1,47 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-finder-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Finder Workflow",
+  "description": "Short file/folder handoff clips that should not import browser, PowerPoint, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "finder",
+    "files",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "mac-menu-bar",
+    "finder-window",
+    "claude-attachment-draft",
+    "claude-app"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-finder-workflow.html",
+      "target": "compositions/claude-finder-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

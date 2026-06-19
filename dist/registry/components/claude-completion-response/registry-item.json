@@ -1,0 +1,39 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-completion-response",
+  "type": "hyperframes:component",
+  "title": "Claude Completion Response",
+  "description": "Cinematic Claude done-state beats that need only the large serif response and red response mark, without composer, sidebar, browser, Finder, Office, Codex, Premiere, or desktop context.",
+  "tags": [
+    "claude",
+    "cinematic",
+    "completion",
+    "response",
+    "launch-reference",
+    "composer-free"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "claude-response-mark"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-completion-response.html",
+      "target": "compositions/claude-completion-response.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

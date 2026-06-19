@@ -1,0 +1,177 @@
+<div id="claude-browser-chat-workflow" data-composition-id="claude-browser-chat-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="9">
+  <section class="chat-browser-workflow-stage" data-primitive="claude-browser-chat-workflow" aria-label="Claude chat shell and browser workflow composition">
+    <div class="desktop-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame menu-bar-component"
+      data-primitive="mac-menu-bar"
+      data-backlot-mount-src="./mac-menu-bar.html"
+      data-backlot-mount-selector="#mac-menu-bar-surface"
+    ></div>
+
+    <div
+      class="component-frame browser-component"
+      data-primitive="browser-app-window"
+      data-backlot-mount-src="./browser-app.html"
+      data-backlot-mount-selector="#browser-app-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-chat-component"
+      data-primitive="claude-chat-shell"
+      data-backlot-mount-src="./claude-chat-shell.html"
+      data-backlot-mount-selector="#claude-chat-shell-surface"
+    ></div>
+
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #e8eee8;
+  }
+
+  #claude-browser-chat-workflow {
+    --ink: #181410;
+    --cursor: url("../assets/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: Inter, sans-serif;
+  }
+
+  #claude-browser-chat-workflow * {
+    box-sizing: border-box;
+  }
+
+  .chat-browser-workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 17% 15%, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 23%),
+      radial-gradient(circle at 80% 18%, rgba(205, 110, 87, 0.13), rgba(205, 110, 87, 0) 27%),
+      radial-gradient(circle at 76% 80%, rgba(189, 212, 199, 0.5), rgba(189, 212, 199, 0) 31%),
+      linear-gradient(145deg, #f2eee7 0%, #fbfaf6 48%, #dfe9e2 100%);
+  }
+
+  .desktop-field {
+    position: absolute;
+    inset: 30px 0 0;
+    opacity: 0.42;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 78%, transparent 100%);
+  }
+
+  .menu-bar-component {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    height: 30px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    pointer-events: none;
+    transform-origin: top left;
+  }
+
+  .browser-component {
+    left: 598px;
+    top: 156px;
+    z-index: 4;
+    width: 1183px;
+    height: 674px;
+    border-radius: 26px;
+    box-shadow: 0 34px 105px rgba(47, 39, 31, 0.13);
+  }
+
+  .browser-component > [data-backlot-mounted-component] {
+    left: -330px;
+    transform: scale(0.78);
+  }
+
+  .claude-chat-component {
+    left: 90px;
+    top: 92px;
+    z-index: 10;
+    width: 1080px;
+    height: 675px;
+    border-radius: 26px;
+    box-shadow: 0 46px 120px rgba(52, 39, 29, 0.21);
+  }
+
+  .claude-chat-component > [data-backlot-mounted-component] {
+    transform: scale(0.75);
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 1212px;
+    top: 443px;
+    z-index: 28;
+    width: 34px;
+    height: 34px;
+    background: #111;
+    mask: var(--cursor) center / contain no-repeat;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.18));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 1201px;
+    top: 432px;
+    z-index: 27;
+    width: 54px;
+    height: 54px;
+    border: 2px solid rgba(207, 96, 74, 0.56);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="../runtime/backlot-component-loader.js"></script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);
+  tl.from(".browser-component", { opacity: 0, x: 36, y: 18, filter: "blur(8px)", duration: 0.64, ease: "power3.out" }, 0.18);
+  tl.from(".claude-chat-component", { opacity: 0, x: -28, y: 22, filter: "blur(8px)", duration: 0.68, ease: "power3.out" }, 0.46);
+  tl.from(".workflow-cursor", { opacity: 0, x: -42, y: 28, duration: 0.38, ease: "sine.out" }, 1.08);
+  tl.to(".workflow-cursor", { x: 92, y: 118, duration: 0.82, ease: "power2.inOut" }, 1.74);
+  tl.to(".click-ring", { opacity: 1, scale: 1.08, duration: 0.18, ease: "sine.out" }, 2.5);
+  tl.to(".click-ring", { opacity: 0, scale: 1.44, duration: 0.38, ease: "sine.out" }, 2.68);
+  tl.to(".claude-chat-component", { y: -8, duration: 1.9, ease: "sine.inOut" }, 3.2);
+  tl.to(".browser-component", { y: -5, duration: 1.9, ease: "sine.inOut" }, 3.34);
+  window.__timelines["claude-browser-chat-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(1.45).pause();
+  }
+</script>

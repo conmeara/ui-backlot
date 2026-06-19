@@ -1,0 +1,544 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 28%),
+      linear-gradient(140deg, #eee9df 0%, #fbfaf6 58%, #e4ece4 100%);
+  }
+</style>
+
+<template id="claude-chat-pane-template">
+  <div id="claude-chat-pane-surface" data-composition-id="claude-chat-pane-surface" data-width="1180" data-height="900">
+    <section class="claude-chat-pane-window" data-primitive="claude-chat-pane" aria-label="Editable Claude chat pane">
+      <header class="chat-topbar" data-primitive="claude-chat-topbar">
+        <div class="thread-title">
+          <button type="button" aria-label="Toggle sidebar" class="topbar-icon menu-icon"></button>
+          <div>
+            <strong>Browser layout polish</strong>
+            <span>Working in UI Backlot</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="model-pill"><span class="model-dot"></span>Claude Sonnet 4.6</button>
+          <button type="button" aria-label="Share" class="topbar-icon share-icon"></button>
+          <button type="button" aria-label="More" class="topbar-icon more-icon"><span></span></button>
+        </div>
+      </header>
+
+      <main class="message-field" data-primitive="claude-chat-thread">
+        <div class="user-bubbles" data-primitive="claude-user-bubbles">
+          <div class="user-bubble">Ah good catch. Can you make the browser nav line up at every breakpoint?</div>
+          <div class="user-bubble compact">Also keep it clean enough for a short demo clip.</div>
+        </div>
+
+        <article class="assistant-reply" data-primitive="claude-serif-reply">
+          <span class="claude-mark reply-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </span>
+          <p>Done. The nav looks good at all breakpoints.</p>
+          <p class="secondary">I tightened the mobile wrapping, checked the desktop crop, and kept the browser surface ready for HyperFrames.</p>
+        </article>
+      </main>
+
+      <footer class="chat-composer" data-primitive="claude-chat-composer">
+        <div class="composer-chip-row">
+          <span class="context-chip"><span class="folder-mini"></span>UI Backlot</span>
+          <span class="context-chip muted">browser-app.html</span>
+          <span class="attached-count">2 attached</span>
+        </div>
+        <div class="composer-placeholder">Reply...</div>
+        <div class="composer-controls">
+          <button type="button" aria-label="Attach" class="round-control plus-control"></button>
+          <button type="button" class="folder-button"><span class="folder-mini"></span>Work in a folder</button>
+          <button type="button" class="tool-button">Research</button>
+          <span class="composer-spacer"></span>
+          <button type="button" aria-label="Dictate" class="round-control mic-control"></button>
+          <button type="button" aria-label="Send" class="send-control"></button>
+        </div>
+      </footer>
+    </section>
+
+    <style>
+      #claude-chat-pane-surface {
+        --paper: #fffdfa;
+        --bubble: #eeece5;
+        --ink: #17130f;
+        --muted: #746c62;
+        --hairline: rgba(43, 35, 27, 0.11);
+        --soft-line: rgba(224, 216, 205, 0.58);
+        --brand: #c85f4b;
+        --brand-strong: #d46c59;
+        width: 1180px;
+        height: 900px;
+        overflow: hidden;
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+      }
+
+      #claude-chat-pane-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-chat-pane-surface button {
+        font: inherit;
+      }
+
+      .claude-chat-pane-window {
+        position: relative;
+        width: 1180px;
+        height: 900px;
+        display: grid;
+        grid-template-rows: 76px 1fr 176px;
+        overflow: hidden;
+        border: 1px solid rgba(56, 42, 31, 0.08);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 53% 20%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 28%),
+          linear-gradient(180deg, #fffdfa 0%, #fbfaf6 100%);
+        box-shadow:
+          0 42px 120px rgba(55, 42, 30, 0.15),
+          0 1px 0 rgba(255, 255, 255, 0.68) inset;
+      }
+
+      .chat-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 0 28px;
+        border-bottom: 1px solid rgba(224, 216, 205, 0.44);
+      }
+
+      .thread-title,
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .thread-title {
+        gap: 12px;
+      }
+
+      .thread-title strong,
+      .thread-title span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .thread-title strong {
+        max-width: 420px;
+        font-size: 15px;
+        font-weight: 720;
+      }
+
+      .thread-title span {
+        max-width: 420px;
+        margin-top: 2px;
+        color: #857b70;
+        font-size: 12px;
+      }
+
+      .topbar-icon {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: #6d655c;
+      }
+
+      .topbar-icon:hover {
+        background: rgba(57, 49, 40, 0.06);
+      }
+
+      .menu-icon::before,
+      .menu-icon::after {
+        content: "";
+        position: absolute;
+        left: 9px;
+        width: 14px;
+        height: 1.5px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .menu-icon::before { top: 11px; }
+      .menu-icon::after { top: 19px; }
+
+      .topbar-actions {
+        justify-content: flex-end;
+        gap: 9px;
+      }
+
+      .model-pill {
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(53, 44, 35, 0.1);
+        border-radius: 999px;
+        padding: 0 13px;
+        background: #fffdfa;
+        color: #403a33;
+        font-size: 13px;
+      }
+
+      .model-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--brand);
+      }
+
+      .share-icon::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 10px;
+        width: 10px;
+        height: 12px;
+        border: 1.5px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .share-icon::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 7px;
+        width: 6px;
+        height: 6px;
+        border-left: 1.5px solid currentColor;
+        border-top: 1.5px solid currentColor;
+        transform: rotate(45deg);
+      }
+
+      .more-icon span,
+      .more-icon::before,
+      .more-icon::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .more-icon::before { left: 9px; }
+      .more-icon span { left: 15px; }
+      .more-icon::after { left: 21px; }
+
+      .message-field {
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .user-bubbles {
+        position: absolute;
+        right: 68px;
+        top: 58px;
+        display: grid;
+        gap: 13px;
+        justify-items: end;
+        z-index: 2;
+      }
+
+      .user-bubble {
+        max-width: 585px;
+        padding: 16px 20px 17px;
+        border-radius: 19px;
+        background: var(--bubble);
+        color: #191511;
+        box-shadow: 0 1px 0 rgba(55, 48, 40, 0.05);
+        font-size: 24px;
+        line-height: 1.27;
+        font-weight: 420;
+      }
+
+      .user-bubble.compact {
+        max-width: 470px;
+      }
+
+      .assistant-reply {
+        position: absolute;
+        left: 130px;
+        top: 258px;
+        width: 820px;
+        min-height: 170px;
+        padding-left: 78px;
+        color: var(--ink);
+      }
+
+      .assistant-reply p {
+        margin: 0;
+        max-width: 760px;
+        font-family: Georgia, serif;
+        font-size: 48px;
+        line-height: 1.13;
+        font-weight: 460;
+        letter-spacing: 0;
+      }
+
+      .assistant-reply p.secondary {
+        max-width: 780px;
+        margin-top: 33px;
+        color: #342e28;
+        font-size: 34px;
+        line-height: 1.23;
+        font-weight: 430;
+      }
+
+      .claude-mark {
+        position: relative;
+        display: inline-block;
+        color: var(--brand);
+        flex: 0 0 auto;
+      }
+
+      .claude-mark.reply-mark {
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 54px;
+        height: 54px;
+      }
+
+      .claude-mark span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 6px;
+        height: 27px;
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% calc(100% + 5px);
+        transform: translate(-50%, calc(-100% - 5px)) rotate(calc(var(--i) * 30deg));
+      }
+
+      .claude-mark span:nth-child(1) { --i: 0; }
+      .claude-mark span:nth-child(2) { --i: 1; }
+      .claude-mark span:nth-child(3) { --i: 2; }
+      .claude-mark span:nth-child(4) { --i: 3; }
+      .claude-mark span:nth-child(5) { --i: 4; }
+      .claude-mark span:nth-child(6) { --i: 5; }
+      .claude-mark span:nth-child(7) { --i: 6; }
+      .claude-mark span:nth-child(8) { --i: 7; }
+      .claude-mark span:nth-child(9) { --i: 8; }
+      .claude-mark span:nth-child(10) { --i: 9; }
+      .claude-mark span:nth-child(11) { --i: 10; }
+      .claude-mark span:nth-child(12) { --i: 11; }
+
+      .chat-composer {
+        align-self: end;
+        justify-self: center;
+        width: min(900px, calc(100% - 112px));
+        height: 142px;
+        margin-bottom: 28px;
+        display: grid;
+        grid-template-rows: 28px 1fr 38px;
+        padding: 13px 17px;
+        border: 1px solid rgba(43, 35, 27, 0.16);
+        border-radius: 28px;
+        background: rgba(255, 254, 251, 0.99);
+        box-shadow:
+          0 1px 0 rgba(54, 45, 38, 0.06),
+          0 20px 60px rgba(71, 52, 37, 0.09);
+      }
+
+      .composer-chip-row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-width: 0;
+      }
+
+      .context-chip,
+      .attached-count {
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid rgba(42, 36, 30, 0.1);
+        border-radius: 9px;
+        padding: 0 9px;
+        background: #f3f0ea;
+        color: #4c453d;
+        font-size: 12px;
+        font-weight: 620;
+      }
+
+      .context-chip.muted {
+        color: #665e55;
+        background: #f8f6f1;
+        font-weight: 520;
+      }
+
+      .attached-count {
+        margin-left: auto;
+        border-color: transparent;
+        background: transparent;
+        color: #7b7268;
+        font-weight: 650;
+      }
+
+      .folder-mini {
+        position: relative;
+        width: 14px;
+        height: 11px;
+        border-radius: 2px;
+        background: #d7d0c4;
+      }
+
+      .folder-mini::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -4px;
+        width: 8px;
+        height: 5px;
+        border-radius: 2px 2px 0 0;
+        background: #c8bdae;
+      }
+
+      .composer-placeholder {
+        align-self: center;
+        color: #767068;
+        font-size: 32px;
+        line-height: 1;
+        font-weight: 430;
+      }
+
+      .composer-controls {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .round-control {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(42, 36, 30, 0.1);
+        border-radius: 50%;
+        background: #f8f5ef;
+        color: #726a61;
+      }
+
+      .plus-control::before,
+      .plus-control::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 16px;
+        width: 14px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .plus-control::after {
+        transform: rotate(90deg);
+      }
+
+      .folder-button,
+      .tool-button {
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(42, 36, 30, 0.1);
+        border-radius: 999px;
+        padding: 0 14px;
+        background: #fbf8f3;
+        color: #413a33;
+        font-size: 13px;
+        font-weight: 610;
+      }
+
+      .folder-button {
+        color: #9c4234;
+        background: #fff6f2;
+      }
+
+      .composer-spacer {
+        flex: 1 1 auto;
+      }
+
+      .mic-control::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 8px;
+        width: 8px;
+        height: 15px;
+        border: 2px solid currentColor;
+        border-top-width: 3px;
+        border-radius: 8px;
+      }
+
+      .mic-control::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 22px;
+        width: 14px;
+        height: 7px;
+        border-bottom: 2px solid currentColor;
+        border-radius: 0 0 12px 12px;
+      }
+
+      .send-control {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--brand-strong);
+        box-shadow: 0 9px 20px rgba(210, 105, 83, 0.25);
+      }
+
+      .send-control::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 13px;
+        height: 13px;
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: rotate(45deg);
+      }
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-chat-pane\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-chat-pane-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-chat-pane-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

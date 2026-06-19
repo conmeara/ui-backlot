@@ -1,0 +1,47 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-presentation-chat-pane-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Chat Pane Plus Presentation Workflow",
+  "description": "Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "powerpoint",
+    "presentation",
+    "office",
+    "chat-pane",
+    "modular-assembly"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "mac-menu-bar",
+    "claude-deck-chat-pane",
+    "presentation-editor"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-presentation-chat-pane-workflow.html",
+      "target": "compositions/claude-presentation-chat-pane-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

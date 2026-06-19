@@ -75,7 +75,9 @@
     "hf:snapshot": "npx hyperframes snapshot . --at=1,3,5.4,7.8,10.1,12.6,15 --describe=false",
     "hf:render": "npx hyperframes render --quality draft --output renders/claude-keynote-workflow-draft.mp4",
     "example:quickstart:render": "npx hyperframes render --composition examples/quickstart-demo.html --quality draft --output renders/quickstart-demo.mp4",
-    "open-source:check": "npm run catalog:generate && npm run registry:check && npm run hf:lint && npm run hf:validate && npm run hf:inspect"
+    "open-source:check": "npm run catalog:generate && npm run registry:check && npm run hf:lint && npm run hf:validate && npm run hf:inspect",
+    "registry:generate": "node tools/generate-install-registry.mjs",
+    "registry:install-test": "node tools/test-install-registry.mjs"
   },
   "keywords": [
     "hyperframes",
@@ -89,5 +91,8 @@
   "type": "commonjs",
   "devDependencies": {
     "playwright": "^1.61.0"
+  },
+  "bin": {
+    "ui-backlot": "bin/ui-backlot.mjs"
   }
 }

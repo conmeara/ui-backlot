@@ -1,0 +1,897 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 15%, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0) 19%),
+      linear-gradient(140deg, #f7f5ef 0%, #e7ece6 52%, #d8e7dd 100%);
+  }
+</style>
+
+<template id="excel-workbook-surface-template">
+  <div id="excel-workbook-surface" data-composition-id="excel-workbook-surface" data-width="1280" data-height="760">
+    <section class="excel-window" data-primitive="excel-workbook-window" aria-label="Editable Excel workbook surface">
+      <header class="excel-titlebar">
+        <div class="excel-traffic" aria-hidden="true"></div>
+        <div class="excel-app-icon">X</div>
+        <div class="workbook-title">Launch Metrics.xlsx</div>
+        <div class="save-state"><span class="sync-dot"></span>Saved</div>
+        <div class="autosave"><span></span>AutoSave</div>
+        <div class="title-search">Search workbook</div>
+        <div class="title-actions"><span>Share</span><span>Comments</span></div>
+      </header>
+
+      <nav class="excel-tabs" aria-label="Excel ribbon tabs">
+        <span>Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span class="contextual">Chart Design</span>
+      </nav>
+
+      <div class="excel-ribbon" aria-label="Excel Home ribbon">
+        <div class="ribbon-group clipboard">
+          <div class="ribbon-large paste"><span class="cmd-icon paste"></span><em>Paste</em><i></i></div>
+          <div class="ribbon-stack"><span>Cut</span><span>Copy</span><span>Format Painter</span></div>
+          <strong>Clipboard</strong>
+        </div>
+        <div class="ribbon-group font">
+          <div class="ribbon-row"><span class="field font-name">Aptos</span><span class="field small">11</span></div>
+          <div class="button-row"><span class="toggle active">B</span><span class="toggle">I</span><span class="toggle">U</span><span class="toggle fill"></span><span class="toggle color"></span></div>
+          <strong>Font</strong>
+        </div>
+        <div class="ribbon-group alignment">
+          <div class="button-row dense"><span class="align top"></span><span class="align middle active"></span><span class="align bottom"></span><span class="merge">Merge</span></div>
+          <div class="button-row dense"><span class="align left"></span><span class="align center active"></span><span class="align right"></span><span class="wrap">Wrap</span></div>
+          <strong>Alignment</strong>
+        </div>
+        <div class="ribbon-group number">
+          <div class="ribbon-row"><span class="field number-format">Currency</span><span class="field percent">%</span></div>
+          <div class="button-row"><span class="toggle">$</span><span class="toggle">,</span><span class="toggle">.0</span><span class="toggle">.00</span></div>
+          <strong>Number</strong>
+        </div>
+        <div class="ribbon-group cells">
+          <div class="ribbon-stack"><span>Insert</span><span>Delete</span><span>Format</span></div>
+          <strong>Cells</strong>
+        </div>
+        <div class="ribbon-group editing">
+          <div class="ribbon-stack"><span>AutoSum</span><span>Sort & Filter</span><span>Find & Select</span></div>
+          <strong>Editing</strong>
+        </div>
+      </div>
+
+      <div class="formula-bar">
+        <div class="name-box">D8</div>
+        <div class="formula-tools"><span>fx</span></div>
+        <div class="formula-input">=SUM(D5:D7)</div>
+      </div>
+
+      <div class="workbook-body">
+        <aside class="sheet-sidebar">
+          <div class="pane-title">Tables</div>
+          <div class="table-ref active"><span></span>Launch metrics</div>
+          <div class="table-ref"><span></span>Regional revenue</div>
+          <div class="table-ref"><span></span>Customer feedback</div>
+          <div class="pane-title lower">Named ranges</div>
+          <div class="range-ref">Q2_Revenue</div>
+          <div class="range-ref">Launch_Adoption</div>
+        </aside>
+
+        <main class="sheet-stage">
+          <div class="grid-viewport">
+            <div class="corner"></div>
+            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div>
+
+            <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div>
+            <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">$1.28M</div><div class="cell e2 num">$1.10M</div><div class="cell f2 good">+16%</div>
+            <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42%</div><div class="cell e3 num">38%</div><div class="cell f3 good">+4 pts</div>
+            <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+6</div>
+            <div class="row-head r5">5</div><div class="cell a5 section-cell">Deck-ready totals</div><div class="cell b5"></div><div class="cell c5"></div><div class="cell d5 selected num">$1.28M</div><div class="cell e5 selected num">$1.10M</div><div class="cell f5 selected good">+16%</div>
+            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">3</div><div class="cell e6 selected num">3</div><div class="cell f6 selected good">done</div>
+            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">4</div><div class="cell e7 selected num">4</div><div class="cell f7 selected good">ready</div>
+            <div class="row-head r8">8</div><div class="cell a8">Speaker notes</div><div class="cell b8">Ready</div><div class="cell c8">Slide 2</div><div class="cell d8 active-cell num">10</div><div class="cell e8 selected num">10</div><div class="cell f8 selected good">ready</div>
+            <div class="selection-outline" data-layout-ignore></div>
+          </div>
+        </main>
+
+        <aside class="insights-pane">
+          <div class="insights-title">Analyze Data</div>
+          <div class="insight-card active">
+            <strong>Revenue is above goal</strong>
+            <p>Q2 revenue is tracking 16% above the target used in the launch deck.</p>
+          </div>
+          <div class="mini-chart" aria-label="Revenue chart">
+            <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span><span class="bar b4"></span>
+          </div>
+          <div class="insight-list">
+            <div><span class="dot good"></span>3 deck rows ready</div>
+            <div><span class="dot warn"></span>1 source needs review</div>
+            <div><span class="dot blue"></span>Chart range selected</div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="excel-statusbar">
+        <div class="sheet-tabs"><span class="active">Launch metrics</span><span>Revenue</span><span>Feedback</span><button type="button">+</button></div>
+        <span class="status-spacer"></span>
+        <span>Ready</span><span>Average: 4.7</span><span>Sum: 27</span><span class="zoom-line"></span><span>115%</span>
+      </footer>
+    </section>
+
+    <style>
+      #excel-workbook-surface {
+        --excel: #107c41;
+        --excel-dark: #0b5f32;
+        --excel-soft: #e5f3ea;
+        --chrome: #f8f9fa;
+        --line: #d7dce2;
+        --grid: #dce1e7;
+        --ink: #16120f;
+        --muted: #67727f;
+        --green: #43b875;
+        --amber: #d9a441;
+        --blue: #1d86e8;
+        --clay: #c65b47;
+        width: 1280px;
+        height: 760px;
+        overflow: hidden;
+        color: var(--ink);
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      #excel-workbook-surface * {
+        box-sizing: border-box;
+      }
+
+      .excel-window {
+        width: 1280px;
+        height: 760px;
+        overflow: hidden;
+        border-radius: 15px;
+        background: #eef1f4;
+        border: 1px solid rgba(20, 30, 48, 0.12);
+        box-shadow: 0 32px 96px rgba(28, 34, 46, 0.22);
+      }
+
+      .excel-titlebar {
+        height: 38px;
+        display: grid;
+        grid-template-columns: 58px 24px auto auto auto 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 13px;
+        background: var(--chrome);
+        border-bottom: 1px solid #d6dae0;
+        color: #2d3540;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .excel-traffic {
+        position: relative;
+        width: 50px;
+        height: 14px;
+      }
+
+      .excel-traffic::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff5f57;
+        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+      }
+
+      .excel-app-icon {
+        width: 22px;
+        height: 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #21a366, var(--excel-dark));
+        color: #fff;
+        font-size: 10px;
+        font-weight: 850;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      }
+
+      .workbook-title {
+        min-width: 150px;
+      }
+
+      .save-state,
+      .autosave,
+      .title-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #68727e;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .sync-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 2px solid var(--green);
+        border-top-color: transparent;
+      }
+
+      .autosave span {
+        width: 26px;
+        height: 14px;
+        border-radius: 999px;
+        background: #d7ecdf;
+        border: 1px solid #98cfad;
+        position: relative;
+      }
+
+      .autosave span::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .title-search {
+        justify-self: center;
+        width: 250px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: #eef0f3;
+        color: #7c8792;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .title-actions span {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 9px;
+        border-radius: 7px;
+        background: #eef0f3;
+        color: #384450;
+        font-size: 11px;
+      }
+
+      .excel-tabs {
+        height: 30px;
+        display: flex;
+        align-items: end;
+        gap: 3px;
+        padding: 0 12px;
+        background: #f3f4f6;
+        border-bottom: 1px solid #d7dbe1;
+      }
+
+      .excel-tabs span {
+        height: 25px;
+        display: flex;
+        align-items: center;
+        padding: 0 13px;
+        border-radius: 7px 7px 0 0;
+        color: #33404c;
+        font-size: 12px;
+        font-weight: 620;
+      }
+
+      .excel-tabs span:first-child {
+        background: #fff;
+        border: 1px solid #d7dbe1;
+        border-bottom-color: #fff;
+        color: var(--excel);
+      }
+
+      .excel-tabs .contextual {
+        color: var(--excel-dark);
+        background: rgba(16, 124, 65, 0.09);
+      }
+
+      .excel-ribbon {
+        height: 100px;
+        display: flex;
+        align-items: stretch;
+        padding: 5px 8px 0;
+        background: #fff;
+        border-bottom: 1px solid #d4d9e0;
+      }
+
+      .ribbon-group {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        min-width: 86px;
+        padding: 3px 9px 25px;
+        border-left: 1px solid #e3e6eb;
+      }
+
+      .ribbon-group:first-child {
+        border-left: 0;
+      }
+
+      .ribbon-group strong {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        color: #747d87;
+        font-size: 10px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .ribbon-large {
+        width: 54px;
+        min-height: 63px;
+        display: grid;
+        grid-template-rows: 34px auto;
+        justify-items: center;
+        gap: 4px;
+        padding: 4px;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        position: relative;
+        color: #283441;
+        font-size: 11px;
+      }
+
+      .ribbon-large em {
+        font-style: normal;
+      }
+
+      .ribbon-large i {
+        position: absolute;
+        right: 6px;
+        bottom: 8px;
+        width: 5px;
+        height: 5px;
+        border-right: 1.4px solid #606a74;
+        border-bottom: 1.4px solid #606a74;
+        transform: rotate(45deg);
+      }
+
+      .cmd-icon {
+        width: 29px;
+        height: 30px;
+        border-radius: 7px;
+        background: #e5f3ea;
+        border: 1px solid #b9dbc8;
+        position: relative;
+      }
+
+      .cmd-icon.paste::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 13px;
+        height: 16px;
+        border-radius: 3px;
+        background: var(--excel);
+      }
+
+      .cmd-icon.paste::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 5px;
+        width: 9px;
+        height: 5px;
+        border-radius: 3px;
+        background: #f1d37c;
+      }
+
+      .ribbon-stack {
+        display: grid;
+        gap: 4px;
+      }
+
+      .ribbon-stack span,
+      .field,
+      .toggle,
+      .merge,
+      .wrap {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        border: 1px solid #d8dce2;
+        background: #fbfcfd;
+        color: #34414f;
+        font-size: 11px;
+        font-weight: 580;
+      }
+
+      .ribbon-stack span {
+        justify-content: flex-start;
+        min-width: 82px;
+        padding: 0 8px;
+      }
+
+      .ribbon-row,
+      .button-row {
+        display: flex;
+        gap: 4px;
+      }
+
+      .button-row {
+        margin-top: 5px;
+      }
+
+      .button-row.dense {
+        margin-top: 0;
+      }
+
+      .field {
+        padding: 0 8px;
+      }
+
+      .font-name {
+        width: 82px;
+        justify-content: flex-start;
+      }
+
+      .field.small,
+      .field.percent {
+        width: 36px;
+      }
+
+      .field.number-format {
+        width: 82px;
+        justify-content: flex-start;
+      }
+
+      .toggle {
+        width: 25px;
+        font-size: 12px;
+      }
+
+      .toggle.active {
+        border-color: #9ccfb1;
+        background: var(--excel-soft);
+        color: var(--excel-dark);
+      }
+
+      .toggle.fill {
+        background: linear-gradient(#fbfcfd 0 62%, #f2d26b 62% 100%);
+      }
+
+      .toggle.color {
+        background:
+          linear-gradient(#fbfcfd 0 62%, #107c41 62% 100%);
+      }
+
+      .align {
+        width: 25px;
+        height: 22px;
+        border: 1px solid #d8dce2;
+        border-radius: 5px;
+        background: #fbfcfd;
+        position: relative;
+      }
+
+      .align::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 13px;
+        height: 2px;
+        border-radius: 2px;
+        background: #4f5b66;
+        box-shadow: 0 5px 0 #4f5b66, 0 10px 0 #4f5b66;
+      }
+
+      .align.active {
+        border-color: #9ccfb1;
+        background: var(--excel-soft);
+      }
+
+      .merge,
+      .wrap {
+        min-width: 48px;
+        padding: 0 7px;
+      }
+
+      .formula-bar {
+        height: 35px;
+        display: grid;
+        grid-template-columns: 84px 42px 1fr;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 11px;
+        background: #f8f9fb;
+        border-bottom: 1px solid #d6dae0;
+      }
+
+      .name-box,
+      .formula-tools,
+      .formula-input {
+        height: 24px;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        border: 1px solid #d7dce2;
+        background: #fff;
+        color: #33404c;
+        font-size: 12px;
+      }
+
+      .name-box {
+        padding: 0 9px;
+        font-weight: 650;
+      }
+
+      .formula-tools {
+        justify-content: center;
+        color: var(--excel);
+        font-weight: 760;
+      }
+
+      .formula-input {
+        padding: 0 11px;
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      .workbook-body {
+        height: calc(100% - 38px - 30px - 100px - 35px - 28px);
+        display: grid;
+        grid-template-columns: 198px 1fr 260px;
+        background: #e9edf1;
+      }
+
+      .sheet-sidebar,
+      .insights-pane {
+        padding: 17px 15px;
+        background: #f8f9fb;
+        border-right: 1px solid #d4d9e0;
+      }
+
+      .insights-pane {
+        border-right: 0;
+        border-left: 1px solid #d4d9e0;
+      }
+
+      .pane-title,
+      .insights-title {
+        margin-bottom: 13px;
+        color: #2d3540;
+        font-size: 15px;
+        font-weight: 760;
+      }
+
+      .pane-title.lower {
+        margin-top: 24px;
+      }
+
+      .table-ref {
+        min-height: 31px;
+        display: grid;
+        grid-template-columns: 13px 1fr;
+        align-items: center;
+        gap: 8px;
+        padding: 0 9px;
+        border-radius: 8px;
+        color: #4d5964;
+        font-size: 12px;
+      }
+
+      .table-ref span {
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: #aeb8c2;
+      }
+
+      .table-ref.active {
+        background: var(--excel-soft);
+        color: var(--excel-dark);
+        font-weight: 690;
+      }
+
+      .table-ref.active span {
+        background: var(--excel);
+      }
+
+      .range-ref {
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        padding: 0 9px;
+        color: #5b6670;
+        font-size: 12px;
+      }
+
+      .sheet-stage {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 22px;
+      }
+
+      .grid-viewport {
+        position: relative;
+        display: grid;
+        grid-template-columns: 42px 168px 126px 146px 116px 116px 116px;
+        grid-template-rows: 28px repeat(8, 34px);
+        width: 830px;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #cfd6de;
+        box-shadow: 0 18px 44px rgba(44, 51, 61, 0.12);
+      }
+
+      .corner,
+      .col-head,
+      .row-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f4f6f8;
+        border-right: 1px solid #d7dce2;
+        border-bottom: 1px solid #d7dce2;
+        color: #60707c;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .row-head {
+        border-right: 1px solid #d7dce2;
+      }
+
+      .cell {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        padding: 0 10px;
+        border-right: 1px solid var(--grid);
+        border-bottom: 1px solid var(--grid);
+        color: #26313b;
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .title-cell {
+        font-weight: 780;
+        color: var(--excel-dark);
+      }
+
+      .muted-cell,
+      .metric-head {
+        color: #5d6974;
+        font-weight: 700;
+        background: #f8fbf9;
+      }
+
+      .label-cell {
+        font-weight: 650;
+      }
+
+      .section-cell {
+        font-weight: 760;
+        background: #eef8f2;
+        color: var(--excel-dark);
+      }
+
+      .num {
+        justify-content: flex-end;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .good {
+        color: var(--excel-dark);
+        font-weight: 700;
+      }
+
+      .selected {
+        background: rgba(16, 124, 65, 0.08);
+      }
+
+      .active-cell {
+        background: #fff;
+        box-shadow: inset 0 0 0 2px var(--excel);
+      }
+
+      .selection-outline {
+        position: absolute;
+        left: 482px;
+        top: 164px;
+        width: 348px;
+        height: 136px;
+        border: 2px solid var(--excel);
+        pointer-events: none;
+      }
+
+      .selection-outline::after {
+        content: "";
+        position: absolute;
+        right: -4px;
+        bottom: -4px;
+        width: 7px;
+        height: 7px;
+        background: var(--excel);
+      }
+
+      .insight-card {
+        padding: 13px;
+        margin-bottom: 14px;
+        border-radius: 11px;
+        background: #fff;
+        border: 1px solid #d9dde4;
+        box-shadow: 0 8px 22px rgba(44, 51, 61, 0.06);
+      }
+
+      .insight-card.active {
+        border-color: #9ccfb1;
+      }
+
+      .insight-card strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--excel-dark);
+        font-size: 13px;
+      }
+
+      .insight-card p {
+        margin: 0;
+        color: #4c5661;
+        font-size: 12px;
+        line-height: 1.42;
+      }
+
+      .mini-chart {
+        height: 150px;
+        display: flex;
+        align-items: end;
+        gap: 14px;
+        padding: 18px 20px;
+        margin-bottom: 16px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid #d9dde4;
+      }
+
+      .bar {
+        width: 32px;
+        border-radius: 7px 7px 0 0;
+        background: linear-gradient(180deg, #43b875, #107c41);
+      }
+
+      .bar.b1 { height: 58px; }
+      .bar.b2 { height: 74px; }
+      .bar.b3 { height: 96px; }
+      .bar.b4 { height: 112px; }
+
+      .insight-list {
+        display: grid;
+        gap: 10px;
+        color: #4c5661;
+        font-size: 12px;
+      }
+
+      .insight-list div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .dot.good { background: var(--green); }
+      .dot.warn { background: var(--amber); }
+      .dot.blue { background: var(--blue); }
+
+      .excel-statusbar {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 11px;
+        background: #f8f9fb;
+        border-top: 1px solid #d4d9e0;
+        color: #5e6974;
+        font-size: 11px;
+      }
+
+      .sheet-tabs {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .sheet-tabs span,
+      .sheet-tabs button {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid #d8dce2;
+        border-radius: 7px;
+        background: #fff;
+        color: #46525d;
+        font-size: 11px;
+        font-family: inherit;
+      }
+
+      .sheet-tabs span.active {
+        border-color: #9ccfb1;
+        background: var(--excel-soft);
+        color: var(--excel-dark);
+        font-weight: 700;
+      }
+
+      .status-spacer {
+        flex: 1;
+      }
+
+      .zoom-line {
+        width: 88px;
+        height: 4px;
+        border-radius: 999px;
+        background:
+          linear-gradient(90deg, var(--excel) 0 62%, #c9d0d8 62% 100%);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const excelDuration = 12;
+      const syncRepeat = Math.max(0, Math.floor((excelDuration - 1.5) / 0.9) - 1);
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(".excel-window", { opacity: 0, y: 20, scale: 0.987, duration: 0.42, ease: "power2.out" }, 0.12);
+      tl.from(".excel-ribbon", { opacity: 0, y: -8, duration: 0.32, ease: "power2.out" }, 0.44);
+      tl.from(".formula-bar", { opacity: 0, y: -6, duration: 0.24, ease: "power2.out" }, 0.64);
+      tl.from(".sheet-sidebar", { opacity: 0, x: -14, duration: 0.34, ease: "power3.out" }, 0.82);
+      tl.from(".insights-pane", { opacity: 0, x: 14, duration: 0.34, ease: "power3.out" }, 0.9);
+      tl.from(".grid-viewport", { opacity: 0, y: 16, duration: 0.36, ease: "power2.out" }, 1.08);
+      tl.from(".selection-outline", { opacity: 0, scale: 0.96, duration: 0.3, ease: "power2.out" }, 1.62);
+      tl.from(".insight-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 1.86);
+      tl.from(".bar", { scaleY: 0.15, transformOrigin: "bottom center", stagger: 0.08, duration: 0.42, ease: "power3.out" }, 2.12);
+      tl.from(".insight-list div", { opacity: 0, x: 8, stagger: 0.07, duration: 0.22, ease: "power2.out" }, 2.52);
+      tl.to(".sync-dot", { rotation: 360, duration: 0.9, repeat: syncRepeat, ease: "none" }, 1.5);
+
+      window.__timelines["excel-workbook-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = decodeURIComponent(window.location.pathname).endsWith("/excel-workbook.html");
+    if (!isDirectPreview) return;
+
+    const mount = () => {
+      if (document.getElementById("excel-workbook-surface")) return;
+      const template = document.getElementById("excel-workbook-surface-template");
+      if (!template || !document.body) return;
+
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-code-figma-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Code Plus Figma Workflow",
+  "description": "Claude Code-to-design clips that need the light reference-style Claude Code terminal driving a dark Figma onboarding design editor without importing the warm Claude chat shell, Finder, Office, browser, Codex terminal, Premiere, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude-code",
+    "claude",
+    "figma",
+    "design",
+    "terminal",
+    "modular-assembly"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "claude-code-terminal-session",
+    "figma-onboarding-editor"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-code-figma-workflow.html",
+      "target": "compositions/claude-code-figma-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

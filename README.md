@@ -54,6 +54,27 @@ The focused target is a Claude-on-Mac demo environment:
 - Reusable motion primitives for typing, cursor movement, drag/drop, file
   selection, tool calls, agent progress, and app switching.
 
+
+## Installable Source Registry
+
+UI Backlot now keeps `surfaces/registry.json` as the versioned canonical
+registry and generates an installable, source-distributed registry under
+`dist/registry/`. Every non-lab surface declares a `publish` decision and an
+`agentApi` mount contract so agents can copy editable HTML/CSS/JS into a
+consumer HyperFrames project instead of depending on screenshots or hidden
+runtime state.
+
+```bash
+npm run registry:generate
+npx ui-backlot catalog
+npx ui-backlot install browser-app --dir ./my-hyperframes-project
+npx ui-backlot install quickstart-demo --dir ./fresh-starter
+```
+
+Use `npm run registry:install-test` to exercise clean-room installs for the
+browser app, Claude chat pane, cursor/menu-bar primitives, and the
+Claude-plus-browser starter.
+
 ## Surface Discovery
 
 - [docs/catalog.md](docs/catalog.md) - generated public catalog for humans and

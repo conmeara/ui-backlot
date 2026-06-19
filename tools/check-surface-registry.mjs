@@ -7,6 +7,7 @@ const registryPath = path.join(repoRoot, "surfaces", "registry.json");
 const packagePath = path.join(repoRoot, "package.json");
 const allowedKinds = new Set(["component", "surface", "workflow", "lab"]);
 const allowedCaptureStatuses = new Set(["ready", "pending", "mounted-only"]);
+const allowedPublishTypes = new Set(["hyperframes:block", "hyperframes:component", "hyperframes:example"]);
 
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, "utf8"));
 const relPath = (value) => path.join(repoRoot, value);
@@ -28,6 +29,14 @@ const addError = (surfaceId, message) => {
 
 if (registry.version !== 1) {
   addError(null, "registry.version must be 1");
+}
+
+if (registry.formatVersion !== "1.0.0") {
+  addError(null, 'registry.formatVersion must be "1.0.0"');
+}
+
+if (!isNonEmptyString(registry.$schema)) {
+  addError(null, "registry.$schema is required");
 }
 
 if (!Array.isArray(registry.surfaces) || registry.surfaces.length === 0) {
@@ -177,6 +186,35 @@ for (const surface of surfaces) {
 
   if (!isNonEmptyString(surface.assetDecision)) {
     addError(id, "assetDecision is required");
+  }
+
+  if (!isObject(surface.publish)) {
+    addError(id, "publish decision is required");
+  } else if (surface.kind === "lab") {
+    if (surface.publish.enabled !== false) {
+      addError(id, "lab entries must not be publish enabled");
+    }
+  } else {
+    if (surface.publish.enabled !== true) {
+      addError(id, "non-lab entries must be publish enabled or explicitly migrated with a reason");
+    }
+    if (!allowedPublishTypes.has(surface.publish.type)) {
+      addError(id, `publish.type must be one of ${Array.from(allowedPublishTypes).join(", ")}`);
+    }
+  }
+
+  if (!isObject(surface.agentApi)) {
+    addError(id, "agentApi is required");
+  } else {
+    if (!isObject(surface.agentApi.mount)) {
+      addError(id, "agentApi.mount is required");
+    } else {
+      if (!isNonEmptyString(surface.agentApi.mount.src)) addError(id, "agentApi.mount.src is required");
+      if (!isNonEmptyString(surface.agentApi.mount.selector)) addError(id, "agentApi.mount.selector is required");
+    }
+    if (!Array.isArray(surface.agentApi.files) || surface.agentApi.files.length === 0) addError(id, "agentApi.files must be a non-empty array");
+    if (!isObject(surface.agentApi.metadata)) addError(id, "agentApi.metadata is required");
+    if (!Array.isArray(surface.agentApi.docs)) addError(id, "agentApi.docs must be an array");
   }
 }
 

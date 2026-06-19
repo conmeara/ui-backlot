@@ -1,0 +1,48 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-premiere-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Premiere Workflow",
+  "description": "Video editing, timeline review, trim, graphics, and export clips that need Claude with a Premiere-style editor, without browser, Finder, Office, Figma, Codex terminal, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "premiere",
+    "video",
+    "timeline",
+    "editing",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Install editable UI Backlot source into a HyperFrames project; keep the copied HTML/CSS/JS editable.",
+  "registryDependencies": [
+    "mac-menu-bar",
+    "claude-app",
+    "premiere-editor"
+  ],
+  "files": [
+    {
+      "path": "compositions/claude-premiere-workflow.html",
+      "target": "compositions/claude-premiere-workflow.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10
+}

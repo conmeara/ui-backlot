@@ -1,0 +1,54 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "quickstart-demo",
+  "type": "hyperframes:example",
+  "title": "UI Backlot Claude plus Browser Quickstart",
+  "description": "Complete starter video assembling macOS menu bar, browser app, Claude chat pane, cursor, and click feedback.",
+  "tags": [
+    "starter",
+    "claude",
+    "browser",
+    "example"
+  ],
+  "author": "UI Backlot contributors",
+  "license": "ISC",
+  "minCliVersion": "0.6.114",
+  "sourcePrompt": "Start a fresh HyperFrames project from the editable UI Backlot Claude-plus-browser starter.",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 14,
+  "files": [
+    {
+      "path": "examples/quickstart-demo.html",
+      "target": "index.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "compositions/mac-menu-bar.html",
+      "target": "compositions/mac-menu-bar.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/browser-app.html",
+      "target": "compositions/browser-app.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-chat-pane.html",
+      "target": "compositions/claude-chat-pane.html",
+      "type": "hyperframes:composition"
+    }
+  ]
+}

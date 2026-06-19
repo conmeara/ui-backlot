@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ui-backlot.local/schemas/backlot-registry.schema.json",
+  "title": "UI Backlot Canonical Registry",
+  "type": "object",
+  "required": ["$schema", "version", "formatVersion", "generatedAt", "description", "surfaces"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "const": 1 },
+    "formatVersion": { "type": "string", "pattern": "^1\\.0\\.0$" },
+    "generatedAt": { "type": "string" },
+    "description": { "type": "string" },
+    "surfaces": { "type": "array", "items": { "type": "object", "required": ["id", "kind", "source", "import", "publish", "agentApi"] } }
+  }
+}

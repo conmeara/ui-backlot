@@ -1,0 +1,995 @@
+<style>
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 140px),
+      linear-gradient(55deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 180px),
+      #bdd9ce;
+  }
+</style>
+
+<template id="claude-code-desktop-surface-template">
+  <div id="claude-code-desktop-surface" data-composition-id="claude-code-desktop-surface" data-width="1440" data-height="900">
+    <section class="claude-code-window" data-primitive="claude-code-desktop-window" aria-label="Editable Claude Code desktop app surface">
+      <aside class="code-sidebar" data-primitive="claude-code-sidebar">
+        <div class="traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+
+        <div class="mode-row">
+          <button type="button" class="icon-button search" aria-label="Search"></button>
+          <button type="button" class="icon-button list" aria-label="Sessions"></button>
+          <button type="button" class="code-pill">&lt;/&gt; Code</button>
+        </div>
+
+        <nav class="primary-actions" aria-label="Claude Code actions">
+          <button type="button"><span class="plus-icon"></span>New session</button>
+          <button type="button"><span class="clock-icon"></span>Scheduled</button>
+          <button type="button"><span class="folder-icon"></span>Customize</button>
+        </nav>
+
+        <div class="workspace-row">
+          <span class="building-icon"></span>
+          <strong>Acme Co.</strong>
+          <button type="button" class="gear" aria-label="Workspace settings"></button>
+        </div>
+
+        <div class="sidebar-section">Sessions</div>
+        <div class="session-row selected">
+          <strong>alignment grid demo</strong>
+          <span>4 files changed</span>
+        </div>
+        <div class="session-row">
+          <strong>panel grid cleanup</strong>
+          <span>ready to create PR</span>
+        </div>
+        <div class="session-row">
+          <strong>spring tokens</strong>
+          <span>tests running</span>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="pr-row">
+            <span class="added">+954</span>
+            <span class="removed">-55</span>
+            <button type="button">Create PR</button>
+          </div>
+          <div class="small-composer">
+            <button type="button" class="plus"></button>
+            <button type="button" class="mic"></button>
+            <span>make it snap instead of overshoot</span>
+            <button type="button" class="stop"></button>
+          </div>
+          <div class="model-row">
+            <span>Opus 4.6</span>
+            <span class="spinner"></span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="code-thread" data-primitive="claude-code-thread">
+        <header class="thread-topbar">
+          <div class="crumb">acme-web / Build the alignment grid demo</div>
+          <div class="topbar-icons">
+            <button type="button" aria-label="Preview"></button>
+            <button type="button" aria-label="Share"></button>
+            <button type="button" aria-label="More"></button>
+          </div>
+        </header>
+
+        <section class="thread-scroll" aria-label="Claude Code transcript">
+          <div class="user-bubble">build the alignment grid demo - geometric shapes that snap to a constraint system, spring physics on settle</div>
+
+          <article class="assistant-block">
+            <p>I will set up a constraint solver for the grid and drive each shape's position from it, with a spring for the settle state.</p>
+            <div class="changed-file">
+              <span class="file-name">src/components/PanelGrid.tsx</span>
+              <span class="added">+142</span>
+              <span class="removed">-38</span>
+              <span class="chevron"></span>
+            </div>
+            <div class="changed-file">
+              <span class="file-name">src/components/AlignmentGrid.tsx</span>
+              <span class="added">+85</span>
+              <span class="removed">-12</span>
+              <span class="chevron"></span>
+            </div>
+            <div class="result-grid">
+              <div><span>constraint</span><strong>align-left(grid)</strong></div>
+              <div><span>stiffness</span><strong>0.85</strong></div>
+              <div><span>constraint</span><strong>center-x(rect-a)</strong></div>
+              <div><span>stiffness</span><strong>0.70</strong></div>
+            </div>
+          </article>
+
+          <div class="user-bubble compact">the easing feels bouncy - make it snap instead of overshoot</div>
+
+          <article class="assistant-block lower">
+            <p>I will swap the overshoot curve for a hard-stop snap and verify convergence.</p>
+            <div class="changed-file active">
+              <span class="file-name">src/lib/constraints.ts</span>
+              <span class="added">+6</span>
+              <span class="chevron"></span>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <aside class="workbench" data-primitive="claude-code-workbench">
+        <div class="preview-panel panel">
+          <div class="preview-grid">
+            <span class="bar mint"></span>
+            <span class="bar cream"></span>
+            <span class="bar dark"></span>
+            <span class="log-caption">View session logs</span>
+          </div>
+        </div>
+
+        <section class="diff-panel panel" data-primitive="claude-code-diff">
+          <header>
+            <span class="split-icon"></span>
+            <strong>main</strong>
+            <span>&gt;</span>
+            <strong>claude/alignment-grid</strong>
+            <button type="button" aria-label="Close">x</button>
+          </header>
+          <div class="file-path">src/components/AlignmentGrid.tsx</div>
+          <div class="code-row comment"><span>1</span><code>// Snap easing - fast attack, hard stop, no overshoot.</code></div>
+          <div class="code-row removed"><span>2</span><code>const backOut = (t) =&gt; 1 + 2.7 * Math.pow(t - 1, 3);</code></div>
+          <div class="code-row added"><span>2</span><code>const snap = (t: number) =&gt; 1 - Math.pow(1 - t, 6);</code></div>
+          <div class="fold-row">38 unmodified lines</div>
+          <div class="code-row added"><span>41</span><code>const SHOTS: Shot[] = [</code></div>
+          <div class="code-row added"><span>42</span><code>{ at: B.intro[0], fx: 0.50, fy: 0.50, z: 1.00 },</code></div>
+          <div class="code-row added"><span>43</span><code>{ at: B.thread[0], fx: 0.40, fy: 0.86, z: 1.85 },</code></div>
+        </section>
+
+        <section class="terminal-panel panel" data-primitive="claude-code-terminal">
+          <header>
+            <strong>Terminal</strong>
+            <button type="button" aria-label="Close">x</button>
+          </header>
+          <div class="terminal-lines">
+            <p><span>9:58:18 PM</span> [vite] Internal server error:</p>
+            <p>AlignmentGrid.tsx(424,41): Property 'stiffness' is missing</p>
+            <p><span>9:58:20 PM</span> [vite] error resolved</p>
+            <p class="prompt">alex@mbp acme-web % git status</p>
+          </div>
+        </section>
+
+        <section class="tasks-panel panel" data-primitive="claude-code-tasks">
+          <header>
+            <strong>Tasks</strong>
+            <button type="button" aria-label="Close">x</button>
+          </header>
+          <div class="task-section">Running</div>
+          <div class="task-row active">
+            <span class="blue-dot"></span>
+            <div><strong>Verify constraint solver convergence</strong><em>Running - 1m 12s</em></div>
+            <span class="badge">Agent</span>
+          </div>
+          <div class="task-row">
+            <span class="blue-dot"></span>
+            <div><strong>npm run dev (background)</strong><em>Running - 8m 03s</em></div>
+            <span class="badge">Bash</span>
+          </div>
+          <div class="task-section">Completed</div>
+          <div class="task-row done">
+            <span class="check-dot"></span>
+            <div><strong>npx tsc --noEmit</strong><em>done</em></div>
+            <span class="badge">Bash</span>
+          </div>
+        </section>
+
+        <div class="view-menu" data-primitive="claude-code-view-menu">
+          <div><span class="menu-glyph play"></span><strong>Preview</strong><em>shift cmd P</em></div>
+          <div><span class="menu-glyph diff"></span><strong>Diff</strong><em>shift cmd D</em></div>
+          <div class="active"><span class="menu-glyph terminal"></span><strong>Terminal</strong><em>control `</em></div>
+          <div><span class="menu-glyph tasks"></span><strong>Tasks</strong></div>
+          <div><span class="menu-glyph plan"></span><strong>Plan</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <style>
+      #claude-code-desktop-surface {
+        --bg: #080909;
+        --panel: #111213;
+        --panel-2: #171819;
+        --panel-3: #202122;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-2: rgba(255, 255, 255, 0.14);
+        --text: #f1efea;
+        --muted: #9a9994;
+        --faint: #63645f;
+        --green: #74ee72;
+        --green-bg: rgba(74, 188, 93, 0.38);
+        --red: #ff5f88;
+        --red-bg: rgba(210, 54, 91, 0.38);
+        --blue: #56a0ff;
+        --cream: #ebe1d0;
+        --mint: #bdd9ce;
+        width: 1440px;
+        height: 900px;
+        overflow: visible;
+        color: var(--text);
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      #claude-code-desktop-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-code-desktop-surface button {
+        font: inherit;
+      }
+
+      .claude-code-window {
+        position: relative;
+        width: 1320px;
+        height: 880px;
+        display: grid;
+        grid-template-columns: 270px 420px 1fr;
+        overflow: hidden;
+        border-radius: 22px;
+        background: var(--bg);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 36px 82px rgba(12, 16, 13, 0.38);
+      }
+
+      .code-sidebar {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 18px 15px 14px;
+        background: #101111;
+        border-right: 1px solid var(--line);
+      }
+
+      .traffic,
+      .mode-row,
+      .primary-actions button,
+      .workspace-row,
+      .pr-row,
+      .model-row,
+      .thread-topbar,
+      .topbar-icons,
+      .changed-file,
+      .diff-panel header,
+      .terminal-panel header,
+      .tasks-panel header,
+      .task-row,
+      .view-menu div {
+        display: flex;
+        align-items: center;
+      }
+
+      .traffic {
+        gap: 8px;
+        height: 16px;
+        margin-bottom: 30px;
+      }
+
+      .traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .traffic .red { background: #ff5d5a; }
+      .traffic .yellow { background: #ffbf42; }
+      .traffic .green { background: #31c75d; }
+
+      .mode-row {
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .icon-button,
+      .gear,
+      .topbar-icons button,
+      .small-composer button,
+      .diff-panel button,
+      .terminal-panel button,
+      .tasks-panel button {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+      }
+
+      .icon-button {
+        position: relative;
+        width: 24px;
+        height: 24px;
+      }
+
+      .icon-button.search::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 5px;
+        width: 9px;
+        height: 9px;
+        border: 1.7px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .icon-button.search::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 7px;
+        height: 1.8px;
+        border-radius: 2px;
+        background: currentColor;
+        transform: rotate(45deg);
+      }
+
+      .icon-button.list::before {
+        content: "";
+        position: absolute;
+        inset: 6px 5px;
+        border-top: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        box-shadow: 0 5px 0 currentColor;
+      }
+
+      .code-pill {
+        height: 36px;
+        padding: 0 18px;
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 11px;
+        background: linear-gradient(180deg, #343536, #242526);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+      }
+
+      .primary-actions {
+        display: grid;
+        gap: 8px;
+        margin: 8px 0 24px;
+      }
+
+      .primary-actions button {
+        height: 31px;
+        gap: 12px;
+        padding: 0 6px;
+        border: 0;
+        color: #e6e1da;
+        background: transparent;
+        font-size: 15px;
+      }
+
+      .plus-icon,
+      .clock-icon,
+      .folder-icon,
+      .building-icon {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        color: var(--muted);
+        flex: 0 0 auto;
+      }
+
+      .plus-icon::before,
+      .plus-icon::after {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 7px;
+        width: 10px;
+        height: 1.6px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .plus-icon::after {
+        transform: rotate(90deg);
+      }
+
+      .clock-icon {
+        border: 1.6px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .clock-icon::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 1.6px;
+        height: 5px;
+        background: currentColor;
+      }
+
+      .clock-icon::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        width: 5px;
+        height: 1.6px;
+        background: currentColor;
+      }
+
+      .folder-icon,
+      .building-icon {
+        border: 1.5px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .folder-icon::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -4px;
+        width: 8px;
+        height: 5px;
+        border-radius: 2px 2px 0 0;
+        border: 1.5px solid currentColor;
+        border-bottom: 0;
+      }
+
+      .workspace-row {
+        gap: 10px;
+        height: 34px;
+        color: #ded9d0;
+        font-size: 14px;
+      }
+
+      .workspace-row .gear {
+        margin-left: auto;
+        width: 22px;
+        height: 22px;
+      }
+
+      .workspace-row .gear::before {
+        content: "*";
+        font-size: 18px;
+        color: var(--faint);
+      }
+
+      .sidebar-section {
+        margin: 18px 0 8px;
+        color: var(--faint);
+        font-size: 11px;
+        font-weight: 650;
+        text-transform: uppercase;
+      }
+
+      .session-row {
+        min-height: 48px;
+        padding: 9px 10px;
+        border-radius: 11px;
+        color: var(--muted);
+      }
+
+      .session-row.selected {
+        background: #1d1e1f;
+        color: var(--text);
+      }
+
+      .session-row strong,
+      .session-row span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .session-row strong {
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .session-row span {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .sidebar-bottom {
+        margin-top: auto;
+        display: grid;
+        gap: 10px;
+      }
+
+      .pr-row {
+        height: 44px;
+        gap: 9px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #171818;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .added { color: var(--green); }
+      .removed { color: var(--red); }
+
+      .pr-row button {
+        margin-left: auto;
+        height: 30px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 10px;
+        background: #2d2e2e;
+        color: #8b8985;
+      }
+
+      .small-composer {
+        height: 58px;
+        display: grid;
+        grid-template-columns: 28px 28px 1fr 28px;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px;
+        border: 1px solid var(--line-2);
+        border-radius: 13px;
+        background: #181919;
+        color: #eeeae2;
+      }
+
+      .small-composer span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+      }
+
+      .small-composer .plus::before {
+        content: "+";
+        color: var(--text);
+        font-size: 22px;
+      }
+
+      .small-composer .mic::before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 15px;
+        margin: auto;
+        border: 1.5px solid var(--muted);
+        border-radius: 8px;
+      }
+
+      .small-composer .stop {
+        border: 1px solid var(--line-2);
+        border-radius: 7px;
+      }
+
+      .model-row {
+        justify-content: flex-end;
+        gap: 10px;
+        padding-right: 4px;
+        color: #d6d0c8;
+        font-size: 18px;
+      }
+
+      .spinner {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 3px solid rgba(86, 160, 255, 0.22);
+        border-top-color: var(--blue);
+      }
+
+      .code-thread {
+        min-width: 0;
+        display: grid;
+        grid-template-rows: 48px 1fr;
+        border-right: 1px solid var(--line);
+        background: #0b0c0c;
+      }
+
+      .thread-topbar {
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .topbar-icons {
+        gap: 8px;
+      }
+
+      .topbar-icons button {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        border: 1px solid var(--line);
+      }
+
+      .thread-scroll {
+        position: relative;
+        overflow: hidden;
+        padding: 28px 20px 18px;
+      }
+
+      .user-bubble {
+        margin-left: auto;
+        max-width: 355px;
+        padding: 13px 16px;
+        border-radius: 13px;
+        background: #1f2021;
+        color: #f4f1ea;
+        font-size: 13px;
+        line-height: 1.36;
+      }
+
+      .user-bubble.compact {
+        max-width: 330px;
+        margin-top: 26px;
+      }
+
+      .assistant-block {
+        margin-top: 28px;
+        color: #dcd7cf;
+        font-size: 13px;
+        line-height: 1.48;
+      }
+
+      .assistant-block p {
+        margin: 0 0 13px;
+      }
+
+      .changed-file {
+        gap: 9px;
+        min-height: 34px;
+        padding: 0 10px;
+        border-radius: 9px;
+        background: #141515;
+        border: 1px solid var(--line);
+        margin-bottom: 7px;
+        font-size: 12px;
+      }
+
+      .changed-file.active {
+        background: #191a1b;
+      }
+
+      .file-name {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #dedad2;
+      }
+
+      .chevron::before {
+        content: ">";
+        color: var(--faint);
+      }
+
+      .result-grid {
+        display: grid;
+        grid-template-columns: 1fr 82px;
+        margin-top: 13px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .result-grid div {
+        min-height: 39px;
+        display: grid;
+        align-items: center;
+        padding: 0 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .result-grid div:nth-last-child(-n + 2) {
+        border-bottom: 0;
+      }
+
+      .result-grid span {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .result-grid strong {
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .workbench {
+        position: relative;
+        min-width: 0;
+        padding: 20px;
+        background: #090a0a;
+      }
+
+      .panel {
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        border-radius: 15px;
+        background: rgba(24, 25, 25, 0.96);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      }
+
+      .preview-panel {
+        height: 132px;
+        margin-bottom: 16px;
+      }
+
+      .preview-grid {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 92px;
+        grid-template-rows: 1fr 40px;
+        gap: 14px;
+        padding: 18px;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          #101111;
+        background-size: 42px 42px;
+      }
+
+      .bar {
+        display: block;
+        height: 40px;
+        align-self: end;
+        border-radius: 2px;
+      }
+
+      .bar.mint { background: var(--mint); }
+      .bar.cream { background: var(--cream); }
+      .bar.dark { background: #242424; }
+
+      .log-caption {
+        grid-column: 1 / -1;
+        align-self: end;
+        color: var(--faint);
+        font-size: 17px;
+      }
+
+      .diff-panel {
+        height: 278px;
+        margin-bottom: 16px;
+      }
+
+      .diff-panel header,
+      .terminal-panel header,
+      .tasks-panel header {
+        height: 42px;
+        gap: 10px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--line);
+        color: #dedad3;
+      }
+
+      .diff-panel header button,
+      .terminal-panel header button,
+      .tasks-panel header button {
+        margin-left: auto;
+        color: var(--faint);
+      }
+
+      .file-path {
+        height: 36px;
+        padding: 8px 20px;
+        border-bottom: 1px solid var(--line);
+        color: #c9c5bf;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+      }
+
+      .code-row,
+      .fold-row {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        min-height: 28px;
+        align-items: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+      }
+
+      .code-row span {
+        color: var(--faint);
+        text-align: right;
+        padding-right: 10px;
+      }
+
+      .code-row code {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #d8d4cd;
+      }
+
+      .code-row.removed {
+        background: var(--red-bg);
+        border-left: 5px solid var(--red);
+      }
+
+      .code-row.added {
+        background: var(--green-bg);
+        border-left: 5px solid var(--green);
+      }
+
+      .fold-row {
+        grid-template-columns: 1fr;
+        padding-left: 54px;
+        color: var(--faint);
+        background: #24282b;
+      }
+
+      .terminal-panel {
+        height: 168px;
+        margin-bottom: 16px;
+      }
+
+      .terminal-lines {
+        padding: 13px 16px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        line-height: 1.45;
+        color: #e38f8b;
+      }
+
+      .terminal-lines p {
+        margin: 0;
+      }
+
+      .terminal-lines span,
+      .terminal-lines .prompt {
+        color: #67d7b0;
+      }
+
+      .tasks-panel {
+        height: 206px;
+      }
+
+      .task-section {
+        padding: 12px 16px 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .task-row {
+        min-height: 54px;
+        gap: 12px;
+        padding: 8px 12px;
+        margin: 0 12px 8px;
+        border-radius: 12px;
+        background: #202121;
+      }
+
+      .task-row strong,
+      .task-row em {
+        display: block;
+      }
+
+      .task-row strong {
+        color: var(--text);
+        font-size: 14px;
+      }
+
+      .task-row em {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+        font-style: normal;
+      }
+
+      .blue-dot,
+      .check-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+      }
+
+      .blue-dot { background: var(--blue); }
+      .check-dot {
+        border: 1px solid #82827d;
+      }
+
+      .badge {
+        margin-left: auto;
+        padding: 5px 9px;
+        border-radius: 7px;
+        background: #303130;
+        color: #c9c4bc;
+        font-size: 12px;
+      }
+
+      .view-menu {
+        position: absolute;
+        right: 20px;
+        top: 170px;
+        width: 236px;
+        padding: 11px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        background: rgba(44, 45, 45, 0.94);
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(24px);
+      }
+
+      .view-menu div {
+        height: 42px;
+        gap: 12px;
+        padding: 0 10px;
+        border-radius: 10px;
+        color: #d8d3cc;
+      }
+
+      .view-menu div.active {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+      }
+
+      .view-menu strong {
+        font-size: 20px;
+        font-weight: 580;
+      }
+
+      .view-menu em {
+        margin-left: auto;
+        color: var(--muted);
+        font-style: normal;
+        font-size: 12px;
+      }
+
+      .menu-glyph {
+        width: 19px;
+        height: 19px;
+        border: 1.5px solid currentColor;
+        border-radius: 5px;
+        flex: 0 0 auto;
+      }
+
+      .split-icon {
+        width: 18px;
+        height: 14px;
+        border: 1.5px solid var(--faint);
+        border-radius: 4px;
+        box-shadow: inset 8px 0 0 rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-code-desktop\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-code-desktop-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-code-desktop-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      document.body.appendChild(fragment);
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".claude-code-window", { opacity: 0, y: 20, filter: "blur(6px)", immediateRender: false, duration: 0.42, ease: "power3.out" }, 0.08);
+      tl.from(".code-sidebar", { opacity: 0, x: -16, immediateRender: false, duration: 0.34, ease: "sine.out" }, 0.22);
+      tl.from(".user-bubble", { opacity: 0, y: 12, stagger: 0.18, immediateRender: false, duration: 0.32, ease: "sine.out" }, 0.42);
+      tl.from(".assistant-block", { opacity: 0, y: 14, stagger: 0.16, immediateRender: false, duration: 0.38, ease: "power2.out" }, 0.72);
+      tl.from(".panel", { opacity: 0, x: 18, stagger: 0.08, immediateRender: false, duration: 0.32, ease: "sine.out" }, 0.86);
+      tl.from(".view-menu", { opacity: 0, scale: 0.96, x: 10, immediateRender: false, duration: 0.28, ease: "power2.out" }, 1.2);
+      tl.to(".spinner", { rotate: 360, duration: 1.1, repeat: 5, ease: "none" }, 1.34);
+      tl.to(".task-row.active", { backgroundColor: "#252728", duration: 0.42, repeat: 4, yoyo: true, ease: "sine.inOut" }, 1.6);
+      window.__timelines["claude-code-desktop-surface"] = tl;
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

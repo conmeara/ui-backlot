@@ -13,8 +13,8 @@ This is the public, agent-readable catalog of editable UI surfaces in UI Backlot
 
 ## Recommended Starters
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `claude-browser-chat-pane-workflow` | workflow | Claude Chat Pane Plus Browser Workflow | [compositions/claude-browser-chat-pane-workflow.html](../compositions/claude-browser-chat-pane-workflow.html) | `capture:claude-browser-chat-pane-workflow` | `workflow` `claude` `browser` `chat-pane` `lean-pane` `modular-assembly` |
 | `claude-presentation-chat-pane-workflow` | workflow | Claude Chat Pane Plus Presentation Workflow | [compositions/claude-presentation-chat-pane-workflow.html](../compositions/claude-presentation-chat-pane-workflow.html) | `capture:claude-presentation-chat-pane-workflow` | `workflow` `claude` `powerpoint` `presentation` `office` `chat-pane` `modular-assembly` |
 | `claude-finder-workflow` | workflow | Claude Plus Finder Workflow | [compositions/claude-finder-workflow.html](../compositions/claude-finder-workflow.html) | `capture:claude-finder-workflow` | `workflow` `claude` `finder` `files` `modular-assembly` `mac-menu-bar` |
@@ -30,8 +30,8 @@ This is the public, agent-readable catalog of editable UI surfaces in UI Backlot
 
 Workflow wrappers are the fastest path to a video because they already combine multiple surfaces.
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `claude-browser-chat-pane-workflow` | workflow | Claude Chat Pane Plus Browser Workflow | [compositions/claude-browser-chat-pane-workflow.html](../compositions/claude-browser-chat-pane-workflow.html) | `capture:claude-browser-chat-pane-workflow` | `workflow` `claude` `browser` `chat-pane` `lean-pane` `modular-assembly` |
 | `claude-browser-chat-workflow` | workflow | Claude Chat Shell Plus Browser Workflow | [compositions/claude-browser-chat-workflow.html](../compositions/claude-browser-chat-workflow.html) | `capture:claude-browser-chat-workflow` | `workflow` `claude` `browser` `chat-shell` `lean-shell` `modular-assembly` |
 | `claude-browser-composed-workflow` | workflow | Claude Componentized Shell Plus Browser Workflow | [compositions/claude-browser-composed-workflow.html](../compositions/claude-browser-composed-workflow.html) | `capture:claude-browser-composed-workflow` | `workflow` `claude` `browser` `composed-shell` `nested-components` `modular-assembly` `mac-menu-bar` |
@@ -54,8 +54,8 @@ Workflow wrappers are the fastest path to a video because they already combine m
 
 Claude components can be paired with any app surface when a demo needs an assistant, chat pane, composer, progress rail, or completion state.
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `claude-agent-rail` | component | Claude Agent Context Rail | [compositions/claude-agent-rail.html](../compositions/claude-agent-rail.html) | `capture:claude-agent-rail` | `claude` `agent-status` `task-rail` `context` `artifacts` |
 | `claude-app` | component | Claude Working Thread | [compositions/claude-app.html](../compositions/claude-app.html) | `capture:claude-app` | `claude` `chat` `composer` `tool-use` `agent-status` |
 | `claude-attachment-draft` | component | Claude Attached Folder Draft | [compositions/claude-attachment-draft.html](../compositions/claude-attachment-draft.html) | `capture:claude-attachment-draft` | `claude` `attachment` `folder-context` `composer` `new-chat` |
@@ -82,8 +82,8 @@ Claude components can be paired with any app surface when a demo needs an assist
 
 Desktop context surfaces establish the environment around a product demo.
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `browser-app` | component | Editable Browser App | [compositions/browser-app.html](../compositions/browser-app.html) | `capture:browser-app` | `browser` `web-app` `tabs` `dashboard` |
 | `calendar-app` | surface | macOS Calendar App | [surfaces/calendar-app-surface.html](../surfaces/calendar-app-surface.html) | `capture:calendar` | `macos` `calendar` `schedule` `desktop` |
 | `claude-browser-chat-pane-workflow` | workflow | Claude Chat Pane Plus Browser Workflow | [compositions/claude-browser-chat-pane-workflow.html](../compositions/claude-browser-chat-pane-workflow.html) | `capture:claude-browser-chat-pane-workflow` | `workflow` `claude` `browser` `chat-pane` `lean-pane` `modular-assembly` |
@@ -103,8 +103,8 @@ Desktop context surfaces establish the environment around a product demo.
 
 App surfaces are editable HTML/CSS approximations for instructional scenes and workflow videos.
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `claude-code-figma-workflow` | workflow | Claude Code Plus Figma Workflow | [compositions/claude-code-figma-workflow.html](../compositions/claude-code-figma-workflow.html) | `capture:claude-code-figma-workflow` | `workflow` `claude-code` `claude` `figma` `design` `terminal` `modular-assembly` |
 | `claude-deck-chat-pane` | component | Claude Deck Chat Pane | [compositions/claude-deck-chat-pane.html](../compositions/claude-deck-chat-pane.html) | `capture:claude-deck-chat-pane` | `claude` `chat` `thread` `composer` `launch-reference` `pane` `deck` `powerpoint` |
 | `claude-excel-workflow` | workflow | Claude Plus Excel Workflow | [compositions/claude-excel-workflow.html](../compositions/claude-excel-workflow.html) | `capture:claude-excel-workflow` | `workflow` `claude` `excel` `spreadsheet` `office` `formula` `chart` `modular-assembly` `mac-menu-bar` |
@@ -124,8 +124,8 @@ App surfaces are editable HTML/CSS approximations for instructional scenes and w
 
 Developer surfaces support agent coding, terminal, and review workflows.
 
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| id | kind | publish | title | source | capture | tags |
+| --- | --- | --- | --- | --- | --- | --- |
 | `claude-code-desktop` | component | Claude Code Desktop | [compositions/claude-code-desktop.html](../compositions/claude-code-desktop.html) | `capture:claude-code-desktop` | `claude` `claude-code` `desktop-app` `dark-ui` `diff` `terminal` `tasks` |
 | `claude-code-figma-workflow` | workflow | Claude Code Plus Figma Workflow | [compositions/claude-code-figma-workflow.html](../compositions/claude-code-figma-workflow.html) | `capture:claude-code-figma-workflow` | `workflow` `claude-code` `claude` `figma` `design` `terminal` `modular-assembly` |
 | `claude-code-terminal-session` | component | Claude Code Terminal Session | [compositions/claude-code-terminal-session.html](../compositions/claude-code-terminal-session.html) | `capture:claude-code-terminal-session` | `claude` `claude-code` `terminal` `light-ui` `figma-workflow` `component` |
