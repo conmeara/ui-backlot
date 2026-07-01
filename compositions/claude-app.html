@@ -39,6 +39,14 @@
           <path d="m16 6-4-4-4 4" />
           <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
         </symbol>
+        <symbol id="lucide-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+          <path d="M2 12h20" />
+        </symbol>
+        <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m6 9 6 6 6-6" />
+        </symbol>
         <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect width="18" height="18" x="3" y="3" rx="2" />
           <path d="M9 3v18" />
@@ -180,13 +188,6 @@
             </div>
 
             <article class="message-row assistant">
-              <div class="assistant-gutter">
-                <span class="claude-sunburst response-mark" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span>
-                </span>
-              </div>
               <div class="assistant-stack">
                 <div class="assistant-copy">
                   <span class="typing-mask assistant-line">I'll update the launch deck from the selected folder.</span>
@@ -288,20 +289,17 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
 
       <aside class="agent-rail" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
         <section class="rail-section progress-section">
-          <div class="rail-title-row"><div class="rail-title">Progress</div><span>Working</span></div>
-          <div class="progress-circles" aria-hidden="true">
-            <span class="done"></span><span class="done"></span><span class="active"></span><span></span>
-          </div>
+          <div class="rail-title-row"><div class="rail-title">Progress</div><svg class="backlot-icon rail-card-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
           <div class="rail-step-list">
-            <div class="rail-step done"><span></span><p>Read folder</p><b>done</b></div>
-            <div class="rail-step done"><span></span><p>Map Q2 data</p><b>done</b></div>
-            <div class="rail-step active"><span></span><p>Update slides</p><b>now</b></div>
-            <div class="rail-step"><span></span><p>Return file</p><b>next</b></div>
+            <div class="rail-step done"><span>1</span><p>Read folder</p></div>
+            <div class="rail-step done"><span>2</span><p>Map Q2 data</p></div>
+            <div class="rail-step active"><span>3</span><p>Update slides</p></div>
+            <div class="rail-step"><span>4</span><p>Return file</p></div>
           </div>
         </section>
 
         <section class="rail-section">
-          <div class="rail-title">Artifacts</div>
+          <div class="rail-title-row"><div class="rail-title">Artifacts</div><svg class="backlot-icon rail-card-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
           <div class="artifact-card">
             <span class="rail-file-icon deck"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span>
             <div><strong>Deck.pptx</strong><span>opening slides</span></div>
@@ -309,25 +307,22 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         </section>
 
         <section class="rail-section">
-          <div class="rail-title">Context</div>
+          <div class="rail-title-row"><div class="rail-title">Context</div><svg class="backlot-icon rail-card-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
           <div class="context-list">
             <div class="context-row"><span class="rail-file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span>Launch Deck</span></div>
             <div class="context-row"><span class="rail-file-icon sheet"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>Q2 revenue.csv</span></div>
             <div class="context-row"><span class="rail-file-icon doc"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>slide-notes.md</span></div>
           </div>
-        </section>
-
-        <section class="rail-section">
-          <div class="rail-title">Connectors</div>
-          <div class="connector-row"><span class="connector-dot"></span><span>Local files</span><strong>On</strong></div>
-          <div class="connector-row"><span class="connector-dot muted"></span><span>Web search</span><strong>Off</strong></div>
-        </section>
-
-        <section class="rail-section working-files">
-          <div class="rail-title">Working files</div>
-          <div class="working-file">slide-notes.md</div>
-          <div class="working-file">README.md</div>
-          <div class="working-file">Q2 revenue.csv</div>
+          <div class="rail-sublabel">Connectors</div>
+          <div class="context-list">
+            <div class="context-row"><span class="rail-file-icon connector"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></span><span>Web search</span></div>
+          </div>
+          <div class="rail-sublabel">Working files</div>
+          <div class="context-list">
+            <div class="context-row"><span class="rail-file-icon doc"><b>MD</b></span><span>slide-notes.md</span></div>
+            <div class="context-row"><span class="rail-file-icon doc"><b>MD</b></span><span>README.md</span></div>
+            <div class="context-row"><span class="rail-file-icon sheet"><b>CSV</b></span><span>Q2 revenue.csv</span></div>
+          </div>
         </section>
 
         <section class="rail-section rail-note">
@@ -525,14 +520,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         --ray-w: 1.6px;
         --ray-h: 6px;
         --ray-gap: 2px;
-      }
-
-      .claude-sunburst.response-mark {
-        width: 27px;
-        height: 27px;
-        --ray-w: 2.5px;
-        --ray-h: 10px;
-        --ray-gap: 2.7px;
       }
 
       .claude-sunburst span {
@@ -904,8 +891,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .message-row.assistant {
-        grid-template-columns: 36px minmax(0, 1fr);
-        gap: 11px;
+        display: block;
       }
 
       .epitaxy-sticky-prompt-bubble {
@@ -924,10 +910,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         padding: 12px 17px 13px;
         border-radius: 15px;
         background: #efede6;
-      }
-
-      .assistant-gutter {
-        padding-top: 1px;
       }
 
       .assistant-stack {
@@ -1510,16 +1492,11 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         gap: 8px;
       }
 
-      .rail-title-row > span {
-        height: 20px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 8px;
-        border-radius: 999px;
-        background: rgba(214, 111, 89, 0.12);
-        color: var(--brand-000);
-        font-size: 10.5px;
-        font-weight: 650;
+      .rail-card-chevron {
+        width: 16px;
+        height: 16px;
+        color: #7f776c;
+        flex: 0 0 auto;
       }
 
       .rail-title {
@@ -1528,42 +1505,11 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         font-weight: 660;
       }
 
-      .progress-circles {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 1px;
-      }
-
-      .progress-circles span {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 1.5px solid #d8d2c9;
-        background: #fffefa;
-        position: relative;
-      }
-
-      .progress-circles .done {
-        border-color: #d8d2c9;
-        background: #f1eee8;
-      }
-
-      .progress-circles .done::before {
-        content: "";
-        position: absolute;
-        left: 7px;
-        top: 6px;
-        width: 7px;
-        height: 4px;
-        border-left: 1.8px solid var(--text-500);
-        border-bottom: 1.8px solid var(--text-500);
-        transform: rotate(-45deg);
-      }
-
-      .progress-circles .active {
-        border-color: var(--brand-100);
-        box-shadow: 0 0 0 5px rgba(214, 111, 89, 0.1);
+      .rail-sublabel {
+        margin: 14px 0 8px;
+        color: #7f776c;
+        font-size: 12px;
+        font-weight: 600;
       }
 
       .rail-step-list {
@@ -1574,7 +1520,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .rail-step {
         min-height: 27px;
         display: grid;
-        grid-template-columns: 16px minmax(0, 1fr) auto;
+        grid-template-columns: 16px minmax(0, 1fr);
         align-items: center;
         gap: 7px;
         padding: 0 7px;
@@ -1583,36 +1529,44 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .rail-step span {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
-        border: 1.5px solid #d8d2c9;
+        display: grid;
+        place-items: center;
+        background: #eeede6;
+        color: #a49b90;
+        font-size: 9px;
+        font-weight: 600;
         position: relative;
       }
 
       .rail-step.done span {
-        background: #f1eee8;
+        background: #2d83d8;
+        color: transparent;
+        font-size: 0;
       }
 
       .rail-step.done span::before {
         content: "";
         position: absolute;
         left: 4px;
-        top: 3px;
-        width: 5px;
-        height: 3px;
-        border-left: 1.6px solid var(--text-500);
-        border-bottom: 1.6px solid var(--text-500);
+        top: 4px;
+        width: 6px;
+        height: 3.5px;
+        border-left: 1.6px solid #fff;
+        border-bottom: 1.6px solid #fff;
         transform: rotate(-45deg);
       }
 
       .rail-step.active {
-        background: rgba(214, 111, 89, 0.075);
+        background: transparent;
       }
 
       .rail-step.active span {
-        border-color: var(--brand-100);
-        box-shadow: 0 0 0 4px rgba(214, 111, 89, 0.1);
+        background: #fff;
+        border: 2px solid #2d83d8;
+        color: #2d83d8;
       }
 
       .rail-step p {
@@ -1623,12 +1577,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         white-space: nowrap;
         color: var(--text-400);
         font-size: 11.2px;
-      }
-
-      .rail-step b {
-        color: var(--text-500);
-        font-size: 9.5px;
-        font-weight: 600;
       }
 
       .artifact-card {
@@ -1701,14 +1649,23 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         background: #d6cfc4;
       }
 
+      .rail-file-icon.connector {
+        background: #f4efe8;
+        color: #7f776c;
+      }
+
+      .rail-file-icon b {
+        font-size: 6.5px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
       .context-list {
         display: grid;
         gap: 4px;
       }
 
-      .context-row,
-      .connector-row,
-      .working-file {
+      .context-row {
         min-height: 27px;
         display: flex;
         align-items: center;
@@ -1720,39 +1677,11 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         background: rgba(246, 243, 237, 0.22);
       }
 
-      .context-row span:last-child,
-      .connector-row span:nth-child(2),
-      .working-file {
+      .context-row span:last-child {
         min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-      }
-
-      .connector-row {
-        justify-content: stretch;
-      }
-
-      .connector-row strong {
-        margin-left: auto;
-        color: var(--text-500);
-        font-size: 10.5px;
-        font-weight: 560;
-      }
-
-      .connector-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #6aa76d;
-      }
-
-      .connector-dot.muted {
-        background: #d2cbc2;
-      }
-
-      .working-files {
-        margin-top: auto;
       }
 
       .rail-note {
@@ -2033,15 +1962,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .message-row.assistant {
-        grid-template-columns: 33px minmax(0, 1fr);
-        gap: 13px;
-      }
-
-      .claude-sunburst.response-mark {
-        width: 25px;
-        height: 25px;
-        --ray-w: 2.1px;
-        --ray-h: 9px;
+        display: block;
       }
 
       .assistant-copy,
@@ -2210,36 +2131,15 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         box-shadow: 0 1px 3px rgba(52, 43, 34, 0.04);
       }
 
-      .rail-title-row > span {
-        display: none;
-      }
-
       .rail-title {
         color: var(--text-100);
         font-size: 17px;
         font-weight: 600;
       }
 
-      .progress-circles {
-        gap: 8px;
-      }
-
-      .progress-circles span {
-        width: 26px;
-        height: 26px;
-      }
-
-      .progress-circles .done::before {
-        left: 8px;
-        top: 7px;
-        width: 9px;
-        height: 5px;
-        border-color: #8f887e;
-      }
-
-      .progress-circles .active {
-        border-color: #d0c8ba;
-        box-shadow: none;
+      .rail-sublabel {
+        margin: 14px 0 8px;
+        font-size: 12px;
       }
 
       .rail-step-list {
@@ -2248,19 +2148,16 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
 
       .rail-step {
         min-height: 36px;
-        grid-template-columns: 26px minmax(0, 1fr);
+        grid-template-columns: 24px minmax(0, 1fr);
         gap: 12px;
         padding: 0;
         background: transparent;
       }
 
-      .rail-step b {
-        display: none;
-      }
-
       .rail-step span {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
       }
 
       .rail-step p {
@@ -2272,34 +2169,28 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         background: transparent;
       }
 
-      .rail-step.active span {
-        border-color: #3b92d9;
-        box-shadow: none;
-      }
-
       .artifact-card,
-      .context-row,
-      .connector-row,
-      .working-file {
+      .context-row {
         min-height: 36px;
         padding: 0;
         background: transparent;
         border: 0;
         color: var(--text-200);
-        font-size: 16px;
+        font-size: 14px;
       }
 
       .rail-file-icon,
       .rail-file-icon.deck,
       .rail-file-icon.folder,
       .rail-file-icon.sheet,
-      .rail-file-icon.doc {
-        width: 24px;
-        height: 24px;
-        border-radius: 4px;
-        background: transparent;
-        border: 1.8px solid #938c82;
-        color: #938c82;
+      .rail-file-icon.doc,
+      .rail-file-icon.connector {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #f4efe8;
+        border: 0;
+        color: #7f776c;
         font-size: 14px;
       }
 

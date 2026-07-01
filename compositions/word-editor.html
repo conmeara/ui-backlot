@@ -45,14 +45,6 @@
       </svg>
       <header class="word-titlebar">
         <div class="word-traffic" aria-hidden="true"></div>
-        <div class="word-app-icon" aria-label="Word">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="5" y="3" width="15" height="18" rx="2.2" fill="#185abd"/>
-            <rect x="2" y="6" width="12.5" height="12" rx="1.8" fill="#2b579a"/>
-            <path fill="#fff" d="M5.1 9h1.5l.8 4.4L8.5 9h1.3l1.1 4.4.8-4.4h1.4l-1.5 6H10l-1-4.1L8 15H6.4L5.1 9Z"/>
-            <path fill="#7eb0ef" d="M14.8 6.5h3.1v1.2h-3.1V6.5Zm0 2.5h3.1v1.2h-3.1V9Zm0 2.5h3.1v1.2h-3.1v-1.2Zm0 2.5h3.1v1.2h-3.1V14Z"/>
-          </svg>
-        </div>
         <div class="word-title">Launch Brief<span class="chevron"></span></div>
         <div class="save-state"><span class="sync-dot"></span>Saved</div>
         <div class="autosave"><span></span>AutoSave</div>
@@ -75,7 +67,7 @@
             <span class="track-command"><svg class="cmd-icon office-icon track" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-edit-20"></use></svg>Track Changes</span>
             <span class="field review-select">All Markup</span>
           </div>
-          <div class="track-menu"><span>Off</span><span>For Everyone</span><span>Just Mine</span></div>
+          <div class="track-menu"><span>Off</span><span>For Everyone</span><span class="selected">Just Mine</span></div>
           <div class="button-row">
             <span class="review-chip">Show Markup</span><span class="review-chip pane-chip"><svg class="mini-pane office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-panel-right-16"></use></svg>Reviewing Pane</span>
           </div>
@@ -89,7 +81,7 @@
           <div class="ribbon-stack compact"><span>Compare</span><span>Protect</span><span>Restrict Editing</span></div>
         </div>
         <div class="ribbon-group proofing">
-          <div class="ribbon-row"><span class="field font-name">Editor</span><span class="field small">A11y</span></div>
+          <div class="ribbon-row"><span class="field font-name">Editor</span></div>
           <div class="button-row">
             <span class="review-chip">Spelling</span>
           </div>
@@ -113,9 +105,6 @@
           </div>
           <div class="page">
             <div class="comment-anchor"><span></span></div>
-            <div class="review-float">
-              <span>Track Changes:</span><button>Just Mine</button><button>Accept</button><button>Reject</button>
-            </div>
             <h1><span>Q2 launch </span><span class="revision-delete">notes</span><span class="revision-insert">brief</span></h1>
             <p class="lede">Claude revised the opening narrative into a <span class="text-selection">sharper executive brief</span><span class="caret"></span> while preserving source-backed details from the <span class="comment-highlight">Launch Deck folder</span>.</p>
             <p>The update connects revenue, adoption, and customer feedback into one page the team can reuse across the deck, video script, and launch memo.</p>
@@ -140,12 +129,12 @@
             <span class="pane-close"></span>
           </div>
           <div class="comment-view-toggle"><span class="active">Contextual</span><span>List</span></div>
-          <div class="comment-card active">
+          <div class="comment-card">
             <div class="comment-meta"><span class="avatar">C</span><div><div class="comment-author">Claude</div><small>Today, 10:42 AM</small></div><i></i></div>
             <p>Rewrote the title and first paragraph for a clearer launch-video voice.</p>
             <div class="comment-actions"><span>Resolve</span><span>Reply</span></div>
           </div>
-          <div class="comment-card">
+          <div class="comment-card active">
             <div class="comment-meta"><span class="avatar review">R</span><div><div class="comment-author">Review</div><small>Today, 10:44 AM</small></div><i></i></div>
             <p>Confirm the revenue table matches the final deck chart.</p>
             <div class="reply-field">Add mention or reply</div>
@@ -207,7 +196,7 @@
       .word-titlebar {
         height: 38px;
         display: grid;
-        grid-template-columns: 58px 24px auto minmax(118px, auto) auto auto 1fr auto;
+        grid-template-columns: 58px auto minmax(118px, auto) auto auto 1fr auto;
         align-items: center;
         gap: 9px;
         padding: 0 13px;
@@ -234,25 +223,6 @@
         border-radius: 50%;
         background: #ff5f57;
         box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
-      }
-
-      .word-app-icon {
-        width: 22px;
-        height: 22px;
-        display: grid;
-        place-items: center;
-        border-radius: 6px;
-        background: linear-gradient(135deg, #2b7cd3, #185abd);
-        color: #fff;
-        font-size: 10px;
-        font-weight: 850;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-      }
-
-      .word-app-icon svg {
-        width: 100%;
-        height: 100%;
-        display: block;
       }
 
       .quick-access {
@@ -975,20 +945,6 @@
         box-shadow: 0 0 0 4px rgba(216, 161, 29, 0.16);
       }
 
-      .review-float {
-        position: absolute;
-        right: 42px;
-        top: 122px;
-        display: flex;
-        gap: 4px;
-        padding: 4px;
-        border: 1px solid #d0d7e2;
-        border-radius: 7px;
-        background: #fff;
-        box-shadow: 0 10px 22px rgba(27, 39, 53, 0.12);
-      }
-
-      .review-float button,
       .review-header button {
         height: 22px;
         border: 0;
@@ -996,11 +952,6 @@
         background: #e8f1ff;
         color: var(--word-blue);
         font: 700 10px Inter, system-ui, sans-serif;
-      }
-
-      .review-float button:first-child {
-        background: var(--word-blue);
-        color: #fff;
       }
 
       .comment-card {
@@ -1255,7 +1206,7 @@
 
       .word-titlebar {
         height: 40px;
-        grid-template-columns: 66px 24px minmax(120px, auto) auto auto 1fr auto 30px;
+        grid-template-columns: 66px minmax(120px, auto) auto auto 1fr auto 30px;
         gap: 10px;
         padding: 0 12px;
         background: var(--mac-chrome);
@@ -1289,15 +1240,6 @@
 
       .app-launcher {
         display: none;
-      }
-
-      .word-app-icon {
-        width: 22px;
-        height: 22px;
-        border-radius: 5px;
-        background: transparent;
-        font-size: 13px;
-        box-shadow: none;
       }
 
       .quick-access {
@@ -1521,7 +1463,7 @@
       .ribbon-group.tracking { min-width: 268px; }
       .ribbon-group.changes { min-width: 182px; }
       .ribbon-group.compare { min-width: 138px; }
-      .ribbon-group.proofing { min-width: 176px; }
+      .ribbon-group.proofing { min-width: 120px; }
 
       .ribbon-large {
         width: 56px;
@@ -1659,7 +1601,7 @@
         font-size: 12.5px;
       }
 
-      .track-menu span:first-child {
+      .track-menu span.selected {
         background: var(--word-blue);
         color: #fff;
       }
@@ -1934,48 +1876,6 @@
         box-shadow: 0 0 0 3px rgba(199, 46, 90, 0.16);
       }
 
-      .review-float {
-        top: 112px;
-        right: 34px;
-        gap: 0;
-        padding: 3px;
-        border: 1px solid var(--mac-border);
-        border-radius: 8px;
-        background: #fff;
-        box-shadow: 0 12px 26px rgba(24, 24, 24, 0.18);
-      }
-
-      .review-float span,
-      .review-float button {
-        height: 26px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 9px;
-        border: 0;
-        border-radius: 5px;
-        background: transparent;
-        color: #323130;
-        font: 400 11px var(--font-office-ui);
-      }
-
-      .review-float button:first-of-type::after {
-        content: "";
-        width: 5px;
-        height: 5px;
-        margin-left: 8px;
-        border-right: 1.3px solid var(--mac-muted);
-        border-bottom: 1.3px solid var(--mac-muted);
-        transform: rotate(45deg) translateY(-2px);
-      }
-
-      .review-float button:nth-of-type(2) {
-        color: #107c10;
-      }
-
-      .review-float button:nth-of-type(3) {
-        color: #a4262c;
-      }
-
       .review-header {
         display: grid;
         grid-template-columns: 1fr auto 18px;
@@ -2163,7 +2063,6 @@
       tl.from(".page", { opacity: 0, y: 16, duration: 0.36, ease: "power2.out" }, 0.98);
       tl.from(".revision-delete", { opacity: 0.25, duration: 0.2, ease: "sine.out" }, 1.75);
       tl.from(".revision-insert", { opacity: 0, y: 4, duration: 0.34, ease: "power2.out" }, 1.9);
-      tl.from(".review-float", { opacity: 0, y: -6, duration: 0.24, ease: "power2.out" }, 2.02);
       tl.from(".tracked-change", { opacity: 0, x: -8, duration: 0.3, ease: "power2.out" }, 2.18);
       tl.from(".comment-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 2.36);
       tl.from(".doc-table", { opacity: 0, y: 8, duration: 0.3, ease: "power2.out" }, 2.62);

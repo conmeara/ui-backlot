@@ -37,16 +37,6 @@
         </div>
       </div>
 
-      <aside class="navigation-rail" data-primitive="figma-navigation-rail">
-        <button class="rail-icon active layers" type="button" aria-label="File"><span>File</span></button>
-        <button class="rail-icon assets" type="button" aria-label="Assets"><span>Assets</span></button>
-        <button class="rail-icon search" type="button" aria-label="Find"><span>Find</span></button>
-        <button class="rail-icon variables" type="button" aria-label="Variables"><span>Variables</span></button>
-        <span class="rail-spacer"></span>
-        <button class="rail-icon library" type="button" aria-label="Library"><span>Library</span></button>
-        <button class="rail-icon bell" type="button" aria-label="Notifications"><span>Updates</span></button>
-      </aside>
-
       <aside class="left-panel" data-primitive="figma-left-panel">
         <div class="file-context">
           <span class="figma-mark panel-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
@@ -145,8 +135,12 @@
           <button class="zoom-menu" type="button">52%</button>
         </div>
         <div class="selected-layer-card">
-          <span class="layer-icon group"></span>
-          <div><strong>Funding card</strong><span>Frame / auto layout</span></div>
+          <span class="layer-icon frame"></span>
+          <strong>Frame</strong>
+          <span class="layer-caret open" aria-hidden="true"></span>
+          <span class="card-spacer"></span>
+          <button class="panel-icon-button dev" type="button" aria-label="Dev mode"></button>
+          <button class="panel-icon-button swap" type="button" aria-label="Swap component"></button>
           <button class="panel-icon-button dots" type="button" aria-label="More"></button>
         </div>
         <div class="selection-actions">
@@ -221,19 +215,20 @@
 
       <nav class="bottom-toolbar" data-primitive="figma-bottom-toolbar" aria-label="Figma toolbar">
         <button class="tool active move" type="button" aria-label="Move"></button>
-        <button class="tool hand" type="button" aria-label="Hand"></button>
-        <span class="toolbar-divider"></span>
+        <span class="tool-chevron"></span>
         <button class="tool frame" type="button" aria-label="Frame"></button>
-        <button class="tool section" type="button" aria-label="Section"></button>
+        <span class="tool-chevron"></span>
         <button class="tool shape" type="button" aria-label="Shape"></button>
+        <span class="tool-chevron"></span>
         <button class="tool pen" type="button" aria-label="Pen"></button>
+        <span class="tool-chevron"></span>
         <button class="tool text" type="button" aria-label="Text"></button>
-        <span class="toolbar-divider"></span>
-        <button class="tool resources" type="button" aria-label="Resources"></button>
         <button class="tool comments" type="button" aria-label="Comments"></button>
         <button class="tool actions" type="button" aria-label="Actions"></button>
-        <button class="toolbar-mode" type="button">Dev</button>
       </nav>
+      <div class="dev-mode-pill" aria-label="Dev mode">
+        <span class="dev-mode-icon"></span>
+      </div>
     </section>
 
     <style>
@@ -271,7 +266,7 @@
         height: 900px;
         overflow: hidden;
         display: grid;
-        grid-template-columns: 52px 256px 1fr 304px;
+        grid-template-columns: 288px 1fr 304px;
         grid-template-rows: 48px 1fr;
         border-radius: 17px;
         background: var(--figma-bg);
@@ -426,109 +421,14 @@
         border-bottom: 6px solid transparent;
       }
 
-      .navigation-rail,
       .left-panel,
       .properties-panel {
         background: var(--figma-panel);
         border-right: 1px solid var(--figma-border);
       }
 
-      .navigation-rail {
-        grid-column: 1;
-        grid-row: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 7px;
-        padding: 10px 0;
-      }
-
-      .rail-spacer {
-        flex: 1;
-      }
-
-      .rail-icon {
-        width: 34px;
-        height: 34px;
-        border: 0;
-        border-radius: 10px;
-        background: transparent;
-        color: var(--figma-muted);
-        position: relative;
-      }
-
-      .rail-icon.active {
-        color: #fff;
-        background: var(--figma-ink);
-      }
-
-      .rail-icon::before,
-      .rail-icon::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .rail-icon.layers::before {
-        width: 16px;
-        height: 12px;
-        border: 1.5px solid currentColor;
-        border-radius: 3px;
-        box-shadow: -3px 3px 0 -1px var(--figma-ink), -3px 3px 0 0 currentColor;
-      }
-
-      .rail-icon.assets::before {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        background:
-          linear-gradient(currentColor 0 0) 0 0 / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 9px 0 / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 0 9px / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 9px 9px / 7px 7px no-repeat;
-      }
-
-      .rail-icon.search::before {
-        width: 12px;
-        height: 12px;
-        border: 1.7px solid currentColor;
-        border-radius: 50%;
-      }
-
-      .rail-icon.search::after {
-        width: 7px;
-        height: 1.7px;
-        margin-left: 6px;
-        margin-top: 6px;
-        border-radius: 2px;
-        background: currentColor;
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-
-      .rail-icon.library::before {
-        width: 15px;
-        height: 15px;
-        border: 1.7px solid currentColor;
-        border-radius: 4px;
-      }
-
-      .rail-icon.bell::before {
-        width: 13px;
-        height: 14px;
-        border: 1.7px solid currentColor;
-        border-radius: 9px 9px 5px 5px;
-      }
-
-      .rail-icon.help::before {
-        content: "?";
-        font-size: 16px;
-        font-weight: 800;
-      }
-
       .left-panel {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 2;
         min-width: 0;
         display: flex;
@@ -724,6 +624,11 @@
         height: 6px;
         border-radius: 50%;
         background: var(--figma-blue);
+      }
+
+      .page-row span:only-child {
+        grid-column: 1 / -1;
+        padding-left: 22px;
       }
 
       .layer-tree {
@@ -1293,9 +1198,8 @@
       }
 
       .selected-layer-card {
-        min-height: 52px;
-        display: grid;
-        grid-template-columns: 18px minmax(0, 1fr) 28px;
+        min-height: 44px;
+        display: flex;
         align-items: center;
         gap: 8px;
         padding: 10px 12px;
@@ -1305,9 +1209,53 @@
       .selected-layer-card strong {
         display: block;
         overflow: hidden;
-        font-size: 12px;
+        color: var(--figma-ink);
+        font-size: 15px;
+        font-weight: 590;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+
+      .card-spacer {
+        flex: 1;
+      }
+
+      .panel-icon-button.dev::before,
+      .panel-icon-button.dev::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-style: solid;
+        border-color: currentColor;
+        border-width: 0;
+      }
+
+      .panel-icon-button.dev::before {
+        left: 7px;
+        border-left-width: 1.4px;
+        border-bottom-width: 1.4px;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .panel-icon-button.dev::after {
+        right: 7px;
+        border-right-width: 1.4px;
+        border-top-width: 1.4px;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .panel-icon-button.swap::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid currentColor;
+        border-radius: 3px;
+        transform: translate(-50%, -50%) rotate(45deg);
       }
 
       .action-chip {
@@ -1590,11 +1538,14 @@
         background: var(--figma-blue);
       }
 
-      .toolbar-divider {
-        width: 1px;
-        height: 24px;
-        margin: 0 2px;
-        background: var(--figma-border);
+      .tool-chevron {
+        width: 7px;
+        height: 7px;
+        margin: 0 -1px;
+        border-right: 1.5px solid #767676;
+        border-bottom: 1.5px solid #767676;
+        transform: rotate(45deg);
+        pointer-events: none;
       }
 
       .tool::before,
@@ -1618,29 +1569,6 @@
         height: 16px;
         border: 2px solid currentColor;
         border-radius: 3px;
-      }
-
-      .tool.hand::before {
-        width: 12px;
-        height: 16px;
-        border: 2px solid currentColor;
-        border-radius: 7px 7px 5px 5px;
-        border-top-width: 5px;
-      }
-
-      .bottom-toolbar .tool.hand::before {
-        width: 10px;
-        height: 14px;
-        border-width: 1.8px;
-        border-top-width: 4px;
-        border-radius: 6px 6px 4px 4px;
-      }
-
-      .tool.section::before {
-        width: 17px;
-        height: 14px;
-        border: 2px dashed currentColor;
-        border-radius: 5px;
       }
 
       .tool.shape::before {
@@ -1679,17 +1607,6 @@
         transform: translate(1px, 1px) rotate(-28deg);
       }
 
-      .tool.resources::before {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        background:
-          linear-gradient(currentColor 0 0) 0 0 / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 9px 0 / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 0 9px / 7px 7px no-repeat,
-          linear-gradient(currentColor 0 0) 9px 9px / 7px 7px no-repeat;
-      }
-
       .tool.actions::before {
         width: 18px;
         height: 18px;
@@ -1697,11 +1614,6 @@
         background:
           radial-gradient(circle at 50% 50%, currentColor 0 2px, transparent 3px),
           conic-gradient(from 0deg, currentColor 0 45deg, transparent 45deg 90deg, currentColor 90deg 135deg, transparent 135deg 180deg, currentColor 180deg 225deg, transparent 225deg 270deg, currentColor 270deg 315deg, transparent 315deg);
-      }
-
-      .toolbar-mode {
-        margin-left: 5px;
-        border-radius: 10px;
       }
 
       /* Actual-app fidelity pass: UI3-style floating Figma chrome. */
@@ -1749,122 +1661,6 @@
         display: none;
       }
 
-      .navigation-rail {
-        position: absolute;
-        left: 40px;
-        top: 58px;
-        z-index: 12;
-        width: 52px;
-        height: 782px;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-        padding: 12px 8px;
-        border: 1px solid var(--figma-border);
-        border-radius: 13px;
-        background: #fff;
-        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.16);
-      }
-
-      .rail-icon {
-        width: 36px;
-        height: 36px;
-        display: grid;
-        justify-items: center;
-        align-content: center;
-        gap: 0;
-        border-radius: 8px;
-        color: #3a3a3a;
-      }
-
-      .rail-icon.active {
-        color: #1f1f1f;
-        background: #e4f3ff;
-      }
-
-      .rail-icon span {
-        display: none;
-      }
-
-      .rail-icon::before,
-      .rail-icon::after {
-        top: 50%;
-      }
-
-      .rail-icon.layers::before {
-        width: 14px;
-        height: 16px;
-        border: 1.6px solid currentColor;
-        border-radius: 3px;
-        box-shadow: none;
-      }
-
-      .rail-icon.layers::after {
-        width: 5px;
-        height: 5px;
-        border-right: 1.6px solid currentColor;
-        border-bottom: 1.6px solid currentColor;
-        transform: translate(6px, -13px) rotate(45deg);
-      }
-
-      .rail-icon.assets::before {
-        width: 16px;
-        height: 16px;
-        border: 1.6px solid currentColor;
-        border-radius: 50%;
-        background: transparent;
-      }
-
-      .rail-icon.assets::after {
-        width: 8px;
-        height: 8px;
-        border: 1.6px solid currentColor;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .rail-icon.search::before {
-        width: 13px;
-        height: 13px;
-        border-width: 1.7px;
-      }
-
-      .rail-icon.search::after {
-        width: 7px;
-        height: 1.7px;
-        margin-left: 7px;
-        margin-top: 6px;
-      }
-
-      .rail-icon.variables::before {
-        width: 14px;
-        height: 14px;
-        border: 1.6px solid currentColor;
-        border-radius: 5px;
-      }
-
-      .rail-icon.variables::after {
-        width: 5px;
-        height: 5px;
-        border: 1.6px solid currentColor;
-        border-radius: 50%;
-      }
-
-      .rail-icon.library::before {
-        width: 13px;
-        height: 13px;
-        border-width: 1.6px;
-        border-radius: 4px;
-        box-shadow: 4px -4px 0 -1.5px #fff, 4px -4px 0 0 currentColor;
-      }
-
-      .rail-icon.bell::before {
-        width: 13px;
-        height: 11px;
-        border-width: 1.6px;
-      }
-
       .left-panel,
       .properties-panel {
         position: absolute;
@@ -1877,7 +1673,7 @@
       }
 
       .left-panel {
-        left: 104px;
+        left: 36px;
         top: 58px;
         width: 306px;
         height: 782px;
@@ -2008,6 +1804,10 @@
         background:
           radial-gradient(circle at 50% 24%, #ff5c5c 0 4px, #ca2525 4px 7px, transparent 7px),
           linear-gradient(#6b6b6b 0 0) 5px 8px / 2px 8px no-repeat;
+      }
+
+      .page-row span:only-child {
+        padding-left: 28px;
       }
 
       .layer-tree {
@@ -2284,9 +2084,38 @@
         font-size: 17px;
       }
 
-      .selected-layer-card,
       .selection-actions {
         display: none;
+      }
+
+      .selected-layer-card {
+        min-height: 46px;
+        padding: 0 20px;
+        border-bottom: 1px solid var(--figma-border);
+      }
+
+      .selected-layer-card .layer-icon {
+        width: 16px;
+        height: 16px;
+        border-width: 1.7px;
+      }
+
+      .selected-layer-card strong {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f1f1f;
+      }
+
+      .selected-layer-card .layer-caret {
+        width: 6px;
+        height: 6px;
+        border-color: #767676;
+      }
+
+      .selected-layer-card .panel-icon-button {
+        width: 28px;
+        height: 28px;
+        color: #767676;
       }
 
       .property-group {
@@ -2365,10 +2194,11 @@
       }
 
       .bottom-toolbar {
+        left: calc(50% - 34px);
         bottom: 28px;
         height: 52px;
         gap: 4px;
-        padding: 7px 8px;
+        padding: 7px 10px;
         border: 1px solid rgba(0, 0, 0, 0.06);
         border-radius: 15px;
         background: #fff;
@@ -2430,20 +2260,60 @@
         border-width: 1.8px;
       }
 
-      .tool.resources::before,
       .tool.actions::before {
         width: 16px;
         height: 16px;
       }
 
-      .toolbar-mode {
-        display: none;
+      .tool-chevron {
+        border-color: #9a9a9a;
       }
 
-      .toolbar-divider {
-        width: 1px;
-        height: 24px;
-        background: #e3e3e3;
+      .dev-mode-pill {
+        position: absolute;
+        left: calc(50% + 190px);
+        bottom: 28px;
+        z-index: 8;
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.22);
+      }
+
+      .dev-mode-icon {
+        width: 17px;
+        height: 13px;
+        border: 1.8px solid #1f1f1f;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .dev-mode-icon::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-left: 1.6px solid #1f1f1f;
+        border-bottom: 1.6px solid #1f1f1f;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .dev-mode-icon::after {
+        content: "";
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-right: 1.6px solid #1f1f1f;
+        border-top: 1.6px solid #1f1f1f;
+        transform: translateY(-50%) rotate(45deg);
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -2451,7 +2321,7 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       tl.from(".figma-window", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.48, ease: "power3.out" }, 0.12);
-      tl.from(".navigation-rail, .left-panel, .properties-panel", { opacity: 0, y: 10, duration: 0.38, stagger: 0.06, ease: "sine.out" }, 0.3);
+      tl.from(".left-panel, .properties-panel", { opacity: 0, y: 10, duration: 0.38, stagger: 0.06, ease: "sine.out" }, 0.3);
       tl.from(".desktop-frame", { opacity: 0, y: 28, scale: 0.98, duration: 0.52, ease: "expo.out" }, 0.5);
       tl.from(".mobile-frame", { opacity: 0, x: 30, duration: 0.42, ease: "power2.out" }, 0.75);
       tl.from(".selected-object", { outlineColor: "rgba(13,153,255,0)", duration: 0.32, ease: "sine.out" }, 1.05);

@@ -49,12 +49,6 @@
             </div>
 
             <article class="message-row assistant">
-              <div class="assistant-gutter">
-                <span class="claude-sunburst response-mark" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                </span>
-              </div>
               <div class="assistant-stack">
                 <div class="assistant-copy">
                   <span class="typing-mask assistant-line">I'll update the launch deck from the selected folder.</span>
@@ -353,8 +347,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .message-row.assistant {
-        grid-template-columns: 32px minmax(0, 1fr);
-        gap: 10px;
+        display: block;
       }
 
       .sticky-prompt-bubble {
@@ -421,10 +414,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
 
       .context-pill.sheet i {
         background: #84b889;
-      }
-
-      .assistant-gutter {
-        padding-top: 2px;
       }
 
       .assistant-stack {

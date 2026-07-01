@@ -17,6 +17,36 @@
 
 <template id="claude-code-desktop-surface-template">
   <div id="claude-code-desktop-surface" data-composition-id="claude-code-desktop-surface" data-width="1440" data-height="900">
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="lucide-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 10h.01" />
+        <path d="M12 14h.01" />
+        <path d="M12 6h.01" />
+        <path d="M16 10h.01" />
+        <path d="M16 14h.01" />
+        <path d="M16 6h.01" />
+        <path d="M8 10h.01" />
+        <path d="M8 14h.01" />
+        <path d="M8 6h.01" />
+        <path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
+        <rect x="4" y="2" width="16" height="20" rx="2" />
+      </symbol>
+      <symbol id="lucide-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2" />
+        <path d="M12 20v2" />
+        <path d="m4.93 4.93 1.41 1.41" />
+        <path d="m17.66 17.66 1.41 1.41" />
+        <path d="M2 12h2" />
+        <path d="M20 12h2" />
+        <path d="m6.34 17.66-1.41 1.41" />
+        <path d="m19.07 4.93-1.41 1.41" />
+      </symbol>
+      <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </symbol>
+    </svg>
     <section class="claude-code-window" data-primitive="claude-code-desktop-window" aria-label="Editable Claude Code desktop app surface">
       <aside class="code-sidebar" data-primitive="claude-code-sidebar">
         <div class="traffic" aria-hidden="true">
@@ -37,13 +67,7 @@
           <button type="button"><span class="folder-icon"></span>Customize</button>
         </nav>
 
-        <div class="workspace-row">
-          <span class="building-icon"></span>
-          <strong>Acme Co.</strong>
-          <button type="button" class="gear" aria-label="Workspace settings"></button>
-        </div>
-
-        <div class="sidebar-section">Sessions</div>
+        <div class="sidebar-section">Recents</div>
         <div class="session-row selected">
           <strong>alignment grid demo</strong>
           <span>4 files changed</span>
@@ -57,22 +81,10 @@
           <span>tests running</span>
         </div>
 
-        <div class="sidebar-bottom">
-          <div class="pr-row">
-            <span class="added">+954</span>
-            <span class="removed">-55</span>
-            <button type="button">Create PR</button>
-          </div>
-          <div class="small-composer">
-            <button type="button" class="plus"></button>
-            <button type="button" class="mic"></button>
-            <span>make it snap instead of overshoot</span>
-            <button type="button" class="stop"></button>
-          </div>
-          <div class="model-row">
-            <span>Opus 4.6</span>
-            <span class="spinner"></span>
-          </div>
+        <div class="workspace-row">
+          <svg class="backlot-icon building-icon" aria-hidden="true"><use href="#lucide-building"/></svg>
+          <strong>Acme Co.</strong>
+          <button type="button" class="gear" aria-label="Toggle theme"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sun"/></svg></button>
         </div>
       </aside>
 
@@ -122,6 +134,17 @@
             </div>
           </article>
         </section>
+
+        <footer class="thread-composer">
+          <div class="composer-field">
+            <button type="button" class="composer-plus" aria-label="Add"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+            <span>make it snap instead of overshoot</span>
+          </div>
+          <div class="composer-meta">
+            <span class="composer-model">Opus 4.6</span>
+            <span class="spinner"></span>
+          </div>
+        </footer>
       </main>
 
       <aside class="workbench" data-primitive="claude-code-workbench">
@@ -259,8 +282,6 @@
       .mode-row,
       .primary-actions button,
       .workspace-row,
-      .pr-row,
-      .model-row,
       .thread-topbar,
       .topbar-icons,
       .changed-file,
@@ -268,7 +289,9 @@
       .terminal-panel header,
       .tasks-panel header,
       .task-row,
-      .view-menu div {
+      .view-menu div,
+      .composer-field,
+      .composer-meta {
         display: flex;
         align-items: center;
       }
@@ -298,7 +321,7 @@
       .icon-button,
       .gear,
       .topbar-icons button,
-      .small-composer button,
+      .composer-plus,
       .diff-panel button,
       .terminal-panel button,
       .tasks-panel button {
@@ -373,9 +396,15 @@
 
       .plus-icon,
       .clock-icon,
-      .folder-icon,
-      .building-icon {
+      .folder-icon {
         position: relative;
+        width: 16px;
+        height: 16px;
+        color: var(--muted);
+        flex: 0 0 auto;
+      }
+
+      .building-icon {
         width: 16px;
         height: 16px;
         color: var(--muted);
@@ -423,8 +452,7 @@
         background: currentColor;
       }
 
-      .folder-icon,
-      .building-icon {
+      .folder-icon {
         border: 1.5px solid currentColor;
         border-radius: 3px;
       }
@@ -444,6 +472,9 @@
       .workspace-row {
         gap: 10px;
         height: 34px;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
         color: #ded9d0;
         font-size: 14px;
       }
@@ -452,20 +483,23 @@
         margin-left: auto;
         width: 22px;
         height: 22px;
+        display: grid;
+        place-items: center;
       }
 
-      .workspace-row .gear::before {
-        content: "*";
-        font-size: 18px;
-        color: var(--faint);
+      .workspace-row .gear svg {
+        width: 16px;
+        height: 16px;
+        color: #6f6d66;
       }
 
       .sidebar-section {
         margin: 18px 0 8px;
-        color: var(--faint);
-        font-size: 11px;
-        font-weight: 650;
-        text-transform: uppercase;
+        color: #8a877f;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: 0;
       }
 
       .session-row {
@@ -499,83 +533,8 @@
         font-size: 12px;
       }
 
-      .sidebar-bottom {
-        margin-top: auto;
-        display: grid;
-        gap: 10px;
-      }
-
-      .pr-row {
-        height: 44px;
-        gap: 9px;
-        padding: 0 10px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: #171818;
-        font-family: var(--font-terminal);
-      }
-
       .added { color: var(--green); }
       .removed { color: var(--red); }
-
-      .pr-row button {
-        margin-left: auto;
-        height: 30px;
-        padding: 0 12px;
-        border: 0;
-        border-radius: 10px;
-        background: #2d2e2e;
-        color: #8b8985;
-      }
-
-      .small-composer {
-        height: 58px;
-        display: grid;
-        grid-template-columns: 28px 28px 1fr 28px;
-        align-items: center;
-        gap: 6px;
-        padding: 0 8px;
-        border: 1px solid var(--line-2);
-        border-radius: 13px;
-        background: #181919;
-        color: #eeeae2;
-      }
-
-      .small-composer span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: 13px;
-      }
-
-      .small-composer .plus::before {
-        content: "+";
-        color: var(--text);
-        font-size: 22px;
-      }
-
-      .small-composer .mic::before {
-        content: "";
-        display: block;
-        width: 10px;
-        height: 15px;
-        margin: auto;
-        border: 1.5px solid var(--muted);
-        border-radius: 8px;
-      }
-
-      .small-composer .stop {
-        border: 1px solid var(--line-2);
-        border-radius: 7px;
-      }
-
-      .model-row {
-        justify-content: flex-end;
-        gap: 10px;
-        padding-right: 4px;
-        color: #d6d0c8;
-        font-size: 18px;
-      }
 
       .spinner {
         width: 26px;
@@ -588,9 +547,56 @@
       .code-thread {
         min-width: 0;
         display: grid;
-        grid-template-rows: 48px 1fr;
+        grid-template-rows: 48px 1fr auto;
         border-right: 1px solid var(--line);
         background: #0b0c0c;
+      }
+
+      .thread-composer {
+        display: grid;
+        gap: 10px;
+        padding: 16px 20px 18px;
+      }
+
+      .composer-field {
+        height: 44px;
+        gap: 10px;
+        padding: 0 12px;
+        border-radius: 10px;
+        background: #1d1d1b;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .composer-plus {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+        color: #9b9892;
+      }
+
+      .composer-field span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #e8e6e3;
+        font-size: 13px;
+      }
+
+      .composer-meta {
+        height: 24px;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .composer-model {
+        color: #b8b5ad;
+        font-size: 13px;
+      }
+
+      .composer-meta .spinner {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
       }
 
       .thread-topbar {

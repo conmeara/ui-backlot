@@ -447,6 +447,16 @@ lab.
   Office surfaces use Mac 365 caption-less ribbons; Codex, Figma, Premiere,
   browser, and Calendar received reference-matched chrome passes. See
   `docs/prototypes/full-inventory-realism-audit-pass-097.md`.
+- Pass 099 introduced the reusable `fidelity-push` multi-agent workflow
+  (`.claude/workflows/fidelity-push.js`): per-family design critique against
+  real-app references, file-scoped fixes with capture verification, and
+  adversarial before/after judgment. All nine families improved — invented
+  controls removed across the board (Claude avatar gutter, Word floating
+  toolbar, Chrome "private" pill, Premiere duplicate Export, Figma double
+  navigation), content made self-consistent (Excel math, Premiere labels,
+  Figma dimensions), and chrome corrected against real captures (transparent
+  menu bar with Help, Finder toolbar glyphs, Codex plates). See
+  `docs/prototypes/fidelity-push-workflow-pass-099.md`.
 - Reusable primitives are listed in `PRIMITIVES.md`.
 
 ## First Real Workflow

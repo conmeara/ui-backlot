@@ -16,6 +16,22 @@
 
 <template id="claude-home-surface-template">
   <div id="claude-home-surface" data-composition-id="claude-home-surface" data-width="980" data-height="760">
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      </symbol>
+      <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </symbol>
+      <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="lucide-send-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 12 7-7 7 7" />
+        <path d="M12 19V5" />
+      </symbol>
+    </svg>
     <section class="claude-home-window dframe-root" data-primitive="claude-home-window" aria-label="Editable Claude home prompt surface">
       <aside class="home-sidebar" data-primitive="claude-sidebar-home">
         <div class="claude-traffic" aria-hidden="true">
@@ -77,22 +93,22 @@
               <span></span><span></span><span></span><span></span><span></span>
               <span></span><span></span><span></span><span></span><span></span>
             </span>
-            <h1>Claude</h1>
+            <h1>Let's knock something off your list</h1>
           </div>
           <div class="home-prompt-card conway-glass-frame" data-primitive="claude-home-composer">
-            <div class="prompt-title">Need help tackling my to-dos!</div>
             <div class="prompt-copy">Can you go to my web store and make the delivery pricing free for orders over $25 this holiday weekend?</div>
             <div class="prompt-footer">
-              <button class="folder-pill" type="button"><span class="folder-mini"></span>Work in a folder</button>
-              <button class="plus-button" type="button" aria-label="Attach"></button>
+              <button class="folder-button" type="button" aria-label="Work in a folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></button>
+              <button class="plus-button" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
               <span class="footer-spacer"></span>
-              <button class="lets-go" type="button">Let's go <span></span></button>
+              <button class="composer-model-selector" type="button">Opus 4.5 <svg class="backlot-icon chevron-down" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+              <button class="send-button" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
             </div>
           </div>
           <div class="starter-row" aria-label="Starter prompts">
             <button type="button">Summarize a folder</button>
             <button type="button">Draft a launch plan</button>
-            <button type="button">Analyze a spreadsheet</button>
+            <button type="button">Analyze a sheet</button>
           </div>
         </section>
       </main>
@@ -546,25 +562,27 @@
       }
 
       .home-logo {
+        width: min(100%, 608px);
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
       }
 
       .hero-mark {
-        --sun-size: 35px;
-        --ray-w: 5px;
-        --ray-h: 16px;
+        --sun-size: 28px;
+        --ray-w: 4px;
+        --ray-h: 13px;
       }
 
       .home-logo h1 {
         margin: 0;
         color: var(--text-100);
         font-family: var(--font-claude-serif);
-        font-size: 39px;
-        font-weight: 720;
+        font-size: 30px;
+        font-weight: 600;
         letter-spacing: 0;
+        text-align: left;
       }
 
       .home-prompt-card {
@@ -578,19 +596,11 @@
           0 10px 30px rgba(64, 48, 34, 0.062);
       }
 
-      .prompt-title {
-        color: var(--text-100);
-        font-size: 15.5px;
-        font-weight: 680;
-      }
-
       .prompt-copy {
-        margin-top: 14px;
         max-width: 520px;
-        color: #11110f;
-        font-size: 14.5px;
-        line-height: 1.4;
-        font-weight: 500;
+        color: #171715;
+        font-size: 16px;
+        line-height: 1.5;
       }
 
       .prompt-footer {
@@ -600,90 +610,62 @@
         margin-top: 19px;
       }
 
-      .folder-pill {
-        height: 28px;
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 0 10px;
-        border: 1px solid var(--border-100);
-        border-radius: 7px;
-        background: #fff;
-        color: var(--text-300);
-        font-size: 12px;
-        font-weight: 640;
-      }
-
-      .folder-mini {
-        width: 13px;
-        height: 10px;
-        border-radius: 2px;
-        background: #d7cfc3;
-        position: relative;
-      }
-
-      .folder-mini::before {
-        content: "";
-        position: absolute;
-        left: 1px;
-        top: -3px;
-        width: 7px;
-        height: 4px;
-        border-radius: 2px 2px 0 0;
-        background: #c6bbad;
-      }
-
+      .folder-button,
       .plus-button {
         position: relative;
         width: 28px;
         height: 28px;
+        display: grid;
+        place-items: center;
         border: 0;
         border-radius: 7px;
         background: transparent;
-        color: var(--text-400);
+        color: var(--text-300);
       }
 
-      .plus-button::before,
-      .plus-button::after {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 13px;
-        width: 12px;
-        height: 1.7px;
-        border-radius: 2px;
-        background: currentColor;
-      }
-
-      .plus-button::after {
-        transform: rotate(90deg);
+      .folder-button svg,
+      .plus-button svg {
+        width: 20px;
+        height: 20px;
       }
 
       .footer-spacer {
         flex: 1;
       }
 
-      .lets-go {
-        height: 31px;
+      .composer-model-selector {
+        height: 28px;
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        padding: 0 13px;
+        gap: 4px;
+        padding: 0 4px;
         border: 0;
-        border-radius: 8px;
-        background: var(--brand-000);
-        color: #fff;
-        font-size: 12px;
-        font-weight: 680;
-        box-shadow: 0 9px 17px rgba(199, 95, 72, 0.24);
+        background: transparent;
+        color: var(--text-300);
+        font-size: 14px;
+        font-weight: 500;
       }
 
-      .lets-go span {
-        width: 9px;
-        height: 9px;
-        border-right: 2px solid currentColor;
-        border-top: 2px solid currentColor;
-        transform: rotate(45deg);
+      .composer-model-selector .chevron-down {
+        width: 14px;
+        height: 14px;
+      }
+
+      .send-button {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 12px;
+        background: var(--brand-100);
+        color: #fff;
+      }
+
+      .send-button svg {
+        width: 20px;
+        height: 20px;
       }
 
       .starter-row {
@@ -695,7 +677,7 @@
 
       .starter-row button {
         min-width: 0;
-        min-height: 40px;
+        height: 44px;
         padding: 0 11px;
         border: 1px solid rgba(52, 46, 39, 0.11);
         border-radius: 10px;
@@ -704,6 +686,9 @@
         font-size: 12px;
         font-weight: 620;
         text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     </style>
 
@@ -716,10 +701,9 @@
       tl.from(".home-topbar", { opacity: 0, y: -8, duration: 0.28, ease: "sine.out" }, 0.32);
       tl.from(".home-logo", { opacity: 0, y: 14, duration: 0.38, ease: "power2.out" }, 0.55);
       tl.from(".home-prompt-card", { opacity: 0, y: 22, scale: 0.985, duration: 0.45, ease: "power3.out" }, 0.78);
-      tl.from(".prompt-title, .prompt-copy, .prompt-footer", { opacity: 0, y: 8, duration: 0.24, stagger: 0.08, ease: "sine.out" }, 1.08);
+      tl.from(".prompt-copy, .prompt-footer", { opacity: 0, y: 8, duration: 0.24, stagger: 0.08, ease: "sine.out" }, 1.08);
       tl.from(".starter-row button", { opacity: 0, y: 10, duration: 0.28, stagger: 0.055, ease: "sine.out" }, 1.42);
       tl.to(".hero-mark", { rotation: 8, scale: 1.035, duration: 0.5, repeat: 3, yoyo: true, ease: "sine.inOut" }, 1.8);
-      tl.to(".lets-go", { scale: 1.045, duration: 0.24, repeat: 3, yoyo: true, ease: "sine.inOut" }, 2.18);
       window.__timelines["claude-home-surface"] = tl;
     </script>
   </div>

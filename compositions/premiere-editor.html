@@ -35,16 +35,9 @@
         </div>
         <div class="workspace-identity">
           <span>ESSENTIALS</span>
-          <i class="top-icon layout"></i>
-          <i class="top-icon share"></i>
-          <i class="top-icon sliders"></i>
-          <i class="top-icon flask"></i>
-          <i class="top-icon comment"></i>
-          <i class="top-icon expand"></i>
         </div>
         <div class="top-actions">
           <button type="button" class="sync-pill"><span></span> Frame.io</button>
-          <button type="button" class="export-cta">Export</button>
         </div>
       </header>
 
@@ -68,7 +61,7 @@
           </div>
           <div class="monitor-frame source-frame">
             <div class="video-still interview">
-              <div class="monitor-overlay top-left">V: interview_selects.mov</div>
+              <div class="monitor-overlay top-left">A005_C037_0925SG_001.mp4</div>
               <div class="subject"></div>
               <div class="background-card"></div>
               <div class="source-timecode">00:01:14:09</div>
@@ -97,7 +90,7 @@
 
         <section class="panel program-monitor" data-primitive="premiere-program-monitor">
           <div class="panel-tabs">
-            <button type="button" class="active">Program: Sequence 02</button>
+            <button type="button" class="active">Program: Launch Deck sequence</button>
             <button type="button">Comparison View</button>
             <span class="panel-menu"></span>
           </div>
@@ -174,7 +167,6 @@
           <button class="tool pen" type="button" aria-label="Pen tool"></button>
           <button class="tool hand" type="button" aria-label="Hand tool"></button>
           <button class="tool text" type="button" aria-label="Text tool"></button>
-          <button class="tool extend" type="button" aria-label="Generative Extend tool"></button>
         </aside>
 
         <section class="panel timeline-panel" data-primitive="premiere-timeline-editor">
@@ -275,7 +267,7 @@
             <span class="panel-menu"></span>
           </div>
           <section class="property-stack">
-            <div class="property-heading"><span class="multi-icon"></span><strong>Multiple clips selected</strong><i></i></div>
+            <div class="property-heading"><strong>funding_card.png</strong><i></i></div>
             <div class="disclosure open">Transform</div>
             <div class="mini-icons"><span></span><span></span></div>
             <div class="prop-line keyframed"><span>Position</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
@@ -307,7 +299,7 @@
         --muted: #9d9d9d;
         --soft: #737373;
         --accent: #2680eb;
-        --accent-blue: #4fc3f7;
+        --accent-blue: #6fa0d8;
         --teal: #36a7a2;
         --green: #08c733;
         --orange: #c18436;
@@ -439,6 +431,8 @@
         display: flex;
         align-items: center;
         gap: 6px;
+        grid-column: 6 / 7;
+        justify-self: end;
       }
 
       .top-actions button,
@@ -450,8 +444,7 @@
         color: inherit;
       }
 
-      .sync-pill,
-      .export-cta {
+      .sync-pill {
         height: 24px;
         display: inline-flex;
         align-items: center;
@@ -460,9 +453,6 @@
         border-radius: 4px;
         font-size: 11px;
         font-weight: 650;
-      }
-
-      .sync-pill {
         background: #2a2a2a;
         color: #d6d7df;
       }
@@ -473,55 +463,6 @@
         border-radius: 999px;
         background: var(--green);
         box-shadow: 0 0 0 3px rgba(91, 191, 114, 0.12);
-      }
-
-      .export-cta {
-        background: #7b61ff;
-        color: #fff;
-      }
-
-      .top-icon {
-        width: 16px;
-        height: 16px;
-        position: relative;
-        display: inline-block;
-        color: #b7b7b7;
-      }
-
-      .top-icon::before,
-      .top-icon::after {
-        content: "";
-        position: absolute;
-        inset: 3px;
-        border: 1.5px solid currentColor;
-      }
-
-      .top-icon.share::before {
-        border: 0;
-        border-top: 2px solid currentColor;
-        border-right: 2px solid currentColor;
-        transform: rotate(-45deg);
-      }
-
-      .top-icon.sliders::before {
-        inset: 4px 2px;
-        border-left: 0;
-        border-right: 0;
-      }
-
-      .top-icon.flask::before {
-        inset: 1px 4px 3px;
-        border-radius: 0 0 5px 5px;
-      }
-
-      .top-icon.comment::before {
-        border-radius: 3px;
-      }
-
-      .top-icon.expand::before {
-        inset: 2px;
-        border-left: 0;
-        border-bottom: 0;
       }
 
       .workspace-tabs {
@@ -1322,15 +1263,6 @@
         font-weight: 850;
       }
 
-      .tool.extend::before {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background:
-          radial-gradient(circle, currentColor 0 2px, transparent 3px),
-          conic-gradient(currentColor 0 45deg, transparent 45deg 90deg, currentColor 90deg 135deg, transparent 135deg 180deg, currentColor 180deg 225deg, transparent 225deg 270deg, currentColor 270deg 315deg, transparent 315deg);
-      }
-
       .timeline-tabs {
         gap: 4px;
       }
@@ -1775,24 +1707,6 @@
           radial-gradient(circle, #c7c7c7 0 1px, transparent 1.5px) 3px 7px / 5px 5px repeat-x;
       }
 
-      .multi-icon {
-        width: 16px;
-        height: 16px;
-        position: relative;
-      }
-
-      .multi-icon::before,
-      .multi-icon::after {
-        content: "";
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: #bbb;
-      }
-
-      .multi-icon::before { left: 1px; top: 1px; }
-      .multi-icon::after { right: 1px; bottom: 1px; }
-
       .disclosure {
         height: 32px;
         display: flex;
@@ -1842,7 +1756,7 @@
       }
 
       .prop-line strong {
-        color: #42a5ff;
+        color: #5a8fd6;
         font-weight: 520;
         text-align: right;
         font-variant-numeric: tabular-nums;

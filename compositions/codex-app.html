@@ -31,12 +31,12 @@
       <symbol id="codex-icon-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol>
       <symbol id="codex-icon-settings" viewBox="0 0 24 24"><path d="M9.7 4.6a2.2 2.2 0 0 1 4.6 0l.2 1a2 2 0 0 0 2.5 1.3l1-.4a2.2 2.2 0 0 1 2.3 4l-.8.6a2 2 0 0 0 0 2.8l.8.6a2.2 2.2 0 0 1-2.3 4l-1-.4a2 2 0 0 0-2.5 1.3l-.2 1a2.2 2.2 0 0 1-4.6 0l-.2-1A2 2 0 0 0 7 18.1l-1 .4a2.2 2.2 0 0 1-2.3-4l.8-.6a2 2 0 0 0 0-2.8l-.8-.6a2.2 2.2 0 0 1 2.3-4l1 .4a2 2 0 0 0 2.5-1.3Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
       <symbol id="codex-icon-more" viewBox="0 0 24 24"><circle cx="6.5" cy="12" r="1.2"></circle><circle cx="12" cy="12" r="1.2"></circle><circle cx="17.5" cy="12" r="1.2"></circle></symbol>
-      <symbol id="codex-icon-vscode" viewBox="0 0 24 24"><path d="M18.5 4.5 10 12l8.5 7.5V4.5Z" fill="currentColor" stroke="none"></path><path d="M10 8 5.5 12 10 16"></path></symbol>
+      <symbol id="codex-icon-vscode" viewBox="0 0 24 24"><path d="M17 3.5 9 11 5.8 8.6 4 9.6l3.3 2.4L4 14.4l1.8 1 3.2-2.4 8 7.5 3-1.4V4.9L17 3.5Zm.2 4.9v7.2L12.4 12 17.2 8.4Z" fill="#3d7fd6" stroke="none"></path></symbol>
       <symbol id="codex-icon-sliders" viewBox="0 0 24 24"><path d="M4 7h16"></path><circle cx="9" cy="7" r="2"></circle><path d="M4 17h16"></path><circle cx="15" cy="17" r="2"></circle></symbol>
       <symbol id="codex-icon-terminal" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2.5"></rect><path d="m8 10 2.5 2L8 14"></path><path d="M13 14h3.5"></path></symbol>
       <symbol id="codex-icon-layout" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"></rect><path d="M14 5v14"></path></symbol>
-      <symbol id="codex-icon-shield" viewBox="0 0 24 24"><path d="M12 4 18 6.5v5.2c0 3.6-2.4 6.5-6 8.3-3.6-1.8-6-4.7-6-8.3V6.5Z"></path><path d="M9 12l2 2 4-4"></path></symbol>
-      <symbol id="codex-icon-spark" viewBox="0 0 24 24"><path d="M12 3.5 14.2 9l5.3 3-5.3 3L12 20.5 9.8 15l-5.3-3 5.3-3Z"></path><path d="M18.5 4.5v3"></path><path d="M17 6h3"></path></symbol>
+      <symbol id="codex-icon-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></symbol>
+      <symbol id="codex-icon-spark" viewBox="0 0 24 24"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7Z" fill="currentColor" stroke="none"></path></symbol>
       <symbol id="codex-icon-mic" viewBox="0 0 24 24"><rect x="9" y="4" width="6" height="11" rx="3"></rect><path d="M6.5 11.5a5.5 5.5 0 0 0 11 0"></path><path d="M12 17v3"></path></symbol>
       <symbol id="codex-icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"></path><path d="m6.5 10.5 5.5-5.5 5.5 5.5"></path></symbol>
       <symbol id="codex-icon-monitor" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"></rect><path d="M9 20h6"></path><path d="M12 16v4"></path></symbol>
@@ -160,7 +160,7 @@
             <div class="composer-input">Ask for follow-up changes</div>
             <div class="composer-bottom">
               <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#codex-icon-plus"></use></svg></button>
-              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-shield"></use></svg>Default permissions <span class="chev"></span></button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-hand"></use></svg>Default permissions <span class="chev"></span></button>
               <span class="composer-fill"></span>
               <button class="model-select" type="button"><svg class="spark"><use href="#codex-icon-spark"></use></svg>GPT-5.4 <span class="chev"></span></button>
               <button class="effort-select" type="button">Extra High <span class="chev"></span></button>
@@ -718,21 +718,7 @@
         width: 14px;
         height: 14px;
         display: inline-block;
-        border-radius: 4px;
-        background: #4c83d9;
         position: relative;
-      }
-
-      .vscode-mark::before {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 3px;
-        width: 6px;
-        height: 7px;
-        border-left: 2px solid #fff;
-        border-top: 2px solid #fff;
-        transform: skewX(-12deg) rotate(-45deg);
       }
 
       .chev {
@@ -1407,18 +1393,20 @@
 
       .code-row.remove {
         background: #fde8e8;
+        box-shadow: inset 3px 0 0 #d98a86;
       }
 
       .code-row.add {
         background: #e4f4e7;
+        box-shadow: inset 3px 0 0 #4caf72;
       }
 
       .code-row.remove code {
-        color: #8d4243;
+        color: #2b2f35;
       }
 
       .code-row.add code {
-        color: #2f7552;
+        color: #2b2f35;
       }
 
       .review-actions {
@@ -1549,7 +1537,6 @@
       .more-button::before,
       .review-menu::before,
       .gear-button::before,
-      .vscode-mark::before,
       .slider-icon::before,
       .slider-icon::after,
       .terminal-button::before,
@@ -1627,18 +1614,14 @@
       .vscode-mark {
         display: inline-grid;
         place-items: center;
-        overflow: hidden;
-        color: #fff;
+        overflow: visible;
       }
 
       .vscode-mark svg {
-        width: 12px;
-        height: 12px;
-        fill: currentColor;
-        stroke: currentColor;
-        stroke-width: 1.7;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: none;
       }
 
       .commit-node-icon {
