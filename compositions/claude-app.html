@@ -64,6 +64,10 @@
           <path d="M16 13H8" />
           <path d="M16 17H8" />
         </symbol>
+        <symbol id="lucide-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"/>
+          <line x1="12" y1="19" x2="20" y2="19"/>
+        </symbol>
         <symbol id="lucide-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
         </symbol>
@@ -130,7 +134,7 @@
         </div>
 
         <div class="sidebar-account">
-          <span class="account-avatar"></span>
+          <span class="account-avatar">DW</span>
           <span class="account-copy"><strong>Demo workspace</strong><span>Pro plan</span></span>
           <span class="sidebar-kebab"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></span>
         </div>
@@ -191,14 +195,17 @@
 
                 <section class="thinking-card" data-primitive="message-part-group" aria-label="Thinking">
                   <button class="card-trigger" type="button">
-                    <span class="chevron open"></span>
+                    <span class="card-glyph"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-terminal"/></svg></span>
                     <span>Running command</span>
-                    <span class="card-meta">3 parts</span>
+                    <span class="chevron open trailing"></span>
                   </button>
                   <div class="thinking-body">
                     <div class="part-section">
-                      <span class="part-label">Request JSON</span>
-                      <span>{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }</span>
+                      <span class="part-label">Request</span>
+                      <span class="part-code">{
+  "command": "find /sessions/launch-deck -type f -maxdepth 2",
+  "description": "List selected project files"
+}</span>
                     </div>
                     <div class="source-cluster" aria-label="Sources">
                       <span class="source-label">Selected context</span>
@@ -274,6 +281,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
                 </button>
               </div>
             </div>
+            <div class="composer-disclaimer">Claude is AI and can make mistakes. Please double-check responses.</div>
           </div>
         </footer>
       </main>
@@ -424,13 +432,13 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 14px;
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 8px;
         margin: 0 0 13px 4px;
       }
 
       .claude-traffic span {
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         box-shadow:
           inset 0 0 0 0.5px rgba(0, 0, 0, 0.15),
@@ -438,15 +446,15 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .claude-traffic .red {
-        background: radial-gradient(circle at 35% 30%, #ff8a80 0%, #ff5f57 55%, #e0443e 100%);
+        background: #ff5f57;
       }
 
       .claude-traffic .yellow {
-        background: radial-gradient(circle at 35% 30%, #ffd54f 0%, #febc2e 55%, #d89e24 100%);
+        background: #febc2e;
       }
 
       .claude-traffic .green {
-        background: radial-gradient(circle at 35% 30%, #69f0ae 0%, #28c840 55%, #1f9e38 100%);
+        background: #28c840;
       }
 
       .sidebar-head {
@@ -696,9 +704,14 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 23px;
         height: 23px;
         border-radius: 50%;
-        background:
-          radial-gradient(circle at 38% 32%, #fff 0 13%, rgba(255, 255, 255, 0) 15%),
-          var(--brand-100);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--brand-100);
+        color: #fff;
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
       }
 
       .account-copy {
@@ -924,32 +937,40 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .assistant-copy {
         max-width: 690px;
         display: grid;
-        gap: 5px;
+        gap: 13px;
         color: var(--text-100);
         font-family: var(--font-claude-serif);
-        font-size: 27px;
-        line-height: 1.14;
-        font-weight: 430;
-        letter-spacing: 0;
+        font-size: 21px;
+        line-height: 1.42;
+        font-weight: 410;
+        letter-spacing: 0.1px;
       }
 
       #claude-app-surface[data-reference-focus="true"] .assistant-copy {
         max-width: 735px;
-        gap: 3px;
-        font-size: 29px;
-        line-height: 1.12;
+        gap: 13px;
+        font-size: 22px;
+        line-height: 1.4;
       }
 
       .assistant-line.secondary {
-        font-size: 0.78em;
-        line-height: 1.13;
-        color: var(--text-200);
+        font-size: 1em;
+        line-height: inherit;
+        color: var(--text-100);
       }
 
       #claude-app-surface[data-reference-focus="true"] .assistant-line.secondary {
-        font-size: 0.68em;
-        line-height: 1.08;
-        color: var(--text-300);
+        font-size: 1em;
+        line-height: inherit;
+        color: var(--text-100);
+      }
+
+      .composer-disclaimer {
+        margin-top: 8px;
+        text-align: center;
+        color: var(--text-500);
+        font-size: 11.5px;
+        letter-spacing: 0.1px;
       }
 
       .thread-context-strip {
@@ -1021,44 +1042,50 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 100%;
         margin-top: 14px;
         overflow: hidden;
-        border: 1px solid rgba(39, 37, 34, 0.036);
-        border-radius: 15px;
-        background: rgba(255, 253, 249, 0.34);
+        border: 1px solid rgba(39, 37, 34, 0.07);
+        border-radius: 14px;
+        background: #fffefb;
+        box-shadow: 0 1px 4px rgba(45, 36, 27, 0.04);
       }
 
       #claude-app-surface[data-reference-focus="true"] .thinking-card,
       #claude-app-surface[data-reference-focus="true"] .tool-card {
         margin-top: 15px;
         opacity: 1;
-        border-color: rgba(39, 37, 34, 0.028);
-        background: rgba(255, 253, 249, 0.24);
-        box-shadow: none;
-      }
-
-      .thinking-card {
-        box-shadow: 0 4px 14px rgba(45, 36, 27, 0.02);
-      }
-
-      .tool-card {
-        background: rgba(255, 253, 249, 0.4);
-        box-shadow: 0 5px 18px rgba(45, 36, 27, 0.025);
+        border-color: rgba(39, 37, 34, 0.06);
+        background: #fffefb;
+        box-shadow: 0 1px 4px rgba(45, 36, 27, 0.035);
       }
 
       .card-trigger {
         width: 100%;
-        min-height: 30px;
+        min-height: 38px;
         display: grid;
         grid-template-columns: 18px 1fr auto;
         align-items: center;
         gap: 8px;
-        padding: 0 11px;
-        color: var(--text-400);
+        padding: 0 13px;
+        color: var(--text-200);
         border: 0;
-        background: rgba(250, 248, 244, 0.22);
-        border-bottom: 1px solid rgba(39, 37, 34, 0.035);
-        font-size: 12px;
-        font-weight: 570;
+        background: transparent;
+        border-bottom: 0;
+        font-size: 13px;
+        font-weight: 500;
         text-align: left;
+      }
+
+      .card-glyph {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        color: var(--text-400);
+        font-size: 13px;
+      }
+
+      .chevron.trailing {
+        justify-self: end;
       }
 
       .card-meta,
@@ -1070,25 +1097,39 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .thinking-body {
-        padding: 8px 11px 9px 37px;
+        padding: 0 13px 12px;
         display: grid;
         gap: 9px;
       }
 
       .part-section {
         display: grid;
-        gap: 3px;
+        gap: 6px;
         color: var(--text-300);
         font-size: 12px;
         line-height: 1.34;
       }
 
+      .part-code {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #f6f4ee;
+        color: #2f7d4f;
+        font-family: var(--font-terminal);
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
       .part-label,
       .source-label {
         color: var(--text-500);
-        font-size: 10px;
-        font-weight: 650;
-        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: 0;
       }
 
       .source-cluster {
@@ -1915,6 +1956,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 42px;
         height: 42px;
         background: #23201c;
+        font-size: 15px;
       }
 
       .account-copy strong {
@@ -1930,10 +1972,10 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       #claude-app-surface[data-reference-focus="true"] .dframe-pane-primary {
         grid-template-rows: var(--df-header-h) minmax(0, 1fr) 142px;
         background:
-          linear-gradient(rgba(223, 219, 209, 0.45) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          linear-gradient(rgba(223, 219, 209, 0.16) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(223, 219, 209, 0.16) 1px, transparent 1px),
           #fffdf7;
-        background-size: 48px 48px;
+        background-size: 56px 56px;
       }
 
       .epitaxy-topbar,
@@ -2005,16 +2047,16 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .assistant-copy,
       #claude-app-surface[data-reference-focus="true"] .assistant-copy {
         max-width: 455px;
-        gap: 8px;
-        font-size: 23px;
-        line-height: 1.16;
+        gap: 13px;
+        font-size: 21px;
+        line-height: 1.42;
       }
 
       .assistant-line.secondary,
       #claude-app-surface[data-reference-focus="true"] .assistant-line.secondary {
-        font-size: 0.94em;
-        line-height: 1.22;
-        color: var(--text-200);
+        font-size: 1em;
+        line-height: inherit;
+        color: var(--text-100);
       }
 
       .thinking-card,
@@ -2022,40 +2064,41 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       #claude-app-surface[data-reference-focus="true"] .thinking-card,
       #claude-app-surface[data-reference-focus="true"] .tool-card {
         margin-top: 12px;
-        border-color: rgba(46, 39, 32, 0.12);
+        border-color: rgba(39, 37, 34, 0.07);
         border-radius: 14px;
-        background: rgba(255, 254, 250, 0.92);
-        box-shadow: 0 2px 10px rgba(52, 43, 34, 0.06);
+        background: #fffefb;
+        box-shadow: 0 1px 4px rgba(45, 36, 27, 0.04);
       }
 
       .card-trigger {
-        min-height: 36px;
-        grid-template-columns: 24px 1fr auto;
-        padding: 0 18px;
-        font-size: 15px;
+        min-height: 38px;
+        grid-template-columns: 20px 1fr auto;
+        padding: 0 14px;
+        font-size: 13.5px;
         color: var(--text-200);
       }
 
       .thinking-body {
         min-height: 108px;
-        padding: 10px 14px 12px 43px;
+        padding: 0 14px 12px;
       }
 
       .part-section {
-        padding: 10px 14px;
-        border-radius: 10px;
-        background: #f8f7f1;
-        color: #3f7b45;
-        font-family: var(--font-terminal);
-        font-size: 14px;
-        line-height: 1.34;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--text-300);
+        font-family: inherit;
+        font-size: 12.5px;
+        line-height: 1.4;
       }
 
       .part-label,
       .source-label {
         color: #756f66;
         font-family: var(--font-claude-ui);
-        font-size: 13px;
+        font-size: 11.5px;
+        font-weight: 500;
         text-transform: none;
       }
 
@@ -2150,10 +2193,10 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         padding: 30px 18px 24px;
         overflow: hidden;
         background:
-          linear-gradient(rgba(223, 219, 209, 0.45) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(223, 219, 209, 0.45) 1px, transparent 1px),
+          linear-gradient(rgba(223, 219, 209, 0.16) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(223, 219, 209, 0.16) 1px, transparent 1px),
           #fffdf7;
-        background-size: 48px 48px;
+        background-size: 56px 56px;
         border-left: 1px solid rgba(47, 41, 35, 0.1);
       }
 

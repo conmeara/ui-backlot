@@ -94,6 +94,7 @@
             <button type="button" aria-label="Send" class="send-control"></button>
           </div>
         </footer>
+        <div class="composer-disclaimer">Claude is AI and can make mistakes. Please double-check responses.</div>
       </main>
     </section>
 
@@ -160,6 +161,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
       }
 
       .traffic span:nth-child(1) { background: #ff5f57; }
@@ -440,7 +442,7 @@
         position: relative;
         min-width: 0;
         display: grid;
-        grid-template-rows: 76px 1fr 176px;
+        grid-template-rows: 76px 1fr 176px 24px;
         background:
           radial-gradient(circle at 54% 20%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 28%),
           linear-gradient(180deg, #fffdfa 0%, #fbfaf6 100%);
@@ -631,7 +633,7 @@
         justify-self: center;
         width: min(900px, calc(100% - 112px));
         height: 122px;
-        margin-bottom: 24px;
+        margin-bottom: 6px;
         display: grid;
         grid-template-rows: 28px 1fr 38px;
         padding: 13px 17px 13px;
@@ -641,6 +643,15 @@
         box-shadow:
           0 1px 0 rgba(54, 45, 38, 0.06),
           0 20px 60px rgba(71, 52, 37, 0.09);
+      }
+
+      .composer-disclaimer {
+        justify-self: center;
+        width: min(900px, calc(100% - 112px));
+        margin-top: 8px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 11.5px;
       }
 
       .composer-chip-row {

@@ -1237,13 +1237,15 @@
         height: 52px;
         display: flex;
         align-items: center;
-        gap: 16px;
-        padding: 0 18px;
+        gap: 6px;
+        padding: 0 14px;
         border-bottom: 1px solid var(--panel-line);
       }
 
       .tab {
         height: 34px;
+        padding: 0 12px;
+        border-radius: 8px;
         color: #777;
         font-size: 16px;
         font-weight: 560;
@@ -1251,6 +1253,7 @@
 
       .tab.active {
         color: #1f1f1f;
+        background: #f1f1f1;
         font-weight: 720;
       }
 
@@ -1306,6 +1309,33 @@
       .frame-icon,
       .rect-icon {
         border-color: #444;
+      }
+
+      .frame-icon {
+        width: 12px;
+        height: 12px;
+        border: 0;
+        border-radius: 0;
+        background:
+          linear-gradient(#444 0 0) 0 4px / 12px 1.4px no-repeat,
+          linear-gradient(#444 0 0) 4px 0 / 1.4px 12px no-repeat;
+      }
+
+      .page-icon {
+        width: 11px;
+        height: 11px;
+        border: 0;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .page-icon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50% 50% 50% 4px;
+        background: #e5484d;
+        transform: rotate(-45deg);
       }
 
       .text-icon::before {
@@ -1534,20 +1564,20 @@
 
       .dark-floating-toolbar {
         bottom: 28px;
-        height: 58px;
-        gap: 12px;
-        padding: 8px 13px;
-        border: 0;
+        height: 52px;
+        gap: 4px;
+        padding: 7px 8px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
         border-radius: 15px;
         background: #fff;
-        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
       }
 
       .dark-floating-toolbar button {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        color: #111;
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        color: #1f1f1f;
       }
 
       .dark-floating-toolbar button.active {
@@ -1556,40 +1586,40 @@
       }
 
       .dark-floating-toolbar .move::before {
-        border-left-width: 12px;
-        border-top-width: 18px;
+        border-left-width: 10px;
+        border-top-width: 16px;
         border-bottom-width: 5px;
       }
 
       .dark-floating-toolbar .frame::before,
       .dark-floating-toolbar .shape::before,
       .dark-floating-toolbar .comment::before {
-        width: 21px;
-        height: 21px;
-        border-width: 2.6px;
+        width: 16px;
+        height: 16px;
+        border-width: 1.8px;
       }
 
       .dark-floating-toolbar .frame::before {
         border-radius: 0;
         background:
-          linear-gradient(currentColor 0 0) center / 25px 2.6px no-repeat,
-          linear-gradient(currentColor 0 0) center / 2.6px 25px no-repeat;
+          linear-gradient(currentColor 0 0) center / 19px 1.8px no-repeat,
+          linear-gradient(currentColor 0 0) center / 1.8px 19px no-repeat;
       }
 
       .dark-floating-toolbar .pen::before {
-        width: 20px;
-        height: 20px;
-        border-left-width: 3px;
-        border-bottom-width: 3px;
+        width: 15px;
+        height: 15px;
+        border-left-width: 1.8px;
+        border-bottom-width: 1.8px;
       }
 
       .dark-floating-toolbar .text::before {
-        font-size: 22px;
+        font-size: 18px;
       }
 
       .dark-floating-toolbar .spark::before {
-        width: 21px;
-        height: 21px;
+        width: 16px;
+        height: 16px;
       }
 
       .dark-zoom-status {

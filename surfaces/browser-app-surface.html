@@ -251,14 +251,13 @@
         align-items: end;
         gap: 0;
         padding: 7px 14px 0 82px;
-        background:
-          linear-gradient(180deg, #edf0f2 0%, #dde2e7 100%);
+        background: #dee1e6;
         border-bottom: 1px solid rgba(16, 18, 22, 0.1);
         overflow: hidden;
       }
 
       .tab {
-        --tab-bg: rgba(255, 255, 255, 0.34);
+        --tab-bg: transparent;
         position: relative;
         z-index: 1;
         height: 36px;
@@ -270,7 +269,7 @@
         margin-left: -8px;
         padding: 0 30px 0 14px;
         border-radius: 10px 10px 0 0;
-        color: #5f6670;
+        color: #5f6368;
         font-size: 12px;
         background: var(--tab-bg);
         user-select: none;
@@ -278,6 +277,10 @@
 
       .tab:first-child {
         margin-left: 0;
+      }
+
+      .tab:not(.active):hover {
+        --tab-bg: rgba(32, 33, 36, 0.08);
       }
 
       .tab.active {
@@ -412,13 +415,19 @@
         width: 28px;
         height: 28px;
         border-radius: 8px;
-        background: #f1f3f5;
-        border: 1px solid rgba(16, 18, 22, 0.07);
+        background: transparent;
+        border: 1px solid transparent;
         position: relative;
         display: grid;
         place-items: center;
         color: #5f6368;
         font-size: 18px;
+      }
+
+      .toolbar-button.capture,
+      .toolbar-button.split {
+        background: #f1f3f4;
+        border-color: rgba(16, 18, 22, 0.06);
       }
 
       .nav-button.disabled {
@@ -427,7 +436,7 @@
       }
 
       .url-bar {
-        height: 32px;
+        height: 34px;
         display: flex;
         align-items: center;
         gap: 9px;
@@ -435,9 +444,8 @@
         border-radius: 999px;
         color: #59616b;
         font-size: 12px;
-        background: #f4f6f8;
-        border: 1px solid rgba(16, 18, 22, 0.08);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+        background: #f1f3f4;
+        border: 1px solid transparent;
       }
 
       .lock {
@@ -454,6 +462,14 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+
+      .url-host {
+        color: #202124;
+      }
+
+      .url-path {
+        color: #5f6368;
       }
 
       .url-badge {
@@ -484,9 +500,10 @@
       .toolbar-button.profile {
         display: grid;
         place-items: center;
+        border-radius: 50%;
         color: #fff;
         background: #c65b47;
-        border-color: rgba(166, 70, 52, 0.38);
+        border-color: transparent;
         font-size: 11px;
         font-weight: 760;
       }
@@ -528,8 +545,8 @@
         padding: 0 18px;
         border-bottom: 1px solid rgba(16, 18, 22, 0.07);
         background: #fbfcfd;
-        color: #59616b;
-        font-size: 12px;
+        color: #3c4043;
+        font-size: 12.5px;
       }
 
       .bookmark-chip {
@@ -1354,7 +1371,7 @@
           </div>
           <div class="url-bar">
             <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-lock"/></svg></span>
-            <span class="url-text">review.local/launch-deck/board?view=grid&agent=claude</span>
+            <span class="url-text"><span class="url-host">review.local</span><span class="url-path">/launch-deck/board?view=grid&agent=claude</span></span>
             <span class="url-badge secure">private</span>
             <span class="star-icon" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-star"/></svg></span>
           </div>

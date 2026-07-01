@@ -1,3 +1,7 @@
+<style>
+  @import url("../styles/backlot-foundation.css");
+</style>
+
 <template id="presentation-editor-surface-template">
   <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
     <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
@@ -140,7 +144,6 @@
       </div>
     </div>
     <style>
-      @import url("../styles/backlot-foundation.css");
       #presentation-editor-surface {
         --claude: #c65b47;
         --coral: #cd6e57;
@@ -1479,26 +1482,31 @@
 
       .powerpoint-titlebar {
         height: 28px;
-        grid-template-columns: 52px 20px 54px minmax(126px, auto) auto auto 1fr auto auto;
+        grid-template-columns: 56px minmax(126px, auto) auto auto 1fr auto auto;
         gap: 5px;
         padding: 0 8px;
         border-bottom-color: #d0d0d0;
         background: #f7f7f7;
         color: #242424;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 500;
       }
 
+      .power-app-icon,
+      .quick-access {
+        display: none;
+      }
+
       .powerpoint-traffic-spacer {
-        width: 42px;
+        width: 52px;
         height: 12px;
       }
 
       .powerpoint-traffic-spacer::before {
-        top: 1px;
-        width: 10px;
-        height: 10px;
-        box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #28c840;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        box-shadow: 20px 0 0 #febc2e, 40px 0 0 #28c840;
       }
 
       .power-app-icon {
@@ -1646,18 +1654,19 @@
       }
 
       .powerpoint-ribbon {
-        height: 76px;
-        padding: 3px 5px 4px;
+        height: 62px;
+        padding: 4px 8px;
         background: #ffffff;
-        border-bottom-color: #cfcfcf;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.11);
+        border-bottom-color: rgba(0, 0, 0, 0.12);
+        box-shadow: none;
       }
 
       .ribbon-group {
-        height: 68px;
-        gap: 4px;
-        padding: 0 5px 15px;
-        border-right-color: #d9d9d9;
+        height: 54px;
+        gap: 5px;
+        padding: 0 8px;
+        align-items: center;
+        border-right-color: rgba(0, 0, 0, 0.08);
         color: #2d2d2d;
       }
 
@@ -1671,20 +1680,21 @@
       .ribbon-group.editing { width: 74px; }
 
       .ribbon-group strong {
-        bottom: 0;
-        color: #666;
-        border-top: 0;
-        font-size: 8px;
-        font-weight: 500;
+        display: none;
       }
 
       .ribbon-large {
-        width: 34px;
-        min-height: 48px;
-        padding: 2px 2px 0;
+        width: auto;
+        min-width: 40px;
+        min-height: 46px;
+        padding: 2px 4px 0;
         border: 0;
-        border-radius: 0;
+        border-radius: 5px;
         background: transparent;
+      }
+
+      .presentation-name em {
+        display: none;
       }
 
       .ribbon-large em,
@@ -1692,9 +1702,9 @@
       .split-mini,
       .ribbon-field,
       .tool-toggle {
-        color: #222;
-        font-size: 8px;
-        font-weight: 500;
+        color: #262626;
+        font-size: 10px;
+        font-weight: 400;
       }
 
       .cmd-icon {
@@ -1994,23 +2004,24 @@
 
       .selection-box .handle,
       .selection-box .rotate-handle {
-        width: 5px;
-        height: 5px;
-        border-radius: 0;
-        border: 1px solid var(--office-blue);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #8f8f8f;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.18);
       }
 
       .selection-box .rotate-handle {
-        left: calc(50% - 3px);
-        top: -14px;
-        border-radius: 50%;
+        left: calc(50% - 4px);
+        top: -18px;
       }
 
       .selection-box .rotate-handle::after {
-        left: 2px;
-        top: 5px;
-        height: 8px;
-        background: var(--office-blue);
+        left: 3px;
+        top: 8px;
+        height: 9px;
+        background: #8f8f8f;
       }
 
       .selection-box .nw { left: -4px; top: -4px; }

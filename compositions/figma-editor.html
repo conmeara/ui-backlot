@@ -635,6 +635,19 @@
         font-size: 10.5px;
       }
 
+      .file-context span.figma-mark {
+        display: grid;
+        margin-top: 0;
+        color: initial;
+        font-size: initial;
+      }
+
+      .file-context span.figma-mark span {
+        display: block;
+        color: initial;
+        font-size: initial;
+      }
+
       .file-context strong {
         display: block;
         overflow: hidden;
@@ -1615,6 +1628,14 @@
         border-top-width: 5px;
       }
 
+      .bottom-toolbar .tool.hand::before {
+        width: 10px;
+        height: 14px;
+        border-width: 1.8px;
+        border-top-width: 4px;
+        border-radius: 6px 6px 4px 4px;
+      }
+
       .tool.section::before {
         width: 17px;
         height: 14px;
@@ -1685,7 +1706,7 @@
 
       /* Actual-app fidelity pass: UI3-style floating Figma chrome. */
       #figma-editor-surface {
-        --figma-bg: #3a3a3a;
+        --figma-bg: #e5e5e5;
         --figma-panel: #ffffff;
         --figma-panel-alt: #f5f5f5;
         --figma-border: #e0e0e0;
@@ -1715,7 +1736,7 @@
         position: absolute;
         inset: 0;
         overflow: hidden;
-        background: #3b3b3b;
+        background: #e5e5e5;
       }
 
       .canvas-grid,
@@ -1730,31 +1751,31 @@
 
       .navigation-rail {
         position: absolute;
-        left: 46px;
+        left: 40px;
         top: 58px;
         z-index: 12;
-        width: 74px;
+        width: 52px;
         height: 782px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 11px;
-        padding: 18px 9px 12px;
-        border: 1px solid #111;
+        gap: 4px;
+        padding: 12px 8px;
+        border: 1px solid var(--figma-border);
         border-radius: 13px;
         background: #fff;
-        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.16);
       }
 
       .rail-icon {
-        width: 56px;
-        height: 62px;
+        width: 36px;
+        height: 36px;
         display: grid;
         justify-items: center;
         align-content: center;
-        gap: 5px;
+        gap: 0;
         border-radius: 8px;
-        color: #1f1f1f;
+        color: #3a3a3a;
       }
 
       .rail-icon.active {
@@ -1763,88 +1784,85 @@
       }
 
       .rail-icon span {
-        display: block;
-        font-size: 12px;
-        line-height: 1;
-        font-weight: 520;
+        display: none;
       }
 
       .rail-icon::before,
       .rail-icon::after {
-        top: 19px;
+        top: 50%;
       }
 
       .rail-icon.layers::before {
-        width: 18px;
-        height: 22px;
-        border: 2.4px solid currentColor;
-        border-radius: 4px;
+        width: 14px;
+        height: 16px;
+        border: 1.6px solid currentColor;
+        border-radius: 3px;
         box-shadow: none;
       }
 
       .rail-icon.layers::after {
-        width: 7px;
-        height: 7px;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: translate(7px, -8px) rotate(45deg);
+        width: 5px;
+        height: 5px;
+        border-right: 1.6px solid currentColor;
+        border-bottom: 1.6px solid currentColor;
+        transform: translate(6px, -13px) rotate(45deg);
       }
 
       .rail-icon.assets::before {
-        width: 24px;
-        height: 24px;
-        border: 2.2px solid currentColor;
+        width: 16px;
+        height: 16px;
+        border: 1.6px solid currentColor;
         border-radius: 50%;
         background: transparent;
       }
 
       .rail-icon.assets::after {
-        width: 12px;
-        height: 12px;
-        border: 2.2px solid currentColor;
+        width: 8px;
+        height: 8px;
+        border: 1.6px solid currentColor;
         border-radius: 50%;
         transform: translate(-50%, -50%);
       }
 
       .rail-icon.search::before {
-        width: 18px;
-        height: 18px;
-        border-width: 2.4px;
+        width: 13px;
+        height: 13px;
+        border-width: 1.7px;
       }
 
       .rail-icon.search::after {
-        width: 10px;
-        height: 2.4px;
-        margin-left: 9px;
-        margin-top: 8px;
+        width: 7px;
+        height: 1.7px;
+        margin-left: 7px;
+        margin-top: 6px;
       }
 
       .rail-icon.variables::before {
-        width: 20px;
-        height: 20px;
-        border: 2.2px solid currentColor;
-        border-radius: 7px;
+        width: 14px;
+        height: 14px;
+        border: 1.6px solid currentColor;
+        border-radius: 5px;
       }
 
       .rail-icon.variables::after {
-        width: 7px;
-        height: 7px;
-        border: 2.2px solid currentColor;
+        width: 5px;
+        height: 5px;
+        border: 1.6px solid currentColor;
         border-radius: 50%;
       }
 
       .rail-icon.library::before {
-        width: 18px;
-        height: 18px;
-        border-width: 2.2px;
-        border-radius: 5px;
-        box-shadow: 5px -5px 0 -2px #fff, 5px -5px 0 0 currentColor;
+        width: 13px;
+        height: 13px;
+        border-width: 1.6px;
+        border-radius: 4px;
+        box-shadow: 4px -4px 0 -1.5px #fff, 4px -4px 0 0 currentColor;
       }
 
       .rail-icon.bell::before {
-        width: 18px;
-        height: 15px;
-        border-width: 2.2px;
+        width: 13px;
+        height: 11px;
+        border-width: 1.6px;
       }
 
       .left-panel,
@@ -1859,7 +1877,7 @@
       }
 
       .left-panel {
-        left: 120px;
+        left: 104px;
         top: 58px;
         width: 306px;
         height: 782px;
@@ -1908,9 +1926,9 @@
       }
 
       .panel-icon-button.branch::before {
-        width: 20px;
-        height: 20px;
-        border-width: 2.1px;
+        width: 15px;
+        height: 15px;
+        border-width: 1.6px;
       }
 
       .panel-tabs,
@@ -2303,24 +2321,15 @@
       }
 
       .align-strip {
-        gap: 0;
+        gap: 6px;
         margin-bottom: 14px;
       }
 
       .align-strip button {
         height: 44px;
         border: 0;
-        border-right: 1px solid #fff;
-        border-radius: 0;
+        border-radius: 8px;
         background-color: var(--figma-field);
-      }
-
-      .align-strip button:first-child {
-        border-radius: 8px 0 0 8px;
-      }
-
-      .align-strip button:last-child {
-        border-radius: 0 8px 8px 0;
       }
 
       .constraints-widget {
@@ -2357,73 +2366,74 @@
 
       .bottom-toolbar {
         bottom: 28px;
-        height: 68px;
-        gap: 14px;
-        padding: 10px 16px;
-        border: 0;
-        border-radius: 18px;
+        height: 52px;
+        gap: 4px;
+        padding: 7px 8px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 15px;
         background: #fff;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.22);
       }
 
       .tool {
-        width: 45px;
-        height: 45px;
-        border-radius: 11px;
-        color: #111;
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        color: #1f1f1f;
       }
 
       .tool.active {
+        color: #fff;
         background: var(--figma-blue);
       }
 
       .tool.move::before {
-        border-left-width: 13px;
-        border-top-width: 20px;
-        border-bottom-width: 6px;
+        border-left-width: 10px;
+        border-top-width: 16px;
+        border-bottom-width: 5px;
         filter: drop-shadow(0 0 0 #fff);
       }
 
       .tool.frame::before {
-        width: 22px;
-        height: 22px;
-        border-width: 2.7px;
+        width: 16px;
+        height: 16px;
+        border-width: 1.8px;
         border-radius: 0;
         background:
-          linear-gradient(currentColor 0 0) center / 26px 2.7px no-repeat,
-          linear-gradient(currentColor 0 0) center / 2.7px 26px no-repeat;
+          linear-gradient(currentColor 0 0) center / 19px 1.8px no-repeat,
+          linear-gradient(currentColor 0 0) center / 1.8px 19px no-repeat;
       }
 
       .tool.shape::before {
-        width: 23px;
-        height: 23px;
-        border-width: 2.8px;
-        border-radius: 4px;
+        width: 16px;
+        height: 16px;
+        border-width: 1.8px;
+        border-radius: 3px;
       }
 
       .tool.pen::before {
-        width: 22px;
-        height: 22px;
-        border-left-width: 3px;
-        border-bottom-width: 3px;
-        border-radius: 0 10px 4px 10px;
+        width: 15px;
+        height: 15px;
+        border-left-width: 1.8px;
+        border-bottom-width: 1.8px;
+        border-radius: 0 7px 3px 7px;
       }
 
       .tool.text::before {
-        font-size: 25px;
-        font-weight: 680;
+        font-size: 18px;
+        font-weight: 650;
       }
 
       .tool.comments::before {
-        width: 24px;
-        height: 19px;
-        border-width: 2.7px;
+        width: 17px;
+        height: 13px;
+        border-width: 1.8px;
       }
 
       .tool.resources::before,
       .tool.actions::before {
-        width: 22px;
-        height: 22px;
+        width: 16px;
+        height: 16px;
       }
 
       .toolbar-mode {
@@ -2432,8 +2442,8 @@
 
       .toolbar-divider {
         width: 1px;
-        height: 44px;
-        background: #d9d9d9;
+        height: 24px;
+        background: #e3e3e3;
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>

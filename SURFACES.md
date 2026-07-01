@@ -435,6 +435,18 @@ lab.
   public Premiere documentation and the MIT `react-timeline-editor` donor for
   timeline row/action geometry. It copies no Adobe code, fonts, icons, private
   project contents, app assets, or donor runtime code.
+- Pass 097 was a repo-wide realism audit against real applications (live
+  Tahoe Finder/menu bar/Calendar captures on this machine plus the existing
+  Claude/Codex/Figma/Office reference sets). Font smoothing is now applied
+  globally in `styles/backlot-foundation.css`; traffic lights are
+  standardized flat 12px `#ff5f57/#febc2e/#28c840`; Finder gained Tahoe
+  frosted-inset sidebar, capsule toolbar, and blue focused selection; the
+  Claude family matches the 2026-06-18 real Cowork capture (near-invisible
+  paper grid, real tool-card anatomy with green monospace request blocks,
+  app-scale serif responses, composer disclaimer, avatar initials); the
+  Office surfaces use Mac 365 caption-less ribbons; Codex, Figma, Premiere,
+  browser, and Calendar received reference-matched chrome passes. See
+  `docs/prototypes/full-inventory-realism-audit-pass-097.md`.
 - Reusable primitives are listed in `PRIMITIVES.md`.
 
 ## First Real Workflow

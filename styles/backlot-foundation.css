@@ -30,6 +30,13 @@
   font-display: swap;
 }
 
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 :root {
   --font-claude-ui: "Anthropic Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-claude-serif: "Anthropic Serif", Georgia, "Times New Roman", serif;

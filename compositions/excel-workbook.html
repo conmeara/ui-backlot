@@ -35,30 +35,24 @@
         <div class="ribbon-group clipboard">
           <div class="ribbon-large paste"><span class="cmd-icon paste"></span><em>Paste</em><i></i></div>
           <div class="ribbon-stack"><span>Cut</span><span>Copy</span><span>Format Painter</span></div>
-          <strong>Clipboard</strong>
         </div>
         <div class="ribbon-group font">
           <div class="ribbon-row"><span class="field font-name">Aptos</span><span class="field small">11</span></div>
           <div class="button-row"><span class="toggle active">B</span><span class="toggle">I</span><span class="toggle">U</span><span class="toggle fill"></span><span class="toggle color"></span></div>
-          <strong>Font</strong>
         </div>
         <div class="ribbon-group alignment">
           <div class="button-row dense"><span class="align top"></span><span class="align middle active"></span><span class="align bottom"></span><span class="merge">Merge</span></div>
           <div class="button-row dense"><span class="align left"></span><span class="align center active"></span><span class="align right"></span><span class="wrap">Wrap</span></div>
-          <strong>Alignment</strong>
         </div>
         <div class="ribbon-group number">
           <div class="ribbon-row"><span class="field number-format">Currency</span><span class="field percent">%</span></div>
           <div class="button-row"><span class="toggle">$</span><span class="toggle">,</span><span class="toggle">.0</span><span class="toggle">.00</span></div>
-          <strong>Number</strong>
         </div>
         <div class="ribbon-group cells">
           <div class="ribbon-stack"><span>Insert</span><span>Delete</span><span>Format</span></div>
-          <strong>Cells</strong>
         </div>
         <div class="ribbon-group editing">
           <div class="ribbon-stack"><span>AutoSum</span><span>Sort & Filter</span><span>Find & Select</span></div>
-          <strong>Editing</strong>
         </div>
       </div>
 
@@ -122,12 +116,12 @@
 
     <style>
       #excel-workbook-surface {
-        --excel: #107c41;
-        --excel-dark: #0b5f32;
+        --excel: #217346;
+        --excel-dark: #0f5c33;
         --excel-soft: #e5f3ea;
-        --chrome: #f8f9fa;
-        --line: #d7dce2;
-        --grid: #dce1e7;
+        --chrome: #f7f7f7;
+        --line: rgba(20, 30, 48, 0.12);
+        --grid: rgba(20, 30, 48, 0.1);
         --ink: #16120f;
         --muted: #67727f;
         --green: #43b875;
@@ -149,10 +143,10 @@
         width: 1280px;
         height: 760px;
         overflow: hidden;
-        border-radius: 15px;
+        border-radius: 12px;
         background: #eef1f4;
-        border: 1px solid rgba(20, 30, 48, 0.12);
-        box-shadow: 0 32px 96px rgba(28, 34, 46, 0.22);
+        border: 1px solid rgba(20, 30, 48, 0.14);
+        box-shadow: 0 30px 70px rgba(28, 30, 38, 0.28), 0 2px 0 rgba(255, 255, 255, 0.4) inset;
       }
 
       .excel-titlebar {
@@ -163,7 +157,7 @@
         gap: 9px;
         padding: 0 13px;
         background: var(--chrome);
-        border-bottom: 1px solid #d6dae0;
+        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
         color: #2d3540;
         font-size: 12px;
         font-weight: 650;
@@ -171,20 +165,25 @@
 
       .excel-traffic {
         position: relative;
-        width: 50px;
-        height: 14px;
+        width: 52px;
+        height: 12px;
       }
 
       .excel-traffic::before {
         content: "";
         position: absolute;
         left: 0;
-        top: 1px;
+        top: 0;
         width: 12px;
         height: 12px;
         border-radius: 50%;
         background: #ff5f57;
-        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+        box-shadow:
+          0 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
+          20px 0 0 #febc2e,
+          20px 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
+          40px 0 0 #28c840,
+          40px 0 0 0.5px rgba(0, 0, 0, 0.12) inset;
       }
 
       .excel-app-icon {
@@ -269,45 +268,46 @@
       }
 
       .excel-tabs {
-        height: 30px;
+        height: 32px;
         display: flex;
-        align-items: end;
-        gap: 3px;
+        align-items: stretch;
+        gap: 2px;
         padding: 0 12px;
-        background: #f3f4f6;
-        border-bottom: 1px solid #d7dbe1;
+        background: #f0eeea;
+        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .excel-tabs span {
-        height: 25px;
+        height: 32px;
         display: flex;
         align-items: center;
-        padding: 0 13px;
-        border-radius: 7px 7px 0 0;
-        color: #33404c;
-        font-size: 12px;
-        font-weight: 620;
+        padding: 0 12px;
+        border-radius: 0;
+        color: #3d3a36;
+        font-size: 12.5px;
+        font-weight: 400;
       }
 
       .excel-tabs span:first-child {
-        background: #fff;
-        border: 1px solid #d7dbe1;
-        border-bottom-color: #fff;
+        background: transparent;
+        border: 0;
         color: var(--excel);
+        box-shadow: inset 0 -2px 0 var(--excel);
+        font-weight: 600;
       }
 
       .excel-tabs .contextual {
         color: var(--excel-dark);
-        background: rgba(16, 124, 65, 0.09);
+        background: transparent;
       }
 
       .excel-ribbon {
-        height: 100px;
+        height: 84px;
         display: flex;
         align-items: stretch;
-        padding: 5px 8px 0;
-        background: #fff;
-        border-bottom: 1px solid #d4d9e0;
+        padding: 6px 10px 0;
+        background: #fdfcfb;
+        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .ribbon-group {
@@ -316,8 +316,8 @@
         align-items: flex-start;
         gap: 7px;
         min-width: 86px;
-        padding: 3px 9px 25px;
-        border-left: 1px solid #e3e6eb;
+        padding: 4px 12px 8px;
+        border-left: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .ribbon-group:first-child {
@@ -325,29 +325,26 @@
       }
 
       .ribbon-group strong {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 4px;
-        color: #747d87;
-        font-size: 10px;
-        font-weight: 600;
-        text-align: center;
+        display: none;
       }
 
       .ribbon-large {
-        width: 54px;
-        min-height: 63px;
+        width: 56px;
+        min-height: 62px;
         display: grid;
-        grid-template-rows: 34px auto;
+        grid-template-rows: 32px auto;
         justify-items: center;
-        gap: 4px;
-        padding: 4px;
+        gap: 3px;
+        padding: 3px;
         border: 1px solid transparent;
-        border-radius: 7px;
+        border-radius: 6px;
         position: relative;
         color: #283441;
         font-size: 11px;
+      }
+
+      .ribbon-large:hover {
+        background: rgba(20, 30, 48, 0.055);
       }
 
       .ribbon-large em {
@@ -366,11 +363,11 @@
       }
 
       .cmd-icon {
-        width: 29px;
-        height: 30px;
-        border-radius: 7px;
-        background: #e5f3ea;
-        border: 1px solid #b9dbc8;
+        width: 27px;
+        height: 27px;
+        border-radius: 0;
+        background: transparent;
+        border: 0;
         position: relative;
       }
 
@@ -406,22 +403,32 @@
       .toggle,
       .merge,
       .wrap {
-        height: 22px;
+        height: 24px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 5px;
-        border: 1px solid #d8dce2;
-        background: #fbfcfd;
+        border-radius: 6px;
+        border: 1px solid transparent;
+        background: transparent;
         color: #34414f;
-        font-size: 11px;
-        font-weight: 580;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .ribbon-stack span:hover,
+      .field:hover,
+      .toggle:hover,
+      .merge:hover,
+      .wrap:hover,
+      .align:hover {
+        background: rgba(20, 30, 48, 0.055);
       }
 
       .ribbon-stack span {
         justify-content: flex-start;
-        min-width: 82px;
+        min-width: 100px;
         padding: 0 8px;
+        white-space: nowrap;
       }
 
       .ribbon-row,
@@ -440,6 +447,8 @@
 
       .field {
         padding: 0 8px;
+        border-color: rgba(20, 30, 48, 0.14);
+        background: #fff;
       }
 
       .font-name {
@@ -459,6 +468,7 @@
 
       .toggle {
         width: 25px;
+        height: 24px;
         font-size: 12px;
       }
 
@@ -469,20 +479,20 @@
       }
 
       .toggle.fill {
-        background: linear-gradient(#fbfcfd 0 62%, #f2d26b 62% 100%);
+        background: linear-gradient(transparent 0 62%, #f2d26b 62% 100%);
       }
 
       .toggle.color {
         background:
-          linear-gradient(#fbfcfd 0 62%, #107c41 62% 100%);
+          linear-gradient(transparent 0 62%, #107c41 62% 100%);
       }
 
       .align {
         width: 25px;
-        height: 22px;
-        border: 1px solid #d8dce2;
-        border-radius: 5px;
-        background: #fbfcfd;
+        height: 24px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
         position: relative;
       }
 
@@ -516,8 +526,8 @@
         align-items: center;
         gap: 7px;
         padding: 5px 11px;
-        background: #f8f9fb;
-        border-bottom: 1px solid #d6dae0;
+        background: #f7f7f7;
+        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .name-box,
@@ -527,7 +537,7 @@
         display: flex;
         align-items: center;
         border-radius: 5px;
-        border: 1px solid #d7dce2;
+        border: 1px solid rgba(20, 30, 48, 0.14);
         background: #fff;
         color: #33404c;
         font-size: 12px;
@@ -560,12 +570,12 @@
       .insights-pane {
         padding: 17px 15px;
         background: #f8f9fb;
-        border-right: 1px solid #d4d9e0;
+        border-right: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .insights-pane {
         border-right: 0;
-        border-left: 1px solid #d4d9e0;
+        border-left: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .pane-title,
@@ -632,7 +642,7 @@
         width: 830px;
         margin: 0 auto;
         background: #fff;
-        border: 1px solid #cfd6de;
+        border: 1px solid rgba(20, 30, 48, 0.14);
         box-shadow: 0 18px 44px rgba(44, 51, 61, 0.12);
       }
 
@@ -642,16 +652,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f4f6f8;
-        border-right: 1px solid #d7dce2;
-        border-bottom: 1px solid #d7dce2;
+        background: #f7f7f7;
+        border-right: 1px solid rgba(20, 30, 48, 0.12);
+        border-bottom: 1px solid rgba(20, 30, 48, 0.12);
         color: #60707c;
         font-size: 12px;
         font-weight: 650;
       }
 
       .row-head {
-        border-right: 1px solid #d7dce2;
+        border-right: 1px solid rgba(20, 30, 48, 0.12);
       }
 
       .cell {
@@ -733,7 +743,7 @@
         margin-bottom: 14px;
         border-radius: 11px;
         background: #fff;
-        border: 1px solid #d9dde4;
+        border: 1px solid rgba(20, 30, 48, 0.1);
         box-shadow: 0 8px 22px rgba(44, 51, 61, 0.06);
       }
 
@@ -764,7 +774,7 @@
         margin-bottom: 16px;
         border-radius: 12px;
         background: #fff;
-        border: 1px solid #d9dde4;
+        border: 1px solid rgba(20, 30, 48, 0.1);
       }
 
       .bar {
@@ -807,8 +817,8 @@
         align-items: center;
         gap: 14px;
         padding: 0 11px;
-        background: #f8f9fb;
-        border-top: 1px solid #d4d9e0;
+        background: #f7f7f7;
+        border-top: 1px solid rgba(20, 30, 48, 0.1);
         color: #5e6974;
         font-size: 11px;
       }
@@ -816,7 +826,7 @@
       .sheet-tabs {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 2px;
       }
 
       .sheet-tabs span,
@@ -825,19 +835,24 @@
         display: inline-flex;
         align-items: center;
         padding: 0 10px;
-        border: 1px solid #d8dce2;
-        border-radius: 7px;
-        background: #fff;
-        color: #46525d;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        background: transparent;
+        color: #57626c;
         font-size: 11px;
         font-family: inherit;
       }
 
+      .sheet-tabs span:hover {
+        background: rgba(20, 30, 48, 0.05);
+      }
+
       .sheet-tabs span.active {
-        border-color: #9ccfb1;
-        background: var(--excel-soft);
+        border-color: rgba(20, 30, 48, 0.12);
+        background: #fff;
         color: var(--excel-dark);
         font-weight: 700;
+        box-shadow: 0 1px 2px rgba(24, 24, 24, 0.06);
       }
 
       .status-spacer {

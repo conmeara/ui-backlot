@@ -66,7 +66,7 @@
         </div>
 
         <div class="sidebar-account">
-          <span class="account-avatar"></span>
+          <span class="account-avatar">DW</span>
           <span class="account-copy"><strong>Demo workspace</strong><span>Pro plan</span></span>
           <span class="sidebar-kebab"></span>
         </div>
@@ -262,7 +262,7 @@
         height: 14px;
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 8px;
         margin: 0 0 10px 4px;
       }
 
@@ -270,11 +270,11 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
       }
 
       .claude-traffic .red { background: #ff5f57; }
-      .claude-traffic .yellow { background: #ffbd2e; }
+      .claude-traffic .yellow { background: #febc2e; }
       .claude-traffic .green { background: #28c840; }
 
       .sidebar-head {
@@ -564,10 +564,14 @@
       .account-avatar {
         width: 23px;
         height: 23px;
+        display: grid;
+        place-items: center;
         border-radius: 50%;
-        background:
-          radial-gradient(circle at 38% 32%, #fff 0 13%, rgba(255, 255, 255, 0) 15%),
-          var(--brand-100);
+        background: var(--brand-100);
+        color: #fff;
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
       }
 
       .account-copy {

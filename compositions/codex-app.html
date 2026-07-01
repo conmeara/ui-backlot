@@ -47,6 +47,7 @@
       <symbol id="codex-icon-diff-color" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"></rect><path d="M9 5v14"></path><path d="M15 5v14"></path></symbol>
       <symbol id="codex-icon-undo" viewBox="0 0 24 24"><path d="M9 8H5V4"></path><path d="M5 8c2.2-2.6 5.6-3.7 8.8-2.7a7 7 0 1 1-6 12.5"></path></symbol>
       <symbol id="codex-icon-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></symbol>
+      <symbol id="codex-icon-commit-node" viewBox="0 0 24 24"><path d="M3 12h6"></path><circle cx="12" cy="12" r="3.4"></circle><path d="M15.4 12h5.6"></path></symbol>
     </svg>
     <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
       <aside class="codex-sidebar" data-primitive="codex-sidebar">
@@ -127,8 +128,8 @@
           <button class="more-button icon-button" type="button" aria-label="Thread menu"><svg><use href="#codex-icon-more"></use></svg></button>
           <div class="topbar-spacer"></div>
           <button class="toolbar-button gear-button icon-button" type="button" aria-label="Settings"><svg><use href="#codex-icon-settings"></use></svg></button>
-          <button class="vscode-pill" type="button"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
-          <button class="commit-pill" type="button"><svg class="slider-icon"><use href="#codex-icon-sliders"></use></svg>Commit<span class="chev"></span></button>
+          <button class="vscode-pill" type="button" aria-label="Open in VS Code"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
+          <button class="commit-pill" type="button"><svg class="commit-node-icon"><use href="#codex-icon-commit-node"></use></svg>Commit<span class="chev"></span></button>
           <span class="toolbar-divider"></span>
           <button class="terminal-button icon-button" type="button" aria-label="Terminal"><svg><use href="#codex-icon-terminal"></use></svg></button>
           <div class="diff-counter"><span class="plus-count">+938</span><span class="minus-count">-664</span></div>
@@ -224,12 +225,12 @@
     <style>
       #codex-app-surface {
         --window: #ffffff;
-        --sidebar: #e7eef8;
-        --sidebar-deeper: #dce6f3;
+        --sidebar: #fbfbfc;
+        --sidebar-deeper: #f0f1f3;
         --ink: #1c1f23;
         --muted: #6e7580;
         --faint: #9aa2ad;
-        --line: rgba(29, 34, 41, 0.09);
+        --line: rgba(29, 34, 41, 0.08);
         --line-strong: rgba(29, 34, 41, 0.15);
         --soft: #f6f7f9;
         --soft-blue: #eef4fc;
@@ -239,7 +240,7 @@
         width: 1280px;
         height: 820px;
         color: var(--ink);
-        font-family: Inter, sans-serif;
+        font-family: var(--font-macos);
         font-size: 14px;
       }
 
@@ -268,7 +269,8 @@
         display: flex;
         flex-direction: column;
         padding: 13px 10px 10px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.12)), var(--sidebar);
+        background: var(--sidebar);
+        border-right: 1px solid var(--line);
         color: #343941;
       }
 
@@ -284,14 +286,15 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-left: 3px;
+        margin-left: 4px;
+        margin-right: 4px;
       }
 
       .window-traffic span {
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
       }
 
       .window-traffic .red { background: #ff5f57; }
@@ -618,7 +621,7 @@
         grid-column: 1 / 3;
         min-width: 0;
         display: grid;
-        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 64px 104px 1px 32px auto 30px;
+        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 62px 104px 1px 32px auto 30px;
         gap: 9px;
         align-items: center;
         padding: 0 18px 0 13px;
@@ -635,16 +638,16 @@
 
       .title-wrap h1 {
         margin: 0;
-        color: #25282d;
-        font-size: 13px;
+        color: #202225;
+        font-size: 14.5px;
         line-height: 1;
         font-weight: 650;
-        letter-spacing: 0;
+        letter-spacing: -0.1px;
       }
 
       .title-wrap span {
         color: #9b9b9b;
-        font-size: 13px;
+        font-size: 13.5px;
       }
 
       .more-button,
@@ -699,12 +702,16 @@
         justify-content: center;
         gap: 7px;
         border: 1px solid var(--line);
-        border-radius: 9px;
+        border-radius: 8px;
         background: #fafafa;
         color: #25282d;
         padding: 0 9px;
         font-size: 13px;
         font-weight: 600;
+      }
+
+      .vscode-pill {
+        padding: 0 8px;
       }
 
       .vscode-mark {
@@ -782,12 +789,12 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        height: 28px;
-        padding: 0 7px;
-        border-radius: 8px;
-        background: #f3f5f6;
-        font-size: 12px;
-        font-weight: 700;
+        height: 26px;
+        padding: 0 9px;
+        border-radius: 7px;
+        background: rgba(40, 165, 98, 0.1);
+        font-size: 12.5px;
+        font-weight: 600;
       }
 
       .plus-count {
@@ -1503,6 +1510,7 @@
       .gear,
       .mini-action,
       .slider-icon,
+      .commit-node-icon,
       .hand-icon,
       .spark,
       .work-icon,
@@ -1631,6 +1639,13 @@
         stroke-width: 1.7;
         stroke-linecap: round;
         stroke-linejoin: round;
+      }
+
+      .commit-node-icon {
+        width: 14px;
+        height: 14px;
+        color: #3a3f46;
+        stroke-width: 2;
       }
 
       .slider-icon {
