@@ -1,4 +1,5 @@
 <style>
+      @import url("../styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -79,7 +80,7 @@
         width: 1180px;
         height: 900px;
         color: var(--ink);
-        font-family: Inter, sans-serif;
+        font-family: var(--font-claude-ui);
       }
 
       #claude-deck-chat-pane-surface * {
@@ -286,7 +287,7 @@
 
       .assistant-reply p {
         margin: 0;
-        font-family: Georgia, Georgia, serif;
+        font-family: var(--font-claude-serif);
         font-size: 52px;
         font-weight: 700;
         line-height: 1.05;

@@ -5,11 +5,12 @@ a code-native studio where Claude, Codex, and related workflow videos can be
 planned, rebuilt, animated, rendered, revised, and shipped without depending on
 perfect live screen recordings.
 
-It should also be usable as an open-source kit. A fresh contributor, and
+It should also remain understandable as a kit. A fresh contributor, and
 especially a coding agent, should be able to clone the repo, discover which
 surfaces exist, choose the right components for a workflow, compose a short
-HyperFrames video, run the verification gates, and understand which assets are
-safe to redistribute.
+HyperFrames video, run the verification gates, and understand which
+source-authentic assets each surface depends on. Public redistribution can be a
+separate packaging review; the working backlot optimizes for fidelity first.
 
 The core bet is simple: the best instructional and launch demos will not be
 recorded one fragile take at a time. They will be assembled from editable
@@ -50,16 +51,17 @@ At maturity, UI Backlot should include:
   progress rows, app switching, focus pulls, and before/after changes.
 - A capture pipeline for turning real app screenshots, DOM, accessibility
   trees, video frames, and design references into rebuildable UI components.
-- A donor-repo research lane for mining open-source UI projects as reference
-  material and component inspiration.
+- A donor-repo and local-app research lane for mining real fonts, icons, UI
+  elements, measurements, and component inspiration.
 - A scene/story system that lets one workflow drive both a video render and
   optional real artifacts such as files, slides, docs, or datasets.
 - A render pipeline using HyperFrames, Remotion, or both, with repeatable
   preview, lint, inspect, snapshot, and video output commands.
 - A quality loop that compares prototypes against reference videos and real app
   captures instead of relying on vibes.
-- Public contribution, license, trademark, and asset-policy docs so the
-  reusable kit can be improved safely.
+- Contribution, trademark, provenance, and asset-policy docs so the reusable
+  kit can keep improving without losing track of where source-authentic assets
+  came from.
 
 ## First Vertical Slice
 
@@ -85,11 +87,12 @@ rebuild, primitive, and render patterns should generalize to many demo types.
 2. Use real app state as the source of truth whenever possible.
 3. Use reference videos for taste, pacing, and quality, not as visible assets.
 4. Prefer small reusable primitives over one-off animation tricks.
-5. Treat open-source UI projects as reference material and component donors,
-   with license checks before copying code or assets.
-6. Keep local-only assets local: downloaded videos, copied fonts, generated
-   renders, frame studies, and private captures should not become product
-   source.
+5. Treat open-source UI projects and local apps as reference material and
+   component donors for real fonts, icons, app marks, layout measurements, and
+   UI atoms.
+6. Track source-authentic assets when they materially improve fidelity and keep
+   their provenance explicit. Keep private data, raw donor clones, generated
+   renders, and bulky working captures out of product source.
 7. Make every improvement verifiable through preview, snapshot, inspect, render,
    or side-by-side comparison.
 8. Optimize for future demo volume: once a surface is rebuilt, agents should be
@@ -114,8 +117,8 @@ A strong demo kit should prove:
   real app captures.
 - Lint, validation, visual inspect, and render gates pass or have documented
   intentional warnings.
-- The project docs explain what is source-captured, what is hand-rebuilt, what
-  is donor-informed, and what still needs fidelity work.
+- The project docs explain what is source-captured, source-authentic,
+  hand-rebuilt, donor-informed, and what still needs fidelity work.
 
 ## Long-Term System
 
@@ -139,9 +142,10 @@ editable, lightable, scriptable, and ready for another scene.
 ## Non-Goals
 
 UI Backlot is not trying to become a generic website builder, a screen recorder,
-or a pile of static mockups. It should not ship third-party reference media as
-product assets. It should not clone fictional apps from reference videos unless
-they teach a reusable surface pattern.
+or a pile of static mockups. It should not ship private screenshots, raw
+reference videos, generated captures, or bulky donor repos as product assets.
+It should not clone fictional apps from reference videos unless they teach a
+reusable surface pattern.
 
 The aim is a practical creative-production system: faithful enough to teach
 real workflows, structured enough for agents to operate, and editable enough

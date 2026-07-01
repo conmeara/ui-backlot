@@ -2,7 +2,6 @@ node_modules/
 captures/
 renders/
 snapshots/
-assets/fonts/*.ttf
 hyperframes-studio-preview.png
 reference/claude/images/
 reference/claude/videos/
@@ -12,3 +11,4 @@ reference/open-source/*/
 .playwright-mcp/
 .thumbnails/
 .DS_Store
+.icon-donors/

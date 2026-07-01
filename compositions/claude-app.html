@@ -1,4 +1,5 @@
 <style>
+      @import url("../styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -16,6 +17,62 @@
 <template id="claude-app-surface-template">
   <div id="claude-app-surface" data-composition-id="claude-app-surface" data-width="1280" data-height="860">
     <section class="claude-app-window dframe-root" data-primitive="claude-app-window" aria-label="Editable Claude app surface">
+      <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </symbol>
+        <symbol id="lucide-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19v3" />
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+          <rect x="9" y="2" width="6" height="13" rx="3" />
+        </symbol>
+        <symbol id="lucide-send-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m5 12 7-7 7 7" />
+          <path d="M12 19V5" />
+        </symbol>
+        <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+        </symbol>
+        <symbol id="lucide-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v13" />
+          <path d="m16 6-4-4-4 4" />
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+        </symbol>
+        <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2" />
+          <path d="M9 3v18" />
+        </symbol>
+        <symbol id="lucide-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+        </symbol>
+        <symbol id="lucide-retry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+          <path d="M21 3v5h-5" />
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+          <path d="M8 16H3v5" />
+        </symbol>
+        <symbol id="lucide-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21 21-4.34-4.34" />
+          <circle cx="11" cy="11" r="8" />
+        </symbol>
+        <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+          <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+          <path d="M10 9H8" />
+          <path d="M16 13H8" />
+          <path d="M16 17H8" />
+        </symbol>
+        <symbol id="lucide-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+        </symbol>
+        <symbol id="lucide-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1" />
+          <circle cx="19" cy="12" r="1" />
+          <circle cx="5" cy="12" r="1" />
+        </symbol>
+      </svg>
       <aside class="dframe-sidebar" data-primitive="claude-sidebar">
         <div class="claude-traffic" aria-hidden="true">
           <span class="red"></span>
@@ -32,7 +89,9 @@
             </span>
             <span>Claude</span>
           </div>
-          <button class="sidebar-icon-button" type="button" aria-label="Collapse sidebar"></button>
+          <button class="sidebar-icon-button" type="button" aria-label="Collapse sidebar">
+            <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg>
+          </button>
         </div>
 
         <div class="mode-switch" aria-label="Claude mode">
@@ -43,27 +102,27 @@
 
         <div class="sidebar-primary-actions">
           <button class="new-chat-button" type="button">
-            <span class="sidebar-symbol compose"></span>
+            <span class="sidebar-symbol compose"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span>
             <span>New task</span>
           </button>
           <button class="search-chat-button" type="button">
-            <span class="sidebar-symbol search"></span>
+            <span class="sidebar-symbol search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg></span>
             <span>Search tasks</span>
           </button>
         </div>
 
         <div class="sidebar-section-label">Active tasks</div>
-        <div class="dframe-row selected"><span class="sidebar-symbol project"></span><span>Q2 deck chart</span></div>
-        <div class="dframe-row"><span class="sidebar-symbol artifact"></span><span>Browser metrics cleanup</span></div>
+        <div class="dframe-row selected"><span class="sidebar-symbol project"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>Q2 deck chart</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol artifact"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>Browser metrics cleanup</span></div>
 
         <div class="sidebar-section-label">Today</div>
-        <div class="dframe-row"><span class="sidebar-symbol chat"></span><span>Finder attachment test</span></div>
-        <div class="dframe-row"><span class="sidebar-symbol chat"></span><span>Presentation cleanup</span></div>
-        <div class="dframe-row"><span class="sidebar-symbol chat"></span><span>Reference video notes</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol chat"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chat"/></svg></span><span>Finder attachment test</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol chat"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chat"/></svg></span><span>Presentation cleanup</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol chat"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chat"/></svg></span><span>Reference video notes</span></div>
 
         <div class="sidebar-section-label">Projects</div>
-        <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Marketing videos</span></div>
-        <div class="dframe-row"><span class="sidebar-symbol folder"></span><span>Backlot primitives</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span>Marketing videos</span></div>
+        <div class="dframe-row"><span class="sidebar-symbol folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span>Backlot primitives</span></div>
 
         <div class="sidebar-sync-state" data-layout-allow-occlusion="">
           <span class="sync-pulse"></span>
@@ -73,14 +132,16 @@
         <div class="sidebar-account">
           <span class="account-avatar"></span>
           <span class="account-copy"><strong>Demo workspace</strong><span>Pro plan</span></span>
-          <span class="sidebar-kebab"></span>
+          <span class="sidebar-kebab"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></span>
         </div>
       </aside>
 
       <main class="dframe-pane-primary epitaxy-root" data-primitive="claude-thread-pane">
         <header class="epitaxy-topbar">
           <div class="topbar-left" data-top-left>
-            <button class="topbar-icon menu" type="button" aria-label="Open sidebar"></button>
+            <button class="topbar-icon menu" type="button" aria-label="Open sidebar">
+              <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg>
+            </button>
             <div class="thread-title-stack">
               <div class="conversation-title">Update Launch Deck opening slides</div>
               <div class="conversation-subtitle">Working in Launch Deck</div>
@@ -92,8 +153,12 @@
               <span>Opus 4.5</span>
               <span class="chevron down"></span>
             </button>
-            <button class="topbar-icon share" type="button" aria-label="Share"></button>
-            <button class="topbar-icon more" type="button" aria-label="More"></button>
+            <button class="topbar-icon share" type="button" aria-label="Share">
+              <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg>
+            </button>
+            <button class="topbar-icon more" type="button" aria-label="More">
+              <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg>
+            </button>
           </div>
         </header>
 
@@ -165,9 +230,15 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
                 </section>
 
                 <div class="message-actions" aria-label="Assistant message actions">
-                  <button class="mini-action copy" type="button" aria-label="Copy"></button>
-                  <button class="mini-action retry" type="button" aria-label="Retry"></button>
-                  <button class="mini-action more" type="button" aria-label="More"></button>
+                  <button class="mini-action copy" type="button" aria-label="Copy">
+                    <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-copy"/></svg>
+                  </button>
+                  <button class="mini-action retry" type="button" aria-label="Retry">
+                    <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-retry"/></svg>
+                  </button>
+                  <button class="mini-action more" type="button" aria-label="More">
+                    <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg>
+                  </button>
                 </div>
               </div>
             </article>
@@ -185,7 +256,9 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
               <div class="epitaxy-prompt-input" aria-label="Prompt">Reply...</div>
               <div class="composer-controls">
                 <span class="composer-tools">
-                  <button class="prompt-icon-button plus" type="button" aria-label="Attach"></button>
+                  <button class="prompt-icon-button plus" type="button" aria-label="Attach">
+                    <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg>
+                  </button>
                   <button class="prompt-tool" type="button"><span class="folder-mini"></span>Work in a folder</button>
                   <button class="prompt-tool" type="button">Research</button>
                 </span>
@@ -193,8 +266,12 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
                   <span>Opus 4.5</span>
                   <span class="chevron down"></span>
                 </button>
-                <button class="prompt-icon-button mic" type="button" aria-label="Dictate"></button>
-                <button class="send-button" type="button" aria-label="Send"></button>
+                <button class="prompt-icon-button mic" type="button" aria-label="Dictate">
+                  <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-mic"/></svg>
+                </button>
+                <button class="send-button" type="button" aria-label="Send">
+                  <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg>
+                </button>
               </div>
             </div>
           </div>
@@ -218,7 +295,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         <section class="rail-section">
           <div class="rail-title">Artifacts</div>
           <div class="artifact-card">
-            <span class="rail-file-icon deck"></span>
+            <span class="rail-file-icon deck"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span>
             <div><strong>Deck.pptx</strong><span>opening slides</span></div>
           </div>
         </section>
@@ -226,9 +303,9 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         <section class="rail-section">
           <div class="rail-title">Context</div>
           <div class="context-list">
-            <div class="context-row"><span class="rail-file-icon folder"></span><span>Launch Deck</span></div>
-            <div class="context-row"><span class="rail-file-icon sheet"></span><span>Q2 revenue.csv</span></div>
-            <div class="context-row"><span class="rail-file-icon doc"></span><span>slide-notes.md</span></div>
+            <div class="context-row"><span class="rail-file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span>Launch Deck</span></div>
+            <div class="context-row"><span class="rail-file-icon sheet"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>Q2 revenue.csv</span></div>
+            <div class="context-row"><span class="rail-file-icon doc"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>slide-notes.md</span></div>
           </div>
         </section>
 
@@ -281,7 +358,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 780px;
         overflow: visible;
         color: var(--text-100);
-        font-family: Inter, sans-serif;
+        font-family: var(--font-claude-ui);
       }
 
       #claude-app-surface[data-reference-focus="true"] {
@@ -355,12 +432,22 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 11px;
         height: 11px;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+        box-shadow:
+          inset 0 0 0 0.5px rgba(0, 0, 0, 0.15),
+          0 0.5px 1px rgba(0, 0, 0, 0.08);
       }
 
-      .claude-traffic .red { background: #ff5f57; }
-      .claude-traffic .yellow { background: #ffbd2e; }
-      .claude-traffic .green { background: #28c840; }
+      .claude-traffic .red {
+        background: radial-gradient(circle at 35% 30%, #ff8a80 0%, #ff5f57 55%, #e0443e 100%);
+      }
+
+      .claude-traffic .yellow {
+        background: radial-gradient(circle at 35% 30%, #ffd54f 0%, #febc2e 55%, #d89e24 100%);
+      }
+
+      .claude-traffic .green {
+        background: radial-gradient(circle at 35% 30%, #69f0ae 0%, #28c840 55%, #1f9e38 100%);
+      }
 
       .sidebar-head {
         height: 28px;
@@ -481,28 +568,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 28px;
         height: 28px;
         border-radius: 8px;
-      }
-
-      .sidebar-icon-button::before,
-      .sidebar-icon-button::after {
-        content: "";
-        position: absolute;
-        border-radius: 2px;
-        background: currentColor;
-      }
-
-      .sidebar-icon-button::before {
-        width: 12px;
-        height: 9px;
-        box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.9);
-        border: 1.5px solid currentColor;
-        background: transparent;
-      }
-
-      .sidebar-icon-button::after {
-        width: 1.5px;
-        height: 9px;
-        left: 13px;
+        font-size: 15px;
       }
 
       .sidebar-primary-actions {
@@ -572,77 +638,12 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         position: relative;
       }
 
-      .sidebar-symbol.compose::before,
-      .sidebar-symbol.search::before,
-      .sidebar-symbol.project::before,
-      .sidebar-symbol.artifact::before,
-      .sidebar-symbol.chat::before,
-      .sidebar-symbol.folder::before {
-        content: "";
-        position: absolute;
-        inset: 2px;
-        border: 1.5px solid currentColor;
+      .sidebar-symbol {
+        display: grid;
+        place-items: center;
+        font-size: 13px;
       }
 
-      .sidebar-symbol.compose::before {
-        border-radius: 4px;
-      }
-
-      .sidebar-symbol.compose::after {
-        content: "";
-        position: absolute;
-        right: 2px;
-        top: 2px;
-        width: 7px;
-        height: 1.5px;
-        background: currentColor;
-        transform: rotate(-35deg);
-        border-radius: 2px;
-      }
-
-      .sidebar-symbol.search::before {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        inset: 2px auto auto 2px;
-      }
-
-      .sidebar-symbol.search::after {
-        content: "";
-        position: absolute;
-        right: 2px;
-        bottom: 3px;
-        width: 6px;
-        height: 1.5px;
-        border-radius: 2px;
-        background: currentColor;
-        transform: rotate(45deg);
-      }
-
-      .sidebar-symbol.project::before {
-        inset: 3px;
-        border-radius: 3px;
-        background:
-          linear-gradient(currentColor 0 0) 50% 50% / 1.5px 100% no-repeat,
-          linear-gradient(currentColor 0 0) 50% 50% / 100% 1.5px no-repeat,
-          rgba(216, 117, 95, 0.12);
-        opacity: 0.9;
-      }
-
-      .sidebar-symbol.artifact::before {
-        inset: 2px 3px 2px 4px;
-        border-radius: 3px;
-        background:
-          linear-gradient(135deg, transparent 0 72%, rgba(216, 117, 95, 0.42) 72% 100%),
-          rgba(216, 117, 95, 0.14);
-        border-color: rgba(190, 88, 67, 0.38);
-      }
-
-      .sidebar-symbol.chat::before {
-        inset: 3px 2px 4px 2px;
-        border-radius: 6px 6px 6px 3px;
-        background: rgba(80, 72, 62, 0.06);
-      }
 
       .sidebar-symbol.chat::after {
         content: "";
@@ -654,24 +655,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-left: 1.5px solid currentColor;
         border-bottom: 1.5px solid currentColor;
         transform: skew(-18deg);
-      }
-
-      .sidebar-symbol.folder::before {
-        inset: 5px 2px 2px 2px;
-        border-radius: 3px;
-        background: rgba(80, 72, 62, 0.06);
-      }
-
-      .sidebar-symbol.folder::after {
-        content: "";
-        position: absolute;
-        left: 3px;
-        top: 3px;
-        width: 7px;
-        height: 4px;
-        border-radius: 2px 2px 0 0;
-        background: currentColor;
-        opacity: 0.3;
       }
 
       .sidebar-account {
@@ -741,19 +724,9 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         position: relative;
         width: 18px;
         height: 18px;
-      }
-
-      .sidebar-kebab::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: currentColor;
-        transform: translate(-50%, -50%);
-        box-shadow: -5px 0 0 currentColor, 5px 0 0 currentColor;
+        display: grid;
+        place-items: center;
+        font-size: 13px;
       }
 
       .dframe-pane-primary {
@@ -809,44 +782,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 30px;
         height: 30px;
         border-radius: 9px;
-      }
-
-      .topbar-icon.menu::before {
-        content: "";
-        width: 16px;
-        height: 12px;
-        border-top: 1.8px solid currentColor;
-        border-bottom: 1.8px solid currentColor;
-        box-shadow: 0 5px 0 -3.2px currentColor;
-      }
-
-      .topbar-icon.share::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border: 1.6px solid currentColor;
-        border-radius: 3px;
-      }
-
-      .topbar-icon.share::after {
-        content: "";
-        position: absolute;
-        top: 6px;
-        width: 7px;
-        height: 7px;
-        border-top: 1.6px solid currentColor;
-        border-right: 1.6px solid currentColor;
-        transform: rotate(-45deg);
-      }
-
-      .topbar-icon.more::before,
-      .mini-action.more::before {
-        content: "";
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: currentColor;
-        box-shadow: -5px 0 0 currentColor, 5px 0 0 currentColor;
+        font-size: 15px;
       }
 
       .thread-title-stack {
@@ -990,7 +926,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         display: grid;
         gap: 5px;
         color: var(--text-100);
-        font-family: Georgia, serif;
+        font-family: var(--font-claude-serif);
         font-size: 27px;
         line-height: 1.14;
         font-weight: 430;
@@ -1277,7 +1213,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         padding: 0 12px 11px 34px;
         overflow: hidden;
         color: var(--text-300);
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 11.5px;
         line-height: 1.45;
         white-space: pre-wrap;
@@ -1296,27 +1232,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         width: 24px;
         height: 24px;
         border-radius: 8px;
-      }
-
-      .mini-action.copy::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 7px;
-        width: 8px;
-        height: 10px;
-        border: 1.4px solid currentColor;
-        border-radius: 2px;
-        box-shadow: -3px 3px 0 -1px var(--bg-100), -3px 3px 0 0 currentColor;
-      }
-
-      .mini-action.retry::before {
-        content: "";
-        width: 10px;
-        height: 10px;
-        border: 1.5px solid currentColor;
-        border-left-color: transparent;
-        border-radius: 50%;
+        font-size: 13px;
       }
 
       .composer-shell {
@@ -1419,7 +1335,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         color: var(--text-400);
         font-size: 24px;
         line-height: 1.35;
-        font-family: Inter, sans-serif;
+        font-family: var(--font-claude-ui);
         font-weight: 420;
       }
 
@@ -1450,20 +1366,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border: 1px solid rgba(39, 37, 34, 0.08);
         border-radius: 50%;
         background: #f7f4ee;
-      }
-
-      .prompt-icon-button.plus::before,
-      .prompt-icon-button.plus::after {
-        content: "";
-        position: absolute;
-        width: 12px;
-        height: 2px;
-        border-radius: 2px;
-        background: currentColor;
-      }
-
-      .prompt-icon-button.plus::after {
-        transform: rotate(90deg);
+        font-size: 15px;
       }
 
       .prompt-tool {
@@ -1502,53 +1405,24 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         margin-left: auto;
       }
 
-      .prompt-icon-button.mic::before {
-        content: "";
-        position: absolute;
-        left: 10px;
-        top: 8px;
-        width: 8px;
-        height: 12px;
-        border-radius: 6px;
-        border: 2px solid currentColor;
-        border-top-width: 3px;
-      }
-
-      .prompt-icon-button.mic::after {
-        content: "";
-        position: absolute;
-        left: 9px;
-        top: 19px;
-        width: 12px;
-        height: 6px;
-        border-bottom: 2px solid currentColor;
-        border-radius: 0 0 10px 10px;
-      }
-
       .send-button {
         width: 32px;
         height: 32px;
         flex: 0 0 auto;
+        display: grid;
+        place-items: center;
         border: 0;
         border-radius: 50%;
         background: var(--brand-100);
         position: relative;
+        color: #fff;
+        font-size: 15px;
         box-shadow: 0 8px 18px rgba(216, 117, 95, 0.22);
       }
 
-      .send-button::before {
+      .send-button.is-running::before {
         content: "";
         position: absolute;
-        left: 10px;
-        top: 9px;
-        width: 12px;
-        height: 12px;
-        border-left: 3px solid #fff;
-        border-top: 3px solid #fff;
-        transform: rotate(45deg);
-      }
-
-      .send-button.is-running::before {
         left: 12px;
         top: 12px;
         width: 10px;
@@ -1755,7 +1629,15 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 5px;
         background: #ddd4c7;
         position: relative;
+        display: grid;
+        place-items: center;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 11px;
         flex: 0 0 auto;
+      }
+
+      .rail-file-icon.doc {
+        color: rgba(60, 54, 46, 0.72);
       }
 
       .rail-file-icon.deck {
@@ -1763,21 +1645,11 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 22px;
         border-radius: 6px;
         background: linear-gradient(135deg, #d46e54, #a84835);
+        font-size: 13px;
       }
 
       .rail-file-icon.folder {
         background: #72c2e4;
-      }
-
-      .rail-file-icon.folder::before {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: -3px;
-        width: 9px;
-        height: 5px;
-        border-radius: 3px 3px 0 0;
-        background: #98d5ee;
       }
 
       .rail-file-icon.sheet {
@@ -2000,27 +1872,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 50%;
         color: #fff;
         background: var(--brand-000);
-      }
-
-      .new-chat-button .sidebar-symbol.compose::before,
-      .new-chat-button .sidebar-symbol.compose::after {
-        border: 0;
-        background: #fff;
-      }
-
-      .new-chat-button .sidebar-symbol.compose::before {
-        left: 9px;
-        top: 14px;
-        width: 13px;
-        height: 2px;
-      }
-
-      .new-chat-button .sidebar-symbol.compose::after {
-        left: 14px;
-        top: 9px;
-        width: 2px;
-        height: 13px;
-        transform: none;
+        font-size: 15px;
       }
 
       .search-chat-button {
@@ -2194,7 +2046,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 10px;
         background: #f8f7f1;
         color: #3f7b45;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 14px;
         line-height: 1.34;
       }
@@ -2202,7 +2054,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .part-label,
       .source-label {
         color: #756f66;
-        font-family: Inter, sans-serif;
+        font-family: var(--font-claude-ui);
         font-size: 13px;
         text-transform: none;
       }
@@ -2278,17 +2130,15 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 43px;
         border-radius: 12px;
         background: var(--brand-100);
+        font-size: 18px;
         box-shadow: none;
       }
 
-      .send-button::before,
       .send-button.is-running::before {
         left: 14px;
         top: 16px;
         width: 14px;
         height: 14px;
-        border-left: 2.5px solid #fff;
-        border-top: 2.5px solid #fff;
         border-radius: 0;
         background: transparent;
         transform: rotate(45deg);
@@ -2406,6 +2256,8 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 4px;
         background: transparent;
         border: 1.8px solid #938c82;
+        color: #938c82;
+        font-size: 14px;
       }
 
       .artifact-card strong {

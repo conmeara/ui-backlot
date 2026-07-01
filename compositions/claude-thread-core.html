@@ -1,4 +1,5 @@
 <style>
+      @import url("../styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -129,7 +130,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         height: 840px;
         overflow: visible;
         color: var(--text-100);
-        font-family: Inter, sans-serif;
+        font-family: var(--font-claude-ui);
       }
 
       #claude-thread-core-surface * {
@@ -435,7 +436,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         display: grid;
         gap: 4px;
         color: var(--text-100);
-        font-family: Georgia, serif;
+        font-family: var(--font-claude-serif);
         font-size: 26px;
         line-height: 1.12;
         font-weight: 430;
@@ -542,7 +543,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 11px;
         background: #f8f6ef;
         color: #2f7a3a;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 15px;
         line-height: 1.5;
       }
@@ -670,7 +671,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         padding: 0 12px 10px 34px;
         overflow: hidden;
         color: var(--text-300);
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 11.5px;
         line-height: 1.42;
       }

@@ -45,6 +45,15 @@ capture metadata and scripts without requiring those files. After regenerating a
 local capture inventory, run `npm run registry:check:captures` to require every
 registered capture PNG on disk.
 
+To rebuild the one-page visual inventory of every registry surface, run:
+
+```bash
+npm run inventory:refresh
+```
+
+That refreshes each ready capture, then writes the ignored local files
+`captures/surface-inventory.html` and `captures/surface-inventory.png`.
+
 The focused target is a Claude-on-Mac demo environment:
 
 - A Claude assistant surface.
@@ -116,6 +125,8 @@ npm run capture:quickstart-demo
 npm run capture:surface
 npm run capture:finder
 npm run capture:browser-app
+npm run inventory:generate
+npm run inventory:refresh
 npm run compare:finder
 npm run compare:sheets
 npm run hf:lint

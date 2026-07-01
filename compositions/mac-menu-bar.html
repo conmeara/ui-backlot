@@ -1,4 +1,5 @@
 <style>
+      @import url("../styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -13,6 +14,25 @@
 
 <template id="mac-menu-bar-template">
   <div id="mac-menu-bar-surface" data-composition-id="mac-menu-bar-surface" data-width="1920" data-height="30">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="f7-search" viewBox="0 0 56 56">
+        <path d="M 23.9570 41.7695 C 27.8476 41.7695 31.4804 40.5039 34.4336 38.3945 L 45.5429 49.5039 C 46.0585 50.0195 46.7382 50.2774 47.4414 50.2774 C 48.9648 50.2774 50.0664 49.1055 50.0664 47.6055 C 50.0664 46.9023 49.8322 46.2461 49.3162 45.7305 L 38.2773 34.6679 C 40.5976 31.6211 41.9804 27.8476 41.9804 23.7461 C 41.9804 13.8320 33.8710 5.7226 23.9570 5.7226 C 14.0195 5.7226 5.9336 13.8320 5.9336 23.7461 C 5.9336 33.6601 14.0195 41.7695 23.9570 41.7695 Z M 23.9570 37.8789 C 16.1992 37.8789 9.8242 31.4805 9.8242 23.7461 C 9.8242 16.0117 16.1992 9.6133 23.9570 9.6133 C 31.6914 9.6133 38.0898 16.0117 38.0898 23.7461 C 38.0898 31.4805 31.6914 37.8789 23.9570 37.8789 Z"/>
+      </symbol>
+      <!-- Hand-authored Control Center glyph (two toggle pills); the
+           Framework7 "control" symbol is a chevron and reads wrong here. -->
+      <symbol id="f7-control-center" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="4">
+        <rect x="5" y="8" width="46" height="17" rx="8.5" />
+        <circle cx="42.5" cy="16.5" r="4.5" fill="currentColor" stroke="none" />
+        <rect x="5" y="31" width="46" height="17" rx="8.5" />
+        <circle cx="13.5" cy="39.5" r="4.5" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="f7-wifi" viewBox="0 0 56 56">
+        <path d="M 5.4648 25.0352 C 5.9102 25.4805 6.5664 25.4571 6.9882 25.0118 C 12.5195 19.1289 19.8320 16.0352 28.0117 16.0352 C 36.2382 16.0352 43.5742 19.1523 49.0819 25.0352 C 49.4803 25.4336 50.1135 25.4336 50.5354 24.9883 L 53.6525 21.8711 C 54.0274 21.4727 54.0274 20.9571 53.7226 20.5820 C 48.4258 14.0664 38.4648 9.2617 28.0117 9.2617 C 17.5586 9.2617 7.5976 14.0664 2.3007 20.5820 C 1.9726 20.9571 1.9961 21.4727 2.3711 21.8711 Z M 14.8398 34.4336 C 15.3086 34.9258 15.9180 34.8789 16.3633 34.3633 C 19.0820 31.3398 23.4882 29.1602 28.0117 29.2071 C 32.5820 29.1602 36.9648 31.4102 39.7070 34.4336 C 40.1523 34.9023 40.7382 34.9023 41.1836 34.4102 L 44.6758 30.9649 C 45.0507 30.5898 45.0976 30.0977 44.7461 29.6992 C 41.3476 25.5039 35.0429 22.4102 28.0117 22.4102 C 20.9804 22.4102 14.6758 25.5274 11.2773 29.6992 C 10.9258 30.0977 10.9726 30.5664 11.3476 30.9649 Z M 28.0117 46.7383 C 28.5039 46.7383 28.9492 46.4805 29.8164 45.6367 L 35.3007 40.3633 C 35.6523 40.0352 35.7226 39.5196 35.4180 39.1211 C 33.9414 37.2227 31.1758 35.5820 28.0117 35.5820 C 24.7773 35.5820 21.9648 37.2930 20.5117 39.2617 C 20.3007 39.5898 20.3711 40.0352 20.7226 40.3633 L 26.2070 45.6367 C 27.0742 46.4805 27.5195 46.7383 28.0117 46.7383 Z"/>
+      </symbol>
+      <symbol id="f7-battery" viewBox="0 0 56 56">
+        <path d="M 9.4633 42.0000 L 40.8481 42.0000 C 43.8786 42.0000 46.4304 41.7165 48.2379 39.9089 C 50.0457 38.1013 50.2935 35.5848 50.2935 32.5545 L 50.2935 23.4633 C 50.2935 20.4329 50.0457 17.8987 48.2379 16.1089 C 46.4127 14.3013 43.8786 14.0000 40.8481 14.0000 L 9.4101 14.0000 C 6.4329 14.0000 3.8810 14.3013 2.0734 16.1089 C .2658 17.9164 0 20.4329 0 23.4101 L 0 32.5545 C 0 35.5848 .2658 38.1190 2.0734 39.9089 C 3.8810 41.7165 6.4329 42.0000 9.4633 42.0000 Z M 8.9671 39.1468 C 7.1418 39.1468 5.2279 38.8987 4.1646 37.8355 C 3.0835 36.7544 2.8532 34.8759 2.8532 33.0506 L 2.8532 23.0202 C 2.8532 21.1595 3.0835 19.2456 4.1468 18.1823 C 5.2279 17.1013 7.1595 16.8532 9.0203 16.8532 L 41.3442 16.8532 C 43.1520 16.8532 45.0836 17.1190 46.1470 18.1823 C 47.2278 19.2633 47.4405 21.1418 47.4405 22.9671 L 47.4405 33.0506 C 47.4405 34.8759 47.2100 36.7544 46.1470 37.8355 C 45.0836 38.9165 43.1520 39.1468 41.3442 39.1468 Z M 8.6126 36.7367 L 41.6988 36.7367 C 43.0101 36.7367 43.7367 36.5595 44.3036 36.0101 C 44.8709 35.4430 45.0302 34.6988 45.0302 33.4051 L 45.0302 22.6127 C 45.0302 21.3013 44.8531 20.5747 44.3036 20.0076 C 43.7367 19.4405 43.0101 19.2810 41.6988 19.2810 L 8.6126 19.2810 C 7.3013 19.2810 6.5747 19.4405 6.0076 20.0076 C 5.4405 20.5747 5.2810 21.3013 5.2810 22.6127 L 5.2810 33.4051 C 5.2810 34.6988 5.4405 35.4430 6.0076 36.0101 C 6.5747 36.5595 7.3013 36.7367 8.6126 36.7367 Z M 52.7216 32.4835 C 54.1214 32.3949 56 30.6051 56 27.8937 C 56 25.2000 54.1214 23.4101 52.7216 23.3215 Z"/>
+      </symbol>
+    </svg>
     <header class="mac-menu-bar-stage" data-primitive="mac-menu-bar" data-active-app="Claude" aria-label="Editable macOS menu bar">
       <div class="menu-left">
         <span class="apple-glyph" aria-hidden="true"></span>
@@ -25,10 +45,10 @@
       <div></div>
       <div class="menu-right">
         <span class="status-icons" aria-hidden="true">
-          <span class="status-icon search-glyph"></span>
-          <span class="status-icon control-center-glyph"></span>
-          <span class="status-icon wifi-glyph"></span>
-          <span class="status-icon battery-glyph"></span>
+          <svg class="backlot-icon status-icon search-glyph" aria-hidden="true"><use href="#f7-search"/></svg>
+          <svg class="backlot-icon status-icon control-center-glyph" aria-hidden="true"><use href="#f7-control-center"/></svg>
+          <svg class="backlot-icon status-icon wifi-glyph" aria-hidden="true"><use href="#f7-wifi"/></svg>
+          <svg class="backlot-icon status-icon battery-glyph" aria-hidden="true"><use href="#f7-battery"/></svg>
         </span>
         <span class="menu-date">Thu Jun 18</span>
         <span class="menu-time">11:18 AM</span>
@@ -43,7 +63,7 @@
         width: 1920px;
         height: 30px;
         color: var(--menu-bar-ink);
-        font-family: Inter, sans-serif;
+        font-family: var(--font-macos);
       }
 
       #mac-menu-bar-surface * {
@@ -120,68 +140,32 @@
         height: 100%;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 18px;
         padding: 0 3px;
-        color: rgba(0, 0, 0, 0.78);
+        color: rgba(29, 29, 31, 0.85);
       }
 
-      .status-icon {
-        position: relative;
-        width: 17px;
-        height: 18px;
-        display: inline-block;
-        border-radius: 4px;
-        background: currentColor;
-      }
-
-      .search-glyph {
+      .backlot-icon.status-icon {
         width: 15px;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' d='M7.8 3.5a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6Zm3.4 7.7 3.3 3.3'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' d='M7.8 3.5a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6Zm3.4 7.7 3.3 3.3'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
+        height: 15px;
+        display: inline-block;
+        flex: none;
+        fill: currentColor;
       }
 
       .control-center-glyph {
-        width: 17px;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='black' d='M4 4.1h10a2 2 0 0 1 0 4H4a2 2 0 0 1 0-4Zm0 1.5a.5.5 0 0 0 0 1h10a.5.5 0 0 0 0-1H4Zm2 5.2h10a2 2 0 0 1 0 4H6a2 2 0 0 1 0-4Zm0 1.5a.5.5 0 0 0 0 1h10a.5.5 0 0 0 0-1H6Z'/%3E%3Ccircle cx='6' cy='6.1' r='2.15' fill='black'/%3E%3Ccircle cx='13' cy='12.8' r='2.15' fill='black'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='black' d='M4 4.1h10a2 2 0 0 1 0 4H4a2 2 0 0 1 0-4Zm0 1.5a.5.5 0 0 0 0 1h10a.5.5 0 0 0 0-1H4Zm2 5.2h10a2 2 0 0 1 0 4H6a2 2 0 0 1 0-4Zm0 1.5a.5.5 0 0 0 0 1h10a.5.5 0 0 0 0-1H6Z'/%3E%3Ccircle cx='6' cy='6.1' r='2.15' fill='black'/%3E%3Ccircle cx='13' cy='12.8' r='2.15' fill='black'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+        width: 14px;
+        height: 14px;
       }
 
       .wifi-glyph {
-        width: 18px;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 16'%3E%3Cpath fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' d='M3.2 5.8a9.6 9.6 0 0 1 13.6 0M6.1 8.7a5.5 5.5 0 0 1 7.8 0M9.95 12.4h.1'/%3E%3C/svg%3E") center / 17px 14px no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 16'%3E%3Cpath fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' d='M3.2 5.8a9.6 9.6 0 0 1 13.6 0M6.1 8.7a5.5 5.5 0 0 1 7.8 0M9.95 12.4h.1'/%3E%3C/svg%3E") center / 17px 14px no-repeat;
+        width: 16px;
+        height: 16px;
       }
 
       .battery-glyph {
-        width: 24px;
-        background: none;
-      }
-
-      .battery-glyph {
-        background:
-          linear-gradient(currentColor, currentColor) 5px 7px / 12px 4px no-repeat;
-      }
-
-      .battery-glyph::before {
-        content: "";
-        position: absolute;
-        left: 1px;
-        top: 4px;
-        width: 20px;
-        height: 10px;
-        border: 1.35px solid currentColor;
-        border-radius: 3px;
-      }
-
-      .battery-glyph::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 8px;
-        width: 2px;
-        height: 4px;
-        border-radius: 0 2px 2px 0;
-        background: currentColor;
+        width: 22px;
+        height: 15px;
       }
 
       .menu-date {

@@ -66,6 +66,8 @@
     "compare:finder": "tools/make-comparison-sheet.sh captures/finder-launch-deck/window.png captures/surface-finder-window/target.png snapshots/finder-source-vs-surface.jpg 'REFERENCE - Finder Launch Deck window capture' 'PROTOTYPE - Editable Finder HTML surface'",
     "compare:finder-window": "tools/make-comparison-sheet.sh captures/finder-launch-deck/window.png captures/surface-finder-window-component/target.png snapshots/finder-source-vs-component.jpg 'REFERENCE - Finder Launch Deck window capture' 'COMPONENT - Finder HyperFrames subcomposition'",
     "compare:sheets": "tools/make-comparison-sheet.sh",
+    "inventory:generate": "node tools/generate-surface-inventory.mjs",
+    "inventory:refresh": "node tools/generate-surface-inventory.mjs --refresh-captures",
     "catalog:generate": "node tools/generate-public-catalog.mjs",
     "registry:check": "node tools/check-surface-registry.mjs",
     "registry:check:captures": "node tools/check-surface-registry.mjs --require-captures",

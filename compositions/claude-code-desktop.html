@@ -1,4 +1,5 @@
 <style>
+      @import url("../styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -220,7 +221,7 @@
         height: 900px;
         overflow: visible;
         color: var(--text);
-        font-family: Inter, system-ui, sans-serif;
+        font-family: var(--font-claude-ui);
       }
 
       #claude-code-desktop-surface * {
@@ -510,7 +511,7 @@
         border: 1px solid var(--line);
         border-radius: 12px;
         background: #171818;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
       }
 
       .added { color: var(--green); }
@@ -783,7 +784,7 @@
         padding: 8px 20px;
         border-bottom: 1px solid var(--line);
         color: #c9c5bf;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 15px;
       }
 
@@ -793,7 +794,7 @@
         grid-template-columns: 42px 1fr;
         min-height: 28px;
         align-items: center;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 14px;
       }
 
@@ -834,7 +835,7 @@
 
       .terminal-lines {
         padding: 13px 16px;
-        font-family: "JetBrains Mono", monospace;
+        font-family: var(--font-terminal);
         font-size: 13px;
         line-height: 1.45;
         color: #e38f8b;

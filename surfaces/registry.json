@@ -39,9 +39,11 @@
         "docs/prototypes/browser-chrome-donor-refinement-pass-013.md",
         "docs/prototypes/browser-app-polish-pass-093.md",
         "docs/prototypes/browser-app-actual-reference-rebuild-pass-094.md",
-        "docs/research/open-source-ui-donor-repos.md"
+        "docs/research/open-source-ui-donor-repos.md",
+        "assets/icons/source-authentic/lucide/browser-symbols.svg",
+        "assets/icons/sprite-manifest.json"
       ],
-      "assetDecision": "Hand-authored HTML/CSS; uses donor repos as geometry reference without vendoring runtime components.",
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) browser-chrome icon symbols vendored via assets/icons/sprite-manifest.json; uses donor repos as geometry reference without vendoring runtime components.",
       "recommendedUse": "Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows."
     },
     {
@@ -170,9 +172,11 @@
         "/Applications/Claude.app",
         "docs/research/open-source-ui-donor-repos.md",
         "docs/prototypes/claude-app-reference-focus-pass-060.md",
-        "docs/prototypes/claude-registry-metadata-pass-078.md"
+        "docs/prototypes/claude-registry-metadata-pass-078.md",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/sprite-manifest.json"
       ],
-      "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols vendored via assets/icons/sprite-manifest.json and shared Anthropic fonts from styles/backlot-foundation.css; no Claude product code or app assets copied.",
       "recommendedUse": "Focused Claude working-thread scenes, especially clips that pair Claude with one other app surface."
     },
     {
@@ -2203,9 +2207,11 @@
       "sourceEvidence": [
         "captures/finder-launch-deck/window.png",
         "snapshots/finder-source-vs-component.jpg",
-        "docs/research/open-source-ui-donor-repos.md"
+        "docs/research/open-source-ui-donor-repos.md",
+        "assets/icons/source-authentic/framework7/macos-symbols.svg",
+        "assets/icons/sprite-manifest.json"
       ],
-      "assetDecision": "Hand-authored HTML/CSS informed by local Finder capture and MIT donor references; no Apple code copied.",
+      "assetDecision": "Hand-authored HTML/CSS with curated Framework7 (MIT) SF-style icon symbols vendored via assets/icons/sprite-manifest.json; no Apple SF Symbols or app assets copied.",
       "recommendedUse": "File/folder handoff scenes that need Finder without a full desktop shell."
     },
     {
@@ -2247,9 +2253,11 @@
         "reference/open-source/macos-web/src/components/TopBar/MenuBar.svelte",
         "reference/open-source/macos-web/src/components/TopBar/TopBarTime.svelte",
         "docs/research/open-source-ui-donor-repos.md",
-        "compositions/claude-presentation-chat-pane-workflow.html"
+        "compositions/claude-presentation-chat-pane-workflow.html",
+        "assets/icons/source-authentic/framework7/macos-symbols.svg",
+        "assets/icons/sprite-manifest.json"
       ],
-      "assetDecision": "Hand-authored HTML/CSS informed by MIT-licensed macos-web menu-bar structure and existing Backlot wrappers. The Apple glyph is an inline CSS mask so this component does not depend on a missing donor icon asset; no macos-web source code, icon file, wallpaper, private app asset, or GPL reference code was copied.",
+      "assetDecision": "Hand-authored HTML/CSS with curated Framework7 (MIT) SF-style status icons vendored via assets/icons/sprite-manifest.json plus one hand-authored Control Center glyph; no Apple SF Symbols or app assets copied.",
       "recommendedUse": "Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab."
     },
     {
@@ -2370,7 +2378,11 @@
         "https://support.microsoft.com/en-us/word/training/accept-tracked-changes",
         "https://fluent2.microsoft.design/components/web/react/core/toolbar/usage",
         "https://github.com/microsoft/fluentui/blob/master/LICENSE",
+        "https://www.npmjs.com/package/@fluentui/react-icons",
         "https://fluent2.microsoft.design/iconography",
+        "assets/icons/source-authentic/microsoft/office-ribbon-symbols.svg",
+        "assets/icons/source-authentic/microsoft/README.md",
+        "styles/backlot-foundation.css",
         "docs/research/open-source-ui-donor-repos.md",
         "docs/prototypes/fluent-ribbon-powerpoint-refinement-pass-012.md",
         "docs/prototypes/word-editor-surface-pass-021.md",
@@ -2381,7 +2393,7 @@
         "reference/word/screenshots/word-track-changes-dropdown.png",
         "reference/word/screenshots/word-comments-pane-new-button.png"
       ],
-      "assetDecision": "Hand-authored HTML/CSS informed by Fluent UI and ribbon donor references; no Microsoft code, fonts, icons, or private data copied.",
+      "assetDecision": "Source-authentic Office fidelity pass: tracked editable SVG ribbon symbols extracted from @fluentui/react-icons 2.0.330 (MIT), shared Office font variables from styles/backlot-foundation.css, and a hand-rebuilt editable Word app tile; no private document data or screenshot pixels copied.",
       "recommendedUse": "Document editing, review, comments, tracked-change, and memo workflow scenes."
     }
   ]

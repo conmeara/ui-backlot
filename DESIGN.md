@@ -15,10 +15,11 @@ Claude, Finder, and PowerPoint UI. Reference videos guide pacing and taste; live
 apps, screenshots, DOM/CSS, accessibility trees, and relevant open-source UI
 repos guide the UI.
 
-Open-source projects are allowed as reference material and component donors,
-especially for macOS/Finder/Dock, Claude-like chat/composer behavior, browser
-chrome, and Office-like ribbons. Verify licenses before copying code or assets;
-prefer extracting patterns, measurements, and component structure.
+Open-source projects, local apps, and app bundles are allowed as reference
+material and component donors, especially for macOS/Finder/Dock, Claude-like
+chat/composer behavior, browser chrome, and Office-like ribbons. Prefer real
+source-authentic fonts, icons, logos, and UI atoms when they materially improve
+surface quality; keep provenance notes with the extracted assets.
 
 ## Palette
 
@@ -37,14 +38,15 @@ prefer extracting patterns, measurements, and component structure.
 
 ## Typography
 
-- Editorial voice: `Georgia` or another warm serif that HyperFrames can render
-  without private font files.
-- Product UI: `Inter` first, then platform UI fonts where the surface needs a
-  native app feel.
+- Editorial voice: `Anthropic Serif` for Claude narration and launch/title
+  language, with `Georgia` as the fallback.
+- Product UI: `Anthropic Sans` for Claude surfaces, app-native fonts for app
+  reconstructions, then platform UI fallbacks.
 - Code/status labels: `SFMono-Regular`, `Menlo`, `Monaco`, monospace.
 
-Private product fonts can inform fidelity research, but public runtime CSS must
-not require copied app font binaries.
+Use `styles/backlot-foundation.css` for shared `@font-face` declarations and
+font-family variables such as `--font-claude-ui`, `--font-office-ui`, and
+`--font-macos`.
 
 Use serif text for Claude narration and launch/title language. Use clean sans
 inside app surfaces. Avoid tiny web UI text except where it is decorative
