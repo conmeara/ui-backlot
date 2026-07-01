@@ -727,13 +727,11 @@
         font-size: 12px;
       }
 
-      .side-search::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border: 1.7px solid currentColor;
-        border-radius: 50%;
-        box-shadow: 5px 5px 0 -4px currentColor;
+      .side-search .backlot-icon {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+        color: #9aa1ab;
       }
 
       .brand-mark {
@@ -1158,6 +1156,16 @@
         font-weight: 760;
       }
 
+      .inspector-icon .backlot-icon {
+        width: 14px;
+        height: 14px;
+      }
+
+      .inspector-icon .tile-icon {
+        width: 15px;
+        height: 13px;
+      }
+
       .field-card,
       .activity-card {
         margin-top: 14px;
@@ -1332,6 +1340,16 @@
           <symbol id="lucide-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
           </symbol>
+          <symbol id="lucide-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </symbol>
+          <symbol id="lucide-layout-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="7" height="7" x="3" y="3" rx="1" />
+            <rect width="7" height="7" x="14" y="3" rx="1" />
+            <rect width="7" height="7" x="14" y="14" rx="1" />
+            <rect width="7" height="7" x="3" y="14" rx="1" />
+          </symbol>
         </svg>
         <div class="traffic" aria-hidden="true">
           <span class="red"></span>
@@ -1408,7 +1426,7 @@
 
           <aside class="app-sidebar">
             <div class="app-brand"><span class="brand-mark"></span>My first interface</div>
-            <div class="side-search">Find a view or element</div>
+            <div class="side-search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg>Find a view or element</div>
             <div class="side-label">Tables</div>
             <div class="side-row active"><span class="side-dot"></span>Content production<span class="side-count">24</span></div>
             <div class="side-row"><span class="side-dot"></span>Launch assets<span class="side-count">18</span></div>
@@ -1558,8 +1576,8 @@
             </div>
             <div class="inspector-list">
               <div class="inspector-row"><span class="inspector-icon">24</span><span>Count element</span><span>live</span></div>
-              <div class="inspector-row"><span class="inspector-icon">▥</span><span>Content production chart</span><span>2</span></div>
-              <div class="inspector-row"><span class="inspector-icon">▣</span><span>Customer feedback grid</span><span>edit</span></div>
+              <div class="inspector-row"><span class="inspector-icon"><span class="tile-icon chart"></span></span><span>Content production chart</span><span>2</span></div>
+              <div class="inspector-row"><span class="inspector-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-layout-grid"/></svg></span><span>Customer feedback grid</span><span>edit</span></div>
             </div>
             <div class="field-card">
               <div class="field-card-title">Data</div>

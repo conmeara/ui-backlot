@@ -550,89 +550,6 @@
         fill: currentColor;
       }
 
-      .cmd-icon.comment::before {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 7px;
-        width: 16px;
-        height: 12px;
-        border: 2px solid var(--word-blue);
-        border-radius: 5px;
-      }
-
-      .cmd-icon.comment::after {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: 18px;
-        width: 7px;
-        height: 7px;
-        background: #e7eefb;
-        border-left: 2px solid var(--word-blue);
-        border-bottom: 2px solid var(--word-blue);
-        transform: skew(-18deg);
-      }
-
-      .cmd-icon.accept::before,
-      .cmd-icon.reject::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 7px;
-        width: 14px;
-        height: 18px;
-        border-radius: 3px;
-        background: #fff;
-        border: 1px solid #b9c7d9;
-      }
-
-      .cmd-icon.accept::after {
-        content: "";
-        position: absolute;
-        left: 11px;
-        top: 15px;
-        width: 10px;
-        height: 6px;
-        border-left: 2px solid #22884f;
-        border-bottom: 2px solid #22884f;
-        transform: rotate(-45deg);
-      }
-
-      .cmd-icon.reject::after {
-        content: "";
-        position: absolute;
-        left: 11px;
-        top: 13px;
-        width: 10px;
-        height: 10px;
-        background:
-          linear-gradient(45deg, transparent 43%, #b23a31 43% 57%, transparent 57%),
-          linear-gradient(-45deg, transparent 43%, #b23a31 43% 57%, transparent 57%);
-      }
-
-      .cmd-icon.paste::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 8px;
-        width: 13px;
-        height: 16px;
-        border-radius: 3px;
-        background: var(--word-blue);
-      }
-
-      .cmd-icon.paste::after {
-        content: "";
-        position: absolute;
-        left: 10px;
-        top: 5px;
-        width: 9px;
-        height: 5px;
-        border-radius: 3px;
-        background: #f1d37c;
-      }
-
       .ribbon-stack {
         display: grid;
         gap: 4px;
@@ -640,10 +557,7 @@
 
       .ribbon-stack span,
       .field,
-      .toggle,
-      .style-strip span,
-      .review-chip,
-      .track-toggle {
+      .review-chip {
         height: 22px;
         display: inline-flex;
         align-items: center;
@@ -690,34 +604,6 @@
         transform: rotate(45deg) translateY(-2px);
       }
 
-      .track-toggle {
-        gap: 7px;
-        padding: 0 9px;
-        min-width: 126px;
-        justify-content: flex-start;
-        white-space: nowrap;
-      }
-
-      .track-toggle i {
-        width: 22px;
-        height: 12px;
-        border-radius: 999px;
-        background: #c8d9f0;
-        border: 1px solid #8eb6e8;
-        position: relative;
-      }
-
-      .track-toggle i::after {
-        content: "";
-        position: absolute;
-        right: 2px;
-        top: 2px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--word-blue);
-      }
-
       .review-chip {
         padding: 0 9px;
       }
@@ -739,91 +625,6 @@
 
       .button-row.dense {
         margin-top: 0;
-      }
-
-      .toggle {
-        width: 25px;
-        font-size: 12px;
-      }
-
-      .toggle.active {
-        border-color: #a6c5ec;
-        background: #e6f1ff;
-        color: var(--word-blue);
-      }
-
-      .toggle.color {
-        background:
-          linear-gradient(#fbfcfd, #fbfcfd) padding-box,
-          linear-gradient(90deg, #185abd 0 33%, #c65b47 33% 66%, #43b875 66%) border-box;
-        border-color: transparent;
-      }
-
-      .para {
-        width: 26px;
-        height: 22px;
-        border: 1px solid #d8dce2;
-        border-radius: 5px;
-        background: #fbfcfd;
-        position: relative;
-      }
-
-      .para::before {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 6px;
-        width: 13px;
-        height: 2px;
-        border-radius: 2px;
-        background: #4f5b66;
-        box-shadow: 0 5px 0 #4f5b66, 0 10px 0 #4f5b66;
-      }
-
-      .para.center::before { left: 7px; width: 11px; }
-      .para.right::before { left: 8px; width: 11px; }
-      .para.bullets::before { left: 11px; width: 10px; box-shadow: 0 5px 0 #4f5b66, 0 10px 0 #4f5b66, -6px 0 0 -1px #4f5b66, -6px 5px 0 -1px #4f5b66, -6px 10px 0 -1px #4f5b66; }
-      .para.spacing::before { left: 9px; width: 10px; }
-
-      .para.active {
-        border-color: #a6c5ec;
-        background: #e6f1ff;
-      }
-
-      .style-strip {
-        display: flex;
-        gap: 4px;
-        margin-top: 5px;
-      }
-
-      .style-strip span {
-        min-width: 58px;
-        padding: 0 7px;
-      }
-
-      .style-card {
-        width: 74px;
-        height: 56px;
-        display: grid;
-        grid-template-rows: 25px 1fr;
-        align-items: center;
-        justify-items: center;
-        padding: 4px;
-        border: 1px solid #d8dce2;
-        border-radius: 7px;
-        background: #fbfcfd;
-        color: #34414f;
-        font-size: 10px;
-      }
-
-      .style-card b {
-        font-family: Calibri, "Segoe UI", system-ui, sans-serif;
-        font-size: 18px;
-      }
-
-      .style-card.selected {
-        border-color: #a6c5ec;
-        background: #e6f1ff;
       }
 
       .document-workspace {
@@ -1717,7 +1518,7 @@
       }
 
       .ribbon-group.comments { min-width: 148px; }
-      .ribbon-group.tracking { min-width: 336px; }
+      .ribbon-group.tracking { min-width: 268px; }
       .ribbon-group.changes { min-width: 182px; }
       .ribbon-group.compare { min-width: 138px; }
       .ribbon-group.proofing { min-width: 176px; }
@@ -1808,6 +1609,8 @@
       .track-command {
         position: relative;
         z-index: 4;
+        display: inline-flex;
+        align-items: center;
         gap: 8px;
         padding: 0 22px 0 5px;
         min-width: 138px;
@@ -1875,11 +1678,13 @@
       }
 
       .tracking .button-row {
-        padding-left: 150px;
+        padding-left: 0;
       }
 
       .review-chip {
-        padding: 0 8px;
+        padding: 0 9px;
+        white-space: nowrap;
+        font-size: 11px;
       }
 
       .pane-chip {

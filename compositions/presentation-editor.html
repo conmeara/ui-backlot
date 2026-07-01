@@ -5,6 +5,45 @@
 <template id="presentation-editor-surface-template">
   <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
     <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
+      <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<!-- Fluent UI System Icons (MIT) via assets/icons/sprite-manifest.json -->
+        <symbol id="fluent-paste-20" viewBox="0 0 20 20">
+    <path d="M4.5 4h1.59c.2.58.76 1 1.41 1h3c.65 0 1.2-.42 1.41-1h1.59c.28 0 .5.22.5.5v1a.5.5 0 0 0 1 0v-1c0-.83-.67-1.5-1.5-1.5h-1.59c-.2-.58-.76-1-1.41-1h-3c-.65 0-1.2.42-1.41 1H4.5C3.67 3 3 3.67 3 4.5v12c0 .83.67 1.5 1.5 1.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 1-.5-.5v-12c0-.28.22-.5.5-.5Zm3 0a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3Zm3 3C9.67 7 9 7.67 9 8.5v8c0 .83.67 1.5 1.5 1.5h5c.83 0 1.5-.67 1.5-1.5v-8c0-.83-.67-1.5-1.5-1.5h-5ZM10 8.5c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v8a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-8Z"/>
+  </symbol>
+        <symbol id="fluent-slide-add-20" viewBox="0 0 20 20">
+    <path d="M2 6.75A2.75 2.75 0 0 1 4.75 4h10.5A2.75 2.75 0 0 1 18 6.75v3.5a5.5 5.5 0 0 0-1-.65V6.75C17 5.78 16.22 5 15.25 5H4.75C3.78 5 3 5.78 3 6.75v6.5c0 .97.78 1.75 1.75 1.75h4.27c.03.34.1.68.19 1H4.75A2.75 2.75 0 0 1 2 13.25v-6.5Zm17 7.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-4-2a.5.5 0 0 0-1 0V14h-1.5a.5.5 0 0 0 0 1H14v1.5a.5.5 0 0 0 1 0V15h1.5a.5.5 0 0 0 0-1H15v-1.5Z"/>
+  </symbol>
+        <symbol id="fluent-text-color-20" viewBox="0 0 20 20">
+    <path d="M10.46 2.31a.5.5 0 0 0-.92 0l-3 7.5a.5.5 0 1 0 .92.38L8.54 7.5h2.92l1.08 2.69a.5.5 0 1 0 .92-.38l-3-7.5ZM10 3.85l1.06 2.65H8.94L10 3.85ZM4.5 12c-.83 0-1.5.67-1.5 1.5v3c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-3c0-.83-.67-1.5-1.5-1.5h-11ZM4 13.5c0-.28.22-.5.5-.5h11c.28 0 .5.22.5.5v3a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-3Z"/>
+  </symbol>
+        <symbol id="fluent-highlight-20" viewBox="0 0 20 20">
+    <path d="M3.5 2c.28 0 .5.22.5.5v4c0 .28.22.5.5.5h11a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 1 0v4c0 .65-.42 1.2-1 1.41V9a2 2 0 0 1-2 2v2.07a2 2 0 0 1-1.1 1.8l-6.18 3.08A.5.5 0 0 1 6 17.5V11a2 2 0 0 1-2-2V7.91c-.58-.2-1-.76-1-1.41v-4c0-.28.22-.5.5-.5ZM5 8v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8H5Zm2 3v5.7l5.45-2.73a1 1 0 0 0 .55-.9V11H7Z"/>
+  </symbol>
+        <symbol id="fluent-bullet-list-20" viewBox="0 0 20 20">
+    <path d="M3 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm3-1c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm0 5c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm.5 4.5a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11Zm-2.5.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-1-4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+  </symbol>
+        <symbol id="fluent-number-list-20" viewBox="0 0 20 20">
+    <path d="M5 1.5a.5.5 0 0 0-.39-.49.5.5 0 0 0-.56.27l-.07.12a2.96 2.96 0 0 1-1.2 1.15.5.5 0 1 0 .44.9c.3-.15.56-.34.78-.53V5.5a.5.5 0 0 0 1 0v-4ZM2.65 7.65a.5.5 0 0 0 .7.7l.05-.04.2-.12C3.76 8.09 4 8 4.3 8c.23 0 .41.06.53.15.1.07.16.17.16.35a.5.5 0 0 1-.21.44c-.15.12-.35.22-.62.35l-.14.08c-.32.15-.7.36-1 .7-.33.35-.53.81-.53 1.43 0 .28.22.5.5.5h2.5a.5.5 0 0 0 0-1H3.59c.04-.1.1-.2.17-.27a2.38 2.38 0 0 1 .83-.53c.27-.13.59-.29.84-.5.33-.27.57-.65.57-1.2 0-.5-.22-.9-.57-1.15A1.92 1.92 0 0 0 4.33 7h-.01a2.5 2.5 0 0 0-1.66.63v.01h-.01Zm.01-.02-.01.02s.1-.1.01-.02ZM4.25 15a.5.5 0 1 0 0 1c.34 0 .53.1.63.18.1.09.13.2.13.3-.01.2-.19.52-.76.52-.41 0-.63-.1-.72-.17a.42.42 0 0 1-.1-.07.5.5 0 0 0-.88.46v.01l.02.02a.8.8 0 0 0 .1.15c.07.08.17.17.3.27.28.18.7.33 1.28.33 1.03 0 1.73-.67 1.76-1.48.01-.37-.12-.74-.4-1.02.28-.28.41-.65.4-1.02-.03-.8-.73-1.48-1.76-1.48-.59 0-1 .15-1.28.33a1.4 1.4 0 0 0-.4.42l-.01.01v.01a.5.5 0 0 0 .87.48.42.42 0 0 1 .1-.08c.1-.07.3-.17.72-.17.57 0 .75.33.76.52 0 .1-.04.21-.13.3-.1.08-.29.18-.63.18Zm-.82-.75.01-.02v.02ZM8.5 4a.5.5 0 1 0 0 1h8a.5.5 0 0 0 0-1h-8Zm0 5a.5.5 0 1 0 0 1h8a.5.5 0 0 0 0-1h-8ZM8 14.5c0-.28.22-.5.5-.5h8a.5.5 0 1 1 0 1h-8a.5.5 0 0 1-.5-.5Z"/>
+  </symbol>
+        <symbol id="fluent-align-left-20" viewBox="0 0 20 20">
+    <path d="M2 4.5c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm0 5c0-.28.22-.5.5-.5h15a.5.5 0 0 1 0 1h-15a.5.5 0 0 1-.5-.5Zm.5 4.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9Z"/>
+  </symbol>
+        <symbol id="fluent-align-center-20" viewBox="0 0 20 20">
+    <path d="M4 4.5c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm-2 5c0-.28.22-.5.5-.5h15a.5.5 0 0 1 0 1h-15a.5.5 0 0 1-.5-.5ZM6.5 14a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7Z"/>
+  </symbol>
+        <symbol id="fluent-shapes-20" viewBox="0 0 20 20">
+    <path d="M7.5 3a4.5 4.5 0 0 0-.5 8.97v1A5.5 5.5 0 1 1 12.98 7h-1A4.5 4.5 0 0 0 7.5 3Zm3 5A2.5 2.5 0 0 0 8 10.5v5a2.5 2.5 0 0 0 2.5 2.5h5a2.5 2.5 0 0 0 2.5-2.5v-5A2.5 2.5 0 0 0 15.5 8h-5ZM9 10.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5h-5A1.5 1.5 0 0 1 9 15.5v-5Z"/>
+  </symbol>
+        <symbol id="fluent-fill-color-20" viewBox="0 0 20 20">
+    <path d="M9 2.5a.5.5 0 0 0-1 0V4c-.2.07-.4.19-.56.35L2.35 9.44a1.5 1.5 0 0 0 0 2.12L6.7 15.9a1.5 1.5 0 0 0 2.12 0l5.09-5.09a1.5 1.5 0 0 0 0-2.12L9.56 4.35A1.5 1.5 0 0 0 9 4V2.5ZM8 5.2v1.3a.5.5 0 0 0 1 0V5.2l4.19 4.2a.5.5 0 0 1 .08.6H3.2L8 5.2Zm-.6 9.99L3.2 11h9.1l-4.2 4.19a.5.5 0 0 1-.7 0Zm8.62-3.8a.6.6 0 0 0-1.04 0l-1.65 2.83a2.51 2.51 0 1 0 4.34 0l-1.65-2.83Zm-1.82 3.34 1.3-2.24 1.3 2.24a1.51 1.51 0 1 1-2.6 0Z"/>
+  </symbol>
+        <symbol id="fluent-color-20" viewBox="0 0 20 20">
+    <path d="M9.75 6.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm3 1a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm2.5 1.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm-.75 3.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM13.25 14a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm.45-11a7.82 7.82 0 0 0-7.93.17 9.6 9.6 0 0 0-3.25 3.89 5.9 5.9 0 0 0-.62 2.43c0 .8.27 1.57.94 2.12.61.5 1.14.74 1.66.77.51.02.92-.19 1.23-.37l.2-.12c.24-.15.44-.27.69-.35.28-.09.64-.12 1.16.04.19.06.3.14.38.24.09.1.16.26.2.47.06.21.09.46.1.76.02.1.02.24.03.37l.04.58c.05.67.17 1.44.57 2.14.42.7 1.1 1.3 2.2 1.68 1.6.54 3.07.1 4.21-.8a7.46 7.46 0 0 0 2.37-3.6C19.2 9.16 17.68 5.04 13.7 3ZM6.3 4.01a6.82 6.82 0 0 1 6.94-.14c3.5 1.8 4.87 5.4 3.69 9.25a6.46 6.46 0 0 1-2.04 3.1 3.33 3.33 0 0 1-3.26.64c-.9-.3-1.38-.76-1.66-1.24a4 4 0 0 1-.44-1.7l-.04-.54-.02-.41c-.03-.31-.06-.63-.13-.93-.07-.3-.2-.6-.4-.86-.22-.26-.5-.46-.87-.57a2.85 2.85 0 0 0-1.75-.03c-.38.12-.7.32-.95.47l-.14.09c-.29.16-.48.24-.68.23-.22-.01-.55-.12-1.08-.55-.38-.31-.57-.76-.57-1.34 0-.6.19-1.29.52-2.01A8.63 8.63 0 0 1 6.3 4.02Z"/>
+  </symbol>
+        <symbol id="fluent-search-20" viewBox="0 0 20 20">
+    <path d="M13.73 14.44a6.5 6.5 0 1 1 .7-.7l3.42 3.4a.5.5 0 0 1-.63.77l-.07-.06-3.42-3.41Zm-.71-.71A5.54 5.54 0 0 0 15 9.5a5.5 5.5 0 1 0-1.98 4.23Z"/>
+  </symbol>
+      </svg>
       <div class="powerpoint-titlebar">
         <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
         <div class="power-app-icon">P</div>
@@ -25,72 +64,76 @@
       </div>
       <div class="powerpoint-ribbon">
         <div class="ribbon-group clipboard">
-          <div class="ribbon-large paste"><span class="cmd-icon paste"></span><em>Paste</em></div>
-          <strong>Clipboard</strong>
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-paste-20"/></svg><em>Paste</em></div>
         </div>
         <div class="ribbon-group slides">
-          <div class="ribbon-large split"><span class="cmd-icon slide"></span><em>New Slide</em><i></i></div>
-          <div class="ribbon-stack">
-            <span class="ribbon-mini">Layout</span>
-            <span class="ribbon-mini">Reset</span>
-          </div>
-          <strong>Slides</strong>
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-slide-add-20"/></svg><em>New Slide</em></div>
         </div>
         <div class="ribbon-group font">
           <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">28</span></div>
           <div class="button-group">
-            <span class="tool-toggle active">B</span><span class="tool-toggle">I</span><span class="tool-toggle">U</span><span class="tool-toggle color"></span>
+            <span class="tool-toggle active">B</span><span class="tool-toggle italic">I</span><span class="tool-toggle underline">U</span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-color-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-highlight-20"/></svg></span>
           </div>
-          <strong>Font</strong>
         </div>
         <div class="ribbon-group paragraph">
-          <div class="button-group dense">
-            <span class="para-lines"></span><span class="para-lines center"></span><span class="para-lines right"></span><span class="para-bullets"></span>
+          <div class="button-group">
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-bullet-list-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-number-list-20"/></svg></span>
           </div>
-          <div class="button-group dense">
-            <span class="para-indent out"></span><span class="para-indent in"></span><span class="line-spacing"></span>
+          <div class="button-group">
+            <span class="tool-icon active"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-left-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-center-20"/></svg></span>
           </div>
-          <strong>Paragraph</strong>
         </div>
         <div class="ribbon-group drawing">
-          <div class="shape-gallery"><span></span><span></span><span></span><span></span></div>
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-shapes-20"/></svg><em>Shapes</em></div>
           <div class="ribbon-stack">
-            <span class="split-mini fill">Shape Fill</span>
-            <span class="split-mini outline">Outline</span>
+            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-fill-color-20"/></svg>Shape Fill</span>
+            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-color-20"/></svg>Outline</span>
           </div>
-          <strong>Drawing</strong>
-        </div>
-        <div class="ribbon-group ink">
-          <div class="button-group dense ink-tools">
-            <span class="ink-pen"></span><span class="ink-highlighter"></span><span class="ink-eraser"></span>
-          </div>
-          <span class="split-mini ink-color">Ink Color</span>
-          <strong>Draw</strong>
-        </div>
-        <div class="ribbon-group arrange">
-          <div class="button-group dense">
-            <span class="arrange-icon layer"></span><span class="arrange-icon align"></span><span class="arrange-icon rotate"></span>
-          </div>
-          <span class="split-mini">Selection Pane</span>
-          <strong>Arrange</strong>
         </div>
         <div class="ribbon-group editing">
           <div class="ribbon-stack">
-            <span class="ribbon-mini">Find</span>
-            <span class="ribbon-mini">Replace</span>
+            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-search-20"/></svg>Find</span>
+            <span class="split-mini">Select</span>
           </div>
-          <span class="split-mini">Select</span>
-          <strong>Editing</strong>
         </div>
       </div>
       <div class="powerpoint-body">
         <div class="slide-rail">
           <div class="rail-header"><span>Slides</span><b>4</b></div>
           <div class="section-chip">Launch Readout</div>
-          <div class="thumb-label">1</div><div class="slide-thumb active"><span></span><b></b><em>Q1 Budget Analysis</em></div>
-          <div class="thumb-label">2</div><div class="slide-thumb muted"><span></span><b></b><em>September sales forecast</em></div>
-          <div class="thumb-label">3</div><div class="slide-thumb muted chart"><span></span><b></b><em>Great Lakes Region</em></div>
-          <div class="thumb-label">4</div><div class="slide-thumb muted text"><span></span><b></b><em>Action items</em></div>
+          <div class="thumb-label">1</div>
+          <div class="slide-thumb active">
+            <div class="mini dark">
+              <i class="m-title">Q1 Budget Analysis</i>
+              <i class="m-subtitle"></i>
+              <div class="m-bars ghost"><u></u><u></u><u></u><u></u></div>
+            </div>
+          </div>
+          <div class="thumb-label">2</div>
+          <div class="slide-thumb">
+            <div class="mini">
+              <i class="m-head">September sales forecast</i>
+              <div class="m-bars accent"><u></u><u></u><u></u><u></u><u></u></div>
+            </div>
+          </div>
+          <div class="thumb-label">3</div>
+          <div class="slide-thumb">
+            <div class="mini">
+              <i class="m-head">Great Lakes Region</i>
+              <div class="m-rows"><u></u><u></u><u></u></div>
+            </div>
+          </div>
+          <div class="thumb-label">4</div>
+          <div class="slide-thumb">
+            <div class="mini">
+              <i class="m-head">Action items</i>
+              <div class="m-bullets"><u></u><u></u><u></u><u></u></div>
+            </div>
+          </div>
         </div>
         <div class="slide-stage">
           <div class="slide-canvas">
@@ -1697,6 +1740,45 @@
         display: none;
       }
 
+      .ribbon-glyph {
+        width: 20px;
+        height: 20px;
+        color: #3d3d3d;
+      }
+
+      .tool-icon {
+        width: 26px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: #3d3d3d;
+      }
+
+      .tool-icon .backlot-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .tool-icon.active {
+        background: rgba(196, 62, 28, 0.1);
+        color: #b7472a;
+      }
+
+      .split-mini .mini-glyph {
+        width: 13px;
+        height: 13px;
+        margin-right: 4px;
+        color: #3d3d3d;
+      }
+
+      .ribbon-large.split::after {
+        position: static;
+        margin: 1px auto 0;
+        justify-self: center;
+      }
+
       .ribbon-large em,
       .ribbon-mini,
       .split-mini,
@@ -1832,6 +1914,7 @@
         background: #fff;
         border: 1px solid #cfcfcf;
         box-shadow: none;
+        overflow: hidden;
       }
 
       .slide-thumb.active {
@@ -1839,58 +1922,124 @@
         box-shadow: 0 0 0 2px var(--powerpoint);
       }
 
-      .slide-thumb::before {
-        content: "";
+      .slide-thumb .mini {
         position: absolute;
-        inset: 5px;
-        background:
-          linear-gradient(90deg, transparent 0 58%, rgba(124, 176, 211, 0.85) 58% 86%, transparent 86%),
-          linear-gradient(90deg, #79b243 0 6%, transparent 6% 92%, #79b243 92% 100%),
-          linear-gradient(120deg, transparent 0 62%, rgba(126, 184, 53, 0.22) 62% 76%, rgba(126, 184, 53, 0.55) 76% 88%, transparent 88%),
-          #fff;
-      }
-
-      .slide-thumb span,
-      .slide-thumb b {
-        left: 11px;
-        height: 3px;
-        border-radius: 1px;
-        background: #78ae32;
-      }
-
-      .slide-thumb span {
-        top: 14px;
-        width: 38px;
-        box-shadow: 0 7px 0 #78ae32, 0 14px 0 #78ae32;
-      }
-
-      .slide-thumb b {
-        top: 34px;
-        width: 56px;
-        height: 7px;
-        background: linear-gradient(90deg, #7bbd25 0 18%, #e5b200 18% 30%, #7bbd25 30% 50%, #e5b200 50% 62%, #7bbd25 62% 100%);
-      }
-
-      .slide-thumb.muted {
-        border-color: #cfcfcf;
+        inset: 0;
         background: #fff;
       }
 
-      .slide-thumb.muted::before {
-        opacity: 0.72;
+      .slide-thumb .mini.dark {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
+          radial-gradient(circle at 53% 44%, rgba(255, 255, 255, 0.42) 0 13%, transparent 14%),
+          linear-gradient(145deg, #313131 0%, #d4d4d4 50%, #505050 100%);
       }
 
-      .slide-thumb em {
-        left: 10px;
-        top: 6px;
-        bottom: auto;
-        max-width: 74px;
-        overflow: hidden;
+      .m-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 15px;
+        color: #fff;
+        font-family: var(--font-office-ui);
+        font-size: 6px;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
         white-space: nowrap;
-        color: #555;
-        font-size: 5px;
-        font-weight: 600;
       }
+
+      .m-subtitle {
+        position: absolute;
+        left: 34%;
+        right: 34%;
+        top: 33px;
+        height: 2px;
+        border-radius: 1px;
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .m-head {
+        position: absolute;
+        left: 8px;
+        top: 6px;
+        max-width: 92px;
+        overflow: hidden;
+        color: #333;
+        font-size: 5.5px;
+        font-style: normal;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .m-bars {
+        position: absolute;
+        left: 10px;
+        bottom: 7px;
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        height: 22px;
+      }
+
+      .m-bars u {
+        width: 6px;
+        text-decoration: none;
+        background: #4f6a7c;
+      }
+
+      .m-bars.ghost { left: 16px; height: 15px; opacity: 0.55; }
+      .m-bars.ghost u:nth-child(1) { height: 8px; }
+      .m-bars.ghost u:nth-child(2) { height: 11px; }
+      .m-bars.ghost u:nth-child(3) { height: 7px; }
+      .m-bars.ghost u:nth-child(4) { height: 15px; background: #404040; }
+
+      .m-bars.accent u { background: #1d86e8; }
+      .m-bars.accent u:nth-child(1) { height: 9px; }
+      .m-bars.accent u:nth-child(2) { height: 13px; }
+      .m-bars.accent u:nth-child(3) { height: 11px; }
+      .m-bars.accent u:nth-child(4) { height: 17px; }
+      .m-bars.accent u:nth-child(5) { height: 20px; }
+
+      .m-rows,
+      .m-bullets {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 18px;
+        display: grid;
+        gap: 4px;
+      }
+
+      .m-rows u {
+        height: 6px;
+        border-radius: 1px;
+        background: #eef2f6;
+        border-left: 16px solid #d3dde8;
+      }
+
+      .m-bullets u {
+        position: relative;
+        width: 72%;
+        height: 3px;
+        border-radius: 1px;
+        margin-left: 8px;
+        background: #d9d9d9;
+      }
+
+      .m-bullets u::before {
+        content: "";
+        position: absolute;
+        left: -8px;
+        top: 0;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #9a9a9a;
+      }
+
+      .m-bullets u:nth-child(2),
+      .m-bullets u:nth-child(4) { width: 55%; }
 
       .slide-stage {
         height: 310px;
