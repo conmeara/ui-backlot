@@ -77,6 +77,9 @@ Claude components can be paired with any app surface when a demo needs an assist
 | `claude-sidebar` | component | Claude Sidebar | [compositions/claude-sidebar.html](../compositions/claude-sidebar.html) | `capture:claude-sidebar` | `claude` `sidebar` `navigation` `cowork` `workspace` |
 | `claude-thread-core` | component | Claude Working Thread Core | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core` | `claude` `thread` `tool-use` `reasoning` `message-parts` |
 | `claude-tool-result` | component | Claude Completed Tool Result | [compositions/claude-tool-result.html](../compositions/claude-tool-result.html) | `capture:claude-tool-result` | `claude` `tool-result` `completed-work` `composer` `artifact` |
+| `claude-desktop-chat` | component | Claude Desktop - Chat page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-chat` | `claude` `desktop-app` `chat` `home` `composer` |
+| `claude-desktop-cowork` | component | Claude Desktop - Cowork page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-cowork` | `claude` `desktop-app` `cowork` `tasks` `agent-status` |
+| `claude-desktop-code` | component | Claude Desktop - Code page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-code` | `claude` `claude-code` `desktop-app` `dark-ui` `sessions` |
 
 ## Desktop And Browser
 
@@ -132,6 +135,7 @@ Developer surfaces support agent coding, terminal, and review workflows.
 | `claude-codex-terminal-workflow` | workflow | Claude Plus Codex Terminal Workflow | [compositions/claude-codex-terminal-workflow.html](../compositions/claude-codex-terminal-workflow.html) | `capture:claude-codex-terminal-workflow` | `workflow` `claude` `codex` `terminal` `cli` `modular-assembly` `mac-menu-bar` |
 | `codex-app` | component | Codex Desktop Workbench | [compositions/codex-app.html](../compositions/codex-app.html) | `capture:codex-app` | `codex` `desktop` `app` `agent-status` `patch-preview` `developer-workflow` |
 | `codex-terminal` | component | Codex Terminal | [compositions/codex-terminal.html](../compositions/codex-terminal.html) | `capture:codex-terminal` | `codex` `terminal` `cli` `agent-status` `developer-workflow` |
+| `codex-thread-core` | component | Codex Conversation Core | [compositions/codex-thread-core.html](../compositions/codex-thread-core.html) | `capture:codex-thread-core` | `codex` `thread` `conversation` `command-output` `composer` |
 
 ## Machine Source
 

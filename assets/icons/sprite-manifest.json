@@ -211,6 +211,20 @@
         "maximize": "maximize-2.svg",
         "mic": "mic.svg"
       }
+    },
+    {
+      "id": "brand",
+      "package": "simple-icons",
+      "version": "15.22.0",
+      "license": "CC0-1.0",
+      "homepage": "https://github.com/simple-icons/simple-icons",
+      "svgDir": "icons",
+      "prefix": "si",
+      "output": "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+      "note": "Official brand marks as CC0 path data. si-claude is the exact Claude sunburst mark; render at #D97757 (or currentColor) across claude-* surfaces.",
+      "icons": {
+        "claude": "claude.svg"
+      }
     }
   ]
 }

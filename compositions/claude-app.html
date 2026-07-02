@@ -84,6 +84,12 @@
           <circle cx="19" cy="12" r="1" />
           <circle cx="5" cy="12" r="1" />
         </symbol>
+        <symbol id="lucide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </symbol>
+        <symbol id="si-claude" viewBox="0 0 24 24">
+          <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+        </symbol>
       </svg>
       <aside class="dframe-sidebar" data-primitive="claude-sidebar">
         <div class="claude-traffic" aria-hidden="true">
@@ -94,11 +100,7 @@
 
         <div class="sidebar-head">
           <div class="claude-app-brand">
-            <span class="claude-sunburst small" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span>
-            </span>
+            <svg class="backlot-icon claude-mark-icon small" aria-hidden="true"><use href="#si-claude"/></svg>
             <span>Claude</span>
           </div>
           <button class="sidebar-icon-button" type="button" aria-label="Collapse sidebar">
@@ -290,19 +292,21 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       <aside class="agent-rail" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
         <section class="rail-section progress-section">
           <div class="rail-title-row"><div class="rail-title">Progress</div><svg class="backlot-icon rail-card-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
-          <div class="rail-step-list">
-            <div class="rail-step done"><span>1</span><p>Read folder</p></div>
-            <div class="rail-step done"><span>2</span><p>Map Q2 data</p></div>
-            <div class="rail-step active"><span>3</span><p>Update slides</p></div>
-            <div class="rail-step"><span>4</span><p>Return file</p></div>
+          <div class="rail-stepper">
+            <span class="stepper-circle done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="stepper-line"></span>
+            <span class="stepper-circle done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="stepper-line"></span>
+            <span class="stepper-circle"></span>
           </div>
+          <p class="rail-caption">Steps will show as the task unfolds.</p>
         </section>
 
         <section class="rail-section">
           <div class="rail-title-row"><div class="rail-title">Artifacts</div><svg class="backlot-icon rail-card-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
           <div class="artifact-card">
             <span class="rail-file-icon deck"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span>
-            <div><strong>Deck.pptx</strong><span>opening slides</span></div>
+            <span class="artifact-name">Deck.pptx</span>
           </div>
         </section>
 
@@ -504,48 +508,18 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         font-weight: 650;
       }
 
-      .claude-sunburst {
-        position: relative;
+      .claude-mark-icon {
         display: inline-block;
-        --ray-w: 2.2px;
-        --ray-h: 8px;
-        --ray-gap: 3px;
-        color: var(--brand-000);
+        width: 18px;
+        height: 18px;
+        color: #d97757;
         flex: 0 0 auto;
       }
 
-      .claude-sunburst.small {
-        width: 18px;
-        height: 18px;
-        --ray-w: 1.6px;
-        --ray-h: 6px;
-        --ray-gap: 2px;
+      .claude-mark-icon.small {
+        width: 16px;
+        height: 16px;
       }
-
-      .claude-sunburst span {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: var(--ray-w);
-        height: var(--ray-h);
-        border-radius: 999px;
-        background: currentColor;
-        transform-origin: 50% calc(100% + var(--ray-gap));
-        transform: translate(-50%, calc(-100% - var(--ray-gap))) rotate(calc(var(--i) * 30deg));
-      }
-
-      .claude-sunburst span:nth-child(1) { --i: 0; }
-      .claude-sunburst span:nth-child(2) { --i: 1; }
-      .claude-sunburst span:nth-child(3) { --i: 2; }
-      .claude-sunburst span:nth-child(4) { --i: 3; }
-      .claude-sunburst span:nth-child(5) { --i: 4; }
-      .claude-sunburst span:nth-child(6) { --i: 5; }
-      .claude-sunburst span:nth-child(7) { --i: 6; }
-      .claude-sunburst span:nth-child(8) { --i: 7; }
-      .claude-sunburst span:nth-child(9) { --i: 8; }
-      .claude-sunburst span:nth-child(10) { --i: 9; }
-      .claude-sunburst span:nth-child(11) { --i: 10; }
-      .claude-sunburst span:nth-child(12) { --i: 11; }
 
       .sidebar-icon-button,
       .topbar-icon,
@@ -1512,83 +1486,56 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         font-weight: 600;
       }
 
-      .rail-step-list {
-        display: grid;
-        gap: 4px;
-      }
-
-      .rail-step {
-        min-height: 27px;
-        display: grid;
-        grid-template-columns: 16px minmax(0, 1fr);
+      .rail-stepper {
+        display: flex;
         align-items: center;
-        gap: 7px;
-        padding: 0 7px;
-        border-radius: 8px;
-        background: rgba(246, 243, 237, 0.24);
+        padding: 4px 2px;
       }
 
-      .rail-step span {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
+      .stepper-circle {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
         display: grid;
         place-items: center;
-        background: #eeede6;
-        color: #a49b90;
-        font-size: 9px;
-        font-weight: 600;
-        position: relative;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 1.5px solid #d6d0c4;
+        color: #86806f;
       }
 
-      .rail-step.done span {
-        background: #2d83d8;
-        color: transparent;
-        font-size: 0;
+      .stepper-circle svg {
+        width: 9px;
+        height: 9px;
       }
 
-      .rail-step.done span::before {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 4px;
-        width: 6px;
-        height: 3.5px;
-        border-left: 1.6px solid #fff;
-        border-bottom: 1.6px solid #fff;
-        transform: rotate(-45deg);
+      .stepper-circle.done {
+        border-color: #b9b3a6;
       }
 
-      .rail-step.active {
-        background: transparent;
+      .stepper-line {
+        width: 22px;
+        height: 1.5px;
+        flex: 0 0 auto;
+        background: #e2ddd3;
       }
 
-      .rail-step.active span {
-        background: #fff;
-        border: 2px solid #2d83d8;
-        color: #2d83d8;
-      }
-
-      .rail-step p {
-        min-width: 0;
-        margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: var(--text-400);
-        font-size: 11.2px;
+      .rail-caption {
+        margin: 8px 0 0;
+        color: #98917f;
+        font-size: 12.5px;
+        line-height: 1.4;
       }
 
       .artifact-card {
-        min-height: 52px;
-        display: grid;
-        grid-template-columns: 24px 1fr;
+        min-height: 26px;
+        display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 9px 10px;
-        border-radius: 11px;
-        border: 1px solid rgba(39, 37, 34, 0.07);
-        background: rgba(255, 254, 250, 0.42);
+        gap: 8px;
+        padding: 0;
+        border-radius: 0;
+        border: 0;
+        background: transparent;
       }
 
       .artifact-card div,
@@ -1596,20 +1543,14 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         min-width: 0;
       }
 
-      .artifact-card strong {
-        display: block;
-        color: var(--text-200);
-        font-size: 12px;
-        font-weight: 650;
+      .artifact-name {
+        min-width: 0;
+        color: #3d3a33;
+        font-size: 13px;
+        font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-      }
-
-      .artifact-card span:last-child {
-        display: block;
-        color: var(--text-500);
-        font-size: 11px;
       }
 
       .rail-file-icon {
@@ -1630,11 +1571,12 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .rail-file-icon.deck {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
         border-radius: 6px;
-        background: linear-gradient(135deg, #d46e54, #a84835);
-        font-size: 13px;
+        background: #f1eee6;
+        color: #8a8474;
+        font-size: 14px;
       }
 
       .rail-file-icon.folder {
@@ -1755,7 +1697,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       .claude-traffic {
         height: 16px;
         gap: 8px;
-        margin: 0 0 34px 5px;
+        margin: 0 0 10px 5px;
       }
 
       .claude-traffic span {
@@ -1784,13 +1726,14 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .mode-switch {
-        height: 46px;
+        height: 24px;
+        width: 168px;
         gap: 0;
-        padding: 4px;
-        margin: 29px 0 28px;
-        border: 1px solid rgba(44, 38, 32, 0.08);
-        border-radius: 14px;
-        background: #eee9df;
+        padding: 2px;
+        margin: 0 auto 24px;
+        border: 0;
+        border-radius: 7px;
+        background: #e8e5de;
         box-shadow: none;
       }
 
@@ -1801,52 +1744,48 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       }
 
       .mode-switch button {
-        border-radius: 11px;
-        color: #6f675f;
-        font-size: 17px;
-        font-weight: 520;
+        border-radius: 5px;
+        color: #6d6a60;
+        font-size: 12px;
+        font-weight: 500;
       }
 
       .mode-switch .active {
-        background: rgba(255, 254, 251, 0.95);
-        box-shadow: 0 2px 8px rgba(45, 36, 28, 0.1);
+        color: #3d3a33;
+        background: #fff;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.12);
+        font-weight: 560;
       }
 
       .sidebar-primary-actions {
-        gap: 12px;
+        gap: 1px;
         margin-bottom: 10px;
       }
 
       .new-chat-button,
       .search-chat-button,
       .dframe-row {
-        height: var(--df-row-h);
-        gap: 15px;
-        padding: 0 13px;
-        border-radius: 10px;
-        font-size: 17px;
+        height: 30px;
+        gap: 8px;
+        padding: 0 8px;
+        border-radius: 7px;
+        font-size: 13.5px;
       }
 
-      .new-chat-button {
-        height: 48px;
-        padding-left: 9px;
+      .new-chat-button,
+      .search-chat-button {
         background: transparent;
         box-shadow: none;
-        font-size: 15px;
+        color: #3d3a33;
         font-weight: 500;
       }
 
-      .new-chat-button .sidebar-symbol.compose {
-        width: 31px;
-        height: 31px;
-        border-radius: 50%;
-        color: #fff;
-        background: var(--brand-000);
+      .new-chat-button .sidebar-symbol,
+      .search-chat-button .sidebar-symbol {
+        width: 15px;
+        height: 15px;
+        color: #6d6a60;
         font-size: 15px;
-      }
-
-      .search-chat-button {
-        display: none;
       }
 
       .sidebar-section-label {
@@ -2142,34 +2081,19 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         font-size: 12px;
       }
 
-      .rail-step-list {
-        gap: 8px;
+      .rail-stepper {
+        padding: 4px 2px;
       }
 
-      .rail-step {
-        min-height: 36px;
-        grid-template-columns: 24px minmax(0, 1fr);
-        gap: 12px;
-        padding: 0;
-        background: transparent;
+      .stepper-circle {
+        width: 18px;
+        height: 18px;
       }
 
-      .rail-step span {
-        width: 24px;
-        height: 24px;
-        font-size: 11px;
+      .rail-caption {
+        font-size: 12.5px;
       }
 
-      .rail-step p {
-        color: var(--text-200);
-        font-size: 14px;
-      }
-
-      .rail-step.active {
-        background: transparent;
-      }
-
-      .artifact-card,
       .context-row {
         min-height: 36px;
         padding: 0;
@@ -2179,8 +2103,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         font-size: 14px;
       }
 
-      .rail-file-icon,
-      .rail-file-icon.deck,
       .rail-file-icon.folder,
       .rail-file-icon.sheet,
       .rail-file-icon.doc,
@@ -2192,11 +2114,6 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border: 0;
         color: #7f776c;
         font-size: 14px;
-      }
-
-      .artifact-card strong {
-        font-size: 16px;
-        font-weight: 520;
       }
 
       .rail-note {
@@ -2216,7 +2133,7 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
       tl.from(".assistant-line", { clipPath: "inset(0 100% 0 0)", duration: 1.35, ease: "none" }, 1.05);
       tl.from(".thinking-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 2.3);
       tl.from(".tool-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 2.68);
-      tl.from(".rail-step", { opacity: 0, x: 8, stagger: 0.05, duration: 0.28, ease: "sine.out" }, 2.86);
+      tl.from(".stepper-circle", { opacity: 0, x: 8, stagger: 0.05, duration: 0.28, ease: "sine.out" }, 2.86);
       tl.to(".tool-row.active .tool-dot", { rotation: 360, duration: 0.75, repeat: 4, ease: "none" }, 3.05);
       tl.to(".send-button", { scale: 1.06, duration: 0.26, repeat: 3, yoyo: true, ease: "sine.inOut" }, 3.35);
       window.__timelines["claude-app-surface"] = tl;

@@ -14,29 +14,40 @@
 
 <template id="claude-agent-rail-template">
   <div id="claude-agent-rail-surface" data-composition-id="claude-agent-rail-surface" data-width="380" data-height="860">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lucide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <path d="M10 9H8" />
+        <path d="M16 13H8" />
+        <path d="M16 17H8" />
+      </symbol>
+    </svg>
     <section class="claude-agent-rail-stage" data-primitive="claude-agent-rail-stage" aria-label="Editable Claude agent rail surface">
       <aside class="agent-rail-panel" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
         <section class="rail-section progress-section">
           <div class="rail-title-row">
-            <div>
-              <div class="rail-title">Progress</div>
-              <p>Steps show as the task unfolds.</p>
-            </div>
+            <div class="rail-title">Progress</div>
           </div>
 
-          <div class="rail-step-list">
-            <div class="rail-step done"><span>1</span><p>Read folder</p></div>
-            <div class="rail-step done"><span>2</span><p>Map Q2 data</p></div>
-            <div class="rail-step active"><span>3</span><p>Update slides</p></div>
-            <div class="rail-step"><span>4</span><p>Return file</p></div>
+          <div class="rail-stepper">
+            <span class="stepper-circle done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="stepper-line"></span>
+            <span class="stepper-circle done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="stepper-line"></span>
+            <span class="stepper-circle"></span>
           </div>
+          <p class="rail-caption">Steps will show as the task unfolds.</p>
         </section>
 
         <section class="rail-section">
           <div class="rail-title">Artifacts</div>
           <div class="artifact-card">
-            <span class="rail-file-icon deck"></span>
-            <div><strong>Deck.pptx</strong><span>opening slides</span></div>
+            <span class="rail-file-icon deck"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span>
+            <span class="artifact-name">Deck.pptx</span>
           </div>
         </section>
 
@@ -144,80 +155,52 @@
         font-weight: 600;
       }
 
-      .rail-step-list {
-        display: grid;
-        gap: 18px;
-      }
-
-      .rail-step {
-        min-height: 31px;
-        display: grid;
-        grid-template-columns: 26px minmax(0, 1fr);
+      .rail-stepper {
+        display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 0;
-        border-radius: 0;
-        background: transparent;
+        padding: 4px 2px;
       }
 
-      .rail-step span {
-        width: 26px;
-        height: 26px;
-        position: relative;
+      .stepper-circle {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background: #eeede6;
-        color: #a49b90;
-        font-size: 12px;
-        font-weight: 600;
+        box-sizing: border-box;
+        border: 1.5px solid #d6d0c4;
+        color: #86806f;
       }
 
-      .rail-step.done span {
-        background: #2d83d8;
-        color: transparent;
-        font-size: 0;
-      }
-
-      .rail-step.done span::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 8px;
+      .stepper-circle svg {
         width: 9px;
-        height: 6px;
-        border-left: 2px solid #fff;
-        border-bottom: 2px solid #fff;
-        transform: rotate(-45deg);
+        height: 9px;
       }
 
-      .rail-step.active {
-        background: transparent;
+      .stepper-circle.done {
+        border-color: #b9b3a6;
       }
 
-      .rail-step.active span {
-        background: #fff;
-        border: 2px solid #2d83d8;
-        color: #2d83d8;
+      .stepper-line {
+        width: 22px;
+        height: 1.5px;
+        flex: 0 0 auto;
+        background: #e2ddd3;
       }
 
-      .rail-step p {
-        min-width: 0;
-        margin: 0;
-        overflow: hidden;
-        color: #292520;
-        font-size: 16px;
-        line-height: 1.2;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .rail-caption {
+        margin: 8px 0 0;
+        color: #98917f;
+        font-size: 12.5px;
+        line-height: 1.4;
       }
 
       .artifact-card {
-        min-height: 54px;
-        display: grid;
-        grid-template-columns: 25px minmax(0, 1fr);
+        min-height: 26px;
+        display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         padding: 0;
         border: 0;
         border-radius: 0;
@@ -225,21 +208,14 @@
         box-shadow: none;
       }
 
-      .artifact-card strong {
-        display: block;
+      .artifact-name {
+        min-width: 0;
         overflow: hidden;
-        color: #292520;
-        font-size: 16px;
-        font-weight: 720;
+        color: #3d3a33;
+        font-size: 13px;
+        font-weight: 500;
         text-overflow: ellipsis;
         white-space: nowrap;
-      }
-
-      .artifact-card span:last-child {
-        display: block;
-        margin-top: 3px;
-        color: #736c63;
-        font-size: 11px;
       }
 
       .rail-list {
@@ -277,10 +253,17 @@
       }
 
       .rail-file-icon.deck {
-        width: 24px;
-        height: 24px;
-        border-radius: 5px;
-        background: transparent;
+        width: 26px;
+        height: 26px;
+        border: 0;
+        border-radius: 6px;
+        background: #f1eee6;
+        color: #8a8474;
+      }
+
+      .rail-file-icon.deck svg {
+        width: 14px;
+        height: 14px;
       }
 
       .rail-file-icon.folder {
@@ -344,9 +327,9 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       tl.from(".agent-rail-panel", { opacity: 0, x: 18, filter: "blur(5px)", duration: 0.52, ease: "power3.out" }, 0.12);
-      tl.from(".rail-step", { opacity: 0, x: 9, stagger: 0.055, duration: 0.28, ease: "sine.out" }, 0.52);
+      tl.from(".stepper-circle", { opacity: 0, x: 9, stagger: 0.055, duration: 0.28, ease: "sine.out" }, 0.52);
       tl.from(".rail-section:not(.progress-section)", { opacity: 0, y: 9, stagger: 0.06, duration: 0.3, ease: "power2.out" }, 0.86);
-      tl.to(".rail-step.active span, .sync-pulse", { scale: 1.06, duration: 0.58, repeat: 5, yoyo: true, ease: "sine.inOut" }, 1.16);
+      tl.to(".sync-pulse", { scale: 1.06, duration: 0.58, repeat: 5, yoyo: true, ease: "sine.inOut" }, 1.16);
       window.__timelines["claude-agent-rail-surface"] = tl;
     </script>
   </div>

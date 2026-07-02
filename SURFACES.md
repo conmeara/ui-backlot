@@ -457,6 +457,12 @@ lab.
   Figma dimensions), and chrome corrected against real captures (transparent
   menu bar with Help, Finder toolbar glyphs, Codex plates). See
   `docs/prototypes/fidelity-push-workflow-pass-099.md`.
+- Pass 100 restructured the Claude desktop shell: a single `claude-desktop`
+  component now hosts three pages (Chat, Cowork, Code) and supersedes
+  `claude-code-desktop` as the desktop shell going forward; `codex-thread-core`
+  was added as a standalone, zoomed-in cut of the Codex working-thread body.
+  See `docs/prototypes/claude-desktop-shell-restructure-pass-100.md` and
+  `docs/prototypes/codex-thread-core-pass-100.md`.
 - Reusable primitives are listed in `PRIMITIVES.md`.
 
 ## First Real Workflow

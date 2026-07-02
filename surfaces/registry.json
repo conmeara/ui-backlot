@@ -2395,6 +2395,188 @@
       ],
       "assetDecision": "Source-authentic Office fidelity pass: tracked editable SVG ribbon symbols extracted from @fluentui/react-icons 2.0.330 (MIT), shared Office font variables from styles/backlot-foundation.css, and a hand-rebuilt editable Word app tile; no private document data or screenshot pixels copied.",
       "recommendedUse": "Document editing, review, comments, tracked-change, and memo workflow scenes."
+    },
+    {
+      "id": "claude-desktop-chat",
+      "title": "Claude Desktop - Chat page",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude desktop/Cowork/Claude Code layout evidence, pending sanitized live Claude capture; supersedes claude-app and claude-code-desktop as the desktop shell",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-desktop.html",
+      "compositionId": "claude-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-desktop.html",
+        "selector": "#claude-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-desktop-chat",
+        "selector": "#claude-desktop-chat",
+        "path": "captures/surface-claude-desktop-chat/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-desktop-shell-restructure-pass-100.md",
+      "tags": [
+        "claude",
+        "desktop-app",
+        "chat",
+        "home",
+        "composer"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "captures/surface-claude-app/target.png",
+        "captures/surface-claude-code-desktop/target.png",
+        "/Applications/Claude.app",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+        "docs/prototypes/claude-desktop-shell-restructure-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols and the Simple Icons Claude wordmark glyph vendored via assets/icons/source-authentic/; the Code page's crab mascot is hand-authored CSS box-shadow pixel art. No Claude product code or app assets copied.",
+      "recommendedUse": "Claude desktop chat/new-thread scenes, opening prompt states, and cuts into a working thread."
+    },
+    {
+      "id": "claude-desktop-cowork",
+      "title": "Claude Desktop - Cowork page",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude desktop/Cowork/Claude Code layout evidence, pending sanitized live Claude capture; supersedes claude-app and claude-code-desktop as the desktop shell",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-desktop.html",
+      "compositionId": "claude-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-desktop.html",
+        "selector": "#claude-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-desktop-cowork",
+        "selector": "#claude-desktop-cowork",
+        "path": "captures/surface-claude-desktop-cowork/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-desktop-shell-restructure-pass-100.md",
+      "tags": [
+        "claude",
+        "desktop-app",
+        "cowork",
+        "tasks",
+        "agent-status"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "captures/surface-claude-app/target.png",
+        "captures/surface-claude-code-desktop/target.png",
+        "/Applications/Claude.app",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+        "docs/prototypes/claude-desktop-shell-restructure-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols and the Simple Icons Claude wordmark glyph vendored via assets/icons/source-authentic/; the Code page's crab mascot is hand-authored CSS box-shadow pixel art. No Claude product code or app assets copied.",
+      "recommendedUse": "Claude desktop Cowork task-review scenes with progress, artifacts, and context rail."
+    },
+    {
+      "id": "claude-desktop-code",
+      "title": "Claude Desktop - Code page",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high against public Claude desktop/Cowork/Claude Code layout evidence, pending sanitized live Claude capture; supersedes claude-app and claude-code-desktop as the desktop shell",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-desktop.html",
+      "compositionId": "claude-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-desktop.html",
+        "selector": "#claude-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-desktop-code",
+        "selector": "#claude-desktop-code",
+        "path": "captures/surface-claude-desktop-code/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-desktop-shell-restructure-pass-100.md",
+      "tags": [
+        "claude",
+        "claude-code",
+        "desktop-app",
+        "dark-ui",
+        "sessions"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "captures/surface-claude-app/target.png",
+        "captures/surface-claude-code-desktop/target.png",
+        "/Applications/Claude.app",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+        "docs/prototypes/claude-desktop-shell-restructure-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols and the Simple Icons Claude wordmark glyph vendored via assets/icons/source-authentic/; the Code page's crab mascot is hand-authored CSS box-shadow pixel art. No Claude product code or app assets copied.",
+      "recommendedUse": "Claude desktop Code mode scenes with session rail, composer, and model state, without importing the warm chat shell."
+    },
+    {
+      "id": "codex-thread-core",
+      "title": "Codex Conversation Core",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "high, pending sanitized live Codex capture",
+      "dimensions": {
+        "width": 980,
+        "height": 840
+      },
+      "source": "compositions/codex-thread-core.html",
+      "compositionId": "codex-thread-core-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/codex-thread-core.html",
+        "selector": "#codex-thread-core-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:codex-thread-core",
+        "selector": "#codex-thread-core",
+        "path": "captures/surface-codex-thread-core/target.png"
+      },
+      "prototypeNote": "docs/prototypes/codex-thread-core-pass-100.md",
+      "tags": [
+        "codex",
+        "thread",
+        "conversation",
+        "command-output",
+        "composer"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "captures/surface-codex-app/target.png",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "docs/prototypes/codex-thread-core-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols vendored via assets/icons/source-authentic/; no Codex/OpenAI product code or app assets copied.",
+      "recommendedUse": "Zoomed-in cuts on the Codex working-thread body (user turn, assistant reply, command-output card, composer) without surrounding app chrome."
     }
   ]
 }
