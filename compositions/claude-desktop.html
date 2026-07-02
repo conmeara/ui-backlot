@@ -1651,6 +1651,232 @@
           6px 42px 0 #e08a62, 18px 42px 0 #e08a62, 48px 42px 0 #e08a62, 60px 42px 0 #e08a62;
       }
     </style>
+
+    <style>
+      /* ============ DARK VARIANT (chat + cowork) ============
+         Scoped under the capture-root + .theme-dark so light rendering is
+         byte-for-byte unaffected. Must remain the LAST style block so it
+         wins over every override above (cascade: last rule wins). The code
+         page is dark-native and intentionally has no dark variant. */
+
+      /* ---- CHAT PAGE ---- */
+      #claude-desktop-chat.theme-dark {
+        color: #eceae4;
+        background: #262624;
+        box-shadow:
+          0 40px 120px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-chat.theme-dark .cd-sidebar {
+        background: #1f1e1c;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-chat.theme-dark .cd-brand { color: #eceae4; }
+      #claude-desktop-chat.theme-dark .cd-collapse { color: #98948a; }
+
+      #claude-desktop-chat.theme-dark .cd-nav-row,
+      #claude-desktop-chat.theme-dark .cd-hist { color: #cbc7bd; }
+
+      #claude-desktop-chat.theme-dark .cd-nav-row.active {
+        background: rgba(255, 255, 255, 0.07);
+        color: #eceae4;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+
+      #claude-desktop-chat.theme-dark .cd-row-ico { color: #98948a; }
+      #claude-desktop-chat.theme-dark .cd-label { color: #8a8578; }
+      #claude-desktop-chat.theme-dark .cd-hist { color: #b7b2a8; }
+
+      #claude-desktop-chat.theme-dark .cd-hist.selected {
+        background: rgba(255, 255, 255, 0.08);
+        color: #eceae4;
+      }
+
+      #claude-desktop-chat.theme-dark .cd-foot-copy strong { color: #eceae4; }
+      #claude-desktop-chat.theme-dark .cd-foot-copy em { color: #8a8578; }
+      #claude-desktop-chat.theme-dark .cd-kebab { color: #8a8578; }
+
+      #claude-desktop-chat.theme-dark .cd-chat-main { background: #262624; }
+
+      #claude-desktop-chat.theme-dark .cd-chat-topbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-chat.theme-dark .cd-topbar-icon { color: #98948a; }
+
+      #claude-desktop-chat.theme-dark .cd-model-pill {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #b7b2a8;
+      }
+
+      #claude-desktop-chat.theme-dark .cd-pill-chev { color: #8a8578; }
+      #claude-desktop-chat.theme-dark .cd-hero h1 { color: #e8e5da; }
+
+      #claude-desktop-chat.theme-dark .cd-composer-card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #30302c;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.2),
+          0 12px 34px rgba(0, 0, 0, 0.28);
+      }
+
+      #claude-desktop-chat.theme-dark .cd-prompt-copy { color: #eceae4; }
+      #claude-desktop-chat.theme-dark .cd-icon-btn { color: #98948a; }
+      #claude-desktop-chat.theme-dark .cd-model-select { color: #b7b2a8; }
+
+      #claude-desktop-chat.theme-dark .cd-starters button {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #b7b2a8;
+      }
+
+      /* ---- COWORK PAGE ---- */
+      #claude-desktop-cowork.theme-dark {
+        color: #eceae4;
+        background: #262624;
+        box-shadow:
+          0 40px 120px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-sidebar {
+        background: #1f1e1c;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-icon-btn { color: #98948a; }
+
+      #claude-desktop-cowork.theme-dark .cw-mode-switch {
+        background: #35342f;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-mode-switch button { color: #98948a; }
+
+      #claude-desktop-cowork.theme-dark .cw-mode-switch .active {
+        color: #eceae4;
+        background: #4a4842;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.3);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-new-task { color: #eceae4; }
+
+      #claude-desktop-cowork.theme-dark .cw-task { color: #b7b2a8; }
+
+      #claude-desktop-cowork.theme-dark .cw-task.selected {
+        background: rgba(255, 255, 255, 0.08);
+        color: #eceae4;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-sync-note { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-account-copy strong { color: #eceae4; }
+      #claude-desktop-cowork.theme-dark .cw-account-copy span { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-account-chev { color: #8a8578; }
+
+      #claude-desktop-cowork.theme-dark .cw-main {
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          #262624;
+        background-size: 58px 58px;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-topbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(38, 38, 36, 0.8);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-thread-title { color: #eceae4; }
+
+      #claude-desktop-cowork.theme-dark .cw-bubble {
+        background: #3a3934;
+        color: #eceae4;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-assistant-copy { color: #e8e5da; }
+
+      #claude-desktop-cowork.theme-dark .cw-command-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2b2a26;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-command-head { color: #eceae4; }
+      #claude-desktop-cowork.theme-dark .cw-command-glyph { color: #98948a; }
+      #claude-desktop-cowork.theme-dark .cw-command-chev { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-command-label { color: #98948a; }
+      #claude-desktop-cowork.theme-dark .cw-command-code { color: #9fc98a; }
+
+      #claude-desktop-cowork.theme-dark .cw-prompt {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #30302c;
+        box-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.2),
+          0 12px 34px rgba(0, 0, 0, 0.28);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-prompt-input { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-prompt-plus { color: #98948a; }
+      #claude-desktop-cowork.theme-dark .cw-prompt-model { color: #eceae4; }
+      #claude-desktop-cowork.theme-dark .cw-sel-chev { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-disclaimer { color: #8a8578; }
+
+      #claude-desktop-cowork.theme-dark .cw-rail {
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          #262624;
+        background-size: 58px 58px;
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-rail-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2f2e2b;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-rail-title { color: #eceae4; }
+      #claude-desktop-cowork.theme-dark .cw-rail-chev { color: #8a8578; }
+
+      #claude-desktop-cowork.theme-dark .cw-step {
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        color: #b5b0a3;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-step.done {
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-step-line {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-rail-caption { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-rail-row { color: #eceae4; }
+
+      #claude-desktop-cowork.theme-dark .cw-file-ico {
+        background: rgba(255, 255, 255, 0.06);
+        color: #98948a;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-file-ico.folder {
+        background: rgba(255, 255, 255, 0.06);
+        color: #98948a;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-file-ico.conn {
+        background: rgba(255, 255, 255, 0.06);
+        color: #98948a;
+      }
+
+      #claude-desktop-cowork.theme-dark .cw-rail-sub { color: #b7b2a8; }
+      #claude-desktop-cowork.theme-dark .cw-sub-chev { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-sub-count { color: #8a8578; }
+      #claude-desktop-cowork.theme-dark .cw-rail-label { color: #98948a; }
+    </style>
   </div>
 </template>
 

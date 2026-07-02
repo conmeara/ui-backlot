@@ -1214,6 +1214,93 @@
 
       .cursor::before,
       .cursor::after { content: none; }
+
+      /* Dark mode: browser chrome only. Web page content (.app-shell) stays light. */
+      .browser-window.theme-dark .browser-tabs {
+        background: #202126;
+        border-bottom-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .browser-window.theme-dark .tab {
+        color: #bdc1c6;
+      }
+
+      .browser-window.theme-dark .tab:not(.active):hover {
+        --tab-bg: rgba(255, 255, 255, 0.06);
+      }
+
+      .browser-window.theme-dark .tab.active {
+        --tab-bg: #35363b;
+        color: #e8eaed;
+        box-shadow:
+          0 -1px 0 rgba(255, 255, 255, 0.06),
+          0 0 0 1px rgba(0, 0, 0, 0.18);
+      }
+
+      .browser-window.theme-dark .tab.active::before,
+      .browser-window.theme-dark .tab.active::after {
+        background: #35363b;
+      }
+
+      .browser-window.theme-dark .tab:not(.active)::after {
+        background: rgba(232, 234, 237, 0.18);
+      }
+
+      .browser-window.theme-dark .tab-add {
+        background: rgba(255, 255, 255, 0.08);
+        color: #c7cbd1;
+      }
+
+      .browser-window.theme-dark .tab-close {
+        color: rgba(232, 234, 237, 0.72);
+      }
+
+      .browser-window.theme-dark .browser-toolbar {
+        background: #2b2c31;
+        border-bottom-color: rgba(0, 0, 0, 0.32);
+      }
+
+      .browser-window.theme-dark .nav-button,
+      .browser-window.theme-dark .toolbar-button.capture,
+      .browser-window.theme-dark .toolbar-button.more {
+        color: #c7cbd1;
+      }
+
+      .browser-window.theme-dark .nav-button.disabled {
+        color: #6b6f76;
+      }
+
+      .browser-window.theme-dark .url-bar {
+        background: #35363b;
+        color: #e8eaed;
+      }
+
+      .browser-window.theme-dark .lock {
+        color: #c7cbd1;
+      }
+
+      .browser-window.theme-dark .url-host {
+        color: #e8eaed;
+      }
+
+      .browser-window.theme-dark .url-path {
+        color: #9aa0a6;
+      }
+
+      .browser-window.theme-dark .star-icon {
+        color: #9aa0a6;
+      }
+
+      .browser-window.theme-dark .bookmarks-bar {
+        background: #2b2c31;
+        border-bottom-color: rgba(0, 0, 0, 0.32);
+        color: #e8eaed;
+      }
+
+      .browser-window.theme-dark .bookmark-chip {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
     </style>
   </head>
   <body>

@@ -401,6 +401,126 @@
         overflow: visible;
       }
     </style>
+    <style>
+      #codex-thread-core.theme-dark {
+        --canvas: #212019;
+        --card: #2a2922;
+        --ink: #ece9dd;
+        --ink-soft: #d8d5cc;
+        --muted: #8a877c;
+        --faint: #6f6c61;
+        --line: rgba(255, 255, 255, 0.07);
+        --orange: #e06c33;
+        --green: #6fbf8e;
+        --red: #d98a86;
+      }
+
+      #codex-thread-core.theme-dark {
+        background: var(--canvas);
+      }
+
+      #codex-thread-core.theme-dark .thread-core-panel {
+        background: var(--canvas);
+      }
+
+      #codex-thread-core.theme-dark .user-line {
+        color: var(--ink);
+      }
+
+      #codex-thread-core.theme-dark .assistant-copy {
+        color: var(--ink-soft);
+      }
+
+      #codex-thread-core.theme-dark .assistant-copy code {
+        background: #35332a;
+        color: #ece9dd;
+      }
+
+      #codex-thread-core.theme-dark .command-card {
+        border-color: var(--line);
+        background: var(--card);
+      }
+
+      #codex-thread-core.theme-dark .command-card-head {
+        border-bottom-color: var(--line);
+        color: var(--ink-soft);
+      }
+
+      #codex-thread-core.theme-dark .command-card-head span:first-child {
+        color: var(--muted);
+      }
+
+      #codex-thread-core.theme-dark .code-row em {
+        color: var(--faint);
+      }
+
+      #codex-thread-core.theme-dark .code-row code {
+        color: var(--ink-soft);
+      }
+
+      #codex-thread-core.theme-dark .code-row.remove {
+        background: rgba(217, 138, 134, 0.16);
+        box-shadow: inset 3px 0 0 var(--red);
+      }
+
+      #codex-thread-core.theme-dark .code-row.add {
+        background: rgba(111, 191, 142, 0.16);
+        box-shadow: inset 3px 0 0 var(--green);
+      }
+
+      #codex-thread-core.theme-dark .code-row.remove code,
+      #codex-thread-core.theme-dark .code-row.add code {
+        color: var(--ink-soft);
+      }
+
+      #codex-thread-core.theme-dark .composer {
+        border-color: var(--line);
+        background: var(--card);
+      }
+
+      #codex-thread-core.theme-dark .composer-input {
+        color: var(--faint);
+      }
+
+      #codex-thread-core.theme-dark .plus-glyph {
+        color: var(--muted);
+      }
+
+      #codex-thread-core.theme-dark .permission-chip {
+        color: var(--orange);
+      }
+
+      #codex-thread-core.theme-dark .shield-glyph {
+        color: var(--orange);
+      }
+
+      #codex-thread-core.theme-dark .version-label {
+        color: var(--ink);
+      }
+
+      #codex-thread-core.theme-dark .effort-chip {
+        color: var(--muted);
+      }
+
+      #codex-thread-core.theme-dark .mic-glyph {
+        color: var(--muted);
+      }
+
+      #codex-thread-core.theme-dark .send-button {
+        background: #3a3830;
+        color: #ece9dd;
+      }
+
+      #codex-thread-core.theme-dark .project-row {
+        background: #2c2b24;
+        color: var(--ink-soft);
+      }
+
+      #codex-thread-core.theme-dark .notebook-glyph {
+        color: var(--muted);
+      }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>
       window.__timelines = window.__timelines || {};

@@ -2273,6 +2273,183 @@
         height: 14px;
         stroke-width: 1.5;
       }
+
+      /* Dark-mode variant: UI3 editor chrome only. Canvas content (the Maple
+         Grove design frames) stays light, matching real Figma dark mode. */
+      .figma-window.theme-dark {
+        --figma-bg: #1e1e1e;
+        --figma-panel: #2c2c2c;
+        --figma-panel-alt: #323232;
+        --figma-border: #383838;
+        --figma-border-strong: #444444;
+        --figma-ink: #ffffff;
+        --figma-muted: #b3b3b3;
+        --figma-soft: #8c8c8c;
+        --figma-field: #383838;
+        --figma-blue: #0d99ff;
+      }
+
+      .figma-window.theme-dark .canvas {
+        background: #1e1e1e;
+      }
+
+      .figma-window.theme-dark .left-panel,
+      .figma-window.theme-dark .properties-panel {
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .figma-window.theme-dark .file-context span {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .panel-tab,
+      .figma-window.theme-dark .prop-tab {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .panel-tab.active,
+      .figma-window.theme-dark .prop-tab.active {
+        color: #ffffff;
+        background: #383838;
+      }
+
+      .figma-window.theme-dark .panel-heading {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .page-row,
+      .figma-window.theme-dark .layer-row {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .page-row.active,
+      .figma-window.theme-dark .layer-row.active {
+        background: #383838;
+      }
+
+      .figma-window.theme-dark .layer-row.selected {
+        background: #2b3950;
+      }
+
+      .figma-window.theme-dark .layer-icon.frame {
+        border-color: #d5d5d5;
+      }
+
+      .figma-window.theme-dark .layer-icon.component {
+        border-color: #b18cff;
+      }
+
+      .figma-window.theme-dark .layer-icon.text::before {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .asset-search {
+        background: #383838;
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .asset-row {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .asset-glyph.frame {
+        border-color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .frame-label {
+        color: #8c8c8c;
+      }
+
+      .figma-window.theme-dark .right-avatar {
+        background: #ffca27;
+        color: #111;
+      }
+
+      .figma-window.theme-dark .right-play::before {
+        border-left-color: #ffffff;
+      }
+
+      .figma-window.theme-dark .zoom-menu {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .selected-layer-card {
+        border-bottom-color: var(--figma-border);
+      }
+
+      .figma-window.theme-dark .selected-layer-card strong {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .selected-layer-card .layer-caret {
+        border-color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .selected-layer-card .panel-icon-button {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .property-title {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .property-grid label {
+        border: 1px solid #444444;
+        background: #383838;
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .property-grid label span {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .align-strip button {
+        border: 1px solid #444444;
+        background-color: #383838;
+      }
+
+      .figma-window.theme-dark .toggle-row,
+      .figma-window.theme-dark .paint-row,
+      .figma-window.theme-dark .opacity-row,
+      .figma-window.theme-dark .prototype-row {
+        color: var(--figma-muted);
+      }
+
+      .figma-window.theme-dark .paint-row strong,
+      .figma-window.theme-dark .prototype-row strong {
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .export-button {
+        border-color: #444444;
+        background: #383838;
+        color: #ffffff;
+      }
+
+      .figma-window.theme-dark .bottom-toolbar {
+        border: 1px solid #444444;
+        background: #2c2c2c;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+      }
+
+      .figma-window.theme-dark .tool {
+        color: #d5d5d5;
+      }
+
+      .figma-window.theme-dark .tool.active {
+        color: #fff;
+      }
+
+      .figma-window.theme-dark .tool-separator {
+        background: #444444;
+      }
+
+      .figma-window.theme-dark .dev-mode-pill {
+        border: 1px solid #444444;
+        background: #2c2c2c;
+        color: #d5d5d5;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>

@@ -701,6 +701,114 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         border-radius: 50%;
       }
     </style>
+
+    <style>
+      /* ============ DARK VARIANT ============
+         Scoped under the capture-root (.claude-thread-core-stage) + .theme-dark
+         so the light rendering stays byte-for-byte unaffected. Kept as the LAST
+         style block so it wins over every rule above (cascade: last rule wins).
+         Overrides the token custom-properties on the surface root when the stage
+         carries .theme-dark, then patches the few hard-coded values. */
+      .claude-thread-core-stage.theme-dark {
+        --bg-000: #262624;
+        --bg-100: #2f2e2b;
+        --bg-150: #2b2a26;
+        --bg-200: #35342f;
+        --text-100: #eceae4;
+        --text-200: #e0ddd4;
+        --text-300: #c4bfb4;
+        --text-400: #98948a;
+        --text-500: #8a8578;
+        background: #262624;
+      }
+
+      .claude-thread-core-stage.theme-dark .thread-core-panel {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          #262624;
+        background-size: 56px 56px;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.2),
+          0 32px 96px rgba(0, 0, 0, 0.42);
+      }
+
+      .claude-thread-core-stage.theme-dark .thread-topbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(38, 38, 36, 0.42);
+      }
+
+      .claude-thread-core-stage.theme-dark .model-selector {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .claude-thread-core-stage.theme-dark .thread-scroll {
+        background:
+          linear-gradient(180deg, rgba(38, 38, 36, 1), rgba(38, 38, 36, 0) 92px),
+          transparent;
+      }
+
+      .claude-thread-core-stage.theme-dark .sticky-prompt-bubble {
+        background: #3a3934;
+        color: #eceae4;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .claude-thread-core-stage.theme-dark .context-pill {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .claude-thread-core-stage.theme-dark .assistant-copy { color: #e8e5da; }
+      .claude-thread-core-stage.theme-dark .assistant-line.secondary { color: #e8e5da; }
+
+      .claude-thread-core-stage.theme-dark .thinking-card,
+      .claude-thread-core-stage.theme-dark .tool-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2f2e2b;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+      }
+
+      .claude-thread-core-stage.theme-dark .card-trigger {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .claude-thread-core-stage.theme-dark .part-section {
+        background: #2b2a26;
+        color: #9fc98a;
+      }
+
+      .claude-thread-core-stage.theme-dark .source-chip {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .claude-thread-core-stage.theme-dark .tool-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .claude-thread-core-stage.theme-dark .tool-dot {
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .claude-thread-core-stage.theme-dark .tool-row.done .tool-dot {
+        border-color: #5fa36b;
+      }
+
+      .claude-thread-core-stage.theme-dark .tool-row.active .tool-dot {
+        border-color: var(--brand-100);
+        border-top-color: transparent;
+      }
+
+      .claude-thread-core-stage.theme-dark .command-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2b2a26;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.24);
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>
       window.__timelines = window.__timelines || {};

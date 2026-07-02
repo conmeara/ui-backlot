@@ -491,6 +491,136 @@
         border-bottom: 0;
       }
     </style>
+    <style>
+      /* Dark mode token overrides — scoped under .finder-window.theme-dark.
+         Must remain the LAST style block so it wins the cascade. */
+      .finder-window.theme-dark {
+        background: #212126;
+        box-shadow:
+          0 28px 88px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.06);
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark::before {
+        background: rgba(35, 35, 39, 0.82);
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.06),
+          0 1px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .finder-window.theme-dark .finder-sidebar {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-section {
+        color: #85858d;
+      }
+
+      .finder-window.theme-dark .side-item {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-item.selected {
+        background: rgba(255, 255, 255, 0.1);
+        color: #6ab0ff;
+      }
+
+      .finder-window.theme-dark .side-icon {
+        color: #4da3f5;
+      }
+
+      .finder-window.theme-dark .finder-toolbar {
+        background: rgba(38, 38, 43, 0.92);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .finder-window.theme-dark .finder-title {
+        color: #f0f0f4;
+      }
+
+      .finder-window.theme-dark .toolbar-pill {
+        background: #2e2e34;
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.25);
+        color: #d0d0d6;
+      }
+
+      .finder-window.theme-dark .toolbar-button,
+      .finder-window.theme-dark .toolbar-icon,
+      .finder-window.theme-dark .toolbar-chevron {
+        color: #d0d0d6;
+      }
+
+      .finder-window.theme-dark .toolbar-icon.columns {
+        background: #3f3f46;
+        color: #f0f0f4;
+      }
+
+      .finder-window.theme-dark .search-pill {
+        background: #2c2c31;
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+          0 1px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .finder-window.theme-dark .finder-content {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #1e1e23;
+      }
+
+      .finder-window.theme-dark .finder-column {
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .finder-window.theme-dark .file-row {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .file-row.selected {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large {
+        background: #3478f6;
+        color: #fff;
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large .chevron {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large .file-icon.folder {
+        color: #cfe2ff;
+      }
+
+      .finder-window.theme-dark .file-row .chevron {
+        color: #6e6e76;
+      }
+
+      .finder-window.theme-dark .file-icon.folder {
+        color: #4da3f5;
+      }
+
+      .finder-window.theme-dark .file-icon.doc {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: linear-gradient(135deg, #3a3a40 0 78%, #2c2c31 79% 100%);
+      }
+
+      .finder-window.theme-dark .file-icon.doc::after {
+        background: #5a5a62;
+        box-shadow: 0 4px 0 #4c4c53, 0 8px 0 #3f3f46;
+      }
+
+      .finder-window.theme-dark .file-icon.preview {
+        color: #6ab0ff;
+      }
+
+      .finder-window.theme-dark .file-icon.code {
+        color: #9a9aa2;
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>
       window.__timelines = window.__timelines || {};

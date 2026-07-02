@@ -24,10 +24,11 @@ function parseArgs(argv) {
     else if (arg === "--slug") args.slug = argv[++i];
     else if (arg === "--viewport") args.viewport = argv[++i];
     else if (arg === "--scale") args.scale = Number.parseFloat(argv[++i]);
+    else if (arg === "--root-class") args.rootClass = argv[++i];
     else if (!args.url) args.url = arg;
   }
   if (!args.url) {
-    throw new Error("Usage: node tools/capture-web-ui.mjs <url-or-file> [--slug name] [--selector css] [--viewport 1920x1080] [--scale 1]");
+    throw new Error("Usage: node tools/capture-web-ui.mjs <url-or-file> [--slug name] [--selector css] [--viewport 1920x1080] [--scale 1] [--root-class theme-dark]");
   }
   const [width, height] = args.viewport.split("x").map((item) => Number.parseInt(item, 10));
   if (!Number.isFinite(width) || !Number.isFinite(height)) {
@@ -77,6 +78,17 @@ async function main() {
   }
 
   await page.waitForTimeout(500);
+
+  if (args.rootClass) {
+    // Theme variants: add a class (e.g. theme-dark) to the capture root so the
+    // composition's scoped override block applies, without duplicating markup.
+    await page.evaluate(({ selector, rootClass }) => {
+      const el = selector ? document.querySelector(selector) : document.body;
+      if (!el) throw new Error(`--root-class target not found: ${selector}`);
+      el.classList.add(...rootClass.split(/\s+/).filter(Boolean));
+    }, { selector: args.selector, rootClass: args.rootClass });
+    await page.waitForTimeout(150);
+  }
 
   const captureTarget = args.selector ? page.locator(args.selector).first() : page;
   await page.screenshot({ path: path.join(outDir, "viewport.png"), fullPage: false });

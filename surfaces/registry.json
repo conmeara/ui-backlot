@@ -2577,6 +2577,454 @@
       ],
       "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols vendored via assets/icons/source-authentic/; no Codex/OpenAI product code or app assets copied.",
       "recommendedUse": "Zoomed-in cuts on the Codex working-thread body (user turn, assistant reply, command-output card, composer) without surrounding app chrome."
+    },
+    {
+      "id": "calendar-app-dark",
+      "title": "macOS Calendar App (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of calendar-app; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "surfaces/calendar-app-surface.html",
+      "compositionId": null,
+      "import": {
+        "type": "standalone-html-surface",
+        "src": "surfaces/calendar-app-surface.html",
+        "selector": ".calendar-window"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:calendar-app-dark",
+        "selector": ".calendar-window",
+        "path": "captures/surface-calendar-app-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/calendar-toolbar-icon-refinement-pass-096.md",
+      "tags": [
+        "macos",
+        "calendar",
+        "schedule",
+        "desktop"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/calendar-toolbar-icon-refinement-pass-096.md",
+        "docs/prototypes/calendar-actual-app-delta-pass-095.md",
+        "docs/prototypes/calendar-actual-app-reference-pass-094.md",
+        "docs/prototypes/apple-calendar-fidelity-pass-093.md",
+        "docs/prototypes/macos-web-calendar-surface-pass-016.md",
+        "docs/research/open-source-ui-donor-repos.md",
+        "https://support.apple.com/guide/calendar/welcome/mac",
+        "https://support.apple.com/guide/calendar/add-modify-or-delete-events-icalwr13-events/mac",
+        "https://support.apple.com/guide/calendar/show-or-hide-a-calendar-icl1006/mac"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS adapted from MIT-compatible macOS web references and local-only icon paths.",
+      "recommendedUse": "Scheduling, coordination, and calendar-driven workflow scenes."
+    },
+    {
+      "id": "finder-window-dark",
+      "title": "Finder Launch Deck Window (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of finder-window; same markup, scoped token override block",
+      "dimensions": {
+        "width": 920,
+        "height": 436
+      },
+      "source": "compositions/finder-window.html",
+      "compositionId": "finder-window-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/finder-window.html",
+        "selector": "#finder-window-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:finder-window-dark",
+        "selector": ".finder-window",
+        "path": "captures/surface-finder-window-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/finder-window-subcomposition-pass-030.md",
+      "tags": [
+        "macos",
+        "finder",
+        "files",
+        "folder",
+        "launch-deck"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "captures/finder-launch-deck/window.png",
+        "snapshots/finder-source-vs-component.jpg",
+        "docs/research/open-source-ui-donor-repos.md",
+        "assets/icons/source-authentic/framework7/macos-symbols.svg",
+        "assets/icons/sprite-manifest.json"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Framework7 (MIT) SF-style icon symbols vendored via assets/icons/sprite-manifest.json; no Apple SF Symbols or app assets copied.",
+      "recommendedUse": "File/folder handoff scenes that need Finder without a full desktop shell."
+    },
+    {
+      "id": "mac-menu-bar-dark",
+      "title": "macOS Menu Bar (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of mac-menu-bar; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1920,
+        "height": 30
+      },
+      "source": "compositions/mac-menu-bar.html",
+      "compositionId": "mac-menu-bar-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/mac-menu-bar.html",
+        "selector": "#mac-menu-bar-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:mac-menu-bar-dark",
+        "selector": ".mac-menu-bar-stage",
+        "path": "captures/surface-mac-menu-bar-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/mac-menu-bar-component-pass-088.md",
+      "tags": [
+        "mac",
+        "macos",
+        "menu-bar",
+        "desktop",
+        "component-loader"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/open-source/README.md",
+        "reference/open-source/macos-web/LICENSE",
+        "reference/open-source/macos-web/src/components/TopBar/TopBar.svelte",
+        "reference/open-source/macos-web/src/components/TopBar/MenuBar.svelte",
+        "reference/open-source/macos-web/src/components/TopBar/TopBarTime.svelte",
+        "docs/research/open-source-ui-donor-repos.md",
+        "compositions/claude-presentation-chat-pane-workflow.html",
+        "assets/icons/source-authentic/framework7/macos-symbols.svg",
+        "assets/icons/sprite-manifest.json"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Framework7 (MIT) SF-style status icons vendored via assets/icons/sprite-manifest.json plus one hand-authored Control Center glyph; no Apple SF Symbols or app assets copied.",
+      "recommendedUse": "Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab."
+    },
+    {
+      "id": "browser-app-dark",
+      "title": "Editable Browser App (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of browser-app; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1712,
+        "height": 944
+      },
+      "source": "compositions/browser-app.html",
+      "compositionId": "browser-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/browser-app.html",
+        "selector": "#browser-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:browser-app-dark",
+        "selector": ".browser-window",
+        "path": "captures/surface-browser-app-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/browser-subcomposition-integration-pass-014.md",
+      "tags": [
+        "browser",
+        "web-app",
+        "tabs",
+        "dashboard"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/browser-app-surface-pass-006.md",
+        "docs/prototypes/browser-chrome-donor-refinement-pass-013.md",
+        "docs/prototypes/browser-app-polish-pass-093.md",
+        "docs/prototypes/browser-app-actual-reference-rebuild-pass-094.md",
+        "docs/research/open-source-ui-donor-repos.md",
+        "assets/icons/source-authentic/lucide/browser-symbols.svg",
+        "assets/icons/sprite-manifest.json"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) browser-chrome icon symbols vendored via assets/icons/sprite-manifest.json; uses donor repos as geometry reference without vendoring runtime components.",
+      "recommendedUse": "Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows."
+    },
+    {
+      "id": "codex-app-dark",
+      "title": "Codex Desktop Workbench (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of codex-app; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1280,
+        "height": 820
+      },
+      "source": "compositions/codex-app.html",
+      "compositionId": "codex-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/codex-app.html",
+        "selector": "#codex-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:codex-app-dark",
+        "selector": ".codex-app-window",
+        "path": "captures/surface-codex-app-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/codex-app-icon-fidelity-pass-095.md",
+      "tags": [
+        "codex",
+        "desktop",
+        "app",
+        "agent-status",
+        "patch-preview",
+        "developer-workflow"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "https://developers.openai.com/codex/app",
+        "https://developers.openai.com/codex/app/features",
+        "https://developers.openai.com/codex/app/review",
+        "https://developers.openai.com/codex/app/worktrees",
+        "https://developers.openai.com/codex/appshots",
+        "https://developers.openai.com/codex/cli/reference#command-overview",
+        "reference/codex/app-screenshots/README.md",
+        "reference/codex/app-screenshots/app-screenshot-light.webp",
+        "reference/codex/app-screenshots/git-commit-light.webp",
+        "reference/codex/app-screenshots/modes-light.webp",
+        "docs/prototypes/codex-app-icon-fidelity-pass-095.md",
+        "`codex --version`",
+        "`codex --help`",
+        "`codex app --help`",
+        "`codex cloud --help`",
+        "/Applications/Codex.app/Contents/Info.plist",
+        "captures/surface-codex-app/target.png",
+        "docs/prototypes/codex-app-surface-pass-061.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS using official OpenAI screenshot plates, documentation, safe local CLI/app metadata, and Backlot captures as reference evidence only; no OpenAI/Codex app assets, screenshot pixels, product CSS, app code, icon files, private sessions, account data, or copied app bundle assets.",
+      "recommendedUse": "Desktop Codex demos that need a light-mode current app shell with real-product-like sidebar navigation, active thread, model/permission composer, toolbar controls, Git diff review pane, and local-work metadata, without importing Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces."
+    },
+    {
+      "id": "codex-thread-core-dark",
+      "title": "Codex Conversation Core (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of codex-thread-core; same markup, scoped token override block",
+      "dimensions": {
+        "width": 980,
+        "height": 840
+      },
+      "source": "compositions/codex-thread-core.html",
+      "compositionId": "codex-thread-core-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/codex-thread-core.html",
+        "selector": "#codex-thread-core-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:codex-thread-core-dark",
+        "selector": "#codex-thread-core",
+        "path": "captures/surface-codex-thread-core-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/codex-thread-core-pass-100.md",
+      "tags": [
+        "codex",
+        "thread",
+        "conversation",
+        "command-output",
+        "composer"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "captures/surface-codex-app/target.png",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "docs/prototypes/codex-thread-core-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols vendored via assets/icons/source-authentic/; no Codex/OpenAI product code or app assets copied.",
+      "recommendedUse": "Zoomed-in cuts on the Codex working-thread body (user turn, assistant reply, command-output card, composer) without surrounding app chrome."
+    },
+    {
+      "id": "figma-editor-dark",
+      "title": "Figma-style Design Editor (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of figma-editor; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/figma-editor.html",
+      "compositionId": "figma-editor-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/figma-editor.html",
+        "selector": "#figma-editor-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:figma-editor-dark",
+        "selector": ".figma-window",
+        "path": "captures/surface-figma-editor-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/figma-editor-surface-pass-024.md",
+      "tags": [
+        "figma",
+        "design",
+        "canvas",
+        "properties",
+        "frames"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "docs/prototypes/figma-editor-surface-pass-024.md",
+        "DESIGN.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by public Figma UI documentation; no private Figma account, file, code, or assets copied.",
+      "recommendedUse": "Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes."
+    },
+    {
+      "id": "claude-desktop-chat-dark",
+      "title": "Claude Desktop - Chat page (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of claude-desktop-chat; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-desktop.html",
+      "compositionId": "claude-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-desktop.html",
+        "selector": "#claude-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-desktop-chat-dark",
+        "selector": "#claude-desktop-chat",
+        "path": "captures/surface-claude-desktop-chat-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-desktop-shell-restructure-pass-100.md",
+      "tags": [
+        "claude",
+        "desktop-app",
+        "chat",
+        "home",
+        "composer"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "captures/surface-claude-app/target.png",
+        "captures/surface-claude-code-desktop/target.png",
+        "/Applications/Claude.app",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+        "docs/prototypes/claude-desktop-shell-restructure-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols and the Simple Icons Claude wordmark glyph vendored via assets/icons/source-authentic/; the Code page's crab mascot is hand-authored CSS box-shadow pixel art. No Claude product code or app assets copied.",
+      "recommendedUse": "Claude desktop chat/new-thread scenes, opening prompt states, and cuts into a working thread."
+    },
+    {
+      "id": "claude-desktop-cowork-dark",
+      "title": "Claude Desktop - Cowork page (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of claude-desktop-cowork; same markup, scoped token override block",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "compositions/claude-desktop.html",
+      "compositionId": "claude-desktop-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-desktop.html",
+        "selector": "#claude-desktop-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-desktop-cowork-dark",
+        "selector": "#claude-desktop-cowork",
+        "path": "captures/surface-claude-desktop-cowork-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-desktop-shell-restructure-pass-100.md",
+      "tags": [
+        "claude",
+        "desktop-app",
+        "cowork",
+        "tasks",
+        "agent-status"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
+        "https://simonwillison.net/2026/Jan/12/claude-cowork/",
+        "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4",
+        "reference/claude/frame-study/code-desktop-redesign/contact-sheet.jpg",
+        "captures/surface-claude-app/target.png",
+        "captures/surface-claude-code-desktop/target.png",
+        "/Applications/Claude.app",
+        "assets/icons/source-authentic/lucide/claude-symbols.svg",
+        "assets/icons/source-authentic/simple-icons/brand-symbols.svg",
+        "docs/prototypes/claude-desktop-shell-restructure-pass-100.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS with curated Lucide (ISC) icon symbols and the Simple Icons Claude wordmark glyph vendored via assets/icons/source-authentic/; the Code page's crab mascot is hand-authored CSS box-shadow pixel art. No Claude product code or app assets copied.",
+      "recommendedUse": "Claude desktop Cowork task-review scenes with progress, artifacts, and context rail."
+    },
+    {
+      "id": "claude-thread-core-dark",
+      "title": "Claude Working Thread Core (dark)",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "theme-dark class variant of claude-thread-core; same markup, scoped token override block",
+      "dimensions": {
+        "width": 980,
+        "height": 840
+      },
+      "source": "compositions/claude-thread-core.html",
+      "compositionId": "claude-thread-core-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/claude-thread-core.html",
+        "selector": "#claude-thread-core-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:claude-thread-core-dark",
+        "selector": ".claude-thread-core-stage",
+        "path": "captures/surface-claude-thread-core-dark/target.png"
+      },
+      "prototypeNote": "docs/prototypes/claude-thread-core-surface-pass-066.md",
+      "tags": [
+        "claude",
+        "thread",
+        "tool-use",
+        "reasoning",
+        "message-parts"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "compositions/claude-app.html",
+        "captures/surface-claude-app/target.png",
+        "compositions/claude-composer.html",
+        "compositions/claude-agent-rail.html",
+        "docs/prototypes/claude-app-reference-focus-pass-060.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
+      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window."
     }
   ]
 }

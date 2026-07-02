@@ -80,6 +80,9 @@ Claude components can be paired with any app surface when a demo needs an assist
 | `claude-desktop-chat` | component | Claude Desktop - Chat page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-chat` | `claude` `desktop-app` `chat` `home` `composer` |
 | `claude-desktop-cowork` | component | Claude Desktop - Cowork page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-cowork` | `claude` `desktop-app` `cowork` `tasks` `agent-status` |
 | `claude-desktop-code` | component | Claude Desktop - Code page | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-code` | `claude` `claude-code` `desktop-app` `dark-ui` `sessions` |
+| `claude-desktop-chat-dark` | component | Claude Desktop - Chat page (dark) | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-chat-dark` | `claude` `desktop-app` `chat` `home` `composer` |
+| `claude-desktop-cowork-dark` | component | Claude Desktop - Cowork page (dark) | [compositions/claude-desktop.html](../compositions/claude-desktop.html) | `capture:claude-desktop-cowork-dark` | `claude` `desktop-app` `cowork` `tasks` `agent-status` |
+| `claude-thread-core-dark` | component | Claude Working Thread Core (dark) | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core-dark` | `claude` `thread` `tool-use` `reasoning` `message-parts` |
 
 ## Desktop And Browser
 
@@ -101,6 +104,10 @@ Desktop context surfaces establish the environment around a product demo.
 | `claude-mac-finder` | lab | Full Claude Mac Finder Lab | [surfaces/claude-mac-finder.html](../surfaces/claude-mac-finder.html) | `capture:surface` | `macos` `finder` `claude` `desktop` `legacy-lab` |
 | `finder-window` | component | Finder Launch Deck Window | [compositions/finder-window.html](../compositions/finder-window.html) | `capture:finder-window` | `macos` `finder` `files` `folder` `launch-deck` |
 | `mac-menu-bar` | component | macOS Menu Bar | [compositions/mac-menu-bar.html](../compositions/mac-menu-bar.html) | `capture:mac-menu-bar` | `mac` `macos` `menu-bar` `desktop` `component-loader` |
+| `calendar-app-dark` | component | macOS Calendar App (dark) | [surfaces/calendar-app-surface.html](../surfaces/calendar-app-surface.html) | `capture:calendar-app-dark` | `macos` `calendar` `schedule` `desktop` |
+| `finder-window-dark` | component | Finder Launch Deck Window (dark) | [compositions/finder-window.html](../compositions/finder-window.html) | `capture:finder-window-dark` | `macos` `finder` `files` `folder` `launch-deck` |
+| `mac-menu-bar-dark` | component | macOS Menu Bar (dark) | [compositions/mac-menu-bar.html](../compositions/mac-menu-bar.html) | `capture:mac-menu-bar-dark` | `mac` `macos` `menu-bar` `desktop` `component-loader` |
+| `browser-app-dark` | component | Editable Browser App (dark) | [compositions/browser-app.html](../compositions/browser-app.html) | `capture:browser-app-dark` | `browser` `web-app` `tabs` `dashboard` |
 
 ## Productivity And Creative Apps
 
@@ -122,6 +129,7 @@ App surfaces are editable HTML/CSS approximations for instructional scenes and w
 | `premiere-editor` | component | Premiere-style Video Editor | [compositions/premiere-editor.html](../compositions/premiere-editor.html) | `capture:premiere-editor` | `premiere` `video` `timeline` `editing` `captions` |
 | `presentation-editor` | component | PowerPoint-like Presentation Editor | [compositions/presentation-editor.html](../compositions/presentation-editor.html) | `capture:presentation-editor` | `powerpoint` `presentation` `office` `ribbon` `slides` |
 | `word-editor` | component | Word-style Document Editor | [compositions/word-editor.html](../compositions/word-editor.html) | `capture:word-editor` | `word` `office` `document` `comments` `tracked-changes` |
+| `figma-editor-dark` | component | Figma-style Design Editor (dark) | [compositions/figma-editor.html](../compositions/figma-editor.html) | `capture:figma-editor-dark` | `figma` `design` `canvas` `properties` `frames` |
 
 ## Codex And Terminal
 
@@ -136,6 +144,8 @@ Developer surfaces support agent coding, terminal, and review workflows.
 | `codex-app` | component | Codex Desktop Workbench | [compositions/codex-app.html](../compositions/codex-app.html) | `capture:codex-app` | `codex` `desktop` `app` `agent-status` `patch-preview` `developer-workflow` |
 | `codex-terminal` | component | Codex Terminal | [compositions/codex-terminal.html](../compositions/codex-terminal.html) | `capture:codex-terminal` | `codex` `terminal` `cli` `agent-status` `developer-workflow` |
 | `codex-thread-core` | component | Codex Conversation Core | [compositions/codex-thread-core.html](../compositions/codex-thread-core.html) | `capture:codex-thread-core` | `codex` `thread` `conversation` `command-output` `composer` |
+| `codex-app-dark` | component | Codex Desktop Workbench (dark) | [compositions/codex-app.html](../compositions/codex-app.html) | `capture:codex-app-dark` | `codex` `desktop` `app` `agent-status` `patch-preview` `developer-workflow` |
+| `codex-thread-core-dark` | component | Codex Conversation Core (dark) | [compositions/codex-thread-core.html](../compositions/codex-thread-core.html) | `capture:codex-thread-core-dark` | `codex` `thread` `conversation` `command-output` `composer` |
 
 ## Machine Source
 

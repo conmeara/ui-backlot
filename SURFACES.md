@@ -464,6 +464,17 @@ lab.
   See `docs/prototypes/claude-desktop-shell-restructure-pass-100.md` and
   `docs/prototypes/codex-thread-core-pass-100.md`.
 - Reusable primitives are listed in `PRIMITIVES.md`.
+- Ten surfaces (`calendar-app`, `finder-window`, `mac-menu-bar`, `browser-app`,
+  `codex-app`, `codex-thread-core`, `figma-editor`, `claude-desktop-chat`,
+  `claude-desktop-cowork`, `claude-thread-core`) now ship a dark-theme variant
+  through a scoped theme-dark class system: each surface's own CSS carries a
+  `.theme-dark` token-override block (same markup, same component, just the
+  color tokens swapped), and `tools/capture-web-ui.mjs` accepts a
+  `--root-class theme-dark` flag that adds that class to the capture root
+  before shooting the PNG. Each base surface has a matching
+  `capture:<surface>-dark` script and a `<surface>-dark` registry entry so the
+  light and dark captures stay independently reproducible without forking the
+  underlying composition file.
 
 ## First Real Workflow
 

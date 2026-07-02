@@ -1700,6 +1700,288 @@
       }
     </style>
 
+    <style>
+      .codex-app-window.theme-dark {
+        --window: #212019;
+        --sidebar: #212019;
+        --sidebar-deeper: #2c2b24;
+        --ink: #ece9dd;
+        --muted: #8a877c;
+        --faint: #6f6c61;
+        --line: rgba(255, 255, 255, 0.07);
+        --line-strong: rgba(255, 255, 255, 0.12);
+        --soft: #2a2922;
+        --soft-blue: #2c2b24;
+        --green: #6fbf8e;
+        --red: #d98a86;
+        --blue: #7fa4e8;
+        background: var(--window);
+        box-shadow: 0 32px 95px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
+      }
+
+      .codex-app-window.theme-dark .codex-sidebar {
+        background: var(--sidebar);
+        border-right-color: var(--line);
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .sidebar-icon,
+      .codex-app-window.theme-dark .nav-arrow {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .primary-nav button,
+      .codex-app-window.theme-dark .settings-row {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .glyph {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .sidebar-label {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row.selected {
+        background: #2c2b24;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row time {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .pin,
+      .codex-app-window.theme-dark .project-icon,
+      .codex-app-window.theme-dark .gear,
+      .codex-app-window.theme-dark .mini-action {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .project-item {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .empty-chat {
+        color: #6f6c61;
+      }
+
+      .codex-app-window.theme-dark .codex-workspace {
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .topbar {
+        border-bottom-color: var(--line);
+        background: rgba(33, 32, 25, 0.96);
+      }
+
+      .codex-app-window.theme-dark .title-wrap h1 {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .title-wrap span {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .more-button,
+      .codex-app-window.theme-dark .toolbar-button,
+      .codex-app-window.theme-dark .terminal-button,
+      .codex-app-window.theme-dark .layout-toggle,
+      .codex-app-window.theme-dark .review-menu,
+      .codex-app-window.theme-dark .expand-button,
+      .codex-app-window.theme-dark .add-review {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .vscode-pill,
+      .codex-app-window.theme-dark .commit-pill {
+        border-color: var(--line);
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .toolbar-divider {
+        background: var(--line);
+      }
+
+      .codex-app-window.theme-dark .diff-counter {
+        background: rgba(111, 191, 142, 0.14);
+      }
+
+      .codex-app-window.theme-dark .thread-pane {
+        border-right-color: var(--line);
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .prompt-bubble {
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .previous-link {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .assistant-response {
+        border-top-color: var(--line);
+      }
+
+      .codex-app-window.theme-dark .assistant-response p {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark code {
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .change-card {
+        background: #2a2922;
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+
+      .codex-app-window.theme-dark .change-card header {
+        border-bottom-color: var(--line);
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .change-card header button {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .change-row {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .change-row b {
+        border-right-color: #8a877c;
+        border-bottom-color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .composer {
+        border-color: var(--line-strong);
+        background: #2a2922;
+        box-shadow: 0 9px 26px rgba(0, 0, 0, 0.35);
+      }
+
+      .codex-app-window.theme-dark .composer-input {
+        color: #6f6c61;
+      }
+
+      .codex-app-window.theme-dark .plus-button,
+      .codex-app-window.theme-dark .mic-button {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .permission-select,
+      .codex-app-window.theme-dark .model-select,
+      .codex-app-window.theme-dark .effort-select,
+      .codex-app-window.theme-dark .thread-footer-meta button {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .model-select {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .effort-select {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .send-button {
+        background: #3a3830;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .send-button::before {
+        border-left-color: #ece9dd;
+        border-top-color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-pane {
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .review-title {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-glyph,
+      .codex-app-window.theme-dark .doc-glyph {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .review-scope button {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-scope span {
+        background: #2c2b24;
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .review-scope i {
+        border-right-color: #b5b2a6;
+        border-bottom-color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .diff-file header {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .diff-file header button::before {
+        border-left-color: #b5b2a6;
+        border-top-color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .fold-row {
+        background: #2c2b24;
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .fold-row span {
+        border-left-color: #8a877c;
+        border-top-color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .code-row em {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .code-row code {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .code-row.remove {
+        background: rgba(217, 138, 134, 0.16);
+        box-shadow: inset 3px 0 0 #d98a86;
+      }
+
+      .codex-app-window.theme-dark .code-row.add {
+        background: rgba(111, 191, 142, 0.16);
+        box-shadow: inset 3px 0 0 #6fbf8e;
+      }
+
+      .codex-app-window.theme-dark .code-row.remove code,
+      .codex-app-window.theme-dark .code-row.add code {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .review-actions {
+        background: rgba(42, 41, 34, 0.92);
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--line);
+      }
+
+      .codex-app-window.theme-dark .review-actions button {
+        color: #b5b2a6;
+      }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>
       window.__timelines = window.__timelines || {};

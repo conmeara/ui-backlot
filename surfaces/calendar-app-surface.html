@@ -1343,6 +1343,262 @@
 
       .cursor::before,
       .cursor::after { content: none; }
+
+      /* ============================================================
+         DARK MODE — scoped override, must stay the LAST style block
+         so it wins the cascade. Light rendering is unaffected because
+         every rule here requires .calendar-window.theme-dark.
+         ============================================================ */
+
+      .calendar-window.theme-dark {
+        border-color: rgba(255, 255, 255, 0.09);
+        background: #232329;
+      }
+
+      .calendar-window.theme-dark .titlebar {
+        background: rgba(35, 35, 41, 0.86);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .tool-icon,
+      .calendar-window.theme-dark .toolbar-chevron,
+      .calendar-window.theme-dark .toolbar-today,
+      .calendar-window.theme-dark .toolbar-search {
+        color: #c9c9d0;
+      }
+
+      .calendar-window.theme-dark .inbox-count {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .toolbar-add {
+        background: #2c2c31;
+        border-color: rgba(255, 255, 255, 0.14);
+        color: #f2f2f5;
+        box-shadow: none;
+      }
+
+      .calendar-window.theme-dark .toolbar-nav {
+        background: #2c2c31;
+        border-color: rgba(255, 255, 255, 0.14);
+        box-shadow: none;
+      }
+
+      .calendar-window.theme-dark .view-option {
+        color: #d0d0d6;
+      }
+
+      .calendar-window.theme-dark .view-option.active {
+        background: #3a3a41;
+        color: #f2f2f5;
+      }
+
+      .calendar-window.theme-dark .main-area {
+        background: #1c1c21;
+      }
+
+      .calendar-window.theme-dark .calendar-sidebar {
+        background: rgba(35, 35, 41, 0.9);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: none;
+      }
+
+      .calendar-window.theme-dark .sidebar-title,
+      .calendar-window.theme-dark .sidebar-section-title,
+      .calendar-window.theme-dark .source-count {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .calendar-source {
+        color: #ececf1;
+      }
+
+      .calendar-window.theme-dark .mini-calendar {
+        border-top-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .mini-month {
+        color: #ececf1;
+      }
+
+      .calendar-window.theme-dark .mini-nav {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .mini-weekday {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .mini-day {
+        color: #d8d8dd;
+      }
+
+      .calendar-window.theme-dark .mini-day.other {
+        color: #5a5a61;
+      }
+
+      .calendar-window.theme-dark .calendar-content {
+        background: #1c1c21;
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: none;
+      }
+
+      .calendar-window.theme-dark .calendar-header {
+        background: rgba(28, 28, 33, 0.82);
+      }
+
+      .calendar-window.theme-dark .month {
+        color: #f2f2f5;
+      }
+
+      .calendar-window.theme-dark .year {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .week-view,
+      .calendar-window.theme-dark .month-grid {
+        background: #1c1c21;
+      }
+
+      .calendar-window.theme-dark .week-days {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .week-day {
+        border-left-color: rgba(255, 255, 255, 0.08);
+        color: #ececf1;
+      }
+
+      .calendar-window.theme-dark .week-day.past {
+        color: #7a7a82;
+      }
+
+      .calendar-window.theme-dark .all-day-row {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .all-day-label {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .all-day-cell {
+        border-left-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .all-day-event,
+      .calendar-window.theme-dark .all-day-reminder {
+        background: color-mix(in srgb, var(--event-color) 30%, #1c1c21);
+        color: color-mix(in srgb, var(--event-color) 65%, white);
+      }
+
+      .calendar-window.theme-dark .time-cell {
+        border-top-color: rgba(255, 255, 255, 0.06);
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .day-lane {
+        border-left-color: rgba(255, 255, 255, 0.08);
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 57px,
+          rgba(255, 255, 255, 0.06) 57px,
+          rgba(255, 255, 255, 0.06) 58px
+        );
+      }
+
+      .calendar-window.theme-dark .week-event {
+        background: color-mix(in srgb, var(--event-color) 20%, #1c1c21);
+        color: color-mix(in srgb, var(--event-color) 65%, white);
+      }
+
+      .calendar-window.theme-dark .week-event span {
+        color: color-mix(in srgb, var(--event-color) 65%, white);
+      }
+
+      .calendar-window.theme-dark .week-event.declined {
+        background:
+          repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.07) 0 4px, transparent 4px 8px),
+          #26262b;
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .week-event.declined strong,
+      .calendar-window.theme-dark .week-event.declined span {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .weekday {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .weekday.weekend {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .day {
+        border-right-color: rgba(255, 255, 255, 0.08);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+        background: #1c1c21;
+      }
+
+      .calendar-window.theme-dark .day.weekend {
+        background: #202025;
+      }
+
+      .calendar-window.theme-dark .day.out-month {
+        background: #19191d;
+      }
+
+      .calendar-window.theme-dark .day.out-month.weekend {
+        background: #1a1a1f;
+      }
+
+      .calendar-window.theme-dark .date-number {
+        color: #f2f2f5;
+      }
+
+      .calendar-window.theme-dark .out-month .date-number {
+        color: #5a5a61;
+      }
+
+      .calendar-window.theme-dark .event {
+        background: color-mix(in srgb, var(--event-color) 24%, #1c1c21);
+        color: color-mix(in srgb, var(--event-color) 65%, white);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--event-color) 24%, transparent);
+      }
+
+      .calendar-window.theme-dark .event-popover {
+        background: rgba(44, 44, 49, 0.94);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .calendar-window.theme-dark .popover-header {
+        background: linear-gradient(180deg, rgba(58, 58, 65, 0.6), rgba(44, 44, 49, 0.6));
+      }
+
+      .calendar-window.theme-dark .popover-title strong {
+        color: #f2f2f5;
+      }
+
+      .calendar-window.theme-dark .popover-title span {
+        color: #8e8e96;
+      }
+
+      .calendar-window.theme-dark .popover-section {
+        background: rgba(255, 255, 255, 0.06);
+        color: #d0d0d6;
+      }
+
+      .calendar-window.theme-dark .popover-row + .popover-row {
+        border-top-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .calendar-window.theme-dark .popover-action {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ececf1;
+      }
     </style>
   </head>
   <body>
