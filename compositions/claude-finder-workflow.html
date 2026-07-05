@@ -18,9 +18,9 @@
 
     <div
       class="component-frame claude-thread-component"
-      data-primitive="claude-app-window"
-      data-backlot-mount-src="./claude-app.html"
-      data-backlot-mount-selector="#claude-app-surface"
+      data-primitive="claude-composed-app"
+      data-backlot-mount-src="./claude-composed-app.html"
+      data-backlot-mount-selector="#claude-composed-app"
     ></div>
 
     <div
@@ -147,6 +147,18 @@
     pointer-events: none;
   }
 
+  /* claude-composed-app is a fixed 1440x900 shell; scale-to-fit-height
+     inside the 1180x780 frame (matches the old claude-app crop footprint:
+     scale-to-fit-height fills the frame vertically and crops ~34px off
+     each side, same cropping behavior the old 0.78-scaled claude-app
+     frame already had against its 1280x860 native size). */
+  .claude-thread-component > [data-backlot-mounted-component] {
+    width: 1440px;
+    height: 900px;
+    transform: scale(0.8667);
+    transform-origin: top left;
+  }
+
   .drag-chip {
     position: absolute;
     left: 840px;
@@ -221,6 +233,67 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
 <script>
+  // Set the canonical shell's page/toggle attributes on the mounted root
+  // once the component loader settles (shell defaults to data-page="cowork"
+  // already, matching the old claude-app cowork framing; sidebar+rail stay
+  // on to match the old three-column crop).
+  // Pass-110 scene-copy convention: the mounted atoms expose stable
+  // data-copy="<slot>" hooks (claude-thread-core + claude-agent-rail); the
+  // shell's visible cowork topbar title is addressed through its
+  // data-primitive hook. Hooks missing from the mounted DOM are skipped,
+  // so the map stays declarative and inert against markup churn. Scene
+  // continues the workflow's own beat: the dragged "Launch Deck" Finder
+  // folder (drag chip + claude-attachment-draft) becomes the working
+  // thread, so the thread copy is pinned to the canonical Launch Deck
+  // scene and the shell title + rail are brought onto the same scene.
+  const applyClaudeSceneCopy = () => {
+    const claudeRoot = document.querySelector(".claude-thread-component #claude-composed-app");
+    if (!claudeRoot) return;
+    const sceneCopy = {
+      "thread-title": "Update Launch Deck opening slides",
+      "thread-subtitle": "Working in Launch Deck",
+      "user-prompt": "Oh and update the revenue chart in my LP deck with the correct Q2 numbers.",
+      "reply-primary": "I'll update the launch deck from the selected folder.",
+      "reply-secondary": "I'm checking the notes, Q2 data, and deck file before returning the edited presentation.",
+      "thinking-json": '{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }',
+      "source-chip-1": "slide-notes.md",
+      "source-chip-2": "Q2 revenue.csv",
+      "tool-title": "Editing Deck.pptx",
+      "tool-row-1": "Read Launch Deck folder",
+      "tool-row-2": "Found slide notes and Q2 data",
+      "tool-row-3": "Updating opening slides",
+      "command-output": "Found Launch Deck.pptx, slide-notes.md, and Q2 revenue.csv.\nNext I'll update the title slide and refresh the revenue chart.",
+      "artifact-1-kind": "PPTX",
+      "artifact-1": "Deck.pptx",
+      "context-folder": "Launch Deck",
+      "context-file-1-kind": "MD",
+      "context-file-1": "slide-notes.md",
+      "context-file-2-kind": "CSV",
+      "context-file-2": "Q2 revenue.csv",
+      "context-file-3-kind": "PPTX",
+      "context-file-3": "Deck.pptx"
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      claudeRoot.querySelectorAll(`[data-copy="${slot}"]`).forEach((node) => {
+        node.textContent = text;
+      });
+    });
+    const shellTitle = claudeRoot.querySelector('[data-primitive="claude-cowork-topbar"] .shell-thread-title');
+    if (shellTitle) shellTitle.textContent = sceneCopy["thread-title"];
+  };
+
+  if (window.__backlotComponentsReady) {
+    window.__backlotComponentsReady.then(() => {
+      const shellRoot = document.querySelector(".claude-thread-component #claude-composed-app");
+      if (shellRoot) {
+        shellRoot.setAttribute("data-page", "cowork");
+        shellRoot.setAttribute("data-sidebar", "on");
+        shellRoot.setAttribute("data-rail", "on");
+      }
+      applyClaudeSceneCopy();
+    }).catch(() => {});
+  }
+
   window.__timelines = window.__timelines || {};
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
   tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.36, ease: "sine.out" }, 0.08);

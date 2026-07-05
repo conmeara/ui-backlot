@@ -50,6 +50,37 @@ body {
   --font-terminal: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
 }
 
+/* Canonical Claude-family color tokens.
+   Values measured from the pass-100 live-app-verified claude-desktop shell.
+   Namespaced --claude-* so other app families (office, figma, macos) can add
+   their own blocks without collision. Atoms and the canonical shell consume
+   these; legacy shells keep their local palettes until deleted. */
+:root {
+  --claude-paper: #faf9f5;
+  --claude-surface: #ffffff;
+  --claude-surface-raised: #eceae4;
+  --claude-ink: #171715;
+  --claude-ink-soft: #27231f;
+  --claude-text-muted: #756f66;
+  --claude-text-faint: #a49b90;
+  --claude-brand: #e08a62;
+  --claude-brand-deep: #d8755f;
+  --claude-hairline: #d8d8da;
+}
+
+.theme-dark {
+  --claude-paper: #1f1e1c;
+  --claude-surface: #262624;
+  --claude-surface-raised: #30302e;
+  --claude-ink: #eceae4;
+  --claude-ink-soft: #e8e5da;
+  --claude-text-muted: #b7b2a8;
+  --claude-text-faint: #98948a;
+  --claude-brand: #e08a62;
+  --claude-brand-deep: #d8755f;
+  --claude-hairline: #3a3835;
+}
+
 .backlot-icon {
   display: inline-block;
   flex: 0 0 auto;

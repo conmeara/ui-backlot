@@ -69,16 +69,19 @@ wrappers that need Mac context without duplicating top-bar HTML/CSS or
 importing the full desktop lab. As of pass 091, the Claude workflow wrappers
 that need desktop chrome mount this component instead of carrying local
 menu-bar copies.
-`compositions/claude-app.html` is the first reusable Claude-only
-sub-composition and direct-capturable component for scenes that only need
-Claude plus another app surface. Its default import and capture remain the
-full working thread.
-`compositions/claude-composed-app.html` is the reusable componentized Claude
-shell that assembles the standalone sidebar, thread core, composer, and task
-rail components through `runtime/backlot-component-loader.js`.
-`compositions/claude-chat-shell.html` is the reusable lean Claude chat shell
-for clips that need sidebar, conversation, and composer context without the
-Cowork/task rail or local-command dashboard.
+`compositions/claude-composed-app.html` is **the canonical Claude shell**: the
+reusable componentized Claude shell that assembles the standalone sidebar,
+thread core, composer, and agent rail components through
+`runtime/backlot-component-loader.js`, parameterized by
+`data-page="chat|cowork|code"`, `data-sidebar`/`data-rail="on|off"` toggles,
+and `.theme-dark`. All 17 workflow assemblies mount this shell (or
+`claude-chat-pane` for pane-only scenes) as of the 2026-07-02 consolidation.
+The older monolithic `compositions/claude-app.html` (first reusable
+Claude-only sub-composition) and `compositions/claude-chat-shell.html` (lean
+chat-only shell without the Cowork/task rail) were deleted in that
+consolidation; `compositions/claude-desktop.html` remains on disk only as the
+deprecated pass-100 visual reference the canonical shell's atoms were
+fidelity-matched against.
 `compositions/claude-chat-pane.html` is the reusable lean Claude active-chat
 pane for clips that need only the topbar, conversation, and composer without
 sidebar or task rail.
@@ -90,10 +93,12 @@ rail, browser, Finder, Codex, or desktop chrome.
 Sonnet-launch-style prompt intake component for clips that need only the large
 right-aligned prompt bubbles and loading mark without Claude app chrome,
 sidebar, composer, browser, Finder, Office, Codex, or desktop context.
-`compositions/claude-code-desktop.html` is the reusable dark Claude Code
-desktop component with a session rail, transcript, diff, terminal, tasks, view
-menu, model state, and compact composer based on the public Claude Code desktop
-redesign video frame study.
+`compositions/claude-code-desktop.html` (deleted, 2026-07-02 consolidation)
+was the reusable dark Claude Code desktop component with a session rail,
+transcript, diff, terminal, tasks, view menu, model state, and compact
+composer based on the public Claude Code desktop redesign video frame study;
+that coverage now lives as `data-page="code"` on the canonical
+`compositions/claude-composed-app.html` shell.
 `compositions/claude-code-terminal-session.html` is the reusable light Claude
 Code terminal-session component based on the public Claude Code-to-Figma frame
 study, for clips that need the small reference-style terminal panel without the
@@ -250,8 +255,13 @@ Claude Code-to-Figma frame study.
 `compositions/premiere-editor.html` is the first reusable Premiere-style video
 editor sub-composition and direct-capturable component for video-editing
 workflow demos.
-`surfaces/claude-mac-finder.html` remains the active standalone surface lab.
-`surfaces/browser-app-surface.html` is the standalone browser/app surface lab.
+`surfaces/claude-mac-finder.html` (deleted, 2026-07-02 consolidation) was a
+legacy standalone surface lab; `compositions/finder-window.html` is the
+reusable Finder component.
+`surfaces/browser-app-surface.html` (deleted, 2026-07-02 consolidation; it was
+an orphan file, not in the registry) was the standalone browser/app surface
+lab; browser-app captures now come from the mounted
+`compositions/browser-app.html` sub-composition.
 `surfaces/calendar-app-surface.html` is the standalone macOS Calendar surface
 lab.
 
@@ -276,23 +286,30 @@ lab.
   browser, presentation editor chrome, or the desktop Claude app shell.
   The separate `compositions/claude-launch-completion.html` primitive covers
   the two-line launch-video completion state with the lower-edge composer.
-- Claude composed app is a modular shell proof that the split Claude pieces can
-  be assembled back into a full working app view. It mounts only local
+- Claude composed app is now **the canonical Claude shell**: it mounts local
   component roots from `claude-sidebar`, `claude-thread-core`,
-  `claude-composer`, and `claude-agent-rail`; the wrapper owns layout and
+  `claude-composer`, and `claude-agent-rail`; the shell owns layout and
   choreography, while the child UI stays editable in its own composition file.
-- Claude chat shell is a leaner full app view for ordinary chat/browser clips:
-  sidebar, topbar, large launch-reference conversation rhythm, and bottom
-  composer, but no Cowork/task rail, progress checklist, or local-command
-  dashboard.
+  `data-page="chat|cowork|code"` (default cowork), `data-sidebar`/
+  `data-rail="on|off"`, and `.theme-dark` parameterize what used to require
+  separate pre-baked files. As of the 2026-07-02 consolidation
+  (`docs/component-consolidation-audit-2026-07-02.md`,
+  `docs/prototypes/claude-canonical-shell-pass-106.md`) all 17 workflow
+  assemblies mount this shell instead of the deleted monolithic
+  `claude-app.html`, `claude-chat-shell.html`, and `claude-code-desktop.html`
+  shells; `compositions/claude-desktop.html` remains only as the deprecated
+  pass-100 visual reference the shell's atoms were fidelity-matched against.
 - Claude chat pane is the same plain-chat direction split one layer smaller:
   topbar, active conversation, and composer only, for scenes that provide their
-  own sidebar, browser, desktop, or window frame.
-- Claude Code desktop is a separate dark app-shell component informed by the
-  public 2026-04-14 Claude Code desktop redesign video frame study. It covers
-  the Code mode surface, session rail, prompt transcript, diff panel, terminal,
-  task queue, floating view menu, PR summary, model state, and compact composer
-  without importing the warm Claude chat shell.
+  own sidebar, browser, desktop, or window frame. Workflow scenes that need a
+  full shell instead mount the canonical Claude composed app above.
+- Claude Code desktop coverage — Code mode surface, session rail, prompt
+  transcript, diff panel, terminal, task queue, floating view menu, PR
+  summary, model state, and compact composer, informed by the public
+  2026-04-14 Claude Code desktop redesign video frame study — formerly lived
+  in a separate dark app-shell component (`compositions/claude-code-desktop.html`,
+  deleted in the 2026-07-02 consolidation). It now lives as `data-page="code"`
+  on the canonical Claude composed app shell above.
 - Claude sidebar is a separate editable component extracted from the current
   working-thread shell. It keeps traffic lights, CSS Claude mark, Chat/Code/
   Cowork mode switch, New task/Search actions, active task rows, Today,
@@ -463,6 +480,21 @@ lab.
   was added as a standalone, zoomed-in cut of the Codex working-thread body.
   See `docs/prototypes/claude-desktop-shell-restructure-pass-100.md` and
   `docs/prototypes/codex-thread-core-pass-100.md`.
+- Pass 106 (2026-07-02 component consolidation) rebuilt
+  `compositions/claude-composed-app.html` into **the canonical, parameterized
+  Claude shell**, mounting the `claude-sidebar`/`claude-thread-core`/
+  `claude-composer`/`claude-agent-rail` atoms via
+  `runtime/backlot-component-loader.js` with `data-page="chat|cowork|code"`,
+  `data-sidebar`/`data-rail="on|off"`, and `.theme-dark`. All 17 workflow
+  assemblies now mount it (or `claude-chat-pane` for pane scenes); the
+  monolithic `compositions/claude-app.html`, `compositions/claude-chat-shell.html`,
+  `compositions/claude-code-desktop.html`, `surfaces/claude-mac-finder.html`,
+  and the orphan `surfaces/browser-app-surface.html` were deleted.
+  `compositions/claude-desktop.html` (pass 100) remains only as the
+  deprecated visual reference the atoms were fidelity-matched against; its
+  `claude-desktop-*` registry entries are marked `status: "deprecated"`. See
+  `docs/component-consolidation-audit-2026-07-02.md` and
+  `docs/prototypes/claude-canonical-shell-pass-106.md`.
 - Reusable primitives are listed in `PRIMITIVES.md`.
 - Ten surfaces (`calendar-app`, `finder-window`, `mac-menu-bar`, `browser-app`,
   `codex-app`, `codex-thread-core`, `figma-editor`, `claude-desktop-chat`,

@@ -1,40 +1,3 @@
-<div id="claude-composed-app" data-composition-id="claude-composed-app" data-width="1440" data-height="900" data-start="0" data-duration="8">
-  <section class="composed-claude-stage" data-primitive="claude-composed-app-stage" aria-label="Componentized Claude app shell">
-    <div class="paper-field" aria-hidden="true"></div>
-
-    <article class="composed-claude-window" data-primitive="claude-composed-app">
-      <div
-        class="component-slot sidebar-slot"
-        data-primitive="claude-sidebar"
-        data-backlot-mount-src="./claude-sidebar.html"
-        data-backlot-mount-selector="#claude-sidebar-surface"
-      ></div>
-
-      <main class="composed-main-column" data-primitive="claude-composed-main-column">
-        <div
-          class="component-slot thread-slot"
-          data-primitive="claude-thread-core"
-          data-backlot-mount-src="./claude-thread-core.html"
-          data-backlot-mount-selector="#claude-thread-core-surface"
-        ></div>
-
-        <div
-          class="component-slot composer-slot"
-          data-primitive="claude-working-composer"
-          data-backlot-mount-src="./claude-composer.html"
-          data-backlot-mount-selector="#claude-composer-surface"
-        ></div>
-      </main>
-
-      <div
-        class="component-slot rail-slot"
-        data-primitive="claude-agent-context-rail"
-        data-backlot-mount-src="./claude-agent-rail.html"
-        data-backlot-mount-selector="#claude-agent-rail-surface"
-      ></div>
-    </article>
-  </section>
-
 <style>
       @import url("../styles/backlot-foundation.css");
   html,
@@ -45,21 +8,194 @@
     display: grid;
     place-items: center;
     overflow: hidden;
-    background: #f7f5ef;
+    background:
+      radial-gradient(circle at 18% 13%, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 20%),
+      linear-gradient(140deg, #f1ede5 0%, #fbfaf6 58%, #e7f0ea 100%);
   }
+</style>
 
+<div id="claude-composed-app" data-composition-id="claude-composed-app" data-width="1440" data-height="900" data-start="0" data-duration="8" data-page="cowork">
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M9 3v18" />
+    </symbol>
+    <symbol id="lucide-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v13" />
+      <path d="m16 6-4-4-4 4" />
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+    </symbol>
+    <symbol id="lucide-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="19" cy="12" r="1" />
+      <circle cx="5" cy="12" r="1" />
+    </symbol>
+    <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </symbol>
+    <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+    </symbol>
+    <symbol id="lucide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5" />
+    </symbol>
+    <symbol id="lucide-git-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 6a9 9 0 0 0-9 9V3" />
+    <circle cx="18" cy="6" r="3" />
+    <circle cx="6" cy="18" r="3" />
+    </symbol>
+    <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+      <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+      <path d="M10 9H8" />
+      <path d="M16 13H8" />
+      <path d="M16 17H8" />
+    </symbol>
+    <symbol id="lucide-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19v3" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <rect x="9" y="2" width="6" height="13" rx="3" />
+    </symbol>
+    <symbol id="lucide-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z" />
+      <path d="M20.054 15.987H3.946" />
+    </symbol>
+    <symbol id="si-claude" viewBox="0 0 24 24">
+      <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+    </symbol>
+  </svg>
+
+  <article class="claude-shell-window" data-primitive="claude-composed-app" aria-label="Claude desktop shell composed from atoms">
+    <div class="shell-traffic" aria-hidden="true"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+
+    <div
+      class="component-slot sidebar-slot"
+      data-primitive="claude-sidebar"
+      data-embed="flat"
+      data-backlot-mount-src="./claude-sidebar.html"
+      data-backlot-mount-selector="#claude-sidebar-surface"
+    ></div>
+
+    <main class="shell-main" data-primitive="claude-shell-main">
+      <header class="shell-topbar shell-topbar-chat" data-primitive="claude-chat-topbar">
+        <button class="shell-topbar-icon" type="button" aria-label="Open sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
+        <span class="shell-topbar-spacer"></span>
+        <button class="shell-model-pill" type="button"><span class="shell-model-dot"></span><span>Claude Sonnet 4.6</span><svg class="backlot-icon shell-pill-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+        <button class="shell-topbar-icon" type="button" aria-label="Share"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg></button>
+        <button class="shell-topbar-icon" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
+      </header>
+
+      <header class="shell-topbar shell-topbar-cowork" data-primitive="claude-cowork-topbar">
+        <div class="shell-thread-title">Review unpublished drafts for publication</div>
+      </header>
+
+      <section class="shell-chat-welcome" data-primitive="claude-chat-welcome" aria-label="Claude chat home">
+        <div class="shell-hero">
+          <svg class="backlot-icon shell-hero-mark" aria-hidden="true"><use href="#si-claude"/></svg>
+          <h1>Let's knock something off your list</h1>
+        </div>
+        <div
+          class="component-slot composer-slot composer-slot-chat"
+          data-primitive="claude-working-composer"
+          data-embed="flat"
+          data-backlot-mount-src="./claude-composer.html"
+          data-backlot-mount-selector="#claude-composer-surface"
+        ></div>
+        <div class="shell-starters">
+          <button type="button">Summarize a folder</button>
+          <button type="button">Draft a launch plan</button>
+          <button type="button">Analyze a sheet</button>
+        </div>
+      </section>
+
+      <div
+        class="component-slot thread-slot"
+        data-primitive="claude-thread-core"
+        data-embed="flat"
+        data-backlot-mount-src="./claude-thread-core.html"
+        data-backlot-mount-selector="#claude-thread-core-surface"
+      ></div>
+
+      <footer class="shell-cowork-composer" data-primitive="claude-cowork-composer-dock">
+        <div
+          class="component-slot composer-slot composer-slot-cowork"
+          data-primitive="claude-working-composer"
+          data-embed="flat"
+          data-backlot-mount-src="./claude-composer.html"
+          data-backlot-mount-selector="#claude-composer-surface"
+        ></div>
+      </footer>
+
+      <div class="shell-code-main" data-primitive="claude-code-dock" aria-label="Claude Code session dock">
+        <div class="code-dock">
+          <div class="code-chips">
+            <span class="code-chip"><span class="code-chip-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-laptop"/></svg></span>Local</span>
+            <span class="code-chip"><span class="code-chip-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span>app</span>
+            <span class="code-chip"><span class="code-chip-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-git-branch"/></svg></span>main</span>
+            <span class="code-chip"><span class="code-checkbox" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>worktree</span>
+          </div>
+          <div class="code-mascot" aria-hidden="true"></div>
+          <div class="code-composer">
+            <span class="code-placeholder">Type / for commands</span>
+            <span class="code-return" aria-hidden="true"></span>
+          </div>
+          <div class="code-undercomposer">
+            <div class="code-under-left">
+              <span class="code-auto">Auto accept edits</span>
+              <button class="code-under-glyph" type="button" aria-label="Notes"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></button>
+              <button class="code-under-glyph" type="button" aria-label="Add"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+              <button class="code-under-glyph mic" type="button" aria-label="Dictate"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-mic"/></svg><span class="code-mic-chev"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span></button>
+            </div>
+            <div class="code-under-right">
+              <span class="code-model-label">Model</span>
+              <span class="code-model-ring" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div
+      class="component-slot rail-slot"
+      data-primitive="claude-agent-context-rail"
+      data-embed="flat"
+      data-backlot-mount-src="./claude-agent-rail.html"
+      data-backlot-mount-selector="#claude-agent-rail-surface"
+    ></div>
+  </article>
+
+<style>
+  /* ============================================================
+     Canonical Claude desktop shell, composed from the four atoms
+     (claude-sidebar / claude-thread-core / claude-composer /
+     claude-agent-rail) via runtime/backlot-component-loader.js.
+
+     Visual source of truth: compositions/claude-desktop.html pass-100
+     (chat / cowork / code pages). The shell owns the window chrome
+     (frame, topbars, chat welcome, code dock) and the column layout;
+     the atoms own everything inside their columns and are flattened
+     into the frame by the [data-embed="flat"] attribute on each slot.
+
+     Parameters (on #claude-composed-app, all pure CSS):
+       data-page="chat" | "cowork" | "code"   (default cowork)
+       data-sidebar="on" | "off"              (default on)
+       data-rail="on" | "off"                 (default: on for cowork only)
+     Direct preview also accepts ?page= / ?sidebar= / ?rail= — see the
+     convenience script at the end (capture-time only).
+
+     Cascade note: this style block sits after the mount slots, so it
+     comes later in the document than every mounted atom's styles and
+     wins equal-specificity ties. Shell overrides that repaint atom
+     internals therefore always declare both light and dark values. */
   #claude-composed-app {
-    --paper: #fffdfa;
-    --field: #f7f5ef;
-    --ink: #16120f;
-    --hairline: rgba(49, 43, 36, 0.085);
-    --soft-line: rgba(231, 224, 215, 0.44);
-    --shadow: rgba(72, 52, 39, 0.12);
-    --brand: #c65b47;
     width: 1440px;
     height: 900px;
-    overflow: hidden;
-    color: var(--ink);
+    position: relative;
+    color: var(--claude-ink);
     font-family: var(--font-claude-ui);
   }
 
@@ -67,142 +203,650 @@
     box-sizing: border-box;
   }
 
-  .composed-claude-stage {
-    position: relative;
-    width: 1440px;
-    height: 900px;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 19% 13%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 25%),
-      radial-gradient(circle at 84% 16%, rgba(205, 110, 87, 0.11), rgba(205, 110, 87, 0) 25%),
-      radial-gradient(circle at 78% 82%, rgba(189, 212, 199, 0.34), rgba(189, 212, 199, 0) 31%),
-      linear-gradient(145deg, #f2eee7 0%, #fbfaf6 52%, #e5eee7 100%);
+  #claude-composed-app button {
+    font: inherit;
+    cursor: default;
   }
 
-  .paper-field {
-    position: absolute;
-    inset: 0;
-    opacity: 0.32;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.34) 1px, transparent 1px);
-    background-size: 88px 88px;
-    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  .claude-shell-window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    border-radius: 16px;
   }
 
-  .composed-claude-window {
-    position: relative;
-    width: 1228px;
-    height: 808px;
-    display: grid;
-    grid-template-columns: 232px 668px 264px;
-    gap: 18px;
-    align-items: start;
-    padding: 42px 24px 30px;
-    overflow: hidden;
-    border: 1px solid rgba(55, 42, 31, 0.07);
-    border-radius: 28px;
-    background:
-      linear-gradient(90deg, rgba(231, 224, 215, 0.3) 0 1px, transparent 1px 250px, rgba(231, 224, 215, 0.22) 250px 251px, transparent 251px 958px, rgba(231, 224, 215, 0.18) 958px 959px, transparent 959px),
-      rgba(255, 253, 250, 0.94);
+  /* ---- Window frame per page (claude-desktop .page-*) ---- */
+  #claude-composed-app[data-page="chat"] .claude-shell-window {
+    background: #faf9f5;
     box-shadow:
-      0 42px 130px rgba(54, 42, 31, 0.17),
-      0 0 0 1px rgba(255, 255, 255, 0.42) inset;
+      0 40px 120px rgba(54, 42, 31, 0.22),
+      0 0 0 1px rgba(55, 42, 31, 0.08);
   }
 
-  .composed-claude-window::before {
-    content: "";
-    position: absolute;
-    left: 256px;
-    right: 300px;
-    bottom: 26px;
-    height: 128px;
-    border-radius: 32px;
-    background: rgba(255, 253, 250, 0.78);
-    box-shadow: 0 18px 60px rgba(54, 42, 31, 0.085);
-    pointer-events: none;
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .claude-shell-window {
+    background: #fdfbf6;
+    box-shadow:
+      0 40px 120px rgba(54, 42, 31, 0.2),
+      0 0 0 1px rgba(43, 36, 30, 0.08);
   }
 
+  #claude-composed-app[data-page="code"] .claude-shell-window {
+    background:
+      radial-gradient(120% 90% at 50% 40%, #131315 0%, #0f0f10 55%, #0b0b0c 100%);
+    box-shadow:
+      0 40px 120px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* ---- Slots ---- */
   .component-slot {
     position: relative;
+    min-width: 0;
     overflow: hidden;
     background: transparent;
   }
 
   .component-slot > [data-backlot-mounted-component] {
-    position: absolute;
     display: block;
     pointer-events: none;
-    transform-origin: top left;
   }
 
   .sidebar-slot {
-    width: 232px;
-    height: 676px;
-    border-radius: 18px;
-    z-index: 3;
+    flex: 0 0 auto;
   }
 
-  .sidebar-slot > [data-backlot-mounted-component] {
-    left: -42.24px;
-    top: -31.68px;
-    transform: scale(0.88);
+  #claude-composed-app[data-page="chat"] .sidebar-slot { width: 260px; }
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .sidebar-slot { width: 300px; }
+  #claude-composed-app[data-page="code"] .sidebar-slot {
+    width: 332px;
+    padding: 16px;
   }
 
-  .composed-main-column {
+  #claude-composed-app[data-sidebar="off"] .sidebar-slot { display: none; }
+
+  /* Sidebar page fallback: keeps the mounted panels in sync with the
+     shell's data-page even when the shell is itself mounted by the
+     loader (scripts stripped, so the post-mount propagation below
+     cannot run). The convenience script also sets data-page on the
+     mounted surface so the atom's own selectors agree. */
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .sidebar-slot .panel-chat,
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .sidebar-slot .panel-code { display: none; }
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .sidebar-slot .panel-cowork { display: flex; }
+  #claude-composed-app[data-page="code"] .sidebar-slot .panel-chat,
+  #claude-composed-app[data-page="code"] .sidebar-slot .panel-cowork { display: none; }
+  #claude-composed-app[data-page="code"] .sidebar-slot .panel-code { display: flex; }
+  #claude-composed-app[data-page="chat"] .sidebar-slot .panel-cowork,
+  #claude-composed-app[data-page="chat"] .sidebar-slot .panel-code { display: none; }
+  #claude-composed-app[data-page="chat"] .sidebar-slot .panel-chat { display: flex; }
+
+  /* ---- Main column ---- */
+  .shell-main {
     position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-rows: 596px 100px;
-    gap: 16px;
+    flex: 1 1 auto;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
   }
 
-  .thread-slot {
-    width: 668px;
-    height: 596px;
-    border-radius: 19px;
-    box-shadow: 0 26px 78px rgba(54, 42, 31, 0.09);
+  #claude-composed-app[data-page="chat"] .shell-main { background: #faf9f5; }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .shell-main {
+    background:
+      linear-gradient(rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      #fffdf7;
+    background-size: 58px 58px;
   }
 
-  .thread-slot > [data-backlot-mounted-component] {
-    left: -37.44px;
-    top: -29.64px;
-    transform: scale(0.78);
+  /* ---- Topbars (claude-desktop .cd-chat-topbar / .cw-topbar) ---- */
+  .shell-topbar {
+    display: none;
+    flex: 0 0 auto;
+    align-items: center;
   }
 
-  .composer-slot {
-    width: 632px;
-    height: 100px;
-    margin-left: 20px;
+  /* Decoration lives on low-specificity base rules so the dark block can
+     override it; the page attribute rules only toggle display. */
+  #claude-composed-app .shell-topbar-chat {
+    height: 52px;
+    gap: 8px;
+    padding: 0 20px 0 14px;
+    border-bottom: 1px solid rgba(50, 44, 36, 0.05);
+  }
+
+  #claude-composed-app .shell-topbar-cowork {
+    height: 60px;
+    padding: 0 28px;
+    border-bottom: 1px solid rgba(49, 43, 36, 0.08);
+    background: rgba(255, 253, 247, 0.8);
+  }
+
+  #claude-composed-app[data-page="chat"] .shell-topbar-chat { display: flex; }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .shell-topbar-cowork { display: flex; }
+
+  #claude-composed-app .shell-topbar .backlot-icon,
+  #claude-composed-app .shell-hero .backlot-icon,
+  #claude-composed-app .shell-code-main .backlot-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #claude-composed-app .shell-topbar-icon {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #7f776c;
+  }
+
+  #claude-composed-app .shell-topbar-spacer { flex: 1; }
+
+  /* No font-size/weight: claude-desktop's own `#claude-desktop-surface
+     button { font: inherit }` outranks its .cd-model-pill font declarations,
+     so the pass-100 reference (human-verified against the live app) renders
+     the pill at the inherited 16px/400 — mirror the rendered reality. */
+  #claude-composed-app .shell-model-pill {
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 10px;
+    border: 1px solid rgba(49, 44, 38, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #5d5951;
+  }
+
+  #claude-composed-app .shell-model-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--claude-brand-deep);
+  }
+
+  #claude-composed-app .shell-topbar .shell-pill-chev {
+    width: 14px;
+    height: 14px;
+    color: var(--claude-text-faint);
+  }
+
+  #claude-composed-app .shell-thread-title {
+    color: var(--claude-ink-soft);
+    font-size: 17px;
+    font-weight: 560;
+  }
+
+  /* ---- Chat welcome (claude-desktop .cd-welcome) ---- */
+  .shell-chat-welcome { display: none; }
+
+  #claude-composed-app[data-page="chat"] .shell-chat-welcome {
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 60px 70px;
+  }
+
+  #claude-composed-app .shell-hero {
+    width: min(100%, 720px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  #claude-composed-app .shell-hero .shell-hero-mark {
+    width: 30px;
+    height: 30px;
+    color: #d97757;
+  }
+
+  #claude-composed-app .shell-hero h1 {
+    margin: 0;
+    color: var(--claude-ink);
+    font-family: var(--font-claude-serif);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  #claude-composed-app .composer-slot-chat {
+    width: min(100%, 720px);
+    flex: 0 0 auto;
     overflow: visible;
-    border-radius: 28px;
-    z-index: 5;
   }
 
-  .composer-slot > [data-backlot-mounted-component] {
-    left: -36px;
-    top: -25px;
-    transform: scale(0.8);
+  #claude-composed-app .shell-starters {
+    width: min(100%, 720px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 
-  .rail-slot {
-    width: 264px;
-    height: 690px;
-    border-radius: 19px;
-    z-index: 3;
+  /* No font-size/weight — same rendered-reality note as .shell-model-pill
+     (claude-desktop's button font:inherit kills its .cd-starters button
+     font declarations, so the reference renders 16px/400). */
+  #claude-composed-app .shell-starters button {
+    min-width: 0;
+    height: 46px;
+    padding: 0 13px;
+    border: 1px solid rgba(52, 46, 39, 0.11);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.68);
+    color: #5d5951;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .rail-slot > [data-backlot-mounted-component] {
-    left: -25px;
+  /* ---- Cowork thread column ---- */
+  .thread-slot { display: none; }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .thread-slot {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  /* The shell provides the cowork topbar, so the atom's own working
+     topbar is chrome we hide; geometry then matches claude-desktop's
+     .cw-thread (30/40/10 padding, 640px measure, 23px serif). Shell
+     overrides repaint in both themes: the panel goes transparent so the
+     main column's graph paper shows through, exactly like .cw-main. */
+  #claude-composed-app .thread-slot .thread-topbar { display: none; }
+
+  #claude-composed-app .thread-slot .thread-core-panel {
+    grid-template-rows: minmax(0, 1fr);
+    background: transparent;
+  }
+
+  #claude-composed-app .thread-slot .thread-scroll { padding: 30px 0 10px; }
+  #claude-composed-app .thread-slot .thread-scroll::after { display: none; }
+
+  #claude-composed-app .thread-slot .thread-width {
+    width: calc(100% - 80px);
+    max-width: none;
+  }
+
+  #claude-composed-app .thread-slot .message-row { margin-bottom: 30px; }
+  #claude-composed-app .thread-slot .sticky-prompt-bubble { max-width: 560px; }
+
+  #claude-composed-app .thread-slot .assistant-copy {
+    max-width: 640px;
+    font-size: 23px;
+  }
+
+  #claude-composed-app .thread-slot .thinking-card,
+  #claude-composed-app .thread-slot .tool-card,
+  #claude-composed-app .thread-slot .command-card {
+    max-width: 640px;
+  }
+
+  /* ---- Cowork composer dock (claude-desktop .cw-composer) ---- */
+  .shell-cowork-composer { display: none; }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .shell-cowork-composer {
+    display: block;
+    flex: 0 0 auto;
+    padding: 6px 40px 16px;
+  }
+
+  #claude-composed-app .composer-slot-cowork { overflow: visible; }
+
+  /* Each composer instance is pinned to its page variant regardless of
+     the shell page (fallback for script-stripped embedding; the
+     convenience script also sets data-page on the mounted surfaces). */
+  #claude-composed-app .composer-slot-cowork .panel-chat { display: none; }
+  #claude-composed-app .composer-slot-cowork .panel-cowork { display: block; }
+  #claude-composed-app .composer-slot-chat .panel-cowork { display: none; }
+  #claude-composed-app .composer-slot-chat .panel-chat { display: block; }
+
+  /* ---- Agent rail (claude-desktop .cw-rail) ---- */
+  #claude-composed-app .rail-slot {
+    display: none;
+    flex: 0 0 auto;
+    width: 344px;
+    padding: 30px 20px 24px;
+    background:
+      linear-gradient(rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      #fffdf7;
+    background-size: 58px 58px;
+    border-left: 1px solid rgba(47, 41, 35, 0.1);
+  }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="code"]):not([data-rail="off"]) .rail-slot,
+  #claude-composed-app[data-rail="on"] .rail-slot {
+    display: block;
+  }
+
+  /* ---- Window controls when the sidebar (their usual home) is off ---- */
+  .shell-traffic {
+    display: none;
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    z-index: 30;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #claude-composed-app[data-sidebar="off"] .shell-traffic { display: flex; }
+
+  .shell-traffic span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+  }
+
+  .shell-traffic .red { background: #ff5f57; }
+  .shell-traffic .yellow { background: #febc2e; }
+  .shell-traffic .green { background: #28c840; }
+
+  #claude-composed-app[data-page="code"] .shell-traffic span {
+    background: #3f3f42;
+    box-shadow: none;
+  }
+
+  #claude-composed-app[data-sidebar="off"] .shell-topbar-chat { padding-left: 80px; }
+  #claude-composed-app[data-sidebar="off"] .shell-topbar-cowork { padding-left: 80px; }
+
+  /* ---- Code dock (ported verbatim from claude-desktop .code-main) ---- */
+  .shell-code-main { display: none; }
+
+  #claude-composed-app[data-page="code"] .shell-code-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 40px 34px;
+  }
+
+  .code-dock {
+    position: relative;
+    width: min(100%, 880px);
+    margin: 0 auto;
+  }
+
+  .code-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .code-chip {
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background: #202022;
+    color: #d8d8da;
+    font-size: 13.5px;
+  }
+
+  .code-chip-ico {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+    color: #d8d8da;
+  }
+
+  .code-checkbox {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    padding: 2px;
+    border-radius: 3px;
+    background: #2f7cf6;
+    color: #fff;
+  }
+
+  .code-composer {
+    position: relative;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: #202022;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .code-placeholder {
+    color: #77777c;
+    font-size: 15px;
+  }
+
+  .code-return {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 15px;
+    height: 12px;
+    transform: translateY(-50%);
+    color: #6e6e73;
+  }
+
+  .code-return::before {
+    content: "";
+    position: absolute;
+    left: 3px;
     top: 0;
-    transform: scale(0.78);
+    width: 11px;
+    height: 6px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
   }
 
-  .composed-claude-window[data-backlot-components="ready"] {
-    outline: 0;
+  .code-return::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 8px;
+    height: 5px;
+    border-left: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: skewX(0deg);
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+  }
+
+  .code-undercomposer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+
+  .code-under-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .code-auto {
+    color: #d8d8da;
+    font-size: 14px;
+  }
+
+  .code-under-glyph {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #8e8e93;
+  }
+
+  .code-under-glyph.mic {
+    width: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  #claude-composed-app .code-under-glyph.mic svg { width: 15px; height: 17px; }
+
+  .code-mic-chev {
+    width: 9px;
+    height: 9px;
+    margin-left: 1px;
+    color: #8e8e93;
+  }
+
+  .code-under-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .code-model-label {
+    color: #d8d8da;
+    font-size: 14px;
+  }
+
+  .code-model-ring {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #2c2c2e;
+    border-top-color: #2f7cf6;
+    border-right-color: #2f7cf6;
+    transform: rotate(35deg);
+  }
+
+  /* Pixel crab mascot: hand-authored box-shadow grid on one div.
+     6px cells. Wide blocky body, raised arm nubs at the top corners,
+     two dark eyes, four short legs below. Sits over the composer's right third. */
+  .code-mascot {
+    position: absolute;
+    right: 150px;
+    top: 12px;
+    z-index: 5;
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    box-shadow:
+      /* row 0: raised arm nubs at the outer top corners */
+      0 0 0 #e08a62, 66px 0 0 #e08a62,
+      /* row 1: arm shoulders join the body */
+      0 6px 0 #e08a62, 6px 6px 0 #e08a62, 60px 6px 0 #e08a62, 66px 6px 0 #e08a62,
+      /* row 2: body top edge (full width) */
+      6px 12px 0 #e08a62, 12px 12px 0 #e08a62, 18px 12px 0 #e08a62, 24px 12px 0 #e08a62, 30px 12px 0 #e08a62, 36px 12px 0 #e08a62, 42px 12px 0 #e08a62, 48px 12px 0 #e08a62, 54px 12px 0 #e08a62, 60px 12px 0 #e08a62,
+      /* row 3: eyes row (two dark eyes inset) */
+      6px 18px 0 #e08a62, 12px 18px 0 #0f0f10, 18px 18px 0 #e08a62, 24px 18px 0 #e08a62, 30px 18px 0 #e08a62, 36px 18px 0 #e08a62, 42px 18px 0 #e08a62, 48px 18px 0 #0f0f10, 54px 18px 0 #e08a62, 60px 18px 0 #e08a62,
+      /* row 4: body */
+      6px 24px 0 #e08a62, 12px 24px 0 #e08a62, 18px 24px 0 #e08a62, 24px 24px 0 #e08a62, 30px 24px 0 #e08a62, 36px 24px 0 #e08a62, 42px 24px 0 #e08a62, 48px 24px 0 #e08a62, 54px 24px 0 #e08a62, 60px 24px 0 #e08a62,
+      /* row 5: body bottom edge */
+      6px 30px 0 #e08a62, 12px 30px 0 #e08a62, 18px 30px 0 #e08a62, 24px 30px 0 #e08a62, 30px 30px 0 #e08a62, 36px 30px 0 #e08a62, 42px 30px 0 #e08a62, 48px 30px 0 #e08a62, 54px 30px 0 #e08a62, 60px 30px 0 #e08a62,
+      /* row 6: four short legs (two pairs, gap in the middle) */
+      6px 36px 0 #e08a62, 18px 36px 0 #e08a62, 48px 36px 0 #e08a62, 60px 36px 0 #e08a62,
+      /* row 7: legs feet */
+      6px 42px 0 #e08a62, 18px 42px 0 #e08a62, 48px 42px 0 #e08a62, 60px 42px 0 #e08a62;
+  }
+</style>
+
+<style>
+  /* ============ DARK VARIANT (shell chrome) ============
+     Mirrors claude-desktop's dark block for the chrome the shell owns;
+     the mounted atoms carry their own .theme-dark blocks, which cascade
+     from the same root class. The capture scripts add theme-dark to
+     #claude-composed-app (--root-class + --selector), and composed
+     workflows may add it on any ancestor, so both forms are covered.
+     The code page is dark-native and intentionally has no dark variant. */
+  #claude-composed-app.theme-dark:not([data-page="code"]) .claude-shell-window,
+  .theme-dark #claude-composed-app:not([data-page="code"]) .claude-shell-window {
+    background: #262624;
+    box-shadow:
+      0 40px 120px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  #claude-composed-app.theme-dark[data-page="chat"] .shell-main,
+  .theme-dark #claude-composed-app[data-page="chat"] .shell-main {
+    background: #262624;
+  }
+
+  #claude-composed-app.theme-dark:not([data-page="chat"]):not([data-page="code"]) .shell-main,
+  .theme-dark #claude-composed-app:not([data-page="chat"]):not([data-page="code"]) .shell-main {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      #262624;
+    background-size: 58px 58px;
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar-chat,
+  .theme-dark #claude-composed-app .shell-topbar-chat {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar-icon,
+  .theme-dark #claude-composed-app .shell-topbar-icon {
+    color: #98948a;
+  }
+
+  #claude-composed-app.theme-dark .shell-model-pill,
+  .theme-dark #claude-composed-app .shell-model-pill {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #b7b2a8;
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar .shell-pill-chev,
+  .theme-dark #claude-composed-app .shell-topbar .shell-pill-chev {
+    color: #8a8578;
+  }
+
+  #claude-composed-app.theme-dark .shell-hero h1,
+  .theme-dark #claude-composed-app .shell-hero h1 {
+    color: #e8e5da;
+  }
+
+  #claude-composed-app.theme-dark .shell-starters button,
+  .theme-dark #claude-composed-app .shell-starters button {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #b7b2a8;
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar-cowork,
+  .theme-dark #claude-composed-app .shell-topbar-cowork {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(38, 38, 36, 0.8);
+  }
+
+  #claude-composed-app.theme-dark .shell-thread-title,
+  .theme-dark #claude-composed-app .shell-thread-title {
+    color: var(--claude-ink);
+  }
+
+  #claude-composed-app.theme-dark .rail-slot,
+  .theme-dark #claude-composed-app .rail-slot {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      #262624;
+    background-size: 58px 58px;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
   }
 </style>
 </div>
@@ -210,20 +854,54 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
 <script>
+  (() => {
+    const root = document.getElementById("claude-composed-app");
+    const params = new URLSearchParams(window.location.search);
+
+    // Capture-time convenience params (same pattern as the atoms' ?page=).
+    const page = params.get("page");
+    if (page === "chat" || page === "cowork" || page === "code") {
+      root.setAttribute("data-page", page);
+    }
+    for (const key of ["sidebar", "rail"]) {
+      const value = params.get(key);
+      if (value === "on" || value === "off") {
+        root.setAttribute(`data-${key}`, value);
+      }
+    }
+
+    // Propagate the shell page into the mounted atoms' own data-page
+    // attributes once mounting settles, so the atoms' scoped CSS agrees
+    // with the shell CSS fallback. Deterministic for capture:
+    // tools/capture-web-ui.mjs waits for __backlotComponentsState to be
+    // "ready" (set by the same promise) plus a settle delay.
+    const propagatePage = () => {
+      const currentPage = root.getAttribute("data-page") || "cowork";
+      const sidebar = root.querySelector(".sidebar-slot #claude-sidebar-surface");
+      if (sidebar) sidebar.setAttribute("data-page", currentPage);
+      const chatComposer = root.querySelector(".composer-slot-chat #claude-composer-surface");
+      if (chatComposer) chatComposer.setAttribute("data-page", "chat");
+      const coworkComposer = root.querySelector(".composer-slot-cowork #claude-composer-surface");
+      if (coworkComposer) coworkComposer.setAttribute("data-page", "cowork");
+    };
+    if (window.__backlotComponentsReady) {
+      window.__backlotComponentsReady.then(propagatePage).catch(() => {});
+    } else {
+      propagatePage();
+    }
+  })();
+
   window.__timelines = window.__timelines || {};
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-  tl.from(".composed-claude-window", { opacity: 0, y: 22, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.12);
+  tl.from(".claude-shell-window", { opacity: 0, y: 22, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.12);
   tl.from(".sidebar-slot", { opacity: 0, x: -18, duration: 0.36, ease: "sine.out" }, 0.36);
-  tl.from(".thread-slot", { opacity: 0, y: 14, duration: 0.42, ease: "power2.out" }, 0.5);
-  tl.from(".rail-slot", { opacity: 0, x: 16, duration: 0.36, ease: "sine.out" }, 0.72);
-  tl.from(".composer-slot", { opacity: 0, y: 18, duration: 0.36, ease: "power3.out" }, 0.9);
-  tl.to(".thread-slot", { y: -6, duration: 1.8, ease: "sine.inOut" }, 2.1);
-  tl.to(".composer-slot", { y: -4, duration: 1.8, ease: "sine.inOut" }, 2.2);
-  tl.to(".rail-slot", { y: -4, duration: 1.8, ease: "sine.inOut" }, 2.28);
+  tl.from(".shell-main", { opacity: 0, y: 14, duration: 0.42, ease: "power2.out" }, 0.5);
+  tl.from(".rail-slot", { opacity: 0, x: 16, duration: 0.36, ease: "sine.out" }, 0.66);
   window.__timelines["claude-composed-app"] = tl;
 
   const captureMode = new URLSearchParams(window.location.search).get("capture");
   if (captureMode === "hero") {
+    // Fully settled entrance state (all tweens complete by ~1.02s).
     tl.seek(1.45).pause();
   }
 </script>

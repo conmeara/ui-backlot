@@ -6,6 +6,17 @@
     <title>UI Backlot - Claude Mac PowerPoint Workflow</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <link rel="stylesheet" href="styles/workflow.css">
+    <style>
+      /* pass-108 scale-to-fit-height technique: claude-composed-app is a fixed
+         1440x900 shell; scale it to fill #claude-app-clip's 860px box height
+         (860/900 = 0.9556) without changing the clip's own position/box. */
+      #claude-app-clip > [data-backlot-mounted-component] {
+        width: 1440px;
+        height: 900px;
+        transform: scale(0.9556);
+        transform-origin: top left;
+      }
+    </style>
   </head>
   <body>
     <div data-hf-id="hf-2pyw" id="claude-keynote-workflow" data-composition-id="claude-keynote-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="16">
@@ -102,7 +113,7 @@
         <div data-hf-id="hf-emj9" class="todo-row todo-3"><span data-hf-id="hf-akhw" class="todo-box"></span><span data-hf-id="hf-g650">Update PowerPoint title slide</span></div>
         <div data-hf-id="hf-xe8y" class="todo-row todo-4"><span data-hf-id="hf-a66v" class="todo-box"></span><span data-hf-id="hf-83jt">Review deck polish</span></div>
       </section>
-      <div data-hf-id="hf-ufwt" id="claude-app-clip" class="window claude-window" data-primitive="claude-controller-chat" aria-label="Claude controller chat" data-composition-id="claude-app-surface" data-composition-src="compositions/claude-app.html" data-start="0" data-duration="16" data-track-index="3" data-width="1280" data-height="860" data-layout-allow-overflow=""></div>
+      <div data-hf-id="hf-ufwt" id="claude-app-clip" class="window claude-window clip" data-primitive="claude-controller-chat" aria-label="Claude controller chat" data-backlot-mount-src="claude-composed-app.html" data-backlot-mount-selector="#claude-composed-app" data-start="0" data-duration="16" data-track-index="3" data-width="1280" data-height="860" data-layout-allow-overflow=""></div>
       <div data-hf-id="hf-j3vv" class="drag-chip" data-primitive="drag-chip" data-layout-allow-occlusion=""><span data-hf-id="hf-nq5h" class="file-icon folder"></span><span data-hf-id="hf-4x1j">Launch Deck</span></div>
       <div data-hf-id="hf-a2h3" class="click-ring" data-primitive="click-ring"></div>
       <div data-hf-id="hf-2g2y" class="cursor" data-primitive="cursor" data-layout-ignore=""></div>
@@ -117,6 +128,42 @@
         <div data-hf-id="hf-not1" class="dock-app" data-title="Notes"><div data-hf-id="hf-not2" class="dock-icon donor notes"><span data-hf-id="hf-7n2u">No</span></div><span data-hf-id="hf-not3" class="dock-open-dot"></span></div>
       </nav>
     </div>
+    <script>
+      // claude-composed-app.html (mounted into #claude-app-clip below) nests its
+      // own ./-relative data-backlot-mount-src atoms (claude-sidebar.html,
+      // claude-thread-core.html, claude-composer.html, claude-agent-rail.html).
+      // The loader's fetch()/iframe resolve every mount's src against
+      // document.baseURI, so those nested ./-relative paths -- authored for a
+      // page living inside compositions/ -- 404 when the mounting page is this
+      // repo-root index.html. Resolve the loader script's own absolute URL
+      // first (against the default root base), then scope a <base> to
+      // compositions/ before injecting the loader script, so only the backlot
+      // mount fetches (which run synchronously off that script) see the
+      // rebased URI; the loader script's own load is unaffected since its src
+      // was already resolved. The <base> is removed once mounting settles,
+      // before anything else (e.g. the data-composition-src clips' own path
+      // resolution) can see it.
+      const backlotLoaderSrc = new URL("runtime/backlot-component-loader.js", document.baseURI).href;
+      const backlotMountBase = document.createElement("base");
+      backlotMountBase.href = "compositions/";
+      document.head.appendChild(backlotMountBase);
+      const backlotLoaderScript = document.createElement("script");
+      backlotLoaderScript.src = backlotLoaderSrc;
+      backlotLoaderScript.onload = () => {
+        window.__backlotComponentsReady?.then(() => {
+          backlotMountBase.remove();
+          const claudeRoot = document.querySelector("#claude-app-clip #claude-composed-app");
+          if (claudeRoot) {
+            claudeRoot.setAttribute("data-page", "cowork");
+            claudeRoot.setAttribute("data-sidebar", "on");
+            claudeRoot.setAttribute("data-rail", "on");
+          }
+        }).catch(() => {
+          backlotMountBase.remove();
+        });
+      };
+      document.head.appendChild(backlotLoaderScript);
+    </script>
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });

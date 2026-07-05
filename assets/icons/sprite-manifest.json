@@ -101,7 +101,13 @@
         "text-effects-20": "text_effects_20_regular.svg",
         "paste-20": "clipboard_paste_20_regular.svg",
         "cut-20": "cut_20_regular.svg",
-        "copy-20": "copy_20_regular.svg"
+        "copy-20": "copy_20_regular.svg",
+        "document-edit-20": "document_edit_20_regular.svg",
+        "document-checkmark-20": "document_checkmark_20_regular.svg",
+        "document-dismiss-20": "document_dismiss_20_regular.svg",
+        "panel-right-16": "panel_right_16_regular.svg",
+        "arrow-previous-16": "arrow_previous_16_regular.svg",
+        "arrow-next-16": "arrow_next_16_regular.svg"
       }
     },
     {
@@ -145,7 +151,16 @@
         "external-link": "external-link.svg",
         "download": "download.svg",
         "clock": "clock.svg",
-        "chat": "message-square.svg"
+        "chat": "message-square.svg",
+        "message-circle": "message-circle.svg",
+        "list": "list.svg",
+        "code": "code.svg",
+        "briefcase": "briefcase.svg",
+        "git-branch": "git-branch.svg",
+        "circle-dashed": "circle-dashed.svg",
+        "building": "building.svg",
+        "sun": "sun.svg",
+        "laptop": "laptop.svg"
       }
     },
     {

@@ -18,9 +18,9 @@
 
     <div
       class="component-frame claude-component"
-      data-primitive="claude-app-window"
-      data-backlot-mount-src="./claude-app.html"
-      data-backlot-mount-selector="#claude-app-surface"
+      data-primitive="claude-composed-app"
+      data-backlot-mount-src="./claude-composed-app.html"
+      data-backlot-mount-selector="#claude-composed-app"
     ></div>
 
     <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -110,10 +110,10 @@
     left: 116px;
     top: 196px;
     z-index: 16;
-    width: 1180px;
-    height: 780px;
+    width: 1440px;
+    height: 900px;
     border-radius: 18px;
-    scale: 0.78;
+    scale: 0.639;
     background: transparent;
     box-shadow:
       0 44px 138px rgba(54, 42, 31, 0.3),
@@ -152,36 +152,45 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
 <script>
-  const applyExcelWorkflowCopy = () => {
-    const replacements = new Map([
-      ["Q2 deck chart", "Launch metrics review"],
-      ["Update Launch Deck opening slides", "Check Launch Metrics workbook"],
-      ["Working in Launch Deck", "Working in Launch Metrics"],
-      ["Oh and update the revenue chart in my LP deck with the correct Q2 numbers.", "Oh and check the Q2 workbook formulas before we use the chart."],
-      ["Launch Deck", "Launch Metrics"],
-      ["slide-notes.md", "metrics-notes.md"],
-      ["Sure, I can make those deck changes for you.", "Sure, I can check that workbook for you."],
-      ["I'll inspect the folder context and prepare the deck update.", "I'll inspect the formulas and prepare the chart-range update."],
-      ["map the data files to slide edits", "verify the formulas and chart inputs"],
-      ["the presentation update", "the workbook update"],
-      ["Making the deck update", "Reviewing the workbook"],
-      ["Read Launch Metrics folder", "Read workbook folder"],
-      ["Found slide notes and Q2 data", "Found Q2 revenue data"],
-      ["Preparing PowerPoint edits", "Preparing Excel edits"],
-      ["Prepare slides", "Check formulas"],
-      ["Deck.pptx", "Metrics.xlsx"],
-      ["opening slides", "chart range"],
-      ["Presentation cleanup", "Workbook cleanup"]
-    ]);
-
-    const walker = document.createTreeWalker(document.querySelector(".claude-component"), NodeFilter.SHOW_TEXT);
-    while (walker.nextNode()) {
-      let value = walker.currentNode.nodeValue;
-      replacements.forEach((next, previous) => {
-        value = value.replaceAll(previous, next);
+  // Pass-110 scene-copy convention: the mounted atoms expose stable
+  // data-copy="<slot>" hooks (claude-thread-core + claude-agent-rail); the
+  // shell's visible cowork topbar title is addressed through its
+  // data-primitive hook. Hooks missing from the mounted DOM are skipped,
+  // so the map stays declarative and inert against markup churn.
+  const applyClaudeSceneCopy = () => {
+    const claudeRoot = document.querySelector(".claude-component #claude-composed-app");
+    if (!claudeRoot) return;
+    const sceneCopy = {
+      "thread-title": "Check Launch Metrics workbook",
+      "thread-subtitle": "Working in Launch Metrics",
+      "user-prompt": "Oh and check the Q2 workbook formulas before we use the chart.",
+      "reply-primary": "I'll check the Launch Metrics workbook from the selected folder.",
+      "reply-secondary": "I'm verifying the formulas and chart inputs before returning the updated workbook.",
+      "thinking-json": '{ "command": "find /sessions/launch-metrics -type f -maxdepth 2", "description": "List selected project files" }',
+      "source-chip-1": "metrics-notes.md",
+      "source-chip-2": "Q2 revenue.csv",
+      "tool-title": "Editing Metrics.xlsx",
+      "tool-row-1": "Read Launch Metrics folder",
+      "tool-row-2": "Found Q2 revenue data",
+      "tool-row-3": "Updating chart range",
+      "command-output": "Found Metrics.xlsx, metrics-notes.md, and Q2 revenue.csv.\nNext I'll verify the formulas and refresh the chart range.",
+      "artifact-1-kind": "XLSX",
+      "artifact-1": "Metrics.xlsx",
+      "context-folder": "Launch Metrics",
+      "context-file-1-kind": "MD",
+      "context-file-1": "metrics-notes.md",
+      "context-file-2-kind": "CSV",
+      "context-file-2": "Q2 revenue.csv",
+      "context-file-3-kind": "XLSX",
+      "context-file-3": "Metrics.xlsx"
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      claudeRoot.querySelectorAll(`[data-copy="${slot}"]`).forEach((node) => {
+        node.textContent = text;
       });
-      walker.currentNode.nodeValue = value;
-    }
+    });
+    const shellTitle = claudeRoot.querySelector('[data-primitive="claude-cowork-topbar"] .shell-thread-title');
+    if (shellTitle) shellTitle.textContent = sceneCopy["thread-title"];
   };
 
   const applyWorkbookCopy = () => {
@@ -207,7 +216,13 @@
   };
 
   window.__backlotComponentsReady?.then(() => {
-    applyExcelWorkflowCopy();
+    const claudeRoot = document.querySelector("#claude-composed-app");
+    if (claudeRoot) {
+      claudeRoot.setAttribute("data-page", "cowork");
+      claudeRoot.setAttribute("data-sidebar", "on");
+      claudeRoot.setAttribute("data-rail", "on");
+    }
+    applyClaudeSceneCopy();
     applyWorkbookCopy();
   });
 

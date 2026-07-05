@@ -89,8 +89,12 @@ Run `npm run catalog:generate` after editing `surfaces/registry.json`.
   Restore ignored donor clones with `tools/clone-reference-repos.sh`.
 - [reference/claude](reference/claude) - local-only Claude launch media notes.
   Downloaded videos, screenshots, and extracted frames are ignored by git.
-- [surfaces/claude-mac-finder.html](surfaces/claude-mac-finder.html)
-- [surfaces/browser-app-surface.html](surfaces/browser-app-surface.html)
+- [compositions/claude-composed-app.html](compositions/claude-composed-app.html)
+  - canonical Claude shell: mounts `claude-sidebar`, `claude-thread-core`,
+    `claude-composer`, and `claude-agent-rail` via
+    [runtime/backlot-component-loader.js](runtime/backlot-component-loader.js),
+    parameterized by `data-page="chat|cowork|code"`, `data-sidebar`/
+    `data-rail="on|off"`, and `.theme-dark`.
 - [surfaces/README.md](surfaces/README.md)
 - [PRIMITIVES.md](PRIMITIVES.md)
 

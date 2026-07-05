@@ -18,9 +18,9 @@
 
     <div
       class="component-frame claude-component"
-      data-primitive="claude-app-window"
-      data-backlot-mount-src="./claude-app.html"
-      data-backlot-mount-selector="#claude-app-surface"
+      data-primitive="claude-composed-app"
+      data-backlot-mount-src="./claude-composed-app.html"
+      data-backlot-mount-selector="#claude-composed-app"
     ></div>
 
     <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -124,6 +124,17 @@
     pointer-events: none;
   }
 
+  /* claude-composed-app is a fixed 1440x900 shell; scale-to-fit-height
+     inside the 1180x780 claude-component frame (matches the old claude-app
+     footprint, which rendered natively at 1180x780 with no inner scaling —
+     the frame's own `scale: 0.72` still applies the overall stage shrink). */
+  .claude-component > [data-backlot-mounted-component] {
+    width: 1440px;
+    height: 900px;
+    transform: scale(0.8667);
+    transform-origin: top left;
+  }
+
   .workflow-cursor {
     position: absolute;
     left: 1392px;
@@ -151,6 +162,65 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
 <script>
+  // Set the canonical shell's page/toggle attributes on the mounted root
+  // once the component loader settles (shell defaults to data-page="cowork"
+  // already, matching the old claude-app cowork framing; sidebar+rail stay
+  // on to match the old three-column crop).
+  // Pass-110 scene-copy convention: the mounted atoms expose stable
+  // data-copy="<slot>" hooks (claude-thread-core + claude-agent-rail); the
+  // shell's visible cowork topbar title is addressed through its
+  // data-primitive hook. Hooks missing from the mounted DOM are skipped,
+  // so the map stays declarative and inert against markup churn. Scene
+  // matches the mounted codex-terminal surface (Codex CLI session working
+  // on the terminal surface fidelity inside ~/Projects/ui-backlot).
+  const applyClaudeSceneCopy = () => {
+    const claudeRoot = document.querySelector(".claude-component #claude-composed-app");
+    if (!claudeRoot) return;
+    const sceneCopy = {
+      "thread-title": "Review Codex terminal captures",
+      "thread-subtitle": "Working in ui-backlot",
+      "user-prompt": "Oh and compare the Codex terminal surface against the real CLI captures while it runs.",
+      "reply-primary": "I'll review the terminal surface from the selected folder.",
+      "reply-secondary": "I'm checking the CLI reference captures and the transcript copy before returning notes.",
+      "thinking-json": '{ "command": "find /sessions/ui-backlot -type f -maxdepth 2", "description": "List selected project files" }',
+      "source-chip-1": "codex-terminal.html",
+      "source-chip-2": "cli-reference.png",
+      "tool-title": "Reviewing codex-terminal.html",
+      "tool-row-1": "Read ui-backlot folder",
+      "tool-row-2": "Found CLI reference captures",
+      "tool-row-3": "Comparing transcript rows",
+      "command-output": "Found codex-terminal.html, cli-reference.png, and capture-notes.md.\nNext I'll compare the transcript rows against the CLI splash.",
+      "artifact-1-kind": "MD",
+      "artifact-1": "terminal-review-notes.md",
+      "context-folder": "ui-backlot",
+      "context-file-1-kind": "HTML",
+      "context-file-1": "codex-terminal.html",
+      "context-file-2-kind": "PNG",
+      "context-file-2": "cli-reference.png",
+      "context-file-3-kind": "MD",
+      "context-file-3": "capture-notes.md"
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      claudeRoot.querySelectorAll(`[data-copy="${slot}"]`).forEach((node) => {
+        node.textContent = text;
+      });
+    });
+    const shellTitle = claudeRoot.querySelector('[data-primitive="claude-cowork-topbar"] .shell-thread-title');
+    if (shellTitle) shellTitle.textContent = sceneCopy["thread-title"];
+  };
+
+  if (window.__backlotComponentsReady) {
+    window.__backlotComponentsReady.then(() => {
+      const shellRoot = document.querySelector(".claude-component #claude-composed-app");
+      if (shellRoot) {
+        shellRoot.setAttribute("data-page", "cowork");
+        shellRoot.setAttribute("data-sidebar", "on");
+        shellRoot.setAttribute("data-rail", "on");
+      }
+      applyClaudeSceneCopy();
+    }).catch(() => {});
+  }
+
   window.__timelines = window.__timelines || {};
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
   tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);

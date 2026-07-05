@@ -5,8 +5,8 @@
     <div
       class="component-frame figma-onboarding-component"
       data-primitive="figma-onboarding-editor-window"
-      data-backlot-mount-src="./figma-onboarding-editor.html"
-      data-backlot-mount-selector="#figma-onboarding-editor-surface"
+      data-backlot-mount-src="./figma-editor.html"
+      data-backlot-mount-selector="#figma-editor-surface"
     ></div>
 
     <div
@@ -120,6 +120,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
+<script>
+  if (window.__backlotComponentsReady) {
+    window.__backlotComponentsReady.then(() => {
+      const figmaRoot = document.querySelector(".figma-onboarding-component #figma-editor-surface");
+      if (figmaRoot) figmaRoot.setAttribute("data-page", "onboarding");
+    }).catch(() => {});
+  }
+</script>
 <script>
   window.__timelines = window.__timelines || {};
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });

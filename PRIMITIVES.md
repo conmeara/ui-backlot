@@ -4,15 +4,14 @@ The main HyperFrames composition marks reusable pieces with `data-primitive`.
 Heavy surfaces should move into composition files once their primitive boundary
 is stable.
 
-Current sources: `index.html`, `compositions/claude-app.html`,
+Current sources: `index.html`,
 `compositions/mac-menu-bar.html`,
 `compositions/claude-response-mark.html`,
-`compositions/claude-composed-app.html`,
-`compositions/claude-chat-shell.html`,
+`compositions/claude-composed-app.html` (canonical Claude shell),
 `compositions/claude-chat-pane.html`,
 `compositions/claude-deck-chat-pane.html`,
 `compositions/claude-prompt-stack.html`,
-`compositions/claude-code-desktop.html`,
+`compositions/claude-desktop.html` (deprecated pass-100 reference),
 `compositions/claude-code-terminal-session.html`,
 `compositions/claude-sidebar.html`,
 `compositions/claude-agent-rail.html`,
@@ -54,14 +53,17 @@ Current sources: `index.html`, `compositions/claude-app.html`,
    tooltip slots, and a separator inspired by the donor Dock structure.
 3. `finder-window`: editable Finder column-view window sourced from the clean
    `Launch Deck` capture. Source: `compositions/finder-window.html`, with the
-   older host-scene copy still present in `index.html` and
-   `surfaces/claude-mac-finder.html`.
+   older host-scene copy still present in `index.html` (the standalone
+   `surfaces/claude-mac-finder.html` lab was deleted in the 2026-07-02
+   consolidation).
 4. `claude-controller-chat`: Claude-style controller shell using local
    Anthropic fonts, dframe/epitaxy-informed sidebar, topbar, transcript column,
    model selector, user prompt, assistant response, grouped
    reasoning/action/source parts, and `assistant-ui`-informed composer
-   controls. Source: `compositions/claude-app.html`, mounted from the host
-   wrapper in `index.html`.
+   controls. Superseded by the atom-composed `claude-composed-app` (see below);
+   `index.html` still mounts the old `compositions/claude-app.html` source,
+   which was deleted in the 2026-07-02 consolidation and needs migrating to
+   the canonical shell.
 5. `progress-rows`: Claude tool/progress card with grouped action header,
    done/ready/active states, duration, and status dots.
 6. `composer`: attachment chips, attachment count, placeholder text, action
@@ -205,8 +207,10 @@ Current sources: `index.html`, `compositions/claude-app.html`,
    `react-chrome-tabs`/`react-browser-components`-informed overlapping tabs,
    favicons, close buttons, add-tab affordance, reload/star/profile/more
    toolbar controls, URL bar, sidebar navigation, header actions, metric cards,
-   data table, right inspector, cursor, and live edit badge. Source:
-   `surfaces/browser-app-surface.html`.
+   data table, right inspector, cursor, and live edit badge. The orphan
+   `surfaces/browser-app-surface.html` lab was deleted in the 2026-07-02
+   consolidation; captures now come from the mounted `compositions/browser-app.html`
+   sub-composition (see `browser-app-window` below).
 2. `macos-calendar-window`: standalone 1920x1080 macOS Calendar lab with
    `macos-web`-informed titlebar/main-area split, month/year header, rounded
    previous/today/next controls, Monday-first weekday row, 42-cell month grid,
@@ -214,24 +218,30 @@ Current sources: `index.html`, `compositions/claude-app.html`,
    calendar source sidebar, mini calendar, drag/reorder hint, event edit card,
    Dock, cursor, and local-only Calendar icon path. Source:
    `surfaces/calendar-app-surface.html`.
-3. `claude-app-window-lab`: direct-capturable Claude-only HyperFrames
-   subcomposition with dframe-style sidebar rows, Chat/Code/Cowork mode tabs,
-   widened paper-like transcript and composer widths, topbar controls, message
-   stack, active folder-context chips, larger launch-style serif response,
-   reference-focus capture styling, flattened thinking/tool-call cards, command
-   output, subdued right-side Task/Artifacts/Context rail, composer
-   attachments, running-state controls, and a twelve-ray CSS Claude mark
-   informed by safe reference evidence.
-   Source: `compositions/claude-app.html`.
-4. `claude-composed-app`: direct-capturable componentized Claude app shell
-   that assembles the standalone sidebar, thread core, composer, and agent
-   rail through `runtime/backlot-component-loader.js`. The shell owns layout,
-   clipping, and entrance choreography while the child UI stays editable in
-   its own composition file. Source: `compositions/claude-composed-app.html`.
-5. `claude-chat-shell`: direct-capturable lean Claude chat shell with sidebar,
-   topbar, launch-style user bubbles, large serif assistant reply, CSS Claude
-   mark, and bottom composer. It is for simple chat/app scenes that should not
-   import the Cowork/task rail. Source: `compositions/claude-chat-shell.html`.
+3. `claude-app-window-lab` (deleted, 2026-07-02 consolidation): formerly a
+   direct-capturable Claude-only HyperFrames subcomposition with dframe-style
+   sidebar rows, Chat/Code/Cowork mode tabs, widened paper-like transcript and
+   composer widths, topbar controls, message stack, active folder-context
+   chips, larger launch-style serif response, reference-focus capture styling,
+   flattened thinking/tool-call cards, command output, subdued right-side
+   Task/Artifacts/Context rail, composer attachments, running-state controls,
+   and a twelve-ray CSS Claude mark. `compositions/claude-app.html` was
+   deleted; use `claude-composed-app` below instead.
+4. `claude-composed-app`: direct-capturable **canonical** componentized Claude
+   app shell that assembles the standalone sidebar, thread core, composer, and
+   agent rail through `runtime/backlot-component-loader.js`. The shell owns
+   layout, clipping, and entrance choreography while the child UI stays
+   editable in its own composition file. Parameterized by
+   `data-page="chat|cowork|code"`, `data-sidebar`/`data-rail="on|off"`, and
+   `.theme-dark`; `?page=`/`?sidebar=`/`?rail=` query params drive the same
+   states in direct preview. Source: `compositions/claude-composed-app.html`.
+5. `claude-chat-shell` (deleted, 2026-07-02 consolidation): formerly a
+   direct-capturable lean Claude chat shell with sidebar, topbar, launch-style
+   user bubbles, large serif assistant reply, CSS Claude mark, and bottom
+   composer, for simple chat/app scenes that should not import the
+   Cowork/task rail. `compositions/claude-chat-shell.html` was deleted; all 17
+   workflows that need the full shell now mount `claude-composed-app` (or
+   `claude-chat-pane` below for pane-only scenes).
 6. `claude-chat-pane`: direct-capturable active Claude chat pane with topbar,
    right-aligned user bubbles, large serif assistant reply, CSS Claude mark,
    attachment chips, and bottom composer, without the sidebar or task rail.
@@ -245,11 +255,14 @@ Current sources: `index.html`, `compositions/claude-app.html`,
    with four large editable user bubbles and a lower-left CSS loading mark,
    matching the Sonnet 4.6 launch prompt-stack rhythm without importing the
    full app pane or composer. Source: `compositions/claude-prompt-stack.html`.
-5. `claude-code-desktop-window`: direct-capturable dark Claude Code desktop
-   subcomposition with session rail, Code mode controls, prompt transcript,
-   changed-file rows, diff panel, terminal panel, task queue, floating view
-   menu, PR summary, Opus model state, and compact composer. Source:
-   `compositions/claude-code-desktop.html`.
+5. `claude-code-desktop-window` (deleted, 2026-07-02 consolidation): formerly
+   a direct-capturable dark Claude Code desktop subcomposition with session
+   rail, Code mode controls, prompt transcript, changed-file rows, diff panel,
+   terminal panel, task queue, floating view menu, PR summary, Opus model
+   state, and compact composer. `compositions/claude-code-desktop.html` was
+   deleted; the code page now lives as `data-page="code"` on
+   `claude-composed-app` above (dark-native, no light variant, same as its
+   pass-100 `claude-desktop` predecessor).
 6. `claude-sidebar`: direct-capturable Claude left navigation component with
    traffic lights, CSS Claude mark, Chat/Code/Cowork mode tabs, New task/Search
    actions, task rows, project rows, local-context readiness, and workspace
@@ -357,16 +370,18 @@ Current sources: `index.html`, `compositions/claude-app.html`,
 - PowerPoint title, chart, selection, inspector, and speaker-note state changes.
 - Browser/app surface entrance and selected-row/sync pulse inside its
   subcomposition.
-- Claude-only surface entrance, assistant typing reveal, grouped reasoning/tool
-  card entrances, active tool spinner, and running send-control pulse inside
-  `compositions/claude-app.html`.
+- (historical, pre-2026-07-02) Claude-only surface entrance, assistant typing
+  reveal, grouped reasoning/tool card entrances, active tool spinner, and
+  running send-control pulse inside the deleted `compositions/claude-app.html`.
 - Claude composed app entrance, component-frame reveal for sidebar, thread
-  core, composer, and agent rail, plus subtle thread/composer/rail drift inside
+  core, composer, and agent rail, page/sidebar/rail parameter toggles, plus
+  subtle thread/composer/rail drift inside the canonical
   `compositions/claude-composed-app.html`.
-- Claude Code desktop entrance, dark window reveal, session rail reveal,
-  transcript/file rows, diff/terminal/task panel reveal, view menu reveal,
-  spinner rotation, and active task pulse inside
-  `compositions/claude-code-desktop.html`.
+- (historical, pre-2026-07-02) Claude Code desktop entrance, dark window
+  reveal, session rail reveal, transcript/file rows, diff/terminal/task panel
+  reveal, view menu reveal, spinner rotation, and active task pulse inside the
+  deleted `compositions/claude-code-desktop.html` (folded into
+  `claude-composed-app`'s `data-page="code"`).
 - Claude Code terminal-session static light panel with highlighted prompt,
   task/event rows, running scheming state, and lower terminal input inside
   `compositions/claude-code-terminal-session.html`.
@@ -473,17 +488,29 @@ Current sources: `index.html`, `compositions/claude-app.html`,
   rail is split into `compositions/claude-agent-rail.html`, the left
   navigation is split into `compositions/claude-sidebar.html`, and the working
   transcript/tool-use pane is split into `compositions/claude-thread-core.html`;
-  `compositions/claude-composed-app.html` now proves those split components can
-  be reassembled into a full Claude shell through the local component loader.
+  `compositions/claude-composed-app.html` reassembles those split components
+  into the canonical Claude shell through the local component loader,
+  parameterized by `data-page="chat|cowork|code"`, `data-sidebar`/
+  `data-rail="on|off"`, and `.theme-dark` (pass 106,
+  `docs/prototypes/claude-canonical-shell-pass-106.md`). As of the 2026-07-02
+  consolidation all 17 workflow assemblies mount this shell (or
+  `claude-chat-pane` for pane-only scenes) instead of the old monolithic
+  `claude-app.html` / `claude-chat-shell.html` / `claude-code-desktop.html`
+  shells, all three of which were deleted; `compositions/claude-desktop.html`
+  remains on disk only as the deprecated pass-100 visual reference the atoms
+  were measured against.
   `compositions/claude-browser-composed-workflow.html` now proves that composed
   shell can also be nested into a smaller browser-only workflow, but this is a
   modularity proof rather than a new pixel-parity pass against live Claude.
   Broad legacy host Claude CSS has been removed from `styles/workflow.css`.
-- Claude Code desktop is now a separate dark app-shell component informed by
-  extracted frames from the public 2026-04-14 Claude Code desktop redesign
-  video. It covers the session rail, Code mode, transcript, diff, terminal,
-  tasks, view menu, PR summary, model state, and compact composer, but still
-  needs broader official product-frame comparison before claiming pixel parity.
+- Claude Code desktop coverage (session rail, Code mode, transcript, diff,
+  terminal, tasks, view menu, PR summary, model state, compact composer)
+  formerly lived in the separate dark `compositions/claude-code-desktop.html`
+  shell (informed by extracted frames from the public 2026-04-14 Claude Code
+  desktop redesign video); that file was deleted in the 2026-07-02
+  consolidation and the code page now lives as `data-page="code"` on the
+  canonical `claude-composed-app` shell, still without broader official
+  product-frame comparison before claiming pixel parity.
 - Claude home/new-chat is now a separate editable subcomposition informed by
   the Sonnet 4.6 launch-frame prompt card and local app dframe/epitaxy token
   vocabulary. It is not yet compared against a sanitized live Claude new-chat
