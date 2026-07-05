@@ -147,6 +147,20 @@ const JUDGE_SCHEMA = {
   },
 }
 
+const GATE_SCHEMA = {
+  type: 'object', required: ['captureFailures', 'registryOk', 'lintErrors', 'newLintErrors', 'catalogOk', 'renderOk', 'inventoryOk', 'notes'], additionalProperties: false,
+  properties: {
+    captureFailures: { type: 'array', items: { type: 'string' } },
+    registryOk: { type: 'boolean' },
+    lintErrors: { type: 'integer' },
+    newLintErrors: { type: 'array', items: { type: 'string' } },
+    catalogOk: { type: 'boolean' },
+    renderOk: { type: 'boolean' },
+    inventoryOk: { type: 'boolean' },
+    notes: { type: 'string' },
+  },
+}
+
 const SCORE_SCHEMA = {
   type: 'object', required: ['scores', 'notes'], additionalProperties: false,
   properties: {

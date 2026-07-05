@@ -39,7 +39,7 @@
           <button class="cd-icon-btn" type="button" aria-label="Work in a folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></button>
           <button class="cd-icon-btn" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
           <span class="cd-footer-spacer"></span>
-          <button class="cd-model-select" type="button">Opus 4.5 <svg class="backlot-icon cd-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+          <button class="cd-model-select" type="button">Opus 4.8 <svg class="backlot-icon cd-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
           <button class="cd-send" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
         </div>
       </div>
@@ -50,7 +50,7 @@
           <div class="cw-prompt-input">Reply…</div>
           <div class="cw-prompt-controls">
             <button class="cw-prompt-plus" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
-            <button class="cw-prompt-model" type="button">Opus 4.5 <svg class="backlot-icon cw-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+            <button class="cw-prompt-model" type="button">Opus 4.8 <svg class="backlot-icon cw-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
             <button class="cw-prompt-send" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
           </div>
         </div>
@@ -116,12 +116,12 @@
          atoms' styles share one document and would cross-pollute. */
       .claude-composer-stage .panel-chat {
         padding: 17px 18px 14px;
-        border: 1px solid rgba(39, 37, 34, 0.11);
+        border: 0;
         border-radius: 22px;
         background: rgba(255, 254, 251, 0.98);
         box-shadow:
-          0 1px 1px rgba(49, 44, 38, 0.04),
-          0 12px 34px rgba(64, 48, 34, 0.07);
+          0 4px 20px rgba(0, 0, 0, 0.075),
+          0 0 0 0.5px rgba(31, 31, 30, 0.3);
       }
 
       .cd-prompt-copy {
@@ -163,7 +163,7 @@
         background: transparent;
         color: var(--claude-text-muted);
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 430;
       }
 
       .cd-sel-chev { width: 15px; height: 15px; }
@@ -188,12 +188,12 @@
         display: grid;
         grid-template-rows: 1fr 44px;
         overflow: hidden;
-        border: 1px solid rgba(39, 37, 34, 0.1);
+        border: 0;
         border-radius: 21px;
         background: rgba(255, 254, 251, 0.98);
         box-shadow:
-          0 1px 0 rgba(50, 44, 38, 0.08),
-          0 12px 34px rgba(54, 42, 31, 0.08);
+          0 4px 20px rgba(0, 0, 0, 0.075),
+          0 0 0 0.5px rgba(31, 31, 30, 0.3);
       }
 
       .cw-prompt-input {
@@ -216,7 +216,7 @@
         border: 0;
         border-radius: 8px;
         background: transparent;
-        color: #756f66;
+        color: #52514e;
         font-size: 20px;
       }
 
@@ -230,7 +230,7 @@
         background: transparent;
         color: var(--claude-ink-soft);
         font-size: 14.5px;
-        font-weight: 470;
+        font-weight: 430;
       }
 
       .cw-sel-chev { width: 15px; height: 15px; color: var(--claude-text-faint); }
@@ -329,10 +329,13 @@
       /* In-shell fidelity restorations vs claude-desktop's rendered chat
          composer: the atom's own `#claude-composer-surface button
          { font: inherit }` kills the .cd-icon-btn font-size icon-sizing
-         trick (icons fall to 1em = 16px; desktop draws 20px svgs), and the
-         atom tokenized the model-select ink as --claude-text-muted #756f66
-         where desktop paints #5d5951. Id-qualified so they outrank the
-         button font reset; standalone captures never see [data-embed]. */
+         trick (icons fall to 1em = 16px; desktop draws 20px svgs). The
+         cowork reply-box model-select name (e.g. "Opus 4.8") renders in
+         full ink in the real app (verified in
+         real-cowork-running-command.jpg), not the muted neutral used
+         elsewhere, so it is pinned to --claude-ink's value directly.
+         Id-qualified so they outrank the button font reset; standalone
+         captures never see [data-embed]. */
       [data-embed="flat"] #claude-composer-surface .cd-icon-btn,
       [data-embed="flat"] #claude-composer-surface .cd-send,
       [data-embed="flat"] #claude-composer-surface .cw-prompt-plus,
@@ -342,7 +345,7 @@
 
       [data-embed="flat"] #claude-composer-surface .cd-model-select,
       [data-embed="flat"] #claude-composer-surface .cd-icon-btn {
-        color: #5d5951;
+        color: #0b0b0b;
       }
 
       .theme-dark [data-embed="flat"] #claude-composer-surface .cd-model-select {

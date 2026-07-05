@@ -1,0 +1,77 @@
+{
+  "label": "claude-composed-app-followup",
+  "comparedAt": "2026-07-05T22:36:31.784Z",
+  "ours": "captures/surface-claude-composed-app/capture.json",
+  "theirs": "reference/claude/2026-07-05/web-app-chat-light/tokens.json",
+  "scores": {
+    "colors": 0.8636868135702861,
+    "typography": 0.9563470244505604,
+    "radii": 0.9605573710965867,
+    "spacing": null,
+    "shadows": 0.4,
+    "tokenOverall": 0.8589338318479317
+  },
+  "pixel": null,
+  "deltas": [
+    {
+      "kind": "color:border",
+      "severity": 1,
+      "detail": "real-but-missing-in-ours: border #e0e0df (×226) nearest counterpart #d8d4cb (Δ24.8)"
+    },
+    {
+      "kind": "color:background",
+      "severity": 0.636314819147417,
+      "detail": "real-but-missing-in-ours: background #256bc1 (×3) nearest counterpart #28c840 (Δ159.1)"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.6196491428402922,
+      "detail": "ours-but-not-in-real: border #7b7974 (×3) nearest counterpart #1f1f1e (Δ154.8)"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.4271666666666667,
+      "detail": "ours-but-not-in-real: \"anthropic serif\" 23px/430 (×3) best counterpart \"anthropicons-variable\" 20px/433.25"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.35114183465884236,
+      "detail": "ours-but-not-in-real: border #52514e (×3) nearest counterpart #1f1f1e (Δ86.1)"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.34216666666666673,
+      "detail": "real-but-missing-in-ours: \"anthropicons-variable\" 20px/433.25 (×10) best counterpart \"anthropic sans\" 20px/400"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.32000000000000006,
+      "detail": "ours-but-not-in-real: \"ui-monospace\" 12px/400 (×4) best counterpart \"anthropic sans\" 12px/400"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.275,
+      "detail": "ours-but-not-in-real: \"anthropic sans\" 6px/700 (×4) best counterpart \"anthropic sans\" 11px/550"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.17299803450122408,
+      "detail": "ours-but-not-in-real: border #373734 (×3) nearest counterpart #1f1f1e (Δ40.4)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.1623607642694615,
+      "detail": "real-but-missing-in-ours: text #121212 (×23) nearest counterpart #0b0b0b (Δ12.1)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.10947958298787362,
+      "detail": "ours-but-not-in-real: text #23201c (×3) nearest counterpart #121212 (Δ24.2)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.1047778279366289,
+      "detail": "ours-but-not-in-real: text #4d4841 (×8) nearest counterpart #52514e (Δ16.6)"
+    }
+  ]
+}

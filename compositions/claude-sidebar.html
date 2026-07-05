@@ -64,6 +64,11 @@
         <path d="m16 18 6-6-6-6" />
         <path d="m8 6-6 6 6 6" />
       </symbol>
+      <symbol id="lucide-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 16v-4" />
+        <path d="M12 8h.01" />
+      </symbol>
       <symbol id="lucide-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10" />
         <path d="M12 6v6l4 2" />
@@ -157,7 +162,7 @@
         </div>
         <button class="cw-new-task" type="button"><span class="cw-plus"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span><span>New task</span></button>
         <div class="cw-task selected">Review unpublished drafts for pu…</div>
-        <div class="cw-sync-note">These tasks run locally and aren't synced across devices</div>
+        <div class="cw-sync-note"><span>These tasks run locally and aren't synced across devices</span><svg class="backlot-icon cw-sync-info" aria-hidden="true"><use href="#lucide-info"/></svg></div>
         <div class="cw-account">
           <span class="cw-avatar">DW</span>
           <span class="cw-account-copy"><strong>Demo workspace</strong><span>Pro plan</span></span>
@@ -264,8 +269,8 @@
          atoms' styles share one document and would cross-pollute. */
       .claude-sidebar-stage .panel-chat,
       .claude-sidebar-stage .panel-cowork {
-        border-radius: 16px;
-        border: 1px solid rgba(49, 44, 38, 0.08);
+        border-radius: 12px;
+        border: 1px solid rgba(11, 11, 11, 0.1);
         box-shadow: 0 28px 70px rgba(54, 42, 31, 0.13);
       }
 
@@ -276,17 +281,17 @@
       }
 
       .cd-traffic {
-        height: 14px;
+        height: 12px;
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin: 6px 0 16px 4px;
+        gap: 7px;
+        margin: 8px 0 14px 5px;
       }
 
       .cd-traffic span,
       .cw-traffic span {
-        width: 12px;
-        height: 12px;
+        width: 11px;
+        height: 11px;
         border-radius: 50%;
         box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
       }
@@ -306,7 +311,7 @@
         font-size: 14.5px;
       }
 
-      .cd-brand strong { font-weight: 680; }
+      .cd-brand strong { font-weight: 550; }
 
       .cd-claude-mark {
         width: 18px;
@@ -323,7 +328,7 @@
         border: 0;
         border-radius: 7px;
         background: transparent;
-        color: #7f776c;
+        color: #7b7974;
       }
 
       .cd-nav-row,
@@ -337,7 +342,7 @@
         border: 0;
         border-radius: 8px;
         background: transparent;
-        color: #3d3a33;
+        color: #373734;
         font-size: 14px;
         text-align: left;
       }
@@ -345,7 +350,7 @@
       .cd-nav-row.active {
         background: rgba(255, 255, 255, 0.92);
         color: var(--claude-ink);
-        font-weight: 560;
+        font-weight: 550;
         box-shadow: inset 0 0 0 1px rgba(55, 48, 40, 0.05);
       }
 
@@ -353,20 +358,20 @@
         width: 16px;
         height: 16px;
         flex: 0 0 auto;
-        color: #6d6a60;
+        color: #52514e;
       }
 
       .cd-label {
         margin: 16px 8px 5px;
         color: var(--claude-text-faint);
         font-size: 11px;
-        font-weight: 600;
+        font-weight: 550;
       }
 
       .cd-hist {
         height: 32px;
         color: #4d4841;
-        font-weight: 460;
+        font-weight: 430;
       }
 
       .cd-hist span:last-child,
@@ -401,7 +406,7 @@
         background: var(--claude-brand-deep);
         color: #fff;
         font-size: 10px;
-        font-weight: 600;
+        font-weight: 550;
       }
 
       .cd-foot-copy {
@@ -422,7 +427,7 @@
       .cd-foot-copy strong {
         color: #34322d;
         font-size: 12.5px;
-        font-weight: 560;
+        font-weight: 550;
       }
 
       .cd-foot-copy em {
@@ -456,7 +461,7 @@
       .cw-traffic {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
       }
 
       .cw-icon-btn {
@@ -487,16 +492,16 @@
         border: 0;
         border-radius: 6px;
         background: transparent;
-        color: #6d6a60;
+        color: #52514e;
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 430;
       }
 
       .cw-mode-switch .active {
-        color: #3d3a33;
+        color: #373734;
         background: #fff;
         box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.12);
-        font-weight: 560;
+        font-weight: 550;
       }
 
       .cw-new-task {
@@ -509,7 +514,7 @@
         background: transparent;
         color: #23201c;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 430;
         text-align: left;
       }
 
@@ -546,9 +551,25 @@
 
       .cw-sync-note {
         margin: 20px 4px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
         color: #8a8378;
         font-size: 13px;
         line-height: 1.45;
+      }
+
+      .cw-sync-note span {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .cw-sync-info {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+        margin-top: 1px;
+        color: #8f8a80;
       }
 
       .cw-account {
@@ -570,7 +591,7 @@
         background: #23201c;
         color: #fff;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 550;
       }
 
       .cw-account-copy {
@@ -582,18 +603,18 @@
       .cw-account-copy strong {
         color: var(--claude-ink-soft);
         font-size: 15px;
-        font-weight: 560;
+        font-weight: 550;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
 
       .cw-account-copy span {
-        color: #928a80;
+        color: #7b7974;
         font-size: 13.5px;
       }
 
-      .cw-account-chev { width: 18px; height: 18px; color: #928a80; }
+      .cw-account-chev { width: 18px; height: 18px; color: #7b7974; }
 
       /* ============ CODE (code-*) — dark-native, no light variant ============ */
       .panel-code {
@@ -665,7 +686,7 @@
         background: #2c2c2e;
         color: #f2f2f4;
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 430;
       }
 
       .code-page-pill svg { width: 15px; height: 15px; color: #f2f2f4; }
@@ -695,7 +716,7 @@
         margin: 14px 8px 6px;
         color: #86868b;
         font-size: 11.5px;
-        font-weight: 500;
+        font-weight: 430;
       }
 
       .code-row {
@@ -831,6 +852,7 @@
       }
 
       .theme-dark .cw-sync-note { color: var(--claude-text-faint); }
+      .theme-dark .cw-sync-info { color: var(--claude-text-faint); }
       .theme-dark .cw-account-copy strong { color: var(--claude-ink); }
       .theme-dark .cw-account-copy span { color: var(--claude-text-faint); }
       .theme-dark .cw-account-chev { color: var(--claude-text-faint); }
@@ -876,12 +898,12 @@
 
       /* Desktop chat/cowork columns keep only the hairline border-right. */
       [data-embed="flat"] .claude-sidebar-stage .panel-chat {
-        border-right: 1px solid rgba(49, 44, 38, 0.08);
+        border-right: 1px solid rgba(11, 11, 11, 0.1);
       }
 
       [data-embed="flat"] .claude-sidebar-stage .panel-cowork {
         padding: 22px 22px 18px;
-        border-right: 1px solid rgba(47, 41, 35, 0.1);
+        border-right: 1px solid rgba(11, 11, 11, 0.1);
       }
 
       /* Re-derive the head row for the 22px padding so the traffic dots land

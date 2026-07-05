@@ -29,6 +29,13 @@
         <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
         <path d="M2 12h20" />
       </symbol>
+      <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <path d="M10 9H8" />
+        <path d="M16 13H8" />
+        <path d="M16 17H8" />
+      </symbol>
     </svg>
     <section class="claude-agent-rail-stage" data-primitive="claude-agent-rail-stage" aria-label="Editable Claude agent rail surface">
       <aside class="agent-rail-panel" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
@@ -46,7 +53,7 @@
 
         <section class="rail-card">
           <div class="rail-head"><span class="rail-title">Artifacts</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
-          <div class="rail-row"><span class="rail-file-ico"><b data-copy="artifact-1-kind">HTML</b></span><span data-copy="artifact-1">publish-checklist.html</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg><b data-copy="artifact-1-kind">HTML</b></span><span data-copy="artifact-1">publish-checklist.html</span></div>
         </section>
 
         <section class="rail-card">
@@ -56,9 +63,9 @@
           <div class="rail-label">Connectors</div>
           <div class="rail-row"><span class="rail-file-ico conn"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></span><span>Web search</span></div>
           <div class="rail-label">Working files</div>
-          <div class="rail-row"><span class="rail-file-ico"><b data-copy="context-file-1-kind">MD</b></span><span data-copy="context-file-1">team-digest-october-2025.md</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><b data-copy="context-file-2-kind">MD</b></span><span data-copy="context-file-2">draft-coverage-notes-octob…</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><b data-copy="context-file-3-kind">MD</b></span><span data-copy="context-file-3">team-digest-november-2025.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg><b data-copy="context-file-1-kind">MD</b></span><span data-copy="context-file-1">team-digest-october-2025.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg><b data-copy="context-file-2-kind">MD</b></span><span data-copy="context-file-2">draft-coverage-notes-octob…</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg><b data-copy="context-file-3-kind">MD</b></span><span data-copy="context-file-3">team-digest-november-2025.md</span></div>
         </section>
       </aside>
     </section>
@@ -103,8 +110,8 @@
         display: grid;
         gap: 14px;
         padding: 20px 22px;
-        border: 1px solid rgba(46, 39, 32, 0.11);
-        border-radius: 16px;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        border-radius: 12px;
         background: rgba(255, 254, 250, 0.94);
         box-shadow: 0 1px 3px rgba(52, 43, 34, 0.04);
       }
@@ -118,10 +125,10 @@
       .rail-title {
         color: var(--claude-ink);
         font-size: 17px;
-        font-weight: 600;
+        font-weight: 550;
       }
 
-      .rail-chev { width: 18px; height: 18px; color: #928a80; }
+      .rail-chev { width: 18px; height: 18px; color: #7b7974; }
 
       .rail-stepper {
         display: flex;
@@ -176,26 +183,35 @@
       }
 
       .rail-file-ico {
-        width: 26px;
-        height: 26px;
+        position: relative;
+        width: 28px;
+        height: 28px;
         flex: 0 0 auto;
         display: grid;
         place-items: center;
-        border-radius: 6px;
-        background: var(--claude-surface-raised);
-        color: #7f776c;
+        border-radius: 8px;
+        background: #efeae0;
+        color: #52514e;
       }
 
-      .rail-file-ico svg { width: 16px; height: 16px; }
-
-      .rail-file-ico.folder { background: var(--claude-surface-raised); color: #8a8474; }
-      .rail-file-ico.conn { background: #f4efe8; color: #7f776c; }
+      .rail-file-ico svg { width: 14px; height: 14px; margin-top: -3px; }
 
       .rail-file-ico b {
-        font-size: 7px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 3px;
+        color: #7f776c;
+        font-size: 6px;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        line-height: 1;
+        text-align: center;
+        letter-spacing: 0.2px;
+        font-style: normal;
       }
+
+      .rail-file-ico.folder { background: var(--claude-surface-raised); color: #8a8474; }
+      .rail-file-ico.conn { background: #f4efe8; color: #7b7974; }
 
       .rail-sub {
         display: flex;
@@ -203,17 +219,17 @@
         gap: 8px;
         color: #4d4841;
         font-size: 14.5px;
-        font-weight: 460;
+        font-weight: 430;
       }
 
-      .rail-sub-chev { width: 16px; height: 16px; color: #928a80; }
-      .rail-sub-count { margin-left: auto; color: #928a80; font-size: 13.5px; }
+      .rail-sub-chev { width: 16px; height: 16px; color: #7b7974; }
+      .rail-sub-count { margin-left: auto; color: #7b7974; font-size: 13.5px; }
 
       .rail-label {
         margin-top: 6px;
-        color: #756f66;
+        color: #52514e;
         font-size: 13.5px;
-        font-weight: 500;
+        font-weight: 430;
       }
     </style>
 
@@ -257,6 +273,10 @@
 
       .theme-dark .rail-file-ico {
         background: rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-file-ico b {
         color: var(--claude-text-faint);
       }
 
