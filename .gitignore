@@ -7,6 +7,12 @@ reference/claude/images/
 reference/claude/videos/
 reference/claude/frame-study/
 reference/open-source/*/
+# Dated ground-truth sets: manifests + token measurements are tracked; raw
+# pixels of live/logged-in sessions stay local (personal content, asset policy)
+reference/*/20*/**/screenshot*.png
+reference/*/20*/**/screenshot*.jpg
+# Logged-in Playwright profile for live-app captures (cookies/session — never commit)
+.playwright-profile/
 .hyperframes/
 .playwright-mcp/
 .thumbnails/

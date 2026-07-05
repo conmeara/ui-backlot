@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-07-05T20:20:26.959Z",
+  "entries": [
+    {
+      "label": "public-landing-light",
+      "method": "playwright-public",
+      "url": "https://claude.ai",
+      "viewport": "1440x900",
+      "theme": "light",
+      "selector": null,
+      "capturedAt": "2026-07-05T20:33:23.120Z",
+      "note": "Tool verification: logged-out public landing page",
+      "assetDecision": "Ground-truth measurement of a live/public page. Screenshot and computed-style measurements only; do not copy product code, CSS, icons, or screenshot pixels into editable surfaces."
+    },
+    {
+      "label": "web-app-chat-light",
+      "method": "claude-in-chrome",
+      "source": "https://claude.ai chat thread, logged-in session, light theme, viewport 1440x757 @2x",
+      "capturedAt": "2026-07-05T20:28:05.958Z",
+      "files": [
+        "screenshot.png",
+        "tokens.json"
+      ],
+      "note": "Slim tokens captured at icon-rail state; screenshot shows expanded sidebar + thread + composer; cursor artifact on wordmark top-left. Screenshot local-only (gitignored).",
+      "assetDecision": "Ground-truth measurement of the real application. Screenshot and computed-style measurements only; do not copy product code, CSS, icons, or screenshot pixels into editable surfaces."
+    },
+    {
+      "label": "web-app-home-light",
+      "method": "claude-in-chrome",
+      "source": "https://claude.ai/new, logged-in session, light theme, expanded sidebar, viewport 1440x757 @2x",
+      "capturedAt": "2026-07-05T21:00:38.474Z",
+      "files": [
+        "screenshot.png",
+        "tokens.json"
+      ],
+      "note": "Slim tokens (no personal text). Screenshot via screencapture + beacon crop; sidebar expanded; screenshot local-only (gitignored).",
+      "assetDecision": "Ground-truth measurement of the real application. Screenshot and computed-style measurements only; do not copy product code, CSS, icons, or screenshot pixels into editable surfaces."
+    }
+  ]
+}

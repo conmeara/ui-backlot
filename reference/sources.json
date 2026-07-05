@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). See docs/fidelity-loop-plan-2026-07-05.md.",
+  "families": [
+    {
+      "family": "claude",
+      "tier": "live-web",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "web-app-chat",
+          "url": "https://claude.ai",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "viewport": "1440x900",
+          "themes": ["light", "dark"],
+          "notes": "Primary ground truth. Desktop app is Electron over the same UI; agents cannot drive the desktop app, so desktop-only chrome (title bar, traffic lights) arrives via manual-inbox."
+        },
+        {
+          "label": "web-app-home",
+          "url": "https://claude.ai/new",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "viewport": "1440x900",
+          "themes": ["light", "dark"]
+        }
+      ],
+      "fallbacks": [
+        "manual-inbox: user screenshots of the desktop app (chat/cowork/code pages)",
+        "reference/claude/frame-study/ launch-video extracts"
+      ]
+    },
+    {
+      "family": "codex",
+      "tier": "live-web",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "web-app",
+          "url": "https://chatgpt.com/codex",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "viewport": "1440x900",
+          "themes": ["light", "dark"],
+          "notes": "Requires user's OpenAI session. Codex desktop app not driveable; manual-inbox for desktop states."
+        }
+      ],
+      "fallbacks": ["reference/codex/app-screenshots/ (12 shots, light/dark)"]
+    },
+    {
+      "family": "figma",
+      "tier": "live-web",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "editor",
+          "url": "https://www.figma.com",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "viewport": "1500x960",
+          "themes": ["light", "dark"],
+          "notes": "Open a scratch design file in the user's account; never a client file."
+        }
+      ],
+      "fallbacks": ["reference/figma/actual-app/source-index.json (Help Center scrape, refreshable via online-only pass)"]
+    },
+    {
+      "family": "macos",
+      "tier": "native-local",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "finder-window",
+          "app": "Finder",
+          "method": "screencapture",
+          "notes": "Fixed window size before capture; pixels only, no style extraction."
+        },
+        {
+          "label": "menu-bar",
+          "app": "SystemUIServer",
+          "method": "screencapture"
+        },
+        {
+          "label": "calendar",
+          "app": "Calendar",
+          "method": "screencapture"
+        }
+      ],
+      "fallbacks": ["reference/open-source/macos-web donor repo (pinned)"]
+    },
+    {
+      "family": "browser",
+      "tier": "native-local",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "chrome-window",
+          "app": "Google Chrome",
+          "method": "screencapture",
+          "notes": "Tab strip, omnibox, window chrome. Page content is ours by design."
+        }
+      ],
+      "fallbacks": []
+    },
+    {
+      "family": "word",
+      "tier": "online-only",
+      "availableOnThisMachine": false,
+      "targets": [
+        {
+          "label": "docs-scrape",
+          "urls": [
+            "https://support.microsoft.com/en-us/word",
+            "https://www.microsoft.com/en-us/microsoft-365/word"
+          ],
+          "method": "playwright-public",
+          "notes": "Official docs/marketing screenshots; staged, critic must discount. Flip tier to live-web if a Microsoft 365 web session becomes available."
+        }
+      ],
+      "fallbacks": ["reference/word/", "reference/open-source/fluentui (pinned)"]
+    },
+    {
+      "family": "excel",
+      "tier": "online-only",
+      "availableOnThisMachine": false,
+      "targets": [
+        {
+          "label": "docs-scrape",
+          "urls": ["https://support.microsoft.com/en-us/excel"],
+          "method": "playwright-public"
+        }
+      ],
+      "fallbacks": ["reference/open-source/fluentui (pinned)"]
+    },
+    {
+      "family": "powerpoint",
+      "tier": "online-only",
+      "availableOnThisMachine": false,
+      "targets": [
+        {
+          "label": "docs-scrape",
+          "urls": ["https://support.microsoft.com/en-us/powerpoint"],
+          "method": "playwright-public"
+        }
+      ],
+      "fallbacks": ["reference/powerpoint/", "reference/open-source/fluentui (pinned)"]
+    },
+    {
+      "family": "premiere",
+      "tier": "online-only",
+      "availableOnThisMachine": false,
+      "targets": [
+        {
+          "label": "docs-scrape",
+          "urls": [
+            "https://helpx.adobe.com/premiere-pro/using/workspaces.html"
+          ],
+          "method": "playwright-public",
+          "notes": "Adobe help + launch-video frame studies. App not installed here."
+        }
+      ],
+      "fallbacks": []
+    }
+  ]
+}

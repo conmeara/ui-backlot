@@ -1,0 +1,16 @@
+- div [main] @ 0,0: claude.ai Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+- div @ 240,128: claude.ai Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+- div @ 272,128: claude.ai
+- h1 @ 328,128: claude.ai
+- h2 @ 272,186: Performing security verification
+- p @ 272,224: This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+- div [contentinfo] @ 240,831: Ray ID: a1692470fa707cc8 Performance and Security by Cloudflare Privacy
+- div @ 272,831: Ray ID: a1692470fa707cc8 Performance and Security by Cloudflare Privacy
+- div @ 577.4,848: Ray ID: a1692470fa707cc8 Performance and Security by Cloudflare Privacy
+- div @ 577.4,848: Ray ID: a1692470fa707cc8
+- div @ 577.4,848: Ray ID: a1692470fa707cc8
+- code @ 683.9,850: a1692470fa707cc8
+- div @ 577.4,866: Performance and Security by Cloudflare Privacy
+- span @ 577.4,866: Performance and Security by Cloudflare
+- a [link] @ 744.9,866: Cloudflare
+- a [link] @ 821.3,866: Privacy

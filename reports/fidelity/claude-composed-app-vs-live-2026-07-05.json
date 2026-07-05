@@ -1,0 +1,120 @@
+{
+  "label": "claude-composed-app-vs-live",
+  "comparedAt": "2026-07-05T21:02:40.995Z",
+  "ours": "captures/surface-claude-composed-app/capture.json",
+  "theirs": "reference/claude/2026-07-05/web-app-chat-light/tokens.json",
+  "scores": {
+    "colors": 0.8087390537586958,
+    "typography": 0.9590612884002927,
+    "radii": 0.8681722689075628,
+    "spacing": null,
+    "shadows": 0.4,
+    "tokenOverall": 0.8241952270398012
+  },
+  "pixel": {
+    "width": 1440,
+    "height": 900,
+    "meanAbsError": 14.147935442290258,
+    "pctPixelsChanged": 7.689891975308642,
+    "aspectMismatch": true,
+    "score": 0.7789385087142147,
+    "caveat": "Pixel score is only decisive between same-layout images (regression/drift). Against the real app it is directional; a judge must read the images."
+  },
+  "deltas": [
+    {
+      "kind": "color:border",
+      "severity": 1,
+      "detail": "real-but-missing-in-ours: border #e0e0df (×226) nearest counterpart #dad8d3 (Δ15.6)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.716944201576532,
+      "detail": "real-but-missing-in-ours: text #0b0b0b (×128) nearest counterpart #171715 (Δ19.7)"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.6379785284108102,
+      "detail": "ours-but-not-in-real: border #7f776c (×9) nearest counterpart #1f1f1e (Δ151.8)"
+    },
+    {
+      "kind": "color:background",
+      "severity": 0.636314819147417,
+      "detail": "real-but-missing-in-ours: background #256bc1 (×3) nearest counterpart #28c840 (Δ159.1)"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.576245456413172,
+      "detail": "ours-but-not-in-real: border #928a80 (×10) nearest counterpart #d7d7d6 (Δ134.7)"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.5631559406029539,
+      "detail": "ours-but-not-in-real: border #756f66 (×5) nearest counterpart #1f1f1e (Δ137.8)"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.44050000000000006,
+      "detail": "ours-but-not-in-real: \"anthropic serif\" 23px/410 (×3) best counterpart \"anthropicons-variable\" 20px/433.25"
+    },
+    {
+      "kind": "radius",
+      "severity": 0.39999999999999997,
+      "detail": "ours-but-not-in-real: radius 16px (×6) has no close counterpart"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.34216666666666673,
+      "detail": "real-but-missing-in-ours: \"anthropicons-variable\" 20px/433.25 (×10) best counterpart \"anthropic sans\" 20px/400"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.30682058932072775,
+      "detail": "ours-but-not-in-real: border #4d4841 (×6) nearest counterpart #1f1f1e (Δ70.9)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.25712237773878865,
+      "detail": "ours-but-not-in-real: text #27231f (×28) nearest counterpart #121212 (Δ30.0)"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.24000000000000005,
+      "detail": "ours-but-not-in-real: \"anthropic sans\" 7px/700 (×4) best counterpart \"anthropic sans\" 11px/550"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.23647200115156625,
+      "detail": "ours-but-not-in-real: border #171715 (×36) nearest counterpart #1f1f1e (Δ14.5)"
+    },
+    {
+      "kind": "color:border",
+      "severity": 0.22684807022688747,
+      "detail": "ours-but-not-in-real: border #ffffff (×3) nearest counterpart #e0e0df (Δ54.2)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.15615673765055332,
+      "detail": "ours-but-not-in-real: text #928a80 (×7) nearest counterpart #7b7974 (Δ31.0)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.10947958298787362,
+      "detail": "ours-but-not-in-real: text #23201c (×3) nearest counterpart #121212 (Δ24.2)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.1047778279366289,
+      "detail": "ours-but-not-in-real: text #4d4841 (×8) nearest counterpart #52514e (Δ16.6)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.10117526233706484,
+      "detail": "ours-but-not-in-real: text #756f66 (×6) nearest counterpart #7b7974 (Δ18.2)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.08477782793662891,
+      "detail": "real-but-missing-in-ours: text #52514e (×4) nearest counterpart #4d4841 (Δ16.6)"
+    }
+  ]
+}

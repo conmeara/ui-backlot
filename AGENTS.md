@@ -13,6 +13,17 @@ Read these files first:
 4. `surfaces/registry.json` - authoritative machine-readable inventory.
 5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
 6. `docs/asset-policy.md` and `TRADEMARKS.md` - public asset and brand rules.
+7. `docs/fidelity-loop-plan-2026-07-05.md` - the ground-truth capture /
+   drift / rebuild loop. `reference/sources.json` declares how each family's
+   real-app references are acquired; `reference/<family>/<date>/` holds dated
+   measurement sets; `npm run fidelity:score` measures a surface against them
+   and writes `reports/fidelity/`. Fix fidelity gaps from measured deltas in
+   those reports, not from memory of what the app looks like.
+8. Repo workflows (run via the Workflow tool): `.claude/workflows/
+   fidelity-push.js` = scored critique/fix/judge pass over existing families;
+   `.claude/workflows/onboard-app.js` = add a NET-NEW app family end to end
+   (research → capture → spec → build → judge → register), args
+   `{family, title, urls}`.
 
 ## Pick Surfaces
 

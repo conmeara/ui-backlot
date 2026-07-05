@@ -17,6 +17,68 @@ The long-term north star is tracked in [VISION.md](VISION.md). Agents should
 start with [AGENTS.md](AGENTS.md), then use [docs/catalog.md](docs/catalog.md)
 and [surfaces/registry.json](surfaces/registry.json) to find reusable surfaces.
 
+## The Fidelity Loop
+
+Surfaces are held to a measured bar, not an eyeballed one. The system is
+described in [docs/fidelity-loop-plan-2026-07-05.md](docs/fidelity-loop-plan-2026-07-05.md)
+and runs as three loops:
+
+1. **Ground-truth capture** — dated reference sets measured from the real
+   apps live in `reference/<family>/<YYYY-MM-DD>/` (computed-style
+   `tokens.json`, provenance `manifest.json`, and screenshots where pixels
+   could be captured — screenshots of logged-in sessions stay local-only).
+   [reference/sources.json](reference/sources.json) declares how each family
+   is acquired on a given machine: `live-web` (agent-driven browser capture),
+   `native-local` (installed app screenshots), `online-only` (official
+   docs/press re-scrape), or `manual-inbox` (human-provided screenshots filed
+   by `tools/import-reference.mjs`).
+2. **Drift detection** — re-capture on a schedule, diff against the previous
+   dated set with `tools/fidelity-score.mjs`, and turn real app changes into
+   work items.
+3. **Rebuild with a hard bar** — `npm run fidelity:score` compares a
+   surface's capture against measured ground truth (role-aware color diff,
+   typography, radii, spacing, shadows, plus pixel diff) and writes ranked,
+   actionable deltas to `reports/fidelity/`. The score is the bar: fixes are
+   made from measured deltas, never from memory of what an app looks like.
+
+### Repo workflows (agent-run)
+
+- `.claude/workflows/fidelity-push.js` — a full scored pass over existing
+  families: deterministic Score → Fable/Opus Critique (fed the measured
+  deltas) → Sonnet Fix with capture-verify loops → adversarial Judge that
+  enforces the score bar and runs a **stranger test** (a fresh-context judge
+  sees real-vs-rebuilt image pairs under neutral filenames and must pick the
+  real one; its tells become the next round's work) → full Gate sweep.
+- `.claude/workflows/onboard-app.js` — the front door for a **net-new app
+  family** (args `{family, title, urls}`): availability probe + official-
+  source sweep → dated ground-truth capture → measured spec → build →
+  adversarial judge rounds → registration in `registry.json`,
+  `sources.json`, and the fidelity-push family list.
+
+Model policy: Fable/Opus only where judgment is the product (critique, spec,
+judge, stranger test); Sonnet for build/fix iteration; Haiku for mechanical
+stages (scoring commands, staging, gates, registration).
+
+### Fidelity tooling
+
+```bash
+# Capture a public live page into a dated reference set
+npm run reference:capture -- https://example.com --family <fam> --label web-app
+
+# File human-provided screenshots or browser-extracted token dumps
+npm run reference:import -- --family <fam> --label desktop-app --image shot.png
+
+# Score a surface against measured ground truth
+npm run fidelity:score -- --label <name> \
+  --ours captures/surface-<id>/capture.json \
+  --theirs reference/<fam>/<date>/<label>/tokens.json
+```
+
+`tools/extract-ui-tokens.js` is the shared browser-injectable extractor both
+sides use (our captures and the live apps), so the comparison is symmetric.
+`tools/crop-to-beacons.mjs` crops window screenshots to the exact page
+content for logged-in apps that block automated browsers.
+
 ## Quickstart
 
 ```bash
