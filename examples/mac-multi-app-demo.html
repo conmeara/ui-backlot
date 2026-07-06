@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>macOS Multi-App Demo — Claude + Excel</title>
+  </head>
+  <body>
+    <div
+      id="mac-multi-app-demo"
+      data-composition-id="mac-multi-app-demo"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="10"
+    >
+      <section class="desktop-stage" data-primitive="mac-multi-app-demo" aria-label="macOS desktop opening the Claude app then Excel on top">
+        <div class="wallpaper" aria-hidden="true"></div>
+
+        <!-- macOS menu bar -->
+        <div
+          class="component-frame menu-bar-frame"
+          data-primitive="mac-menu-bar"
+          data-backlot-mount-src="../compositions/mac-menu-bar.html"
+          data-backlot-mount-selector="#mac-menu-bar-surface"
+        ></div>
+
+        <!-- Claude app window (opens first) -->
+        <div class="app-window win-claude" data-primitive="claude-app-window">
+          <div
+            class="component-frame claude-frame"
+            data-backlot-mount-src="../compositions/claude-home.html"
+            data-backlot-mount-selector="#claude-home-surface"
+          ></div>
+        </div>
+
+        <!-- Excel window (opens on top) -->
+        <div class="app-window win-excel" data-primitive="excel-app-window">
+          <div
+            class="component-frame excel-frame"
+            data-backlot-mount-src="../compositions/excel-workbook.html"
+            data-backlot-mount-selector="#excel-workbook-surface"
+          ></div>
+        </div>
+
+        <!-- Dock (reusable mac-dock composition) -->
+        <div
+          class="component-frame dock-frame"
+          data-primitive="mac-dock"
+          data-backlot-mount-src="../compositions/mac-dock.html"
+          data-backlot-mount-selector="#mac-dock-surface"
+        ></div>
+
+        <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      /* Provide foundation (.backlot-icon sizing, fonts) for mounted
+         components — their own foundation import lives in an outer block that
+         does not travel when the loader extracts template content. */
+      @import url("../styles/backlot-foundation.css");
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #0b1020;
+      }
+
+      #mac-multi-app-demo {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        color: #16120f;
+        font-family: -apple-system, "SF Pro Text", Inter, sans-serif;
+      }
+
+      #mac-multi-app-demo * {
+        box-sizing: border-box;
+      }
+
+      .desktop-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      /* macOS-ish blue wave wallpaper */
+      .wallpaper {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(120% 90% at 18% 8%, #eaf0f7 0%, rgba(234, 240, 247, 0) 40%),
+          radial-gradient(90% 70% at 78% 92%, #1f4fbf 0%, rgba(31, 79, 191, 0) 55%),
+          radial-gradient(120% 120% at 50% 60%, #3f7fd6 0%, #2a5bc0 45%, #16307e 100%),
+          linear-gradient(160deg, #6ea6e8 0%, #2f68c8 48%, #17348a 100%);
+      }
+      .wallpaper::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(60% 40% at 30% 78%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 60%),
+          radial-gradient(50% 34% at 72% 30%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 60%);
+        mix-blend-mode: screen;
+      }
+
+      .component-frame {
+        position: absolute;
+        overflow: hidden;
+      }
+      .component-frame > [data-backlot-mounted-component] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        pointer-events: none;
+        transform-origin: top left;
+      }
+
+      .menu-bar-frame {
+        left: 0;
+        top: 0;
+        z-index: 60;
+        width: 1920px;
+        height: 34px;
+      }
+
+      /* App windows are absolutely positioned; the inner frame crops the
+         mounted composition (which carries its own window chrome). */
+      .app-window {
+        position: absolute;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 42px 120px rgba(6, 18, 54, 0.44), 0 8px 26px rgba(6, 18, 54, 0.3);
+        will-change: transform, opacity;
+      }
+
+      .win-claude {
+        left: 150px;
+        top: 140px;
+        width: 902px;    /* 980 * 0.92 */
+        height: 699px;   /* 760 * 0.92 */
+        z-index: 14;
+      }
+      .claude-frame {
+        left: 0;
+        top: 0;
+        width: 902px;
+        height: 699px;
+      }
+      .claude-frame > [data-backlot-mounted-component] {
+        transform: scale(0.92);
+      }
+
+      .win-excel {
+        left: 726px;
+        top: 320px;
+        width: 922px;    /* 1280 * 0.72 */
+        height: 547px;   /* 760 * 0.72 */
+        z-index: 24;
+      }
+      .excel-frame {
+        left: 0;
+        top: 0;
+        width: 922px;
+        height: 547px;
+      }
+      .excel-frame > [data-backlot-mounted-component] {
+        transform: scale(0.72);
+      }
+
+      /* ---- Dock (mounted mac-dock composition) ---- */
+      .dock-frame {
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        width: 760px;
+        height: 104px;
+        z-index: 50;
+        overflow: visible;
+      }
+
+      /* ---- Cursor + click ring ---- */
+      .workflow-cursor {
+        position: absolute;
+        left: 960px;
+        top: 620px;
+        z-index: 80;
+        width: 27px;
+        height: 27px;
+        /* Use the two-tone mac pointer SVG directly (black arrow + white
+           outline) — masking it would flatten it to a single colour. */
+        background: url("../assets/cursors/normal-select.svg") top left / contain no-repeat;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+      }
+      .click-ring {
+        position: absolute;
+        left: 946px;
+        top: 606px;
+        z-index: 79;
+        width: 44px;
+        height: 44px;
+        border: 2.5px solid rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        opacity: 0;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+      // Windows start hidden (they "open" from the dock).
+      gsap.set(".win-claude", { opacity: 0, scale: 0.62, y: 150, transformOrigin: "50% 100%" });
+      gsap.set(".win-excel", { opacity: 0, scale: 0.62, y: 150, transformOrigin: "50% 100%" });
+
+      // Desktop chrome settles in.
+      tl.from(".menu-bar-frame", { opacity: 0, y: -12, duration: 0.4, ease: "sine.out" }, 0.1);
+      tl.from(".dock-frame", { opacity: 0, y: 60, duration: 0.6, ease: "power3.out" }, 0.2);
+      tl.from(".workflow-cursor", { opacity: 0, duration: 0.3 }, 0.5);
+
+      // Move to the Claude dock icon and click.
+      tl.to(".workflow-cursor", { left: 715, top: 1010, duration: 0.9, ease: "power2.inOut" }, 0.9);
+      tl.set(".click-ring", { left: 693, top: 988 }, 1.78);
+      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out" }, 1.8);
+
+      // Claude app opens up from the dock.
+      tl.to(".win-claude", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "back.out(1.3)" }, 1.95);
+
+      // Cursor drifts up into the Claude app (toward the composer).
+      tl.to(".workflow-cursor", { left: 470, top: 560, duration: 1.0, ease: "power2.inOut" }, 3.1);
+      tl.set(".click-ring", { left: 448, top: 538 }, 4.15);
+      tl.fromTo(".click-ring", { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.4, duration: 0.45, ease: "sine.out" }, 4.2);
+
+      // Move to the Excel dock icon and click.
+      tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.8);
+      tl.set(".click-ring", { left: 969, top: 988 }, 5.68);
+      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out" }, 5.7);
+
+      // Excel opens on top of Claude.
+      tl.to(".win-excel", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "back.out(1.3)" }, 5.85);
+
+      // Cursor moves into Excel (toward the grid).
+      tl.to(".workflow-cursor", { left: 1120, top: 560, duration: 1.0, ease: "power2.inOut" }, 7.1);
+      tl.set(".click-ring", { left: 1098, top: 538 }, 8.15);
+      tl.fromTo(".click-ring", { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.4, duration: 0.45, ease: "sine.out" }, 8.2);
+
+      // Hold to the end.
+      tl.to(".workflow-cursor", { duration: 1.2 }, 8.6);
+
+      window.__timelines["mac-multi-app-demo"] = tl;
+
+      // Static hero frame for still captures.
+      const captureMode = new URLSearchParams(window.location.search).get("capture");
+      if (captureMode === "hero") {
+        tl.seek(6.6).pause();
+      }
+    </script>
+  </body>
+</html>
