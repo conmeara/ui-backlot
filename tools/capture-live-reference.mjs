@@ -174,6 +174,19 @@ async function main() {
   );
 
   await fs.writeFile(path.join(labelDir, "tokens.json"), JSON.stringify(payload, null, 2));
+  if (args.slim) {
+    // Element-level scoring needs per-element data; text makes it personal, so
+    // it lives in a local-only sibling (gitignored), never in tokens.json.
+    const full = await page.evaluate(
+      ({ source, selector }) => {
+        // eslint-disable-next-line no-eval
+        eval(source);
+        return extractUiTokens(selector);
+      },
+      { source: extractorSource, selector: args.selector }
+    );
+    await fs.writeFile(path.join(labelDir, "elements.json"), JSON.stringify(full, null, 2));
+  }
   if (payload.elements?.length) {
     await fs.writeFile(
       path.join(labelDir, "visible-text.md"),

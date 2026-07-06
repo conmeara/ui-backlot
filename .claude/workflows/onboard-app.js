@@ -137,7 +137,7 @@ const capture = await agent(
   '- live-web PUBLIC page: npm run reference:capture -- <url> --family ' + FAM + ' --label web-app --viewport 1440x900 (writes screenshot+tokens+manifest).\n' +
   '- live-web LOGGED-IN app: drive the user\'s Chrome via claude-in-chrome (ToolSearch first): open the app tab, inject tools/extract-ui-tokens.js via javascript_tool, run extractUiTokens(null,{slim:true}), stash in window.__backlotDump, read it out in ~800-char slices, write to a temp file, then node tools/import-reference.mjs --family ' + FAM + ' --label web-app-light --tokens <file> --method claude-in-chrome. For pixels use the beacon + screencapture + tools/crop-to-beacons.mjs procedure from the plan doc (verify the captured image IS the app before filing).\n' +
   '- native-local: fixed window size, screencapture via Bash (or computer-use screenshot after request_access), file with import-reference.mjs --image.\n' +
-  '- online-only: the Research sweep already saved official refs; import the 2-3 best as a dated set (import-reference.mjs --image --method online-only) so drift detection has a baseline.\n' +
+  '- online-only: the Research sweep already saved official refs; import the 2-3 best as a dated set (import-reference.mjs --image --method online-only) so drift detection has a baseline. For public URLs ALSO try npx hyperframes capture <url> -o reference/' + FAM + '/hf-capture --json (first-party rich capture: scroll screenshots, palette, fonts, assets, Web Animations data — the only source of MOTION ground truth; it may timeout on bot-checked pages, which is fine, move on).\n' +
   'NEVER log in, never complete verification checkboxes — if blocked, capture what is public and say so in notes.\n' + TOOLBOX,
   { label: 'capture:' + FAM, phase: 'Capture', model: 'sonnet', schema: CAPTURE_SCHEMA }
 )
@@ -148,7 +148,9 @@ const spec = await agent(
   'Write the measured visual spec for "' + TITLE + '" (family ' + FAM + ') in ' + ROOT + '.\n' +
   'Inputs: reference/' + FAM + '/ (dated sets: tokens.json = computed styles when available; screenshots; actual-app/ official refs' + (sweep ? '' : ' — may be sparse') + ').\n' +
   'Read tokens.json first when present (numbers beat eyes); otherwise measure from the reference images (Read renders them — zoom into detail crops by cropping mentally, state px estimates as estimates).\n' +
-  'Produce docs/specs/' + FAM + '-spec.md: palette (hex + role), typography (family/size/weight per text role), chrome structure (titlebar/toolbar/sidebar/content regions with px), control inventory (ONLY controls visible in references — inventing controls is the #1 past failure mode), icon needs mapped to assets/icons/sprite-manifest.json families, and an explicit "do not include" list for anything uncertain (ABSTRACTION PRINCIPLE: fewer correct controls read as more real).\n' +
+  'Produce docs/specs/' + FAM + '-spec.md: palette (hex + role), typography (family/size/weight per text role), chrome structure (titlebar/toolbar/sidebar/content regions with px), icon needs mapped to assets/icons/sprite-manifest.json families, and an explicit "do not include" list for anything uncertain (ABSTRACTION PRINCIPLE: fewer correct controls read as more real).\n' +
+  'CRITICAL — NUMBERED ELEMENT CHECKLIST: research shows the dominant build failure is element OMISSION (models given whole screenshots dropped 85% of elements — docs/research/ui-recreation-methods-2026-07-05.md). The spec MUST enumerate every visible element as a numbered checklist item (n, name, region, approx geometry, source evidence). Only elements visible in references — inventing controls is the #1 past failure mode. The builder verifies each number off; the judge audits against this list.\n' +
+  'Also segment the reference into 3-8 REGIONS (titlebar/sidebar/content/composer etc.) with pixel bounds — the builder works region-by-region.\n' +
   'State confidence honestly: measured / visual-estimate / product-knowledge.',
   { label: 'spec:' + FAM, phase: 'Spec', model: 'opus', effort: 'high', schema: SPEC_SCHEMA }
 )
@@ -160,12 +162,14 @@ phase('Build')
 const build = await agent(
   'Build the first HTML surface for "' + TITLE + '" in ' + ROOT + '.\n' +
   CONVENTIONS + '\n\n' +
-  'THE SPEC (follow it exactly; do not add controls it does not list): read ' + spec.specPath + '.\n' +
-  'Steps:\n' +
-  '1. Create compositions/' + FAM + '-app.html (light theme).\n' +
-  '2. Add a capture script to package.json: "capture:' + FAM + '-app": "node tools/capture-web-ui.mjs compositions/' + FAM + '-app.html --slug surface-' + FAM + '-app --selector \'.' + FAM + '-app-window\' --viewport <spec size>".\n' +
-  '3. npm run capture:' + FAM + '-app — Read the PNG, compare against the references, iterate up to 4 rounds.\n' +
-  '4. If tokens.json ground truth exists: node tools/fidelity-score.mjs --label ' + FAM + '-app-build --ours captures/surface-' + FAM + '-app/capture.json --theirs <newest reference tokens.json> — chase the deltas it lists.\n' +
+  'THE SPEC (follow it exactly; do not add controls it does not list): read ' + spec.specPath + '.\n\n' +
+  'BUILD METHOD (research-backed, docs/research/ui-recreation-methods-2026-07-05.md — the failure to avoid is ELEMENT OMISSION):\n' +
+  '1. SHELL FIRST: build the page-level window/layout skeleton with each spec REGION as an empty placeholder block sized to its pixel bounds. Capture and check global proportions before any content.\n' +
+  '2. REGION BY REGION: fill one region at a time from the spec + measured tokens (measurements first, screenshot for verification — tokens.json is ground truth for colors/typography/radii). Repeated structures (list rows, cards, tabs) get ONE reusable pattern + per-instance content, not copy-paste variations.\n' +
+  '3. ASSEMBLY: if a region resists clean flow layout, absolute positioning inside the region wrapper (anchored to spec bounds) is acceptable — a deterministic capture kit favors positional accuracy over responsive purity.\n' +
+  '4. OMISSION CHECK: walk the spec\'s numbered element checklist; every item is present or explicitly skipped with a reason. Count elements in your capture vs the checklist.\n' +
+  '5. Add a capture script to package.json: "capture:' + FAM + '-app": "node tools/capture-web-ui.mjs compositions/' + FAM + '-app.html --slug surface-' + FAM + '-app --selector \'.' + FAM + '-app-window\' --viewport <spec size>".\n' +
+  '6. ITERATE 3-5 rounds: npm run capture:' + FAM + '-app, Read the PNG vs references, and if tokens.json exists run node tools/fidelity-score.mjs --label ' + FAM + '-app-build --ours captures/surface-' + FAM + '-app/capture.json --theirs <newest reference tokens.json> and chase its deltas element-by-element (localized fixes, not whole-page rewrites). Stop early when the score plateaus (<0.005 gain).\n' +
   'Do not edit styles/backlot-foundation.css, tools/, or runtime/. Do not run git commands.',
   { label: 'build:' + FAM, phase: 'Build', model: 'sonnet', effort: 'high', schema: BUILD_SCHEMA }
 )

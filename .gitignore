@@ -11,8 +11,14 @@ reference/open-source/*/
 # pixels of live/logged-in sessions stay local (personal content, asset policy)
 reference/*/20*/**/screenshot*.png
 reference/*/20*/**/screenshot*.jpg
+# full element payloads contain page text from live sessions — local-only
+reference/*/20*/**/elements.json
 # Logged-in Playwright profile for live-app captures (cookies/session — never commit)
 .playwright-profile/
+# hyperframes capture output: downloads the target site's own assets/fonts
+# (proprietary) — measurements may be distilled into tracked specs, raw
+# captures stay local
+reference/*/hf-capture*/
 .hyperframes/
 .playwright-mcp/
 .thumbnails/

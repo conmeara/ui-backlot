@@ -1,0 +1,251 @@
+{
+  "label": "claude-composed-app-v2",
+  "comparedAt": "2026-07-06T01:00:10.067Z",
+  "ours": "captures/surface-claude-composed-app/capture.json",
+  "theirs": "reference/claude/2026-07-05/web-app-chat-light/tokens.json",
+  "scores": {
+    "colors": 0.8802422398250798,
+    "typography": 0.9563470244505604,
+    "radii": 0.9605573710965867,
+    "spacing": null,
+    "shadows": 0.4,
+    "tokenOverall": 0.8647769234672706,
+    "elementOverall": 0.4058437765639801
+  },
+  "elements": {
+    "counts": {
+      "ours": 120,
+      "theirs": 600,
+      "matched": 87
+    },
+    "subscores": {
+      "match": 0.15130880923690387,
+      "position": 0.3013061014476099,
+      "size": 0.6312831137341383,
+      "color": 0.5908578868620186,
+      "typography": 0.7619383561643838,
+      "text": 0.19664576405292264
+    },
+    "elementOverall": 0.4058437765639801,
+    "typedRepairs": [
+      {
+        "type": "recolor",
+        "target": ".cw-prompt-send",
+        "severity": 1,
+        "detail": ".cw-prompt-send text #ffffff → real #0b0b0b (ΔE00 96.3)"
+      },
+      {
+        "type": "recolor",
+        "target": ".cw-plus",
+        "severity": 1,
+        "detail": ".cw-plus text #ffffff → real #121212 (ΔE00 92.6)"
+      },
+      {
+        "type": "move",
+        "target": "button",
+        "severity": 1,
+        "detail": "button (\"Code\") sits at (158,105); real counterpart center offset 26.0% of frame"
+      },
+      {
+        "type": "recolor",
+        "target": ".cw-sync-note",
+        "severity": 1,
+        "detail": ".cw-sync-note text #8a8378 → real #0b0b0b (ΔE00 40.3)"
+      },
+      {
+        "type": "move",
+        "target": ".active",
+        "severity": 1,
+        "detail": ".active (\"Cowork\") sits at (241,105); real counterpart center offset 31.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".mini-action",
+        "severity": 1,
+        "detail": ".mini-action (\"\") sits at (421,714.7); real counterpart center offset 31.0% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".code-colon",
+        "severity": 1,
+        "detail": ".code-colon (\":\") sits at (534.5,461.8); real counterpart center offset 16.4% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".rail-file-ico",
+        "severity": 1,
+        "detail": ".rail-file-ico (\"\") sits at (1190,526.6); real counterpart center offset 28.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".code-colon",
+        "severity": 1,
+        "detail": ".code-colon (\":\") sits at (548.9,479.8); real counterpart center offset 17.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".sticky-prompt-bubble",
+        "severity": 1,
+        "detail": ".sticky-prompt-bubble (\"Oh and update the revenue char\") sits at (546,130); real counterpart center offset 22.8% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".rail-title",
+        "severity": 1,
+        "detail": ".rail-title (\"Artifacts\") sits at (1190,253.6); real counterpart center offset 24.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".tool-status",
+        "severity": 1,
+        "detail": ".tool-status (\"ready\") sits at (978.5,638.7); real counterpart center offset 18.9% of frame"
+      },
+      {
+        "type": "recolor",
+        "target": ".cw-avatar",
+        "severity": 1,
+        "detail": ".cw-avatar text #ffffff → real #373734 (ΔE00 66.4)"
+      },
+      {
+        "type": "move",
+        "target": ".rail-file-ico",
+        "severity": 1,
+        "detail": ".rail-file-ico (\"MD\") sits at (1190,606.6); real counterpart center offset 19.5% of frame"
+      },
+      {
+        "type": "retype",
+        "target": "b",
+        "severity": 1,
+        "detail": "b is 6px/700; real is 14px/400"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "detail": "span (\"team-digest-november-2025.md\") sits at (1230,699.6); real counterpart center offset 20.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".typing-mask",
+        "severity": 1,
+        "detail": ".typing-mask (\"I'm checking the notes, Q2 dat\") sits at (390,284.9); real counterpart center offset 20.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".rail-row",
+        "severity": 1,
+        "detail": ".rail-row (\"MD draft-coverage-notes-octob…\") sits at (1190,649.6); real counterpart center offset 18.1% of frame"
+      },
+      {
+        "type": "retype",
+        "target": "b",
+        "severity": 1,
+        "detail": "b is 6px/700; real is 14px/400"
+      },
+      {
+        "type": "move",
+        "target": ".rail-file-ico",
+        "severity": 1,
+        "detail": ".rail-file-ico (\"HTML\") sits at (1190,289.6); real counterpart center offset 27.9% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".typing-mask",
+        "severity": 1,
+        "detail": ".typing-mask (\"I'll update the launch deck fr\") sits at (390,242); real counterpart center offset 24.5% of frame"
+      },
+      {
+        "type": "retype",
+        "target": ".typing-mask",
+        "severity": 1,
+        "detail": ".typing-mask is 23px/430; real is 14px/550"
+      },
+      {
+        "type": "move",
+        "target": ".rail-row",
+        "severity": 1,
+        "detail": ".rail-row (\"MD team-digest-october-2025.md\") sits at (1190,605.6); real counterpart center offset 25.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "detail": "span (\"publish-checklist.html\") sits at (1230,294.6); real counterpart center offset 26.5% of frame"
+      },
+      {
+        "type": "recolor",
+        "target": ".rail-caption",
+        "severity": 1,
+        "detail": ".rail-caption text #98917f → real #0b0b0b (ΔE00 46.0)"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "detail": "span (\"Updating opening slides\") sits at (441,674.7); real counterpart center offset 16.1% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".rail-label",
+        "severity": 1,
+        "detail": ".rail-label (\"Working files\") sits at (1190,575.6); real counterpart center offset 28.8% of frame"
+      },
+      {
+        "type": "move",
+        "target": "b",
+        "severity": 1,
+        "detail": "b (\"MD\") sits at (1190,625.6); real counterpart center offset 20.5% of frame"
+      },
+      {
+        "type": "retype",
+        "target": "b",
+        "severity": 1,
+        "detail": "b is 6px/700; real is 14px/430"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "detail": "span (\"Found slide notes and Q2 data\") sits at (441,636.2); real counterpart center offset 38.3% of frame"
+      }
+    ]
+  },
+  "pixel": null,
+  "deltas": [
+    {
+      "kind": "typography",
+      "severity": 0.4271666666666667,
+      "detail": "ours-but-not-in-real: \"anthropic serif\" 23px/430 (×3) best counterpart \"anthropicons-variable\" 20px/433.25"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.4223607642694615,
+      "detail": "real-but-missing-in-ours: text #121212 (×75) nearest counterpart #0b0b0b (Δ12.1)"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.34216666666666673,
+      "detail": "real-but-missing-in-ours: \"anthropicons-variable\" 20px/433.25 (×10) best counterpart \"anthropic sans\" 20px/400"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.32000000000000006,
+      "detail": "ours-but-not-in-real: \"ui-monospace\" 12px/400 (×4) best counterpart \"anthropic sans\" 12px/400"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.275,
+      "detail": "ours-but-not-in-real: \"anthropic sans\" 6px/700 (×4) best counterpart \"anthropic sans\" 11px/550"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.10947958298787362,
+      "detail": "ours-but-not-in-real: text #23201c (×3) nearest counterpart #121212 (Δ24.2)"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.1047778279366289,
+      "detail": "ours-but-not-in-real: text #4d4841 (×8) nearest counterpart #52514e (Δ16.6)"
+    }
+  ]
+}

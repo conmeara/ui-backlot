@@ -176,7 +176,9 @@ const SCORE_SCHEMA = {
           radii: { type: ['number', 'null'] },
           spacing: { type: ['number', 'null'] },
           shadows: { type: ['number', 'null'] },
+          elementOverall: { type: ['number', 'null'] },
           topDeltas: { type: 'array', items: { type: 'string' } },
+          typedRepairs: { type: 'array', items: { type: 'string' } },
         },
       },
     },
@@ -237,7 +239,7 @@ function scoreStage(f, tag, phaseTitle) {
     'Run deterministic fidelity scoring for the "' + f.key + '" family in ' + ROOT + ' (work from that root).\n' +
     'Execute exactly this (as a bash script; $REF is the newest dated ground-truth dir):\n' + scoreScript(f, tag) + '\n\n' +
     'If $REF is empty or a tokens.json is missing, skip that surface and explain in notes.\n' +
-    'Then Read each produced ' + SCRATCH + '/score-*-' + tag + '.json report and return per surface: tokenOverall, colors, typography, radii, spacing, shadows (null where the report says null), and topDeltas = the first 8 delta "detail" strings.',
+    'Then Read each produced ' + SCRATCH + '/score-*-' + tag + '.json report and return per surface: tokenOverall, colors, typography, radii, spacing, shadows, elementOverall (null where the report says null), topDeltas = the first 8 delta "detail" strings, and typedRepairs = the first 12 entries of the report\'s elements.typedRepairs formatted as "[type] detail" (empty array if element scoring was skipped). Typed repairs are machine-measured element-level fixes — the fix agent\'s primary work list.',
     { label: 'score:' + f.key + ':' + tag, phase: phaseTitle, model: 'haiku', effort: 'low', schema: SCORE_SCHEMA }
   )
 }

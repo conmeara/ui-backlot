@@ -35,7 +35,7 @@ failing:
 | --- | --- | --- | --- |
 | `live-web` | Real app reachable in a browser on this machine | claude (claude.ai), figma, codex (web) | Agent-driven capture in the **user's own Chrome** (claude-in-chrome MCP: logged-in session, inject extractor, save tokens) or Playwright for public pages. |
 | `native-local` | Installed macOS app | finder, macos menu bar, calendar | `screencapture` / computer-use screenshots at a fixed window size. No style extraction possible — pixels + measured crops only. |
-| `online-only` | App not installed / not accessible here | word, excel, powerpoint, premiere | Weekly re-scrape of official docs, help-center, press kits, launch-video frame studies (the existing `reference/figma/actual-app/source-index.json` pattern, generalized). |
+| `online-only` | App not installed / not accessible here | word, excel, powerpoint, premiere | Weekly re-scrape of official docs, help-center, press kits, launch-video frame studies (the existing `reference/figma/actual-app/source-index.json` pattern, generalized). For public URLs prefer `npx hyperframes capture <url> --json` (first-party, richer than our Playwright path: scroll-depth screenshots, pixel-sampled palette with oklch, font files, semantically named assets, and **Web Animations API extraction** — the only motion ground truth in the pipeline). Cloudflare-fronted pages still time out — same no-bypass rule applies. |
 | `manual-inbox` | Human-provided screenshots | any (esp. Claude desktop app states agents can't reach) | User drops PNGs anywhere; `tools/import-reference.mjs` files them into a dated set with a manifest entry. First-class citizens of the loop. |
 
 Two constraints this design absorbs deliberately:
