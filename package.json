@@ -83,6 +83,7 @@
     "reference:import": "node tools/import-reference.mjs",
     "fidelity:score": "node tools/fidelity-score.mjs",
     "icons:find": "node tools/find-icon.mjs",
+    "fidelity:trend": "node tools/fidelity-trend.mjs",
     "inventory:generate": "node tools/generate-surface-inventory.mjs",
     "inventory:refresh": "node tools/generate-surface-inventory.mjs --refresh-captures",
     "catalog:generate": "node tools/generate-public-catalog.mjs",

@@ -22,7 +22,10 @@ const FAMILIES = [
   {
     key: 'claude', criticModel: 'fable',
     surfaces: [
-      { id: 'claude-composed-app', src: 'compositions/claude-composed-app.html', cap: 'captures/surface-claude-composed-app/target.png', json: 'captures/surface-claude-composed-app/capture.json', script: 'capture:claude-composed-app', scoreRef: 'web-app-chat-light' },
+      // bespokeContent: the surface is a staged demo scene, not a 1:1 of the
+      // reference view's content — element add/remove repairs are content
+      // noise there; only style-level repairs (recolor/retype/move) apply.
+      { id: 'claude-composed-app', src: 'compositions/claude-composed-app.html', cap: 'captures/surface-claude-composed-app/target.png', json: 'captures/surface-claude-composed-app/capture.json', script: 'capture:claude-composed-app', scoreRef: 'web-app-chat-light', bespokeContent: true },
       { id: 'claude-home', src: 'compositions/claude-home.html', cap: 'captures/surface-claude-home/target.png', json: 'captures/surface-claude-home/capture.json', script: 'capture:claude-home', scoreRef: 'web-app-home-light' },
     ],
     refDir: 'reference/claude',
@@ -309,7 +312,7 @@ async function fixStage(prev, f) {
       'SCOPE — you may edit ONLY these files:\n' + f.surfaces.map(s => '- ' + s.src).join('\n') + '\n' +
       (f.siblings ? 'You may ALSO propagate a shared visual fix (same element styled the same way) into these sibling components, re-capturing each one you touch (capture script = capture:<file basename without .html>):\n' + f.siblings + '\n' : '') +
       (round === 1 ? '\nFIRST, before any edit, snapshot the current captures:\n' + beforeCmds + '\n' : '') +
-      '\n' + repairsBlock(latestScore) + '\n' + critBlock +
+      '\n' + repairsBlock(latestScore, f) + '\n' + critBlock +
       (round > 1 && applied.length ? '\nAlready applied in earlier rounds (do not redo):\n' + JSON.stringify(applied.slice(-12), null, 1) + '\n' : '') +
       '\nRULES:\n' + GOTCHAS + '\n\n' +
       'VERIFY: after your edits, run the capture script for each surface you changed (npm run <script> from the repo root) and Read the produced PNG against the reference images (' + f.refs + '). A capture that errors means your edit broke the template — fix it before finishing. If a spec cannot be implemented cleanly, skip it with a reason (do not force a bad approximation).\n' +
@@ -388,11 +391,24 @@ function bestGain(prevScore, newScore) {
   return gain === -Infinity ? Infinity : gain
 }
 
-function repairsBlock(score) {
+function repairsBlock(score, f) {
   if (!score || !score.scores) return ''
-  const lines = score.scores.flatMap(s => (s.typedRepairs || []).map(r => '  [' + surfaceKey(s.surface) + '] ' + r))
+  const bespoke = new Set((f.surfaces || []).filter(s => s.bespokeContent).map(s => s.id))
+  const lines = score.scores.flatMap(s => {
+    const key = surfaceKey(s.surface)
+    let repairs = s.typedRepairs || []
+    if (bespoke.has(key)) {
+      // Staged demo scene vs different live content: add/remove suggestions
+      // are content noise; keep only style-level repairs.
+      repairs = repairs.filter(r => /^\[(recolor|retype|move)\]/.test(String(r).trim()))
+    }
+    return repairs.map(r => '  [' + key + '] ' + r)
+  })
   if (lines.length === 0) return ''
-  return 'TYPED REPAIRS (machine-measured element-level diffs vs live ground truth — your PRIMARY work list; each names the element, what is wrong, and the real value):\n' + lines.join('\n') + '\n'
+  const note = bespoke.size
+    ? '(For ' + Array.from(bespoke).join(', ') + ' the content is intentionally staged demo material — element add/remove suggestions were filtered out; do NOT copy the reference\'s conversation content into it.)\n'
+    : ''
+  return 'TYPED REPAIRS (machine-measured element-level diffs vs live ground truth — your PRIMARY work list; each names the element, what is wrong, and the real value):\n' + lines.join('\n') + '\n' + note
 }
 
 async function strangerStage(f, idx) {
