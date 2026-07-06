@@ -157,15 +157,15 @@
             <span class="status-chip good">Accessibility: Good</span>
             <span class="status-chip">2 comments</span>
             <span class="view-buttons"><i></i><i></i><i></i></span>
-            <span class="zoom-percent">118%</span>
             <span class="zoom-track"></span>
+            <span class="zoom-percent">118%</span>
           </div>
         </div>
         <aside class="inspector comments-pane">
           <div class="pane-title"><strong>Comments</strong><button>New</button></div>
           <div class="comments-card active-thread">
             <span class="comment-dot">C</span>
-            <p><b>Claude</b><small>Just now</small>Updated the opening title and matched the chart to the Q1 numbers.<em>Resolve</em></p>
+            <p><b>Claude</b><small>Just now</small>Updated the opening title to Q1 Budget Analysis and tightened the subtitle.<em>Resolve</em></p>
           </div>
           <div class="comments-card">
             <span class="comment-dot user">A</span>
@@ -2033,6 +2033,7 @@
         width: 100%;
         height: 100%;
         background:
+          linear-gradient(125deg, transparent 0 40%, rgba(255, 255, 255, 0.1) 40% 43%, transparent 43%),
           linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
           radial-gradient(circle at 53% 44%, rgba(255, 255, 255, 0.42) 0 13%, transparent 14%),
           linear-gradient(16deg, transparent 0 28%, rgba(30, 30, 30, 0.35) 28% 30%, transparent 30%),
@@ -2215,16 +2216,41 @@
           linear-gradient(#595959 0 1px, transparent 1px 4px, #595959 4px 5px, transparent 5px 8px, #595959 8px 9px);
       }
 
+      .view-buttons i:nth-child(2) {
+        background:
+          linear-gradient(#595959 0 5px, transparent 5px 7px, #595959 7px 12px),
+          linear-gradient(90deg, #595959 0 5px, transparent 5px 7px, #595959 7px 12px);
+        background-size: 12px 12px;
+      }
+
+      .view-buttons i:nth-child(3) {
+        background: linear-gradient(#595959 0 8px, transparent 8px 9px, #595959 9px 10px);
+      }
+
       .zoom-percent {
         min-width: 22px;
         font-weight: 400;
       }
 
       .zoom-track {
+        position: relative;
         width: 70px;
         height: 2px;
         border-radius: 0;
-        background: linear-gradient(90deg, #666 0 52%, #bfbfbf 52%);
+        background: #c4c4c4;
+      }
+
+      .zoom-track::after {
+        content: "";
+        position: absolute;
+        left: 52%;
+        top: -3px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #f7f7f7;
+        border: 1px solid #8f8f8f;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.2);
       }
 
       .inspector.comments-pane {
