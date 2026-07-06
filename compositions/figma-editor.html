@@ -61,6 +61,8 @@
           <path d="m16 18 6-6-6-6" />
           <path d="m8 6-6 6 6 6" />
         </symbol>
+        <symbol id="si-figma" viewBox="0 0 24 24"><path fill="currentColor" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491M12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539m-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019c1.705 0 3.093-1.376 3.093-3.068v-2.97zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49m-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019z"/></symbol>
+        <symbol id="lucide-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m21 21l-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g></symbol>
       </svg>
       <div class="figma-titlebar">
         <div class="traffic" aria-hidden="true">
@@ -69,7 +71,7 @@
           <span class="green"></span>
         </div>
         <div class="file-title">
-          <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+          <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
           <span>Playground Page</span>
           <span class="title-chevron"></span>
         </div>
@@ -85,7 +87,7 @@
       <aside class="left-panel" data-primitive="figma-left-panel">
         <div class="file-context">
           <div class="file-context-toprow">
-            <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+            <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
             <span class="file-context-spacer" aria-hidden="true"></span>
             <button class="panel-icon-button collapse" type="button" aria-label="Toggle UI"></button>
           </div>
@@ -95,7 +97,7 @@
         <div class="panel-tabs">
           <button class="panel-tab active" type="button">File</button>
           <button class="panel-tab" type="button">Assets</button>
-          <button class="panel-icon-button collapse" type="button" aria-label="Minimize UI"></button>
+          <svg class="backlot-icon panel-search-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
         </div>
         <div class="page-section">
           <div class="panel-heading">Pages</div>
@@ -294,7 +296,7 @@
       <header class="figma-topbar" data-primitive="figma-dark-topbar">
         <div class="top-left">
           <button class="hamburger" type="button" aria-label="Main menu"><span></span><span></span><span></span></button>
-          <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+          <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
           <strong>Onboarding</strong>
           <span class="chevron"></span>
         </div>
@@ -310,7 +312,7 @@
       <aside class="figma-sidebar" data-primitive="figma-dark-sidebar">
         <div class="sidebar-file-header">
           <div class="sidebar-file-header-toprow">
-            <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+            <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
             <span class="file-context-spacer" aria-hidden="true"></span>
             <button class="collapse-ui" type="button" aria-label="Toggle UI"></button>
           </div>
@@ -318,13 +320,10 @@
           <small>Mobile flow</small>
         </div>
         <div class="tabs">
-          <button class="tab active" type="button">Layers</button>
+          <button class="tab active" type="button">File</button>
           <button class="tab" type="button">Assets</button>
+          <svg class="backlot-icon panel-search-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
         </div>
-        <label class="search-box">
-          <span></span>
-          <input value="Search layers" aria-label="Search layers" readonly>
-        </label>
         <div class="tree">
           <div class="tree-row open"><span class="twisty"></span><span class="page-icon"></span><strong>Onboarding</strong></div>
           <div class="tree-row child"><span class="frame-icon"></span><span>Welcome</span></div>
@@ -536,24 +535,11 @@
       }
 
       .figma-mark {
-        width: 16px;
-        height: 22px;
-        display: grid;
-        grid-template-columns: 8px 8px;
-        grid-template-rows: repeat(3, 7px);
-        gap: 0;
+        width: 18px;
+        height: 18px;
+        flex: none;
+        color: #000;
       }
-
-      .figma-mark span {
-        width: 8px;
-        height: 8px;
-      }
-
-      .figma-mark span:nth-child(1) { background: #f24e1e; border-radius: 4px 0 0 4px; }
-      .figma-mark span:nth-child(2) { background: #ff7262; border-radius: 0 4px 4px 0; }
-      .figma-mark span:nth-child(3) { background: #a259ff; border-radius: 4px 0 0 4px; }
-      .figma-mark span:nth-child(4) { background: #1abcfe; border-radius: 50%; }
-      .figma-mark span:nth-child(5) { background: #0acf83; border-radius: 4px 0 4px 4px; }
 
       .title-chevron {
         width: 8px;
@@ -664,6 +650,14 @@
         height: 44px;
         padding: 0 12px;
         border-bottom: 1px solid var(--figma-border);
+      }
+
+      .panel-search-icon {
+        width: 16px;
+        height: 16px;
+        margin-left: auto;
+        color: #6b6b6b;
+        flex: none;
       }
 
       .panel-tab,
@@ -1904,7 +1898,7 @@
         border-radius: 8px;
         color: #777;
         padding: 0 14px;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 560;
       }
 
@@ -1932,9 +1926,9 @@
       }
 
       .panel-heading {
-        margin: 18px 20px 12px;
+        margin: 14px 16px 6px;
         color: #222;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 720;
       }
 
@@ -1944,10 +1938,10 @@
 
       .page-row,
       .layer-row {
-        height: 42px;
+        height: 28px;
         border-radius: 8px;
         color: #242424;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 580;
       }
 
@@ -2701,22 +2695,10 @@
       .figma-page-onboarding .hamburger span:nth-child(3) { top: 18px; }
 
       .figma-page-onboarding .figma-mark {
-        display: grid;
-        grid-template-columns: repeat(2, 8px);
-        grid-template-rows: repeat(3, 8px);
-        width: 17px;
-        height: 25px;
+        width: 18px;
+        height: 18px;
+        color: #fff;
       }
-
-      .figma-page-onboarding .figma-mark span {
-        border-radius: 8px;
-      }
-
-      .figma-page-onboarding .figma-mark span:nth-child(1) { background: #f24e1e; }
-      .figma-page-onboarding .figma-mark span:nth-child(2) { background: #ff7262; }
-      .figma-page-onboarding .figma-mark span:nth-child(3) { background: #a259ff; }
-      .figma-page-onboarding .figma-mark span:nth-child(4) { background: #1abcfe; border-radius: 50%; }
-      .figma-page-onboarding .figma-mark span:nth-child(5) { background: #0acf83; border-radius: 8px 8px 50% 50%; }
 
       .figma-page-onboarding .top-left strong {
         font-size: 15px;
@@ -3673,6 +3655,10 @@
 
       .figma-page-onboarding .tab.active::after {
         display: none;
+      }
+
+      .figma-page-onboarding .panel-search-icon {
+        color: #9a9a9a;
       }
 
       .figma-page-onboarding .search-box {
