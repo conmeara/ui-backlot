@@ -5,7 +5,7 @@ export const meta = {
   phases: [
     { title: 'Score', detail: 'Deterministic fidelity-score baselines vs dated reference sets', model: 'haiku' },
     { title: 'Critique', detail: 'Fable/Opus design critics per app family vs references + measured deltas' },
-    { title: 'Fix', detail: 'Sonnet implementers, file-scoped, capture-verify loops', model: 'sonnet' },
+    { title: 'Fix', detail: 'Sonnet fix rounds driven by typed repairs, re-scored each round until plateau (max 4)', model: 'sonnet' },
     { title: 'Judge', detail: 'Re-score + Opus before/after adversarial judgment + stranger test + Sonnet repair on regression', model: 'opus' },
     { title: 'Gate', detail: 'Full capture sweep + registry/catalog/lint/render gates', model: 'haiku' },
   ],
@@ -138,9 +138,22 @@ const FIX_SCHEMA = {
 }
 
 const JUDGE_SCHEMA = {
-  type: 'object', required: ['verdict', 'regressions', 'remaining', 'summary'], additionalProperties: false,
+  type: 'object', required: ['verdict', 'pairwise', 'regressions', 'remaining', 'summary'], additionalProperties: false,
   properties: {
     verdict: { enum: ['improved', 'mixed', 'regressed', 'no-change'] },
+    // Comparative judging (research: absolute MLLM rubric scoring is unreliable
+    // on close pairs; pairwise comparison is not) — one call per surface.
+    pairwise: {
+      type: 'array',
+      items: {
+        type: 'object', required: ['surface', 'closerToReference', 'why'], additionalProperties: false,
+        properties: {
+          surface: { type: 'string' },
+          closerToReference: { enum: ['after', 'before', 'tie'] },
+          why: { type: 'string' },
+        },
+      },
+    },
     regressions: { type: 'array', items: { type: 'string' } },
     remaining: { type: 'array', items: { type: 'string' } },
     summary: { type: 'string' },
@@ -211,7 +224,7 @@ function surfaceLines(f) {
 
 const GOTCHAS = [
   '1. CASCADE TRAP: the big composition files contain LATER style blocks that re-style the same selectors as earlier blocks — the LAST rule wins. Before editing any rule, grep the file for ALL occurrences of the selector and edit the effective (last) one, or your change silently does nothing.',
-  '2. ICONS: never hand-draw glyphs or use Unicode symbols as icons — they read as fake. Use the closest real glyph: copy <symbol> elements from assets/icons/source-authentic/ (see assets/icons/sprite-manifest.json) into the composition hidden <svg style="display:none"> block and reference them with <svg class="backlot-icon"><use href="#symbol-id"/></svg>. Office apps use fluent-* symbols, macOS uses f7-*, claude/browser use lucide-*. If the real app uses a specific glyph the sprite set lacks, add the real one — matching the real icon matters more than sticking to the existing set.',
+  '2. ICONS: never hand-draw glyphs or use Unicode symbols as icons — they read as fake. Use the closest real glyph: copy <symbol> elements from assets/icons/source-authentic/ (see assets/icons/sprite-manifest.json) into the composition hidden <svg style="display:none"> block and reference them with <svg class="backlot-icon"><use href="#symbol-id"/></svg>. Office apps use fluent-* symbols, macOS uses f7-*, claude/browser use lucide-*. When the needed glyph is not in the sprite set, SEARCH 200k+ icons offline: node tools/find-icon.mjs <terms> [--sets lucide,fluent,f7,simple-icons] --symbol prints a ready-to-paste <symbol> — matching the real icon matters more than sticking to the existing set.',
   '3. FIDELITY-FIRST: recreate the real app as closely as possible — match real fonts, glyphs, logos, colors, and spacing exactly (tracking a real font or icon to nail it is fine). Build in editable HTML/CSS/SVG because surfaces must animate for video, not because of any asset rule. Only hard line: do not commit the owner\'s private/logged-in captures (use synthetic demo content in surfaces). SCOPE: do not edit styles/backlot-foundation.css, tools/, runtime/, or files outside your scope list.',
   '4. PATHS: captures load compositions via file:// so keep each file existing relative asset-path convention exactly as-is. Keep the foundation @import in the OUTER style block (outside <template>) where that pattern exists.',
   '5. MOUNTING: compositions are mounted into workflow wrappers by runtime/backlot-component-loader.js, which strips <script> tags and inherits parent fonts — do not rely on scripts for visual state; keep styles inside the template.',
@@ -239,7 +252,7 @@ function scoreStage(f, tag, phaseTitle) {
     'Run deterministic fidelity scoring for the "' + f.key + '" family in ' + ROOT + ' (work from that root).\n' +
     'Execute exactly this (as a bash script; $REF is the newest dated ground-truth dir):\n' + scoreScript(f, tag) + '\n\n' +
     'If $REF is empty or a tokens.json is missing, skip that surface and explain in notes.\n' +
-    'Then Read each produced ' + SCRATCH + '/score-*-' + tag + '.json report and return per surface: tokenOverall, colors, typography, radii, spacing, shadows, elementOverall (null where the report says null), topDeltas = the first 8 delta "detail" strings, and typedRepairs = the first 12 entries of the report\'s elements.typedRepairs formatted as "[type] detail" (empty array if element scoring was skipped). Typed repairs are machine-measured element-level fixes — the fix agent\'s primary work list.',
+    'Then Read each produced ' + SCRATCH + '/score-*-' + tag + '.json report and return per surface: surface = the SURFACE ID ONLY (e.g. "claude-home" — never include the -' + tag + ' suffix), tokenOverall, colors, typography, radii, spacing, shadows, elementOverall (null where the report says null), topDeltas = the first 8 delta "detail" strings, and typedRepairs = the first 12 entries of the report\'s elements.typedRepairs formatted as "[type] detail" (empty array if element scoring was skipped). Typed repairs are machine-measured element-level fixes — the fix agent\'s primary work list.',
     { label: 'score:' + f.key + ':' + tag, phase: phaseTitle, model: 'haiku', effort: 'low', schema: SCORE_SCHEMA }
   )
 }
@@ -263,26 +276,82 @@ function critiqueStage(preScore, f) {
   ).then(crit => ({ preScore: preScore, crit: crit }))
 }
 
+// Convergence loop (research: iterate 3-5 rounds with element-level feedback;
+// whole-screenshot single-pass plateaus). Each round: fix agent works the
+// typed-repair list + critic gaps, we re-score deterministically, and we stop
+// when the best per-surface gain drops below EPSILON or MAX_FIX_ROUNDS hits.
+const MAX_FIX_ROUNDS = 4
+const PLATEAU_EPSILON = 0.005
+
 async function fixStage(prev, f) {
   const crit = prev ? prev.crit : null
-  if (!crit || !crit.gaps || crit.gaps.length === 0) {
-    log('critique:' + f.key + ' found no confident gaps — skipping fix')
-    return { preScore: prev ? prev.preScore : null, crit: crit, fix: null }
+  const preScore = prev ? prev.preScore : null
+  const hasRepairs = preScore && (preScore.scores || []).some(s => (s.typedRepairs || []).length > 0)
+  if ((!crit || !crit.gaps || crit.gaps.length === 0) && !hasRepairs) {
+    log('critique:' + f.key + ' found no gaps and no typed repairs — skipping fix')
+    return { preScore: preScore, crit: crit, fix: null, rounds: [] }
   }
-  log('critique:' + f.key + ' → ' + crit.gaps.length + ' gap(s); fixing')
   const beforeCmds = 'mkdir -p ' + SCRATCH + ' && ' + f.surfaces.map(s => 'cp ' + ROOT + '/' + s.cap + ' ' + SCRATCH + '/before-' + s.id + '.png').join(' && ')
-  const fix = await agent(
-    'Implement visual-fidelity fixes in ' + ROOT + ' (work from that root).\n\n' +
-    'SCOPE — you may edit ONLY these files:\n' + f.surfaces.map(s => '- ' + s.src).join('\n') + '\n' +
-    (f.siblings ? 'You may ALSO propagate a shared visual fix (same element styled the same way) into these sibling components, re-capturing each one you touch (capture script = capture:<file basename without .html>):\n' + f.siblings + '\n' : '') +
-    '\nFIRST, before any edit, snapshot the current captures:\n' + beforeCmds + '\n\n' +
-    'FIX SPECS from the design critic — implement in order, most severe first:\n' + JSON.stringify(crit.gaps, null, 1) + '\n\n' +
-    'RULES:\n' + GOTCHAS + '\n\n' +
-    'VERIFY LOOP: after your edits, run the capture script for each surface you changed (npm run <script> from the repo root), Read the produced PNG visually, and compare against the reference images (' + f.refs + '). Iterate up to 3 rounds until it reads right. A capture that errors means your edit broke the template — fix it before finishing. If a spec cannot be implemented cleanly, skip it with a reason (do not force a bad approximation).\n' +
-    'Return: applied (surface/file/what changed), skipped (issue/reason), capturesVerified, notes.',
-    { label: 'fix:' + f.key, phase: 'Fix', model: 'sonnet', schema: FIX_SCHEMA }
-  )
-  return { preScore: prev.preScore, crit: crit, fix: fix }
+
+  const applied = []
+  const skipped = []
+  const rounds = []
+  let latestScore = preScore
+  let notes = ''
+  for (let round = 1; round <= MAX_FIX_ROUNDS; round += 1) {
+    const critBlock = crit && crit.gaps && crit.gaps.length
+      ? (round === 1
+          ? 'FIX SPECS from the design critic — implement alongside the typed repairs, most severe first:\n' + JSON.stringify(crit.gaps, null, 1) + '\n'
+          : 'Critic specs from round 1 (skip any already applied; revisit ones skipped earlier only if now feasible):\n' + JSON.stringify(crit.gaps, null, 1) + '\n')
+      : ''
+    const fix = await agent(
+      'Implement visual-fidelity fixes in ' + ROOT + ' (work from that root). Fix round ' + round + ' of up to ' + MAX_FIX_ROUNDS + ' — the loop re-scores after each round and stops when scores plateau, so prioritize the changes that move the measured score.\n\n' +
+      'SCOPE — you may edit ONLY these files:\n' + f.surfaces.map(s => '- ' + s.src).join('\n') + '\n' +
+      (f.siblings ? 'You may ALSO propagate a shared visual fix (same element styled the same way) into these sibling components, re-capturing each one you touch (capture script = capture:<file basename without .html>):\n' + f.siblings + '\n' : '') +
+      (round === 1 ? '\nFIRST, before any edit, snapshot the current captures:\n' + beforeCmds + '\n' : '') +
+      '\n' + repairsBlock(latestScore) + '\n' + critBlock +
+      (round > 1 && applied.length ? '\nAlready applied in earlier rounds (do not redo):\n' + JSON.stringify(applied.slice(-12), null, 1) + '\n' : '') +
+      '\nRULES:\n' + GOTCHAS + '\n\n' +
+      'VERIFY: after your edits, run the capture script for each surface you changed (npm run <script> from the repo root) and Read the produced PNG against the reference images (' + f.refs + '). A capture that errors means your edit broke the template — fix it before finishing. If a spec cannot be implemented cleanly, skip it with a reason (do not force a bad approximation).\n' +
+      'Return: applied (surface/file/what changed), skipped (issue/reason), capturesVerified, notes.',
+      { label: 'fix:' + f.key + ':r' + round, phase: 'Fix', model: 'sonnet', schema: FIX_SCHEMA }
+    )
+    if (fix) {
+      applied.push(...(fix.applied || []))
+      skipped.push(...(fix.skipped || []))
+      notes = fix.notes || notes
+    }
+    const newScore = await scoreStage(f, 'r' + round, 'Fix')
+    const gain = bestGain(latestScore, newScore)
+    rounds.push({
+      round: round,
+      applied: fix ? (fix.applied || []).length : 0,
+      gain: Number.isFinite(gain) ? Number(gain.toFixed(4)) : null,
+      scores: newScore ? (newScore.scores || []).map(s => ({ surface: surfaceKey(s.surface), tokenOverall: s.tokenOverall, elementOverall: s.elementOverall })) : null,
+    })
+    if (newScore) latestScore = newScore
+    if (!newScore || !Number.isFinite(gain)) {
+      log('fix:' + f.key + ' round ' + round + ' — no comparable score, stopping loop')
+      break
+    }
+    log('fix:' + f.key + ' round ' + round + ': best gain ' + gain.toFixed(4))
+    if (gain < PLATEAU_EPSILON) {
+      log('fix:' + f.key + ' plateaued after round ' + round)
+      break
+    }
+  }
+  return {
+    preScore: preScore,
+    crit: crit,
+    fix: { applied: applied, skipped: skipped, capturesVerified: true, notes: notes },
+    rounds: rounds,
+  }
+}
+
+// Score agents sometimes echo the report label ("claude-home-before") instead
+// of the bare surface id — normalize so before/after keys actually meet.
+function surfaceKey(name) {
+  return String(name).replace(/-(before|after|r\d+)$/, '')
 }
 
 function scoreBar(preScore, postScore) {
@@ -290,16 +359,40 @@ function scoreBar(preScore, postScore) {
   // additionally needs at least one score to move up.
   if (!preScore || !postScore) return { applicable: false, regressed: [], improvedAny: false }
   const before = {}
-  for (const s of preScore.scores || []) before[s.surface] = s.tokenOverall
+  for (const s of preScore.scores || []) before[surfaceKey(s.surface)] = s.tokenOverall
   const regressed = []
   let improvedAny = false
   for (const s of postScore.scores || []) {
-    const b = before[s.surface]
+    const b = before[surfaceKey(s.surface)]
     if (typeof b !== 'number' || typeof s.tokenOverall !== 'number') continue
-    if (s.tokenOverall < b - 0.005) regressed.push(s.surface + ': tokenOverall ' + b.toFixed(3) + ' → ' + s.tokenOverall.toFixed(3))
+    if (s.tokenOverall < b - 0.005) regressed.push(surfaceKey(s.surface) + ': tokenOverall ' + b.toFixed(3) + ' → ' + s.tokenOverall.toFixed(3))
     if (s.tokenOverall > b + 0.005) improvedAny = true
   }
   return { applicable: true, regressed: regressed, improvedAny: improvedAny }
+}
+
+// Largest per-surface improvement between two score snapshots, across both
+// tokenOverall and elementOverall. Drives the fix-loop plateau check.
+function bestGain(prevScore, newScore) {
+  if (!prevScore || !newScore) return Infinity
+  const prev = {}
+  for (const s of prevScore.scores || []) prev[surfaceKey(s.surface)] = s
+  let gain = -Infinity
+  for (const s of newScore.scores || []) {
+    const p = prev[surfaceKey(s.surface)]
+    if (!p) continue
+    for (const k of ['tokenOverall', 'elementOverall']) {
+      if (typeof s[k] === 'number' && typeof p[k] === 'number') gain = Math.max(gain, s[k] - p[k])
+    }
+  }
+  return gain === -Infinity ? Infinity : gain
+}
+
+function repairsBlock(score) {
+  if (!score || !score.scores) return ''
+  const lines = score.scores.flatMap(s => (s.typedRepairs || []).map(r => '  [' + surfaceKey(s.surface) + '] ' + r))
+  if (lines.length === 0) return ''
+  return 'TYPED REPAIRS (machine-measured element-level diffs vs live ground truth — your PRIMARY work list; each names the element, what is wrong, and the real value):\n' + lines.join('\n') + '\n'
 }
 
 async function strangerStage(f, idx) {
@@ -337,7 +430,7 @@ async function strangerStage(f, idx) {
 
 async function judgeStage(prev, f, idx) {
   if (!prev) return { family: f.key, crit: null, fix: null, judge: null, scores: null, stranger: null }
-  if (!prev.fix) return { family: f.key, crit: prev.crit, fix: null, judge: { verdict: 'no-change', regressions: [], remaining: [], summary: 'No confident gaps found; nothing changed.' }, scores: { before: prev.preScore, after: null, bar: null }, stranger: null }
+  if (!prev.fix) return { family: f.key, crit: prev.crit, fix: null, rounds: [], judge: { verdict: 'no-change', pairwise: [], regressions: [], remaining: [], summary: 'No confident gaps found; nothing changed.' }, scores: { before: prev.preScore, after: null, bar: null }, stranger: null }
 
   const postScore = await scoreStage(f, 'after', 'Judge')
   const bar = scoreBar(prev.preScore, postScore)
@@ -348,13 +441,18 @@ async function judgeStage(prev, f, idx) {
     : ''
 
   const beforeList = f.surfaces.map(s => '- ' + s.id + ': BEFORE ' + SCRATCH + '/before-' + s.id + '.png | AFTER ' + ROOT + '/' + s.cap).join('\n')
+  const roundsBlock = prev.rounds && prev.rounds.length
+    ? 'Fix-loop trajectory (deterministic scores after each round):\n' + JSON.stringify(prev.rounds, null, 1) + '\n'
+    : ''
   const judgePrompt =
     'Adversarial design judgment of a fidelity pass on the "' + f.key + '" family in ' + ROOT + '.\n' +
-    'An implementer just applied these changes:\n' + JSON.stringify(prev.fix.applied, null, 1) + '\n\n' +
+    'An implementer just applied these changes across ' + (prev.rounds ? prev.rounds.length : 1) + ' fix round(s):\n' + JSON.stringify(prev.fix.applied, null, 1) + '\n\n' +
+    roundsBlock +
     'Read all three visual sources per surface — BEFORE snapshot, AFTER capture, and the real-app references (' + f.refs + '):\n' + beforeList + '\n' +
     barBlock + '\n' +
-    'Decide for the whole family: is the AFTER genuinely closer to the real app than the BEFORE? Hunt for regressions the implementer missed: overlapping or clipped text, broken layout, elements that disappeared unintentionally, spacing that got worse, icons that render as empty boxes. Do NOT rubber-stamp — your default posture is skeptical.\n' +
-    'verdict: "regressed" if anything is worse than before (including the hard score bar); "mixed" if real improvements plus minor new issues; "improved" only if strictly better AND the score bar allows it.\n' +
+    'JUDGE COMPARATIVELY, per surface (research: absolute quality rubrics are unreliable; comparisons are not). For EACH surface answer one question: looking at BEFORE and AFTER side by side against the reference, WHICH ONE is closer to the real app — after, before, or tie? Record each call in pairwise with a one-line why naming the decisive visual evidence.\n' +
+    'Then hunt for regressions the implementer missed: overlapping or clipped text, broken layout, elements that disappeared unintentionally, spacing that got worse, icons that render as empty boxes. Do NOT rubber-stamp — your default posture is skeptical.\n' +
+    'verdict (derived from your pairwise calls + the hard bar): "regressed" if any surface is closer-at-BEFORE or the score bar regressed; "mixed" if improvements plus minor new issues or any tie; "improved" only if every pairwise call is "after" AND the score bar allows it.\n' +
     'regressions: each precise enough for a repair agent to act on (file, element/selector, what broke).\n' +
     'remaining: gaps worth a future pass (including critic specs that were skipped, if they still matter).'
   let judge = await agent(judgePrompt, { label: 'judge:' + f.key, phase: 'Judge', model: 'opus', effort: 'high', schema: JUDGE_SCHEMA })
@@ -386,7 +484,7 @@ async function judgeStage(prev, f, idx) {
     judge.remaining = (judge.remaining || []).concat(tells)
   }
 
-  return { family: f.key, crit: prev.crit, fix: prev.fix, judge: judge, scores: { before: prev.preScore, after: postScore, bar: bar }, stranger: stranger }
+  return { family: f.key, crit: prev.crit, fix: prev.fix, rounds: prev.rounds || [], judge: judge, scores: { before: prev.preScore, after: postScore, bar: bar }, stranger: stranger }
 }
 
 const selected = (args && args.families) ? FAMILIES.filter(f => args.families.includes(f.key)) : FAMILIES
@@ -418,6 +516,8 @@ const gate = await agent(
 const summary = familyResults.filter(Boolean).map(r => ({
   family: r.family,
   verdict: r.judge ? r.judge.verdict : 'unknown',
+  pairwise: r.judge ? r.judge.pairwise : null,
+  fixRounds: r.rounds || [],
   gapsFound: r.crit && r.crit.gaps ? r.crit.gaps.length : 0,
   scoreBefore: r.scores && r.scores.before ? (r.scores.before.scores || []).map(s => ({ surface: s.surface, tokenOverall: s.tokenOverall })) : null,
   scoreAfter: r.scores && r.scores.after ? (r.scores.after.scores || []).map(s => ({ surface: s.surface, tokenOverall: s.tokenOverall })) : null,

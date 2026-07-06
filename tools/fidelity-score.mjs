@@ -539,7 +539,46 @@ function scoreElements(oursPayload, theirsPayload) {
   };
 }
 
+function pngDims(buf) {
+  // PNG IHDR: width/height as big-endian uint32 at offsets 16/20.
+  if (buf.length < 24 || buf.readUInt32BE(12) !== 0x49484452) return null;
+  return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+}
+
 async function pixelDiff(oursPng, theirsPng) {
+  // Same-dimension images: odiff (native, anti-aliasing-aware — the honest
+  // regression/drift metric). Mismatched dimensions: canvas MAE fallback,
+  // directional only.
+  const [oursBuf, theirsBuf] = await Promise.all([
+    fs.readFile(path.resolve(oursPng)),
+    fs.readFile(path.resolve(theirsPng)),
+  ]);
+  const dimsA = pngDims(oursBuf);
+  const dimsB = pngDims(theirsBuf);
+  if (dimsA && dimsB && dimsA.width === dimsB.width && dimsA.height === dimsB.height) {
+    try {
+      const { compare } = await import("odiff-bin");
+      const diffPath = path.join(root, "reports", "fidelity", "diff-latest.png");
+      await fs.mkdir(path.dirname(diffPath), { recursive: true });
+      const result = await compare(path.resolve(oursPng), path.resolve(theirsPng), diffPath, {
+        antialiasing: true,
+        threshold: 0.1,
+        outputDiffMask: true,
+      });
+      const pct = result.match ? 0 : result.diffPercentage ?? 0;
+      return {
+        method: "odiff",
+        width: dimsA.width,
+        height: dimsA.height,
+        pctPixelsChanged: pct,
+        meanAbsError: null,
+        diffMask: result.match ? null : path.relative(root, diffPath),
+        score: Math.max(0, 1 - pct / 100),
+      };
+    } catch {
+      /* odiff-bin unavailable — fall through to canvas */
+    }
+  }
   const { chromium } = await import("playwright");
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -587,7 +626,7 @@ async function pixelDiff(oursPng, theirsPng) {
       },
       { a: await toDataUri(oursPng), b: await toDataUri(theirsPng) }
     );
-    return { ...result, score: Math.max(0, 1 - result.meanAbsError / 64) };
+    return { method: "canvas", ...result, score: Math.max(0, 1 - result.meanAbsError / 64) };
   } finally {
     await browser.close();
   }
@@ -673,7 +712,7 @@ async function main() {
     const s = elements.subscores;
     console.log(`  ELEMENT    ${fmt(elements.elementOverall)} (match ${fmt(s.match)}, pos ${fmt(s.position)}, size ${fmt(s.size)}, color ${fmt(s.color)}, type ${fmt(s.typography)}, text ${fmt(s.text)}; ${elements.counts.matched}/${elements.counts.theirs} real elements matched)`);
   }
-  if (pixel) console.log(`  pixel      ${fmt(pixel.score)} (MAE ${pixel.meanAbsError.toFixed(1)}, ${pixel.pctPixelsChanged.toFixed(1)}% changed)`);
+  if (pixel) console.log(`  pixel      ${fmt(pixel.score)} (${pixel.method}${pixel.meanAbsError != null ? `, MAE ${pixel.meanAbsError.toFixed(1)}` : ""}, ${pixel.pctPixelsChanged.toFixed(1)}% changed)`);
   console.log(`  top deltas:`);
   for (const delta of report.deltas.slice(0, 8)) {
     console.log(`    - [${delta.kind}] ${delta.detail}`);

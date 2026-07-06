@@ -36,7 +36,7 @@ const TOOLBOX =
 
 const CONVENTIONS =
   'REPO CONVENTIONS (read before building): PRIMITIVES.md (atoms → shells → workflows), DESIGN.md, docs/fidelity-loop-plan-2026-07-05.md, an exemplar composition (compositions/codex-app.html is a good single-window example). ' +
-  'A new surface = compositions/' + FAM + '-app.html with: foundation @import in the OUTER style block, a <template id="..."> wrapping the component, a stage div with data-composition-id/width/height, inline <svg><symbol> icons copied from assets/icons/source-authentic/ (never hand-drawn), namespaced CSS classes, and light theme first (.theme-dark later). ' +
+  'A new surface = compositions/' + FAM + '-app.html with: foundation @import in the OUTER style block, a <template id="..."> wrapping the component, a stage div with data-composition-id/width/height, inline <svg><symbol> icons copied from assets/icons/source-authentic/ or found via node tools/find-icon.mjs <terms> --symbol (200k+ icons offline, prints a paste-ready <symbol>; never hand-draw glyphs), namespaced CSS classes, and light theme first (.theme-dark later). ' +
   'It must render standalone via file:// for tools/capture-web-ui.mjs.'
 
 const PROBE_SCHEMA = {

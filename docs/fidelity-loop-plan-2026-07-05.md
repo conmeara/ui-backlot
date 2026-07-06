@@ -120,20 +120,32 @@ product (critique, spec, judge, stranger test); Sonnet for build/fix
 iteration; Haiku for mechanical stages (scoring commands, file staging,
 gates, registration).
 
-## Rollout
+## Rollout — status as of 2026-07-06
 
-- **Phase 1 (this pass):** extractor + live-reference tools + scorer +
-  `sources.json` + first live claude.ai reference set + baseline scores for
-  the Claude family.
-- **Phase 2:** wire scorecard into `.claude/workflows/fidelity-push.js`
-  (critics receive `deltas`, judges receive scores + stranger test); run the
-  Claude family to plateau.
-- **Phase 3:** weekly local scheduled session (`reference:weekly`) + drift
-  issue filing; roll remaining families through their tiers.
+- **Phase 1 ✅** extractor + live-reference tools + scorer + `sources.json` +
+  dated live claude.ai ground truth (tokens + local-only elements/screenshots).
+- **Phase 2 ✅** fidelity-push v3: Score phase feeds critics; fix agents work
+  the scorer's typed element repairs directly and loop up to 4 rounds with a
+  0.005 plateau stop; Opus judge gives per-surface PAIRWISE verdicts
+  (before-vs-after against the reference) under the deterministic no-regression
+  bar; stranger test on neutral-named pairs; Haiku on mechanical stages.
+  Scorer v2: element matching + CIEDE2000 + typed repairs; odiff (AA-aware,
+  native) for same-dimension pixel diffs with canvas fallback;
+  `tools/find-icon.mjs` searches 200k+ icons offline and prints paste-ready
+  <symbol> markup (`npm run icons:find -- <terms> --symbol`).
+  First scored passes: claude-composed-app 0.828→0.859, claude-home
+  0.822→0.871 (pass 113, run before the convergence loop existed).
+- **Phase 3 (next):** weekly local scheduled session (re-capture ground truth,
+  drift-diff vs prior dated set, file issues); roll remaining families through
+  their tiers — the stopped-v1 leftovers in the other 8 families get
+  adjudicated by their first v3 pass.
 - **Phase 4:** GitHub Actions (registry gates, capture sweep on changed
   surfaces, pixel-regression vs committed baselines, PR diff comments),
   GitHub Pages gallery from `catalog:generate` with per-surface scores,
   issue templates pre-filled by the drift bot.
+- **Research backlog (documented, not wired):** TreeBLEU structural axis,
+  motion-fidelity scoring from hyperframes `animations.json`, designlang
+  token-extraction pilot, CLIP/DreamSim perceptual composite.
 
 ## Working capture procedure for claude.ai (validated 2026-07-05)
 
