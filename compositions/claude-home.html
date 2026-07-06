@@ -35,6 +35,10 @@
         <path d="m21 21-4.34-4.34" />
         <circle cx="11" cy="11" r="8" />
       </symbol>
+      <symbol id="lucide-chevrons-up-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m7 15 5 5 5-5" />
+        <path d="m7 9 5-5 5 5" />
+      </symbol>
       <symbol id="lucide-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
         <path d="m15 5 4 4" />
@@ -147,8 +151,8 @@
         </div>
 
         <div class="sidebar-brand">
-          <svg class="backlot-icon claude-mark-icon small" aria-hidden="true"><use href="#si-claude"/></svg>
-          <strong>Claude</strong>
+          <strong class="claude-wordmark">Claude</strong>
+          <button class="sidebar-search" type="button" aria-label="Search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg></button>
           <button class="sidebar-collapse" type="button" aria-label="Collapse sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
         </div>
 
@@ -203,7 +207,7 @@
         <div class="sidebar-footer">
           <span class="profile-dot">DW</span>
           <span><strong>Demo workspace</strong><em>Max plan</em></span>
-          <span class="kebab"></span>
+          <button class="kebab" type="button" aria-label="Expand workspace menu"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevrons-up-down"/></svg></button>
         </div>
       </aside>
 
@@ -349,6 +353,15 @@
         font-weight: 550;
       }
 
+      .claude-wordmark {
+        font-family: var(--font-claude-serif);
+        font-size: 21px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: #121212;
+        line-height: 20px;
+      }
+
       .claude-mark-icon {
         width: 18px;
         height: 18px;
@@ -363,6 +376,7 @@
       }
 
       .sidebar-collapse,
+      .sidebar-search,
       .topbar-icon {
         position: relative;
         border: 0;
@@ -370,10 +384,23 @@
         color: var(--text-400);
       }
 
-      .sidebar-collapse {
+      .sidebar-search {
         width: 26px;
         height: 26px;
         margin-left: auto;
+        display: grid;
+        place-items: center;
+        border-radius: 7px;
+      }
+
+      .sidebar-search svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .sidebar-collapse {
+        width: 26px;
+        height: 26px;
         display: grid;
         place-items: center;
         border-radius: 7px;
@@ -408,10 +435,11 @@
       }
 
       .new-chat-row {
-        height: 30px;
-        gap: 8px;
-        font-size: 13.5px;
-        color: var(--text-200);
+        height: 33px;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 430;
+        color: #373734;
       }
 
       .products-new-badge {
@@ -426,9 +454,9 @@
       }
 
       .new-chat-row .row-icon {
-        width: 15px;
-        height: 15px;
-        color: var(--text-300);
+        width: 20px;
+        height: 20px;
+        color: #121212;
       }
 
       .row-icon {
@@ -439,13 +467,13 @@
       }
 
       .row-icon.compose {
-        width: 18px;
-        height: 18px;
+        width: 22px;
+        height: 22px;
         display: grid;
         place-items: center;
         border-radius: 50%;
         background: rgba(11, 11, 11, 0.07);
-        color: #373734;
+        color: #121212;
       }
 
       .row-icon.compose svg {
@@ -455,9 +483,9 @@
 
       .sidebar-label {
         margin: 12px 7px 5px;
-        color: var(--text-400);
+        color: #7b7974;
         font-size: 12px;
-        font-weight: 550;
+        font-weight: 400;
       }
 
       .recents-label {
@@ -483,8 +511,10 @@
       }
 
       .history-row {
-        margin-bottom: 1px;
-        color: var(--text-200);
+        height: 33px;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #373734;
         font-weight: 430;
       }
 
@@ -550,18 +580,16 @@
         position: relative;
         width: 20px;
         height: 20px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: #7b7974;
       }
 
-      .kebab::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 9px;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: var(--text-500);
-        box-shadow: 5px 0 0 var(--text-500), 10px 0 0 var(--text-500);
+      .kebab svg {
+        width: 14px;
+        height: 14px;
       }
 
       .home-main {
@@ -613,6 +641,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         gap: 12px;
       }
 
@@ -624,7 +653,7 @@
 
       .home-logo h1 {
         margin: 0;
-        color: var(--text-100);
+        color: #373734;
         font-family: var(--font-claude-serif);
         font-size: 40px;
         font-weight: 330;
@@ -734,10 +763,10 @@
         align-items: center;
         gap: 7px;
         padding: 0 14px;
-        border: 1px solid var(--border-100);
+        border: 0;
         border-radius: 9px;
-        background: rgba(255, 255, 255, 0.68);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        background: #ffffff;
+        box-shadow: inset 0 0 0 1px rgba(11, 11, 11, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
         color: var(--text-200);
         font-size: 14px;
         font-weight: 430;
