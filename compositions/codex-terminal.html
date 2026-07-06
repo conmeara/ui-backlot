@@ -38,7 +38,7 @@
           </div>
           <div class="meta-grid">
             <span>model:</span>
-            <strong>gpt-5-codex</strong>
+            <strong>gpt-5.2-codex</strong>
             <em>/model to change</em>
             <span>directory:</span>
             <strong>~/Projects/ui-backlot</strong>
@@ -228,7 +228,8 @@
       }
 
       .codex-splash {
-        width: 490px;
+        width: 1048px;
+        max-width: 100%;
         min-height: 104px;
         padding: 13px 15px 12px;
         border: 1px solid rgba(117, 116, 129, 0.45);
@@ -253,7 +254,7 @@
 
       .meta-grid {
         display: grid;
-        grid-template-columns: 78px 150px 1fr;
+        grid-template-columns: 78px max-content 1fr;
         column-gap: 8px;
         row-gap: 6px;
         align-items: baseline;
