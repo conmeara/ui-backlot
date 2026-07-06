@@ -51,7 +51,6 @@
       </svg>
       <header class="excel-titlebar">
         <div class="excel-traffic" aria-hidden="true"></div>
-        <div class="excel-app-icon">X</div>
         <div class="autosave"><span></span>AutoSave</div>
         <div class="workbook-title">Launch Metrics.xlsx</div>
         <div class="title-search">Search workbook</div>
@@ -73,11 +72,11 @@
         </div>
         <div class="ribbon-group alignment">
           <div class="button-row dense"><span class="align left"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span><span class="align center active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-center-20"></use></svg></span><span class="align right"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span></div>
-          <div class="button-row dense"><span class="merge">Merge</span><span class="wrap active">Wrap</span></div>
+          <div class="button-row dense"><span class="merge">Merge</span><span class="wrap">Wrap Text</span></div>
         </div>
         <div class="ribbon-group number">
-          <div class="ribbon-row"><span class="field number-format">General</span><span class="field percent">%</span></div>
-          <div class="button-row"><span class="toggle">$</span><span class="toggle">,</span><span class="toggle">.0</span><span class="toggle">.00</span></div>
+          <div class="ribbon-row"><span class="field number-format">General</span></div>
+          <div class="button-row"><span class="toggle">$</span><span class="toggle">%</span><span class="toggle">,</span></div>
         </div>
         <div class="ribbon-group cells">
           <div class="ribbon-stack"><span>Insert</span><span>Delete</span><span>Format</span></div>
@@ -181,7 +180,7 @@
       .excel-titlebar {
         height: 34px;
         display: grid;
-        grid-template-columns: 58px 24px auto auto 1fr auto;
+        grid-template-columns: 58px auto auto 1fr auto;
         align-items: center;
         gap: 9px;
         padding: 0 13px;
@@ -213,19 +212,6 @@
           20px 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
           40px 0 0 #28c840,
           40px 0 0 0.5px rgba(0, 0, 0, 0.12) inset;
-      }
-
-      .excel-app-icon {
-        width: 22px;
-        height: 22px;
-        display: grid;
-        place-items: center;
-        border-radius: 6px;
-        background: linear-gradient(135deg, #21a366, var(--excel-dark));
-        color: #fff;
-        font-size: 10px;
-        font-weight: 800;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
       }
 
       .workbook-title {
@@ -467,8 +453,7 @@
         font-size: 11px;
       }
 
-      .field.small,
-      .field.percent {
+      .field.small {
         width: 36px;
       }
 
@@ -536,9 +521,13 @@
         color: var(--excel-dark);
       }
 
-      .merge,
-      .wrap {
+      .merge {
         min-width: 58px;
+        padding: 0 7px;
+      }
+
+      .wrap {
+        min-width: 72px;
         padding: 0 7px;
       }
 
@@ -551,7 +540,7 @@
       .formula-bar {
         height: 35px;
         display: grid;
-        grid-template-columns: 84px 42px 1fr;
+        grid-template-columns: 78px 30px 1fr;
         align-items: center;
         gap: 7px;
         padding: 5px 11px;
@@ -579,8 +568,10 @@
 
       .formula-tools {
         justify-content: center;
-        color: var(--excel);
-        font-weight: 760;
+        background: transparent;
+        border: 0;
+        color: #4a5560;
+        font-weight: 600;
       }
 
       .formula-input {
