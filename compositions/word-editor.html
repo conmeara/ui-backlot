@@ -410,11 +410,9 @@
         background: rgba(198, 91, 71, 0.08);
       }
 
-      /* Ribbon collapsed by default for clean demo videos; components kept
-         in the DOM. Add .ribbon-open to the window to expand. */
       .word-ribbon {
         height: 100px;
-        display: none;
+        display: flex;
         align-items: stretch;
         gap: 0;
         padding: 5px 8px 0;
@@ -595,7 +593,7 @@
       }
 
       .document-workspace {
-        height: calc(100% - 38px - 30px - 24px);
+        height: calc(100% - 38px - 30px - 100px - 24px);
         display: grid;
         grid-template-columns: 216px 1fr 262px;
         background: #e8ebef;
@@ -1596,10 +1594,7 @@
       }
 
       .document-workspace {
-        height: calc(100% - 40px - 32px - 23px);
-      }
-      .word-window.ribbon-open .word-ribbon { display: flex; }
-      .word-window.ribbon-open .document-workspace { height: calc(100% - 40px - 32px - 92px - 23px);
+        height: calc(100% - 40px - 32px - 92px - 23px);
         grid-template-columns: 188px 1fr 246px;
         background: var(--mac-canvas);
       }

@@ -302,11 +302,9 @@
         font-weight: 600;
       }
 
-      /* Ribbon collapsed by default for clean demo videos; components kept
-         in the DOM. Add .ribbon-open to the window to expand. */
       .excel-ribbon {
         height: 84px;
-        display: none;
+        display: flex;
         align-items: stretch;
         padding: 6px 10px 0;
         background: #fdfcfb;
@@ -582,13 +580,11 @@
       }
 
       .workbook-body {
-        height: calc(100% - 34px - 30px - 35px - 28px);
+        height: calc(100% - 34px - 30px - 100px - 35px - 28px);
         display: grid;
         grid-template-columns: 1fr 340px;
         background: #e9edf1;
       }
-      .excel-window.ribbon-open .excel-ribbon { display: flex; }
-      .excel-window.ribbon-open .workbook-body { height: calc(100% - 34px - 30px - 100px - 35px - 28px); }
 
       .insights-pane {
         padding: 17px 15px;
