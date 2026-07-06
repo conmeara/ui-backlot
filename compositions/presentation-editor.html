@@ -103,7 +103,6 @@
       </div>
       <div class="powerpoint-body">
         <div class="slide-rail">
-          <div class="rail-header"><span>Slides</span><b>4</b></div>
           <div class="section-chip">Launch Readout</div>
           <div class="thumb-label">1</div>
           <div class="slide-thumb active">
@@ -147,7 +146,7 @@
               <span class="handle sw"></span><span class="handle w"></span>
             </div>
             <div class="slide-comment-pin" data-layout-ignore></div>
-            <div class="slide-title"><span class="before-title">Q1 Budget Analysis</span><span class="after-title">Q1 Budget Analysis</span></div>
+            <div class="slide-title"><span class="before-title">Q1 Budget Review</span><span class="after-title">Q1 Budget Analysis</span></div>
             <div class="slide-subtitle">Review and analysis by region for Q1 2024</div>
           </div>
           <div class="speaker-notes"><strong>Notes</strong><span>Thank everyone for last years numbers. Introduce the regional forecast changes.</span></div>
@@ -162,7 +161,7 @@
           </div>
         </div>
         <aside class="inspector comments-pane">
-          <div class="pane-title"><strong>Comments</strong><button>New</button></div>
+          <div class="pane-title"><strong>Comments</strong><button>New</button><i class="pane-close"></i></div>
           <div class="comments-card active-thread">
             <span class="comment-dot">C</span>
             <p><b>Claude</b><small>Just now</small>Updated the opening title to Q1 Budget Analysis and tightened the subtitle.<em>Resolve</em></p>
@@ -470,11 +469,7 @@
       }
 
       .ribbon-tabs .contextual {
-        margin-left: auto;
-        margin-right: 12px;
         color: #9a4c3c;
-        background: #fff5ef;
-        box-shadow: inset 0 -2px 0 #c65b47;
       }
 
       .powerpoint-ribbon {
@@ -1520,7 +1515,7 @@
       }
 
       .powerpoint-traffic-spacer::before {
-        top: 0;
+        top: 8px;
         width: 12px;
         height: 12px;
         box-shadow: 20px 0 0 #febc2e, 40px 0 0 #28c840;
@@ -1640,8 +1635,7 @@
         border-radius: 0;
       }
 
-      .ribbon-tabs .active,
-      .ribbon-tabs .contextual {
+      .ribbon-tabs .active {
         color: #111;
         background: transparent;
         box-shadow: inset 0 -2px 0 var(--powerpoint);
@@ -1653,8 +1647,8 @@
       }
 
       .ribbon-tabs .contextual {
-        margin-right: 8px;
         color: #8f2f1f;
+        box-shadow: inset 0 -2px 0 var(--powerpoint);
       }
 
       .powerpoint-ribbon {
@@ -1851,19 +1845,11 @@
         grid-template-columns: 18px 1fr;
         row-gap: 6px;
         column-gap: 5px;
-        padding: 8px 9px;
+        padding: 6px 9px;
         background: #f2f2f2;
         border-right-color: #d1d1d1;
       }
 
-      .rail-header {
-        height: 13px;
-        color: #444;
-        font-size: 9px;
-        font-weight: 600;
-      }
-
-      .rail-header b,
       .section-chip {
         display: none;
       }
@@ -1871,7 +1857,8 @@
       .thumb-label {
         color: #404040;
         font-size: 10px;
-        line-height: 52px;
+        line-height: 12px;
+        padding-top: 2px;
         font-weight: 400;
       }
 
@@ -2279,6 +2266,33 @@
         background: #fff;
         font-size: 8px;
         font-weight: 500;
+      }
+
+      .pane-close {
+        width: 11px;
+        height: 11px;
+        margin-left: 6px;
+        position: relative;
+        opacity: 0.5;
+      }
+
+      .pane-close::before,
+      .pane-close::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 11px;
+        height: 1px;
+        background: #333;
+      }
+
+      .pane-close::before {
+        transform: rotate(45deg);
+      }
+
+      .pane-close::after {
+        transform: rotate(-45deg);
       }
 
       .comments-card {
