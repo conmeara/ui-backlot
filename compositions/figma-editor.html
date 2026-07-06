@@ -391,7 +391,7 @@
           <span class="tool-separator" aria-hidden="true"></span>
           <button type="button" aria-label="Actions"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-wand"/></svg></button>
         </div>
-        <div class="dark-zoom-status"><button type="button">82%</button><span>Multiplayer on</span></div>
+        <div class="dark-zoom-status"><button type="button">82%</button></div>
       </main>
 
       <aside class="dark-properties" data-primitive="figma-dark-properties-panel">
@@ -421,11 +421,6 @@
         <section>
           <h4>Fill</h4>
           <div class="dark-paint"><span class="swatch-bg"></span><strong>#070708</strong><em>100%</em></div>
-        </section>
-        <section>
-          <h4>Prototype</h4>
-          <div class="proto-row"><span>On tap</span><strong>Navigate to Welcome</strong></div>
-          <div class="proto-row"><span>Animation</span><strong>Smart animate</strong></div>
         </section>
         <section>
           <h4>Export</h4>
@@ -762,7 +757,7 @@
         flex: 1;
       }
 
-      .file-context span,
+      .file-context > span,
       .selected-layer-card span,
       .constraints-widget small {
         display: block;
@@ -774,8 +769,8 @@
         display: block;
         overflow: hidden;
         color: var(--figma-ink);
-        font-size: 12px;
-        font-weight: 680;
+        font-size: 15px;
+        font-weight: 600;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -1883,12 +1878,12 @@
       }
 
       .file-context strong {
-        font-size: 18px;
+        font-size: 15px;
         line-height: 1.15;
-        font-weight: 720;
+        font-weight: 600;
       }
 
-      .file-context span {
+      .file-context > span {
         margin-top: 2px;
         color: #777;
         font-size: 15px;
@@ -2462,7 +2457,7 @@
         box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
       }
 
-      .figma-window.theme-dark .file-context span {
+      .figma-window.theme-dark .file-context > span {
         color: var(--figma-muted);
       }
 
