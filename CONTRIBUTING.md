@@ -2,7 +2,8 @@
 
 Thanks for helping build UI Backlot. The project is meant to be useful to both
 humans and coding agents, so contributions should leave behind clear metadata,
-repeatable commands, and public-safe assets.
+repeatable commands, and surfaces that recreate the real apps as closely as
+possible.
 
 ## Setup
 
@@ -39,13 +40,15 @@ capture sweep when you want the registry to require every PNG on disk.
    starter.
 5. Verify with HyperFrames lint, validate, inspect, capture, and draft render.
 
-## Asset And Trademark Rules
+## Asset Rules
 
-Follow `docs/asset-policy.md` and `TRADEMARKS.md`.
+Fidelity-first — see `docs/asset-policy.md`. Recreate real surfaces as closely
+as possible; track real fonts, glyphs, and logos when they improve the match.
 
-Do not commit private captures, downloaded product videos, extracted private
-frames, donor repo clones, copied proprietary fonts, product app bundles, or
-brand assets unless redistribution rights are explicit and documented.
+Keep the following local (for size and privacy, not licensing): your own
+private/logged-in captures, downloaded product videos, extracted frames,
+donor-repo clones, product app bundles, and generated captures/renders. Use
+synthetic demo content in the tracked surfaces.
 
 ## Pull Request Checklist
 

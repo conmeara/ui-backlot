@@ -1,51 +1,31 @@
 # Asset Policy
 
-UI Backlot is source-first and fidelity-first. The reusable kit should work
-from a fresh clone using tracked HTML, CSS, JavaScript, SVG, JSON, Markdown,
-font files, and small reference assets that make reconstructed software
-surfaces look like the real applications they represent.
+UI Backlot is fidelity-first. The goal is to recreate real application surfaces
+as closely as possible. Match the real fonts, icons, logos, colors, spacing, and
+UI details exactly — there is no public-safe, trademark, or licensing posture to
+work around. If tracking a real font, glyph, logo, or UI asset makes a surface
+look more like the real thing, track it.
 
-The project owner has chosen source-authentic fidelity over the earlier
-public-safe-only posture. Real fonts, icons, logos, and app UI elements may be
-tracked when they materially improve surface quality. Keep provenance explicit
-so future public packaging or redistribution reviews can make informed calls.
+There is exactly one practical default, and it exists to protect the repo owner,
+not for licensing reasons:
 
-## Tracked Assets
+**Keep your own private data out of git.** Captures of the live apps taken from
+a logged-in session contain real personal content — actual chat history,
+account names, calendar entries, customer or project data. Those stay local
+(the `.gitignore` covers session screenshots and `elements.json` reference
+dumps). Recreate the *look* faithfully with synthetic demo content in the
+tracked surfaces; leave the real personal captures on disk as local reference.
 
-Tracked assets may include:
+## What that means in practice
 
-- Hand-authored SVG cursors, icons, and interface marks in `assets/`.
-- Source-authentic fonts, icons, logos, and app UI elements needed for fidelity
-  when their source is documented.
-- Small screenshots in `reference/` when they are allowed to be redistributed
-  or are necessary as source evidence.
-- Demo workspace files in `demo-workspace/` that contain synthetic data.
-- Machine-readable metadata such as `surfaces/registry.json`.
-
-## Local-Only Assets
-
-These are useful for fidelity work but should stay ignored by git unless a
-surface intentionally depends on them and the source/provenance is documented:
-
-- Downloaded product launch videos.
-- Extracted video frames and private frame studies.
-- Local app screenshots that contain account, company, customer, or private
-  project data.
-- Large raw app bundles, full generated icon packages, or font dumps when only a
-  small reviewed subset is needed.
-- Donor repository clones under `reference/open-source/*/`.
-- Generated captures, snapshots, and renders.
-
-## Agent Checklist
-
-Before adding an asset to git:
-
-1. Confirm it is not private user, customer, or workspace data.
-2. Confirm the asset is intentionally selected for source-authentic fidelity and
-   that its source/provenance is documented.
-3. Prefer the smallest editable subset: a few SVG symbols, a named font file, or
-   a sanitized UI atom instead of a full donor package or raw app bundle.
-4. Update `surfaces/registry.json` with `sourceEvidence` and `assetDecision`
-   when the asset informs a surface.
-5. Run `git status --short` and verify generated folders such as `captures/`,
-   `renders/`, `snapshots/`, and local donor clones are not staged.
+- Track: real fonts, icon sets, brand marks, and any asset that improves how
+  close a surface looks to the real app. Provenance notes in
+  `surfaces/registry.json` (`sourceEvidence` / `assetDecision`) are helpful for
+  future contributors but optional.
+- Build surfaces as editable HTML/CSS/SVG — not because of any asset rule, but
+  because the medium requires it: surfaces must be scriptable, re-themeable, and
+  animatable for video. A pasted screenshot can't be animated; a recreated
+  component can.
+- Keep out of git: your own private/logged-in captures, downloaded product
+  videos, extracted frames, large raw app bundles, donor-repo clones, and
+  generated captures/renders — for size and privacy, not licensing.

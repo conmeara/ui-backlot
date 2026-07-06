@@ -207,7 +207,7 @@ async function main() {
     capturedAt: payload.capturedAt,
     note: args.note || null,
     assetDecision:
-      "Ground-truth measurement of a live/public page. Screenshot and computed-style measurements only; do not copy product code, CSS, icons, or screenshot pixels into editable surfaces."
+      "Ground-truth reference of a live/public page for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
   });
 
   await close();

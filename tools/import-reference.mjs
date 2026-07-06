@@ -99,7 +99,7 @@ async function main() {
     files,
     note: args.note || null,
     assetDecision:
-      "Ground-truth measurement of the real application. Screenshot and computed-style measurements only; do not copy product code, CSS, icons, or screenshot pixels into editable surfaces."
+      "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
   });
   manifest.entries.sort((a, b) => a.label.localeCompare(b.label));
   await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));

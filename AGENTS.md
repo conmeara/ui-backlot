@@ -12,7 +12,8 @@ Read these files first:
 3. `docs/catalog.md` - human and agent-readable surface catalog.
 4. `surfaces/registry.json` - authoritative machine-readable inventory.
 5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
-6. `docs/asset-policy.md` and `TRADEMARKS.md` - public asset and brand rules.
+6. `docs/asset-policy.md` - fidelity-first asset stance (recreate as closely as
+   possible; keep the owner's own logged-in captures local).
 7. `docs/fidelity-loop-plan-2026-07-05.md` - the ground-truth capture /
    drift / rebuild loop. `reference/sources.json` declares how each family's
    real-app references are acquired; `reference/<family>/<date>/` holds dated
@@ -89,9 +90,11 @@ the registry and HyperFrames checks.
 
 ## Edit Rules
 
-- Keep important demo UI editable in HTML/CSS/SVG.
+- Recreate real surfaces as closely as possible (match real fonts/glyphs/logos);
+  keep the UI editable in HTML/CSS/SVG so it can animate for video.
 - Do not commit local-only reference media, generated captures, generated
-  renders, donor clones, copied proprietary fonts, or private screenshots.
+  renders, donor clones, or the owner's private/logged-in captures (size and
+  privacy).
 - Add new reusable surfaces to `surfaces/registry.json`.
 - Regenerate `docs/catalog.md` with `npm run catalog:generate` after registry
   changes.

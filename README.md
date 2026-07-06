@@ -160,17 +160,18 @@ Run `npm run catalog:generate` after editing `surfaces/registry.json`.
 - [surfaces/README.md](surfaces/README.md)
 - [PRIMITIVES.md](PRIMITIVES.md)
 
-## Public Project Boundaries
+## Project Boundaries
 
 - License: [ISC](LICENSE).
-- Trademark posture: [TRADEMARKS.md](TRADEMARKS.md).
-- Asset policy: [docs/asset-policy.md](docs/asset-policy.md).
+- Asset stance: [docs/asset-policy.md](docs/asset-policy.md) — fidelity-first,
+  recreate as closely as possible; the only default is keeping the owner's own
+  logged-in captures out of git.
 - Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Tracked surfaces should not require private captures, donor-repo clones,
-downloaded product videos, generated renders, or copied proprietary fonts to
-run. Optional local references can improve fidelity work, but the public kit
-should stay usable from a fresh clone.
+Tracked surfaces should stay runnable from a fresh clone — keep private
+captures, donor-repo clones, downloaded product videos, and generated renders
+local (size and privacy), and use synthetic demo content in the surfaces
+themselves.
 
 Research starts in:
 
