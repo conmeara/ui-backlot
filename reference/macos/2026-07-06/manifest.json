@@ -1,0 +1,14 @@
+{
+  "family": "macos",
+  "capturedAt": "2026-07-06",
+  "os": "macOS Tahoe (Darwin 25.5.0)",
+  "appearance": "light",
+  "method": "screencapture -x -o -R<window-bounds> against live apps; bounds from AppleScript; other apps hidden for a clean desktop",
+  "displayScale": 2,
+  "privacy": "Real folder names / calendar events — gitignored, local-only. Surfaces use synthetic content.",
+  "sets": [
+    { "label": "finder-window-light", "app": "Finder", "view": "column view, home folder", "windowBounds": {"x":140,"y":120,"w":920,"h":436}, "file": "finder-window-light/screenshot.png", "matches": "compositions/finder-window.html (light) — 920x436 column view" },
+    { "label": "calendar-week-light", "app": "Calendar", "view": "Week view, July 2026", "windowBounds": {"x":87,"y":33,"w":1248,"h":870}, "file": "calendar-week-light/screenshot.png", "matches": "compositions/calendar-app.html (light) — week scheduling shell" },
+    { "label": "menu-bar-light", "app": "system", "view": "top menu-bar strip, Finder active", "windowBounds": {"x":0,"y":0,"w":1512,"h":30}, "file": "menu-bar-light/screenshot.png", "matches": "compositions/mac-menu-bar.html (light)" }
+  ]
+}

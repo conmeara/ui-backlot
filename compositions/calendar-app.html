@@ -732,7 +732,7 @@
       }
 
       .year {
-        color: #6e6e73;
+        color: #1d1d1f;
         font-size: 34px;
         font-weight: 400;
         letter-spacing: -0.01em;
@@ -828,7 +828,7 @@
         background: color-mix(in srgb, var(--event-color) 15%, transparent);
         color: color-mix(in srgb, var(--event-color), black 60%);
         font-size: 12px;
-        font-weight: 500;
+        font-weight: 620;
         white-space: nowrap;
       }
 
@@ -848,21 +848,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
+        border-radius: 3.5px;
         background: var(--event-color);
         -webkit-mask: none;
       }
 
-      /* 8px white glyph inside the solid circle */
-      .all-day-event::before {
-        background:
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M8 2.2l1.5 3.9 4.1.2-3.2 2.6 1.1 4-3.5-2.3-3.5 2.3 1.1-4L2.4 6.3l4.1-.2z'/%3E%3C/svg%3E") center / 8px no-repeat,
-          var(--event-color);
-      }
-
+      /* white calendar-grid glyph inside the rounded-square badge */
+      .all-day-event::before,
       .all-day-reminder::before {
         background:
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4.4' fill='none' stroke='white' stroke-width='1.6'/%3E%3C/svg%3E") center / 12px no-repeat,
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M3 2.5h10c.8 0 1.5.7 1.5 1.5v8c0 .8-.7 1.5-1.5 1.5H3c-.8 0-1.5-.7-1.5-1.5V4c0-.8.7-1.5 1.5-1.5zM2.8 6.2h10.4v5.6c0 .3-.2.5-.5.5H3.3c-.3 0-.5-.2-.5-.5z'/%3E%3C/svg%3E") center / 9px no-repeat,
           var(--event-color);
       }
 

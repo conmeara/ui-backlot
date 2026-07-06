@@ -35,18 +35,18 @@ const FAMILIES = [
   {
     key: 'macos', criticModel: 'fable',
     surfaces: [
-      { id: 'finder-window-dark', src: 'compositions/finder-window.html', cap: 'captures/surface-finder-window-dark/target.png', script: 'capture:finder-window-dark' },
-      { id: 'mac-menu-bar-dark', src: 'compositions/mac-menu-bar.html', cap: 'captures/surface-mac-menu-bar-dark/target.png', script: 'capture:mac-menu-bar-dark' },
-      { id: 'calendar-app-dark', src: 'compositions/calendar-app.html', cap: 'captures/surface-calendar-app-dark/target.png', script: 'capture:calendar-app-dark' },
+      { id: 'finder-window', src: 'compositions/finder-window.html', cap: 'captures/surface-finder-window-component/target.png', script: 'capture:finder-window' },
+      { id: 'mac-menu-bar', src: 'compositions/mac-menu-bar.html', cap: 'captures/surface-mac-menu-bar/target.png', script: 'capture:mac-menu-bar' },
+      { id: 'calendar-app', src: 'compositions/calendar-app.html', cap: 'captures/surface-calendar-app/target.png', script: 'capture:calendar' },
     ],
     refDir: 'reference/macos',
-    refs: 'DARK-MODE pass against FRESH real macOS Tahoe screenshots captured 2026-07-05 (dark appearance, Retina @2x, gitignored/local — real pixels, not marketing). Exact per-surface reference PNGs, one per surface: '
-      + '(1) finder-window-dark -> reference/macos/2026-07-05/finder-window/screenshot.png : real Finder, COLUMN view, captured at EXACTLY our surface size (920x436 logical / 1840x872 px), so a same-dimension pixel diff is meaningful here. '
-      + '(2) mac-menu-bar-dark -> reference/macos/2026-07-05/menu-bar/screenshot.png : the real top menu-bar strip (Finder active). '
-      + '(3) calendar-app-dark -> reference/macos/2026-07-05/calendar-week-dark/screenshot.png : real Calendar WEEK view. '
+    refs: 'LIGHT-MODE pass against FRESH real macOS Tahoe screenshots captured 2026-07-06 (light appearance, Retina @2x, gitignored/local — real pixels, not marketing). Exact per-surface reference PNGs, one per surface: '
+      + '(1) finder-window -> reference/macos/2026-07-06/finder-window-light/screenshot.png : real Finder, COLUMN view, captured at EXACTLY our surface size (920x436 logical / 1840x872 px), so a same-dimension pixel diff is meaningful here. '
+      + '(2) mac-menu-bar -> reference/macos/2026-07-06/menu-bar-light/screenshot.png : the real top menu-bar strip (Finder active). '
+      + '(3) calendar-app -> reference/macos/2026-07-06/calendar-week-light/screenshot.png : real Calendar WEEK view. '
       + 'THESE ARE REAL PIXELS — do not guess colors: sample exact RGB from the reference PNG with a Python PIL getpixel one-liner (remember coords are @2x) and match measured values. '
-      + 'THEME DISCIPLINE (critical): put structural + geometry fixes (element positions, sizes, paddings, glyph shapes, control/segment styling) in the SHARED base CSS so the light variant benefits too; put color-only fixes INSIDE .theme-dark { } blocks so the light surface is left untouched. Always preserve light/dark parity — never regress the light look to chase dark. '
-      + 'SECONDARY (older light-mode gold, for structure cross-check only): captures/finder-launch-deck/window.png + captures/finder-launch-deck/screen.png.',
+      + 'THEME DISCIPLINE (critical): the dark variants were just fidelity-passed against dark refs (2026-07-05); DO NOT regress them. Put structural + geometry fixes (positions, sizes, paddings, glyph shapes, control/segment styling) in the SHARED base CSS so BOTH themes benefit; put light-only color fixes in the default (non-.theme-dark) rules; never touch .theme-dark blocks except to keep parity. Verify a dark capture (npm run capture:<surface>-dark) still looks right after structural edits. '
+      + 'SECONDARY (older light gold, structure cross-check): captures/finder-launch-deck/window.png + captures/finder-launch-deck/screen.png.',
     siblings: '',
   },
   {
