@@ -139,7 +139,6 @@
               <span class="base-view">More</span>
             </nav>
             <div class="base-actions">
-              <span class="notification" aria-hidden="true"></span>
               <button class="share-button" type="button">Share</button>
               <span class="avatar">CB</span>
             </div>
@@ -630,10 +629,10 @@
         content: "";
         position: absolute;
         right: 8px;
-        top: 10px;
-        bottom: 10px;
+        top: 11px;
+        bottom: 11px;
         width: 1px;
-        background: rgba(103, 112, 123, 0.34);
+        background: rgba(60, 64, 67, 0.16);
       }
 
       .tab-favicon {
@@ -820,20 +819,18 @@
       }
 
       .bookmark-chip {
-        height: 22px;
+        height: 24px;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 0 9px;
-        border-radius: 8px;
-        background: rgba(241, 243, 245, 0.8);
-        border: 1px solid rgba(16, 18, 22, 0.06);
+        gap: 7px;
+        padding: 0 6px 0 8px;
+        border-radius: 6px;
       }
 
       .bookmark-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
         background: var(--red);
       }
 
@@ -912,30 +909,6 @@
         align-items: center;
         gap: 10px;
         padding: 0 18px;
-      }
-
-      .notification {
-        position: relative;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background: #eceef1;
-      }
-
-      .notification::after {
-        content: "2";
-        position: absolute;
-        right: -3px;
-        top: -3px;
-        min-width: 14px;
-        height: 14px;
-        display: grid;
-        place-items: center;
-        border-radius: 99px;
-        color: #fff;
-        background: #3f4652;
-        font-size: 9px;
-        font-weight: 700;
       }
 
       .share-button {
