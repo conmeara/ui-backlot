@@ -3,7 +3,7 @@
 </style>
 
 <template id="presentation-editor-surface-template">
-  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
+  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="360">
     <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
       <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <!-- Fluent UI System Icons (MIT) via assets/icons/sprite-manifest.json -->
@@ -183,7 +183,7 @@
         --powerpoint: #c9472b;
         --powerpoint-dark: #9a321f;
         width: 836px;
-        height: 438px;
+        height: 360px;
         overflow: hidden;
         border-radius: 14px;
         background: #f4f5f7;
@@ -472,15 +472,18 @@
         color: #9a4c3c;
       }
 
+      /* Ribbon collapsed by default for clean demo videos; components kept
+         in the DOM. Add .ribbon-open to the surface to expand. */
       .powerpoint-ribbon {
         height: 72px;
-        display: flex;
+        display: none;
         align-items: stretch;
         gap: 0;
         padding: 5px 6px 6px;
         border-bottom: 1px solid #cfd4da;
         background: #fbfbfc;
       }
+      .presentation-editor-surface.ribbon-open .powerpoint-ribbon { display: flex; }
 
       .ribbon-group {
         height: 60px;
