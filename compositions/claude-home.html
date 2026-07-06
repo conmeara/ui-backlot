@@ -189,22 +189,26 @@
         </button>
 
         <div class="sidebar-label recents-label"><span>Recents</span><button class="recents-filter" type="button" aria-label="Filter recents"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sliders"/></svg></button></div>
-        <div class="history-row selected"><span>Demo workflows</span></div>
-        <div class="history-row"><span>PowerPoint rewrite</span></div>
-        <div class="history-row"><span>Build a launch deck</span></div>
-        <div class="history-row"><span>Write narrator notes</span></div>
-        <div class="history-row"><span>Clean up Figma copy</span></div>
+        <div class="history-row selected"><span>Building demo workflows for the la…</span></div>
+        <div class="history-row"><span>Rewriting the PowerPoint intro sect…</span></div>
+        <div class="history-row"><span>Launch deck structure and story arc</span></div>
+        <div class="history-row"><span>Narrator notes for the cowork demo</span></div>
+        <div class="history-row"><span>Cleaning up Figma copy for handoff</span></div>
+        <div class="history-row"><span>Q2 revenue chart formatting</span></div>
+        <div class="history-row"><span>Untitled</span></div>
+        <div class="history-row"><span>Renaming exported artifact files</span></div>
+        <div class="history-row"><span>Publishing checklist review</span></div>
+        <div class="history-row"><span>Team digest summary for November</span></div>
 
         <div class="sidebar-footer">
           <span class="profile-dot">DW</span>
-          <span><strong>Demo workspace</strong><em>Pro plan</em></span>
+          <span><strong>Demo workspace</strong><em>Max plan</em></span>
           <span class="kebab"></span>
         </div>
       </aside>
 
       <main class="home-main" data-primitive="claude-new-chat-pane">
         <header class="home-topbar">
-          <button class="topbar-icon menu" type="button" aria-label="Open sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
           <div class="topbar-spacer"></div>
         </header>
 
@@ -237,7 +241,7 @@
     <style>
       #claude-home-surface {
         --bg-000: #ffffff;
-        --bg-100: #fbfaf7;
+        --bg-100: #f8f8f6;
         --bg-200: #f4efe8;
         --bg-300: #ece4d8;
         --text-100: #0b0b0b;
@@ -254,7 +258,6 @@
         --df-header-h: 48px;
         --df-row-h: 26px;
         --df-radius-pill: 6px;
-        --df-shadow-card: inset 0 0 0 0 transparent, 0 0 0 1px rgba(20, 16, 12, 0.055), 0 4px 24px rgba(20, 16, 12, 0.055);
         --df-shadow-pop: 0 0 0 0.5px rgba(0, 0, 0, 0.06), 0 18px 52px rgba(45, 35, 26, 0.12);
         width: 980px;
         height: 760px;
@@ -296,18 +299,19 @@
 
       .home-sidebar {
         position: absolute;
-        left: 8px;
-        top: 8px;
-        bottom: 8px;
+        left: 0;
+        top: 0;
+        bottom: 0;
         z-index: 2;
         width: var(--sidebar-width);
         min-width: 0;
         display: flex;
         flex-direction: column;
         padding: 9px 8px 10px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.92);
-        box-shadow: var(--df-shadow-card);
+        border-radius: 0;
+        background: #f8f8f6;
+        border-right: 1px solid rgba(11, 11, 11, 0.1);
+        box-shadow: none;
         user-select: none;
       }
 
@@ -480,6 +484,7 @@
 
       .history-row {
         margin-bottom: 1px;
+        color: var(--text-200);
         font-weight: 430;
       }
 
@@ -499,7 +504,7 @@
       .sidebar-footer {
         height: 36px;
         display: grid;
-        grid-template-columns: 24px minmax(0, 1fr) 20px;
+        grid-template-columns: 32px minmax(0, 1fr) 20px;
         gap: 8px;
         align-items: center;
         margin-top: auto;
@@ -509,14 +514,14 @@
       }
 
       .profile-dot {
-        width: 23px;
-        height: 23px;
+        width: 28px;
+        height: 28px;
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background: #256bc1;
-        color: #373734;
-        font-size: 9.5px;
+        background: #373734;
+        color: #f8f8f6;
+        font-size: 12px;
         font-weight: 600;
         letter-spacing: 0.2px;
       }
@@ -561,7 +566,7 @@
 
       .home-main {
         position: absolute;
-        inset: 0 0 0 calc(var(--sidebar-width) + 16px);
+        inset: 0 0 0 var(--sidebar-width);
         min-width: 0;
         display: grid;
         grid-template-rows: var(--df-header-h) minmax(0, 1fr);
@@ -573,8 +578,6 @@
         align-items: center;
         gap: 8px;
         padding: 0 18px 0 12px;
-        border-bottom: 1px solid rgba(11, 11, 11, 0.1);
-        background: rgba(250, 248, 243, 0.84);
       }
 
       .topbar-icon {
@@ -602,9 +605,7 @@
         justify-content: center;
         gap: 23px;
         padding: 0 44px 62px;
-        background:
-          linear-gradient(180deg, rgba(250, 248, 243, 1), rgba(250, 248, 243, 0) 84px),
-          var(--bg-100);
+        background: var(--bg-100);
       }
 
       .home-logo {
