@@ -50,9 +50,9 @@
         <div class="quick-access" aria-label="Quick access toolbar">
           <span class="qa-save"></span><span class="qa-undo"></span><span class="qa-redo"></span>
         </div>
-        <span class="presentation-name">Launch Deck.pptx <em>PowerPoint</em></span>
-        <span class="sync-status"><span class="sync-spinner"></span>Saved</span>
+        <span class="sync-status">Saved</span>
         <span class="autosave-toggle"><span></span>AutoSave</span>
+        <span class="presentation-name">Launch Deck.pptx</span>
         <div class="titlebar-search">Search in Presentation</div>
         <div class="collab-strip" aria-label="Collaborators">
           <span>C</span><span>A</span><i></i>
@@ -270,14 +270,6 @@
         color: #282e35;
       }
 
-      .presentation-name em {
-        margin-left: 5px;
-        color: #9aa2ac;
-        font-size: 9px;
-        font-style: normal;
-        font-weight: 560;
-      }
-
       .quick-access {
         height: 22px;
         display: inline-flex;
@@ -345,14 +337,6 @@
         color: #66707a;
         font-size: 10px;
         font-weight: 560;
-      }
-
-      .sync-spinner {
-        width: 11px;
-        height: 11px;
-        border: 2px solid #d4d9df;
-        border-top-color: #c65b47;
-        border-radius: 50%;
       }
 
       .autosave-toggle {
@@ -1129,7 +1113,7 @@
         width: 230px;
         height: 62px;
         color: #2a241f;
-        font-family: Georgia, serif;
+        font-family: var(--font-office-ui);
         font-size: 31px;
         line-height: 1.02;
         font-weight: 760;
@@ -1515,7 +1499,7 @@
 
       .powerpoint-titlebar {
         height: 28px;
-        grid-template-columns: 56px minmax(126px, auto) auto auto 1fr auto auto;
+        grid-template-columns: 56px auto auto minmax(120px, auto) 1fr auto auto;
         gap: 5px;
         padding: 0 8px;
         border-bottom-color: #d0d0d0;
@@ -1581,12 +1565,6 @@
         font-weight: 600;
       }
 
-      .presentation-name em {
-        color: #777;
-        font-size: 8px;
-        font-weight: 500;
-      }
-
       .sync-status,
       .autosave-toggle {
         height: 18px;
@@ -1594,13 +1572,6 @@
         color: #5f6368;
         font-size: 9px;
         font-weight: 500;
-      }
-
-      .sync-spinner {
-        width: 9px;
-        height: 9px;
-        border-width: 1.5px;
-        border-top-color: var(--powerpoint);
       }
 
       .autosave-toggle span {
@@ -1707,7 +1678,16 @@
       .ribbon-group.slides { width: 86px; }
       .ribbon-group.font { width: 128px; }
       .ribbon-group.paragraph { width: 102px; }
-      .ribbon-group.drawing { width: 114px; }
+      .ribbon-group.drawing { width: 132px; }
+
+      .ribbon-group.drawing .split-mini {
+        min-width: 66px;
+        white-space: nowrap;
+      }
+
+      .ribbon-group.drawing .ribbon-large.split {
+        flex-shrink: 0;
+      }
       .ribbon-group.ink { width: 80px; }
       .ribbon-group.arrange { width: 100px; }
       .ribbon-group.editing { width: 74px; }
@@ -1724,10 +1704,6 @@
         border: 0;
         border-radius: 5px;
         background: transparent;
-      }
-
-      .presentation-name em {
-        display: none;
       }
 
       .ribbon-glyph {
@@ -1752,8 +1728,9 @@
       }
 
       .tool-icon.active {
-        background: rgba(196, 62, 28, 0.1);
-        color: #b7472a;
+        background: #e6e6e6;
+        color: #3d3d3d;
+        border: none;
       }
 
       .split-mini .mini-glyph {

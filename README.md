@@ -163,9 +163,8 @@ Run `npm run catalog:generate` after editing `surfaces/registry.json`.
 ## Project Boundaries
 
 - License: [ISC](LICENSE).
-- Asset stance: [docs/asset-policy.md](docs/asset-policy.md) — fidelity-first,
-  recreate as closely as possible; the only default is keeping the owner's own
-  logged-in captures out of git.
+- Asset stance: fidelity-first — recreate as closely as possible; the only
+  default is keeping the owner's own logged-in captures out of git (privacy).
 - Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Tracked surfaces should stay runnable from a fresh clone — keep private

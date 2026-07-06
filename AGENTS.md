@@ -12,8 +12,8 @@ Read these files first:
 3. `docs/catalog.md` - human and agent-readable surface catalog.
 4. `surfaces/registry.json` - authoritative machine-readable inventory.
 5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
-6. `docs/asset-policy.md` - fidelity-first asset stance (recreate as closely as
-   possible; keep the owner's own logged-in captures local).
+6. Asset stance: fidelity-first — recreate as closely as possible; keep the
+   owner's own logged-in captures local (privacy). No other asset constraints.
 7. `docs/fidelity-loop-plan-2026-07-05.md` - the ground-truth capture /
    drift / rebuild loop. `reference/sources.json` declares how each family's
    real-app references are acquired; `reference/<family>/<date>/` holds dated

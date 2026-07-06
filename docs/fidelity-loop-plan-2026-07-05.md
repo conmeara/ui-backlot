@@ -49,10 +49,10 @@ Two constraints this design absorbs deliberately:
    already knows to discount (`referenceQuality` field). If the app becomes
    available, flip the tier in `sources.json` — nothing else changes.
 
-Asset stance (`docs/asset-policy.md`): fidelity-first — recreate as closely as
-possible, matching real fonts/glyphs/logos where it improves the look. The only
-default is privacy: the owner's own logged-in captures (session screenshots,
-`elements.json`) stay local, and surfaces use synthetic demo content.
+Asset stance: fidelity-first — recreate as closely as possible, matching real
+fonts/glyphs/logos where it improves the look. The only default is privacy: the
+owner's own logged-in captures (session screenshots, `elements.json`) stay
+local, and surfaces use synthetic demo content.
 
 ### Loop B — Drift detection (the weekly trigger)
 
@@ -165,4 +165,4 @@ validated path uses the user's own Chrome (which Cloudflare trusts):
 - Reference sets are immutable once written; new week, new directory.
 - Scores must move or the pass stops — no unfalsifiable "improved" verdicts.
 - Fidelity-first: recreate as closely as possible. The only asset default is
-  privacy — the owner's logged-in captures stay local (`docs/asset-policy.md`).
+  privacy — the owner's logged-in captures stay local.

@@ -59,9 +59,9 @@ At maturity, UI Backlot should include:
   preview, lint, inspect, snapshot, and video output commands.
 - A quality loop that compares prototypes against reference videos and real app
   captures instead of relying on vibes.
-- Contribution, trademark, provenance, and asset-policy docs so the reusable
-  kit can keep improving without losing track of where source-authentic assets
-  came from.
+- A contribution guide so the reusable kit can keep improving. The stance is
+  fidelity-first: recreate real surfaces as closely as possible, with the one
+  privacy default that the owner's own logged-in captures stay local.
 
 ## First Vertical Slice
 

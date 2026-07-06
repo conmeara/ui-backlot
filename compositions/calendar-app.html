@@ -561,13 +561,6 @@
         font-weight: 400;
       }
 
-      .source-count {
-        margin-left: auto;
-        color: #86868b;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
       .source-check {
         width: 16px;
         height: 16px;
@@ -1404,8 +1397,7 @@
       }
 
       .calendar-window.theme-dark .sidebar-title,
-      .calendar-window.theme-dark .sidebar-section-title,
-      .calendar-window.theme-dark .source-count {
+      .calendar-window.theme-dark .sidebar-section-title {
         color: #8e8e96;
       }
 
@@ -1602,7 +1594,7 @@
     </style>
   </head>
   <body>
-    <main id="calendar-app-surface" aria-label="macOS Calendar editable surface">
+    <main id="calendar-app-surface" data-composition-id="calendar-app-surface" data-width="1920" data-height="1080" aria-label="macOS Calendar editable surface">
       <nav class="menu-bar" aria-label="macOS menu bar">
         <div class="menu-left">
           <span class="apple-glyph" aria-hidden="true"></span>
@@ -1668,12 +1660,10 @@
                 <li class="calendar-source" style="--source-color: #63da38;">
                   <span class="source-check"></span>
                   <span>Personal</span>
-                  <span class="source-count">12</span>
                 </li>
                 <li class="calendar-source" style="--source-color: #ff3b30;">
                   <span class="source-check"></span>
                   <span>Work</span>
-                  <span class="source-count">8</span>
                 </li>
                 <li class="calendar-source" style="--source-color: #ff9500;">
                   <span class="source-check"></span>
@@ -1751,8 +1741,6 @@
                 <span class="mini-day other">1</span>
                 <span class="mini-day other">2</span>
                 <span class="mini-day other">3</span>
-                <span class="mini-day other">4</span>
-                <span class="mini-day other">5</span>
               </div>
             </section>
           </aside>

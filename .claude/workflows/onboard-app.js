@@ -32,7 +32,7 @@ const TOOLBOX =
   'WebSearch/WebFetch for official docs, help centers, press kits, design blogs; ' +
   'ToolSearch "select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__javascript_tool,mcp__claude-in-chrome__computer" to drive the user\'s logged-in Chrome; ' +
   'ToolSearch "computer-use" + request_access to screenshot installed native apps. ' +
-  'FIDELITY-FIRST: recreate the app as closely as possible — match real fonts, glyphs, logos, colors, and layout exactly (docs/asset-policy.md; tracking a real asset to nail the look is fine). Build editable HTML/CSS/SVG because surfaces must animate for video. HARD LINES (safety/privacy, not licensing): never enter credentials or complete CAPTCHAs/bot checks — a human does those; keep the owner\'s private/logged-in captures out of git (gitignore covers reference/*/20*/**/screenshot* and elements.json) and use synthetic demo content in the tracked surface.'
+  'FIDELITY-FIRST: recreate the app as closely as possible — match real fonts, glyphs, logos, colors, and layout exactly (tracking a real asset to nail the look is fine). Build editable HTML/CSS/SVG because surfaces must animate for video. HARD LINES (safety/privacy, not licensing): never enter credentials or complete CAPTCHAs/bot checks — a human does those; keep the owner\'s private/logged-in captures out of git (gitignore covers reference/*/20*/**/screenshot* and elements.json) and use synthetic demo content in the tracked surface.'
 
 const CONVENTIONS =
   'REPO CONVENTIONS (read before building): PRIMITIVES.md (atoms → shells → workflows), DESIGN.md, docs/fidelity-loop-plan-2026-07-05.md, an exemplar composition (compositions/codex-app.html is a good single-window example). ' +

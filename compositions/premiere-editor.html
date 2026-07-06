@@ -76,11 +76,9 @@
           <div class="monitor-controls">
             <span class="timecode active">00:00:14:18</span>
             <button type="button" class="control mark-in" aria-label="Mark in"></button>
-            <span class="mark in">I</span>
             <button type="button" class="control prev" aria-label="Previous frame"></button>
             <button type="button" class="control play" aria-label="Play"></button>
             <button type="button" class="control next" aria-label="Next frame"></button>
-            <span class="mark out">O</span>
             <button type="button" class="control insert" aria-label="Insert"></button>
             <button type="button" class="control overwrite" aria-label="Overwrite"></button>
             <span class="monitor-scale">Fit</span>
@@ -91,7 +89,6 @@
         <section class="panel program-monitor" data-primitive="premiere-program-monitor">
           <div class="panel-tabs">
             <button type="button" class="active">Program: Launch Deck sequence</button>
-            <button type="button">Comparison View</button>
             <span class="panel-menu"></span>
           </div>
           <div class="monitor-frame program-frame">
@@ -270,9 +267,9 @@
             <div class="property-heading"><strong>funding_card.png</strong><i></i></div>
             <div class="disclosure open">Transform</div>
             <div class="mini-icons"><span></span><span></span></div>
-            <div class="prop-line keyframed"><span>Position</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
-            <div class="prop-line keyframed"><span>Anchor point</span><strong>320 X</strong><strong>180 Y</strong><i></i></div>
-            <div class="prop-line"><span>Scale</span><strong>101%</strong><strong>100%</strong><i></i></div>
+            <div class="prop-line keyframed"><span>Position</span><strong>320.0</strong><strong>180.0</strong><i></i></div>
+            <div class="prop-line keyframed"><span>Anchor point</span><strong>320.0</strong><strong>180.0</strong><i></i></div>
+            <div class="prop-line"><span>Scale</span><strong>100.0%</strong><strong></strong><i></i></div>
             <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i></i></div>
             <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i></i></div>
             <div class="disclosure open audio">Audio</div>
@@ -825,20 +822,6 @@
       .timecode.active {
         color: var(--accent-blue);
       }
-
-      .mark {
-        width: 18px;
-        height: 18px;
-        display: inline-grid;
-        place-items: center;
-        border-radius: 4px;
-        color: #111216;
-        font-size: 11px;
-        font-weight: 820;
-      }
-
-      .mark.in { background: var(--green); }
-      .mark.out { background: var(--orange); }
 
       .control {
         width: 18px;

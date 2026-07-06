@@ -160,7 +160,16 @@
         "circle-dashed": "circle-dashed.svg",
         "building": "building.svg",
         "sun": "sun.svg",
-        "laptop": "laptop.svg"
+        "laptop": "laptop.svg",
+        "pencil": "pencil.svg",
+        "graduation-cap": "graduation-cap.svg",
+        "coffee": "coffee.svg",
+        "lightbulb": "lightbulb.svg",
+        "inbox": "inbox.svg",
+        "shapes": "shapes.svg",
+        "messages-square": "messages-square.svg",
+        "list-checks": "list-checks.svg",
+        "palette": "palette.svg"
       }
     },
     {

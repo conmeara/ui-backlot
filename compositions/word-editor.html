@@ -105,15 +105,10 @@
           </div>
           <div class="page">
             <div class="comment-anchor"><span></span></div>
-            <h1><span>Q2 launch </span><span class="revision-delete">notes</span><span class="revision-insert">brief</span></h1>
+            <h1><span class="change-bar h1-bar"></span><span>Q2 launch </span><span class="revision-delete">notes</span><span class="revision-insert">brief</span></h1>
             <p class="lede">Claude revised the opening narrative into a <span class="text-selection">sharper executive brief</span><span class="caret"></span> while preserving source-backed details from the <span class="comment-highlight">Launch Deck folder</span>.</p>
             <p>The update connects revenue, adoption, and customer feedback into one page the team can reuse across the deck, video script, and launch memo.</p>
-            <div class="tracked-change">
-              <span class="change-bar"></span>
-              <span class="change-type">Inserted by Claude</span>
-              <strong>Updated positioning</strong>
-              <p>Lead with the workflow outcome first, then support it with the three strongest proof points.</p>
-            </div>
+            <p class="revision-insert-block"><span class="change-bar"></span><strong>Updated positioning.</strong> Lead with the workflow outcome first, then support it with the three strongest proof points.</p>
             <table class="doc-table" aria-label="Launch proof points">
               <tr><th>Signal</th><th>Source</th><th>Status</th></tr>
               <tr><td>Revenue story</td><td>Q2 revenue.csv</td><td>Ready</td></tr>
@@ -138,11 +133,6 @@
             <div class="comment-meta"><span class="avatar review">R</span><div><div class="comment-author">Review</div><small>Today, 10:44 AM</small></div><i></i></div>
             <p>Confirm the revenue table matches the final deck chart.</p>
             <div class="reply-field">Add mention or reply</div>
-          </div>
-          <div class="changes-summary">
-            <strong>3 tracked changes</strong>
-            <span><b></b>2 insertions and deletions</span>
-            <span><b></b>1 table update</span>
           </div>
         </aside>
       </div>
@@ -863,44 +853,33 @@
         50% { opacity: 0; }
       }
 
-      .tracked-change {
+      .revision-insert-block {
         position: relative;
-        margin: 19px 0;
-        padding: 17px 16px 12px;
-        border-radius: 3px;
-        background: #f7fbff;
-        border: 1px solid #c8dcf8;
+        color: var(--word-blue);
+        text-decoration: underline;
+        text-decoration-thickness: 1.4px;
+        text-underline-offset: 2px;
+      }
+
+      .revision-insert-block strong {
+        color: var(--word-blue);
+        font-weight: 700;
       }
 
       .change-bar {
         position: absolute;
-        left: -10px;
+        left: -34px;
         top: 0;
         bottom: 0;
-        width: 3px;
-        border-radius: 3px;
+        width: 2px;
+        border-radius: 2px;
         background: var(--word-blue);
       }
 
-      .change-type {
-        position: absolute;
-        left: 13px;
-        top: 4px;
-        color: #5e6974;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .tracked-change strong {
-        display: block;
-        margin-bottom: 5px;
-        color: var(--word-blue);
-        font-size: 13px;
-      }
-
-      .tracked-change p {
-        margin: 0;
+      .h1-bar {
+        left: -34px;
+        top: 0;
+        bottom: 0;
       }
 
       .doc-table {
@@ -1073,34 +1052,6 @@
         background: #fbfcfd;
       }
 
-      .changes-summary {
-        display: grid;
-        gap: 7px;
-        margin-top: 21px;
-        padding: 13px;
-        border-radius: 9px;
-        background: #edf4fd;
-        color: #4c5661;
-        font-size: 12px;
-      }
-
-      .changes-summary strong {
-        color: var(--word-blue);
-      }
-
-      .changes-summary span {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-      }
-
-      .changes-summary b {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--word-blue);
-      }
-
       .word-statusbar {
         height: 24px;
         display: flex;
@@ -1194,7 +1145,7 @@
         --mac-canvas: #e4e2dd;
         --mac-pane: #faf9f7;
         color: var(--mac-text);
-        font-family: var(--font-office-ui);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
       }
 
       .word-window {
@@ -1813,8 +1764,8 @@
       }
 
       .comment-highlight {
-        background: rgba(255, 176, 195, 0.55);
-        box-shadow: inset 0 -2px 0 rgba(199, 46, 90, 0.55);
+        background: rgba(255, 201, 214, 0.45);
+        box-shadow: none;
       }
 
       .caret {
@@ -1823,25 +1774,11 @@
         margin-bottom: -2px;
       }
 
-      .tracked-change {
-        margin: 14px 0;
-        padding: 15px 12px 9px;
-        border-radius: 4px;
-        background: #f7fbff;
-        border-color: var(--mac-hairline);
-      }
-
       .change-bar {
-        left: -7px;
-        width: 2px;
+        left: -34px;
       }
 
-      .change-type {
-        font-size: 8px;
-        color: var(--mac-muted);
-      }
-
-      .tracked-change strong {
+      .revision-insert-block strong {
         font-size: 12px;
       }
 
@@ -1997,25 +1934,6 @@
         border-color: var(--mac-hairline);
       }
 
-      .changes-summary {
-        gap: 5px;
-        margin-top: 14px;
-        padding: 10px;
-        border-radius: 6px;
-        background: #edf4fd;
-        font-size: 11px;
-      }
-
-      .changes-summary strong {
-        color: #323130;
-        font-weight: 600;
-      }
-
-      .changes-summary b {
-        width: 5px;
-        height: 5px;
-      }
-
       .word-statusbar {
         height: 23px;
         gap: 13px;
@@ -2063,7 +1981,7 @@
       tl.from(".page", { opacity: 0, y: 16, duration: 0.36, ease: "power2.out" }, 0.98);
       tl.from(".revision-delete", { opacity: 0.25, duration: 0.2, ease: "sine.out" }, 1.75);
       tl.from(".revision-insert", { opacity: 0, y: 4, duration: 0.34, ease: "power2.out" }, 1.9);
-      tl.from(".tracked-change", { opacity: 0, x: -8, duration: 0.3, ease: "power2.out" }, 2.18);
+      tl.from(".revision-insert-block", { opacity: 0, x: -8, duration: 0.3, ease: "power2.out" }, 2.18);
       tl.from(".comment-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 2.36);
       tl.from(".doc-table", { opacity: 0, y: 8, duration: 0.3, ease: "power2.out" }, 2.62);
       tl.to(".sync-dot", { rotation: 360, duration: 0.9, repeat: syncRepeat, ease: "none" }, 1.6);

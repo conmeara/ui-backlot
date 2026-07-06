@@ -42,8 +42,8 @@ capture sweep when you want the registry to require every PNG on disk.
 
 ## Asset Rules
 
-Fidelity-first — see `docs/asset-policy.md`. Recreate real surfaces as closely
-as possible; track real fonts, glyphs, and logos when they improve the match.
+Fidelity-first. Recreate real surfaces as closely as possible; track real
+fonts, glyphs, and logos when they improve the match.
 
 Keep the following local (for size and privacy, not licensing): your own
 private/logged-in captures, downloaded product videos, extracted frames,

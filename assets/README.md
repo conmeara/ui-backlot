@@ -19,4 +19,6 @@ roots rather than document heads, a component that depends on the shared
 foundation should import it from inside the component-root `<style>` block or
 the parent workflow should include it directly.
 
-Before adding new assets, read `docs/asset-policy.md`.
+Asset stance is fidelity-first: recreate as closely as possible and track real
+fonts/glyphs/logos when they improve the match. The only default is privacy —
+keep the owner's own logged-in captures out of git.

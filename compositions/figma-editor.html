@@ -70,7 +70,7 @@
         </div>
         <div class="file-title">
           <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
-          <span>Playground Crowdfunding Page</span>
+          <span>Playground Page</span>
           <span class="title-chevron"></span>
         </div>
         <div class="title-actions">
@@ -84,12 +84,13 @@
 
       <aside class="left-panel" data-primitive="figma-left-panel">
         <div class="file-context">
-          <span class="figma-mark panel-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
-          <div>
-            <strong>Playground Crowdfunding Page</strong>
-            <span>UI Backlot</span>
+          <div class="file-context-toprow">
+            <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+            <span class="file-context-spacer" aria-hidden="true"></span>
+            <button class="panel-icon-button collapse" type="button" aria-label="Toggle UI"></button>
           </div>
-          <button class="panel-icon-button branch" type="button" aria-label="Branch history"></button>
+          <strong>Playground Page</strong>
+          <span>UI Backlot</span>
         </div>
         <div class="panel-tabs">
           <button class="panel-tab active" type="button">File</button>
@@ -195,27 +196,34 @@
           <button class="action-chip icon-only" type="button" aria-label="More actions">•••</button>
         </div>
         <section class="property-group">
-          <div class="property-title">Layout</div>
+          <div class="property-title">Position</div>
           <div class="align-strip" aria-label="Alignment controls">
-            <button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button>
+            <button type="button"></button><button type="button"></button><button type="button"></button><span class="align-strip-spacer" aria-hidden="true"></span><button type="button"></button><button type="button"></button><button type="button"></button>
           </div>
-          <div class="property-grid four">
+          <div class="property-grid two">
             <label>X <span>984</span></label>
             <label>Y <span>232</span></label>
-            <label>W <span>326</span></label>
-            <label>H <span>274</span></label>
           </div>
-        </section>
-        <section class="property-group">
-          <div class="property-title">Position</div>
-          <div class="property-grid two">
+          <div class="property-grid one">
             <label>Rotation <span>0</span></label>
-            <label>Radius <span>32</span></label>
           </div>
           <div class="constraints-widget">
             <span>Constraints</span>
             <div class="constraint-box"><i></i><i></i><b></b></div>
             <small>Left and top</small>
+          </div>
+        </section>
+        <section class="property-group">
+          <div class="property-title">Layout</div>
+          <div class="property-grid two">
+            <label>W <span>326</span></label>
+            <label>H <span>274</span></label>
+          </div>
+        </section>
+        <section class="property-group">
+          <div class="property-title">Appearance</div>
+          <div class="property-grid two">
+            <label>Radius <span>32</span></label>
           </div>
         </section>
         <section class="property-group">
@@ -301,9 +309,13 @@
 
       <aside class="figma-sidebar" data-primitive="figma-dark-sidebar">
         <div class="sidebar-file-header">
-          <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
-          <div><strong>Onboarding</strong><small>Mobile flow</small></div>
-          <button class="collapse-ui" type="button" aria-label="Minimize UI"></button>
+          <div class="sidebar-file-header-toprow">
+            <span class="figma-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+            <span class="file-context-spacer" aria-hidden="true"></span>
+            <button class="collapse-ui" type="button" aria-label="Toggle UI"></button>
+          </div>
+          <strong>Onboarding</strong>
+          <small>Mobile flow</small>
         </div>
         <div class="tabs">
           <button class="tab active" type="button">Layers</button>
@@ -733,12 +745,21 @@
 
       .file-context {
         min-height: 58px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 28px;
-        align-items: center;
-        gap: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
         padding: 9px 12px;
         border-bottom: 1px solid var(--figma-border);
+      }
+
+      .file-context-toprow {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .file-context-spacer {
+        flex: 1;
       }
 
       .file-context span,
@@ -747,19 +768,6 @@
         display: block;
         color: var(--figma-soft);
         font-size: 10.5px;
-      }
-
-      .file-context span.figma-mark {
-        display: grid;
-        margin-top: 0;
-        color: initial;
-        font-size: initial;
-      }
-
-      .file-context span.figma-mark span {
-        display: block;
-        color: initial;
-        font-size: initial;
       }
 
       .file-context strong {
@@ -1502,35 +1510,39 @@
 
       .align-strip {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 6px;
+        grid-template-columns: repeat(3, 1fr) 12px repeat(3, 1fr);
+        gap: 4px;
         margin-bottom: 9px;
       }
 
+      .align-strip-spacer {
+        width: 12px;
+      }
+
       .align-strip button {
-        height: 26px;
+        height: 24px;
         border: 1px solid var(--figma-border);
-        border-radius: 7px;
+        border-radius: 5px;
         background:
           linear-gradient(var(--figma-muted) 0 0) center 8px / 14px 1.5px no-repeat,
           linear-gradient(var(--figma-soft) 0 0) center 15px / 8px 5px no-repeat,
           #fff;
       }
 
-      .align-strip button:nth-child(2) {
+      .align-strip button:nth-of-type(2) {
         background-position: center 15px, center 7px;
       }
 
-      .align-strip button:nth-child(3),
-      .align-strip button:nth-child(6) {
+      .align-strip button:nth-of-type(3),
+      .align-strip button:nth-of-type(6) {
         background:
           linear-gradient(90deg, var(--figma-muted) 0 1.5px, transparent 1.5px) center / 14px 14px no-repeat,
           linear-gradient(var(--figma-soft) 0 0) center / 5px 12px no-repeat,
           #fff;
       }
 
-      .align-strip button:nth-child(4),
-      .align-strip button:nth-child(5) {
+      .align-strip button:nth-of-type(4),
+      .align-strip button:nth-of-type(5) {
         background:
           linear-gradient(var(--figma-muted) 0 0) center / 14px 1.5px no-repeat,
           linear-gradient(var(--figma-soft) 0 0) center / 12px 5px no-repeat,
@@ -1548,6 +1560,14 @@
 
       .property-grid.two {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .property-grid.one {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .property-grid.one label:only-child {
+        grid-column: 1;
       }
 
       .property-grid label {
@@ -1858,21 +1878,8 @@
 
       .file-context {
         min-height: 110px;
-        grid-template-columns: 30px minmax(0, 1fr) 30px;
-        gap: 11px;
-        padding: 20px 20px 17px;
-      }
-
-      .panel-mark {
-        width: 22px;
-        height: 31px;
-        grid-template-columns: 11px 11px;
-        grid-template-rows: repeat(3, 10px);
-      }
-
-      .panel-mark span {
-        width: 11px;
-        height: 11px;
+        gap: 6px;
+        padding: 14px 20px 17px;
       }
 
       .file-context strong {
@@ -1882,16 +1889,10 @@
       }
 
       .file-context span {
-        margin-top: 8px;
+        margin-top: 2px;
         color: #777;
         font-size: 15px;
         font-weight: 450;
-      }
-
-      .panel-icon-button.branch::before {
-        width: 15px;
-        height: 15px;
-        border-width: 1.6px;
       }
 
       .panel-tabs,
@@ -3601,24 +3602,17 @@
 
       .figma-page-onboarding .sidebar-file-header {
         min-height: 98px;
-        display: grid;
-        grid-template-columns: 24px minmax(0, 1fr) 28px;
-        align-items: start;
-        gap: 11px;
-        padding: 20px 18px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 14px 18px 16px;
         border-bottom: 1px solid var(--panel-line);
       }
 
-      .figma-page-onboarding .sidebar-file-header .figma-mark {
-        width: 20px;
-        height: 29px;
-        grid-template-columns: 10px 10px;
-        grid-template-rows: repeat(3, 10px);
-      }
-
-      .figma-page-onboarding .sidebar-file-header .figma-mark span {
-        width: 10px;
-        height: 10px;
+      .figma-page-onboarding .sidebar-file-header-toprow {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
       }
 
       .figma-page-onboarding .sidebar-file-header strong,
@@ -3636,7 +3630,7 @@
       }
 
       .figma-page-onboarding .sidebar-file-header small {
-        margin-top: 8px;
+        margin-top: 0;
         color: var(--muted);
         font-size: 14px;
       }
@@ -3742,8 +3736,10 @@
         border: 0;
         border-radius: 0;
         background:
-          linear-gradient(#444 0 0) 0 4px / 12px 1.4px no-repeat,
-          linear-gradient(#444 0 0) 4px 0 / 1.4px 12px no-repeat;
+          linear-gradient(#444 0 0) 0 3px / 12px 1.3px no-repeat,
+          linear-gradient(#444 0 0) 0 8px / 12px 1.3px no-repeat,
+          linear-gradient(#444 0 0) 3px 0 / 1.3px 12px no-repeat,
+          linear-gradient(#444 0 0) 8px 0 / 1.3px 12px no-repeat;
       }
 
       .figma-page-onboarding .page-icon {
