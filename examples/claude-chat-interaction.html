@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Claude Chat — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="claude-chat-interaction" data-composition-id="claude-chat-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12">
+      <section class="chat-stage" data-primitive="claude-chat-interaction" aria-label="Claude chat with scripted typing and a streamed reply">
+        <div class="chat-window">
+          <div class="chat-titlebar">
+            <span class="tl-dots"><i></i><i></i><i></i></span>
+            <span class="tl-title">Claude</span>
+          </div>
+
+          <div class="thread" data-role="thread">
+            <div class="msg ai" data-role="ai-msg">
+              <span class="ai-mark">✳</span>
+              <div class="ai-body">
+                <div class="thinking" data-role="thinking"><i></i><i></i><i></i></div>
+                <div class="ai-response" data-role="ai-response"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer">
+            <div class="composer-field">
+              <span class="composer-placeholder" data-role="placeholder">Reply to Claude…</span>
+              <span class="composer-input" data-role="input"></span>
+            </div>
+            <div class="composer-actions">
+              <button class="attach" aria-label="Attach">+</button>
+              <span class="model">Opus 4.8</span>
+              <button class="send-button" data-role="send" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      html, body { width: 100%; min-height: 100%; margin: 0; display: grid; place-items: center; overflow: hidden; background: #d9d4c8; }
+      #claude-chat-interaction { width: 1280px; height: 800px; overflow: hidden; font-family: -apple-system, "SF Pro Text", Inter, sans-serif; color: #0b0b0b; }
+      #claude-chat-interaction * { box-sizing: border-box; }
+
+      .chat-stage {
+        position: relative; width: 1280px; height: 800px; overflow: hidden;
+        background: radial-gradient(120% 90% at 20% 0%, #f4f1ea 0%, #ece7dc 60%, #e4ddcd 100%);
+        display: grid; place-items: center;
+      }
+      .chat-window {
+        position: relative; width: 860px; height: 700px; background: #f8f8f6;
+        border-radius: 16px; border: 1px solid rgba(11,11,11,0.09);
+        box-shadow: 0 40px 100px rgba(52,39,29,0.22); overflow: hidden;
+        display: grid; grid-template-rows: 44px 1fr auto;
+      }
+      .chat-titlebar { display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid rgba(11,11,11,0.07); gap: 12px; }
+      .tl-dots { display: flex; gap: 8px; }
+      .tl-dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+      .tl-dots i:nth-child(1) { background: #ec6a5e; } .tl-dots i:nth-child(2) { background: #f4bf4f; } .tl-dots i:nth-child(3) { background: #61c554; }
+      .tl-title { font-family: "Anthropic Serif", Georgia, serif; font-weight: 500; font-size: 15px; color: #121212; }
+
+      .thread { padding: 30px 40px; overflow: hidden; display: flex; flex-direction: column; gap: 20px; align-items: stretch; }
+      .bl-bubble { max-width: 78%; font-size: 16px; line-height: 1.55; }
+      .bl-bubble.user { align-self: flex-end; background: #ece7dc; border: 1px solid rgba(11,11,11,0.06); padding: 12px 16px; border-radius: 16px; color: #23201c; }
+      .msg.ai { display: flex; gap: 14px; align-items: flex-start; }
+      .ai-mark { color: #d97757; font-size: 20px; line-height: 1.3; flex: none; }
+      .ai-body { min-width: 0; }
+      .ai-response { font-size: 16.5px; line-height: 1.62; color: #141414; white-space: pre-wrap; }
+
+      .thinking { display: inline-flex; gap: 5px; padding: 4px 0 2px; }
+      .thinking i { width: 7px; height: 7px; border-radius: 50%; background: #b8b2a6; display: block; }
+
+      .composer { padding: 14px 18px 18px; }
+      .composer-field { position: relative; min-height: 54px; background: #ffffff; border: 1px solid rgba(11,11,11,0.12); border-radius: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 16px 18px 34px; font-size: 16px; }
+      .composer-placeholder { position: absolute; left: 18px; top: 16px; color: #8a877f; pointer-events: none; }
+      .composer-input { font-size: 16px; color: #141414; white-space: pre-wrap; }
+      .bl-caret { display: inline-block; width: 2px; margin-left: 1px; background: #141414; }
+      .composer-actions { position: absolute; right: 26px; bottom: 26px; display: flex; align-items: center; gap: 12px; }
+      .composer .attach { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(11,11,11,0.12); background: #fff; color: #52514e; font-size: 18px; line-height: 1; }
+      .composer .model { font-size: 13.5px; color: #52514e; }
+      .send-button { width: 34px; height: 34px; border-radius: 10px; border: none; background: #d97757; color: #fff; display: grid; place-items: center; }
+
+      .demo-cursor {
+        position: absolute; left: 660px; top: 640px; z-index: 90; width: 26px; height: 26px;
+        background: url("../assets/cursors/normal-select.svg") top left / contain no-repeat;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+      }
+      .demo-click-ring { position: absolute; left: 0; top: 0; z-index: 89; width: 44px; height: 44px; border: 2.5px solid rgba(217,119,87,0.7); border-radius: 50%; opacity: 0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const stage = document.querySelector(".chat-stage");
+      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+      // AI bubble + thinking hidden to start.
+      gsap.set('[data-role="ai-msg"]', { opacity: 0 });
+      gsap.set('[data-role="thinking"]', { opacity: 0 });
+
+      const PROMPT = "Summarize the Q2 launch deck in three bullet points.";
+      const REPLY =
+        "Here's the gist of the Q2 launch deck:\n\n" +
+        "•  Revenue is tracking 16% above target, driven by the new self-serve tier.\n" +
+        "•  Adoption climbed to 42% of accounts, up from 31% last quarter.\n" +
+        "•  Two slides still need the corrected Q2 figures before the deck ships.";
+
+      // 1) cursor to composer, click, type the prompt.
+      ix.click('[data-role="input"]', { at: 0.9, moveDur: 0.7 });
+      ix.hide('[data-role="placeholder"]', { at: 1.3, dur: 0.15 });
+      ix.type('[data-role="input"]', PROMPT, { at: 1.5, cps: 24 });
+
+      // 2) cursor to send, click, lift the text into a user bubble.
+      const sendAt = 1.5 + PROMPT.length / 24 + 0.5;   // just after typing finishes
+      ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
+      ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
+
+      // 3) AI turn: bubble appears, thinks, then streams the reply.
+      ix.show('[data-role="ai-msg"]', { at: sendAt + 0.5, dur: 0.3, from: { opacity: 0, y: 8 } });
+      ix.think('[data-role="thinking"]', { at: sendAt + 0.6, dur: 1.0 });
+      ix.stream('[data-role="ai-response"]', REPLY, { at: sendAt + 1.7, cps: 52 });
+
+      window.__timelines["claude-chat-interaction"] = tl;
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(11.8).pause();
+    </script>
+  </body>
+</html>
