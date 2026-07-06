@@ -195,23 +195,20 @@
           <div class="timeline-ruler">
             <div class="track-label-corner">00:00:00:00</div>
             <div class="ruler-scales">
-              <span style="left: 0%">00:00</span>
-              <span style="left: 16%">00:10</span>
-              <span style="left: 32%">00:20</span>
-              <span style="left: 48%">00:30</span>
-              <span style="left: 64%">00:40</span>
-              <span style="left: 80%">00:50</span>
-              <span style="left: 96%">01:00</span>
+              <span style="left: 0%">00:00:00:00</span>
+              <span style="left: 32%">00:00:20:00</span>
+              <span style="left: 64%">00:00:40:00</span>
+              <span style="left: 96%">00:01:00:00</span>
             </div>
           </div>
           <div class="timeline-body">
             <div class="track-headers">
-              <div class="track-header video"><strong>V4</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video targeted"><strong>V3</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video"><strong>V2</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video targeted"><strong>V1</strong><span></span><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header audio targeted"><strong>A1</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header audio"><strong>A2</strong><span></span><em>S</em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V4</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V3</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V2</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V1</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio targeted"><strong>A1</strong><em>S</em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header audio"><strong>A2</strong><em>S</em><em>M</em><em class="track-lock"></em></div>
             </div>
             <div class="tracks">
               <div class="snap-line one"></div>
@@ -1411,7 +1408,7 @@
 
       .track-header {
         display: grid;
-        grid-template-columns: 25px 1fr 16px 16px 16px;
+        grid-template-columns: 25px minmax(0, 1fr) 16px 16px 16px;
         align-items: center;
         gap: 4px;
         padding: 0 6px;
@@ -1421,12 +1418,6 @@
 
       .track-header strong {
         font-weight: 780;
-      }
-
-      .track-header span {
-        height: 5px;
-        border-radius: 999px;
-        background: #363844;
       }
 
       .track-header em {
