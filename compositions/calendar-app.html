@@ -444,19 +444,19 @@
         font-weight: 500;
       }
 
-      /* plain-text segments, no track; active is a grey pill */
+      /* capsule track enclosing all segments; active is a lighter inner pill */
       .view-switcher {
         position: absolute;
         left: 50%;
         top: 7px;
-        height: 26px;
+        height: 28px;
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
+        gap: 0;
+        padding: 2px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.04);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
         transform: translateX(-50%);
       }
 
@@ -465,15 +465,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 0;
+        padding: 0 14px;
+        border-radius: 12px;
         color: #1d1d1f;
         font-size: 13px;
         font-weight: 450;
       }
 
+      .view-option:not(.active) + .view-option:not(.active) {
+        border-left: 1px solid rgba(0, 0, 0, 0.10);
+      }
+
       .view-option.active {
         padding: 0 14px;
-        border-radius: 8px;
+        border-radius: 12px;
         background: #e4e4e7;
         box-shadow: none;
         color: #1d1d1f;
@@ -759,14 +764,13 @@
         justify-content: center;
         gap: 6px;
         padding: 0;
-        border-left: 1px solid #e6e6e8;
         color: #1d1d1f;
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 16px;
+        font-weight: 500;
       }
 
-      /* past days entirely greyed */
-      .week-day.past {
+      /* weekend columns dimmed, not past days */
+      .week-day.weekend {
         color: #9a9a9e;
       }
 
@@ -775,15 +779,15 @@
       }
 
       .week-day .today-badge {
-        width: 21px;
-        height: 21px;
+        width: 24px;
+        height: 24px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         background: var(--calendar-red);
         color: #fff;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 500;
       }
 
@@ -1377,12 +1381,21 @@
         box-shadow: none;
       }
 
+      .calendar-window.theme-dark .view-switcher {
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+      }
+
+      .calendar-window.theme-dark .view-option:not(.active) + .view-option:not(.active) {
+        border-left-color: rgba(255, 255, 255, 0.14);
+      }
+
       .calendar-window.theme-dark .view-option {
         color: #d0d0d6;
       }
 
       .calendar-window.theme-dark .view-option.active {
-        background: #3a3a41;
+        background: #52525a;
         color: #f2f2f5;
       }
 
@@ -1457,11 +1470,10 @@
       }
 
       .calendar-window.theme-dark .week-day {
-        border-left-color: rgba(255, 255, 255, 0.08);
         color: #ececf1;
       }
 
-      .calendar-window.theme-dark .week-day.past {
+      .calendar-window.theme-dark .week-day.weekend {
         color: #7a7a82;
       }
 
@@ -1756,13 +1768,13 @@
             <section class="week-view" aria-label="April 2025 week schedule">
               <div class="week-days" aria-label="Week dates">
                 <span></span>
-                <span class="week-day past">Sun 30</span>
-                <span class="week-day past">Mon 31</span>
+                <span class="week-day weekend">Sun 30</span>
+                <span class="week-day">Mon 31</span>
                 <span class="week-day is-today">Tue <span class="today-badge">1</span></span>
                 <span class="week-day">Wed 2</span>
                 <span class="week-day">Thu 3</span>
                 <span class="week-day">Fri 4</span>
-                <span class="week-day">Sat 5</span>
+                <span class="week-day weekend">Sat 5</span>
               </div>
 
               <div class="all-day-row" aria-label="All-day events">

@@ -35,12 +35,18 @@ const FAMILIES = [
   {
     key: 'macos', criticModel: 'fable',
     surfaces: [
-      { id: 'finder-window', src: 'compositions/finder-window.html', cap: 'captures/surface-finder-window-component/target.png', script: 'capture:finder-window' },
-      { id: 'mac-menu-bar', src: 'compositions/mac-menu-bar.html', cap: 'captures/surface-mac-menu-bar/target.png', script: 'capture:mac-menu-bar' },
-      { id: 'calendar-app', src: 'compositions/calendar-app.html', cap: 'captures/surface-calendar-app/target.png', script: 'capture:calendar' },
+      { id: 'finder-window-dark', src: 'compositions/finder-window.html', cap: 'captures/surface-finder-window-dark/target.png', script: 'capture:finder-window-dark' },
+      { id: 'mac-menu-bar-dark', src: 'compositions/mac-menu-bar.html', cap: 'captures/surface-mac-menu-bar-dark/target.png', script: 'capture:mac-menu-bar-dark' },
+      { id: 'calendar-app-dark', src: 'compositions/calendar-app.html', cap: 'captures/surface-calendar-app-dark/target.png', script: 'capture:calendar-app-dark' },
     ],
     refDir: 'reference/macos',
-    refs: 'captures/finder-launch-deck/window.png and captures/finder-launch-deck/screen.png are REAL macOS Tahoe Finder captures (gold standard; screen.png includes the real menu bar). Check reference/macos/<dated>/ for newer sets. No Calendar reference on disk — rely on macOS Tahoe Calendar product knowledge and only flag what you are certain of.',
+    refs: 'DARK-MODE pass against FRESH real macOS Tahoe screenshots captured 2026-07-05 (dark appearance, Retina @2x, gitignored/local — real pixels, not marketing). Exact per-surface reference PNGs, one per surface: '
+      + '(1) finder-window-dark -> reference/macos/2026-07-05/finder-window/screenshot.png : real Finder, COLUMN view, captured at EXACTLY our surface size (920x436 logical / 1840x872 px), so a same-dimension pixel diff is meaningful here. '
+      + '(2) mac-menu-bar-dark -> reference/macos/2026-07-05/menu-bar/screenshot.png : the real top menu-bar strip (Finder active). '
+      + '(3) calendar-app-dark -> reference/macos/2026-07-05/calendar-week-dark/screenshot.png : real Calendar WEEK view. '
+      + 'THESE ARE REAL PIXELS — do not guess colors: sample exact RGB from the reference PNG with a Python PIL getpixel one-liner (remember coords are @2x) and match measured values. '
+      + 'THEME DISCIPLINE (critical): put structural + geometry fixes (element positions, sizes, paddings, glyph shapes, control/segment styling) in the SHARED base CSS so the light variant benefits too; put color-only fixes INSIDE .theme-dark { } blocks so the light surface is left untouched. Always preserve light/dark parity — never regress the light look to chase dark. '
+      + 'SECONDARY (older light-mode gold, for structure cross-check only): captures/finder-launch-deck/window.png + captures/finder-launch-deck/screen.png.',
     siblings: '',
   },
   {
@@ -250,7 +256,12 @@ function scoreScript(f, tag) {
 
 function scoreStage(f, tag, phaseTitle) {
   const scored = f.surfaces.filter(s => s.scoreRef)
-  if (scored.length === 0) return Promise.resolve(null)
+  // Native/online families have no scoreRef (no token extraction possible), so
+  // there is nothing to deterministically score — but we must return a truthy
+  // sentinel, NOT null: the pipeline drops a null-returning item and would skip
+  // this family's entire critique/fix/judge chain (the bug that made every
+  // non-Claude family a silent no-op since the v3 rewrite).
+  if (scored.length === 0) return Promise.resolve({ scores: [], skipped: 'no scoreRef surfaces — image-only critique (native/online app)' })
   return agent(
     'Run deterministic fidelity scoring for the "' + f.key + '" family in ' + ROOT + ' (work from that root).\n' +
     'Execute exactly this (as a bash script; $REF is the newest dated ground-truth dir):\n' + scoreScript(f, tag) + '\n\n' +
@@ -503,8 +514,15 @@ async function judgeStage(prev, f, idx) {
   return { family: f.key, crit: prev.crit, fix: prev.fix, rounds: prev.rounds || [], judge: judge, scores: { before: prev.preScore, after: postScore, bar: bar }, stranger: stranger }
 }
 
-const selected = (args && args.families) ? FAMILIES.filter(f => args.families.includes(f.key)) : FAMILIES
-log('Fidelity push over ' + selected.length + ' families: ' + selected.map(f => f.key).join(', '))
+// args may arrive as an object OR a JSON string (the tool sometimes serializes
+// it); parse defensively so {families:[...]} scoping always bites. A bad/absent
+// filter silently ran ALL 9 families before this guard.
+let argv = args
+if (typeof argv === 'string') { try { argv = JSON.parse(argv) } catch { argv = undefined } }
+const wantFamilies = argv && Array.isArray(argv.families) ? argv.families : null
+const selected = wantFamilies ? FAMILIES.filter(f => wantFamilies.includes(f.key)) : FAMILIES
+if (wantFamilies && selected.length === 0) throw new Error('No families matched ' + JSON.stringify(wantFamilies) + ' — valid keys: ' + FAMILIES.map(f => f.key).join(', '))
+log('Fidelity push over ' + selected.length + ' families: ' + selected.map(f => f.key).join(', ') + (wantFamilies ? ' (requested: ' + wantFamilies.join(',') + ')' : ' (all)'))
 
 phase('Score')
 const familyResults = await pipeline(
