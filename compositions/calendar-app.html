@@ -242,9 +242,8 @@
         z-index: 3;
         width: 100%;
         height: var(--title-bar-height);
-        background: rgba(248, 248, 249, 0.86);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.075);
-        backdrop-filter: blur(26px) saturate(1.2);
+        background: linear-gradient(to right, #f6f6f6 282px, #fefefe 282px);
+        border-bottom: 1px solid transparent;
       }
 
       .traffic {
@@ -456,11 +455,12 @@
         padding: 2px;
         border-radius: 14px;
         background: rgba(0, 0, 0, 0.04);
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+        box-shadow: none;
         transform: translateX(-50%);
       }
 
       .view-option {
+        position: relative;
         height: 26px;
         display: flex;
         align-items: center;
@@ -472,8 +472,14 @@
         font-weight: 450;
       }
 
-      .view-option:not(.active) + .view-option:not(.active) {
-        border-left: 1px solid rgba(0, 0, 0, 0.10);
+      .view-option:not(.active) + .view-option:not(.active)::before {
+        content: "";
+        position: absolute;
+        left: -0.5px;
+        top: 6px;
+        bottom: 6px;
+        width: 1px;
+        background: rgba(0, 0, 0, 0.12);
       }
 
       .view-option.active {
@@ -482,7 +488,7 @@
         background: #e4e4e7;
         box-shadow: none;
         color: #1d1d1f;
-        font-weight: 550;
+        font-weight: 450;
       }
 
       .main-area {
@@ -494,25 +500,22 @@
         display: flex;
         flex-direction: row;
         overflow: hidden;
-        background: #e2e2e5;
+        background: #fefefe;
         color: var(--system-text);
       }
 
       .calendar-sidebar {
-        width: 255px;
-        min-width: 255px;
-        height: calc(100% - 16px);
-        margin: 8px 8px 8px 8px;
+        width: 282px;
+        min-width: 282px;
+        height: 100%;
+        margin: 0;
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        border: 1px solid rgba(0, 0, 0, 0.07);
-        border-radius: 10px;
-        background: rgba(245, 245, 247, 0.9);
-        box-shadow:
-          0 1px 1px rgba(0, 0, 0, 0.03),
-          0 4px 14px rgba(0, 0, 0, 0.07);
-        backdrop-filter: blur(24px) saturate(1.12);
+        border: 0;
+        border-radius: 0;
+        background: #f6f6f6;
+        box-shadow: none;
       }
 
       .sidebar-header {
@@ -848,16 +851,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 3.5px;
+        border-radius: 50%;
         background: var(--event-color);
         -webkit-mask: none;
       }
 
-      /* white calendar-grid glyph inside the rounded-square badge */
+      /* white calendar glyph inside the circular badge, punched through via fill-rule evenodd */
       .all-day-event::before,
       .all-day-reminder::before {
         background:
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M3 2.5h10c.8 0 1.5.7 1.5 1.5v8c0 .8-.7 1.5-1.5 1.5H3c-.8 0-1.5-.7-1.5-1.5V4c0-.8.7-1.5 1.5-1.5zM2.8 6.2h10.4v5.6c0 .3-.2.5-.5.5H3.3c-.3 0-.5-.2-.5-.5z'/%3E%3C/svg%3E") center / 9px no-repeat,
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' fill-rule='evenodd' d='M3.5 2h9A2.5 2.5 0 0 1 15 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5v-7A2.5 2.5 0 0 1 3.5 2zm-.9 4.6v4.9c0 .5.4.9.9.9h9c.5 0 .9-.4.9-.9V6.6zm1.4 1.6h1.6v1.2H4zm3.2 0h1.6v1.2H7.2zm3.2 0H12v1.2h-1.6zM4 10.6h1.6v1.2H4zm3.2 0h1.6v1.2H7.2z'/%3E%3C/svg%3E") center / 9px 9px no-repeat,
           var(--event-color);
       }
 
@@ -1381,8 +1384,8 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10);
       }
 
-      .calendar-window.theme-dark .view-option:not(.active) + .view-option:not(.active) {
-        border-left-color: rgba(255, 255, 255, 0.14);
+      .calendar-window.theme-dark .view-option:not(.active) + .view-option:not(.active)::before {
+        background: rgba(255, 255, 255, 0.14);
       }
 
       .calendar-window.theme-dark .view-option {
