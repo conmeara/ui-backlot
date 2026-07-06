@@ -61,6 +61,7 @@
         <div class="ribbon-group comments">
           <div class="ribbon-large new-comment"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-add-20"></use></svg><em>New Comment</em></div>
           <div class="ribbon-stack compact"><span>Delete</span><span>Previous</span><span>Next</span></div>
+          <strong>Comments</strong>
         </div>
         <div class="ribbon-group tracking">
           <div class="ribbon-row">
@@ -71,14 +72,21 @@
           <div class="button-row">
             <span class="review-chip">Show Markup</span><span class="review-chip pane-chip"><svg class="mini-pane office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-panel-right-16"></use></svg>Reviewing Pane</span>
           </div>
+          <strong>Tracking</strong>
         </div>
         <div class="ribbon-group changes">
           <div class="ribbon-large accept"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-checkmark-20"></use></svg><em>Accept</em><i></i></div>
           <div class="ribbon-large reject"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-dismiss-20"></use></svg><em>Reject</em><i></i></div>
           <div class="ribbon-stack narrow"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-previous-16"></use></svg>Previous</span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-next-16"></use></svg>Next</span></div>
+          <strong>Changes</strong>
         </div>
         <div class="ribbon-group compare">
-          <div class="ribbon-stack compact"><span>Compare</span><span>Protect</span><span>Restrict Editing</span></div>
+          <div class="ribbon-stack compact"><span>Compare</span></div>
+          <strong>Compare</strong>
+        </div>
+        <div class="ribbon-group protect">
+          <div class="ribbon-stack compact"><span>Protect</span><span>Restrict Editing</span></div>
+          <strong>Protect</strong>
         </div>
       </div>
 
@@ -435,6 +443,10 @@
       }
 
       .ribbon-group.compare {
+        min-width: 90px;
+      }
+
+      .ribbon-group.protect {
         min-width: 140px;
       }
 
@@ -804,7 +816,7 @@
 
       .revision-insert {
         margin-left: 4px;
-        color: var(--word-blue);
+        color: #a4262c;
         text-decoration: underline;
         text-decoration-thickness: 2px;
         text-underline-offset: 4px;
@@ -848,14 +860,14 @@
 
       .revision-insert-block {
         position: relative;
-        color: var(--word-blue);
+        color: #a4262c;
         text-decoration: underline;
         text-decoration-thickness: 1.4px;
         text-underline-offset: 2px;
       }
 
       .revision-insert-block strong {
-        color: var(--word-blue);
+        color: #a4262c;
         font-weight: 700;
       }
 
@@ -866,7 +878,7 @@
         bottom: 0;
         width: 2px;
         border-radius: 2px;
-        background: var(--word-blue);
+        background: #6b6b6b;
       }
 
       .h1-bar {
@@ -1361,7 +1373,7 @@
       }
 
       .word-ribbon {
-        height: 84px;
+        height: 106px;
         align-items: stretch;
         padding: 6px 10px 0;
         background: #fdfcfb;
@@ -1375,18 +1387,27 @@
       .ribbon-group {
         gap: 6px;
         min-width: 82px;
-        padding: 4px 12px 8px;
+        padding: 4px 12px 16px;
         border-left: 1px solid var(--mac-hairline);
       }
 
       .ribbon-group strong {
-        display: none;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 2px;
+        text-align: center;
+        font-size: 9px;
+        font-weight: 400;
+        color: #8a8681;
       }
 
       .ribbon-group.comments { min-width: 148px; }
       .ribbon-group.tracking { min-width: 268px; }
       .ribbon-group.changes { min-width: 182px; }
-      .ribbon-group.compare { min-width: 138px; }
+      .ribbon-group.compare { min-width: 88px; }
+      .ribbon-group.protect { min-width: 138px; }
       .ribbon-group.proofing { min-width: 120px; }
 
       .ribbon-large {
@@ -1573,7 +1594,7 @@
       }
 
       .document-workspace {
-        height: calc(100% - 40px - 32px - 84px - 23px);
+        height: calc(100% - 40px - 32px - 92px - 23px);
         grid-template-columns: 188px 1fr 246px;
         background: var(--mac-canvas);
       }
@@ -1726,7 +1747,7 @@
       }
 
       .revision-insert {
-        color: #2b579a;
+        color: #a4262c;
         text-decoration-thickness: 1.4px;
         text-underline-offset: 2px;
       }
@@ -1825,7 +1846,7 @@
         margin-bottom: 9px;
         border-radius: 6px;
         border: 1px solid var(--mac-hairline);
-        border-left: 3px solid #e8a2b7;
+        border-left: 3px solid #8ab4e8;
         background: #fff;
         box-shadow: 0 4px 14px rgba(24, 24, 24, 0.05);
       }
