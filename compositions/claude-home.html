@@ -152,8 +152,8 @@
           <button class="sidebar-collapse" type="button" aria-label="Collapse sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
         </div>
 
-        <button class="new-chat-row active" type="button">
-          <span class="row-icon compose"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-new-chat"/></svg></span>
+        <button class="new-chat-row" type="button">
+          <span class="row-icon compose"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span>
           <span>New chat</span>
         </button>
         <button class="new-chat-row" type="button">
@@ -206,8 +206,6 @@
         <header class="home-topbar">
           <button class="topbar-icon menu" type="button" aria-label="Open sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
           <div class="topbar-spacer"></div>
-          <button class="topbar-icon share" type="button" aria-label="Share"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg></button>
-          <button class="topbar-icon more" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
         </header>
 
         <section class="welcome-stack" data-primitive="claude-home-welcome">
@@ -220,8 +218,9 @@
             <div class="prompt-footer">
               <button class="plus-button" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
               <span class="footer-spacer"></span>
-              <button class="composer-model-selector" type="button">Opus 4.8 <svg class="backlot-icon chevron-down" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+              <button class="composer-model-selector" type="button">Opus 4.8 <span style="color: var(--text-400); font-weight: 430; margin-left: 2px">Max</span> <svg class="backlot-icon chevron-down" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
               <button class="mic-button" type="button" aria-label="Dictate"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-mic"/></svg></button>
+              <button class="mic-button" type="button" aria-label="Voice mode"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7v4"/><path d="M6 5v8"/><path d="M9 3v12"/><path d="M12 5v8"/><path d="M15 7v4"/></svg></button>
             </div>
           </div>
           <div class="starter-row" aria-label="Starter prompts">
@@ -412,9 +411,9 @@
       }
 
       .products-new-badge {
-        margin-left: auto;
+        margin-left: 2px;
         padding: 1px 6px;
-        border-radius: 5px;
+        border-radius: 999px;
         background: #256bc1;
         color: #fff;
         font-size: 10.5px;
@@ -433,6 +432,21 @@
         height: 14px;
         flex: 0 0 auto;
         color: var(--text-400);
+      }
+
+      .row-icon.compose {
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(11, 11, 11, 0.07);
+        color: #373734;
+      }
+
+      .row-icon.compose svg {
+        width: 11px;
+        height: 11px;
       }
 
       .sidebar-label {
@@ -500,8 +514,8 @@
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background: var(--brand-100);
-        color: #fff;
+        background: #256bc1;
+        color: #373734;
         font-size: 9.5px;
         font-weight: 600;
         letter-spacing: 0.2px;
@@ -598,12 +612,12 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
       }
 
       .hero-mark {
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         flex: 0 0 auto;
       }
 
@@ -611,7 +625,7 @@
         margin: 0;
         color: var(--text-100);
         font-family: var(--font-claude-serif);
-        font-size: 36px;
+        font-size: 40px;
         font-weight: 330;
         letter-spacing: 0;
         text-align: left;
@@ -703,9 +717,10 @@
       }
 
       .starter-row {
-        width: min(100%, 608px);
+        width: auto;
+        max-width: none;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
         gap: 9px;
       }
@@ -719,7 +734,7 @@
         gap: 7px;
         padding: 0 14px;
         border: 1px solid var(--border-100);
-        border-radius: 18px;
+        border-radius: 9px;
         background: rgba(255, 255, 255, 0.68);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         color: var(--text-200);
