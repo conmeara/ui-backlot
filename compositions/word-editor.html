@@ -80,12 +80,6 @@
         <div class="ribbon-group compare">
           <div class="ribbon-stack compact"><span>Compare</span><span>Protect</span><span>Restrict Editing</span></div>
         </div>
-        <div class="ribbon-group proofing">
-          <div class="ribbon-row"><span class="field font-name">Editor</span></div>
-          <div class="button-row">
-            <span class="review-chip">Spelling</span>
-          </div>
-        </div>
       </div>
 
       <div class="document-workspace">
@@ -104,9 +98,8 @@
             <b>1</b><span></span><span></span><b>2</b><span></span><span></span><b>3</b><span></span><span></span><b>4</b><span></span><span></span><b>5</b><i class="indent left"></i><i class="indent right"></i>
           </div>
           <div class="page">
-            <div class="comment-anchor"><span></span></div>
             <h1><span class="change-bar h1-bar"></span><span>Q2 launch </span><span class="revision-delete">notes</span><span class="revision-insert">brief</span></h1>
-            <p class="lede">Claude revised the opening narrative into a <span class="text-selection">sharper executive brief</span><span class="caret"></span> while preserving source-backed details from the <span class="comment-highlight">Launch Deck folder</span>.</p>
+            <p class="lede">Claude revised the opening narrative into a <span class="text-selection">sharper executive brief</span><span class="caret"></span> while preserving source-backed details from the Launch Deck folder.</p>
             <p>The update connects revenue, adoption, and customer feedback into one page the team can reuse across the deck, video script, and launch memo.</p>
             <p class="revision-insert-block"><span class="change-bar"></span><strong>Updated positioning.</strong> Lead with the workflow outcome first, then support it with the three strongest proof points.</p>
             <table class="doc-table" aria-label="Launch proof points">
@@ -904,26 +897,6 @@
         font-weight: 720;
       }
 
-      .comment-anchor {
-        position: absolute;
-        right: -47px;
-        top: 143px;
-        width: 38px;
-        height: 1px;
-        background: #d8a11d;
-      }
-
-      .comment-anchor span {
-        position: absolute;
-        right: -6px;
-        top: -6px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #d8a11d;
-        box-shadow: 0 0 0 4px rgba(216, 161, 29, 0.16);
-      }
-
       .review-header button {
         height: 22px;
         border: 0;
@@ -1534,7 +1507,7 @@
         top: 31px;
         z-index: 8;
         width: 140px;
-        display: grid;
+        display: none;
         padding: 4px;
         background: #fbfaf9;
         border-radius: 8px;
@@ -1795,22 +1768,6 @@
       .doc-table th {
         background: #edf4fd;
         color: #323130;
-      }
-
-      .comment-anchor {
-        right: -31px;
-        top: 128px;
-        width: 24px;
-        background: #c72e5a;
-      }
-
-      .comment-anchor span {
-        width: 9px;
-        height: 9px;
-        top: -4px;
-        right: -4px;
-        background: #c72e5a;
-        box-shadow: 0 0 0 3px rgba(199, 46, 90, 0.16);
       }
 
       .review-header {
