@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Claude Cowork — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="13">
+      <section class="cw-stage" data-primitive="cowork-interaction" aria-label="Claude cowork: prompt, tool run, progress, streamed reply">
+        <div class="cw-window">
+          <div class="cw-sidebar">
+            <div class="cw-tabs"><span>Chat</span><span>Code</span><span class="active">Cowork</span></div>
+            <button class="cw-newtask"><span class="plus">+</span> New task</button>
+            <div class="cw-task active">Update the launch deck</div>
+            <div class="cw-note">These tasks run locally and aren't synced across devices</div>
+          </div>
+
+          <div class="cw-main">
+            <div class="cw-title">Update the launch deck</div>
+            <div class="thread" data-role="thread"></div>
+            <div class="cw-ai" data-role="aimsg">
+              <span class="mark">✳</span>
+              <div class="ai-col">
+                <div class="ai-lead" data-role="lead"></div>
+                <div class="toolcard" data-role="toolcard">
+                  <div class="tc-head"><span class="tc-ico">&gt;_</span> Running command <span class="tc-chev">⌄</span></div>
+                  <div class="tc-body"><span class="tc-label">Request</span>
+                    <div class="tc-code">{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }</div>
+                  </div>
+                </div>
+                <div class="ai-response" data-role="ai"></div>
+              </div>
+            </div>
+            <div class="cw-composer">
+              <span class="ph" data-role="ph">Reply…</span>
+              <span class="cw-input" data-role="input"></span>
+              <button class="cw-send" data-role="send"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+            </div>
+          </div>
+
+          <div class="cw-rail">
+            <div class="rail-card">
+              <div class="rail-title">Progress</div>
+              <div class="stepper">
+                <span class="step" data-role="s1"><i>✓</i></span><span class="line"></span>
+                <span class="step" data-role="s2"><i>✓</i></span><span class="line"></span>
+                <span class="step" data-role="s3"></span>
+              </div>
+              <div class="rail-caption" data-role="caption">Steps will show as the task unfolds.</div>
+            </div>
+            <div class="rail-card">
+              <div class="rail-title">Artifacts</div>
+              <div class="rail-row" data-role="art"><span class="rico">▤</span> launch-deck.pptx</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#d9d4c8; }
+      #cowork-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; color:#0b0b0b; }
+      #cowork-interaction * { box-sizing:border-box; }
+      .cw-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:#ece7dc; display:grid; place-items:center; }
+      .cw-window { position:relative; width:1120px; height:680px; background:#f8f8f6; border-radius:14px; border:1px solid rgba(11,11,11,0.09); box-shadow:0 40px 100px rgba(52,39,29,0.22); overflow:hidden; display:grid; grid-template-columns:220px 1fr 260px; }
+      .cw-sidebar { background:#f4efe8; border-right:1px solid rgba(11,11,11,0.07); padding:16px 14px; }
+      .cw-tabs { display:flex; gap:4px; background:#ece7dc; border-radius:9px; padding:3px; font-size:12.5px; margin-bottom:16px; }
+      .cw-tabs span { flex:1; text-align:center; padding:5px; border-radius:7px; color:#52514e; } .cw-tabs .active { background:#fff; color:#121212; font-weight:600; }
+      .cw-newtask { display:flex; align-items:center; gap:8px; width:100%; border:none; background:transparent; font-size:14px; color:#121212; padding:6px 0; } .plus { width:20px; height:20px; border-radius:50%; background:#d97757; color:#fff; display:grid; place-items:center; font-size:13px; }
+      .cw-task { font-size:13px; color:#23201c; background:#ece7dc; border-radius:8px; padding:8px 10px; margin-top:12px; }
+      .cw-note { font-size:11.5px; color:#8a8378; margin-top:14px; line-height:1.5; }
+      .cw-main { position:relative; padding:22px 30px 84px; overflow:hidden; }
+      .cw-title { font-size:15px; font-weight:600; color:#121212; margin-bottom:18px; }
+      .thread { display:flex; flex-direction:column; gap:14px; margin-bottom:16px; }
+      .bl-bubble.user { align-self:flex-end; background:#ece7dc; border:1px solid rgba(11,11,11,0.06); padding:11px 15px; border-radius:15px; font-size:15px; color:#23201c; max-width:78%; }
+      .cw-ai { display:flex; gap:12px; } .mark { color:#d97757; font-size:18px; } .ai-col { min-width:0; flex:1; }
+      .ai-lead { font-size:16px; line-height:1.6; color:#141414; margin-bottom:12px; }
+      .toolcard { border:1px solid rgba(11,11,11,0.1); border-radius:12px; overflow:hidden; margin-bottom:12px; background:#fffdf7; }
+      .tc-head { display:flex; align-items:center; gap:8px; padding:10px 14px; font-size:13.5px; color:#141414; border-bottom:1px solid rgba(11,11,11,0.06); } .tc-ico { font-family:monospace; color:#8a8378; } .tc-chev { margin-left:auto; color:#b0a89a; }
+      .tc-body { padding:12px 14px; } .tc-label { font-size:11px; color:#8a8378; text-transform:uppercase; letter-spacing:.04em; }
+      .tc-code { font-family:"SF Mono",ui-monospace,monospace; font-size:12.5px; color:#3f7f4f; margin-top:8px; line-height:1.5; word-break:break-word; }
+      .ai-response { font-size:16px; line-height:1.62; color:#141414; white-space:pre-wrap; }
+      .cw-composer { position:absolute; left:30px; right:30px; bottom:22px; display:flex; align-items:center; min-height:52px; background:#fff; border:1px solid rgba(11,11,11,0.12); border-radius:14px; padding:14px 16px; box-shadow:0 1px 2px rgba(0,0,0,0.05); }
+      .cw-composer .ph { position:absolute; color:#8a877f; font-size:15px; } .cw-input { font-size:15px; color:#141414; flex:1; }
+      .cw-send { margin-left:auto; width:32px; height:32px; border:none; border-radius:9px; background:#d97757; color:#fff; display:grid; place-items:center; }
+      .cw-rail { background:#f4efe8; border-left:1px solid rgba(11,11,11,0.07); padding:18px 16px; display:flex; flex-direction:column; gap:14px; }
+      .rail-card { background:#fff; border:1px solid rgba(11,11,11,0.08); border-radius:12px; padding:14px; }
+      .rail-title { font-size:13.5px; font-weight:600; color:#121212; margin-bottom:12px; }
+      .stepper { display:flex; align-items:center; }
+      .step { width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(11,11,11,0.18); display:grid; place-items:center; color:transparent; font-size:13px; } .step.done { background:#3f7f4f; border-color:#3f7f4f; color:#fff; } .step.active { border-color:#d97757; }
+      .line { flex:1; height:1.5px; background:rgba(11,11,11,0.14); }
+      .rail-caption { font-size:12px; color:#8a8378; margin-top:12px; }
+      .rail-row { display:flex; align-items:center; gap:8px; font-size:13px; color:#23201c; } .rico { color:#8a8378; }
+      .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(217,119,87,0.7); border-radius:50%; opacity:0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const stage = document.querySelector(".cw-stage");
+      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+      const PROMPT = "Update the launch deck with the corrected Q2 numbers.";
+      const LEAD = "I'll check the notes, Q2 data, and deck file, then update the opening slides.";
+      const REPLY = "Done — updated slides 1–3 with the corrected Q2 figures (revenue 16% above target) and refreshed the revenue chart. The deck is ready for review.";
+
+      gsap.set(['[data-role="aimsg"]', '[data-role="toolcard"]', '[data-role="s1"]', '[data-role="s2"]', '[data-role="s3"]'], { opacity: 0 });
+
+      // 1) type + send the prompt.
+      ix.click('[data-role="input"]', { at: 0.7, moveDur: 0.7 });
+      ix.hide('[data-role="ph"]', { at: 1.1, dur: 0.12 });
+      ix.type('[data-role="input"]', PROMPT, { at: 1.3, cps: 24 });
+      const sendAt = 1.3 + PROMPT.length / 24 + 0.4;
+      ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
+      ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
+
+      // 2) AI turn: lead line, tool card runs, progress steps check off.
+      ix.show('[data-role="aimsg"]', { at: sendAt + 0.5, dur: 0.3 });
+      ix.type('[data-role="lead"]', LEAD, { at: sendAt + 0.7, cps: 46 });
+      const cardAt = sendAt + 0.7 + LEAD.length / 46 + 0.3;
+      ix.show('[data-role="toolcard"]', { at: cardAt, dur: 0.3, from: { opacity: 0, y: 8 } });
+      // progress stepper fills in
+      tl.fromTo('[data-role="s1"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 0.2);
+      tl.set('[data-role="s1"]', { attr: { class: "step done", "data-role": "s1" } }, cardAt + 0.3);
+      tl.fromTo('[data-role="s2"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 0.7);
+      tl.set('[data-role="s2"]', { attr: { class: "step done", "data-role": "s2" } }, cardAt + 0.8);
+      tl.fromTo('[data-role="s3"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 1.2);
+      tl.set('[data-role="s3"]', { attr: { class: "step active", "data-role": "s3" } }, cardAt + 1.3);
+      tl.set('[data-role="caption"]', { textContent: "Updating the launch deck…" }, cardAt + 1.3);
+
+      // 3) streamed reply.
+      const replyAt = cardAt + 1.8;
+      ix.stream('[data-role="ai"]', REPLY, { at: replyAt, cps: 48 });
+
+      window.__timelines["cowork-interaction"] = tl;
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(12.4).pause();
+    </script>
+  </body>
+</html>
