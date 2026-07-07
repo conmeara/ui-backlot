@@ -5,7 +5,7 @@
     <title>Finder — Interaction Demo</title>
   </head>
   <body>
-    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5">
+    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="3.4">
       <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder (real component) with a scripted selection">
         <div class="wallpaper" aria-hidden="true"></div>
         <div class="fn-frame component-frame"
@@ -28,10 +28,11 @@
         linear-gradient(160deg,#6ea6e8 0%,#2f68c8 48%,#17348a 100%); }
       .component-frame { position:absolute; overflow:hidden; }
       .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
-      /* finder-window is 920x436; scale up and centre as a floating window */
-      .fn-frame { left:130px; top:170px; width:1196px; height:567px; border-radius:12px;
+      /* finder-window is 920x436; scale 1.2 and centre so the whole window is
+         visible with even margins (was 1196px wide at left:130 → clipped right). */
+      .fn-frame { left:88px; top:150px; width:1104px; height:523px; border-radius:12px;
         box-shadow:0 42px 110px rgba(6,18,54,0.45); }
-      .fn-frame > [data-backlot-mounted-component] { transform: scale(1.3); }
+      .fn-frame > [data-backlot-mounted-component] { transform: scale(1.2); }
       .demo-cursor { position:absolute; left:640px; top:520px; z-index:90; width:24px; height:24px;
         background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(255,255,255,0.85); border-radius:50%; opacity:0; }
@@ -44,14 +45,20 @@
       window.__timelines = window.__timelines || {};
       const stage = document.querySelector(".fn-stage");
 
-      // Build the timeline only after the real finder-window has mounted, so we
-      // can target its actual rows.
+      // Register the timeline SYNCHRONOUSLY with a full-duration hold so the
+      // renderer never probes a zero-duration composition (the real finder-window
+      // mounts asynchronously; the row-selection tweens are layered on once it is
+      // ready). Without the hold, a fast browser start races the mount and the
+      // render fails with "Composition has zero duration".
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: 3.4 }, 0);   // no-op hold → duration is always 3.4
+      window.__timelines["finder-interaction"] = tl;
+
       (window.__backlotComponentsReady || Promise.resolve()).then(() => {
         const cols = stage.querySelectorAll(".finder-column");
         const col1 = cols[0];
         const rows = col1 ? Array.from(col1.querySelectorAll(".file-row")) : [];
         const cur = col1 ? col1.querySelector(".file-row.selected") : null;
-        const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
         const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
         if (rows.length >= 5 && cur) {
@@ -66,10 +73,10 @@
           tl.set(rows[2], { attr: { class: "file-row", "data-role": "r2" } }, 2.5);
           tl.set(rows[4], { attr: { class: "file-row selected", "data-role": "r4" } }, 2.55);
         }
-        window.__timelines["finder-interaction"] = tl;
-        const cap = new URLSearchParams(location.search).get("capture");
-        if (cap === "hero") tl.seek(3.4).pause();
-      });
+      }).catch(() => {});
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(3.4).pause();
     </script>
   </body>
 </html>

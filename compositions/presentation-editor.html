@@ -57,7 +57,7 @@
         <div class="collab-strip" aria-label="Collaborators">
           <span>C</span><span>A</span><i></i>
         </div>
-        <div class="titlebar-actions"><span>Share</span><span>Comments</span></div>
+        <div class="titlebar-actions"><span>Share</span></div>
       </div>
       <div class="ribbon-tabs">
         <span class="file-tab">File</span><span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
@@ -70,7 +70,7 @@
           <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-slide-add-20"/></svg><em>New Slide</em></div>
         </div>
         <div class="ribbon-group font">
-          <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">28</span></div>
+          <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">44</span></div>
           <div class="button-group">
             <span class="tool-toggle active">B</span><span class="tool-toggle italic">I</span><span class="tool-toggle underline">U</span>
             <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-color-20"/></svg></span>
@@ -96,7 +96,7 @@
         </div>
         <div class="ribbon-group editing">
           <div class="ribbon-stack">
-            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-search-20"/></svg>Find</span>
+            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-search-20"/></svg>Find</span>
             <span class="split-mini">Select</span>
           </div>
         </div>
@@ -107,7 +107,7 @@
           <div class="thumb-label">1</div>
           <div class="slide-thumb active">
             <div class="mini dark">
-              <i class="m-title">Q1 Budget Analysis</i>
+              <i class="m-title">Q1 Budget Review</i>
               <i class="m-subtitle"></i>
               <div class="m-bars ghost"><u></u><u></u><u></u><u></u></div>
             </div>
@@ -154,7 +154,7 @@
             <span>Slide 1 of 4</span>
             <span>English (US)</span>
             <span class="status-chip good">Accessibility: Good</span>
-            <span class="status-chip">2 comments</span>
+            <span class="status-chip comments">2 comments</span>
             <span class="view-buttons"><i></i><i></i><i></i></span>
             <span class="zoom-track"></span>
             <span class="zoom-percent">118%</span>
@@ -544,6 +544,10 @@
         position: absolute;
         right: 5px;
         bottom: 5px;
+      }
+
+      .split-mini.no-caret::after {
+        display: none;
       }
 
       .cmd-icon {
@@ -2193,6 +2197,17 @@
 
       .status-chip.good {
         color: #222;
+      }
+
+      .status-chip.comments::before {
+        content: "";
+        display: inline-block;
+        width: 9px;
+        height: 8px;
+        margin-right: 4px;
+        border-radius: 2px 2px 2px 0;
+        border: 1px solid currentColor;
+        vertical-align: -1px;
       }
 
       .view-buttons i {

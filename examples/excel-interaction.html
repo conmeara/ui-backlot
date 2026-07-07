@@ -5,7 +5,7 @@
     <title>Excel — Interaction Demo</title>
   </head>
   <body>
-    <div id="excel-interaction" data-composition-id="excel-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9">
+    <div id="excel-interaction" data-composition-id="excel-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.4">
       <section class="xl-stage" data-primitive="excel-interaction" aria-label="Excel with a scripted cell selection, formula entry, and result">
         <div class="xl-window">
           <div class="xl-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Launch Metrics.xlsx</span></div>
@@ -71,36 +71,61 @@
       // Build selection + active-cell outlines positioned over the target cells.
       const grid = stage.querySelector('[data-role="grid"]');
       function rectOf(sel) { const el = stage.querySelector(sel); const g = grid.getBoundingClientRect(); const r = el.getBoundingClientRect(); return { left:r.left-g.left, top:r.top-g.top, w:r.width, h:r.height, cx:r.left-stage.getBoundingClientRect().left+r.width/2, cy:r.top-stage.getBoundingClientRect().top+r.height/2 }; }
-      const c5 = rectOf('[data-cell="C5"]'), c8 = rectOf('[data-cell="C8"]');
+      const c5 = rectOf('[data-cell="C5"]'), c7 = rectOf('[data-cell="C7"]'), c8 = rectOf('[data-cell="C8"]');
+      const rangeH = c7.top - c5.top + c7.h;   // full C5:C7 height
       const sel = document.createElement("div"); sel.className = "sel-range";
-      sel.style.cssText += `left:${c5.left}px;top:${c5.top}px;width:${c5.w}px;height:${c8.top - c5.top + c8.h}px;`;
+      sel.style.cssText += `left:${c5.left}px;top:${c5.top}px;width:${c5.w}px;height:${c5.h}px;`;
       grid.appendChild(sel);
       const act = document.createElement("div"); act.className = "active-outline";
       act.style.cssText += `left:${c8.left}px;top:${c8.top}px;width:${c8.w}px;height:${c8.h}px;`;
       grid.appendChild(act);
       gsap.set([sel, act], { opacity: 0 });
+      const statusRight = stage.querySelector(".xl-status .right");
+      gsap.set(statusRight, { opacity: 0 });
 
       const FORMULA = "=SUM(C5:C7)";
 
-      // 1) select the result cell C8.
-      ix.click('[data-cell="C8"]', { at: 0.8, moveDur: 0.8 });
-      ix.show(act, { at: 1.3, dur: 0.18, from: { opacity: 0, scale: 0.9 } });
-      // name box updates to C8
-      tl.call = tl.call; // (no callbacks; name box handled below via text swap at build)
-      // 2) move to formula bar, type the formula.
-      ix.type('[data-role="namebox"]', "C8", { at: 1.35, cps: 40, fade: 0.01 });
-      ix.click('[data-role="formula"]', { at: 1.7, moveDur: 0.6 });
-      ix.type('[data-role="formula"]', FORMULA, { at: 2.1, cps: 14 });
-      // 3) as the formula commits, the range highlights and the result appears.
-      ix.show(sel, { at: 2.1, dur: 0.25, from: { opacity: 0 } });
-      const commitAt = 2.1 + FORMULA.length / 14 + 0.4;
-      ix.type('[data-role="result"]', "12", { at: commitAt, cps: 20, fade: 0.12 });
-      ix.type('[data-role="sum"]', "12", { at: commitAt, cps: 20, fade: 0.05 });
-      tl.fromTo(act, { scale: 1 }, { scale: 1.04, yoyo: true, repeat: 1, duration: 0.12, transformOrigin: "50% 50%" }, commitAt);
+      // 1) Drag-select the range C5:C7 — cursor presses at C5 and drags down to
+      //    C7 while the selection rectangle grows under it (property-only height
+      //    tween, so it scrubs).
+      ix.moveTo('[data-cell="C5"]', { at: 0.5, dur: 0.85 });
+      tl.set('[data-role="namebox"]', { textContent: "C5" }, 1.35);
+      tl.set(sel, { opacity: 1 }, 1.4);                                  // mouse-down: 1-cell selection
+      ix.click('[data-cell="C5"]', { at: 1.4, move: false, press: false }); // press ring
+      ix.moveTo('[data-cell="C7"]', { at: 1.52, dur: 0.95, ease: "power2.inOut" });
+      tl.to(sel, { height: rangeH, duration: 0.95, ease: "power2.inOut" }, 1.52); // drag grows selection
+      tl.set('[data-role="namebox"]', { textContent: "3R x 1C" }, 2.2);
+      tl.set('[data-role="namebox"]', { textContent: "C5" }, 2.5);
+      // status bar live-sums the selection as Excel does
+      tl.to(statusRight, { opacity: 1, duration: 0.2 }, 2.5);
+      ix.type('[data-role="sum"]', "12", { at: 2.55, cps: 22, fade: 0.05 });
+
+      // 2) select the total cell C8, then type =SUM(C5:C7) in the formula bar.
+      ix.click('[data-cell="C8"]', { at: 3.25, moveDur: 0.85 });
+      tl.to(sel, { opacity: 0, duration: 0.2 }, 3.25); // clicking C8 clears the C5:C7 drag-selection
+      tl.to(statusRight, { opacity: 0, duration: 0.2 }, 3.25); // and Excel drops the status-bar aggregate when selection collapses to one cell
+      ix.show(act, { at: 3.3, dur: 0.18, from: { opacity: 0, scale: 0.92 } });
+      tl.set('[data-role="namebox"]', { textContent: "C8" }, 3.3);
+      ix.click('[data-role="formula"]', { at: 4.05, moveDur: 0.55 });
+      ix.type('[data-role="formula"]', FORMULA, { at: 4.45, cps: 16 });
+      // 3) commit: the result appears in C8 atomically (formula results don't type in) and the cell flashes.
+      const commitAt = 4.45 + FORMULA.length / 16 + 0.4;
+      tl.set('[data-role="result"]', { textContent: "12" }, commitAt);
+      tl.fromTo('[data-role="result"]', { opacity: 0 }, { opacity: 1, duration: 0.12 }, commitAt);
+      tl.fromTo(act, { scale: 1 }, { scale: 1.05, yoyo: true, repeat: 1, duration: 0.13, transformOrigin: "50% 50%" }, commitAt);
+
+      // The click-ring's fromTo tweens above (via the ix.click/ix.moveTo
+      // helpers) render their "from" state (opacity 0.9) for any timeline
+      // time before the tween's own start — that's how GSAP fromTo tweens
+      // behave on seek, not just at creation. Pin the ring hidden at t=0
+      // inside the timeline itself (not a bare gsap.set, which only runs
+      // once at parse time and gets overwritten on the next seek) so the
+      // opening at-rest frames render clean.
+      tl.set(".demo-click-ring", { opacity: 0 }, 0);
 
       window.__timelines["excel-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(8.4).pause();
+      if (cap === "hero") tl.seek(6.6).pause();
     </script>
   </body>
 </html>

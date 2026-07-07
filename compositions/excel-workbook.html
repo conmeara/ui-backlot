@@ -65,24 +65,30 @@
         <div class="ribbon-group clipboard">
           <div class="ribbon-large paste"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-paste-20"></use></svg><em>Paste</em><i></i></div>
           <div class="ribbon-stack"><span>Cut</span><span>Copy</span><span>Format Painter</span></div>
+          <strong>Clipboard</strong>
         </div>
         <div class="ribbon-group font">
           <div class="ribbon-row"><span class="field font-name">Aptos</span><span class="field small">12</span></div>
           <div class="button-row"><span class="toggle active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-bold-20"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-italic-20"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-underline-20"></use></svg></span><span class="toggle swatch fill"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-color-20"></use></svg></span><span class="toggle swatch color"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-fill-color-20"></use></svg></span></div>
+          <strong>Font</strong>
         </div>
         <div class="ribbon-group alignment">
           <div class="button-row dense"><span class="align left"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span><span class="align center active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-center-20"></use></svg></span><span class="align right"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span></div>
           <div class="button-row dense"><span class="merge">Merge &amp; Center</span><span class="wrap">Wrap Text</span></div>
+          <strong>Alignment</strong>
         </div>
         <div class="ribbon-group number">
           <div class="ribbon-row"><span class="field number-format">General</span></div>
           <div class="button-row"><span class="toggle">$</span><span class="toggle">%</span></div>
+          <strong>Number</strong>
         </div>
         <div class="ribbon-group cells">
           <div class="ribbon-stack"><span>Insert</span><span>Delete</span><span>Format</span></div>
+          <strong>Cells</strong>
         </div>
         <div class="ribbon-group editing">
           <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-formula-20"></use></svg>AutoSum</span><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-sort-20"></use></svg>Sort &amp; Filter</span><span>Find &amp; Select</span></div>
+          <strong>Editing</strong>
         </div>
       </div>
 
@@ -317,7 +323,7 @@
         align-items: flex-start;
         gap: 7px;
         min-width: 86px;
-        padding: 4px 12px 8px;
+        padding: 4px 12px 16px;
         border-left: 1px solid rgba(20, 30, 48, 0.1);
       }
 
@@ -326,7 +332,14 @@
       }
 
       .ribbon-group strong {
-        display: none;
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 400;
+        color: #7b8894;
       }
 
       .ribbon-large {
@@ -390,7 +403,7 @@
 
       .ribbon-stack {
         display: grid;
-        gap: 4px;
+        gap: 1px;
       }
 
       .ribbon-stack span,
@@ -408,6 +421,10 @@
         color: #34414f;
         font-size: 12px;
         font-weight: 400;
+      }
+
+      .ribbon-stack span {
+        height: 19px;
       }
 
       .ribbon-stack span:hover,
@@ -470,9 +487,9 @@
       }
 
       .toggle.active {
-        border-color: #9ccfb1;
-        background: var(--excel-soft);
-        color: var(--excel-dark);
+        border-color: rgba(20, 30, 48, 0.18);
+        background: rgba(20, 30, 48, 0.09);
+        color: #424242;
       }
 
       .toggle.swatch {
@@ -489,7 +506,7 @@
       }
 
       .toggle.fill::after {
-        background: #f2d26b;
+        background: #e0342b;
       }
 
       .toggle.color::after {
@@ -513,12 +530,12 @@
       }
 
       .align.active {
-        border-color: #9ccfb1;
-        background: var(--excel-soft);
+        border-color: rgba(20, 30, 48, 0.18);
+        background: rgba(20, 30, 48, 0.09);
       }
 
       .align.active .office-icon {
-        color: var(--excel-dark);
+        color: #424242;
       }
 
       .merge {
@@ -540,9 +557,9 @@
       .formula-bar {
         height: 35px;
         display: grid;
-        grid-template-columns: 78px 30px 1fr;
+        grid-template-columns: 72px 22px 1fr;
         align-items: center;
-        gap: 7px;
+        gap: 4px;
         padding: 5px 11px;
         background: #f7f7f7;
         border-bottom: 1px solid rgba(20, 30, 48, 0.1);
@@ -572,6 +589,7 @@
         border: 0;
         color: #4a5560;
         font-weight: 600;
+        font-style: italic;
       }
 
       .formula-input {

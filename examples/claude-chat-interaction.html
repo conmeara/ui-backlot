@@ -27,7 +27,7 @@
           <div class="composer">
             <div class="composer-field">
               <span class="composer-placeholder" data-role="placeholder">Reply to Claude…</span>
-              <span class="composer-input" data-role="input"></span>
+              <span class="composer-input" data-role="input"><span class="type-reveal" data-role="reveal"></span></span><span class="type-caret" data-role="caret"></span>
             </div>
             <div class="composer-actions">
               <button class="attach" aria-label="Attach">+</button>
@@ -45,6 +45,7 @@
     </div>
 
     <style>
+      @import url("../styles/backlot-foundation.css");
       html, body { width: 100%; min-height: 100%; margin: 0; display: grid; place-items: center; overflow: hidden; background: #d9d4c8; }
       #claude-chat-interaction { width: 1280px; height: 800px; overflow: hidden; font-family: -apple-system, "SF Pro Text", Inter, sans-serif; color: #0b0b0b; }
       #claude-chat-interaction * { box-sizing: border-box; }
@@ -64,16 +65,19 @@
       .tl-dots { display: flex; gap: 8px; }
       .tl-dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
       .tl-dots i:nth-child(1) { background: #ec6a5e; } .tl-dots i:nth-child(2) { background: #f4bf4f; } .tl-dots i:nth-child(3) { background: #61c554; }
-      .tl-title { font-family: "Anthropic Serif", Georgia, serif; font-weight: 500; font-size: 15px; color: #121212; }
+      .tl-title { font-family: var(--font-claude-serif); font-weight: 500; font-size: 15.5px; letter-spacing: -0.01em; color: #1a1a1a; }
 
       .convo { padding: 30px 40px; overflow: hidden; display: flex; flex-direction: column; gap: 20px; }
       .thread { display: flex; flex-direction: column; gap: 20px; }
       .bl-bubble { max-width: 78%; font-size: 16px; line-height: 1.55; }
       .bl-bubble.user { align-self: flex-end; background: #ece7dc; border: 1px solid rgba(11,11,11,0.06); padding: 12px 16px; border-radius: 16px; color: #23201c; }
-      .msg.ai { display: flex; gap: 14px; align-items: flex-start; }
-      .ai-mark { color: #d97757; font-size: 20px; line-height: 1.3; flex: none; }
+      .msg.ai { display: flex; gap: 13px; align-items: flex-start; }
+      /* Mark shares the first reply line's box (16.5px * 1.62 = 26.7px) so the
+         star sits centred on the first line, not floating above it. */
+      .ai-mark { color: #d97757; font-size: 18.5px; line-height: 26.7px; height: 26.7px; flex: none; width: 22px; text-align: center; position: relative; top: 3px; }
       .ai-body { min-width: 0; }
       .ai-response { font-size: 16.5px; line-height: 1.62; color: #141414; white-space: pre-wrap; }
+      .ai-response .bl-word { display: inline-block; }
 
       .thinking { display: inline-flex; gap: 5px; padding: 4px 0 2px; }
       .thinking i { width: 7px; height: 7px; border-radius: 50%; background: #b8b2a6; display: block; }
@@ -81,8 +85,11 @@
       .composer { padding: 14px 18px 18px; }
       .composer-field { position: relative; min-height: 54px; background: #ffffff; border: 1px solid rgba(11,11,11,0.12); border-radius: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 16px 18px 34px; font-size: 16px; }
       .composer-placeholder { position: absolute; left: 18px; top: 16px; color: #8a877f; pointer-events: none; }
-      .composer-input { font-size: 16px; color: #141414; white-space: pre-wrap; }
-      .bl-caret { display: inline-block; width: 2px; margin-left: 1px; background: #141414; }
+      .composer-input { font-size: 16px; color: #141414; white-space: nowrap; }
+      /* Text reveals by clipping width (overflow hidden), so the caret sibling
+         after it rides the leading edge — a real typewriter, seek-safe. */
+      .type-reveal { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; }
+      .type-caret { display: inline-block; width: 2px; height: 1.15em; margin-left: 1px; background: #1a1a1a; border-radius: 1px; vertical-align: -0.2em; opacity: 0; }
       .composer-actions { position: absolute; right: 26px; bottom: 26px; display: flex; align-items: center; gap: 12px; }
       .composer .attach { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(11,11,11,0.12); background: #fff; color: #52514e; font-size: 18px; line-height: 1; }
       .composer .model { font-size: 13.5px; color: #52514e; }
@@ -116,20 +123,36 @@
         "•  Adoption climbed to 42% of accounts, up from 31% last quarter.\n" +
         "•  Two slides still need the corrected Q2 figures before the deck ships.";
 
-      // 1) cursor to composer, click, type the prompt.
+      // 1) cursor to composer, click, type the prompt with a live caret.
       ix.click('[data-role="input"]', { at: 0.9, moveDur: 0.7 });
       ix.hide('[data-role="placeholder"]', { at: 1.3, dur: 0.15 });
-      ix.type('[data-role="input"]', PROMPT, { at: 1.5, cps: 24 });
+
+      // Width-clip reveal: the reveal box grows from 0 to full width so the
+      // text wipes in left-to-right and the caret (inline right after it) rides
+      // the leading edge — a real typewriter, and fully seek-deterministic.
+      const reveal = stage.querySelector('[data-role="reveal"]');
+      const caret = stage.querySelector('[data-role="caret"]');
+      const typeStart = 1.5, typeCps = 23;
+      reveal.textContent = PROMPT;
+      const fullW = reveal.getBoundingClientRect().width;
+      const typeDur = PROMPT.length / typeCps;
+      gsap.set(reveal, { width: 0 });
+      gsap.set(caret, { opacity: 0 });
+      tl.to(reveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
+      tl.to(caret, { opacity: 1, duration: 0.1 }, 1.0);                 // caret shows on focus
+      tl.to(caret, { opacity: 0, duration: 0.53, repeat: 3, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.04); // idle blink
 
       // 2) cursor to send, click, lift the text into a user bubble.
-      const sendAt = 1.5 + PROMPT.length / 24 + 0.5;   // just after typing finishes
+      const sendAt = typeStart + typeDur + 0.55;   // just after typing finishes
       ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
+      tl.to(caret, { opacity: 0, duration: 0.12 }, sendAt);
       ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
 
-      // 3) AI turn: bubble appears, thinks, then streams the reply.
+      // 3) AI turn: bubble appears, thinks, then streams the reply word-by-word
+      //    with a gentle rise + soft fade — reads like a real streamed reply.
       ix.show('[data-role="ai-msg"]', { at: sendAt + 0.5, dur: 0.3, from: { opacity: 0, y: 8 } });
       ix.think('[data-role="thinking"]', { at: sendAt + 0.6, dur: 1.0 });
-      ix.stream('[data-role="ai-response"]', REPLY, { at: sendAt + 1.7, cps: 52 });
+      ix.stream('[data-role="ai-response"]', REPLY, { at: sendAt + 1.7, cps: 46, unit: "word", rise: 3, fade: 0.26 });
 
       window.__timelines["claude-chat-interaction"] = tl;
 

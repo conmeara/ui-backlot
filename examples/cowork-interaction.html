@@ -5,10 +5,11 @@
     <title>Claude Cowork — Interaction Demo</title>
   </head>
   <body>
-    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="13">
+    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12.2">
       <section class="cw-stage" data-primitive="cowork-interaction" aria-label="Claude cowork: prompt, tool run, progress, streamed reply">
         <div class="cw-window">
           <div class="cw-sidebar">
+            <div class="cw-traffic" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="cw-tabs"><span>Chat</span><span>Code</span><span class="active">Cowork</span></div>
             <button class="cw-newtask"><span class="plus">+</span> New task</button>
             <div class="cw-task active">Update the launch deck</div>
@@ -42,8 +43,8 @@
             <div class="rail-card">
               <div class="rail-title">Progress</div>
               <div class="stepper">
-                <span class="step" data-role="s1"><i>✓</i></span><span class="line"></span>
-                <span class="step" data-role="s2"><i>✓</i></span><span class="line"></span>
+                <span class="step" data-role="s1"><svg class="chk" viewBox="0 0 24 24"><path d="M6 12.5 L10.3 17 L18 8"/></svg></span><span class="line"></span>
+                <span class="step" data-role="s2"><svg class="chk" viewBox="0 0 24 24"><path d="M6 12.5 L10.3 17 L18 8"/></svg></span><span class="line"></span>
                 <span class="step" data-role="s3"></span>
               </div>
               <div class="rail-caption" data-role="caption">Steps will show as the task unfolds.</div>
@@ -65,7 +66,10 @@
       #cowork-interaction * { box-sizing:border-box; }
       .cw-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:#ece7dc; display:grid; place-items:center; }
       .cw-window { position:relative; width:1120px; height:680px; background:#f8f8f6; border-radius:14px; border:1px solid rgba(11,11,11,0.09); box-shadow:0 40px 100px rgba(52,39,29,0.22); overflow:hidden; display:grid; grid-template-columns:220px 1fr 260px; }
-      .cw-sidebar { background:#f4efe8; border-right:1px solid rgba(11,11,11,0.07); padding:16px 14px; }
+      .cw-sidebar { background:#f4efe8; border-right:1px solid rgba(11,11,11,0.07); padding:15px 14px; }
+      .cw-traffic { display:flex; gap:8px; margin:0 0 15px 2px; }
+      .cw-traffic i { width:12px; height:12px; border-radius:50%; display:block; }
+      .cw-traffic i:nth-child(1){background:#ec6a5e;} .cw-traffic i:nth-child(2){background:#f4bf4f;} .cw-traffic i:nth-child(3){background:#61c554;}
       .cw-tabs { display:flex; gap:4px; background:#ece7dc; border-radius:9px; padding:3px; font-size:12.5px; margin-bottom:16px; }
       .cw-tabs span { flex:1; text-align:center; padding:5px; border-radius:7px; color:#52514e; } .cw-tabs .active { background:#fff; color:#121212; font-weight:600; }
       .cw-newtask { display:flex; align-items:center; gap:8px; width:100%; border:none; background:transparent; font-size:14px; color:#121212; padding:6px 0; } .plus { width:20px; height:20px; border-radius:50%; background:#d97757; color:#fff; display:grid; place-items:center; font-size:13px; }
@@ -81,7 +85,8 @@
       .tc-head { display:flex; align-items:center; gap:8px; padding:10px 14px; font-size:13.5px; color:#141414; border-bottom:1px solid rgba(11,11,11,0.06); } .tc-ico { font-family:monospace; color:#8a8378; } .tc-chev { margin-left:auto; color:#b0a89a; }
       .tc-body { padding:12px 14px; } .tc-label { font-size:11px; color:#8a8378; text-transform:uppercase; letter-spacing:.04em; }
       .tc-code { font-family:"SF Mono",ui-monospace,monospace; font-size:12.5px; color:#3f7f4f; margin-top:8px; line-height:1.5; word-break:break-word; }
-      .ai-response { font-size:16px; line-height:1.62; color:#141414; white-space:pre-wrap; }
+      .ai-response { font-size:16px; line-height:1.62; color:#141414; white-space:pre-wrap; overflow-wrap:anywhere; }
+      .ai-response .bl-word { display:inline-block; }
       .cw-composer { position:absolute; left:30px; right:30px; bottom:22px; display:flex; align-items:center; min-height:52px; background:#fff; border:1px solid rgba(11,11,11,0.12); border-radius:14px; padding:14px 16px; box-shadow:0 1px 2px rgba(0,0,0,0.05); }
       .cw-composer .ph { position:absolute; color:#8a877f; font-size:15px; } .cw-input { font-size:15px; color:#141414; flex:1; }
       .cw-send { margin-left:auto; width:32px; height:32px; border:none; border-radius:9px; background:#d97757; color:#fff; display:grid; place-items:center; }
@@ -89,7 +94,9 @@
       .rail-card { background:#fff; border:1px solid rgba(11,11,11,0.08); border-radius:12px; padding:14px; }
       .rail-title { font-size:13.5px; font-weight:600; color:#121212; margin-bottom:12px; }
       .stepper { display:flex; align-items:center; }
-      .step { width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(11,11,11,0.18); display:grid; place-items:center; color:transparent; font-size:13px; } .step.done { background:#3f7f4f; border-color:#3f7f4f; color:#fff; } .step.active { border-color:#d97757; }
+      .step { width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(11,11,11,0.18); display:grid; place-items:center; background:transparent; }
+      .step .chk { width:15px; height:15px; display:block; }
+      .step .chk path { fill:none; stroke:#fff; stroke-width:2.7; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:22; stroke-dashoffset:22; }
       .line { flex:1; height:1.5px; background:rgba(11,11,11,0.14); }
       .rail-caption { font-size:12px; color:#8a8378; margin-top:12px; }
       .rail-row { display:flex; align-items:center; gap:8px; font-size:13px; color:#23201c; } .rico { color:#8a8378; }
@@ -125,18 +132,33 @@
       ix.type('[data-role="lead"]', LEAD, { at: sendAt + 0.7, cps: 46 });
       const cardAt = sendAt + 0.7 + LEAD.length / 46 + 0.3;
       ix.show('[data-role="toolcard"]', { at: cardAt, dur: 0.3, from: { opacity: 0, y: 8 } });
-      // progress stepper fills in
-      tl.fromTo('[data-role="s1"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 0.2);
-      tl.set('[data-role="s1"]', { attr: { class: "step done", "data-role": "s1" } }, cardAt + 0.3);
-      tl.fromTo('[data-role="s2"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 0.7);
-      tl.set('[data-role="s2"]', { attr: { class: "step done", "data-role": "s2" } }, cardAt + 0.8);
-      tl.fromTo('[data-role="s3"]', { opacity: 0 }, { opacity: 1, duration: 0.2 }, cardAt + 1.2);
-      tl.set('[data-role="s3"]', { attr: { class: "step active", "data-role": "s3" } }, cardAt + 1.3);
-      tl.set('[data-role="caption"]', { textContent: "Updating the launch deck…" }, cardAt + 1.3);
 
-      // 3) streamed reply.
-      const replyAt = cardAt + 1.8;
-      ix.stream('[data-role="ai"]', REPLY, { at: replyAt, cps: 48 });
+      // Progress stepper: each done step pops in (spring), the ring fills green,
+      // and the checkmark draws itself in (stroke-dashoffset) — all property-only
+      // so it scrubs. The final step lands as an active (in-progress) ring.
+      function doneStep(sel, when) {
+        const step = stage.querySelector(sel);
+        const path = step.querySelector("path");
+        tl.set(step, { opacity: 1 }, when);
+        tl.fromTo(step, { scale: 0.4 }, { scale: 1, duration: 0.44, ease: "back.out(2.4)", transformOrigin: "50% 50%" }, when);
+        tl.to(step, { backgroundColor: "#3f7f4f", borderColor: "#3f7f4f", duration: 0.18, ease: "power1.out" }, when + 0.05);
+        tl.fromTo(path, { strokeDashoffset: 22 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, when + 0.16);
+      }
+      function activeStep(sel, when) {
+        const step = stage.querySelector(sel);
+        tl.set(step, { opacity: 1 }, when);
+        tl.fromTo(step, { scale: 0.4 }, { scale: 1, duration: 0.44, ease: "back.out(2.4)", transformOrigin: "50% 50%" }, when);
+        tl.to(step, { borderColor: "#d97757", duration: 0.2 }, when + 0.05);
+        tl.fromTo(step, { boxShadow: "0 0 0 0 rgba(217,119,87,0.45)" }, { boxShadow: "0 0 0 6px rgba(217,119,87,0)", duration: 1.1, ease: "sine.out", repeat: 2 }, when + 0.2);
+      }
+      doneStep('[data-role="s1"]', cardAt + 0.2);
+      doneStep('[data-role="s2"]', cardAt + 0.75);
+      activeStep('[data-role="s3"]', cardAt + 1.3);
+      tl.set('[data-role="caption"]', { textContent: "Updating the launch deck…" }, cardAt + 1.35);
+
+      // 3) streamed reply — word-by-word with a soft fade, like a real reply.
+      const replyAt = cardAt + 2.0;
+      ix.stream('[data-role="ai"]', REPLY, { at: replyAt, cps: 46, unit: "word", rise: 3, fade: 0.26 });
 
       window.__timelines["cowork-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");

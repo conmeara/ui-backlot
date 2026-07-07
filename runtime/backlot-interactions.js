@@ -101,30 +101,75 @@
         const full = String(text);
         el.textContent = "";
         const spans = [];
-        for (let i = 0; i < full.length; i++) {
-          const ch = full[i];
-          if (ch === "\n") { el.appendChild(document.createElement("br")); continue; }
-          const s = document.createElement("span");
-          s.className = "bl-char";
-          if (ch === " ") s.style.whiteSpace = "pre";
-          s.textContent = ch;
-          el.appendChild(s);
-          spans.push(s);
+        const unit = o.unit || "char";
+        if (unit === "word") {
+          // Reveal token-by-token (words keep their trailing space). More like a
+          // real LLM stream than a per-character wipe. Whitespace is not animated
+          // (it carries no ink) so it never pops.
+          const tokens = full.split(/(\s+)/);
+          for (let k = 0; k < tokens.length; k++) {
+            const tok = tokens[k];
+            if (tok === "") continue;
+            if (/^\s+$/.test(tok)) {
+              const parts = tok.split("\n");
+              for (let j = 0; j < parts.length; j++) {
+                if (j > 0) el.appendChild(document.createElement("br"));
+                if (parts[j]) { const sp = document.createElement("span"); sp.style.whiteSpace = "pre"; sp.textContent = parts[j]; el.appendChild(sp); }
+              }
+              continue;
+            }
+            const s = document.createElement("span");
+            s.className = "bl-word";
+            s.textContent = tok;
+            el.appendChild(s);
+            spans.push(s);
+          }
+        } else {
+          for (let i = 0; i < full.length; i++) {
+            const ch = full[i];
+            if (ch === "\n") { el.appendChild(document.createElement("br")); continue; }
+            const s = document.createElement("span");
+            s.className = "bl-char";
+            if (ch === " ") s.style.whiteSpace = "pre";
+            s.textContent = ch;
+            el.appendChild(s);
+            spans.push(s);
+          }
         }
-        gsap.set(spans, { opacity: 0 });
-        tl.to(spans, {
+        // Keep the overall reveal time ~= text.length / cps regardless of unit.
+        const each = unit === "word"
+          ? (spans.length > 1 ? (full.length / cps) / spans.length : 0)
+          : 1 / cps;
+        const fromVars = { opacity: 0 };
+        if (o.rise) fromVars.y = o.rise;
+        if (o.blur) fromVars.filter = "blur(" + o.blur + "px)";
+        gsap.set(spans, fromVars);
+        const toVars = {
           opacity: 1,
           duration: o.fade != null ? o.fade : 0.12,
-          ease: "none",
-          stagger: { each: 1 / cps },
-        }, t);
+          ease: o.ease || "none",
+          stagger: { each: each },
+        };
+        if (o.rise) toVars.y = 0;
+        if (o.blur) toVars.filter = "blur(0px)";
+        tl.to(spans, toVars, t);
         return ctx;
       },
 
-      /** Like type() but tuned for AI output - faster, softer fade. */
+      /** Like type() but tuned for AI output - faster, softer fade. Pass
+       *  unit:"word" / rise / blur for a more realistic chat-reply reveal;
+       *  defaults stay char-based so terminal streams are unchanged. */
       stream(target, text, o) {
         o = o || {};
-        return ctx.type(target, text, { cps: o.cps || 52, at: o.at, fade: o.fade != null ? o.fade : 0.1 });
+        return ctx.type(target, text, {
+          cps: o.cps || 52,
+          at: o.at,
+          fade: o.fade != null ? o.fade : 0.1,
+          unit: o.unit,
+          rise: o.rise,
+          blur: o.blur,
+          ease: o.ease,
+        });
       },
 
       /** Lift text into a new chat bubble in a thread, and clear the composer.

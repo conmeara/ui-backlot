@@ -108,7 +108,6 @@
             <span class="nav-button back"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-back"/></svg></span>
             <span class="nav-button forward disabled"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-forward"/></svg></span>
             <span class="nav-button reload"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-reload"/></svg></span>
-            <span class="nav-button home"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-home"/></svg></span>
           </div>
           <div class="url-bar">
             <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tune"/></svg></span>
@@ -629,10 +628,15 @@
         content: "";
         position: absolute;
         right: 8px;
-        top: 11px;
-        bottom: 11px;
+        top: 12px;
+        height: 12px;
+        bottom: auto;
         width: 1px;
-        background: rgba(60, 64, 67, 0.16);
+        background: rgba(60, 64, 67, 0.12);
+      }
+
+      .tab:not(.active):last-of-type::after {
+        content: none;
       }
 
       .tab-favicon {
@@ -685,8 +689,13 @@
         border-radius: 50%;
         display: grid;
         place-items: center;
-        color: rgba(69, 74, 80, 0.72);
+        color: rgba(69, 74, 80, 0.55);
         font-size: 14px;
+      }
+
+      .tab-close .backlot-icon {
+        width: 11px;
+        height: 11px;
       }
 
       .tab-add {
@@ -710,7 +719,7 @@
       .browser-toolbar {
         height: 46px;
         display: grid;
-        grid-template-columns: 132px 1fr 186px;
+        grid-template-columns: 104px 1fr 186px;
         align-items: center;
         gap: 13px;
         padding: 0 14px;
@@ -835,10 +844,10 @@
       }
 
       .bookmark-dot {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        background: var(--red);
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        background: #e8695b;
       }
 
       .bookmark-dot.green { background: #43b875; }

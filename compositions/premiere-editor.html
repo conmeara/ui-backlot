@@ -16,6 +16,11 @@
 
 <template id="premiere-editor-surface-template">
   <div id="premiere-editor-surface" data-composition-id="premiere-editor-surface" data-width="1440" data-height="900">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lucide-magnet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4" />
+      </symbol>
+    </svg>
     <section class="premiere-window" data-primitive="premiere-video-editor-window" aria-label="Editable Premiere-style video editor surface">
       <header class="premiere-titlebar" data-primitive="premiere-titlebar">
         <div class="traffic" aria-hidden="true">
@@ -32,9 +37,6 @@
         <div class="app-identity">
           <span>Neighborhood Launch Cut</span>
           <span class="title-muted">Edited</span>
-        </div>
-        <div class="workspace-identity">
-          <span>ESSENTIALS</span>
         </div>
         <div class="top-actions">
           <button type="button" class="sync-pill"><span></span> Frame.io</button>
@@ -185,10 +187,7 @@
             <div class="timeline-controls">
               <button type="button" class="timeline-icon insert-mini" aria-label="Insert edit"></button>
               <button type="button" class="timeline-icon overwrite-mini" aria-label="Overwrite edit"></button>
-              <span class="toggle active">Snap</span>
-              <span class="toggle">Linked</span>
-              <span class="toggle active">Markers</span>
-              <span class="toggle active">Keyframes</span>
+              <button type="button" class="timeline-icon snap-toggle active" aria-label="Snap" aria-pressed="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-magnet"/></svg></button>
             </div>
             <div class="zoom-track"><span></span></div>
           </div>
@@ -235,17 +234,14 @@
               <div class="track-row audio">
                 <div class="clip audio green" style="left: 4%; width: 50%">
                   <strong>interview_selects.wav</strong>
-                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
                 <div class="clip audio green" style="left: 56%; width: 28%">
                   <strong>volunteer_day.wav</strong>
-                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
               </div>
               <div class="track-row audio">
                 <div class="clip audio music" style="left: 0%; width: 84%">
                   <strong>ambient_block.wav</strong>
-                  <div class="wave-mini"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
               </div>
             </div>
@@ -330,7 +326,7 @@
 
       .premiere-titlebar {
         display: grid;
-        grid-template-columns: 92px 34px auto minmax(0, 1fr) auto auto;
+        grid-template-columns: 92px 34px auto minmax(0, 1fr) auto;
         align-items: center;
         column-gap: 13px;
         padding: 0 10px;
@@ -406,15 +402,6 @@
         font-weight: 560;
       }
 
-      .workspace-identity {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: #d1d1d1;
-        font-size: 10px;
-        font-weight: 700;
-      }
-
       .title-muted {
         color: var(--soft);
         font-weight: 520;
@@ -424,7 +411,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        grid-column: 6 / 7;
+        grid-column: 5 / 6;
         justify-self: end;
       }
 
@@ -1291,30 +1278,27 @@
         color: #fff;
       }
 
-      .toggle {
-        height: 18px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 6px;
-        border-radius: 2px;
-        background: #2b2b2b;
-        color: #9b9b9b;
-        font-size: 9px;
-        font-weight: 650;
-      }
-
-      .toggle.active {
-        color: #fff;
-        background: #4a4a4a;
-      }
-
       .timeline-icon {
         width: 18px;
         height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         border: 0;
         border-radius: 2px;
         background: #2a2a2a;
+        color: #9b9b9b;
         position: relative;
+      }
+
+      .timeline-icon.snap-toggle .backlot-icon {
+        width: 12px;
+        height: 12px;
+      }
+
+      .timeline-icon.snap-toggle.active {
+        background: var(--accent);
+        color: #fff;
       }
 
       .timeline-icon::before,
@@ -1581,10 +1565,14 @@
       .clip-fx {
         position: absolute;
         right: 5px;
-        top: 4px;
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 9px;
-        font-weight: 800;
+        bottom: 3px;
+        top: auto;
+        text-transform: lowercase;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 8px;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        line-height: 1.2;
       }
 
       .transition {
@@ -1626,11 +1614,15 @@
       .clip-handle.right::after { right: -7px; }
 
       .clip.audio {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 74px;
-        align-items: center;
+        position: absolute;
+        display: block;
         background: #2e8b6f;
         color: #04140f;
+      }
+
+      .clip.audio strong {
+        position: relative;
+        z-index: 1;
       }
 
       .clip.audio.music {
@@ -1638,24 +1630,25 @@
         color: #041510;
       }
 
-      .wave-mini {
+      .clip.audio::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
         height: 22px;
-        display: flex;
-        align-items: center;
-        gap: 3px;
+        transform: translateY(-50%);
+        background-image: repeating-linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.55) 0,
+          rgba(0, 0, 0, 0.55) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);
+        mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);
+        opacity: 0.9;
       }
-
-      .wave-mini span {
-        flex: 1;
-        border-radius: 4px;
-        background: rgba(0, 0, 0, 0.62);
-      }
-
-      .wave-mini span:nth-child(1) { height: 12px; }
-      .wave-mini span:nth-child(2) { height: 20px; }
-      .wave-mini span:nth-child(3) { height: 15px; }
-      .wave-mini span:nth-child(4) { height: 24px; }
-      .wave-mini span:nth-child(5) { height: 10px; }
 
       .property-stack {
         padding: 12px 12px 0;
