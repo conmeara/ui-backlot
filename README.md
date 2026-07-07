@@ -17,6 +17,41 @@ The long-term north star is tracked in [VISION.md](VISION.md). Agents should
 start with [AGENTS.md](AGENTS.md), then use [docs/catalog.md](docs/catalog.md)
 and [surfaces/registry.json](surfaces/registry.json) to find reusable surfaces.
 
+## Demos
+
+Everything below is a **rendered HyperFrames scene** — no screen recording. Real
+app surfaces, a real macOS pointer, and scripted interactions (typing, clicking,
+streaming replies), rendered deterministically frame by frame.
+
+![macOS desktop — open the Claude app, then Excel on top](docs/media/mac-multi-app-demo.gif)
+
+<sub>A cursor pulls the Claude app up from the dock, then opens Excel on top — real dock icons, real pointer, full app ribbons.</sub>
+
+### App interactions
+
+Scripted with [`runtime/backlot-interactions.js`](runtime/backlot-interactions.js)
+— a few lines per action ([authoring guide](#scriptable-interactions-1)). Worked
+examples live in [`examples/*-interaction.html`](examples/).
+
+<table>
+<tr>
+<td width="50%"><b>Claude — chat</b><br><img src="docs/media/claude-chat-interaction.gif" alt="Claude chat interaction"><br><sub>Type a prompt → send → thinking → streamed reply.</sub></td>
+<td width="50%"><b>Claude — cowork</b><br><img src="docs/media/cowork-interaction.gif" alt="Claude cowork interaction"><br><sub>Prompt → a tool card runs → progress steps → streamed reply.</sub></td>
+</tr>
+<tr>
+<td><b>Excel</b><br><img src="docs/media/excel-interaction.gif" alt="Excel interaction"><br><sub>Select a cell, type <code>=SUM(C5:C7)</code>, the result reveals.</sub></td>
+<td><b>Word</b><br><img src="docs/media/word-interaction.gif" alt="Word interaction"><br><sub>The title types, body paragraphs stream, word count ticks up.</sub></td>
+</tr>
+<tr>
+<td><b>PowerPoint</b><br><img src="docs/media/powerpoint-interaction.gif" alt="PowerPoint interaction"><br><sub>Click the title box, type the slide title, save.</sub></td>
+<td><b>Browser</b><br><img src="docs/media/browser-interaction.gif" alt="Browser interaction"><br><sub>Type a URL, a loading bar sweeps, the page loads.</sub></td>
+</tr>
+<tr>
+<td><b>Finder</b><br><img src="docs/media/finder-interaction.gif" alt="Finder interaction"><br><sub>The real column-view Finder component — select files.</sub></td>
+<td><b>Codex CLI</b><br><img src="docs/media/codex-interaction.gif" alt="Codex CLI interaction"><br><sub>Type a command, stream the terminal output.</sub></td>
+</tr>
+</table>
+
 ## The Fidelity Loop
 
 Surfaces are held to a measured bar, not an eyeballed one. The system is
