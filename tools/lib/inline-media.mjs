@@ -64,6 +64,8 @@ export function escapeHtml(value) {
 export const PAGE_CSS = `
   :root { color-scheme: light dark; --ink: #1a1a18; --paper: #faf9f7; --line: rgba(0,0,0,.12); --card: #fff; --muted: #6b6b66; --accent: #e08a62; }
   @media (prefers-color-scheme: dark) { :root { --ink: #ececea; --paper: #161614; --line: rgba(255,255,255,.14); --card: #1f1f1d; --muted: #9a9a94; } }
+  :root[data-theme="dark"] { --ink: #ececea; --paper: #161614; --line: rgba(255,255,255,.14); --card: #1f1f1d; --muted: #9a9a94; }
+  :root[data-theme="light"] { --ink: #1a1a18; --paper: #faf9f7; --line: rgba(0,0,0,.12); --card: #fff; --muted: #6b6b66; }
   * { box-sizing: border-box; }
   body { margin: 0; padding: 28px 32px 80px; background: var(--paper); color: var(--ink); font: 15px/1.5 -apple-system, "SF Pro Text", Inter, sans-serif; }
   h1 { font-size: 22px; margin: 0 0 4px; } h2 { font-size: 16px; margin: 36px 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }

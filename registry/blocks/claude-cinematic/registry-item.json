@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-cinematic",
+  "type": "hyperframes:block",
+  "title": "Claude Cinematic Conversation",
+  "description": "Consolidated from the six launch/cinematic prototypes (pass 115); canonical tokens + shared response-mark atom, pending official product capture. The one zoomed cinematic Claude conversation for close-up video beats: ?beat=prompt (user asks + thinking loader), ?beat=reply (large serif answer + composer), ?beat=complete (done copy). Copy overridable via data-copy slots; add class theme-dark for dark. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "claude",
+    "cinematic",
+    "zoomed",
+    "dark-mode-ready",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-cinematic.html",
+      "target": "compositions/claude-cinematic.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-response-mark"
+  ]
+}

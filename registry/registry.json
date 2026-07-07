@@ -57,63 +57,6 @@
       ]
     },
     {
-      "name": "claude-browser-chat-pane-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Chat Pane Plus Browser Workflow",
-      "description": "Modular assembly proof using the lean Claude chat pane and editable browser surface. The lightest Claude-plus-browser instructional clips: active Claude topbar, message field, and composer over a browser surface, without sidebar, task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow.",
-      "tags": [
-        "workflow",
-        "claude",
-        "browser",
-        "chat-pane",
-        "lean-pane",
-        "modular-assembly"
-      ]
-    },
-    {
-      "name": "claude-browser-chat-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Chat Shell Plus Browser Workflow",
-      "description": "Modular assembly proof using the lean Claude chat shell and editable browser surface. Short instructional clips that need only Claude plus a browser surface, without importing the task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow.",
-      "tags": [
-        "workflow",
-        "claude",
-        "browser",
-        "chat-shell",
-        "lean-shell",
-        "modular-assembly"
-      ]
-    },
-    {
-      "name": "claude-browser-composed-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Componentized Shell Plus Browser Workflow",
-      "description": "Nested modular assembly proof using the componentized Claude shell. Short clips that need a full Claude shell plus a browser app while preserving the reusable sidebar, thread core, composer, and rail as independently editable child components.",
-      "tags": [
-        "workflow",
-        "claude",
-        "browser",
-        "composed-shell",
-        "nested-components",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-browser-thread-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Working Thread Plus Browser Workflow",
-      "description": "Modular assembly proof using the current Claude working-thread component. Short demo clips that need only the current Claude working thread over a browser app, without Finder, PowerPoint, or the attachment-draft beat.",
-      "tags": [
-        "workflow",
-        "claude",
-        "browser",
-        "working-thread",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
       "name": "claude-chat-pane",
       "type": "hyperframes:block",
       "title": "Claude Chat Pane",
@@ -128,31 +71,16 @@
       ]
     },
     {
-      "name": "claude-cinematic-reply",
+      "name": "claude-cinematic",
       "type": "hyperframes:block",
-      "title": "Claude Cinematic Reply",
-      "description": "High against Sonnet 4.6 launch-frame reply rhythm, pending official product capture. Sparse launch-style Claude answer/composer beats when a clip does not need sidebar, task rail, or tool cards.",
+      "title": "Claude Cinematic Conversation",
+      "description": "Consolidated from the six launch/cinematic prototypes (pass 115); canonical tokens + shared response-mark atom, pending official product capture. The one zoomed cinematic Claude conversation for close-up video beats: ?beat=prompt (user asks + thinking loader), ?beat=reply (large serif answer + composer), ?beat=complete (done copy). Copy overridable via data-copy slots; add class theme-dark for dark. Dark theme: add class \"theme-dark\" to the composition root.",
       "tags": [
         "claude",
         "cinematic",
-        "reply",
-        "composer",
-        "launch-reference"
-      ]
-    },
-    {
-      "name": "claude-code-figma-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Code Plus Figma Workflow",
-      "description": "Modular assembly proof informed by the 2026-02-18 Claude Code-to-Figma reference video. Claude Code-to-design clips that need the light reference-style Claude Code terminal driving a dark Figma onboarding design editor without importing the warm Claude chat shell, Finder, Office, browser, Codex terminal, Premiere, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude-code",
-        "claude",
-        "figma",
-        "design",
-        "terminal",
-        "modular-assembly"
+        "zoomed",
+        "dark-mode-ready",
+        "dark-mode-ready"
       ]
     },
     {
@@ -167,35 +95,6 @@
         "light-ui",
         "figma-workflow",
         "component"
-      ]
-    },
-    {
-      "name": "claude-codex-terminal-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Codex Terminal Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and Codex CLI terminal components. Instructional clips that need Claude supervising or describing work while Codex CLI executes in Terminal, without browser, Finder, Office, or full desktop surfaces.",
-      "tags": [
-        "workflow",
-        "claude",
-        "codex",
-        "terminal",
-        "cli",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-completion-response",
-      "type": "hyperframes:block",
-      "title": "Claude Completion Response",
-      "description": "High against Sonnet 4.6 launch completion response rhythm, with synthetic editable text and no composer dependency. Cinematic Claude done-state beats that need only the large serif response and red response mark, without composer, sidebar, browser, Finder, Office, Codex, Premiere, or desktop context.",
-      "tags": [
-        "claude",
-        "cinematic",
-        "completion",
-        "response",
-        "launch-reference",
-        "composer-free"
       ]
     },
     {
@@ -231,97 +130,6 @@
       ]
     },
     {
-      "name": "claude-conversation",
-      "type": "hyperframes:block",
-      "title": "Claude Sparse Conversation Canvas",
-      "description": "High against Sonnet 4.6 launch-frame rhythm, pending sanitized live Claude capture. Launch-style Claude response clips that need the sparse conversation canvas without the desktop sidebar or full app shell.",
-      "tags": [
-        "claude",
-        "conversation",
-        "reply-composer",
-        "launch-video",
-        "sparse-thread"
-      ]
-    },
-    {
-      "name": "claude-conversation-browser-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Sparse Conversation Plus Browser Workflow",
-      "description": "Modular assembly proof, high against Sonnet 4.6 launch composition rhythm. Launch-style clips that need a browser app being updated in the background with the sparse Claude response canvas in front.",
-      "tags": [
-        "workflow",
-        "claude",
-        "conversation",
-        "browser",
-        "launch-video",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-deck-chat-pane",
-      "type": "hyperframes:block",
-      "title": "Claude Deck Chat Pane",
-      "description": "Deck-specific lean chat-pane reconstruction derived from the Claude chat-pane shell and Sonnet 4.6 launch-frame rhythm. Claude plus PowerPoint/deck scenes that need only the active topbar, deck-focused message field, and composer without sidebar, task rail, browser, Finder, Codex, or desktop chrome.",
-      "tags": [
-        "claude",
-        "chat",
-        "thread",
-        "composer",
-        "launch-reference",
-        "pane",
-        "deck",
-        "powerpoint"
-      ]
-    },
-    {
-      "name": "claude-excel-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Excel Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and Excel-style workbook components. Spreadsheet review, formula checking, chart-range, and workbook automation clips that need Claude with an Excel-style workbook, without browser, Finder, PowerPoint, Word, Figma, Premiere, Codex terminal, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "excel",
-        "spreadsheet",
-        "office",
-        "formula",
-        "chart",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-figma-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Figma Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and Figma-style design editor components. Design handoff and frame-editing clips that need Claude with a Figma-style editor, without browser, Finder, Office, Codex terminal, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "figma",
-        "design",
-        "canvas",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-finder-thread-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Working Thread Plus Finder Workflow",
-      "description": "Modular assembly proof. Short file/folder workflow clips that need the refined Claude working thread with Finder context, without browser, PowerPoint, attachment draft emphasis, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "finder",
-        "files",
-        "working-thread",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
       "name": "claude-home",
       "type": "hyperframes:block",
       "title": "Claude New Chat Home",
@@ -331,108 +139,6 @@
         "home",
         "composer",
         "new-chat"
-      ]
-    },
-    {
-      "name": "claude-home-launch",
-      "type": "hyperframes:block",
-      "title": "Claude Launch Prompt Stack",
-      "description": "High against Sonnet 4.6 frame-64s launch prompt stack, pending official product capture. Full-frame launch prompt beats where a video needs the Sonnet-style user request stack without the desktop/sidebar Claude app shell.",
-      "tags": [
-        "claude",
-        "home",
-        "launch-video",
-        "prompt-stack",
-        "loader"
-      ]
-    },
-    {
-      "name": "claude-launch-browser-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Launch States Plus Browser Workflow",
-      "description": "Modular assembly proof using split Sonnet 4.6 prompt-stack and completion-response primitives. Short launch-style clips that need a browser app as the background work surface plus Claude prompt-to-completion states, without Finder, Office, Codex terminal, or the full desktop lab; use `capture:claude-launch-browser-workflow-prompt` for the prompt beat.",
-      "tags": [
-        "workflow",
-        "claude",
-        "browser",
-        "launch-video",
-        "prompt-stack",
-        "completion",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-launch-completion",
-      "type": "hyperframes:block",
-      "title": "Claude Launch Completion",
-      "description": "High against Sonnet 4.6 frame-24s launch completion, pending official product capture. Full-frame Claude completion beats where a clip needs a launch-style done state and lower-edge Reply composer without the desktop/sidebar app shell.",
-      "tags": [
-        "claude",
-        "cinematic",
-        "completion",
-        "reply-composer",
-        "launch-reference"
-      ]
-    },
-    {
-      "name": "claude-premiere-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Premiere Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and Premiere-style video editor components. Video editing, timeline review, trim, graphics, and export clips that need Claude with a Premiere-style editor, without browser, Finder, Office, Figma, Codex terminal, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "premiere",
-        "video",
-        "timeline",
-        "editing",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-presentation-chat-pane-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Chat Pane Plus Presentation Workflow",
-      "description": "Modular assembly proof using the canonical no-sidebar Claude chat pane (shared claude-thread-core + claude-composer atoms) and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "powerpoint",
-        "presentation",
-        "office",
-        "chat-pane",
-        "modular-assembly"
-      ]
-    },
-    {
-      "name": "claude-presentation-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Presentation Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and PowerPoint-like presentation components. Instructional clips that need Claude guiding or reporting on a deck edit with a PowerPoint-like editor, without browser, Finder, Codex terminal, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "powerpoint",
-        "presentation",
-        "office",
-        "modular-assembly",
-        "mac-menu-bar"
-      ]
-    },
-    {
-      "name": "claude-prompt-stack",
-      "type": "hyperframes:block",
-      "title": "Claude Launch Prompt Stack",
-      "description": "High against Sonnet 4.6 launch-frame prompt bubble composition, with synthetic editable text. Cinematic Claude launch beats that need only oversized right-aligned prompt bubbles and a loading mark, without app chrome, sidebar, composer, browser, Finder, Office, Codex, or desktop context.",
-      "tags": [
-        "claude",
-        "chat",
-        "prompt-stack",
-        "launch-reference",
-        "loading",
-        "cinematic"
       ]
     },
     {
@@ -489,22 +195,6 @@
         "completed-work",
         "composer",
         "artifact"
-      ]
-    },
-    {
-      "name": "claude-word-workflow",
-      "type": "hyperframes:block",
-      "title": "Claude Plus Word Workflow",
-      "description": "Modular assembly proof using current Claude working-thread and Word for web targeted document editor component. Document drafting, review, comments, and tracked-change clips that need Claude with a Word-style editor, without browser, Finder, PowerPoint, Excel, Figma, Premiere, Codex terminal, or the full desktop lab.",
-      "tags": [
-        "workflow",
-        "claude",
-        "word",
-        "document",
-        "office",
-        "review",
-        "modular-assembly",
-        "mac-menu-bar"
       ]
     },
     {

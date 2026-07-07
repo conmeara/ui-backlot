@@ -43,7 +43,7 @@ Read these files first:
 Use `surfaces/registry.json` as the source of truth. Each surface has:
 
 - `id` - stable identifier for prompts, plans, and docs.
-- `kind` - `component`, `workflow`, `surface`, or `lab`.
+- `kind` - `component`, `surface`, or `lab`.
 - `source` - tracked HTML source.
 - `import.src` and `import.selector` - values for component mounting.
 - `capture.script` - npm script to refresh a visual proof.
@@ -51,15 +51,23 @@ Use `surfaces/registry.json` as the source of truth. Each surface has:
 - `assetDecision` - whether copied assets are involved.
 - `recommendedUse` - when to choose it.
 
-Good defaults:
+Scenes are composed, not shipped: there are no pre-baked scene wrappers.
+Stack `mac-menu-bar` (+ `mac-dock` if the desktop shows), one or more app
+surfaces, and a Claude or Codex component in your own composition —
+`examples/quickstart-demo.html` is the worked pattern.
 
-- Claude plus browser: `claude-browser-chat-pane-workflow`
-- Claude plus PowerPoint: `claude-presentation-chat-pane-workflow`
-- Claude plus Finder: `claude-finder-workflow`
-- Claude Code plus Figma: `claude-code-figma-workflow`
-- Codex terminal workflow: `claude-codex-terminal-workflow`
-- Custom assembly: combine `mac-menu-bar`, one app surface, and one Claude or
-  Codex component.
+Good defaults per role:
+
+- The realistic Claude app: `claude-composed-app` (`?page=chat|cowork|code`,
+  `data-sidebar`/`data-rail` toggles, `theme-dark`).
+- Claude next to an app window: `claude-chat-pane` (sidebar-less pane).
+- Zoomed conversation close-ups: `claude-cinematic`
+  (`?beat=prompt|reply|complete`, copy via `data-copy` slots).
+- Claude in a terminal: `claude-code-terminal-session`; Codex: `codex-app` /
+  `codex-terminal`.
+- App windows: `excel-workbook`, `word-editor`, `presentation-editor`,
+  `figma-editor`, `premiere-editor`, `browser-app`, `finder-window`,
+  `calendar-app`.
 
 ## Build A Demo
 

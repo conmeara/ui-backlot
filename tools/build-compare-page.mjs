@@ -11,9 +11,11 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { inlineImage, escapeHtml, PAGE_CSS } from "./lib/inline-media.mjs";
+import { loadFamilies, familyOf, familyNavHtml, FAMILY_NAV_CSS, FAMILY_NAV_JS } from "./lib/app-families.mjs";
 
 const repoRoot = process.cwd();
 const registry = JSON.parse(fs.readFileSync(path.join(repoRoot, "surfaces", "registry.json"), "utf8"));
+const fams = loadFamilies(repoRoot);
 const includeAll = process.argv.includes("--all");
 
 // Surface id → ground-truth labels in the newest dated dir of the family.
@@ -111,7 +113,7 @@ for (const s of registry.surfaces) {
   if (!includeAll && !refs.length && !before && !changes.applied.length) continue;
   if (!cur && !refs.length && !before) continue;
   localOnlyCount += refs.filter((r) => r.localOnly).length;
-  rows.push({ id: s.id, title: s.title, script: s.capture?.script, refs, before, cur, changes });
+  rows.push({ id: s.id, title: s.title, script: s.capture?.script, refs, before, cur, changes, family: familyOf(s, fams) });
 }
 rows.sort((a, b) => (b.changes.applied.length - a.changes.applied.length) || (b.refs.length - a.refs.length) || a.id.localeCompare(b.id));
 
@@ -140,13 +142,17 @@ const rowHtml = rows.map((r) => {
     ? `<details class="changes" open><summary>${r.changes.applied.length} change${r.changes.applied.length > 1 ? "s" : ""} last pass${r.changes.verdict ? ` · verdict: <b>${escapeHtml(r.changes.verdict)}</b>` : ""}</summary><ul>${r.changes.applied.map((a) => `<li><code>${escapeHtml(a.file || "")}</code> — ${escapeHtml(a.change || "")}</li>`).join("")}</ul></details>`
     : "";
 
-  return `<section class="row">
+  const fam = fams.find((f) => f.key === r.family);
+  return `<section class="row" data-family="${r.family}" style="--fam: ${fam ? fam.color : "var(--accent)"}">
     <h2>${escapeHtml(r.title)} <code>${escapeHtml(r.id)}</code></h2>
     ${r.refs.length ? `<div class="refs">${refCells}</div>` : ""}
     <div class="pair">${pair}</div>
     ${changes}
   </section>`;
 }).join("\n");
+
+const famCounts = {};
+for (const r of rows) famCounts[r.family] = (famCounts[r.family] || 0) + 1;
 
 const banner = localOnlyCount
   ? `<p class="warn">⚠ This page inlines ${localOnlyCount} <b>local-only</b> reference image${localOnlyCount > 1 ? "s" : ""} (private captures from this machine — schedules, chat history). Fine to view here or in a private Artifact; do <b>not</b> publish this file to GitHub or share it broadly. Shareable web-sourced references are badged green.</p>`
@@ -156,7 +162,8 @@ const passNote = passLog?.pass ? ` · last pass: ${escapeHtml(passLog.pass)}` : 
 const html = `<!doctype html>
 <meta charset="utf-8">
 <title>UI Backlot — before/after compare</title>
-<style>${PAGE_CSS}
+<style>${PAGE_CSS}${FAMILY_NAV_CSS}
+  .row h2 { border-color: color-mix(in srgb, var(--fam, var(--accent)) 35%, var(--line)); }
   .warn { background: color-mix(in srgb, #c9a227 14%, var(--card)); border: 1px solid color-mix(in srgb, #c9a227 45%, transparent); border-radius: 10px; padding: 10px 14px; font-size: 13.5px; max-width: 900px; }
   .refs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   .refs .cell { flex: 0 1 260px; }
@@ -178,9 +185,11 @@ const html = `<!doctype html>
 <h1>Before / After Compare</h1>
 <p class="sub">Built ${built}${passNote} · references labeled with provenance · click any image to view full size · rebuild: <code>npm run compare:page</code>${includeAll ? "" : " · showing surfaces with references, loop snapshots, or pass changes; <code>--all</code> for everything"}</p>
 ${banner}
+${familyNavHtml(fams, famCounts)}
 ${rowHtml || '<p class="muted">Nothing to compare yet — run a capture sweep or a fidelity pass first.</p>'}
 <div id="lightbox" role="dialog" aria-label="Full-size image"><img alt=""><span class="cap"></span></div>
 <script>
+${FAMILY_NAV_JS}
   const lb = document.getElementById("lightbox"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector(".cap");
   function open(img) { lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = img.alt; lb.classList.add("open"); }
   document.querySelectorAll("[data-lightbox]").forEach((i) => {

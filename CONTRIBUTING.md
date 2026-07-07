@@ -18,12 +18,21 @@ npm run hf:inspect
 
 Node.js 22 or newer and FFmpeg are recommended for HyperFrames rendering.
 
-`hf:lint` has a known baseline of 29 intentional errors: 21×
-`invalid_parent_traversal_in_asset_path` (in-repo compositions use `../` paths
+`npx hyperframes lint` (the `hf:lint` script) exits 1 whenever it finds ANY
+error, including a small set this repo carries on purpose — currently 6×
+`invalid_parent_traversal_in_asset_path` across `index.html`,
+`compositions/browser-app.html`, `compositions/calendar-app.html`,
+`compositions/claude-cinematic.html`, `compositions/claude-composed-app.html`,
+and `compositions/mac-dock.html` (in-repo compositions use `../` paths
 because the capture pipeline loads them via `file://`; the published
-`registry/` copies are rewritten root-relative for consumers) and 8×
-`template_literal_selector` (pre-existing). New errors beyond that baseline
-should be fixed before a PR.
+`registry/` copies are rewritten root-relative for consumers). `npm run
+hf:lint:check` (`tools/check-lint-baseline.mjs`, used by `open-source:check`
+instead of raw `hf:lint`) re-runs lint and compares its errors against the
+committed baseline in `tools/lint-baseline.json`, passing when the current
+errors are equal to or a subset of that baseline and failing on any genuinely
+new error. If you intentionally add a new baseline exception, update
+`tools/lint-baseline.json` (and this paragraph) to match; if you fix one of
+the baseline errors, shrink `tools/lint-baseline.json` too.
 Generated captures are ignored by git. `registry:check` validates capture
 metadata in a fresh clone; run `npm run registry:check:captures` after a local
 capture sweep when you want the registry to require every PNG on disk.

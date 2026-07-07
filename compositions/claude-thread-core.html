@@ -676,6 +676,13 @@ Next I'll update the title slide and refresh the revenue chart.</pre>
         color: #342e28;
       }
 
+      /* Equal ID+attribute specificity so the dark theme can win over the
+         hardcoded cinematic secondary ink above. */
+      #claude-thread-core-surface[data-scale="cinematic"].theme-dark .assistant-line.secondary,
+      .theme-dark #claude-thread-core-surface[data-scale="cinematic"] .assistant-line.secondary {
+        color: var(--claude-ink-soft);
+      }
+
       #claude-thread-core-surface[data-scale="cinematic"] .thinking-card,
       #claude-thread-core-surface[data-scale="cinematic"] .tool-card,
       #claude-thread-core-surface[data-scale="cinematic"] .command-card,

@@ -1,0 +1,447 @@
+<style>
+      @import url("../styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fdfcf8;
+  }
+</style>
+
+<template id="claude-cinematic-template">
+  <div id="claude-cinematic-surface" data-composition-id="claude-cinematic-surface" data-width="1920" data-height="1080" data-beat="reply">
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      </symbol>
+      <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </symbol>
+      <symbol id="lucide-send-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 12 7-7 7 7" />
+        <path d="M12 19V5" />
+      </symbol>
+    </svg>
+
+    <section class="claude-cinematic-frame" data-primitive="claude-cinematic" aria-label="Editable zoomed Claude conversation surface">
+      <!-- beat: prompt — a stack of user asks while Claude thinks -->
+      <div class="cine-bubbles" data-primitive="claude-cinematic-prompts">
+        <div class="cine-bubble bubble-one" data-copy="cine-bubble-1">Ah good catch. Can you check the launch page and tighten the mobile navigation?</div>
+        <div class="cine-bubble bubble-two" data-copy="cine-bubble-2">and prep the deck for the demo?</div>
+        <div class="cine-bubble bubble-three" data-copy="cine-bubble-3">Oh and update the revenue chart in the deck with the corrected Q2 numbers</div>
+        <div class="cine-bubble bubble-four" data-copy="cine-bubble-4">I also need the customer email draft cleaned up before Friday</div>
+      </div>
+
+      <div class="cine-loader" aria-label="Claude is thinking">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <!-- beats: reply / complete — large serif answer with the Claude mark -->
+      <main class="cine-reply" data-primitive="claude-cinematic-answer">
+        <div class="cine-copy copy-reply">
+          <p class="cine-line primary" data-copy="cine-reply-primary">Sure, I can make those changes for you.</p>
+          <p class="cine-line secondary" data-copy="cine-reply-secondary">I&rsquo;ll update the launch deck, map the Q2 numbers, and leave the slides ready to present.</p>
+        </div>
+        <div class="cine-copy copy-complete">
+          <p class="cine-line primary" data-copy="cine-complete-primary">Done. The launch page is tuned and the chart is updated.</p>
+          <p class="cine-line secondary" data-copy="cine-complete-secondary">Ready for the demo review.</p>
+        </div>
+      </main>
+
+      <span
+        class="cine-mark"
+        data-primitive="claude-response-mark"
+        data-backlot-mount-src="./claude-response-mark.html"
+        data-backlot-mount-selector="#claude-response-mark-surface"
+        aria-hidden="true"
+      ></span>
+
+      <footer class="cine-composer" data-primitive="claude-cinematic-composer">
+        <div class="cine-input" data-copy="cine-composer-placeholder">Reply...</div>
+        <div class="cine-controls">
+          <button class="cine-round" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+          <button class="cine-tool" type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg>Work in a folder</button>
+          <button class="cine-tool" type="button">Research</button>
+          <button class="cine-send" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
+        </div>
+      </footer>
+    </section>
+
+    <style>
+      #claude-cinematic-surface {
+        --cine-paper: var(--claude-paper, #faf9f5);
+        --cine-ink: var(--claude-ink, #171715);
+        --cine-bubble: var(--claude-surface-raised, #eceae4);
+        --cine-muted: var(--claude-text-muted, #756f66);
+        --cine-hairline: rgba(39, 37, 34, 0.16);
+        --cine-card: rgba(255, 254, 251, 0.98);
+        --cine-glow: rgba(255, 255, 255, 0.66);
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+        color: var(--cine-ink);
+        font-family: var(--font-claude-ui);
+      }
+
+      #claude-cinematic-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-cinematic-surface button {
+        font: inherit;
+      }
+
+      .claude-cinematic-frame {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 72% 10%, var(--cine-glow), rgba(255, 255, 255, 0) 24%),
+          linear-gradient(180deg, var(--cine-paper) 0%, var(--cine-paper) 100%);
+      }
+
+      /* ---- beat visibility -------------------------------------------- */
+      .cine-bubbles,
+      .cine-loader,
+      .cine-reply,
+      .cine-mark,
+      .cine-composer {
+        display: none;
+      }
+
+      [data-beat="prompt"] .cine-bubbles,
+      [data-beat="prompt"] .cine-loader {
+        display: block;
+      }
+
+      [data-beat="reply"] .cine-reply,
+      [data-beat="complete"] .cine-reply,
+      [data-beat="reply"] .cine-mark,
+      [data-beat="complete"] .cine-mark {
+        display: block;
+      }
+
+      [data-beat="reply"] .cine-composer,
+      [data-beat="complete"] .cine-composer {
+        display: grid;
+      }
+
+      .cine-copy {
+        display: none;
+      }
+
+      [data-beat="reply"] .copy-reply,
+      [data-beat="complete"] .copy-complete {
+        display: block;
+      }
+
+      /* ---- prompt beat ------------------------------------------------- */
+      .cine-bubbles {
+        position: absolute;
+        left: 448px;
+        top: 100px;
+        width: 1290px;
+        height: 780px;
+      }
+
+      .cine-bubble {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        min-height: 130px;
+        padding: 34px 52px 38px;
+        border-radius: 27px;
+        background: var(--cine-bubble);
+        color: var(--cine-ink);
+        font-size: 46px;
+        line-height: 1.2;
+        font-weight: 390;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.42),
+          0 1px 0 rgba(55, 45, 35, 0.025);
+      }
+
+      .bubble-one { top: 0; width: 1290px; min-height: 196px; }
+      .bubble-two { top: 214px; width: 1016px; }
+      .bubble-three { top: 364px; width: 1144px; min-height: 196px; }
+      .bubble-four { top: 580px; width: 1000px; min-height: 194px; }
+
+      .cine-loader {
+        position: absolute;
+        left: 217px;
+        bottom: 105px;
+        width: 86px;
+        height: 86px;
+        color: var(--claude-brand, #e08a62);
+      }
+
+      .cine-loader span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: calc(0.18 + (var(--i) * 0.042));
+        transform:
+          translate(-50%, -50%)
+          rotate(calc(var(--i) * 20deg))
+          translateY(-38px);
+      }
+
+      .cine-loader span:nth-child(1) { --i: 0; }
+      .cine-loader span:nth-child(2) { --i: 1; }
+      .cine-loader span:nth-child(3) { --i: 2; }
+      .cine-loader span:nth-child(4) { --i: 3; }
+      .cine-loader span:nth-child(5) { --i: 4; }
+      .cine-loader span:nth-child(6) { --i: 5; }
+      .cine-loader span:nth-child(7) { --i: 6; }
+      .cine-loader span:nth-child(8) { --i: 7; }
+      .cine-loader span:nth-child(9) { --i: 8; }
+      .cine-loader span:nth-child(10) { --i: 9; }
+      .cine-loader span:nth-child(11) { --i: 10; }
+      .cine-loader span:nth-child(12) { --i: 11; }
+      .cine-loader span:nth-child(13) { --i: 12; }
+      .cine-loader span:nth-child(14) { --i: 13; }
+      .cine-loader span:nth-child(15) { --i: 14; }
+      .cine-loader span:nth-child(16) { --i: 15; }
+      .cine-loader span:nth-child(17) { --i: 16; }
+      .cine-loader span:nth-child(18) { --i: 17; }
+
+      /* ---- reply / complete beats -------------------------------------- */
+      .cine-reply {
+        position: absolute;
+        left: 250px;
+        top: 224px;
+        width: 1450px;
+        color: var(--cine-ink);
+        font-family: var(--font-claude-serif);
+      }
+
+      .cine-line {
+        margin: 0;
+        font-size: 64px;
+        line-height: 1.24;
+        font-weight: 410;
+      }
+
+      .cine-line.primary {
+        max-width: 1350px;
+      }
+
+      .cine-line.secondary {
+        margin-top: 78px;
+        max-width: 1280px;
+      }
+
+      .cine-mark {
+        position: absolute;
+        left: 256px;
+        top: 667px;
+        width: 112px;
+        height: 112px;
+        color: var(--claude-brand, #e08a62);
+        transform-origin: center;
+      }
+
+      .cine-mark > [data-backlot-mounted-component] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 128px;
+        height: 128px;
+        transform: scale(0.875);
+        transform-origin: top left;
+      }
+
+      .cine-composer {
+        position: absolute;
+        left: 188px;
+        top: 892px;
+        width: 1544px;
+        min-height: 230px;
+        grid-template-rows: minmax(0, 1fr) 78px;
+        overflow: hidden;
+        border: 1.5px solid var(--cine-hairline);
+        border-radius: 72px;
+        background: var(--cine-card);
+        box-shadow: 0 1px 2px rgba(49, 44, 38, 0.035), 0 28px 90px rgba(64, 48, 34, 0.09);
+      }
+
+      .cine-input {
+        padding: 62px 68px 0;
+        color: var(--cine-muted);
+        font-size: 55px;
+        line-height: 1;
+        font-weight: 450;
+      }
+
+      .cine-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 60px 46px;
+        color: var(--cine-muted);
+      }
+
+      .cine-controls .backlot-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .cine-round {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 50%;
+        background: var(--cine-bubble);
+        color: var(--cine-muted);
+      }
+
+      .cine-tool {
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        background: var(--cine-bubble);
+        color: var(--cine-muted);
+        font-size: 17px;
+      }
+
+      .cine-send {
+        width: 54px;
+        height: 54px;
+        margin-left: auto;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 16px;
+        background: var(--claude-brand-deep, #d8755f);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(216, 117, 95, 0.22);
+      }
+
+      .cine-send .backlot-icon {
+        width: 26px;
+        height: 26px;
+        stroke-width: 2.6;
+      }
+
+      /* ---- dark theme --------------------------------------------------- */
+      #claude-cinematic-surface.theme-dark,
+      .theme-dark #claude-cinematic-surface {
+        --cine-paper: #1f1e1c;
+        --cine-ink: #eceae4;
+        --cine-bubble: #30302e;
+        --cine-muted: #b7b2a8;
+        --cine-hairline: rgba(236, 234, 228, 0.14);
+        --cine-card: rgba(38, 38, 36, 0.98);
+        --cine-glow: rgba(255, 255, 255, 0.05);
+      }
+
+      #claude-cinematic-surface.theme-dark .cine-bubble,
+      .theme-dark #claude-cinematic-surface .cine-bubble {
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+    </style>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (() => {
+        const surface = document.getElementById("claude-cinematic-surface");
+        const params = new URLSearchParams(window.location.search);
+        const beat = params.get("beat");
+        if (beat && ["prompt", "reply", "complete"].includes(beat)) {
+          surface.setAttribute("data-beat", beat);
+        }
+        if (params.get("theme") === "dark") {
+          surface.classList.add("theme-dark");
+        }
+
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+        const active = surface.getAttribute("data-beat");
+
+        if (active === "prompt") {
+          tl.fromTo(
+            ".cine-bubble",
+            { opacity: 0, y: 18, filter: "blur(6px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.2, duration: 0.62, immediateRender: false },
+            0.12
+          );
+          tl.fromTo(
+            ".cine-loader",
+            { opacity: 0, scale: 0.84, filter: "blur(3px)" },
+            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.48, immediateRender: false },
+            0.86
+          );
+          tl.to(".cine-loader", { rotation: 360, duration: 4.8, ease: "none" }, 1.04);
+          tl.to(".cine-loader", { rotation: 720, duration: 4.8, ease: "none" }, 5.84);
+        } else {
+          const copy = active === "complete" ? ".copy-complete" : ".copy-reply";
+          tl.fromTo(
+            copy + " .cine-line.primary",
+            { opacity: 0, y: 22, filter: "blur(4px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.56, immediateRender: false },
+            0.12
+          );
+          tl.fromTo(
+            copy + " .cine-line.secondary",
+            { opacity: 0, y: 24, filter: "blur(4px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.58, immediateRender: false },
+            0.46
+          );
+          tl.fromTo(
+            ".cine-mark",
+            { opacity: 0, scale: 0.88, rotation: -18 },
+            { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.28)", immediateRender: false },
+            0.82
+          );
+          tl.fromTo(
+            ".cine-composer",
+            { opacity: 0, y: 26, filter: "blur(5px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out", immediateRender: false },
+            1.04
+          );
+          tl.to(".cine-mark", { rotation: 9, duration: 2.8, repeat: 2, yoyo: true, ease: "sine.inOut" }, 1.36);
+        }
+
+        window.__timelines["claude-cinematic-surface"] = tl;
+      })();
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-cinematic\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-cinematic-template");
+      if (!template || document.querySelector("#claude-cinematic-surface")) return;
+      document.body.appendChild(template.content.cloneNode(true));
+      window.__backlotComponentsState = "loading";
+      const componentLoader = document.createElement("script");
+      componentLoader.src = "../runtime/backlot-component-loader.js";
+      document.head.appendChild(componentLoader);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

@@ -3,22 +3,22 @@
 This guide is for agents and humans who want to assemble a demo video from the
 tracked UI Backlot surfaces.
 
-## 1. Choose The Smallest Useful Wrapper
+## 1. Pick The Building Blocks
 
-Open `docs/catalog.md` or read `surfaces/registry.json`.
+Open `docs/catalog.md` or read `surfaces/registry.json`. Scenes are composed,
+not shipped — stack the pieces the story needs in your own composition:
 
-Use a `workflow` when it already matches the story:
+- Desktop chrome: `mac-menu-bar` (+ `mac-dock` when the desktop shows).
+- One or more app windows: `excel-workbook`, `word-editor`,
+  `presentation-editor`, `figma-editor`, `premiere-editor`, `browser-app`,
+  `finder-window`, `calendar-app`.
+- The AI layer: `claude-composed-app` (full app, `?page=chat|cowork|code`),
+  `claude-chat-pane` (sidebar-less pane to layer beside an app window),
+  `claude-cinematic` (zoomed conversation close-up,
+  `?beat=prompt|reply|complete`), `claude-code-terminal-session`,
+  `codex-app`, or `codex-terminal`.
 
-- Claude plus browser: `claude-browser-chat-pane-workflow`
-- Claude plus PowerPoint: `claude-presentation-chat-pane-workflow`
-- Claude plus Finder: `claude-finder-workflow`
-- Claude plus Word: `claude-word-workflow`
-- Claude plus Excel: `claude-excel-workflow`
-- Claude plus Figma: `claude-figma-workflow`
-- Claude plus Premiere: `claude-premiere-workflow`
-- Claude plus Codex terminal: `claude-codex-terminal-workflow`
-
-Use `component` entries when the story needs a custom arrangement.
+Each entry's `recommendedUse` in the registry says when to reach for it.
 
 ## 2. Mount Components
 

@@ -66,13 +66,19 @@ composed parts) come with it. Tell your coding agent:
 # one surface (foundation CSS + fonts install automatically)
 npx hyperframes add excel-workbook
 
-# a full "Claude working in Excel on a Mac" scene (11 items, transitively)
-npx hyperframes add claude-excel-workflow
+# a "Claude working in Excel on a Mac" scene = three blocks you stack yourself
+npx hyperframes add mac-menu-bar
+npx hyperframes add excel-workbook
+npx hyperframes add claude-chat-pane
 ```
 
-Each `add` prints a ready-to-paste `data-composition-src` snippet. Blocks
-tagged `dark-mode-ready` switch themes with `class="theme-dark"` on the
-composition root.
+Each `add` prints a ready-to-paste `data-composition-src` snippet — scenes are
+composed by stacking blocks in your own composition, not installed pre-baked
+(the `mac-multi-app` example below shows the full pattern). Blocks tagged
+`dark-mode-ready` switch themes with `class="theme-dark"` on the composition
+root; parameterized surfaces expose their states as attributes
+(`claude-composed-app` takes `?page=chat|cowork|code`, `claude-cinematic`
+takes `?beat=prompt|reply|complete`).
 
 **Complete starter projects** ship as fully-vendored examples (the CLI's
 `init --example` only reads the official registry, so scaffold with degit):
@@ -189,10 +195,11 @@ Three multi-agent workflows (run via the Workflow tool; see
 
 Loop artifacts land in `workspace/` (gitignored), and two self-contained review
 pages make them inspectable — `npm run review` serves
-`workspace/compare.html` (reference | before | current, with overlay slider)
-and `workspace/gallery.html` (every surface + demo GIF). Both inline their
-media, so agents can also publish them as Claude Code Artifacts for remote
-monitoring during long passes.
+`workspace/compare.html` (reference vs current side by side, plus the latest
+pass's applied changes) and `workspace/gallery.html` (the catalog by app
+family, with variants and demo GIFs). Both inline their media, so agents can
+also publish them as Claude Code Artifacts for remote monitoring during long
+passes.
 
 ```bash
 # capture a public live page into a dated reference set

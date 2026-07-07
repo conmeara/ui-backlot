@@ -11,8 +11,11 @@
 2. Browse the machine-readable catalog (name, type, title, description, tags per item):
    https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json
 3. Install a surface and its dependencies (fonts, foundation CSS, runtime, composed parts install transitively):
-   `npx hyperframes add <name>` — e.g. `npx hyperframes add excel-workbook` or `npx hyperframes add claude-excel-workflow`
-4. Paste the printed snippet into your host composition and render:
+   `npx hyperframes add <name>` — e.g. `npx hyperframes add excel-workbook`
+4. Compose scenes yourself by stacking blocks — e.g. a "Claude working in Excel on a Mac"
+   scene = `mac-menu-bar` + `mac-dock` + `excel-workbook` + `claude-chat-pane`, each mounted
+   in your host composition (see the mac-multi-app example for the pattern).
+5. Paste the printed snippets into your host composition and render:
    `npx hyperframes render --quality draft`
 
 Complete starter scenes (the CLI's `init --example` only reads the official registry, so scaffold these with degit):
