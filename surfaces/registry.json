@@ -443,7 +443,7 @@
       "title": "Claude Chat Pane",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "lean chat-pane reconstruction derived from the Claude chat shell and Sonnet 4.6 launch-frame rhythm",
+      "fidelity": "no-sidebar chat pane composed from the shared claude-thread-core (cinematic scale) and claude-composer atoms via runtime/backlot-component-loader.js, poured into the Sonnet 4.6 launch-frame rhythm; the pane owns only its topbar chrome",
       "dimensions": {
         "width": 1180,
         "height": 900
@@ -470,7 +470,10 @@
         "launch-reference",
         "pane"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "claude-thread-core",
+        "claude-composer"
+      ],
       "sourceEvidence": [
         "captures/surface-claude-chat-shell/target.png",
         "reference/claude/frame-study/sonnet-4-6/contact-sheet.jpg",
@@ -1426,7 +1429,7 @@
       "title": "Claude Chat Pane Plus Presentation Workflow",
       "kind": "workflow",
       "status": "prototype",
-      "fidelity": "modular assembly proof using the deck-specific lean Claude chat pane and PowerPoint-like presentation component",
+      "fidelity": "modular assembly proof using the canonical no-sidebar Claude chat pane (shared claude-thread-core + claude-composer atoms) and PowerPoint-like presentation component",
       "dimensions": {
         "width": 1920,
         "height": 1080
@@ -1456,22 +1459,25 @@
       ],
       "dependencies": [
         "mac-menu-bar",
-        "claude-deck-chat-pane",
+        "claude-chat-pane",
         "presentation-editor"
       ],
       "sourceEvidence": [
         "compositions/mac-menu-bar.html",
-        "compositions/claude-deck-chat-pane.html",
+        "compositions/claude-chat-pane.html",
+        "compositions/claude-thread-core.html",
+        "compositions/claude-composer.html",
         "compositions/presentation-editor.html",
         "runtime/backlot-component-loader.js",
         "captures/surface-mac-menu-bar/target.png",
-        "captures/surface-claude-deck-chat-pane/target.png",
+        "captures/surface-claude-chat-pane/target.png",
         "captures/surface-presentation-editor/target.png",
         "docs/prototypes/mac-menu-bar-component-pass-088.md",
-        "docs/prototypes/claude-deck-chat-pane-pass-086.md",
-        "docs/prototypes/presentation-editor-office-fidelity-pass-046.md"
+        "docs/prototypes/claude-chat-pane-pass-081.md",
+        "docs/prototypes/presentation-editor-office-fidelity-pass-046.md",
+        "docs/component-consolidation-audit-2026-07-02.md"
       ],
-      "assetDecision": "Parent timeline mounts local editable menu bar, Claude deck chat pane, and presentation components through the Backlot loader; no screenshot plates, Microsoft assets, product code, private deck data, app bundle assets, donor icon files, or copied reference wording.",
+      "assetDecision": "Parent timeline mounts local editable menu bar, the canonical Claude chat pane (composed from the shared claude-thread-core and claude-composer atoms), and presentation components through the Backlot loader; no screenshot plates, Microsoft assets, product code, private deck data, app bundle assets, donor icon files, or copied reference wording.",
       "recommendedUse": "Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab."
     },
     {

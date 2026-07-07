@@ -50,6 +50,16 @@
       "type": "hyperframes:composition"
     },
     {
+      "path": "compositions/claude-composer.html",
+      "target": "compositions/claude-composer.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-thread-core.html",
+      "target": "compositions/claude-thread-core.html",
+      "type": "hyperframes:composition"
+    },
+    {
       "path": "compositions/mac-menu-bar.html",
       "target": "compositions/mac-menu-bar.html",
       "type": "hyperframes:composition"

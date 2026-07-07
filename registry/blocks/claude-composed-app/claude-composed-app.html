@@ -801,6 +801,24 @@
      #claude-composed-app (--root-class + --selector), and composed
      workflows may add it on any ancestor, so both forms are covered.
      The code page is dark-native and intentionally has no dark variant. */
+
+  /* Neutral-token re-flip: the light-mode fidelity correction above
+     (#claude-composed-app { --claude-ink: ...; --claude-ink-soft: ...; })
+     is an ID-specificity rule, so it silently outranks every mounted
+     atom's `.theme-dark .foo { color: var(--claude-ink-soft) }` rule
+     even when theme-dark is active (ID beats class regardless of
+     source order) — washing out assistant text, sidebar, composer, and
+     rail copy in dark mode. Restore the foundation's own measured dark
+     values here at matching (ID + class) specificity so dark mode gets
+     correct contrast again; light mode is untouched. */
+  #claude-composed-app.theme-dark,
+  .theme-dark #claude-composed-app {
+    --claude-ink: #eceae4;
+    --claude-ink-soft: #e8e5da;
+    --claude-text-muted: #b7b2a8;
+    --claude-text-faint: #98948a;
+  }
+
   #claude-composed-app.theme-dark:not([data-page="code"]) .claude-shell-window,
   .theme-dark #claude-composed-app:not([data-page="code"]) .claude-shell-window {
     background: #262624;

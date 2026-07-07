@@ -3,7 +3,7 @@
   "name": "claude-presentation-chat-pane-workflow",
   "type": "hyperframes:block",
   "title": "Claude Chat Pane Plus Presentation Workflow",
-  "description": "Modular assembly proof using the deck-specific lean Claude chat pane and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
+  "description": "Modular assembly proof using the canonical no-sidebar Claude chat pane (shared claude-thread-core + claude-composer atoms) and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
   "tags": [
     "workflow",
     "claude",
@@ -29,7 +29,7 @@
     "backlot-cursors",
     "backlot-foundation",
     "backlot-runtime",
-    "claude-deck-chat-pane",
+    "claude-chat-pane",
     "mac-menu-bar",
     "presentation-editor"
   ]

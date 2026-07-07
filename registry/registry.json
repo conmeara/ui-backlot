@@ -117,7 +117,7 @@
       "name": "claude-chat-pane",
       "type": "hyperframes:block",
       "title": "Claude Chat Pane",
-      "description": "Lean chat-pane reconstruction derived from the Claude chat shell and Sonnet 4.6 launch-frame rhythm. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
+      "description": "No-sidebar chat pane composed from the shared claude-thread-core (cinematic scale) and claude-composer atoms via runtime/backlot-component-loader.js, poured into the Sonnet 4.6 launch-frame rhythm; the pane owns only its topbar chrome. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
       "tags": [
         "claude",
         "chat",
@@ -395,7 +395,7 @@
       "name": "claude-presentation-chat-pane-workflow",
       "type": "hyperframes:block",
       "title": "Claude Chat Pane Plus Presentation Workflow",
-      "description": "Modular assembly proof using the deck-specific lean Claude chat pane and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
+      "description": "Modular assembly proof using the canonical no-sidebar Claude chat pane (shared claude-thread-core + claude-composer atoms) and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
       "tags": [
         "workflow",
         "claude",

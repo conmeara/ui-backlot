@@ -17,10 +17,10 @@
     ></div>
 
     <div
-      class="component-frame claude-deck-chat-pane-component"
-      data-primitive="claude-deck-chat-pane"
-      data-backlot-mount-src="./claude-deck-chat-pane.html"
-      data-backlot-mount-selector="#claude-deck-chat-pane-surface"
+      class="component-frame claude-chat-pane-component"
+      data-primitive="claude-chat-pane"
+      data-backlot-mount-src="./claude-chat-pane.html"
+      data-backlot-mount-selector="#claude-chat-pane-surface"
     ></div>
 
     <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -112,7 +112,7 @@
     box-shadow: 0 40px 128px rgba(38, 43, 55, 0.24);
   }
 
-  .claude-deck-chat-pane-component {
+  .claude-chat-pane-component {
     left: 126px;
     top: 112px;
     z-index: 14;
@@ -122,8 +122,16 @@
     box-shadow: 0 46px 122px rgba(52, 39, 29, 0.23);
   }
 
-  .claude-deck-chat-pane-component > [data-backlot-mounted-component] {
+  .claude-chat-pane-component > [data-backlot-mounted-component] {
     transform: scale(0.76);
+  }
+
+  /* The composer atom's cowork page carries its own disclaimer line; the
+     pane already renders one in its own footer (compositions/claude-chat-pane.html
+     .composer-disclaimer), so the nested copy would double up once the
+     composer is switched to data-page="cowork" below. */
+  .claude-chat-pane-component .cw-disclaimer {
+    display: none;
   }
 
   .workflow-cursor {
@@ -154,16 +162,53 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
 <script>
+  // claude-chat-pane mounts claude-thread-core (default copy already tells
+  // this exact Launch Deck story, see compositions/claude-thread-core.html)
+  // plus claude-composer. Two things the pane doesn't expose as mount
+  // parameters still need setting post-mount, same data-copy/data-page
+  // convention as compositions/claude-word-workflow.html:
+  // 1. the pane's own topbar title/subtitle is hardcoded to a different
+  //    (browser) scene's copy — retarget it to the deck-update framing the
+  //    old claude-deck-chat-pane shell carried.
+  // 2. the mounted composer defaults to its "chat" page (a filled-in,
+  //    unrelated prompt); the old shell's composer was an empty working
+  //    reply bar, so flip the atom's own data-page="cowork" switch.
+  window.__backlotComponentsReady?.then(() => {
+    const paneRoot = document.querySelector(".claude-chat-pane-component #claude-chat-pane-surface");
+    if (!paneRoot) return;
+    const title = paneRoot.querySelector(".thread-title strong");
+    const subtitle = paneRoot.querySelector(".thread-title span");
+    if (title) title.textContent = "Launch deck update";
+    if (subtitle) subtitle.textContent = "Working in Launch Deck";
+    const composer = paneRoot.querySelector("#claude-composer-surface");
+    if (composer) composer.setAttribute("data-page", "cowork");
+
+    // The mounted thread-core's default copy already tells a Launch Deck
+    // story, but claude-deck-chat-pane's original beat was the completed
+    // hand-off ("Done."), not thread-core's in-progress default — retarget
+    // the visible data-copy slots to the old shell's exact wording.
+    const sceneCopy = {
+      "user-prompt": "Can you update the opening slide and map the Q2 chart to the new numbers? Keep the story tight for a short product launch review.",
+      "reply-primary": "Done. The deck is ready for review.",
+      "reply-secondary": "I updated the opening slide, mapped the Q2 chart, and left the speaker notes in place."
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      paneRoot.querySelectorAll('[data-copy="' + slot + '"]').forEach((node) => {
+        node.textContent = text;
+      });
+    });
+  });
+
   window.__timelines = window.__timelines || {};
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
   tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);
   tl.from(".presentation-component", { opacity: 0, x: 40, y: 18, filter: "blur(8px)", duration: 0.62, ease: "power3.out" }, 0.2);
-  tl.from(".claude-deck-chat-pane-component", { opacity: 0, x: -30, y: 22, filter: "blur(8px)", duration: 0.68, ease: "power3.out" }, 0.48);
+  tl.from(".claude-chat-pane-component", { opacity: 0, x: -30, y: 22, filter: "blur(8px)", duration: 0.68, ease: "power3.out" }, 0.48);
   tl.from(".workflow-cursor", { opacity: 0, x: -42, y: 28, duration: 0.38, ease: "sine.out" }, 1.1);
   tl.to(".workflow-cursor", { x: 102, y: 114, duration: 0.82, ease: "power2.inOut" }, 1.78);
   tl.to(".click-ring", { opacity: 1, scale: 1.08, duration: 0.18, ease: "sine.out" }, 2.54);
   tl.to(".click-ring", { opacity: 0, scale: 1.44, duration: 0.38, ease: "sine.out" }, 2.72);
-  tl.to(".claude-deck-chat-pane-component", { y: -7, duration: 1.9, ease: "sine.inOut" }, 3.2);
+  tl.to(".claude-chat-pane-component", { y: -7, duration: 1.9, ease: "sine.inOut" }, 3.2);
   tl.to(".presentation-component", { y: -5, duration: 1.9, ease: "sine.inOut" }, 3.34);
   window.__timelines["claude-presentation-chat-pane-workflow"] = tl;
 

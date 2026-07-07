@@ -53,7 +53,7 @@
 
         <section class="rail-card">
           <div class="rail-head"><span class="rail-title">Artifacts</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
-          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span data-copy="artifact-1">publish-checklist.html</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><b>HTML</b></span><span data-copy="artifact-1">publish-checklist.html</span></div>
         </section>
 
         <section class="rail-card">
@@ -63,9 +63,9 @@
           <div class="rail-label">Connectors</div>
           <div class="rail-row"><span class="rail-file-ico conn"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></span><span>Web search</span></div>
           <div class="rail-label">Working files</div>
-          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span data-copy="context-file-1">team-digest-october-2025.md</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span data-copy="context-file-2">draft-coverage-notes-octob…</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span data-copy="context-file-3">team-digest-november-2025.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-1">team-digest-october-2025.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-2">draft-coverage-notes-octob…</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-3">team-digest-november-2025.md</span></div>
         </section>
       </aside>
     </section>
@@ -195,6 +195,12 @@
       }
 
       .rail-file-ico svg { width: 14px; height: 14px; }
+
+      .rail-file-ico b {
+        font-size: 7px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
 
       .rail-file-ico.folder { background: var(--claude-surface-raised); color: #8a8474; }
       .rail-file-ico.conn { background: #f4efe8; color: #7b7974; }

@@ -1,0 +1,389 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fffdfa;
+  }
+</style>
+
+<template id="claude-composer-template">
+  <div id="claude-composer-surface" data-composition-id="claude-composer-surface" data-width="900" data-height="220" data-page="chat">
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      </symbol>
+      <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </symbol>
+      <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="lucide-send-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 12 7-7 7 7" />
+        <path d="M12 19V5" />
+      </symbol>
+    </svg>
+
+    <section class="claude-composer-stage" data-primitive="claude-composer-stage" aria-label="Editable Claude composer surface">
+      <!-- ============ CHAT PAGE (default) — poured from claude-desktop.html #claude-desktop-chat .cd-composer-card ============ -->
+      <div class="composer-panel panel-chat" data-primitive="claude-working-composer" aria-label="Claude chat composer">
+        <div class="cd-prompt-copy">Can you go to my web store and make the delivery pricing free for orders over $25 this holiday weekend?</div>
+        <div class="cd-prompt-footer">
+          <button class="cd-icon-btn" type="button" aria-label="Work in a folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></button>
+          <button class="cd-icon-btn" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+          <span class="cd-footer-spacer"></span>
+          <button class="cd-model-select" type="button">Opus 4.8 <svg class="backlot-icon cd-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+          <button class="cd-send" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
+        </div>
+      </div>
+
+      <!-- ============ COWORK PAGE — poured from claude-desktop.html #claude-desktop-cowork .cw-composer ============ -->
+      <div class="composer-panel panel-cowork" data-primitive="claude-working-composer" aria-label="Claude cowork composer">
+        <div class="cw-prompt">
+          <div class="cw-prompt-input">Reply…</div>
+          <div class="cw-prompt-controls">
+            <button class="cw-prompt-plus" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+            <button class="cw-prompt-model" type="button">Opus 4.8 <svg class="backlot-icon cw-sel-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+            <button class="cw-prompt-send" type="button" aria-label="Send"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-send-up"/></svg></button>
+          </div>
+        </div>
+        <div class="cw-disclaimer">Claude is AI and can make mistakes. Please double-check responses.</div>
+      </div>
+    </section>
+
+    <style>
+      /* Canonical Claude composer atom.
+         Visual source of truth: compositions/claude-desktop.html pass-100
+         (#claude-desktop-chat .cd-composer-card, #claude-desktop-cowork
+         .cw-composer). Page switch is pure CSS via
+         data-page="chat" | "cowork" on #claude-composer-surface (default:
+         chat). Colors consume the canonical --claude-* tokens from
+         styles/backlot-foundation.css where a token exists; the .theme-dark
+         block mirrors claude-desktop's dark variant. */
+      #claude-composer-surface {
+        width: 900px;
+        height: 220px;
+        color: var(--claude-ink);
+        font-family: var(--font-claude-ui);
+        overflow: visible;
+      }
+
+      #claude-composer-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-composer-surface button {
+        font: inherit;
+        cursor: default;
+      }
+
+      :where(#claude-composer-surface) .backlot-icon {
+        width: 1em;
+        height: 1em;
+        display: block;
+      }
+
+      .claude-composer-stage {
+        width: 900px;
+        height: 220px;
+        display: grid;
+        place-items: center;
+        padding: 32px 90px 40px;
+        background: #fffdfa;
+      }
+
+      /* Page switching: default chat; data-page="cowork" swaps in the reply composer. */
+      .composer-panel {
+        display: none;
+        width: 720px;
+      }
+
+      #claude-composer-surface:not([data-page="cowork"]) .panel-chat,
+      #claude-composer-surface[data-page="cowork"] .panel-cowork {
+        display: block;
+      }
+
+      /* ---- CHAT PAGE composer (.cd-composer-card) ----
+         Scoped to .claude-composer-stage because the sidebar atom uses the
+         same .panel-chat/.panel-cowork class names — in a composed shell both
+         atoms' styles share one document and would cross-pollute. */
+      .claude-composer-stage .panel-chat {
+        padding: 17px 18px 14px;
+        border: 0;
+        border-radius: 22px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.075),
+          0 0 0 0.5px rgba(31, 31, 30, 0.3);
+      }
+
+      .cd-prompt-copy {
+        max-width: 600px;
+        color: var(--claude-ink);
+        font-size: 16.5px;
+        line-height: 1.5;
+      }
+
+      .cd-prompt-footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .cd-icon-btn {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 20px;
+      }
+
+      .cd-footer-spacer { flex: 1; }
+
+      .cd-model-select {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 6px;
+        border: 0;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 14px;
+        font-weight: 430;
+      }
+
+      .cd-sel-chev { width: 15px; height: 15px; }
+
+      .cd-send {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        padding: 10px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--claude-brand-deep);
+        color: #fff;
+        font-size: 20px;
+      }
+
+      /* ---- COWORK PAGE composer (.cw-composer) ---- */
+      .cw-prompt {
+        min-height: 116px;
+        display: grid;
+        grid-template-rows: 1fr 44px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 21px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.035),
+          0 0 0 0.5px rgba(31, 31, 30, 0.15);
+      }
+
+      .cw-prompt-input {
+        padding: 22px 24px 0;
+        color: var(--claude-text-faint);
+        font-size: 21px;
+      }
+
+      .cw-prompt-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 18px 14px;
+      }
+
+      .cw-prompt-plus {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #52514e;
+        font-size: 20px;
+      }
+
+      .cw-prompt-model {
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+        border: 0;
+        background: transparent;
+        color: var(--claude-ink-soft);
+        font-size: 14.5px;
+        font-weight: 430;
+      }
+
+      .cw-sel-chev { width: 15px; height: 15px; color: var(--claude-text-faint); }
+
+      .cw-prompt-send {
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        padding: 9px;
+        border: 0;
+        border-radius: 11px;
+        background: #df9b87;
+        color: #0b0b0b;
+        font-size: 20px;
+      }
+
+      .cw-disclaimer {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--claude-text-faint);
+        font-size: 12.5px;
+      }
+
+      /* ============ DARK VARIANT ============
+         Scoped under .theme-dark so light rendering is byte-for-byte
+         unaffected; must stay the LAST rules (cascade: last wins). The
+         capture tool adds .theme-dark to the .claude-composer-stage
+         selector target (same mechanism as the sidebar/rail atoms), so
+         rules key off that as the ancestor/self. Mirrors claude-desktop's
+         #claude-desktop-chat.theme-dark .cd-composer-card and
+         #claude-desktop-cowork.theme-dark .cw-prompt blocks. */
+      .theme-dark .claude-composer-stage,
+      .claude-composer-stage.theme-dark {
+        background: #262624;
+      }
+
+      /* Stage-scoped (like the light rule above) so the sidebar atom's
+         identically named .panel-chat dark rules cannot cross-pollute in a
+         composed shell; dual form because --root-class puts .theme-dark on
+         the stage itself while shells put it on an ancestor. */
+      .theme-dark .claude-composer-stage .panel-chat,
+      .claude-composer-stage.theme-dark .panel-chat {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #30302c;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.2),
+          0 12px 34px rgba(0, 0, 0, 0.28);
+      }
+
+      .theme-dark .cd-prompt-copy { color: #eceae4; }
+      .theme-dark .cd-icon-btn { color: #98948a; }
+      .theme-dark .cd-model-select { color: #b7b2a8; }
+
+      .theme-dark .cw-prompt {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #30302c;
+        box-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.2),
+          0 12px 34px rgba(0, 0, 0, 0.28);
+      }
+
+      .theme-dark .cw-prompt-input { color: #8a8578; }
+      .theme-dark .cw-prompt-plus { color: #98948a; }
+      .theme-dark .cw-prompt-model { color: #eceae4; }
+      .theme-dark .cw-sel-chev { color: #8a8578; }
+      .theme-dark .cw-disclaimer { color: #8a8578; }
+    </style>
+
+    <style>
+      /* ============ EMBED VARIANT (composed shells) ============
+         [data-embed="flat"] sits on a shell mount slot (an ancestor of the
+         mounted surface). The centered fixed-size stage collapses so the
+         composer card fills the slot's content box, the way claude-desktop
+         lays the cards out inside .cd-welcome / .cw-composer. Standalone
+         captures are unaffected — the attribute never exists there — and
+         only stage geometry is neutralized, never the dark colors. */
+      [data-embed="flat"] #claude-composer-surface {
+        width: 100%;
+        height: auto;
+      }
+
+      [data-embed="flat"] .claude-composer-stage {
+        width: 100%;
+        height: auto;
+        display: block;
+        padding: 0;
+        background: transparent;
+      }
+
+      [data-embed="flat"] .claude-composer-stage .composer-panel {
+        width: 100%;
+      }
+
+      /* In-shell fidelity restorations vs claude-desktop's rendered chat
+         composer: the atom's own `#claude-composer-surface button
+         { font: inherit }` kills the .cd-icon-btn font-size icon-sizing
+         trick (icons fall to 1em = 16px; desktop draws 20px svgs). The
+         cowork reply-box model-select name (e.g. "Opus 4.8") renders in
+         full ink in the real app (verified in
+         real-cowork-running-command.jpg), not the muted neutral used
+         elsewhere, so it is pinned to --claude-ink's value directly.
+         Id-qualified so they outrank the button font reset; standalone
+         captures never see [data-embed]. */
+      [data-embed="flat"] #claude-composer-surface .cd-icon-btn,
+      [data-embed="flat"] #claude-composer-surface .cd-send,
+      [data-embed="flat"] #claude-composer-surface .cw-prompt-plus,
+      [data-embed="flat"] #claude-composer-surface .cw-prompt-send {
+        font-size: 20px;
+      }
+
+      [data-embed="flat"] #claude-composer-surface .cd-model-select,
+      [data-embed="flat"] #claude-composer-surface .cd-icon-btn {
+        color: #0b0b0b;
+      }
+
+      .theme-dark [data-embed="flat"] #claude-composer-surface .cd-model-select {
+        color: #b7b2a8;
+      }
+
+      .theme-dark [data-embed="flat"] #claude-composer-surface .cd-icon-btn {
+        color: #98948a;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".composer-panel.panel-chat", { opacity: 0, y: 22, filter: "blur(5px)", duration: 0.58, ease: "expo.out" }, 0.1);
+      tl.from(".cd-prompt-copy", { opacity: 0, y: 6, duration: 0.28, ease: "sine.out" }, 0.42);
+      tl.from(".cd-icon-btn, .cd-model-select, .cd-send", { opacity: 0, y: 6, stagger: 0.04, duration: 0.28, ease: "sine.out" }, 0.6);
+      tl.to(".cd-send", { scale: 1.045, duration: 0.55, repeat: 5, yoyo: true, ease: "sine.inOut" }, 0.95);
+      window.__timelines["claude-composer-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-composer\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-composer-template");
+      if (!template || document.querySelector("#claude-composer-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+      const params = new URLSearchParams(window.location.search);
+      const page = params.get("page");
+      if (page) document.querySelector("#claude-composer-surface").setAttribute("data-page", page);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

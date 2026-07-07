@@ -132,14 +132,20 @@
     document.body.appendChild(frame);
   });
 
-  const mountComponent = async (mount) => {
+  const mountComponent = async (mount, baseUrl) => {
     if (mount.getAttribute("data-backlot-mounted") === "ready") {
       return;
     }
 
     mount.setAttribute("data-backlot-mounted", "loading");
 
-    const src = mount.getAttribute("data-backlot-mount-src");
+    // Nested "./" and "../" srcs are authored relative to the component file
+    // they appear in, not the document; bare paths (the published-registry
+    // form) stay document-relative.
+    const rawSrc = mount.getAttribute("data-backlot-mount-src");
+    const src = baseUrl && (rawSrc.startsWith("./") || rawSrc.startsWith("../"))
+      ? new URL(rawSrc, baseUrl).href
+      : rawSrc;
     const selector = mount.getAttribute("data-backlot-mount-selector");
     let component;
 
@@ -151,13 +157,14 @@
 
     component.setAttribute("data-backlot-mounted-component", "");
     mount.replaceChildren(component);
+    const componentUrl = new URL(src, document.baseURI).href;
     await Promise.all(Array.from(
       mount.querySelectorAll("[data-backlot-mount-src]")
-    ).map(mountComponent));
+    ).map((nested) => mountComponent(nested, componentUrl)));
     mount.setAttribute("data-backlot-mounted", "ready");
   };
 
-  window.__backlotComponentsReady = Promise.all(mounts.map(mountComponent))
+  window.__backlotComponentsReady = Promise.all(mounts.map((m) => mountComponent(m)))
     .then(() => {
       window.__backlotComponentsState = "ready";
       document.documentElement.setAttribute("data-backlot-components", "ready");
