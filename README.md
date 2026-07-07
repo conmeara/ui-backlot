@@ -136,6 +136,43 @@ The focused target is a Claude-on-Mac demo environment:
 
 Run `npm run catalog:generate` after editing `surfaces/registry.json`.
 
+## Scriptable interactions
+
+`runtime/backlot-interactions.js` scripts realistic UI actions — typing,
+clicking, sending a chat, streaming an AI reply — onto the HyperFrames
+timeline. Because HyperFrames renders by **seeking** the timeline (and GSAP
+suppresses callbacks like `onUpdate` on seek), every reveal is done with an
+interpolated **property** (opacity/transform), so it scrubs frame-accurately.
+Text types/streams via per-character opacity stagger, not a callback.
+
+Author a demo in a few lines:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="../runtime/backlot-interactions.js"></script>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  const ix = BacklotInteractions.create(tl, {
+    root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring",
+  });
+  ix.type(".composer-input", "Summarize the Q2 deck", { at: 1.5, cps: 22 })
+    .click(".send-button", { at: 4.2 })
+    .send({ from: ".composer-input", into: ".thread", text: "…", at: 4.4 })
+    .think(".thinking", { at: 4.8, dur: 1.0 })
+    .stream(".ai-response", "Here are the takeaways…", { at: 5.9, cps: 48 });
+  window.__timelines["my-demo"] = tl;
+</script>
+```
+
+Actions: `moveTo` · `click` · `type` · `stream` · `send` · `show` · `hide` ·
+`think` · `press`. Rules: text targets start empty (use a separate placeholder
+element and `hide()` it); state flips use `tl.set(el, { attr: { class } })`
+(seek-safe), never `.call()`. Worked examples, one per app, live in
+`examples/*-interaction.html` (Claude chat, Excel, Word, PowerPoint, browser,
+Finder, Codex, cowork). Render with
+`npx hyperframes render --composition examples/<name>.html --quality draft --low-memory-mode`.
+See [docs/interactions-system-plan.md](docs/interactions-system-plan.md).
+
 ## Current Editable Surfaces
 
 - [index.html](index.html) - current 16 second HyperFrames composition.
