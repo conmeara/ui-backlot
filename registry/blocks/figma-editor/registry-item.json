@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "figma-editor",
+  "type": "hyperframes:block",
+  "title": "Figma-style Design Editor",
+  "description": "Code-native design editor shell. Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "figma",
+    "design",
+    "canvas",
+    "properties",
+    "frames",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1440,
+    "height": 900
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "figma-editor.html",
+      "target": "compositions/figma-editor.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

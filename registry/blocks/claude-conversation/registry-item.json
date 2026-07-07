@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-conversation",
+  "type": "hyperframes:block",
+  "title": "Claude Sparse Conversation Canvas",
+  "description": "High against Sonnet 4.6 launch-frame rhythm, pending sanitized live Claude capture. Launch-style Claude response clips that need the sparse conversation canvas without the desktop sidebar or full app shell.",
+  "tags": [
+    "claude",
+    "conversation",
+    "reply-composer",
+    "launch-video",
+    "sparse-thread"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-conversation.html",
+      "target": "compositions/claude-conversation.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-excel-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Excel Workflow",
+  "description": "Modular assembly proof using current Claude working-thread and Excel-style workbook components. Spreadsheet review, formula checking, chart-range, and workbook automation clips that need Claude with an Excel-style workbook, without browser, Finder, PowerPoint, Word, Figma, Premiere, Codex terminal, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "excel",
+    "spreadsheet",
+    "office",
+    "formula",
+    "chart",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-excel-workflow.html",
+      "target": "compositions/claude-excel-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-composed-app",
+    "excel-workbook",
+    "mac-menu-bar"
+  ]
+}

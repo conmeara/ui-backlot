@@ -1,0 +1,112 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fffdfa;
+  }
+</style>
+
+<template id="claude-response-mark-template">
+  <div id="claude-response-mark-surface" data-composition-id="claude-response-mark-surface" data-width="128" data-height="128">
+    <span class="claude-response-mark-stage" data-primitive="claude-response-mark" aria-hidden="true">
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="ray"></span>
+      <span class="core"></span>
+    </span>
+
+    <style>
+      #claude-response-mark-surface {
+        --claude-mark: #c65b47;
+        width: 128px;
+        height: 128px;
+        overflow: visible;
+      }
+
+      #claude-response-mark-surface * {
+        box-sizing: border-box;
+      }
+
+      .claude-response-mark-stage {
+        position: relative;
+        display: block;
+        width: 128px;
+        height: 128px;
+        color: var(--claude-mark);
+      }
+
+      .ray {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 12px;
+        height: 50px;
+        border-radius: 12px 12px 7px 7px;
+        background: currentColor;
+        transform-origin: 50% 44px;
+        transform:
+          translate(-50%, -44px)
+          rotate(calc(var(--ray-index) * 30deg))
+          translateY(-9px)
+          scaleX(var(--ray-width, 1))
+          scaleY(var(--ray-height, 1));
+      }
+
+      .ray:nth-child(1) { --ray-index: 0; --ray-height: 1.08; }
+      .ray:nth-child(2) { --ray-index: 1; --ray-width: 0.86; --ray-height: 0.98; }
+      .ray:nth-child(3) { --ray-index: 2; --ray-width: 0.9; --ray-height: 1.04; }
+      .ray:nth-child(4) { --ray-index: 3; --ray-height: 1.08; }
+      .ray:nth-child(5) { --ray-index: 4; --ray-width: 0.88; --ray-height: 1; }
+      .ray:nth-child(6) { --ray-index: 5; --ray-width: 0.94; --ray-height: 1.05; }
+      .ray:nth-child(7) { --ray-index: 6; --ray-height: 1.08; }
+      .ray:nth-child(8) { --ray-index: 7; --ray-width: 0.86; --ray-height: 0.98; }
+      .ray:nth-child(9) { --ray-index: 8; --ray-width: 0.9; --ray-height: 1.04; }
+      .ray:nth-child(10) { --ray-index: 9; --ray-height: 1.08; }
+      .ray:nth-child(11) { --ray-index: 10; --ray-width: 0.88; --ray-height: 1; }
+      .ray:nth-child(12) { --ray-index: 11; --ray-width: 0.94; --ray-height: 1.05; }
+
+      .core {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-response-mark\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-response-mark-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-response-mark-surface")) return;
+      document.body.appendChild(template.content.cloneNode(true));
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

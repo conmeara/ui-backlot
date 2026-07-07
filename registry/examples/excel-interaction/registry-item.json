@@ -1,0 +1,43 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "excel-interaction",
+  "type": "hyperframes:example",
+  "title": "Excel Interaction",
+  "description": "Excel demo: select a range, type =SUM(C5:C7), the result reveals. Fully self-contained: npx degit conmeara/ui-backlot/registry/examples/excel-interaction my-video && cd my-video && npx hyperframes render --composition index.html --quality draft",
+  "tags": [
+    "example",
+    "starter"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 800
+  },
+  "duration": 6.4,
+  "files": [
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "hyperframes.json",
+      "target": "hyperframes.json",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "index.html",
+      "target": "index.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "runtime/backlot-interactions.js",
+      "target": "runtime/backlot-interactions.js",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

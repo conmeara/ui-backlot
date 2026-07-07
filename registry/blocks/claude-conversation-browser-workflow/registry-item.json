@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-conversation-browser-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Sparse Conversation Plus Browser Workflow",
+  "description": "Modular assembly proof, high against Sonnet 4.6 launch composition rhythm. Launch-style clips that need a browser app being updated in the background with the sparse Claude response canvas in front.",
+  "tags": [
+    "workflow",
+    "claude",
+    "conversation",
+    "browser",
+    "launch-video",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-conversation-browser-workflow.html",
+      "target": "compositions/claude-conversation-browser-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "browser-app",
+    "claude-conversation",
+    "mac-menu-bar"
+  ]
+}

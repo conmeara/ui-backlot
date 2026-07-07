@@ -1,0 +1,412 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 24%),
+      linear-gradient(145deg, #f5f3ed 0%, #fbfaf6 56%, #e7eee9 100%);
+  }
+</style>
+
+<template id="claude-code-terminal-session-surface-template">
+  <div id="claude-code-terminal-session-surface" data-composition-id="claude-code-terminal-session-surface" data-width="660" data-height="760">
+    <section class="claude-code-terminal-session-window" data-primitive="claude-code-terminal-session-window" aria-label="Editable Claude Code terminal session surface">
+      <header class="terminal-titlebar" data-primitive="mac-window-titlebar">
+        <div class="traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="terminal-title">claude — ui-backlot — 92x32</div>
+        <div class="terminal-mode">plan</div>
+      </header>
+
+      <main class="terminal-paper" data-primitive="claude-code-terminal-paper">
+        <section class="terminal-identity" data-primitive="claude-code-session-identity">
+          <div class="pixel-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div>
+            <h1>Claude Code <span>2.1.117</span></h1>
+            <p>Sonnet 4.6 - permission-mode plan</p>
+            <p>/Users/conmeara/Projects/ui-backlot</p>
+          </div>
+        </section>
+
+        <div class="prompt-line active" data-primitive="claude-code-user-prompt">
+          <span>&gt;</span>
+          <strong>tighten the terminal demo: approvals, diffs, streaming output, status panes</strong>
+        </div>
+
+        <section class="terminal-events" data-primitive="claude-code-event-log">
+          <article class="event-row">
+            <span class="event-dot done"></span>
+            <div>
+              <p><strong>Read</strong><em>(compositions/codex-terminal.html)</em></p>
+              <small>| 693 lines</small>
+            </div>
+          </article>
+          <article class="event-row">
+            <span class="event-dot done"></span>
+            <div>
+              <p><strong>Bash</strong><em>(claude --version)</em></p>
+              <small>| 2.1.117 (Claude Code)</small>
+            </div>
+          </article>
+          <article class="event-row approval">
+            <span class="event-dot ask"></span>
+            <div>
+              <p><strong>Approve Bash?</strong><em>(npm run capture:claude-code-terminal-session)</em></p>
+              <small>| writes generated capture files</small>
+            </div>
+          </article>
+          <article class="event-row">
+            <span class="event-dot done"></span>
+            <div>
+              <p><strong>Edit</strong><em>(compositions/claude-code-terminal-session.html)</em></p>
+              <small>| titlebar, prompt, diff, status rows</small>
+            </div>
+          </article>
+          <article class="event-row diff-row">
+            <span class="event-dot edit"></span>
+            <div>
+              <p><strong>Diff</strong><em>@@ terminal-events @@</em></p>
+              <small><span class="add">+ approval row</span><span class="remove">- stale Figma-only transcript</span></small>
+            </div>
+          </article>
+          <article class="event-row active">
+            <span class="event-star">*</span>
+            <div>
+              <p><strong>Running checks...</strong><em>(esc to interrupt)</em></p>
+            </div>
+          </article>
+        </section>
+
+        <footer class="terminal-input" data-primitive="claude-code-terminal-input">
+          <div class="input-row"><span>&gt;</span><span>npm run registry:check<span class="terminal-cursor"></span></span></div>
+          <div class="help-row"><span>?</span><span>shift+enter newline · ctrl+c interrupt · /config settings</span></div>
+        </footer>
+      </main>
+    </section>
+
+    <style>
+      #claude-code-terminal-session-surface {
+        --paper: #f8f7f2;
+        --paper-soft: #f0eee8;
+        --ink: #25211d;
+        --muted: #8e8881;
+        --rule: #cfc9be;
+        --active: #e3dfd6;
+        --green: #4f9f69;
+        --amber: #b68122;
+        --red: #bf544a;
+        --titlebar: #eceae5;
+        width: 660px;
+        height: 760px;
+        overflow: visible;
+        color: var(--ink);
+        font-family: var(--font-terminal);
+      }
+
+      #claude-code-terminal-session-surface * {
+        box-sizing: border-box;
+      }
+
+      .claude-code-terminal-session-window {
+        width: 660px;
+        height: 760px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: var(--paper);
+        border: 1px solid rgba(54, 49, 42, 0.24);
+        box-shadow:
+          0 34px 104px rgba(40, 38, 33, 0.24),
+          0 0 0 1px rgba(255, 255, 255, 0.78) inset;
+      }
+
+      .terminal-titlebar {
+        height: 52px;
+        display: grid;
+        grid-template-columns: 92px 1fr 58px;
+        align-items: center;
+        padding: 0 17px;
+        background: linear-gradient(#efede9, var(--titlebar));
+        border-bottom: 1px solid rgba(74, 68, 58, 0.22);
+      }
+
+      .traffic {
+        display: flex;
+        gap: 8px;
+      }
+
+      .traffic span {
+        width: 12px;
+        height: 12px;
+        display: block;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+      }
+
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #febc2e; }
+      .traffic .green { background: #28c840; }
+
+      .terminal-title {
+        color: #6f6960;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .terminal-mode {
+        justify-self: end;
+        padding: 3px 7px;
+        border-radius: 6px;
+        background: rgba(191, 84, 74, 0.1);
+        color: var(--red);
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .terminal-paper {
+        height: calc(100% - 52px);
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        background:
+          linear-gradient(90deg, rgba(188, 83, 74, 0.05) 0 1px, transparent 1px 76px),
+          var(--paper);
+      }
+
+      .terminal-identity {
+        display: grid;
+        grid-template-columns: 62px 1fr;
+        gap: 12px;
+        padding: 10px 18px 11px;
+        min-height: 92px;
+        align-items: start;
+      }
+
+      .pixel-mark {
+        width: 54px;
+        height: 52px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 4px;
+      }
+
+      .pixel-mark span {
+        background: var(--red);
+        opacity: 0;
+      }
+
+      .pixel-mark span:nth-child(2),
+      .pixel-mark span:nth-child(3),
+      .pixel-mark span:nth-child(5),
+      .pixel-mark span:nth-child(6),
+      .pixel-mark span:nth-child(7),
+      .pixel-mark span:nth-child(8),
+      .pixel-mark span:nth-child(9),
+      .pixel-mark span:nth-child(10),
+      .pixel-mark span:nth-child(11),
+      .pixel-mark span:nth-child(12),
+      .pixel-mark span:nth-child(14),
+      .pixel-mark span:nth-child(15) {
+        opacity: 1;
+      }
+
+      .terminal-identity h1,
+      .terminal-identity p {
+        margin: 0;
+      }
+
+      .terminal-identity h1 {
+        padding-top: 7px;
+        font-size: 19px;
+        line-height: 1.18;
+        font-weight: 500;
+      }
+
+      .terminal-identity h1 span {
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: 430;
+      }
+
+      .terminal-identity p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.34;
+      }
+
+      .prompt-line {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 0;
+        margin: 0 9px 12px;
+        padding: 8px 10px 9px;
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .prompt-line.active {
+        background: var(--active);
+      }
+
+      .prompt-line span {
+        color: #767068;
+      }
+
+      .prompt-line strong {
+        font-weight: 520;
+      }
+
+      .terminal-events {
+        padding: 0 13px 8px;
+      }
+
+      .event-row {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 4px;
+        min-height: 60px;
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.28;
+      }
+
+      .event-row p,
+      .event-row small {
+        margin: 0;
+      }
+
+      .event-dot {
+        width: 5px;
+        height: 5px;
+        margin: 10px 0 0 2px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+
+      .event-dot.done {
+        background: var(--green);
+      }
+
+      .event-dot.ask {
+        width: 8px;
+        height: 8px;
+        margin-top: 8px;
+        background: var(--amber);
+      }
+
+      .event-dot.edit {
+        background: #7f80d8;
+      }
+
+      .event-star {
+        color: var(--red);
+        padding-top: 1px;
+        font-size: 19px;
+      }
+
+      .event-row strong {
+        font-weight: 520;
+      }
+
+      .event-row em {
+        padding-left: 2px;
+        color: var(--muted);
+        font-style: normal;
+      }
+
+      .event-row small {
+        display: block;
+        padding-left: 2px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .event-row.active {
+        min-height: 36px;
+        color: var(--red);
+      }
+
+      .event-row.approval {
+        color: #6a4b13;
+      }
+
+      .diff-row small {
+        display: flex;
+        gap: 10px;
+      }
+
+      .diff-row .add {
+        color: var(--green);
+      }
+
+      .diff-row .remove {
+        color: var(--red);
+      }
+
+      .terminal-input {
+        border-top: 2px solid rgba(71, 67, 59, 0.46);
+        background: rgba(250, 249, 245, 0.88);
+        font-size: 16px;
+        color: var(--muted);
+      }
+
+      .input-row,
+      .help-row {
+        min-height: 41px;
+        display: grid;
+        grid-template-columns: 32px 1fr;
+        align-items: center;
+        padding: 0 18px;
+      }
+
+      .help-row {
+        border-top: 1px solid rgba(71, 67, 59, 0.38);
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 18px;
+        margin-left: 6px;
+        transform: translateY(3px);
+        background: var(--red);
+      }
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-code-terminal-session\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-code-terminal-session-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-code-terminal-session-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["claude-code-terminal-session-surface"] = null;
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

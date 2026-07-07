@@ -1,0 +1,2020 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(82, 142, 255, 0.36), rgba(82, 142, 255, 0) 31%),
+      radial-gradient(circle at 82% 70%, rgba(151, 104, 245, 0.28), rgba(151, 104, 245, 0) 34%),
+      linear-gradient(135deg, #d9e8ff 0%, #f6f8fb 48%, #eee7ff 100%);
+  }
+</style>
+
+<template id="codex-app-surface-template">
+  <div id="codex-app-surface" data-composition-id="codex-app-surface" data-width="1280" data-height="820">
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="codex-icon-sidebar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"></rect><path d="M10 5v14"></path></symbol>
+      <symbol id="codex-icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"></path></symbol>
+      <symbol id="codex-icon-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></symbol>
+      <symbol id="codex-icon-edit-square" viewBox="0 0 24 24"><path d="M12 5H7a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-5"></path><path d="M14.5 4.8 19.2 9.5"></path><path d="M20.3 3.7 11 13l-1 4 4-1 9.3-9.3a2.1 2.1 0 0 0-3-3Z"></path></symbol>
+      <symbol id="codex-icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"></circle><path d="m15 15 5 5"></path></symbol>
+      <symbol id="codex-icon-grid" viewBox="0 0 24 24"><rect x="5" y="5" width="5" height="5" rx="1.4"></rect><rect x="14" y="5" width="5" height="5" rx="1.4"></rect><rect x="5" y="14" width="5" height="5" rx="1.4"></rect><rect x="14" y="14" width="5" height="5" rx="1.4"></rect></symbol>
+      <symbol id="codex-icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7.5V12l3.2 2.1"></path></symbol>
+      <symbol id="codex-icon-pin" viewBox="0 0 24 24"><path d="m9 4 7 7"></path><path d="m14.5 4.5 5 5-4 4 .7 3.2L14.7 18 6 9.3l1.3-1.5 3.2.7 4-4Z"></path><path d="m10 14-5 5"></path></symbol>
+      <symbol id="codex-icon-folder" viewBox="0 0 24 24"><path d="M4 8.5h6l2 2H20v7.2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"></path><path d="M4 8.5V7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1.5"></path></symbol>
+      <symbol id="codex-icon-list-filter" viewBox="0 0 24 24"><path d="M5 7h14"></path><path d="M7.5 12h9"></path><path d="M10 17h4"></path></symbol>
+      <symbol id="codex-icon-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol>
+      <symbol id="codex-icon-settings" viewBox="0 0 24 24"><path d="M9.7 4.6a2.2 2.2 0 0 1 4.6 0l.2 1a2 2 0 0 0 2.5 1.3l1-.4a2.2 2.2 0 0 1 2.3 4l-.8.6a2 2 0 0 0 0 2.8l.8.6a2.2 2.2 0 0 1-2.3 4l-1-.4a2 2 0 0 0-2.5 1.3l-.2 1a2.2 2.2 0 0 1-4.6 0l-.2-1A2 2 0 0 0 7 18.1l-1 .4a2.2 2.2 0 0 1-2.3-4l.8-.6a2 2 0 0 0 0-2.8l-.8-.6a2.2 2.2 0 0 1 2.3-4l1 .4a2 2 0 0 0 2.5-1.3Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+      <symbol id="codex-icon-more" viewBox="0 0 24 24"><circle cx="6.5" cy="12" r="1.2"></circle><circle cx="12" cy="12" r="1.2"></circle><circle cx="17.5" cy="12" r="1.2"></circle></symbol>
+      <symbol id="codex-icon-vscode" viewBox="0 0 24 24"><path d="M17 3.5 9 11 5.8 8.6 4 9.6l3.3 2.4L4 14.4l1.8 1 3.2-2.4 8 7.5 3-1.4V4.9L17 3.5Zm.2 4.9v7.2L12.4 12 17.2 8.4Z" fill="#3d7fd6" stroke="none"></path></symbol>
+      <symbol id="codex-icon-sliders" viewBox="0 0 24 24"><path d="M4 7h16"></path><circle cx="9" cy="7" r="2"></circle><path d="M4 17h16"></path><circle cx="15" cy="17" r="2"></circle></symbol>
+      <symbol id="codex-icon-terminal" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2.5"></rect><path d="m8 10 2.5 2L8 14"></path><path d="M13 14h3.5"></path></symbol>
+      <symbol id="codex-icon-layout" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"></rect><path d="M14 5v14"></path></symbol>
+      <symbol id="codex-icon-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></symbol>
+      <symbol id="codex-icon-spark" viewBox="0 0 24 24"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7Z" fill="currentColor" stroke="none"></path></symbol>
+      <symbol id="codex-icon-mic" viewBox="0 0 24 24"><rect x="9" y="4" width="6" height="11" rx="3"></rect><path d="M6.5 11.5a5.5 5.5 0 0 0 11 0"></path><path d="M12 17v3"></path></symbol>
+      <symbol id="codex-icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"></path><path d="m6.5 10.5 5.5-5.5 5.5 5.5"></path></symbol>
+      <symbol id="codex-icon-monitor" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"></rect><path d="M9 20h6"></path><path d="M12 16v4"></path></symbol>
+      <symbol id="codex-icon-branch" viewBox="0 0 24 24"><circle cx="7" cy="6" r="2"></circle><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="12" r="2"></circle><path d="M7 8v8"></path><path d="M9 6c4 0 4 6 8 6"></path></symbol>
+      <symbol id="codex-icon-review" viewBox="0 0 24 24"><path d="M5 6h13"></path><path d="M5 12h9"></path><path d="M5 18h13"></path><path d="m15 10 3 2-3 2"></path></symbol>
+      <symbol id="codex-icon-file-plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 9h5"></path><path d="M10.5 6.5v5"></path><path d="M8 16h5"></path></symbol>
+      <symbol id="codex-icon-expand" viewBox="0 0 24 24"><path d="M14 5h5v5"></path><path d="m19 5-6 6"></path><path d="M10 19H5v-5"></path><path d="m5 19 6-6"></path></symbol>
+      <symbol id="codex-icon-diff-color" viewBox="0 0 24 24"><rect x="5" y="6" width="6.5" height="12" fill="#8fd6a6" stroke="none"></rect><rect x="12.5" y="6" width="6.5" height="12" fill="#e79a95" stroke="none"></rect><rect x="4" y="5" width="16" height="14" rx="3" fill="none"></rect></symbol>
+      <symbol id="codex-icon-undo" viewBox="0 0 24 24"><path d="M9 8H5V4"></path><path d="M5 8c2.2-2.6 5.6-3.7 8.8-2.7a7 7 0 1 1-6 12.5"></path></symbol>
+      <symbol id="codex-icon-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></symbol>
+      <symbol id="codex-icon-commit-node" viewBox="0 0 24 24"><path d="M3 12h6"></path><circle cx="12" cy="12" r="3.4"></circle><path d="M15.4 12h5.6"></path></symbol>
+    </svg>
+    <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
+      <aside class="codex-sidebar" data-primitive="codex-sidebar">
+        <div class="sidebar-top">
+          <div class="window-traffic" aria-hidden="true">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+          <button class="sidebar-icon ghost icon-button" type="button" aria-label="Toggle sidebar"><svg><use href="#codex-icon-sidebar"></use></svg></button>
+          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#codex-icon-chevron-left"></use></svg></button>
+          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-chevron-right"></use></svg></button>
+        </div>
+
+        <nav class="primary-nav" aria-label="Codex navigation">
+          <button type="button"><svg class="glyph"><use href="#codex-icon-edit-square"></use></svg>New chat</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-search"></use></svg>Search</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-grid"></use></svg>Plugins</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-clock"></use></svg>Automations</button>
+        </nav>
+
+        <section class="sidebar-group">
+          <div class="sidebar-label">Pinned</div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Review and triage issues</strong>
+            <time>1w</time>
+          </div>
+          <div class="sidebar-row selected">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Redesign app modern UI</strong>
+            <time>1w</time>
+          </div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Create flow diagram</strong>
+            <time>2w</time>
+          </div>
+          <div class="sidebar-row">
+            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
+            <strong>Add icons</strong>
+            <time>1mo</time>
+          </div>
+        </section>
+
+        <section class="sidebar-group projects">
+          <div class="sidebar-label with-actions">
+            <span>Projects</span>
+            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
+            <svg class="mini-action plus-small"><use href="#codex-icon-plus"></use></svg>
+          </div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>burger-restaurant</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>fitness-tracker</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codex-voxel</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codespottr</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>voxel-snake</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>jump-and-run</div>
+        </section>
+
+        <section class="sidebar-group chats">
+          <div class="sidebar-label with-actions">
+            <span>Chats</span>
+            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
+            <svg class="mini-action compose-small"><use href="#codex-icon-edit-square"></use></svg>
+          </div>
+          <div class="empty-chat">No chats</div>
+        </section>
+
+        <button class="settings-row" type="button"><svg class="gear"><use href="#codex-icon-settings"></use></svg>Settings</button>
+      </aside>
+
+      <div class="codex-workspace">
+        <header class="topbar" data-primitive="codex-thread-topbar">
+          <div class="title-wrap">
+            <h1>Redesign app modern UI</h1>
+            <span>burger-restaurant</span>
+          </div>
+          <button class="more-button icon-button" type="button" aria-label="Thread menu"><svg><use href="#codex-icon-more"></use></svg></button>
+          <div class="topbar-spacer"></div>
+          <button class="toolbar-button gear-button icon-button" type="button" aria-label="Settings"><svg><use href="#codex-icon-settings"></use></svg></button>
+          <button class="vscode-pill" type="button" aria-label="Open in VS Code"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
+          <button class="commit-pill" type="button"><svg class="commit-node-icon"><use href="#codex-icon-commit-node"></use></svg>Commit<span class="chev"></span></button>
+          <span class="toolbar-divider"></span>
+          <button class="terminal-button icon-button" type="button" aria-label="Terminal"><svg><use href="#codex-icon-terminal"></use></svg></button>
+          <div class="diff-counter"><span class="plus-count">+938</span><span class="minus-count">-664</span></div>
+          <button class="layout-toggle icon-button" type="button" aria-label="Toggle review"><svg><use href="#codex-icon-layout"></use></svg></button>
+        </header>
+
+        <main class="thread-pane" data-primitive="codex-active-thread">
+          <div class="prompt-bubble">Redesign the app to be more modern</div>
+          <button class="previous-link" type="button">33 previous messages <span></span></button>
+
+          <article class="assistant-response">
+            <p>Redesigned the site around a more image-led, editorial direction. The new layout gives Chuck's a stronger first impression with a photo-driven hero, sharper typography, cleaner menu grouping, better section rhythm, and a more polished final visit CTA in <a>index.html (line 38)</a>. The new visual system, responsive behavior, and motion styling live in <a>src/style.css (line 1)</a>, and the reveal behavior is now handled with an <code>IntersectionObserver</code> plus a subtle hero tilt interaction in <a>src/main.js (line 1)</a>.</p>
+            <p><code>npm run build</code> passes, and I spot-checked the live page with Playwright after the update. There's also an existing untracked <code>public/</code> directory in the repo that I left untouched.</p>
+          </article>
+
+          <section class="change-card" data-primitive="codex-change-summary">
+            <header>
+              <strong>4 files changed <span class="plus-count">+1506</span> <span class="minus-count">-16</span></strong>
+              <button type="button">Undo <svg class="undo-icon"><use href="#codex-icon-undo"></use></svg></button>
+            </header>
+            <div class="change-row"><span>index.html</span><em class="plus-count">+324</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/main.js</span><em class="plus-count">+51</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/style.css</span><em class="plus-count">+1,108</em><em>-0</em><i></i><b></b></div>
+            <div class="change-row"><span>src/style.css</span><em class="plus-count">+23</em><em class="minus-count">-16</em><i></i><b></b></div>
+          </section>
+
+          <footer class="composer" data-primitive="codex-composer">
+            <div class="composer-input">Ask for follow-up changes</div>
+            <div class="composer-bottom">
+              <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#codex-icon-plus"></use></svg></button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-hand"></use></svg>Default permissions <span class="chev"></span></button>
+              <span class="composer-fill"></span>
+              <button class="model-select" type="button"><svg class="spark"><use href="#codex-icon-spark"></use></svg>GPT-5.4 <span class="chev"></span></button>
+              <button class="effort-select" type="button">Extra High <span class="chev"></span></button>
+              <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#codex-icon-mic"></use></svg></button>
+              <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#codex-icon-arrow-up"></use></svg></button>
+            </div>
+          </footer>
+
+          <div class="thread-footer-meta">
+            <button type="button"><svg class="work-icon"><use href="#codex-icon-monitor"></use></svg>Work locally <span class="chev"></span></button>
+            <button type="button"><svg class="branch-mini"><use href="#codex-icon-branch"></use></svg>main <span class="chev"></span></button>
+          </div>
+        </main>
+
+        <aside class="review-pane" data-primitive="codex-review-pane">
+          <header class="review-top">
+            <div class="review-title">
+              <svg class="review-glyph"><use href="#codex-icon-review"></use></svg>
+              <svg class="doc-glyph"><use href="#codex-icon-file-plus"></use></svg>
+              <strong>Review</strong>
+              <button type="button" class="add-review icon-button"><svg><use href="#codex-icon-plus"></use></svg></button>
+            </div>
+            <button class="expand-button icon-button" type="button" aria-label="Expand"><svg><use href="#codex-icon-expand"></use></svg></button>
+          </header>
+
+          <div class="review-scope">
+            <button type="button">Unstaged <span>4</span><i></i></button>
+            <button class="review-menu icon-button" type="button" aria-label="Review menu"><svg><use href="#codex-icon-more"></use></svg></button>
+            <button class="review-color icon-button" type="button" aria-label="Diff display"><svg><use href="#codex-icon-diff-color"></use></svg></button>
+          </div>
+
+          <section class="diff-file">
+            <header>
+              <strong>index.html</strong>
+              <span class="plus-count">+230</span>
+              <span class="minus-count">-150</span>
+              <button class="icon-button" type="button"><svg><use href="#codex-icon-chevron-up"></use></svg></button>
+            </header>
+            <div class="fold-row"><span></span>2 unmodified lines</div>
+            <div class="code-row context"><em>3</em><code>&lt;head&gt;</code></div>
+            <div class="code-row remove"><em>6</em><code>&lt;title&gt;Chuck's Burgers | San Francisco Smash Counter&lt;/title&gt;</code></div>
+            <div class="code-row add"><em>6</em><code>&lt;title&gt;Chuck's Burgers | Late-Night Smash Counter in San Francisco&lt;/title&gt;</code></div>
+            <div class="code-row context"><em>8</em><code>&lt;meta</code></div>
+            <div class="code-row remove"><em>9</em><code>content="Chuck's Burgers is a San Francisco smash counter"</code></div>
+            <div class="code-row add"><em>9</em><code>content="Chuck's Burgers is a modern San Francisco smash counter"</code></div>
+            <div class="code-row context"><em>11</em><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;</code></div>
+            <div class="code-row add"><em>13</em><code>href="https://fonts.googleapis.com/css2?family=Bebas+Neue"</code></div>
+            <div class="code-row context"><em>16</em><code>&lt;/head&gt;</code></div>
+            <div class="fold-row"><span></span>3 unmodified lines</div>
+            <div class="code-row add"><em>23</em><code>&lt;span&gt;Chuck's &lt;strong&gt;Burgers&lt;/strong&gt;&lt;/span&gt;</code></div>
+            <div class="code-row add"><em>31</em><code>&lt;a href="#story"&gt;About&lt;/a&gt;</code></div>
+          </section>
+
+          <div class="review-actions">
+            <button type="button"><svg class="undo-icon"><use href="#codex-icon-undo"></use></svg>Revert all</button>
+            <button type="button"><svg class="plus-mini"><use href="#codex-icon-plus"></use></svg>Stage all</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      #codex-app-surface {
+        --window: #ffffff;
+        --sidebar: #fbfbfc;
+        --sidebar-deeper: #f0f1f3;
+        --ink: #1c1f23;
+        --muted: #6e7580;
+        --faint: #9aa2ad;
+        --line: rgba(29, 34, 41, 0.08);
+        --line-strong: rgba(29, 34, 41, 0.15);
+        --soft: #f6f7f9;
+        --soft-blue: #eef4fc;
+        --green: #28a562;
+        --red: #c65d58;
+        --blue: #4178d4;
+        width: 1280px;
+        height: 820px;
+        color: var(--ink);
+        font-family: var(--font-macos);
+        font-size: 14px;
+      }
+
+      #codex-app-surface * {
+        box-sizing: border-box;
+      }
+
+      #codex-app-surface button {
+        font: inherit;
+      }
+
+      .codex-app-window {
+        width: 1280px;
+        height: 820px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        border-radius: 15px;
+        background: var(--window);
+        box-shadow: 0 32px 95px rgba(30, 57, 99, 0.28), 0 0 0 1px rgba(31, 38, 48, 0.11);
+      }
+
+      .codex-sidebar {
+        min-width: 0;
+        height: 820px;
+        display: flex;
+        flex-direction: column;
+        padding: 13px 10px 10px;
+        background: var(--sidebar);
+        border-right: 1px solid var(--line);
+        color: #343941;
+      }
+
+      .sidebar-top {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .window-traffic {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      .window-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+      }
+
+      .window-traffic .red { background: #ff5f57; }
+      .window-traffic .yellow { background: #febc2e; }
+      .window-traffic .green { background: #28c840; }
+
+      .sidebar-icon,
+      .nav-arrow {
+        width: 17px;
+        height: 17px;
+        border: 0;
+        background: transparent;
+        color: #7a8491;
+        position: relative;
+      }
+
+      .sidebar-icon::before {
+        content: "";
+        position: absolute;
+        inset: 3px 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .sidebar-icon::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 4px;
+        bottom: 4px;
+        border-left: 1.5px solid currentColor;
+      }
+
+      .nav-arrow::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 4px;
+        width: 7px;
+        height: 7px;
+        border-left: 1.6px solid currentColor;
+        border-bottom: 1.6px solid currentColor;
+        transform: rotate(45deg);
+      }
+
+      .nav-arrow.right::before {
+        transform: rotate(225deg);
+      }
+
+      .nav-arrow.disabled {
+        opacity: 0.28;
+      }
+
+      .primary-nav {
+        display: grid;
+        gap: 2px;
+        margin-bottom: 21px;
+      }
+
+      .primary-nav button,
+      .settings-row {
+        height: 29px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #333943;
+        padding: 0 8px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .glyph {
+        width: 15px;
+        height: 15px;
+        color: #566170;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .glyph.compose::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .glyph.compose::after {
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: 2px;
+        width: 7px;
+        height: 1.5px;
+        background: currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .glyph.search::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 8px;
+        height: 8px;
+        border: 1.6px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .glyph.search::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        width: 6px;
+        height: 1.6px;
+        background: currentColor;
+        transform: rotate(45deg);
+        border-radius: 2px;
+      }
+
+      .glyph.plugins {
+        background:
+          radial-gradient(circle at 3px 3px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 12px 3px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 3px 12px, currentColor 0 2px, transparent 2.4px),
+          radial-gradient(circle at 12px 12px, currentColor 0 2px, transparent 2.4px);
+      }
+
+      .glyph.clock::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border: 1.6px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .glyph.clock::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 4px;
+        width: 4px;
+        height: 4px;
+        border-left: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+      }
+
+      .sidebar-group {
+        display: grid;
+        gap: 4px;
+        margin-bottom: 18px;
+      }
+
+      .sidebar-label {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 22px;
+        padding: 0 8px;
+        color: #8a96a5;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .sidebar-label.with-actions {
+        justify-content: space-between;
+      }
+
+      .sidebar-label.with-actions span:first-child {
+        margin-right: auto;
+      }
+
+      .sidebar-row {
+        height: 30px;
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr) 32px;
+        align-items: center;
+        gap: 7px;
+        padding: 0 8px;
+        border-radius: 8px;
+        color: #343941;
+      }
+
+      .sidebar-row.selected {
+        background: rgba(43, 50, 59, 0.08);
+      }
+
+      .sidebar-row strong,
+      .project-item,
+      .empty-chat {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .sidebar-row time {
+        color: #6d7785;
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        color: #7d8794;
+        flex: 0 0 auto;
+      }
+
+      .pin::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 2px;
+        width: 7px;
+        height: 8px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px 3px 2px 2px;
+        transform: rotate(45deg);
+      }
+
+      .project-item {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 8px;
+        color: #525b68;
+      }
+
+      .project-icon::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 3px;
+        width: 12px;
+        height: 9px;
+        border: 1.35px solid currentColor;
+        border-radius: 2px;
+      }
+
+      .project-icon::after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 5px;
+        height: 3px;
+        border: 1.35px solid currentColor;
+        border-bottom: 0;
+        border-radius: 2px 2px 0 0;
+      }
+
+      .mini-action::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        right: 2px;
+        top: 4px;
+        height: 1.4px;
+        background: currentColor;
+        box-shadow: 0 3.5px 0 currentColor, 0 7px 0 currentColor;
+      }
+
+      .plus-small::after,
+      .compose-small::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 2px;
+        bottom: 2px;
+        border-left: 1.4px solid currentColor;
+      }
+
+      .empty-chat {
+        height: 28px;
+        padding: 0 8px;
+        color: #a0a9b5;
+      }
+
+      .settings-row {
+        margin-top: auto;
+        padding-left: 8px;
+      }
+
+      .gear::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.5px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .gear::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .codex-workspace {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 422px;
+        grid-template-rows: 55px minmax(0, 1fr);
+        background: #fff;
+      }
+
+      .topbar {
+        grid-column: 1 / 3;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 62px 104px 1px 32px auto 30px;
+        gap: 9px;
+        align-items: center;
+        padding: 0 18px 0 13px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .title-wrap {
+        min-width: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+      }
+
+      .title-wrap h1 {
+        margin: 0;
+        color: #202225;
+        font-size: 14.5px;
+        line-height: 1;
+        font-weight: 650;
+        letter-spacing: -0.1px;
+      }
+
+      .title-wrap span {
+        color: #86868b;
+        font-size: 13.5px;
+      }
+
+      .more-button,
+      .toolbar-button,
+      .terminal-button,
+      .layout-toggle,
+      .review-menu,
+      .expand-button,
+      .add-review {
+        border: 0;
+        background: transparent;
+        color: #7a828d;
+        position: relative;
+      }
+
+      .more-button {
+        width: 28px;
+        height: 28px;
+      }
+
+      .more-button::before,
+      .review-menu::before {
+        content: "...";
+        position: absolute;
+        left: 5px;
+        top: 0;
+        color: currentColor;
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      .toolbar-button,
+      .terminal-button,
+      .layout-toggle {
+        width: 30px;
+        height: 30px;
+      }
+
+      .gear-button::before {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border: 1.5px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .vscode-pill,
+      .commit-pill {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fafafa;
+        color: #25282d;
+        padding: 0 9px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .vscode-pill {
+        padding: 0 8px;
+      }
+
+      .vscode-mark {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        position: relative;
+      }
+
+      .chev {
+        width: 7px;
+        height: 7px;
+        display: inline-block;
+        border-right: 1.4px solid currentColor;
+        border-bottom: 1.4px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        opacity: 0.65;
+      }
+
+      .slider-icon {
+        width: 16px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
+      }
+
+      .slider-icon::before,
+      .slider-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: #3a3f46;
+        border-radius: 2px;
+      }
+
+      .slider-icon::before {
+        top: 3px;
+      }
+
+      .slider-icon::after {
+        bottom: 3px;
+      }
+
+      .toolbar-divider {
+        width: 1px;
+        height: 22px;
+        background: var(--line);
+      }
+
+      .terminal-button::before {
+        content: "";
+        position: absolute;
+        inset: 8px 6px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .diff-counter {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        height: 26px;
+        padding: 0 8px;
+        background: rgba(0, 0, 0, 0.04);
+        border-radius: 7px;
+        font-size: 12.5px;
+        font-weight: 600;
+      }
+
+      .plus-count {
+        color: var(--green);
+      }
+
+      .minus-count {
+        color: var(--red);
+      }
+
+      .layout-toggle::before {
+        content: "";
+        position: absolute;
+        inset: 8px 5px;
+        border: 1.5px solid currentColor;
+        border-radius: 4px;
+      }
+
+      .layout-toggle::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        bottom: 9px;
+        right: 11px;
+        border-left: 1.5px solid currentColor;
+      }
+
+      .thread-pane {
+        min-width: 0;
+        position: relative;
+        overflow: hidden;
+        border-right: 1px solid var(--line);
+        padding: 40px 14px 86px;
+        background: #fff;
+      }
+
+      .prompt-bubble {
+        width: fit-content;
+        max-width: 360px;
+        margin: 0 0 59px auto;
+        padding: 11px 18px;
+        border-radius: 14px;
+        background: #f4f4f4;
+        color: #303236;
+        font-size: 14px;
+        line-height: 1.25;
+        font-weight: 450;
+      }
+
+      .previous-link {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        background: transparent;
+        color: #7f858e;
+        padding: 0 0 0 0;
+        margin: 0 0 18px;
+        font-size: 13px;
+      }
+
+      .previous-link span {
+        width: 7px;
+        height: 7px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .assistant-response {
+        padding-top: 18px;
+        border-top: 1px solid rgba(29, 34, 41, 0.07);
+      }
+
+      .assistant-response p {
+        max-width: 705px;
+        margin: 0 6px 12px 0;
+        color: #24272c;
+        font-size: 14.2px;
+        line-height: 1.54;
+        font-weight: 450;
+      }
+
+      .assistant-response a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      code {
+        padding: 1px 4px;
+        border-radius: 4px;
+        background: #f2f2f2;
+        color: #262a30;
+        font-family: var(--font-terminal);
+        font-size: 12.4px;
+      }
+
+      .change-card {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 196px;
+        overflow: hidden;
+        border-radius: 13px;
+        background: #f5f5f5;
+        box-shadow: inset 0 0 0 1px rgba(29, 34, 41, 0.06);
+      }
+
+      .change-card header {
+        height: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        border-bottom: 1px solid rgba(29, 34, 41, 0.06);
+        color: #292c31;
+        font-size: 13px;
+      }
+
+      .change-card header button {
+        border: 0;
+        background: transparent;
+        color: #3d424a;
+        font-size: 12.5px;
+      }
+
+      .change-row {
+        height: 34px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto 12px 14px;
+        gap: 5px;
+        align-items: center;
+        padding: 0 12px 0 14px;
+        border-bottom: 1px solid rgba(29, 34, 41, 0.05);
+        color: #343941;
+        font-size: 13px;
+      }
+
+      .change-row:last-child {
+        border-bottom: 0;
+      }
+
+      .change-row span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 600;
+      }
+
+      .change-row em {
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .change-row i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+
+      .change-row b {
+        width: 8px;
+        height: 8px;
+        border-right: 1.6px solid #6d7480;
+        border-bottom: 1.6px solid #6d7480;
+        transform: rotate(45deg);
+      }
+
+      .composer {
+        position: absolute;
+        left: 13px;
+        right: 13px;
+        bottom: 42px;
+        height: 112px;
+        display: grid;
+        grid-template-rows: 1fr 38px;
+        overflow: hidden;
+        border: 1px solid rgba(29, 34, 41, 0.13);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 9px 26px rgba(30, 36, 44, 0.08);
+      }
+
+      .composer-input {
+        padding: 17px 15px 0;
+        color: #adb2b9;
+        font-size: 14px;
+      }
+
+      .composer-bottom {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 9px 9px 12px;
+      }
+
+      .plus-button,
+      .mic-button,
+      .send-button {
+        width: 28px;
+        height: 28px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        position: relative;
+        color: #747b86;
+      }
+
+      .plus-button::before,
+      .plus-button::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 13px;
+        width: 12px;
+        height: 1.5px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+
+      .plus-button::after {
+        transform: rotate(90deg);
+      }
+
+      .permission-select,
+      .model-select,
+      .effort-select,
+      .thread-footer-meta button {
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 0;
+        background: transparent;
+        color: #727983;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini {
+        width: 13px;
+        height: 13px;
+        display: inline-block;
+        position: relative;
+      }
+
+      .hand-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px 3px;
+        border: 1.4px solid currentColor;
+        border-radius: 5px 5px 4px 4px;
+      }
+
+      .spark::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 0;
+        width: 4px;
+        height: 13px;
+        background: currentColor;
+        clip-path: polygon(50% 0, 100% 42%, 62% 42%, 84% 100%, 0 48%, 39% 48%);
+      }
+
+      .composer-fill {
+        flex: 1 1 auto;
+      }
+
+      .mic-button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 6px;
+        width: 7px;
+        height: 12px;
+        border: 1.4px solid currentColor;
+        border-radius: 5px;
+      }
+
+      .mic-button::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 16px;
+        width: 11px;
+        height: 6px;
+        border-bottom: 1.4px solid currentColor;
+        border-radius: 0 0 8px 8px;
+      }
+
+      .send-button {
+        background: #999999;
+        color: #fff;
+      }
+
+      .send-button::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 8px;
+        width: 9px;
+        height: 9px;
+        border-left: 2px solid #fff;
+        border-top: 2px solid #fff;
+        transform: rotate(45deg);
+      }
+
+      .thread-footer-meta {
+        position: absolute;
+        left: 17px;
+        bottom: 9px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .work-icon::before {
+        content: "";
+        position: absolute;
+        inset: 3px 1px;
+        border: 1.3px solid currentColor;
+        border-radius: 2px;
+      }
+
+      .branch-mini::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 1px;
+        bottom: 1px;
+        border-left: 1.3px solid currentColor;
+      }
+
+      .branch-mini::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 2px;
+        width: 5px;
+        height: 5px;
+        border: 1.3px solid currentColor;
+        border-radius: 50%;
+        box-shadow: 0 7px 0 -1px #fff, 0 7px 0 0 currentColor;
+      }
+
+      .review-pane {
+        min-width: 0;
+        overflow: hidden;
+        position: relative;
+        padding: 0 12px 54px;
+        background: #fff;
+      }
+
+      .review-top {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .review-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #2a2d32;
+      }
+
+      .review-title strong {
+        font-size: 13px;
+        font-weight: 590;
+        color: #1c1f23;
+      }
+
+      .review-glyph,
+      .doc-glyph {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        color: #6f7782;
+      }
+
+      .review-glyph::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 3px;
+        width: 10px;
+        height: 1.4px;
+        background: currentColor;
+        box-shadow: 0 4px 0 currentColor;
+      }
+
+      .review-glyph::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 7px;
+        width: 5px;
+        height: 5px;
+        border-left: 1.4px solid currentColor;
+        border-bottom: 1.4px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .doc-glyph::before {
+        content: "";
+        position: absolute;
+        inset: 1px 2px;
+        border: 1.4px solid currentColor;
+        border-radius: 3px;
+      }
+
+      .doc-glyph::after {
+        content: "+";
+        position: absolute;
+        left: 4px;
+        top: -1px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .add-review {
+        width: 22px;
+        height: 22px;
+      }
+
+      .add-review::before,
+      .add-review::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        width: 12px;
+        height: 1.3px;
+        background: #6f7782;
+      }
+
+      .add-review::after {
+        transform: rotate(90deg);
+      }
+
+      .expand-button {
+        width: 24px;
+        height: 24px;
+      }
+
+      .expand-button::before,
+      .expand-button::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-color: currentColor;
+      }
+
+      .expand-button::before {
+        right: 4px;
+        top: 4px;
+        border-top: 1.4px solid;
+        border-right: 1.4px solid;
+      }
+
+      .expand-button::after {
+        left: 4px;
+        bottom: 4px;
+        border-left: 1.4px solid;
+        border-bottom: 1.4px solid;
+      }
+
+      .review-scope {
+        height: 32px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 26px 26px;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .review-scope button {
+        border: 0;
+        background: transparent;
+        color: #25282d;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: left;
+        position: relative;
+      }
+
+      .review-scope span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 22px;
+        height: 22px;
+        margin-left: 5px;
+        border-radius: 999px;
+        background: #f0f0f0;
+        color: #777f8a;
+        font-size: 12px;
+      }
+
+      .review-scope i {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-left: 7px;
+        border-right: 1.3px solid #6f7782;
+        border-bottom: 1.3px solid #6f7782;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .review-color::before {
+        content: "";
+        position: absolute;
+        inset: 7px 5px;
+        border: 1px solid #aab2bd;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #e88888 0 33%, #8ac69a 33% 66%, #b6bce6 66%);
+      }
+
+      .diff-file {
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      .diff-file header {
+        height: 36px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: #25282d;
+        font-size: 13px;
+      }
+
+      .diff-file header strong {
+        font-weight: 500;
+      }
+
+      .diff-file header button {
+        margin-left: auto;
+        width: 22px;
+        height: 22px;
+        border: 0;
+        background: transparent;
+        position: relative;
+      }
+
+      .diff-file header button::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 9px;
+        width: 7px;
+        height: 7px;
+        border-left: 1.4px solid #6f7782;
+        border-top: 1.4px solid #6f7782;
+        transform: rotate(45deg);
+      }
+
+      .fold-row {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 6px;
+        background: var(--soft-blue);
+        color: #6d7480;
+        padding: 0 12px;
+        font-family: var(--font-terminal);
+        font-size: 12px;
+      }
+
+      .fold-row span {
+        width: 9px;
+        height: 9px;
+        border-left: 1.5px solid #6d7480;
+        border-top: 1.5px solid #6d7480;
+        transform: rotate(45deg);
+      }
+
+      .code-row {
+        min-height: 27px;
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        align-items: center;
+        font-family: var(--font-terminal);
+        font-size: 12px;
+        line-height: 1.25;
+      }
+
+      .code-row em {
+        color: #6b7480;
+        text-align: center;
+        font-style: normal;
+      }
+
+      .code-row code {
+        overflow: hidden;
+        display: block;
+        background: transparent;
+        color: #42505f;
+        text-overflow: clip;
+        white-space: nowrap;
+      }
+
+      .code-row.remove {
+        background: #f9e9e9;
+        box-shadow: inset 3px 0 0 #d98a86;
+      }
+
+      .code-row.add {
+        background: #e4f4e7;
+        box-shadow: inset 3px 0 0 #4caf72;
+      }
+
+      .code-row.remove code {
+        color: #2b2f35;
+      }
+
+      .code-row.add code {
+        color: #2b2f35;
+      }
+
+      .review-actions {
+        position: absolute;
+        right: 10px;
+        bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 7px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 7px 20px rgba(24, 31, 42, 0.12), 0 0 0 1px rgba(29, 34, 41, 0.08);
+      }
+
+      .review-actions button {
+        height: 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 0;
+        background: transparent;
+        color: #777f8a;
+        padding: 0 8px;
+        font-size: 12px;
+      }
+
+      .undo-icon,
+      .plus-mini {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
+        color: currentColor;
+      }
+
+      .undo-icon::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1.4px solid currentColor;
+        border-left-color: transparent;
+        border-radius: 50%;
+      }
+
+      .undo-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 5px;
+        height: 5px;
+        border-left: 1.4px solid currentColor;
+        border-top: 1.4px solid currentColor;
+        transform: rotate(-45deg);
+      }
+
+      .plus-mini::before,
+      .plus-mini::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 5px;
+        width: 10px;
+        height: 1.3px;
+        background: currentColor;
+      }
+
+      .plus-mini::after {
+        transform: rotate(90deg);
+      }
+
+      .icon-sprite {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .icon-button {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .icon-button svg,
+      .glyph,
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action,
+      .slider-icon,
+      .commit-node-icon,
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini,
+      .review-glyph,
+      .doc-glyph,
+      .undo-icon,
+      .plus-mini {
+        display: block;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        overflow: visible;
+      }
+
+      .sidebar-icon::before,
+      .sidebar-icon::after,
+      .nav-arrow::before,
+      .glyph.compose::before,
+      .glyph.compose::after,
+      .glyph.search::before,
+      .glyph.search::after,
+      .glyph.clock::before,
+      .glyph.clock::after,
+      .pin::before,
+      .project-icon::before,
+      .project-icon::after,
+      .mini-action::before,
+      .plus-small::after,
+      .compose-small::after,
+      .gear::before,
+      .gear::after,
+      .more-button::before,
+      .review-menu::before,
+      .gear-button::before,
+      .slider-icon::before,
+      .slider-icon::after,
+      .terminal-button::before,
+      .layout-toggle::before,
+      .layout-toggle::after,
+      .plus-button::before,
+      .plus-button::after,
+      .hand-icon::before,
+      .spark::before,
+      .mic-button::before,
+      .mic-button::after,
+      .send-button::before,
+      .work-icon::before,
+      .branch-mini::before,
+      .branch-mini::after,
+      .review-glyph::before,
+      .review-glyph::after,
+      .doc-glyph::before,
+      .doc-glyph::after,
+      .add-review::before,
+      .add-review::after,
+      .expand-button::before,
+      .expand-button::after,
+      .review-color::before,
+      .diff-file header button::before,
+      .undo-icon::before,
+      .undo-icon::after,
+      .plus-mini::before,
+      .plus-mini::after {
+        content: none;
+      }
+
+      .sidebar-top .icon-button svg {
+        width: 17px;
+        height: 17px;
+        stroke-width: 1.75;
+      }
+
+      .primary-nav .glyph {
+        width: 16px;
+        height: 16px;
+        color: #566170;
+      }
+
+      .pin,
+      .project-icon,
+      .gear,
+      .mini-action {
+        width: 15px;
+        height: 15px;
+        color: #788392;
+      }
+
+      .pin {
+        stroke-width: 1.55;
+      }
+
+      .mini-action {
+        width: 14px;
+        height: 14px;
+      }
+
+      .more-button svg,
+      .terminal-button svg,
+      .layout-toggle svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .gear-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .vscode-mark {
+        display: inline-grid;
+        place-items: center;
+        overflow: visible;
+      }
+
+      .vscode-mark svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: none;
+      }
+
+      .commit-node-icon {
+        width: 14px;
+        height: 14px;
+        color: #3a3f46;
+        stroke-width: 2;
+      }
+
+      .slider-icon {
+        width: 16px;
+        height: 16px;
+        color: #3a3f46;
+        stroke-width: 1.75;
+      }
+
+      .plus-button svg,
+      .mic-button svg,
+      .send-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .hand-icon,
+      .spark,
+      .work-icon,
+      .branch-mini {
+        width: 14px;
+        height: 14px;
+        stroke-width: 1.65;
+      }
+
+      .spark {
+        stroke-width: 1.55;
+      }
+
+      .send-button svg {
+        stroke-width: 2;
+        transform: translateY(-1px);
+      }
+
+      .review-glyph,
+      .doc-glyph {
+        width: 16px;
+        height: 16px;
+        color: #68727f;
+        stroke-width: 1.65;
+      }
+
+      .add-review svg,
+      .expand-button svg,
+      .review-menu svg,
+      .diff-file header button svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .review-color {
+        border-radius: 7px;
+        background: none;
+      }
+
+      .review-color svg {
+        width: 16px;
+        height: 16px;
+        color: #667085;
+        stroke-width: 1.25;
+      }
+
+      .undo-icon,
+      .plus-mini {
+        width: 13px;
+        height: 13px;
+        stroke-width: 1.7;
+      }
+    </style>
+
+    <style>
+      .codex-app-window.theme-dark {
+        --window: #212019;
+        --sidebar: #212019;
+        --sidebar-deeper: #2c2b24;
+        --ink: #ece9dd;
+        --muted: #8a877c;
+        --faint: #6f6c61;
+        --line: rgba(255, 255, 255, 0.07);
+        --line-strong: rgba(255, 255, 255, 0.12);
+        --soft: #2a2922;
+        --soft-blue: #2c2b24;
+        --green: #6fbf8e;
+        --red: #d98a86;
+        --blue: #7fa4e8;
+        background: var(--window);
+        box-shadow: 0 32px 95px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
+      }
+
+      .codex-app-window.theme-dark .codex-sidebar {
+        background: var(--sidebar);
+        border-right-color: var(--line);
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .sidebar-icon,
+      .codex-app-window.theme-dark .nav-arrow {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .primary-nav button,
+      .codex-app-window.theme-dark .settings-row {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .glyph {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .sidebar-label {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row.selected {
+        background: #2c2b24;
+      }
+
+      .codex-app-window.theme-dark .sidebar-row time {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .pin,
+      .codex-app-window.theme-dark .project-icon,
+      .codex-app-window.theme-dark .gear,
+      .codex-app-window.theme-dark .mini-action {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .project-item {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .empty-chat {
+        color: #6f6c61;
+      }
+
+      .codex-app-window.theme-dark .codex-workspace {
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .topbar {
+        border-bottom-color: var(--line);
+        background: rgba(33, 32, 25, 0.96);
+      }
+
+      .codex-app-window.theme-dark .title-wrap h1 {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .title-wrap span {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .more-button,
+      .codex-app-window.theme-dark .toolbar-button,
+      .codex-app-window.theme-dark .terminal-button,
+      .codex-app-window.theme-dark .layout-toggle,
+      .codex-app-window.theme-dark .review-menu,
+      .codex-app-window.theme-dark .expand-button,
+      .codex-app-window.theme-dark .add-review {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .vscode-pill,
+      .codex-app-window.theme-dark .commit-pill {
+        border-color: var(--line);
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .toolbar-divider {
+        background: var(--line);
+      }
+
+      .codex-app-window.theme-dark .diff-counter {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .codex-app-window.theme-dark .thread-pane {
+        border-right-color: var(--line);
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .prompt-bubble {
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .previous-link {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .assistant-response {
+        border-top-color: var(--line);
+      }
+
+      .codex-app-window.theme-dark .assistant-response p {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark code {
+        background: #2a2922;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .change-card {
+        background: #2a2922;
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+
+      .codex-app-window.theme-dark .change-card header {
+        border-bottom-color: var(--line);
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .change-card header button {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .change-row {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .change-row b {
+        border-right-color: #8a877c;
+        border-bottom-color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .composer {
+        border-color: var(--line-strong);
+        background: #2a2922;
+        box-shadow: 0 9px 26px rgba(0, 0, 0, 0.35);
+      }
+
+      .codex-app-window.theme-dark .composer-input {
+        color: #6f6c61;
+      }
+
+      .codex-app-window.theme-dark .plus-button,
+      .codex-app-window.theme-dark .mic-button {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .permission-select,
+      .codex-app-window.theme-dark .model-select,
+      .codex-app-window.theme-dark .effort-select,
+      .codex-app-window.theme-dark .thread-footer-meta button {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .model-select {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .effort-select {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .send-button {
+        background: #3a3830;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .send-button::before {
+        border-left-color: #ece9dd;
+        border-top-color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-pane {
+        background: var(--window);
+      }
+
+      .codex-app-window.theme-dark .review-title {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-glyph,
+      .codex-app-window.theme-dark .doc-glyph {
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .review-scope button {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .review-scope span {
+        background: #2c2b24;
+        color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .review-scope i {
+        border-right-color: #b5b2a6;
+        border-bottom-color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .diff-file header {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .diff-file header button::before {
+        border-left-color: #b5b2a6;
+        border-top-color: #b5b2a6;
+      }
+
+      .codex-app-window.theme-dark .fold-row {
+        background: #2c2b24;
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .fold-row span {
+        border-left-color: #8a877c;
+        border-top-color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .code-row em {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .code-row code {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .code-row.remove {
+        background: rgba(217, 138, 134, 0.16);
+        box-shadow: inset 3px 0 0 #d98a86;
+      }
+
+      .codex-app-window.theme-dark .code-row.add {
+        background: rgba(111, 191, 142, 0.16);
+        box-shadow: inset 3px 0 0 #6fbf8e;
+      }
+
+      .codex-app-window.theme-dark .code-row.remove code,
+      .codex-app-window.theme-dark .code-row.add code {
+        color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .review-actions {
+        background: rgba(42, 41, 34, 0.92);
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--line);
+      }
+
+      .codex-app-window.theme-dark .review-actions button {
+        color: #b5b2a6;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".codex-app-window", { opacity: 0, y: 18, filter: "blur(4px)", duration: 0.48, ease: "power3.out" }, 0.1);
+      tl.from(".codex-sidebar", { opacity: 0, x: -12, duration: 0.34, ease: "sine.out" }, 0.22);
+      tl.from(".topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.32);
+      tl.from(".prompt-bubble", { opacity: 0, y: 10, duration: 0.32, ease: "sine.out" }, 0.52);
+      tl.from(".assistant-response", { opacity: 0, y: 12, duration: 0.38, ease: "power2.out" }, 0.82);
+      tl.from(".change-card", { opacity: 0, y: 12, duration: 0.34, ease: "power2.out" }, 1.16);
+      tl.from(".review-pane > *", { opacity: 0, x: 12, stagger: 0.045, duration: 0.28, ease: "sine.out" }, 1.32);
+      tl.from(".composer", { opacity: 0, y: 16, duration: 0.34, ease: "power2.out" }, 1.72);
+      tl.from(".review-actions", { opacity: 0, y: 8, duration: 0.28, ease: "sine.out" }, 2.08);
+      window.__timelines["codex-app-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/codex-app\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("codex-app-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#codex-app-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

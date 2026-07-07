@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Word — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="word-interaction" data-composition-id="word-interaction" data-width="1280" data-height="800" data-start="0" data-duration="10">
+      <section class="wd-stage" data-primitive="word-interaction" aria-label="Word document with scripted typing">
+        <div class="wd-window">
+          <div class="wd-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Q2 Launch Brief.docx</span><span class="save">Saved</span></div>
+          <div class="wd-tabs"><span>File</span><span class="active">Home</span><span>Insert</span><span>Layout</span><span>Review</span><span>View</span></div>
+          <div class="wd-canvas">
+            <div class="wd-page">
+              <h1 class="doc-title" data-role="heading"></h1>
+              <p class="doc-body" data-role="body"></p>
+              <p class="doc-body dim" data-role="body2"></p>
+            </div>
+          </div>
+          <div class="wd-status"><span data-role="status">Page 1 of 1</span><span class="right"><b data-role="words">0</b> words</span></div>
+        </div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#c9ccd1; }
+      #word-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; color:#16120f; }
+      #word-interaction * { box-sizing:border-box; }
+      .wd-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#eef0f3,#e2e5ea); display:grid; place-items:center; }
+      .wd-window { position:relative; width:1000px; height:680px; background:#fff; border-radius:12px; border:1px solid rgba(20,30,48,0.12); box-shadow:0 34px 90px rgba(28,30,38,0.24); overflow:hidden; display:grid; grid-template-rows:40px 36px 1fr 28px; }
+      .wd-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#f7f7f7; border-bottom:1px solid rgba(20,30,48,0.08); }
+      .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
+      .fname { font-size:14px; font-weight:600; color:#2b579a; } .save { font-size:12px; color:#67727f; }
+      .wd-tabs { display:flex; align-items:center; gap:20px; padding:0 18px; background:#fbfbfc; border-bottom:1px solid rgba(20,30,48,0.08); font-size:13px; color:#52514e; }
+      .wd-tabs .active { color:#2b579a; font-weight:600; border-bottom:2px solid #2b579a; height:100%; display:flex; align-items:center; }
+      .wd-canvas { background:#e9ebee; overflow:hidden; display:grid; place-items:start center; padding:26px 0; }
+      .wd-page { width:600px; min-height:560px; background:#fff; box-shadow:0 6px 24px rgba(28,30,38,0.14); padding:56px 64px; }
+      .doc-title { font-size:26px; font-weight:700; margin:0 0 14px; color:#1a1a1a; letter-spacing:-.01em; }
+      .doc-body { font-size:15px; line-height:1.7; margin:0 0 12px; color:#26262a; }
+      .doc-body.dim { color:#6a6a70; }
+      .wd-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
+      .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(43,87,154,0.7); border-radius:50%; opacity:0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="runtime/backlot-component-loader.js"></script>
+    <script src="runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const stage = document.querySelector(".wd-stage");
+      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+      const TITLE = "Q2 Launch Brief";
+      const BODY = "Claude pulled the strongest signals from the launch deck into one page the team can reuse across the deck, video script, and launch memo.";
+      const BODY2 = "Next: confirm the revenue table matches the final chart before the deck ships.";
+
+      // click into the page, type the title, then the body.
+      ix.click('[data-role="heading"]', { at: 0.8, moveDur: 0.8 });
+      ix.type('[data-role="heading"]', TITLE, { at: 1.2, cps: 18 });
+      const bodyAt = 1.2 + TITLE.length / 18 + 0.4;
+      ix.type('[data-role="body"]', BODY, { at: bodyAt, cps: 40 });
+      const body2At = bodyAt + BODY.length / 40 + 0.5;
+      ix.type('[data-role="body2"]', BODY2, { at: body2At, cps: 40 });
+      // word count ticks up at the end.
+      ix.type('[data-role="words"]', "36", { at: body2At + BODY2.length / 40, cps: 20, fade: 0.05 });
+
+      window.__timelines["word-interaction"] = tl;
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(9.4).pause();
+    </script>
+  </body>
+</html>

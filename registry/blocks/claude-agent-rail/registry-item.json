@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-agent-rail",
+  "type": "hyperframes:block",
+  "title": "Claude Agent Context Rail",
+  "description": "High — poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens. Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.",
+  "tags": [
+    "claude",
+    "agent-status",
+    "task-rail",
+    "context",
+    "artifacts",
+    "cowork"
+  ],
+  "dimensions": {
+    "width": 380,
+    "height": 860
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-agent-rail.html",
+      "target": "compositions/claude-agent-rail.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

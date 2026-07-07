@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-presentation-chat-pane-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Chat Pane Plus Presentation Workflow",
+  "description": "Modular assembly proof using the deck-specific lean Claude chat pane and PowerPoint-like presentation component. Short deck-update clips that need Claude plus a PowerPoint-like editor, while avoiding the heavier Claude sidebar, task rail, browser, Finder, Codex terminal, or full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "powerpoint",
+    "presentation",
+    "office",
+    "chat-pane",
+    "modular-assembly"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-presentation-chat-pane-workflow.html",
+      "target": "compositions/claude-presentation-chat-pane-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-deck-chat-pane",
+    "mac-menu-bar",
+    "presentation-editor"
+  ]
+}

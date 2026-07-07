@@ -1,0 +1,38 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-launch-browser-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Launch States Plus Browser Workflow",
+  "description": "Modular assembly proof using split Sonnet 4.6 prompt-stack and completion-response primitives. Short launch-style clips that need a browser app as the background work surface plus Claude prompt-to-completion states, without Finder, Office, Codex terminal, or the full desktop lab; use `capture:claude-launch-browser-workflow-prompt` for the prompt beat.",
+  "tags": [
+    "workflow",
+    "claude",
+    "browser",
+    "launch-video",
+    "prompt-stack",
+    "completion",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-launch-browser-workflow.html",
+      "target": "compositions/claude-launch-browser-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "browser-app",
+    "claude-completion-response",
+    "claude-prompt-stack",
+    "mac-menu-bar"
+  ]
+}

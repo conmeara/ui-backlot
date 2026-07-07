@@ -1,0 +1,50 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "calendar-app",
+  "type": "hyperframes:block",
+  "title": "macOS Calendar App",
+  "description": "Actual Apple Calendar screenshot-informed Week scheduling shell. Scheduling, coordination, and calendar-driven workflow scenes. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "macos",
+    "calendar",
+    "schedule",
+    "desktop",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "assets/app-icons/browser.svg",
+      "target": "assets/app-icons/browser.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/calendar.svg",
+      "target": "assets/app-icons/calendar.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/finder.svg",
+      "target": "assets/app-icons/finder.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/notes.svg",
+      "target": "assets/app-icons/notes.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "calendar-app.html",
+      "target": "compositions/calendar-app.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation"
+  ]
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Finder — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="3.4">
+      <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder (real component) with a scripted selection">
+        <div class="wallpaper" aria-hidden="true"></div>
+        <div class="fn-frame component-frame"
+             data-primitive="finder-window"
+             data-backlot-mount-src="compositions/finder-window.html"
+             data-backlot-mount-selector="#finder-window-surface"></div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      @import url("styles/backlot-foundation.css");
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#0b1020; }
+      #finder-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
+      #finder-interaction * { box-sizing:border-box; }
+      .fn-stage { position:relative; width:1280px; height:800px; overflow:hidden; }
+      .wallpaper { position:absolute; inset:0; background:
+        radial-gradient(120% 120% at 50% 55%,#3f7fd6 0%,#2a5bc0 45%,#16307e 100%),
+        linear-gradient(160deg,#6ea6e8 0%,#2f68c8 48%,#17348a 100%); }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* finder-window is 920x436; scale 1.2 and centre so the whole window is
+         visible with even margins (was 1196px wide at left:130 → clipped right). */
+      .fn-frame { left:88px; top:150px; width:1104px; height:523px; border-radius:12px;
+        box-shadow:0 42px 110px rgba(6,18,54,0.45); }
+      .fn-frame > [data-backlot-mounted-component] { transform: scale(1.2); }
+      .demo-cursor { position:absolute; left:640px; top:520px; z-index:90; width:24px; height:24px;
+        background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(255,255,255,0.85); border-radius:50%; opacity:0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="runtime/backlot-component-loader.js"></script>
+    <script src="runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const stage = document.querySelector(".fn-stage");
+
+      // Register the timeline SYNCHRONOUSLY with a full-duration hold so the
+      // renderer never probes a zero-duration composition (the real finder-window
+      // mounts asynchronously; the row-selection tweens are layered on once it is
+      // ready). Without the hold, a fast browser start races the mount and the
+      // render fails with "Composition has zero duration".
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: 3.4 }, 0);   // no-op hold → duration is always 3.4
+      window.__timelines["finder-interaction"] = tl;
+
+      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        const cols = stage.querySelectorAll(".finder-column");
+        const col1 = cols[0];
+        const rows = col1 ? Array.from(col1.querySelectorAll(".file-row")) : [];
+        const cur = col1 ? col1.querySelector(".file-row.selected") : null;
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+        if (rows.length >= 5 && cur) {
+          rows[2].setAttribute("data-role", "r2");   // DESIGN.md
+          rows[4].setAttribute("data-role", "r4");   // index.html
+          // 1) select DESIGN.md
+          ix.click('[data-role="r2"]', { at: 0.7, moveDur: 0.9, press: false });
+          tl.set(cur, { attr: { class: "file-row" } }, 1.1);
+          tl.set(rows[2], { attr: { class: "file-row selected", "data-role": "r2" } }, 1.15);
+          // 2) select index.html
+          ix.click('[data-role="r4"]', { at: 2.1, moveDur: 0.8, press: false });
+          tl.set(rows[2], { attr: { class: "file-row", "data-role": "r2" } }, 2.5);
+          tl.set(rows[4], { attr: { class: "file-row selected", "data-role": "r4" } }, 2.55);
+        }
+      }).catch(() => {});
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(3.4).pause();
+    </script>
+  </body>
+</html>

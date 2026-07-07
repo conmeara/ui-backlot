@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "mac-menu-bar",
+  "type": "hyperframes:block",
+  "title": "macOS Menu Bar",
+  "description": "Macos-web-informed editable menu-bar primitive with self-contained Apple glyph and status icons. Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "mac",
+    "macos",
+    "menu-bar",
+    "desktop",
+    "component-loader",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 30
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "mac-menu-bar.html",
+      "target": "compositions/mac-menu-bar.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

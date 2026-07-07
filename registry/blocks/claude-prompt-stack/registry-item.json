@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-prompt-stack",
+  "type": "hyperframes:block",
+  "title": "Claude Launch Prompt Stack",
+  "description": "High against Sonnet 4.6 launch-frame prompt bubble composition, with synthetic editable text. Cinematic Claude launch beats that need only oversized right-aligned prompt bubbles and a loading mark, without app chrome, sidebar, composer, browser, Finder, Office, Codex, or desktop context.",
+  "tags": [
+    "claude",
+    "chat",
+    "prompt-stack",
+    "launch-reference",
+    "loading",
+    "cinematic"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-prompt-stack.html",
+      "target": "compositions/claude-prompt-stack.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-thread-core",
+  "type": "hyperframes:block",
+  "title": "Claude Working Thread Core",
+  "description": "High — poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens. Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "claude",
+    "thread",
+    "tool-use",
+    "reasoning",
+    "message-parts",
+    "cinematic",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 980,
+    "height": 840
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-thread-core.html",
+      "target": "compositions/claude-thread-core.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

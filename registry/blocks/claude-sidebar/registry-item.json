@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-sidebar",
+  "type": "hyperframes:block",
+  "title": "Claude Sidebar",
+  "description": "High — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens. Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.",
+  "tags": [
+    "claude",
+    "sidebar",
+    "navigation",
+    "chat",
+    "cowork",
+    "code",
+    "workspace"
+  ],
+  "dimensions": {
+    "width": 360,
+    "height": 840
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-sidebar.html",
+      "target": "compositions/claude-sidebar.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

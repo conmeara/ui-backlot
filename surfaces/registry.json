@@ -96,7 +96,7 @@
       "title": "Claude Agent Context Rail",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "high — poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens",
+      "fidelity": "high \u2014 poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 380,
         "height": 860
@@ -786,7 +786,7 @@
       "title": "Claude Working Composer",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork\" mirrors the two desktop composer variants, light + .theme-dark via canonical --claude-* tokens",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork\" mirrors the two desktop composer variants, light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 900,
         "height": 220
@@ -1259,7 +1259,7 @@
         "captures/surface-claude-home-launch/frame64-comparison.jpg",
         "compositions/claude-conversation.html",
         "docs/prototypes/claude-conversation-surface-pass-040.md",
-        "DESIGN.md"
+        "docs/design-language.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; reference frame guides geometry only, with no Claude product code, screenshots, video frames, private data, app assets, or donor code copied.",
       "recommendedUse": "Full-frame launch prompt beats where a video needs the Sonnet-style user request stack without the desktop/sidebar Claude app shell."
@@ -1361,7 +1361,7 @@
         "captures/surface-claude-launch-completion/frame24-comparison.jpg",
         "compositions/claude-cinematic-reply.html",
         "docs/prototypes/claude-cinematic-reply-fidelity-pass-070.md",
-        "DESIGN.md"
+        "docs/design-language.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; reference frame guides geometry only, with no Claude product code, screenshots, video frames, private data, app assets, or donor code copied.",
       "recommendedUse": "Full-frame Claude completion beats where a clip needs a launch-style done state and lower-edge Reply composer without the desktop/sidebar app shell."
@@ -1619,7 +1619,7 @@
       "title": "Claude Sidebar",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 360,
         "height": 840
@@ -1664,7 +1664,7 @@
       "title": "Claude Working Thread Core",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 980,
         "height": 840
@@ -1894,7 +1894,7 @@
         "`codex --version` and `codex --help`",
         "/Applications/Codex.app/Contents/Info.plist",
         "/System/Applications/Utilities/Terminal.app",
-        "DESIGN.md",
+        "docs/design-language.md",
         "docs/prototypes/codex-terminal-current-cli-pass-048.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS using local Codex CLI help, Codex app metadata, and Terminal availability as reference context; no Apple, OpenAI, or private session assets copied.",
@@ -1973,7 +1973,7 @@
       "dependencies": [],
       "sourceEvidence": [
         "docs/prototypes/figma-editor-surface-pass-024.md",
-        "DESIGN.md"
+        "docs/design-language.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS informed by public Figma UI documentation; no private Figma account, file, code, or assets copied.",
       "recommendedUse": "Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes."
@@ -2110,6 +2110,47 @@
       ],
       "assetDecision": "Hand-authored HTML/CSS with curated Framework7 (MIT) SF-style status icons vendored via assets/icons/sprite-manifest.json plus one hand-authored Control Center glyph; no Apple SF Symbols or app assets copied.",
       "recommendedUse": "Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab."
+    },
+    {
+      "id": "mac-dock",
+      "title": "macOS Dock",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "macos-web-informed editable Dock with real app icons, magnification-free layout, and indicator dots",
+      "dimensions": {
+        "width": 760,
+        "height": 104
+      },
+      "source": "compositions/mac-dock.html",
+      "compositionId": "mac-dock-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/mac-dock.html",
+        "selector": "#mac-dock-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:mac-dock",
+        "selector": "#mac-dock-surface",
+        "path": "captures/surface-mac-dock/target.png"
+      },
+      "prototypeNote": "docs/prototypes/donor-repo-dock-fidelity-pass-010.md",
+      "tags": [
+        "mac",
+        "macos",
+        "dock",
+        "desktop",
+        "component-loader"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/open-source/README.md",
+        "docs/research/open-source-ui-donor-repos.md",
+        "assets/app-icons/README.md",
+        "docs/prototypes/donor-repo-dock-fidelity-pass-010.md"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS Dock shell with recreated/curated app icons documented in assets/app-icons/README.md; no Apple Dock code or assets copied.",
+      "recommendedUse": "Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html)."
     },
     {
       "id": "premiere-editor",
@@ -2252,7 +2293,7 @@
       "title": "Claude Desktop - Chat page",
       "kind": "component",
       "status": "deprecated",
-      "fidelity": "deprecated reference — pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
+      "fidelity": "deprecated reference \u2014 pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
       "dimensions": {
         "width": 1440,
         "height": 900
@@ -2299,7 +2340,7 @@
       "title": "Claude Desktop - Cowork page",
       "kind": "component",
       "status": "deprecated",
-      "fidelity": "deprecated reference — pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
+      "fidelity": "deprecated reference \u2014 pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
       "dimensions": {
         "width": 1440,
         "height": 900
@@ -2346,7 +2387,7 @@
       "title": "Claude Desktop - Code page",
       "kind": "component",
       "status": "deprecated",
-      "fidelity": "deprecated reference — pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
+      "fidelity": "deprecated reference \u2014 pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
       "dimensions": {
         "width": 1440,
         "height": 900
@@ -2736,7 +2777,7 @@
       "dependencies": [],
       "sourceEvidence": [
         "docs/prototypes/figma-editor-surface-pass-024.md",
-        "DESIGN.md"
+        "docs/design-language.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS informed by public Figma UI documentation; no private Figma account, file, code, or assets copied.",
       "recommendedUse": "Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes."
@@ -2746,7 +2787,7 @@
       "title": "Claude Desktop - Chat page (dark)",
       "kind": "component",
       "status": "deprecated",
-      "fidelity": "deprecated reference — pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
+      "fidelity": "deprecated reference \u2014 pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
       "dimensions": {
         "width": 1440,
         "height": 900
@@ -2793,7 +2834,7 @@
       "title": "Claude Desktop - Cowork page (dark)",
       "kind": "component",
       "status": "deprecated",
-      "fidelity": "deprecated reference — pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
+      "fidelity": "deprecated reference \u2014 pass-100 visuals now live in the atom components and the canonical claude-composed-app shell; file retained as source evidence",
       "dimensions": {
         "width": 1440,
         "height": 900

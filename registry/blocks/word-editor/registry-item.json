@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "word-editor",
+  "type": "hyperframes:block",
+  "title": "Word-style Document Editor",
+  "description": "Word for web targeted editable document shell grounded in Microsoft Support screenshot references. Document editing, review, comments, tracked-change, and memo workflow scenes.",
+  "tags": [
+    "word",
+    "office",
+    "document",
+    "comments",
+    "tracked-changes"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 760
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "word-editor.html",
+      "target": "compositions/word-editor.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

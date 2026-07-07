@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "codex-app",
+  "type": "hyperframes:block",
+  "title": "Codex Desktop Workbench",
+  "description": "Official screenshot-informed editable Codex desktop app reconstruction, matching the light-mode project sidebar, active thread, composer, toolbar, review pane structure, and thin rounded icon language; pending sanitized live account capture. Desktop Codex demos that need a light-mode current app shell with real-product-like sidebar navigation, active thread, model/permission composer, toolbar controls, Git diff review pane, and local-work metadata, without importing Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "codex",
+    "desktop",
+    "app",
+    "agent-status",
+    "patch-preview",
+    "developer-workflow",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 820
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "codex-app.html",
+      "target": "compositions/codex-app.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

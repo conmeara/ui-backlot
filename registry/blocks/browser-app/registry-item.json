@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "browser-app",
+  "type": "hyperframes:block",
+  "title": "Editable Browser App",
+  "description": "Actual-reference-informed browser chrome plus Airtable-like editable app surface. Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "browser",
+    "web-app",
+    "tabs",
+    "dashboard",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1712,
+    "height": 944
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "browser-app.html",
+      "target": "compositions/browser-app.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation"
+  ]
+}

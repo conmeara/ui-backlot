@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "presentation-editor",
+  "type": "hyperframes:block",
+  "title": "PowerPoint-like Presentation Editor",
+  "description": "Medium-high, pending source-captured PowerPoint geometry. Deck-editing demos and main Claude-to-PowerPoint workflow scenes.",
+  "tags": [
+    "powerpoint",
+    "presentation",
+    "office",
+    "ribbon",
+    "slides"
+  ],
+  "dimensions": {
+    "width": 836,
+    "height": 438
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "presentation-editor.html",
+      "target": "compositions/presentation-editor.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

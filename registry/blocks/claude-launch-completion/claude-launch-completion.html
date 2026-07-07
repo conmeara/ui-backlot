@@ -1,0 +1,273 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fbfaf6;
+  }
+</style>
+
+<template id="claude-launch-completion-template">
+  <div id="claude-launch-completion-surface" data-composition-id="claude-launch-completion-surface" data-width="1920" data-height="1080">
+    <section class="claude-launch-completion-frame" data-primitive="claude-launch-completion" aria-label="Editable Claude launch completion surface">
+      <main class="completion-copy" data-primitive="claude-launch-answer">
+        <p class="completion-line primary">Perfect. $25 threshold, set to run Friday through<br>Sunday.</p>
+        <p class="completion-line secondary">All done. Free delivery&rsquo;s live for the holiday weekend.</p>
+      </main>
+
+      <span class="claude-sunburst completion-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </span>
+
+      <footer class="reply-composer" data-primitive="claude-launch-composer">
+        <div class="reply-input">Reply...</div>
+        <div class="composer-controls">
+          <button class="attach-button" type="button" aria-label="Attach"></button>
+          <button class="composer-tool folder-tool" type="button"><span></span>Work in a folder</button>
+          <button class="composer-tool" type="button">Research</button>
+          <button class="send-button" type="button" aria-label="Send"></button>
+        </div>
+      </footer>
+    </section>
+
+    <style>
+      #claude-launch-completion-surface {
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+        color: #11100f;
+        font-family: var(--font-claude-ui);
+      }
+
+      #claude-launch-completion-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-launch-completion-surface button {
+        font: inherit;
+      }
+
+      .claude-launch-completion-frame {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #fbfaf6;
+      }
+
+      .completion-copy {
+        position: absolute;
+        left: 250px;
+        top: 213px;
+        width: 1440px;
+        color: #11100f;
+        font-family: var(--font-claude-serif);
+        letter-spacing: 0;
+      }
+
+      .completion-line {
+        margin: 0;
+        font-size: 63px;
+        line-height: 1.26;
+        font-weight: 405;
+      }
+
+      .completion-line.secondary {
+        margin-top: 73px;
+        white-space: nowrap;
+      }
+
+      .claude-sunburst {
+        position: absolute;
+        display: inline-block;
+        width: 112px;
+        height: 112px;
+        color: #c65b47;
+        --ray-w: 7px;
+        --ray-h: 42px;
+        --ray-gap: 5px;
+      }
+
+      .completion-mark {
+        left: 256px;
+        top: 666px;
+      }
+
+      .claude-sunburst span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--ray-w);
+        height: var(--ray-h);
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: 50% calc(100% + var(--ray-gap));
+        transform: translate(-50%, calc(-100% - var(--ray-gap))) rotate(calc(var(--i) * 30deg));
+      }
+
+      .claude-sunburst span:nth-child(1) { --i: 0; }
+      .claude-sunburst span:nth-child(2) { --i: 1; }
+      .claude-sunburst span:nth-child(3) { --i: 2; }
+      .claude-sunburst span:nth-child(4) { --i: 3; }
+      .claude-sunburst span:nth-child(5) { --i: 4; }
+      .claude-sunburst span:nth-child(6) { --i: 5; }
+      .claude-sunburst span:nth-child(7) { --i: 6; }
+      .claude-sunburst span:nth-child(8) { --i: 7; }
+      .claude-sunburst span:nth-child(9) { --i: 8; }
+      .claude-sunburst span:nth-child(10) { --i: 9; }
+      .claude-sunburst span:nth-child(11) { --i: 10; }
+      .claude-sunburst span:nth-child(12) { --i: 11; }
+
+      .reply-composer {
+        position: absolute;
+        left: 188px;
+        top: 892px;
+        width: 1544px;
+        min-height: 284px;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) 78px;
+        overflow: hidden;
+        border: 1.5px solid rgba(39, 37, 34, 0.18);
+        border-radius: 72px;
+        background: rgba(255, 254, 251, 0.98);
+        box-shadow: 0 1px 2px rgba(49, 44, 38, 0.035), 0 28px 90px rgba(64, 48, 34, 0.085);
+      }
+
+      .reply-input {
+        padding: 62px 68px 0;
+        color: #7d756e;
+        font-size: 55px;
+        line-height: 1;
+        font-weight: 450;
+      }
+
+      .composer-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 60px 46px;
+        color: #777066;
+      }
+
+      .attach-button,
+      .send-button {
+        position: relative;
+        display: grid;
+        place-items: center;
+        border: 0;
+        flex: 0 0 auto;
+      }
+
+      .attach-button {
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        border-radius: 50%;
+        background: #f7f4ee;
+      }
+
+      .attach-button::before,
+      .attach-button::after {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 2.5px;
+        border-radius: 2px;
+        background: currentColor;
+      }
+
+      .attach-button::after {
+        transform: rotate(90deg);
+      }
+
+      .composer-tool {
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(39, 37, 34, 0.08);
+        background: #faf8f4;
+        color: #57534c;
+        font-size: 17px;
+      }
+
+      .folder-tool span {
+        width: 18px;
+        height: 14px;
+        border-radius: 2px;
+        background: #d7cfc3;
+        position: relative;
+      }
+
+      .folder-tool span::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: -5px;
+        width: 10px;
+        height: 6px;
+        border-radius: 2px 2px 0 0;
+        background: #c6bbad;
+      }
+
+      .send-button {
+        width: 54px;
+        height: 54px;
+        margin-left: auto;
+        border-radius: 16px;
+        background: #d66f59;
+        box-shadow: 0 12px 24px rgba(216, 117, 95, 0.22);
+      }
+
+      .send-button::before {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 16px;
+        width: 18px;
+        height: 18px;
+        border-left: 4px solid #fff;
+        border-top: 4px solid #fff;
+        transform: rotate(45deg);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      tl.from(".completion-line.primary", { opacity: 0, y: 22, filter: "blur(4px)", duration: 0.56 }, 0.12);
+      tl.from(".completion-line.secondary", { opacity: 0, y: 24, filter: "blur(4px)", duration: 0.58 }, 0.46);
+      tl.from(".completion-mark", { opacity: 0, scale: 0.88, rotation: -18, duration: 0.5, ease: "back.out(1.28)" }, 0.82);
+      tl.from(".reply-composer", { opacity: 0, y: 26, filter: "blur(5px)", duration: 0.6, ease: "expo.out" }, 1.04);
+      tl.to(".completion-mark", { rotation: 9, duration: 2.8, repeat: 2, yoyo: true, ease: "sine.inOut" }, 1.36);
+      window.__timelines["claude-launch-completion-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-launch-completion\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("claude-launch-completion-template");
+    const mount = () => {
+      if (!template || document.querySelector("#claude-launch-completion-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

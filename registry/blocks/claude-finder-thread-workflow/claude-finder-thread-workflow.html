@@ -1,0 +1,329 @@
+<div id="claude-finder-workflow" data-composition-id="claude-finder-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="9">
+  <section class="workflow-stage" data-primitive="claude-finder-workflow" aria-label="Claude and Finder workflow composition">
+    <div class="desktop-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame menu-bar-component"
+      data-primitive="mac-menu-bar"
+      data-backlot-mount-src="compositions/mac-menu-bar.html"
+      data-backlot-mount-selector="#mac-menu-bar-surface"
+    ></div>
+
+    <div
+      class="component-frame finder-component"
+      data-primitive="finder-window"
+      data-backlot-mount-src="compositions/finder-window.html"
+      data-backlot-mount-selector="#finder-window-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-thread-component"
+      data-primitive="claude-composed-app"
+      data-backlot-mount-src="compositions/claude-composed-app.html"
+      data-backlot-mount-selector="#claude-composed-app"
+    ></div>
+
+    <div
+      class="component-frame claude-attachment-component"
+      data-primitive="claude-attachment-draft-window"
+      data-backlot-mount-src="compositions/claude-attachment-draft.html"
+      data-backlot-mount-selector="#claude-attachment-draft-surface"
+    ></div>
+
+    <div class="drag-chip" data-primitive="drag-chip" aria-hidden="true">
+      <span class="file-icon folder"></span>
+      <span>Launch Deck</span>
+    </div>
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #eceee8;
+  }
+
+  #claude-finder-workflow {
+    --ink: #181410;
+    --paper: #f7f5ef;
+    --hairline: rgba(43, 35, 28, 0.12);
+    --cursor: url("assets/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: var(--font-claude-ui);
+  }
+
+  #claude-finder-workflow * {
+    box-sizing: border-box;
+  }
+
+  .workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 21%),
+      radial-gradient(circle at 82% 14%, rgba(205, 110, 87, 0.15), rgba(205, 110, 87, 0) 25%),
+      radial-gradient(circle at 74% 82%, rgba(189, 212, 199, 0.44), rgba(189, 212, 199, 0) 31%),
+      linear-gradient(145deg, #f2eee7 0%, #fbfaf6 50%, #dfe9e2 100%);
+  }
+
+  .desktop-field {
+    position: absolute;
+    inset: 30px 0 0;
+    opacity: 0.5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 78%, transparent 100%);
+  }
+
+  .menu-bar-component {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    height: 30px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 34px 110px rgba(47, 38, 30, 0.22);
+    transform-origin: top left;
+  }
+
+  .finder-component {
+    left: 132px;
+    top: 164px;
+    z-index: 8;
+    width: 920px;
+    height: 436px;
+    border-radius: 22px;
+    scale: 0.92;
+    opacity: 0.96;
+  }
+
+  .claude-thread-component,
+  .claude-attachment-component {
+    left: 668px;
+    top: 158px;
+    width: 1180px;
+    height: 780px;
+    border-radius: 18px;
+    scale: 0.78;
+    background: transparent;
+    box-shadow:
+      0 42px 130px rgba(54, 42, 31, 0.28),
+      0 0 0 1px rgba(55, 42, 31, 0.08);
+  }
+
+  .claude-attachment-component {
+    z-index: 15;
+  }
+
+  .claude-thread-component {
+    z-index: 14;
+    opacity: 0;
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    display: block;
+    pointer-events: none;
+  }
+
+  /* claude-composed-app is a fixed 1440x900 shell; scale-to-fit-height
+     inside the 1180x780 frame (matches the old claude-app crop footprint:
+     scale-to-fit-height fills the frame vertically and crops ~34px off
+     each side, same cropping behavior the old 0.78-scaled claude-app
+     frame already had against its 1280x860 native size). */
+  .claude-thread-component > [data-backlot-mounted-component] {
+    width: 1440px;
+    height: 900px;
+    transform: scale(0.8667);
+    transform-origin: top left;
+  }
+
+  .drag-chip {
+    position: absolute;
+    left: 840px;
+    top: 505px;
+    z-index: 38;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 13px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    box-shadow: 0 18px 50px rgba(30, 34, 38, 0.24);
+    color: #303030;
+    font-size: 14px;
+    font-weight: 620;
+    backdrop-filter: blur(14px);
+  }
+
+  .file-icon {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .file-icon.folder {
+    width: 15px;
+    height: 12px;
+    border-radius: 3px;
+    background: linear-gradient(#69cdf2, #34a9de);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 0 0 1px rgba(0, 0, 0, 0.065);
+  }
+
+  .file-icon.folder::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: -3px;
+    width: 8px;
+    height: 5px;
+    border-radius: 3px 3px 0 0;
+    background: #78d5f4;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 705px;
+    top: 424px;
+    z-index: 40;
+    width: 34px;
+    height: 34px;
+    background: var(--cursor) 0 0 / contain no-repeat;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.28));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 706px;
+    top: 427px;
+    z-index: 39;
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(198, 91, 71, 0.72);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="runtime/backlot-component-loader.js"></script>
+<script>
+  // Set the canonical shell's page/toggle attributes on the mounted root
+  // once the component loader settles (shell defaults to data-page="cowork"
+  // already, matching the old claude-app cowork framing; sidebar+rail stay
+  // on to match the old three-column crop).
+  // Pass-110 scene-copy convention: the mounted atoms expose stable
+  // data-copy="<slot>" hooks (claude-thread-core + claude-agent-rail); the
+  // shell's visible cowork topbar title is addressed through its
+  // data-primitive hook. Hooks missing from the mounted DOM are skipped,
+  // so the map stays declarative and inert against markup churn. Scene
+  // continues the workflow's own beat: the dragged "Launch Deck" Finder
+  // folder (drag chip + claude-attachment-draft) becomes the working
+  // thread, so the thread copy is pinned to the canonical Launch Deck
+  // scene and the shell title + rail are brought onto the same scene.
+  const applyClaudeSceneCopy = () => {
+    const claudeRoot = document.querySelector(".claude-thread-component #claude-composed-app");
+    if (!claudeRoot) return;
+    const sceneCopy = {
+      "thread-title": "Update Launch Deck opening slides",
+      "thread-subtitle": "Working in Launch Deck",
+      "user-prompt": "Oh and update the revenue chart in my LP deck with the correct Q2 numbers.",
+      "reply-primary": "I'll update the launch deck from the selected folder.",
+      "reply-secondary": "I'm checking the notes, Q2 data, and deck file before returning the edited presentation.",
+      "thinking-json": '{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }',
+      "source-chip-1": "slide-notes.md",
+      "source-chip-2": "Q2 revenue.csv",
+      "tool-title": "Editing Deck.pptx",
+      "tool-row-1": "Read Launch Deck folder",
+      "tool-row-2": "Found slide notes and Q2 data",
+      "tool-row-3": "Updating opening slides",
+      "command-output": "Found Launch Deck.pptx, slide-notes.md, and Q2 revenue.csv.\nNext I'll update the title slide and refresh the revenue chart.",
+      "artifact-1-kind": "PPTX",
+      "artifact-1": "Deck.pptx",
+      "context-folder": "Launch Deck",
+      "context-file-1-kind": "MD",
+      "context-file-1": "slide-notes.md",
+      "context-file-2-kind": "CSV",
+      "context-file-2": "Q2 revenue.csv",
+      "context-file-3-kind": "PPTX",
+      "context-file-3": "Deck.pptx"
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      claudeRoot.querySelectorAll(`[data-copy="${slot}"]`).forEach((node) => {
+        node.textContent = text;
+      });
+    });
+    const shellTitle = claudeRoot.querySelector('[data-primitive="claude-cowork-topbar"] .shell-thread-title');
+    if (shellTitle) shellTitle.textContent = sceneCopy["thread-title"];
+  };
+
+  if (window.__backlotComponentsReady) {
+    window.__backlotComponentsReady.then(() => {
+      const shellRoot = document.querySelector(".claude-thread-component #claude-composed-app");
+      if (shellRoot) {
+        shellRoot.setAttribute("data-page", "cowork");
+        shellRoot.setAttribute("data-sidebar", "on");
+        shellRoot.setAttribute("data-rail", "on");
+      }
+      applyClaudeSceneCopy();
+    }).catch(() => {});
+  }
+
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.36, ease: "sine.out" }, 0.08);
+  tl.from(".finder-component", { opacity: 0, x: -32, y: 18, filter: "blur(7px)", duration: 0.56, ease: "power3.out" }, 0.22);
+  tl.from(".claude-attachment-component", { opacity: 0, x: 30, y: 22, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.56);
+  tl.from(".workflow-cursor", { opacity: 0, x: -24, y: 18, duration: 0.28, ease: "sine.out" }, 1.24);
+  tl.from(".drag-chip", { opacity: 0, x: -18, y: -10, scale: 0.96, duration: 0.24, ease: "sine.out" }, 1.42);
+  tl.to(".workflow-cursor", { x: 365, y: 178, duration: 0.86, ease: "power2.inOut" }, 1.72);
+  tl.to(".click-ring", { x: 365, y: 178, duration: 0.86, ease: "power2.inOut" }, 1.72);
+  tl.to(".drag-chip", { x: 224, y: 116, duration: 0.86, ease: "power2.inOut" }, 1.72);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1.28, duration: 0.22, ease: "sine.out" }, 2.56);
+  tl.to(".click-ring", { opacity: 0, scale: 1.85, duration: 0.26, ease: "sine.in" }, 2.84);
+  tl.to(".drag-chip", { opacity: 0, y: 128, duration: 0.32, ease: "sine.out" }, 2.92);
+  tl.to(".finder-component", { x: -16, y: -10, opacity: 0.72, duration: 1.35, ease: "sine.inOut" }, 3.18);
+  tl.to(".claude-attachment-component", { y: -12, duration: 1.2, ease: "sine.inOut" }, 3.65);
+  tl.to(".workflow-cursor", { x: 574, y: 336, duration: 1.08, ease: "power2.inOut" }, 4.36);
+  tl.to(".claude-attachment-component", { opacity: 0, filter: "blur(8px)", duration: 0.56, ease: "sine.inOut" }, 5.18);
+  tl.fromTo(".claude-thread-component", { opacity: 0, y: 16, filter: "blur(8px)" }, { opacity: 1, y: -12, filter: "blur(0px)", duration: 0.64, ease: "power2.out" }, 5.3);
+  tl.to(".workflow-cursor", { x: 654, y: 404, duration: 1.08, ease: "power2.inOut" }, 6.2);
+  window.__timelines["claude-finder-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+
+  if (captureMode === "hero") {
+    tl.seek(3.38).pause();
+  } else if (captureMode === "thread") {
+    tl.seek(5.95).pause();
+    gsap.set(".claude-attachment-component", { opacity: 0, y: -12, filter: "blur(8px)" });
+    gsap.set(".claude-thread-component", { opacity: 1, y: -12, filter: "blur(0px)" });
+    gsap.set(".finder-component", { x: -16, y: -10, opacity: 0.72 });
+    gsap.set(".drag-chip", { opacity: 0, y: 128 });
+  }
+</script>

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "premiere-editor",
+  "type": "hyperframes:block",
+  "title": "Premiere-style Video Editor",
+  "description": "Code-native video editor shell. Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes.",
+  "tags": [
+    "premiere",
+    "video",
+    "timeline",
+    "editing",
+    "captions"
+  ],
+  "dimensions": {
+    "width": 1440,
+    "height": 900
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "premiere-editor.html",
+      "target": "compositions/premiere-editor.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

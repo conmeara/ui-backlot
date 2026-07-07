@@ -1,0 +1,865 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #faf9f5;
+  }
+</style>
+
+<template id="claude-thread-core-template">
+  <div id="claude-thread-core-surface" data-composition-id="claude-thread-core-surface" data-width="980" data-height="840" data-scale="working">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" />
+        <path d="M9 3v18" />
+      </symbol>
+      <symbol id="lucide-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2v13" />
+        <path d="m16 6-4-4-4 4" />
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+      </symbol>
+      <symbol id="lucide-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="19" cy="12" r="1" />
+        <circle cx="5" cy="12" r="1" />
+      </symbol>
+      <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="lucide-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19h8" />
+        <path d="m4 17 6-6-6-6" />
+      </symbol>
+      <symbol id="lucide-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+      </symbol>
+      <symbol id="lucide-retry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+        <path d="M21 3v5h-5" />
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+        <path d="M8 16H3v5" />
+      </symbol>
+      <symbol id="si-claude" viewBox="0 0 24 24">
+        <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+      </symbol>
+    </svg>
+
+    <section class="claude-thread-core-stage" data-primitive="claude-thread-core-stage" aria-label="Editable Claude working thread core">
+      <main class="thread-core-panel" data-primitive="claude-thread-core">
+        <header class="thread-topbar" data-primitive="claude-thread-topbar">
+          <div class="topbar-left">
+            <button class="topbar-icon" type="button" aria-label="Open sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
+            <div class="thread-title-stack">
+              <div class="conversation-title" data-copy="thread-title">Update Launch Deck opening slides</div>
+              <div class="conversation-subtitle" data-copy="thread-subtitle">Working in Launch Deck</div>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <button class="topbar-icon" type="button" aria-label="Share"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg></button>
+            <button class="topbar-icon" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
+          </div>
+        </header>
+
+        <div class="thread-scroll">
+          <div class="thread-width">
+            <article class="message-row user">
+              <div class="sticky-prompt-bubble" data-copy="user-prompt">Oh and update the revenue chart in my LP deck with the correct Q2 numbers.</div>
+            </article>
+
+            <div class="thread-context-strip" aria-label="Thread context">
+              <span class="context-pill active-context">Working in folder</span>
+              <span class="context-pill folder"><i></i>Launch Deck</span>
+              <span class="context-pill sheet"><i></i>Q2 revenue.csv</span>
+              <span class="context-pill doc"><i></i>slide-notes.md</span>
+            </div>
+
+            <article class="message-row assistant">
+              <div class="assistant-stack">
+                <svg class="backlot-icon reply-mark" aria-hidden="true"><use href="#si-claude"/></svg>
+                <div class="assistant-copy">
+                  <span class="typing-mask assistant-line" data-copy="reply-primary">I'll update the launch deck from the selected folder.</span>
+                  <span class="typing-mask assistant-line secondary" data-copy="reply-secondary">I'm checking the notes, Q2 data, and deck file before returning the edited presentation.</span>
+                </div>
+
+                <section class="thinking-card" data-primitive="message-part-group" aria-label="Thinking">
+                  <button class="card-trigger card-trigger-command" type="button">
+                    <span class="command-trigger-glyph"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-terminal"/></svg></span>
+                    <span data-copy="thinking-title">Running command</span>
+                    <span class="card-chev open card-chev-end"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+                  </button>
+                  <div class="thinking-body">
+                    <div class="part-section">
+                      <span class="part-label">Request</span>
+                      <span data-copy="thinking-json">{ `command`<span class="code-colon">:</span> `find /sessions/launch-deck -type f -maxdepth 2`, `description`<span class="code-colon">:</span> `List selected project files` }</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="tool-card" data-primitive="progress-rows" aria-label="Taking action">
+                  <button class="card-trigger" type="button">
+                    <span class="card-chev open"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+                    <span data-copy="tool-title">Editing Deck.pptx</span>
+                    <span class="card-meta" data-copy="tool-meta">00:07</span>
+                  </button>
+                  <div class="tool-row done"><span class="tool-dot"></span><span data-copy="tool-row-1">Read Launch Deck folder</span><span class="tool-status" data-copy="tool-status-1">4 files</span></div>
+                  <div class="tool-row done"><span class="tool-dot"></span><span data-copy="tool-row-2">Found slide notes and Q2 data</span><span class="tool-status" data-copy="tool-status-2">ready</span></div>
+                  <div class="tool-row active"><span class="tool-dot"></span><span data-copy="tool-row-3">Updating opening slides</span><span class="tool-status" data-copy="tool-status-3">working</span></div>
+                </section>
+
+                <section class="command-card" data-primitive="command-output-card" aria-label="Command output">
+                  <div class="command-card-head">
+                    <span class="command-glyph"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-terminal"/></svg></span>
+                    <span>Response</span>
+                    <span>streaming</span>
+                  </div>
+                  <pre data-copy="command-output">Found Launch Deck.pptx, slide-notes.md, and Q2 revenue.csv.
+Next I'll update the title slide and refresh the revenue chart.</pre>
+                </section>
+
+                <div class="message-actions" aria-label="Assistant message actions">
+                  <button class="mini-action" type="button" aria-label="Copy"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-copy"/></svg></button>
+                  <button class="mini-action" type="button" aria-label="Retry"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-retry"/></svg></button>
+                  <button class="mini-action" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <style>
+      /* Canonical Claude working-thread atom.
+         Visual source of truth: compositions/claude-desktop.html pass-100
+         (#claude-desktop-cowork .cw-main working thread + #claude-desktop-chat
+         topbar treatment), verified against the live-app captures behind
+         captures/surface-claude-desktop-chat and -cowork. Colors consume the
+         canonical --claude-* tokens from styles/backlot-foundation.css where a
+         token matches the pass-100 hex; non-token hexes are kept verbatim from
+         claude-desktop. Scale switch is pure CSS via
+         data-scale="working" | "cinematic" on #claude-thread-core-surface
+         (default: working, the dense pass-100 thread). Cinematic is the
+         large-serif treatment from compositions/claude-chat-pane.html. */
+      #claude-thread-core-surface {
+        width: 980px;
+        height: 840px;
+        overflow: visible;
+        color: var(--claude-ink);
+        font-family: var(--font-claude-ui);
+      }
+
+      #claude-thread-core-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-thread-core-surface button {
+        font: inherit;
+      }
+
+      /* :where() keeps class-level specificity (same pattern as the sidebar
+         and composer atoms) while scoping to this surface — an unscoped
+         .backlot-icon rule would leak into sibling atoms and shell chrome in
+         composed documents (it stretched the sidebar's Claude mark across the
+         brand row before scoping). */
+      :where(#claude-thread-core-surface) .backlot-icon {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .claude-thread-core-stage {
+        width: 980px;
+        height: 840px;
+        display: grid;
+        place-items: center;
+        padding: 38px 48px;
+        background: var(--claude-paper);
+      }
+
+      /* Panel geometry (884x764 at 48,38) is the claude-composed-app mount
+         contract — do not change. Flat paper canvas: the live app's chat
+         conversation has no grid/graph-paper texture behind it (verified
+         against reference/claude/2026-07-05/web-app-chat-light/screenshot.png),
+         just var(--claude-paper) with a hairline edge. */
+      .thread-core-panel {
+        width: 884px;
+        height: 764px;
+        display: grid;
+        grid-template-rows: 48px minmax(0, 1fr);
+        overflow: hidden;
+        border: 1px solid rgba(55, 42, 31, 0.07);
+        border-radius: 18px;
+        background: var(--claude-paper);
+        box-shadow:
+          0 1px 1px rgba(49, 44, 38, 0.035),
+          0 32px 96px rgba(54, 42, 31, 0.14);
+      }
+
+      .thread-topbar {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 14px 0 10px;
+        border-bottom: 1px solid rgba(11, 11, 11, 0.1);
+        background: rgba(255, 253, 247, 0.8);
+      }
+
+      .topbar-left,
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .topbar-left {
+        gap: 6px;
+      }
+
+      .topbar-actions {
+        gap: 4px;
+      }
+
+      .topbar-icon {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 auto;
+        padding: 7px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #7b7974;
+      }
+
+      .thread-title-stack {
+        min-width: 0;
+        display: grid;
+        gap: 1px;
+      }
+
+      .conversation-title {
+        overflow: hidden;
+        color: var(--claude-ink-soft);
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: 550;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .conversation-subtitle {
+        color: #898781;
+        font-size: 11.5px;
+        line-height: 1.1;
+      }
+
+      .thread-scroll {
+        min-height: 0;
+        position: relative;
+        overflow: hidden;
+        padding: 37px 0 30px;
+      }
+
+      .thread-scroll::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 48px;
+        pointer-events: none;
+        background: linear-gradient(0deg, #fffdf7, rgba(255, 253, 247, 0));
+      }
+
+      .thread-width {
+        width: min(calc(100% - 76px), 640px);
+        margin-inline: auto;
+      }
+
+      .message-row {
+        display: grid;
+        min-width: 0;
+        margin-bottom: 17px;
+      }
+
+      .message-row.user {
+        justify-items: end;
+      }
+
+      .message-row.assistant {
+        display: block;
+      }
+
+      .sticky-prompt-bubble {
+        max-width: 566px;
+        padding: 15px 20px 16px;
+        border-radius: 18px;
+        background: #ece9e2;
+        color: var(--claude-ink);
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .thread-context-strip {
+        display: none;
+        width: min(calc(100% - 54px), 690px);
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0 0 23px auto;
+      }
+
+      .context-pill {
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 9px;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 254, 251, 0.72);
+        color: var(--claude-text-muted);
+        font-size: 11.5px;
+        font-weight: 550;
+      }
+
+      .context-pill.active-context {
+        color: var(--claude-brand-deep);
+        background: rgba(216, 117, 95, 0.08);
+      }
+
+      .context-pill i {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        border-radius: 3px;
+        background: #d7cfc3;
+      }
+
+      .context-pill.folder i {
+        background: #64bfe7;
+      }
+
+      .context-pill.folder i::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -2px;
+        width: 6px;
+        height: 4px;
+        border-radius: 2px 2px 0 0;
+        background: #8dd2f0;
+      }
+
+      .context-pill.sheet i {
+        background: #84b889;
+      }
+
+      .assistant-stack {
+        position: relative;
+        min-width: 0;
+      }
+
+      /* Id-scoped so sibling components' later-injected `.backlot-icon
+         { display: block }` cannot out-cascade the hide inside composed
+         shells. */
+      #claude-thread-core-surface .reply-mark {
+        display: none;
+        color: #d97757;
+      }
+
+      .assistant-copy {
+        max-width: 560px;
+        display: grid;
+        gap: 13px;
+        color: var(--claude-ink);
+        font-family: var(--font-claude-serif);
+        font-size: 21px;
+        /* Tightened from 1.45 toward the reference screenshot's measured
+           ~24px logical line-gap at this font size (reference/claude/
+           2026-07-05/web-app-chat-light/screenshot.png). */
+        line-height: 1.3;
+        font-weight: 430;
+        letter-spacing: 0;
+      }
+
+      .assistant-line.secondary {
+        font-size: 1em;
+        line-height: inherit;
+        color: inherit;
+      }
+
+      .typing-mask {
+        display: inline-block;
+        clip-path: inset(0 0% 0 0);
+      }
+
+      .thinking-card,
+      .tool-card {
+        width: 100%;
+        margin-top: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        border-radius: 12px;
+        background: #fffefb;
+        box-shadow: none;
+      }
+
+      .card-trigger {
+        width: 100%;
+        min-height: 38px;
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 18px;
+        border: 0;
+        border-bottom: 1px solid rgba(11, 11, 11, 0.1);
+        background: rgba(255, 253, 247, 0.4);
+        color: var(--claude-ink-soft);
+        font-size: 13.5px;
+        font-weight: 430;
+        text-align: left;
+      }
+
+      .card-chev {
+        width: 15px;
+        height: 15px;
+        color: #898781;
+      }
+
+      /* Expanded state points up, matching claude-desktop's .cw-command-chev. */
+      .card-chev.open {
+        transform: rotate(180deg);
+      }
+
+      /* Running-command header: terminal glyph leads, title fills, chevron
+         trails at the far right — matches real-cowork-running-command.jpg
+         (glyph left, up-chevron right, no meta label). */
+      .card-trigger-command {
+        grid-template-columns: 18px 1fr 15px;
+      }
+
+      .command-trigger-glyph {
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 5px;
+        background: #eceae2;
+        color: var(--claude-ink-soft);
+      }
+
+      .command-trigger-glyph svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .card-chev-end {
+        margin-left: auto;
+      }
+
+      .card-meta {
+        color: #898781;
+        font-size: 11.5px;
+        font-weight: 430;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .thinking-body {
+        display: grid;
+        gap: 14px;
+        min-height: 138px;
+        padding: 16px 18px 18px 50px;
+      }
+
+      .part-section {
+        display: grid;
+        gap: 7px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #f6f4ee;
+        color: #2f7d4f;
+        font-family: var(--font-terminal);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .part-label {
+        color: var(--claude-text-muted);
+        font-size: 11.5px;
+        font-weight: 430;
+        text-transform: none;
+      }
+
+      .code-colon { color: #256bc1; }
+
+      .tool-row {
+        min-height: 38px;
+        display: grid;
+        grid-template-columns: 23px 1fr auto;
+        align-items: center;
+        gap: 9px;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(11, 11, 11, 0.1);
+        color: #52514e;
+        font-size: 16px;
+      }
+
+      .tool-row:last-child {
+        border-bottom: 0;
+      }
+
+      .tool-row.active {
+        background: rgba(216, 117, 95, 0.038);
+      }
+
+      /* Status glyphs (check/spinner) stay CSS-drawn: sprite strokes render
+         sub-pixel at this 16px dot size. */
+      .tool-dot {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        border: 2px solid #cbbfae;
+        border-radius: 50%;
+      }
+
+      .tool-row.done .tool-dot {
+        border-color: #5fa36b;
+      }
+
+      .tool-row.done .tool-dot::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 3px;
+        width: 7px;
+        height: 4px;
+        border-left: 2px solid #5fa36b;
+        border-bottom: 2px solid #5fa36b;
+        transform: rotate(-45deg);
+      }
+
+      .tool-row.active .tool-dot {
+        border-width: 1.5px;
+        border-color: var(--claude-brand-deep);
+        border-top-color: transparent;
+      }
+
+      .tool-status {
+        color: #898781;
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .command-card {
+        display: none;
+        margin-top: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        border-radius: 13px;
+        background: #fffefb;
+        box-shadow: none;
+      }
+
+      .command-card-head {
+        min-height: 30px;
+        display: grid;
+        grid-template-columns: 14px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        color: var(--claude-text-muted);
+        font-size: 12.5px;
+        font-weight: 550;
+      }
+
+      .command-card-head span:last-child {
+        color: #898781;
+        font-size: 11px;
+        font-weight: 430;
+      }
+
+      .command-glyph {
+        width: 14px;
+        height: 14px;
+        color: var(--claude-text-muted);
+      }
+
+      .command-card pre {
+        margin: 0;
+        padding: 0 12px 10px 34px;
+        overflow: hidden;
+        color: #2f7d4f;
+        font-family: var(--font-terminal);
+        font-size: 11.5px;
+        line-height: 1.42;
+      }
+
+      .message-actions {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 9px;
+      }
+
+      .mini-action {
+        width: 26px;
+        height: 26px;
+        padding: 6px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #898781;
+      }
+    </style>
+
+    <style>
+      /* ============ CINEMATIC SCALE ============
+         Large-serif treatment ported from compositions/claude-chat-pane.html
+         (~48px serif reply rhythm, 34px secondary, 48px Claude mark beside the
+         reply, 24px user bubble). Pure CSS attribute-selector variant — the
+         dense working cards/actions are hidden because the cinematic rhythm
+         carries no tool chrome in the source pane. Colors stay on the pass-100
+         palette above. */
+      #claude-thread-core-surface[data-scale="cinematic"] .thread-width {
+        width: min(calc(100% - 76px), 780px);
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .message-row.user {
+        margin-bottom: 34px;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .sticky-prompt-bubble {
+        max-width: 585px;
+        padding: 16px 20px 17px;
+        border-radius: 19px;
+        font-size: 24px;
+        line-height: 1.27;
+        font-weight: 430;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .assistant-stack {
+        padding-left: 78px;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .reply-mark {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 48px;
+        height: 48px;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .assistant-copy {
+        max-width: 700px;
+        gap: 33px;
+        font-size: 48px;
+        line-height: 1.13;
+        font-weight: 430;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .assistant-line.secondary {
+        font-size: 34px;
+        line-height: 1.23;
+        font-weight: 430;
+        color: #342e28;
+      }
+
+      #claude-thread-core-surface[data-scale="cinematic"] .thinking-card,
+      #claude-thread-core-surface[data-scale="cinematic"] .tool-card,
+      #claude-thread-core-surface[data-scale="cinematic"] .command-card,
+      #claude-thread-core-surface[data-scale="cinematic"] .message-actions {
+        display: none;
+      }
+    </style>
+
+    <style>
+      /* ============ DARK VARIANT ============
+         Scoped under .theme-dark (capture-web-ui --root-class adds it to the
+         capture root .claude-thread-core-stage; composed shells may set it on
+         any ancestor). Kept as the LAST style block so it wins over every rule
+         above (cascade: last rule wins). The --claude-* tokens flip
+         automatically via styles/backlot-foundation.css; this block patches
+         the hard-coded pass-100 hexes, mirroring claude-desktop's cowork dark
+         block (pass-101 mechanism). */
+      .theme-dark .thread-core-panel {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--claude-paper);
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.2),
+          0 32px 96px rgba(0, 0, 0, 0.42);
+      }
+
+      .theme-dark .thread-topbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(38, 38, 36, 0.8);
+      }
+
+      .theme-dark .topbar-icon { color: var(--claude-text-faint); }
+      .theme-dark .conversation-subtitle { color: #8a8578; }
+
+      .theme-dark .thread-scroll::after {
+        background: linear-gradient(0deg, #262624, rgba(38, 38, 36, 0));
+      }
+
+      .theme-dark .sticky-prompt-bubble {
+        background: #3a3934;
+        color: var(--claude-ink);
+      }
+
+      .theme-dark .context-pill {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .theme-dark .assistant-copy { color: var(--claude-ink-soft); }
+      .theme-dark .assistant-line.secondary { color: var(--claude-ink-soft); }
+
+      .theme-dark .thinking-card,
+      .theme-dark .tool-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2b2a26;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+      }
+
+      .theme-dark .card-trigger {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--claude-ink);
+      }
+
+      .theme-dark .card-chev { color: #8a8578; }
+      .theme-dark .card-meta { color: #8a8578; }
+
+      .theme-dark .part-section {
+        background: rgba(255, 255, 255, 0.045);
+        color: #9fc98a;
+      }
+
+      .theme-dark .part-label { color: var(--claude-text-faint); }
+
+      .theme-dark .command-trigger-glyph {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .tool-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-muted);
+      }
+
+      .theme-dark .tool-row:last-child { border-bottom: 0; }
+
+      .theme-dark .tool-row.active {
+        background: rgba(216, 117, 95, 0.06);
+      }
+
+      .theme-dark .tool-dot {
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .theme-dark .tool-row.done .tool-dot {
+        border-color: #5fa36b;
+        color: #5fa36b;
+      }
+
+      .theme-dark .tool-row.active .tool-dot {
+        border-width: 1.5px;
+        border-color: var(--claude-brand-deep);
+        border-top-color: transparent;
+      }
+
+      .theme-dark .tool-status { color: #8a8578; }
+
+      .theme-dark .command-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #2b2a26;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+      }
+
+      .theme-dark .command-card-head { color: var(--claude-text-faint); }
+      .theme-dark .command-card-head span:last-child { color: #8a8578; }
+      .theme-dark .command-glyph { color: var(--claude-text-faint); }
+      .theme-dark .command-card pre { color: #9fc98a; }
+
+      .theme-dark .mini-action { color: #8a8578; }
+    </style>
+
+    <style>
+      /* ============ EMBED VARIANT (composed shells) ============
+         [data-embed="flat"] sits on a shell mount slot (an ancestor of the
+         mounted surface). It swaps the standalone rounded 884x764 panel for a
+         flat column filling the slot, the way claude-desktop renders the
+         working thread as a full-height .cw-main column. Standalone captures
+         are unaffected — the attribute never exists there — and only
+         stage/panel presentation (size, radius, border, shadow) is
+         neutralized, never the dark colors. */
+      [data-embed="flat"] #claude-thread-core-surface,
+      [data-embed="flat"] .claude-thread-core-stage {
+        width: 100%;
+        height: 100%;
+      }
+
+      [data-embed="flat"] .claude-thread-core-stage {
+        display: block;
+        padding: 0;
+        background: transparent;
+      }
+
+      [data-embed="flat"] .claude-thread-core-stage .thread-core-panel {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".thread-core-panel", { opacity: 0, y: 18, filter: "blur(5px)", duration: 0.52, ease: "power3.out" }, 0.12);
+      tl.from(".thread-topbar", { opacity: 0, y: -8, duration: 0.3, ease: "sine.out" }, 0.25);
+      tl.from(".message-row.user", { opacity: 0, y: 12, duration: 0.32, ease: "sine.out" }, 0.38);
+      tl.from(".thread-context-strip .context-pill", { opacity: 0, y: 8, stagger: 0.04, duration: 0.24, ease: "sine.out" }, 0.54);
+      tl.from(".message-row.assistant", { opacity: 0, y: 16, duration: 0.42, ease: "power2.out" }, 0.74);
+      tl.from(".assistant-line", { clipPath: "inset(0 100% 0 0)", duration: 1.35, ease: "none" }, 1.06);
+      tl.from(".thinking-card", { opacity: 0, y: 10, duration: 0.32, ease: "power2.out" }, 2.32);
+      tl.from(".tool-card", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 2.7);
+      tl.from(".command-card", { opacity: 0, y: 9, duration: 0.3, ease: "sine.out" }, 3.02);
+      tl.from(".message-actions .mini-action", { opacity: 0, y: 5, stagger: 0.04, duration: 0.2, ease: "sine.out" }, 3.2);
+      tl.to(".tool-row.active .tool-dot", { rotation: 360, duration: 0.75, repeat: 4, ease: "none" }, 3.08);
+      window.__timelines["claude-thread-core-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-thread-core\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-thread-core-template");
+      if (!template || document.querySelector("#claude-thread-core-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+      const params = new URLSearchParams(window.location.search);
+      const scale = params.get("scale");
+      if (scale) document.querySelector("#claude-thread-core-surface").setAttribute("data-scale", scale);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

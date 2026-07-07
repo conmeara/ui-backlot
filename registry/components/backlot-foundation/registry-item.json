@@ -1,0 +1,39 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "backlot-foundation",
+  "type": "hyperframes:component",
+  "title": "Backlot Foundation Styles",
+  "description": "Shared foundation stylesheet and brand fonts used by every UI Backlot surface. Installs to styles/ and assets/fonts/.",
+  "tags": [
+    "infrastructure",
+    "css",
+    "fonts"
+  ],
+  "files": [
+    {
+      "path": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "styles/backlot-foundation.css",
+      "target": "styles/backlot-foundation.css",
+      "type": "hyperframes:style"
+    }
+  ]
+}

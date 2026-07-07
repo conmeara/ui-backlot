@@ -1,0 +1,37 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-finder-thread-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Working Thread Plus Finder Workflow",
+  "description": "Modular assembly proof. Short file/folder workflow clips that need the refined Claude working thread with Finder context, without browser, PowerPoint, attachment draft emphasis, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "finder",
+    "files",
+    "working-thread",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-finder-thread-workflow.html",
+      "target": "compositions/claude-finder-thread-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-attachment-draft",
+    "claude-composed-app",
+    "finder-window",
+    "mac-menu-bar"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-home",
+  "type": "hyperframes:block",
+  "title": "Claude New Chat Home",
+  "description": "High, pending sanitized live Claude capture. Opening prompt scenes before a working Claude thread exists.",
+  "tags": [
+    "claude",
+    "home",
+    "composer",
+    "new-chat"
+  ],
+  "dimensions": {
+    "width": 980,
+    "height": 760
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-home.html",
+      "target": "compositions/claude-home.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

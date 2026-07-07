@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-chat-pane",
+  "type": "hyperframes:block",
+  "title": "Claude Chat Pane",
+  "description": "Lean chat-pane reconstruction derived from the Claude chat shell and Sonnet 4.6 launch-frame rhythm. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
+  "tags": [
+    "claude",
+    "chat",
+    "thread",
+    "composer",
+    "launch-reference",
+    "pane"
+  ],
+  "dimensions": {
+    "width": 1180,
+    "height": 900
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-chat-pane.html",
+      "target": "compositions/claude-chat-pane.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

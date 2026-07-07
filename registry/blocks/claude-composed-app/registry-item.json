@@ -1,0 +1,38 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-composed-app",
+  "type": "hyperframes:block",
+  "title": "Claude Canonical Desktop Shell (composed)",
+  "description": "High against pass-100 claude-desktop chat/cowork/code pages (element rects and sampled surfaces pixel-match the claude-desktop captures per page and theme), pending sanitized live Claude full-shell capture. Canonical parameterized Claude desktop shell: data-page=\"chat|cowork|code\" (default cowork), data-sidebar/data-rail on|off toggles, .theme-dark for dark; one file replaces the stacked claude-desktop pages while keeping sidebar, thread, composer, and rail independently editable atoms. Capture variants: capture:claude-composed-app{,-chat,-code,-dark,-chat-dark}. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "claude",
+    "desktop-app",
+    "canonical-shell",
+    "component-loader",
+    "composed-shell",
+    "chat",
+    "cowork",
+    "code",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 1440,
+    "height": 900
+  },
+  "duration": 8,
+  "files": [
+    {
+      "path": "claude-composed-app.html",
+      "target": "compositions/claude-composed-app.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-agent-rail",
+    "claude-composer",
+    "claude-sidebar",
+    "claude-thread-core"
+  ]
+}

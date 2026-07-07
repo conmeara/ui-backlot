@@ -1,0 +1,669 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 21%),
+      linear-gradient(145deg, #dcecf8 0%, #fbfbfc 48%, #f3efe6 100%);
+  }
+</style>
+
+<template id="finder-window-template">
+  <div id="finder-window-surface" data-composition-id="finder-window-surface" data-width="920" data-height="436">
+    <section class="finder-window" data-primitive="finder-window" aria-label="Finder Launch Deck column view">
+      <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+        <defs>
+          <linearGradient id="folderGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8ac6ef"/>
+            <stop offset="1" stop-color="#5aabdd"/>
+          </linearGradient>
+        </defs>
+        <symbol id="f7-clock" viewBox="0 0 56 56">
+          <path d="M 27.9999 51.9063 C 41.0546 51.9063 51.9063 41.0781 51.9063 28 C 51.9063 14.9453 41.0312 4.0937 27.9765 4.0937 C 14.8983 4.0937 4.0937 14.9453 4.0937 28 C 4.0937 41.0781 14.9218 51.9063 27.9999 51.9063 Z M 27.9999 47.9219 C 16.9374 47.9219 8.1014 39.0625 8.1014 28 C 8.1014 16.9609 16.9140 8.0781 27.9765 8.0781 C 39.0155 8.0781 47.8983 16.9609 47.9219 28 C 47.9454 39.0625 39.0390 47.9219 27.9999 47.9219 Z M 15.7187 30.5312 L 27.9765 30.5312 C 28.8905 30.5312 29.6171 29.8281 29.6171 28.8906 L 29.6171 13.0937 C 29.6171 12.1797 28.8905 11.4766 27.9765 11.4766 C 27.0624 11.4766 26.3593 12.1797 26.3593 13.0937 L 26.3593 27.2734 L 15.7187 27.2734 C 14.8046 27.2734 14.1014 27.9766 14.1014 28.8906 C 14.1014 29.8281 14.8046 30.5312 15.7187 30.5312 Z"/>
+        </symbol>
+        <!-- Shared = SF Symbol folder.badge.person.crop (folder outline + person
+             badge top-right), vendored from framework7-icons via @iconify/json. -->
+        <symbol id="f7-shared" viewBox="0 0 56 56">
+          <path fill="currentColor" d="M45.556 30.91C51.272 30.91 56 26.222 56 20.466c0-5.715-4.728-10.443-10.444-10.443c-5.735 0-10.443 4.728-10.443 10.443c0 5.756 4.708 10.444 10.443 10.444M0 42.196c0 4.255 2.18 6.373 6.455 6.373h34.928c3.68 0 5.818-2.138 5.818-6.373v-8.573a11 11 0 0 1-1.645.123c-.575 0-1.11-.04-1.665-.102v8.408c0 2.117-1.15 3.207-3.186 3.207H6.517c-2.056 0-3.207-1.09-3.207-3.228v-16.96h29.788a11.4 11.4 0 0 1-.699-3.104H3.31v-5.18c0-2.036 1.09-3.064 3.043-3.064h4.605c1.357 0 2.18.329 3.228 1.233l1.254 1.028c1.336 1.11 2.426 1.522 4.461 1.522h12.746a12 12 0 0 1 1.234-3.31H20.764c-1.398 0-2.241-.35-3.27-1.213l-1.253-1.049c-1.357-1.13-2.405-1.52-4.44-1.52H5.673C2.076 10.413 0 12.468 0 16.621Zm45.536-21.113c-1.892 0-3.351-1.563-3.351-3.7c0-1.913 1.48-3.537 3.35-3.537c1.893 0 3.372 1.624 3.372 3.536c0 2.138-1.48 3.7-3.371 3.7m.02 7.421c-3.001 0-5.386-1.542-6.043-2.96v-.103c.678-1.274 2.775-2.693 6.043-2.693c3.27 0 5.366 1.418 6.024 2.714v.082c-.678 1.439-3.022 2.96-6.024 2.96"/>
+        </symbol>
+        <!-- Applications = the authentic App Store mark, vendored from
+             simple-icons@15.22.0 (CC0), rendered monochrome like the other
+             sidebar glyphs. viewBox 0 0 24 24 (its own). -->
+        <symbol id="f7-applications" viewBox="0 0 24 24">
+          <path d="M8.8086 14.9194l6.1107-11.0368c.0837-.1513.1682-.302.2437-.4584.0685-.142.1267-.2854.1646-.4403.0803-.3259.0588-.6656-.066-.9767-.1238-.3095-.3417-.5678-.6201-.7355a1.4175 1.4175 0 0 0-.921-.1924c-.3207.043-.6135.1935-.8443.4288-.1094.1118-.1996.2361-.2832.369-.092.1463-.175.2979-.259.4492l-.3864.6979-.3865-.6979c-.0837-.1515-.1667-.303-.2587-.4492-.0837-.1329-.1739-.2572-.2835-.369-.2305-.2353-.5233-.3857-.844-.429a1.4181 1.4181 0 0 0-.921.1926c-.2784.1677-.4964.426-.6203.7355-.1246.311-.1461.6508-.066.9767.038.155.0962.2984.1648.4403.0753.1564.1598.307.2437.4584l1.248 2.2543-4.8625 8.7825H2.0295c-.1676 0-.3351-.0007-.5026.0092-.1522.009-.3004.0284-.448.0714-.3108.0906-.5822.2798-.7783.548-.195.2665-.3006.5929-.3006.9279 0 .3352.1057.6612.3006.9277.196.2683.4675.4575.7782.548.1477.043.296.0623.4481.0715.1675.01.335.009.5026.009h13.0974c.0171-.0357.059-.1294.1-.2697.415-1.4151-.6156-2.843-2.0347-2.843zM3.113 18.5418l-.7922 1.5008c-.0818.1553-.1644.31-.2384.4705-.067.1458-.124.293-.1611.452-.0785.3346-.0576.6834.0645 1.0029.1212.3175.3346.583.607.7549.2727.172.5891.2416.9013.1975.3139-.044.6005-.1986.8263-.4402.1072-.1148.1954-.2424.2772-.3787.0902-.1503.1714-.3059.2535-.4612L6 19.4636c-.0896-.149-.9473-1.4704-2.887-.9218m20.5861-3.0056a1.4707 1.4707 0 0 0-.779-.5407c-.1476-.0425-.2961-.0616-.4483-.0705-.1678-.0099-.3352-.0091-.503-.0091H18.648l-4.3891-7.817c-.6655.7005-.9632 1.485-1.0773 2.1976-.1655 1.0333.0367 2.0934.546 3.0004l5.2741 9.3933c.084.1494.167.299.2591.4435.0837.131.1739.2537.2836.364.231.2323.5238.3809.8449.4232.3192.0424.643-.0244.9217-.1899.2784-.1653.4968-.4204.621-.7257.1246-.3072.146-.6425.0658-.9641-.0381-.1529-.0962-.2945-.165-.4346-.0753-.1543-.1598-.303-.2438-.4524l-1.216-2.1662h1.596c.1677 0 .3351.0009.5029-.009.1522-.009.3007-.028.4483-.0705a1.4707 1.4707 0 0 0 .779-.5407A1.5386 1.5386 0 0 0 24 16.452a1.539 1.539 0 0 0-.3009-.9158Z"/>
+        </symbol>
+        <symbol id="f7-desktop-computer" viewBox="0 0 56 56">
+          <path d="M 6.0860 43.2930 L 20.7579 43.2930 L 20.1251 47.6055 L 16.9142 47.6055 C 15.8360 47.6055 14.9220 48.4961 14.9220 49.5977 C 14.9220 50.6992 15.8360 51.6133 16.9142 51.6133 L 39.0860 51.6133 C 40.1642 51.6133 41.0782 50.6992 41.0782 49.5977 C 41.0782 48.4961 40.1642 47.6055 39.0860 47.6055 L 35.8751 47.6055 L 35.2423 43.2930 L 49.9144 43.2930 C 53.9219 43.2930 55.9374 41.3711 55.9374 37.2695 L 55.9374 10.4102 C 55.9374 6.3086 53.9219 4.3867 49.9144 4.3867 L 6.0860 4.3867 C 2.0782 4.3867 .6 6.3086 .6 10.4102 L .6 37.2695 C .6 41.3711 2.0782 43.2930 6.0860 43.2930 Z M 4.8438 32.9805 C 4.1407 32.9805 3.8360 32.6992 3.8360 31.9726 L 3.8360 10.4805 C 3.8360 8.8164 4.5626 8.1602 6.1564 8.1602 L 49.8438 8.1602 C 51.4609 8.1602 52.1641 8.8164 52.1641 10.4805 L 52.1641 31.9726 C 52.1641 32.6992 51.8593 32.9805 51.1561 32.9805 Z M 28.0001 40.9727 C 26.8282 40.9727 25.8204 39.9883 25.8204 38.7930 C 25.8204 37.6446 26.8282 36.6367 28.0001 36.6367 C 29.1720 36.6367 30.1798 37.6446 30.1798 38.7930 C 30.1798 39.9883 29.1720 40.9727 28.0001 40.9727 Z"/>
+        </symbol>
+        <symbol id="f7-desktop" viewBox="0 0 56 56">
+          <path d="M 7.7148 49.5742 L 48.2852 49.5742 C 53.1836 49.5742 55.6446 47.1367 55.6446 42.3086 L 55.6446 13.6914 C 55.6446 8.8633 53.1836 6.4258 48.2852 6.4258 L 7.7148 6.4258 C 2.8398 6.4258 .3554 8.8398 .3554 13.6914 L .3554 42.3086 C .3554 47.1602 2.8398 49.5742 7.7148 49.5742 Z M 4.1288 13.8789 C 4.1288 11.4414 5.4413 10.1992 7.7851 10.1992 L 48.2147 10.1992 C 50.5350 10.1992 51.8708 11.4414 51.8708 13.8789 L 51.8708 21.1914 L 4.1288 21.1914 Z M 11.7929 15.6836 C 11.7929 14.5586 10.8554 13.5742 9.7070 13.5742 C 8.5351 13.5742 7.5976 14.5586 7.5976 15.6836 C 7.5976 16.7852 8.5351 17.7696 9.7070 17.7696 C 10.8554 17.7696 11.7929 16.7852 11.7929 15.6836 Z M 18.7070 15.6836 C 18.7070 14.5586 17.7695 13.5742 16.6210 13.5742 C 15.4726 13.5742 14.5351 14.5586 14.5351 15.6836 C 14.5351 16.7852 15.4726 17.7696 16.6210 17.7696 C 17.7695 17.7696 18.7070 16.7852 18.7070 15.6836 Z M 25.6210 15.6836 C 25.6210 14.5586 24.6835 13.5742 23.5351 13.5742 C 22.3866 13.5742 21.4492 14.5586 21.4492 15.6836 C 21.4492 16.7852 22.3866 17.7696 23.5351 17.7696 C 24.6835 17.7696 25.6210 16.7852 25.6210 15.6836 Z M 7.7851 45.8008 C 5.4413 45.8008 4.1288 44.5586 4.1288 42.1211 L 4.1288 24.6133 L 51.8708 24.6133 L 51.8708 42.1211 C 51.8708 44.5586 50.5350 45.8008 48.2147 45.8008 Z"/>
+        </symbol>
+        <symbol id="f7-documents" viewBox="0 0 56 56">
+          <path d="M 15.5547 53.125 L 40.4453 53.125 C 45.2969 53.125 47.7109 50.6640 47.7109 45.7890 L 47.7109 24.5078 C 47.7109 21.4844 47.3828 20.1718 45.5078 18.2500 L 32.5703 5.1015 C 30.7891 3.2734 29.3359 2.8750 26.6875 2.8750 L 15.5547 2.8750 C 10.7266 2.8750 8.2891 5.3594 8.2891 10.2344 L 8.2891 45.7890 C 8.2891 50.6875 10.7266 53.125 15.5547 53.125 Z M 15.7422 49.3515 C 13.3281 49.3515 12.0625 48.0625 12.0625 45.7187 L 12.0625 10.3047 C 12.0625 7.9844 13.3281 6.6484 15.7656 6.6484 L 26.1718 6.6484 L 26.1718 20.2656 C 26.1718 23.2187 27.6718 24.6718 30.5781 24.6718 L 43.9375 24.6718 L 43.9375 45.7187 C 43.9375 48.0625 42.6953 49.3515 40.2578 49.3515 Z M 31.0000 21.1328 C 30.0859 21.1328 29.7109 20.7578 29.7109 19.8203 L 29.7109 7.3750 L 43.2109 21.1328 Z"/>
+        </symbol>
+        <symbol id="f7-downloads" viewBox="0 0 56 56">
+          <path d="M 27.9999 51.9063 C 41.0546 51.9063 51.9063 41.0781 51.9063 28 C 51.9063 14.9453 41.0312 4.0937 27.9765 4.0937 C 14.8983 4.0937 4.0937 14.9453 4.0937 28 C 4.0937 41.0781 14.9218 51.9063 27.9999 51.9063 Z M 27.9999 47.9219 C 16.9374 47.9219 8.1014 39.0625 8.1014 28 C 8.1014 16.9609 16.9140 8.0781 27.9765 8.0781 C 39.0155 8.0781 47.8983 16.9609 47.9219 28 C 47.9454 39.0625 39.0390 47.9219 27.9999 47.9219 Z M 27.9999 40.1172 C 28.5155 40.1172 28.9140 39.8828 29.3827 39.4375 L 37.3046 31.5156 C 37.6327 31.2109 37.7968 30.7890 37.7968 30.2968 C 37.7968 29.3359 37.0468 28.6094 36.0858 28.6094 C 35.5702 28.6094 35.1483 28.7968 34.8436 29.1250 L 31.9374 32.0547 L 29.5702 34.9141 L 29.7577 29.9453 L 29.7577 17.7109 C 29.7577 16.7031 29.0077 15.9531 27.9999 15.9531 C 26.9687 15.9531 26.2421 16.7031 26.2421 17.7109 L 26.2421 29.9453 L 26.4296 34.8672 L 24.0624 32.0547 L 21.1562 29.1250 C 20.8514 28.8203 20.4062 28.6094 19.9140 28.6094 C 18.9530 28.6094 18.2265 29.3359 18.2265 30.2968 C 18.2265 30.7890 18.3671 31.2109 18.6718 31.5156 L 26.6405 39.4375 C 27.1093 39.9063 27.4843 40.1172 27.9999 40.1172 Z"/>
+        </symbol>
+        <symbol id="f7-folder" viewBox="0 0 56 56">
+          <path d="M 8.4530 49.7500 L 48.2732 49.7500 C 52.4684 49.7500 54.9064 47.3125 54.9064 42.4844 L 54.9064 17.8047 C 54.9064 12.9766 52.4454 10.5625 47.5700 10.5625 L 24.7655 10.5625 C 23.1718 10.5625 22.2108 10.1641 21.0389 9.1797 L 19.6093 7.9844 C 18.0624 6.6953 16.8671 6.2500 14.5468 6.2500 L 7.5624 6.2500 C 3.4608 6.2500 1.0936 8.5937 1.0936 13.3281 L 1.0936 42.4844 C 1.0936 47.3359 3.5780 49.7500 8.4530 49.7500 Z M 4.8671 13.5156 C 4.8671 11.1953 6.1093 10.0235 8.3358 10.0235 L 13.5858 10.0235 C 15.1327 10.0235 16.0702 10.3984 17.2655 11.4297 L 18.6952 12.6015 C 20.2186 13.8672 21.4608 14.3359 23.7811 14.3359 L 47.5000 14.3359 C 49.8203 14.3359 51.1326 15.5781 51.1326 18.0156 L 51.1326 19.4219 L 4.8671 19.4219 Z M 8.5233 45.9766 C 6.1796 45.9766 4.8671 44.7344 4.8671 42.2969 L 4.8671 22.9610 L 51.1326 22.9610 L 51.1326 42.3203 C 51.1326 44.7344 49.8203 45.9766 47.5000 45.9766 Z"/>
+        </symbol>
+        <symbol id="f7-folder-fill" viewBox="0 0 56 56">
+          <path fill="url(#folderGrad)" d="M 47.5700 10.5625 L 24.7655 10.5625 C 23.1718 10.5625 22.2108 10.1641 21.0389 9.1797 L 19.6093 7.9844 C 18.0624 6.6953 16.8671 6.2500 14.5468 6.2500 L 7.5624 6.2500 C 3.4608 6.2500 1.0936 8.5937 1.0936 13.3281 L 1.0936 19.5859 L 54.9064 19.5859 L 54.9064 17.8047 C 54.9064 12.9766 52.4454 10.5625 47.5700 10.5625 Z M 8.4530 49.7500 L 48.2732 49.7500 C 52.4684 49.7500 54.9064 47.3125 54.9064 42.4844 L 54.9064 22.7735 L 1.0936 22.7735 L 1.0936 42.4844 C 1.0936 47.3359 3.5780 49.7500 8.4530 49.7500 Z"/>
+        </symbol>
+        <symbol id="f7-icloud" viewBox="0 0 56 56">
+          <path d="M 12.2617 45.7539 L 41.3476 45.7539 C 49.0352 45.7539 54.7539 39.9180 54.7539 32.6758 C 54.7539 25.2227 48.6603 19.7617 40.7148 19.7617 C 37.7851 13.9727 32.3476 10.2461 25.5742 10.2461 C 16.7617 10.2461 9.4960 17.1367 8.7226 25.8555 C 4.4804 27.0742 1.2461 30.7773 1.2461 35.7227 C 1.2461 41.2539 5.2773 45.7539 12.2617 45.7539 Z M 12.2148 41.9805 C 7.4101 41.9805 4.9960 39.3086 4.9960 35.8398 C 4.9960 33.0039 6.6367 30.4961 10.6211 29.4180 C 11.9101 29.0898 12.3789 28.4805 12.4960 27.1445 C 13.0351 19.5039 18.7773 13.9961 25.5742 13.9961 C 30.8476 13.9961 34.9960 16.8789 37.5273 22.0820 C 38.0664 23.2070 38.7695 23.6055 40.1523 23.6055 C 47.0898 23.6055 51.0037 27.8008 51.0037 32.7929 C 51.0037 37.9024 46.9256 41.9805 41.5820 41.9805 Z"/>
+        </symbol>
+  <symbol id="f7-photo" viewBox="0 0 56 56">
+    <path d="M 7.7148 49.5742 L 48.2852 49.5742 C 53.1836 49.5742 55.6446 47.1367 55.6446 42.3086 L 55.6446 13.6914 C 55.6446 8.8633 53.1836 6.4258 48.2852 6.4258 L 7.7148 6.4258 C 2.8398 6.4258 .3554 8.8398 .3554 13.6914 L .3554 42.3086 C .3554 47.1602 2.8398 49.5742 7.7148 49.5742 Z M 39.2851 27.9414 C 38.2304 27.0039 37.0351 26.5118 35.7695 26.5118 C 34.4570 26.5118 33.3085 26.9571 32.2304 27.9180 L 21.6366 37.3867 L 17.3007 33.4492 C 16.3163 32.5820 15.2617 32.1133 14.1366 32.1133 C 13.1054 32.1133 12.0976 32.5586 11.1366 33.4258 L 4.1288 39.7305 L 4.1288 13.8789 C 4.1288 11.4414 5.4413 10.1992 7.7851 10.1992 L 48.2147 10.1992 C 50.5350 10.1992 51.8708 11.4414 51.8708 13.8789 L 51.8708 39.7539 Z M 17.8163 28.1992 C 20.8398 28.1992 23.3241 25.7149 23.3241 22.6680 C 23.3241 19.6445 20.8398 17.1367 17.8163 17.1367 C 14.7695 17.1367 12.2851 19.6445 12.2851 22.6680 C 12.2851 25.7149 14.7695 28.1992 17.8163 28.1992 Z"/>
+  </symbol>
+  <symbol id="f7-code" viewBox="0 0 56 56">
+    <path d="M 21.7661 52.1292 C 22.7207 52.3965 23.6563 51.8619 23.9618 50.8309 L 35.3603 11.7666 C 35.6467 10.7355 35.1694 9.7809 34.2147 9.4945 C 33.2601 9.2272 32.3245 9.7618 32.0190 10.7928 L 20.6396 49.8572 C 20.3532 50.8882 20.8114 51.8428 21.7661 52.1292 Z M 40.7445 45.1985 L 55.1026 32.2343 C 56 31.4324 55.9808 30.1722 55.1026 29.3894 L 40.7445 16.4252 C 39.9617 15.6806 38.8735 15.6997 38.2052 16.4443 C 37.5369 17.1890 37.6515 18.2582 38.4152 18.9646 L 51.5130 30.8023 L 38.4152 42.6591 C 37.6515 43.3655 37.5369 44.4347 38.2052 45.1794 C 38.8735 45.9240 39.9617 45.9240 40.7445 45.1985 Z M 15.2363 45.2176 C 16.0382 45.9431 17.1074 45.9240 17.7756 45.1794 C 18.4439 44.4347 18.3484 43.3846 17.5847 42.6782 L 4.4868 30.8214 L 17.5847 18.9646 C 18.3484 18.2582 18.4439 17.2081 17.7756 16.4443 C 17.1074 15.6997 16.0382 15.6997 15.2363 16.4252 L .8783 29.3894 C 0 30.1913 .1 31.4514 .8783 32.2343 Z"/>
+  </symbol>
+        <symbol id="f7-view-grid" viewBox="0 0 56 56">
+          <path d="M 10.9023 26.0664 L 21.5898 26.0664 C 24.5663 26.0664 26.0663 24.5664 26.0663 21.4727 L 26.0663 10.9961 C 26.0663 7.9023 24.5663 6.4258 21.5898 6.4258 L 10.9023 6.4258 C 7.9257 6.4258 6.4257 7.9023 6.4257 10.9961 L 6.4257 21.4727 C 6.4257 24.5664 7.9257 26.0664 10.9023 26.0664 Z M 34.4335 26.0664 L 45.0976 26.0664 C 48.0976 26.0664 49.5743 24.5664 49.5743 21.4727 L 49.5743 10.9961 C 49.5743 7.9023 48.0976 6.4258 45.0976 6.4258 L 34.4335 6.4258 C 31.4570 6.4258 29.9570 7.9023 29.9570 10.9961 L 29.9570 21.4727 C 29.9570 24.5664 31.4570 26.0664 34.4335 26.0664 Z M 10.9492 22.7617 C 10.1288 22.7617 9.7304 22.3398 9.7304 21.4727 L 9.7304 10.9961 C 9.7304 10.1523 10.1288 9.7305 10.9492 9.7305 L 21.5195 9.7305 C 22.3398 9.7305 22.7617 10.1523 22.7617 10.9961 L 22.7617 21.4727 C 22.7617 22.3398 22.3398 22.7617 21.5195 22.7617 Z M 34.4804 22.7617 C 33.6601 22.7617 33.2617 22.3398 33.2617 21.4727 L 33.2617 10.9961 C 33.2617 10.1523 33.6601 9.7305 34.4804 9.7305 L 45.0742 9.7305 C 45.8710 9.7305 46.2695 10.1523 46.2695 10.9961 L 46.2695 21.4727 C 46.2695 22.3398 45.8710 22.7617 45.0742 22.7617 Z M 10.9023 49.5742 L 21.5898 49.5742 C 24.5663 49.5742 26.0663 48.0977 26.0663 45.0039 L 26.0663 34.5039 C 26.0663 31.4336 24.5663 29.9336 21.5898 29.9336 L 10.9023 29.9336 C 7.9257 29.9336 6.4257 31.4336 6.4257 34.5039 L 6.4257 45.0039 C 6.4257 48.0977 7.9257 49.5742 10.9023 49.5742 Z M 34.4335 49.5742 L 45.0976 49.5742 C 48.0976 49.5742 49.5743 48.0977 49.5743 45.0039 L 49.5743 34.5039 C 49.5743 31.4336 48.0976 29.9336 45.0976 29.9336 L 34.4335 29.9336 C 31.4570 29.9336 29.9570 31.4336 29.9570 34.5039 L 29.9570 45.0039 C 29.9570 48.0977 31.4570 49.5742 34.4335 49.5742 Z M 10.9492 46.2695 C 10.1288 46.2695 9.7304 45.8477 9.7304 45.0039 L 9.7304 34.5274 C 9.7304 33.6602 10.1288 33.2383 10.9492 33.2383 L 21.5195 33.2383 C 22.3398 33.2383 22.7617 33.6602 22.7617 34.5274 L 22.7617 45.0039 C 22.7617 45.8477 22.3398 46.2695 21.5195 46.2695 Z M 34.4804 46.2695 C 33.6601 46.2695 33.2617 45.8477 33.2617 45.0039 L 33.2617 34.5274 C 33.2617 33.6602 33.6601 33.2383 34.4804 33.2383 L 45.0742 33.2383 C 45.8710 33.2383 46.2695 33.6602 46.2695 34.5274 L 46.2695 45.0039 C 46.2695 45.8477 45.8710 46.2695 45.0742 46.2695 Z"/>
+        </symbol>
+        <symbol id="f7-group-by" viewBox="0 0 56 56">
+          <path d="M8 8h40M8 32h40" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <rect x="8" y="14" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+          <rect x="23" y="14" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+          <rect x="38" y="14" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+          <rect x="8" y="38" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+          <rect x="23" y="38" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+          <rect x="38" y="38" width="10" height="10" rx="2.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        </symbol>
+        <symbol id="f7-view-list" viewBox="0 0 56 56">
+          <path d="M 7.3398 16.7617 C 8.9804 16.7617 10.2929 15.4492 10.2929 13.8320 C 10.2929 12.1914 8.9804 10.8789 7.3398 10.8789 C 5.7226 10.8789 4.3867 12.1914 4.3867 13.8320 C 4.3867 15.4492 5.7226 16.7617 7.3398 16.7617 Z M 17.6992 15.7070 L 49.7149 15.7070 C 50.7930 15.7070 51.6133 14.8867 51.6133 13.8320 C 51.6133 12.7539 50.7930 11.9336 49.7149 11.9336 L 17.6992 11.9336 C 16.6445 11.9336 15.8242 12.7539 15.8242 13.8320 C 15.8242 14.8867 16.6445 15.7070 17.6992 15.7070 Z M 7.3398 30.9414 C 8.9804 30.9414 10.2929 29.6289 10.2929 27.9883 C 10.2929 26.3477 8.9804 25.0352 7.3398 25.0352 C 5.7226 25.0352 4.3867 26.3477 4.3867 27.9883 C 4.3867 29.6289 5.7226 30.9414 7.3398 30.9414 Z M 17.6992 29.8867 L 49.7149 29.8867 C 50.7930 29.8867 51.6133 29.0430 51.6133 27.9883 C 51.6133 26.9336 50.7930 26.1133 49.7149 26.1133 L 17.6992 26.1133 C 16.6445 26.1133 15.8242 26.9336 15.8242 27.9883 C 15.8242 29.0430 16.6445 29.8867 17.6992 29.8867 Z M 7.3398 45.1211 C 8.9804 45.1211 10.2929 43.7852 10.2929 42.1680 C 10.2929 40.5273 8.9804 39.2148 7.3398 39.2148 C 5.7226 39.2148 4.3867 40.5273 4.3867 42.1680 C 4.3867 43.7852 5.7226 45.1211 7.3398 45.1211 Z M 17.6992 44.0430 L 49.7149 44.0430 C 50.7930 44.0430 51.6133 43.2227 51.6133 42.1680 C 51.6133 41.0898 50.7930 40.2695 49.7149 40.2695 L 17.6992 40.2695 C 16.6445 40.2695 15.8242 41.0898 15.8242 42.1680 C 15.8242 43.2227 16.6445 44.0430 17.6992 44.0430 Z"/>
+        </symbol>
+        <symbol id="f7-view-columns" viewBox="0 0 56 56">
+          <path d="M 7.7148 49.5742 L 48.2852 49.5742 C 53.1836 49.5742 55.6446 47.1367 55.6446 42.3086 L 55.6446 13.6914 C 55.6446 8.8633 53.1836 6.4258 48.2852 6.4258 L 7.7148 6.4258 C 2.8398 6.4258 .3554 8.8398 .3554 13.6914 L .3554 42.3086 C .3554 47.1602 2.8398 49.5742 7.7148 49.5742 Z M 7.7851 45.8008 C 5.4413 45.8008 4.1288 44.5586 4.1288 42.1211 L 4.1288 13.8789 C 4.1288 11.4414 5.4413 10.1992 7.7851 10.1992 L 17.6523 10.1992 L 17.6523 45.8008 Z M 21.1913 45.8008 L 21.1913 10.1992 L 34.8085 10.1992 L 34.8085 45.8008 Z M 48.2147 10.1992 C 50.5350 10.1992 51.8708 11.4414 51.8708 13.8789 L 51.8708 42.1211 C 51.8708 44.5586 50.5350 45.8008 48.2147 45.8008 L 38.3476 45.8008 L 38.3476 10.1992 Z"/>
+        </symbol>
+        <symbol id="f7-view-gallery" viewBox="0 0 56 56"><rect x="4" y="7" width="48" height="31" rx="7" fill="none" stroke="currentColor" stroke-width="4"/><g fill="currentColor"><rect x="5" y="45" width="7" height="7" rx="1.5"/><rect x="15.5" y="45" width="7" height="7" rx="1.5"/><rect x="26" y="45" width="7" height="7" rx="1.5"/><rect x="36.5" y="45" width="7" height="7" rx="1.5"/><rect x="47" y="45" width="7" height="7" rx="1.5"/></g></symbol>
+        <symbol id="f7-share" viewBox="0 0 56 56">
+          <path d="M 28.0117 36.0975 C 29.0195 36.0975 29.8633 35.2538 29.8633 34.2694 L 29.8633 10.1991 L 29.7226 6.7069 L 31.3164 8.3710 L 34.8555 12.1444 C 35.1836 12.5194 35.6758 12.7069 36.1211 12.7069 C 37.1055 12.7069 37.8320 12.0038 37.8320 11.0663 C 37.8320 10.5507 37.6445 10.1757 37.2930 9.8241 L 29.3711 2.1835 C 28.9023 1.7146 28.4805 1.5509 28.0117 1.5509 C 27.5195 1.5509 27.1211 1.7146 26.6523 2.1835 L 18.7305 9.8241 C 18.3789 10.1757 18.1679 10.5507 18.1679 11.0663 C 18.1679 12.0038 18.8711 12.7069 19.8555 12.7069 C 20.3242 12.7069 20.8164 12.5194 21.1445 12.1444 L 24.7070 8.3710 L 26.3008 6.6835 L 26.1367 10.1991 L 26.1367 34.2694 C 26.1367 35.2538 27.0039 36.0975 28.0117 36.0975 Z M 14.5586 54.4491 L 41.4414 54.4491 C 46.3633 54.4491 48.8008 52.0116 48.8008 47.1835 L 48.8008 24.0741 C 48.8008 19.2460 46.3633 16.8085 41.4414 16.8085 L 34.9258 16.8085 L 34.9258 20.5819 L 41.3945 20.5819 C 43.6914 20.5819 45.0274 21.8241 45.0274 24.2616 L 45.0274 46.9960 C 45.0274 49.4335 43.6914 50.6757 41.3945 50.6757 L 14.6289 50.6757 C 12.2852 50.6757 10.9726 49.4335 10.9726 46.9960 L 10.9726 24.2616 C 10.9726 21.8241 12.2852 20.5819 14.6289 20.5819 L 21.0976 20.5819 L 21.0976 16.8085 L 14.5586 16.8085 C 9.6836 16.8085 7.1992 19.2226 7.1992 24.0741 L 7.1992 47.1835 C 7.1992 52.0350 9.6836 54.4491 14.5586 54.4491 Z"/>
+        </symbol>
+        <symbol id="f7-tag" viewBox="0 0 56 56">
+          <path d="M 26.1133 51.2148 C 29.4649 54.5664 32.9102 54.6133 36.3555 51.1914 L 51.1913 36.3789 C 54.6132 32.9570 54.5662 29.4883 51.2148 26.1367 L 28.2930 3.2617 C 26.5352 1.5039 25.5508 1.3867 23.0664 1.3867 L 14.1602 1.3867 C 11.6758 1.3867 10.9024 1.9961 9.1446 3.7539 L 3.7539 9.1445 C 1.9727 10.9258 1.3868 11.6992 1.3868 14.1836 L 1.3868 23.0899 C 1.3868 25.5508 1.4805 26.5586 3.2617 28.3164 Z M 28.6446 48.3789 L 5.9102 25.6445 C 5.4414 25.1758 5.1602 24.6836 5.1602 23.9101 L 5.1602 14.0195 C 5.1602 13.2930 5.4180 12.8008 5.9102 12.3086 L 12.2852 5.9336 C 12.8008 5.4414 13.2695 5.1601 14.0195 5.1601 L 23.8868 5.1601 C 24.6836 5.1601 25.1524 5.4648 25.6446 5.9336 L 48.379 28.6445 C 50.0432 30.3086 50.0897 32.1133 48.3555 33.8242 L 33.8242 48.3555 C 32.1133 50.0899 30.3086 50.0664 28.6446 48.3789 Z M 16.9024 20.1367 C 18.7305 20.1367 20.1133 18.7070 20.1133 16.9258 C 20.1133 15.1211 18.7305 13.7148 16.9024 13.7148 C 15.0742 13.7148 13.6914 15.1211 13.6914 16.9258 C 13.6914 18.7070 15.0742 20.1367 16.9024 20.1367 Z"/>
+        </symbol>
+        <symbol id="f7-more" viewBox="0 0 56 56">
+          <circle cx="14" cy="28" r="3.6" fill="currentColor"/>
+          <circle cx="28" cy="28" r="3.6" fill="currentColor"/>
+          <circle cx="42" cy="28" r="3.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="f7-search" viewBox="0 0 56 56">
+          <path d="M 23.9570 41.7695 C 27.8476 41.7695 31.4804 40.5039 34.4336 38.3945 L 45.5429 49.5039 C 46.0585 50.0195 46.7382 50.2774 47.4414 50.2774 C 48.9648 50.2774 50.0664 49.1055 50.0664 47.6055 C 50.0664 46.9023 49.8322 46.2461 49.3162 45.7305 L 38.2773 34.6679 C 40.5976 31.6211 41.9804 27.8476 41.9804 23.7461 C 41.9804 13.8320 33.8710 5.7226 23.9570 5.7226 C 14.0195 5.7226 5.9336 13.8320 5.9336 23.7461 C 5.9336 33.6601 14.0195 41.7695 23.9570 41.7695 Z M 23.9570 37.8789 C 16.1992 37.8789 9.8242 31.4805 9.8242 23.7461 C 9.8242 16.0117 16.1992 9.6133 23.9570 9.6133 C 31.6914 9.6133 38.0898 16.0117 38.0898 23.7461 C 38.0898 31.4805 31.6914 37.8789 23.9570 37.8789 Z"/>
+        </symbol>
+        <symbol id="f7-back" viewBox="0 0 56 56">
+          <path d="M 35.8047 47.7226 C 36.2031 48.1211 36.7187 48.3555 37.3281 48.3555 C 38.5469 48.3555 39.4609 47.4414 39.4609 46.2226 C 39.4609 45.6367 39.2266 45.0976 38.8515 44.6992 L 21.7891 28.0117 L 38.8515 11.3242 C 39.2266 10.9258 39.4609 10.3633 39.4609 9.8007 C 39.4609 8.5820 38.5469 7.6445 37.3281 7.6445 C 36.7187 7.6445 36.2031 7.8789 35.8047 8.2773 L 17.2422 26.4414 C 16.7969 26.8164 16.5391 27.4023 16.5391 28.0117 C 16.5391 28.5976 16.7969 29.1367 17.2422 29.5820 Z"/>
+        </symbol>
+        <symbol id="f7-forward" viewBox="0 0 56 56">
+          <path d="M 18.6953 48.3672 C 19.2813 48.3672 19.7969 48.1328 20.2187 47.7344 L 38.7813 29.5703 C 39.2266 29.1250 39.4609 28.5859 39.4609 28.0000 C 39.4609 27.3906 39.2266 26.8281 38.7813 26.4297 L 20.2187 8.2890 C 19.8203 7.8672 19.2813 7.6328 18.6953 7.6328 C 17.4766 7.6328 16.5391 8.5703 16.5391 9.7890 C 16.5391 10.3515 16.7969 10.9141 17.1718 11.3125 L 34.2109 28.0000 L 17.1718 44.6875 C 16.7969 45.0859 16.5391 45.6250 16.5391 46.2109 C 16.5391 47.4297 17.4766 48.3672 18.6953 48.3672 Z"/>
+        </symbol>
+        <symbol id="f7-chevron-down" viewBox="0 0 56 56">
+          <path d="M 28.0000 39.4609 C 28.5859 39.4609 29.1718 39.2266 29.5703 38.7813 L 47.7344 20.1953 C 48.1328 19.7969 48.3672 19.2813 48.3672 18.6953 C 48.3672 17.4766 47.4297 16.5391 46.2109 16.5391 C 45.6484 16.5391 45.0859 16.7735 44.6875 17.1484 L 28.0000 34.2109 L 11.3125 17.1484 C 10.9140 16.7735 10.3750 16.5391 9.7891 16.5391 C 8.5703 16.5391 7.6328 17.4766 7.6328 18.6953 C 7.6328 19.2813 7.8672 19.7969 8.2656 20.2187 L 26.4297 38.7813 C 26.875 39.2266 27.3906 39.4609 28.0000 39.4609 Z"/>
+        </symbol>
+      </svg>
+      <div class="traffic" aria-hidden="true">
+        <span class="red"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+
+      <aside class="finder-sidebar">
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-clock"/></svg></span><span>Recents</span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-shared"/></svg></span><span>Shared</span></div>
+        <div class="side-section">Favorites</div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-applications"/></svg></span><span>Applications</span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-desktop"/></svg></span><span>Desktop</span><span class="side-cloud"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-icloud"/></svg></span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-documents"/></svg></span><span>Documents</span><span class="side-cloud"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-icloud"/></svg></span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-downloads"/></svg></span><span>Downloads</span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder"/></svg></span><span>Notes</span></div>
+        <div class="side-item selected"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder"/></svg></span><span>Projects</span></div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder"/></svg></span><span>code</span></div>
+        <div class="side-section">Locations</div>
+        <div class="side-item"><span class="side-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-icloud"/></svg></span><span>iCloud Drive</span></div>
+      </aside>
+
+      <header class="finder-toolbar">
+        <div class="toolbar-pill" aria-label="Back and forward">
+          <span class="toolbar-button back"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-back"/></svg></span>
+          <span class="pill-divider"></span>
+          <span class="toolbar-button forward"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span>
+        </div>
+        <div class="finder-title">Launch Deck</div>
+        <div class="toolbar-spacer"></div>
+        <div class="toolbar-pill" aria-label="View modes">
+          <span class="toolbar-icon grid"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-view-grid"/></svg></span>
+          <span class="pill-divider"></span>
+          <span class="toolbar-icon list"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-view-list"/></svg></span>
+          <span class="toolbar-icon columns"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-view-columns"/></svg></span>
+          <span class="toolbar-icon gallery"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-view-gallery"/></svg></span>
+        </div>
+        <div class="toolbar-pill" aria-label="Group">
+          <span class="toolbar-icon group"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-group-by"/></svg></span>
+          <span class="toolbar-chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-chevron-down"/></svg></span>
+        </div>
+        <div class="toolbar-pill" aria-label="Actions">
+          <span class="toolbar-icon share"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-share"/></svg></span>
+          <span class="toolbar-icon tag"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-tag"/></svg></span>
+          <span class="toolbar-icon more"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-more"/></svg></span>
+        </div>
+        <div class="toolbar-pill search-pill" aria-label="Search">
+          <span class="toolbar-icon search"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-search"/></svg></span>
+        </div>
+      </header>
+
+      <div class="finder-content">
+        <div class="finder-column">
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>captures</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row selected"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>demo-workspace</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>DESIGN.md</span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>docs</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>index.html</span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>node_modules</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>package-lock.json</span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>package.json</span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>README.md</span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>reference</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>renders</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>SCRIPT.md</span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>snapshots</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>STORYBOARD.md</span></div>
+          <div class="file-row"><span class="file-icon doc"></span><span>SURFACES.md</span></div>
+          <div class="file-row"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>tools</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+        </div>
+        <div class="finder-column">
+          <div class="file-row selected large"><span class="file-icon folder"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-folder-fill"/></svg></span><span>Launch Deck</span><span class="chevron"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-forward"/></svg></span></div>
+        </div>
+        <div class="finder-column">
+          <div class="file-row large"><span class="file-icon doc"></span><span>design-feedback.txt</span></div>
+          <div class="file-row large"><span class="file-icon doc"></span><span>Q2 revenue.csv</span></div>
+          <div class="file-row large"><span class="file-icon doc"></span><span>README.md</span></div>
+          <div class="file-row large"><span class="file-icon doc"></span><span>slide-notes.md</span></div>
+        </div>
+        <div class="finder-column"></div>
+      </div>
+    </section>
+
+    <style>
+      #finder-window-surface {
+        --finder-blue: #007aff;
+        --finder-text: #252525;
+        --finder-muted: #767676;
+        --sidebar-w: 170px;
+        --toolbar-h: 52px;
+        --column-w: 245px;
+        width: 920px;
+        height: 436px;
+        overflow: visible;
+        color: #1d1d1f;
+        font-family: var(--font-macos);
+      }
+
+      #finder-window-surface * {
+        box-sizing: border-box;
+      }
+
+      .finder-window {
+        position: relative;
+        width: 920px;
+        height: 436px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow:
+          0 28px 88px rgba(24, 36, 52, 0.18),
+          0 0 0 1px rgba(0, 0, 0, 0.055);
+      }
+
+      .finder-window::before {
+        content: "";
+        position: absolute;
+        inset: 7px auto 7px 7px;
+        width: calc(var(--sidebar-w) - 14px);
+        border-radius: 11px;
+        background: rgba(243, 242, 241, 0.82);
+        box-shadow:
+          inset 0 0 0 0.5px rgba(0, 0, 0, 0.05),
+          0 1px 6px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(26px);
+      }
+
+      .traffic {
+        position: absolute;
+        left: 19px;
+        top: 19px;
+        z-index: 4;
+        display: flex;
+        gap: 11px;
+      }
+
+      .traffic span {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15), 0 0.5px 1px rgba(0, 0, 0, 0.08);
+      }
+
+      .traffic .red {
+        background: #ff5f57;
+      }
+      .traffic .yellow {
+        background: #febc2e;
+      }
+      .traffic .green {
+        background: #28c840;
+      }
+
+      .finder-sidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-w);
+        bottom: 0;
+        padding: 56px 10px 14px 18px;
+        color: var(--finder-text);
+      }
+
+      .side-section {
+        margin: 13px 0 6px;
+        color: #727272;
+        font-size: 12px;
+        font-weight: 660;
+      }
+
+      .side-item {
+        height: 32px;
+        display: grid;
+        grid-template-columns: 22px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 8px;
+        border-radius: 8px;
+        color: #222;
+        font-size: 13.2px;
+        white-space: nowrap;
+      }
+
+      .side-cloud {
+        width: 16px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b9b9be;
+        margin-left: auto;
+      }
+
+      .side-item.selected {
+        background: rgba(0, 0, 0, 0.05);
+        color: #1d1d1f;
+      }
+
+      .side-item > span:nth-child(2),
+      .file-row span:nth-child(2) {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .side-icon {
+        width: 18px;
+        height: 18px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1d1d1f;
+        font-size: 16px;
+      }
+
+
+      .finder-toolbar {
+        position: absolute;
+        left: var(--sidebar-w);
+        top: 0;
+        right: 0;
+        height: var(--toolbar-h);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 15px;
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .finder-title {
+        min-width: 158px;
+        color: #1d1d1f;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.1px;
+      }
+
+      .toolbar-spacer {
+        flex: 1;
+      }
+
+      .toolbar-pill {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 12px;
+        border-radius: 17px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow:
+          inset 0 0 0 0.5px rgba(0, 0, 0, 0.07),
+          0 1px 3px rgba(0, 0, 0, 0.05);
+        color: #5f5f66;
+      }
+
+      .search-pill {
+        padding-inline: 11px;
+      }
+
+      .pill-divider {
+        width: 1px;
+        height: 16px;
+        flex: 0 0 auto;
+        background: currentColor;
+        opacity: 0.22;
+      }
+
+      .toolbar-button,
+      .toolbar-icon,
+      .toolbar-chevron {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #5f5f5f;
+        font-size: 17px;
+        flex: 0 0 auto;
+      }
+
+      .toolbar-button {
+        opacity: 0.55;
+      }
+
+      .toolbar-chevron {
+        width: 8px;
+        font-size: 8px;
+      }
+
+      .toolbar-icon.columns {
+        width: 28px;
+        border-radius: 7px;
+        background: rgba(0, 0, 0, 0.13);
+        color: #3a3a3c;
+      }
+
+      .toolbar-icon.search {
+        font-size: 15px;
+      }
+
+      .finder-content {
+        position: absolute;
+        left: var(--sidebar-w);
+        top: var(--toolbar-h);
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: var(--column-w) var(--column-w) var(--column-w) 1fr;
+        border-top: 1px solid rgba(0, 0, 0, 0.045);
+        background: #fff;
+      }
+
+      .finder-column {
+        position: relative;
+        padding: 9px 10px;
+        border-right: 1px solid rgba(0, 0, 0, 0.07);
+      }
+
+      .finder-column:last-child {
+        border-right: 0;
+      }
+
+      .file-row {
+        height: 20px;
+        display: grid;
+        grid-template-columns: 19px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 0 7px;
+        margin: 0 0 1px;
+        border-radius: 7px;
+        color: #272727;
+        font-size: 13px;
+        font-weight: 420;
+        white-space: nowrap;
+      }
+
+      .file-row.large {
+        height: 22px;
+        font-size: 13.4px;
+      }
+
+      .file-row.selected {
+        background: rgba(0, 0, 0, 0.09);
+      }
+
+      .finder-column .file-row.selected.large {
+        background: #3478f6;
+        color: #fff;
+      }
+
+      .finder-column .file-row.selected.large .chevron {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .finder-column .file-row.selected.large .file-icon.folder {
+        color: #cfe2ff;
+      }
+
+      .file-row .chevron {
+        width: 10px;
+        height: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b3b3b8;
+        font-size: 10px;
+      }
+
+      .file-icon {
+        width: 15px;
+        height: 15px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .file-icon.folder {
+        color: #59a3f2;
+        font-size: 15px;
+      }
+
+      .file-icon.doc {
+        width: 15px;
+        height: 19px;
+        background: #ffffff;
+        border: 1px solid #c9c9ce;
+        border-radius: 2px;
+      }
+
+      .file-icon.doc::after {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 5px;
+        width: 8px;
+        height: 1px;
+        background: #b4b4b8;
+        box-shadow: 0 4px 0 #b4b4b8, 0 8px 0 #b4b4b8;
+      }
+
+    </style>
+    <style>
+      /* Dark mode token overrides — scoped under .finder-window.theme-dark.
+         Must remain the LAST style block so it wins the cascade. */
+      .finder-window.theme-dark {
+        background: #212126;
+        box-shadow:
+          0 28px 88px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.06);
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark::before {
+        background: #1e1e26;
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.06),
+          0 1px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .finder-window.theme-dark .finder-sidebar {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-section {
+        color: #85858d;
+      }
+
+      .finder-window.theme-dark .side-item {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-item.selected {
+        background: rgba(255, 255, 255, 0.13);
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-item.selected .side-icon {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .side-icon {
+        color: #d8d8e0;
+      }
+
+      .finder-window.theme-dark .finder-toolbar {
+        background: rgba(38, 38, 43, 0.92);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .finder-window.theme-dark .finder-title {
+        color: #f0f0f4;
+      }
+
+      .finder-window.theme-dark .toolbar-pill {
+        background: #2e2e34;
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.25);
+        color: #d0d0d6;
+      }
+
+      .finder-window.theme-dark .toolbar-button,
+      .finder-window.theme-dark .toolbar-icon,
+      .finder-window.theme-dark .toolbar-chevron {
+        color: #d0d0d6;
+      }
+
+      .finder-window.theme-dark .toolbar-icon.columns {
+        background: #3f3f46;
+        color: #f0f0f4;
+      }
+
+      .finder-window.theme-dark .search-pill {
+        background: #2c2c31;
+        box-shadow:
+          inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+          0 1px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .finder-window.theme-dark .finder-content {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #1e1e23;
+      }
+
+      .finder-window.theme-dark .finder-column {
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .finder-window.theme-dark .file-row {
+        color: #e8e8ec;
+      }
+
+      .finder-window.theme-dark .file-row.selected {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large {
+        background: #3478f6;
+        color: #fff;
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large .chevron {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .finder-window.theme-dark .finder-column .file-row.selected.large .file-icon.folder {
+        color: #cfe2ff;
+      }
+
+      .finder-window.theme-dark .file-row .chevron {
+        color: #6e6e76;
+      }
+
+      .finder-window.theme-dark .file-icon.folder {
+        color: #4da3f5;
+      }
+
+      .finder-window.theme-dark .file-icon.code {
+        color: #9a9aa2;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".finder-window", { opacity: 0, y: 16, filter: "blur(5px)", duration: 0.42, ease: "power3.out" }, 0.1);
+      tl.from(".finder-sidebar", { opacity: 0, x: -10, duration: 0.28, ease: "sine.out" }, 0.24);
+      tl.from(".finder-toolbar", { opacity: 0, y: -8, duration: 0.28, ease: "sine.out" }, 0.28);
+      tl.from(".finder-column:nth-child(1) .file-row", { opacity: 0, x: -8, duration: 0.22, stagger: 0.018, ease: "sine.out" }, 0.42);
+      tl.from(".finder-column:nth-child(2) .file-row", { opacity: 0, x: -8, duration: 0.24, ease: "sine.out" }, 0.78);
+      tl.from(".finder-column:nth-child(3) .file-row", { opacity: 0, x: -8, duration: 0.24, stagger: 0.035, ease: "sine.out" }, 0.94);
+      tl.to(".finder-column:nth-child(2) .file-row.selected", { backgroundColor: "#2e6ee0", duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, 1.22);
+      window.__timelines["finder-window-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/finder-window\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("finder-window-template");
+    const mount = () => {
+      if (!template || document.querySelector("#finder-window-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

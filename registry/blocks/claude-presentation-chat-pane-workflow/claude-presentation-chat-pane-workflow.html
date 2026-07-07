@@ -1,0 +1,174 @@
+<div id="claude-presentation-chat-pane-workflow" data-composition-id="claude-presentation-chat-pane-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="9">
+  <section class="presentation-chat-pane-workflow-stage" data-primitive="claude-presentation-chat-pane-workflow" aria-label="Claude chat pane and presentation workflow composition">
+    <div class="desktop-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame menu-bar-component"
+      data-primitive="mac-menu-bar"
+      data-backlot-mount-src="compositions/mac-menu-bar.html"
+      data-backlot-mount-selector="#mac-menu-bar-surface"
+    ></div>
+
+    <div
+      class="component-frame presentation-component"
+      data-primitive="presentation-editor"
+      data-backlot-mount-src="compositions/presentation-editor.html"
+      data-backlot-mount-selector="#presentation-editor-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-deck-chat-pane-component"
+      data-primitive="claude-deck-chat-pane"
+      data-backlot-mount-src="compositions/claude-deck-chat-pane.html"
+      data-backlot-mount-selector="#claude-deck-chat-pane-surface"
+    ></div>
+
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #e8eee8;
+  }
+
+  #claude-presentation-chat-pane-workflow {
+    --ink: #181410;
+    --cursor: url("assets/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: var(--font-claude-ui);
+  }
+
+  #claude-presentation-chat-pane-workflow * {
+    box-sizing: border-box;
+  }
+
+  .presentation-chat-pane-workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 15%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 23%),
+      radial-gradient(circle at 78% 18%, rgba(205, 110, 87, 0.12), rgba(205, 110, 87, 0) 28%),
+      radial-gradient(circle at 76% 81%, rgba(189, 212, 199, 0.5), rgba(189, 212, 199, 0) 31%),
+      linear-gradient(145deg, #f2eee7 0%, #fbfaf6 48%, #dfe9e2 100%);
+  }
+
+  .desktop-field {
+    position: absolute;
+    inset: 30px 0 0;
+    opacity: 0.42;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 78%, transparent 100%);
+  }
+
+  .menu-bar-component {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    height: 30px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    pointer-events: none;
+    transform-origin: top left;
+  }
+
+  .presentation-component {
+    left: 682px;
+    top: 142px;
+    z-index: 4;
+    width: 836px;
+    height: 438px;
+    border-radius: 18px;
+    scale: 1.27;
+    box-shadow: 0 40px 128px rgba(38, 43, 55, 0.24);
+  }
+
+  .claude-deck-chat-pane-component {
+    left: 126px;
+    top: 112px;
+    z-index: 14;
+    width: 896px;
+    height: 684px;
+    border-radius: 26px;
+    box-shadow: 0 46px 122px rgba(52, 39, 29, 0.23);
+  }
+
+  .claude-deck-chat-pane-component > [data-backlot-mounted-component] {
+    transform: scale(0.76);
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 1216px;
+    top: 447px;
+    z-index: 30;
+    width: 34px;
+    height: 34px;
+    background: #111;
+    mask: var(--cursor) center / contain no-repeat;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.18));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 1205px;
+    top: 436px;
+    z-index: 29;
+    width: 54px;
+    height: 54px;
+    border: 2px solid rgba(207, 96, 74, 0.56);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="runtime/backlot-component-loader.js"></script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);
+  tl.from(".presentation-component", { opacity: 0, x: 40, y: 18, filter: "blur(8px)", duration: 0.62, ease: "power3.out" }, 0.2);
+  tl.from(".claude-deck-chat-pane-component", { opacity: 0, x: -30, y: 22, filter: "blur(8px)", duration: 0.68, ease: "power3.out" }, 0.48);
+  tl.from(".workflow-cursor", { opacity: 0, x: -42, y: 28, duration: 0.38, ease: "sine.out" }, 1.1);
+  tl.to(".workflow-cursor", { x: 102, y: 114, duration: 0.82, ease: "power2.inOut" }, 1.78);
+  tl.to(".click-ring", { opacity: 1, scale: 1.08, duration: 0.18, ease: "sine.out" }, 2.54);
+  tl.to(".click-ring", { opacity: 0, scale: 1.44, duration: 0.38, ease: "sine.out" }, 2.72);
+  tl.to(".claude-deck-chat-pane-component", { y: -7, duration: 1.9, ease: "sine.inOut" }, 3.2);
+  tl.to(".presentation-component", { y: -5, duration: 1.9, ease: "sine.inOut" }, 3.34);
+  window.__timelines["claude-presentation-chat-pane-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(1.5).pause();
+  }
+</script>

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-code-figma-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Code Plus Figma Workflow",
+  "description": "Modular assembly proof informed by the 2026-02-18 Claude Code-to-Figma reference video. Claude Code-to-design clips that need the light reference-style Claude Code terminal driving a dark Figma onboarding design editor without importing the warm Claude chat shell, Finder, Office, browser, Codex terminal, Premiere, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude-code",
+    "claude",
+    "figma",
+    "design",
+    "terminal",
+    "modular-assembly"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-code-figma-workflow.html",
+      "target": "compositions/claude-code-figma-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-code-terminal-session",
+    "figma-editor"
+  ]
+}

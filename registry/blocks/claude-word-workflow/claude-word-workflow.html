@@ -1,0 +1,231 @@
+<div id="claude-word-workflow" data-composition-id="claude-word-workflow" data-width="1920" data-height="1080" data-start="0" data-duration="9">
+  <section class="workflow-stage" data-primitive="claude-word-workflow" aria-label="Claude and Word workflow composition">
+    <div class="desktop-field" aria-hidden="true"></div>
+
+    <div
+      class="component-frame menu-bar-component"
+      data-primitive="mac-menu-bar"
+      data-backlot-mount-src="compositions/mac-menu-bar.html"
+      data-backlot-mount-selector="#mac-menu-bar-surface"
+    ></div>
+
+    <div
+      class="component-frame word-component"
+      data-primitive="word-editor-window"
+      data-backlot-mount-src="compositions/word-editor.html"
+      data-backlot-mount-selector="#word-editor-surface"
+    ></div>
+
+    <div
+      class="component-frame claude-component"
+      data-primitive="claude-composed-app"
+      data-backlot-mount-src="compositions/claude-composed-app.html"
+      data-backlot-mount-selector="#claude-composed-app"
+    ></div>
+
+    <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
+    <div class="click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+  </section>
+</div>
+
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #eef1ed;
+  }
+
+  #claude-word-workflow {
+    --ink: #181410;
+    --cursor: url("assets/cursors/normal-select.svg");
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: var(--ink);
+    font-family: var(--font-claude-ui);
+  }
+
+  #claude-word-workflow * {
+    box-sizing: border-box;
+  }
+
+  .workflow-stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 16% 15%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 22%),
+      radial-gradient(circle at 77% 18%, rgba(29, 134, 232, 0.11), rgba(29, 134, 232, 0) 26%),
+      radial-gradient(circle at 72% 80%, rgba(181, 211, 197, 0.42), rgba(181, 211, 197, 0) 34%),
+      radial-gradient(circle at 31% 86%, rgba(198, 91, 71, 0.09), rgba(198, 91, 71, 0) 27%),
+      linear-gradient(145deg, #f4efe8 0%, #fbfaf6 47%, #deeae3 100%);
+  }
+
+  .desktop-field {
+    position: absolute;
+    inset: 30px 0 0;
+    opacity: 0.46;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 17%, #000 78%, transparent 100%);
+  }
+
+  .menu-bar-component {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    height: 30px;
+  }
+
+  .component-frame {
+    position: absolute;
+    overflow: hidden;
+    transform-origin: top left;
+  }
+
+  .word-component {
+    left: 596px;
+    top: 126px;
+    z-index: 8;
+    width: 1280px;
+    height: 760px;
+    border-radius: 15px;
+    scale: 0.92;
+    opacity: 0.98;
+    box-shadow: 0 42px 132px rgba(37, 42, 55, 0.25);
+  }
+
+  .claude-component {
+    left: 116px;
+    top: 196px;
+    z-index: 16;
+    width: 1440px;
+    height: 900px;
+    border-radius: 18px;
+    scale: 0.639;
+    background: transparent;
+    box-shadow:
+      0 44px 138px rgba(54, 42, 31, 0.3),
+      0 0 0 1px rgba(55, 42, 31, 0.08);
+  }
+
+  .component-frame > [data-backlot-mounted-component] {
+    display: block;
+    pointer-events: none;
+  }
+
+  .workflow-cursor {
+    position: absolute;
+    left: 1398px;
+    top: 548px;
+    z-index: 40;
+    width: 34px;
+    height: 34px;
+    background: var(--cursor) 0 0 / contain no-repeat;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.28));
+  }
+
+  .click-ring {
+    position: absolute;
+    left: 1401px;
+    top: 552px;
+    z-index: 39;
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(29, 134, 232, 0.72);
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="runtime/backlot-component-loader.js"></script>
+<script>
+  // Pass-110 scene-copy convention: the mounted atoms expose stable
+  // data-copy="<slot>" hooks (claude-thread-core + claude-agent-rail); the
+  // shell's visible cowork topbar title is addressed through its
+  // data-primitive hook. Hooks missing from the mounted DOM are skipped,
+  // so the map stays declarative and inert against markup churn.
+  const applyClaudeSceneCopy = () => {
+    const claudeRoot = document.querySelector(".claude-component #claude-composed-app");
+    if (!claudeRoot) return;
+    const sceneCopy = {
+      "thread-title": "Revise Launch Brief document",
+      "thread-subtitle": "Working in Launch Brief",
+      "user-prompt": "Oh and revise the launch brief with the final Q2 proof points.",
+      "reply-primary": "I'll revise the launch brief from the selected folder.",
+      "reply-secondary": "I'm checking the launch notes and Q2 data before returning the edited document.",
+      "thinking-json": '{ "command": "find /sessions/launch-brief -type f -maxdepth 2", "description": "List selected project files" }',
+      "source-chip-1": "launch-notes.md",
+      "source-chip-2": "Q2 revenue.csv",
+      "tool-title": "Editing Brief.docx",
+      "tool-row-1": "Read Launch Brief folder",
+      "tool-row-2": "Found launch notes and Q2 data",
+      "tool-row-3": "Applying tracked edits",
+      "command-output": "Found Brief.docx, launch-notes.md, and Q2 revenue.csv.\nNext I'll apply the tracked edits with the final proof points.",
+      "artifact-1-kind": "DOCX",
+      "artifact-1": "Brief.docx",
+      "context-folder": "Launch Brief",
+      "context-file-1-kind": "MD",
+      "context-file-1": "launch-notes.md",
+      "context-file-2-kind": "CSV",
+      "context-file-2": "Q2 revenue.csv",
+      "context-file-3-kind": "DOCX",
+      "context-file-3": "Brief.docx"
+    };
+    Object.entries(sceneCopy).forEach(([slot, text]) => {
+      claudeRoot.querySelectorAll(`[data-copy="${slot}"]`).forEach((node) => {
+        node.textContent = text;
+      });
+    });
+    const shellTitle = claudeRoot.querySelector('[data-primitive="claude-cowork-topbar"] .shell-thread-title');
+    if (shellTitle) shellTitle.textContent = sceneCopy["thread-title"];
+  };
+
+  window.__backlotComponentsReady?.then(() => {
+    const claudeRoot = document.querySelector("#claude-composed-app");
+    if (claudeRoot) {
+      claudeRoot.setAttribute("data-page", "cowork");
+      claudeRoot.setAttribute("data-sidebar", "on");
+      claudeRoot.setAttribute("data-rail", "on");
+    }
+    applyClaudeSceneCopy();
+  });
+
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".menu-bar-component", { opacity: 0, y: -12, duration: 0.34, ease: "sine.out" }, 0.08);
+  tl.from(".word-component", { opacity: 0, x: 34, y: 18, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.22);
+  tl.from(".claude-component", { opacity: 0, x: -28, y: 20, filter: "blur(7px)", duration: 0.62, ease: "power3.out" }, 0.48);
+  tl.from(".workflow-cursor", { opacity: 0, x: -24, y: 20, duration: 0.28, ease: "sine.out" }, 1.08);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.3, duration: 0.18, ease: "sine.out" }, 1.52);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 1.74);
+  tl.to(".workflow-cursor", { x: -570, y: 252, duration: 1.02, ease: "power2.inOut" }, 2.12);
+  tl.to(".click-ring", { x: -570, y: 252, duration: 1.02, ease: "power2.inOut" }, 2.12);
+  tl.fromTo(".click-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1.32, duration: 0.18, ease: "sine.out" }, 3.08);
+  tl.to(".click-ring", { opacity: 0, scale: 1.9, duration: 0.24, ease: "sine.in" }, 3.3);
+  tl.to(".claude-component", { x: -8, y: -4, duration: 1.2, ease: "sine.inOut" }, 3.6);
+  tl.to(".word-component", { x: -18, y: 8, duration: 1.2, ease: "sine.inOut" }, 3.6);
+  tl.to(".workflow-cursor", { x: 12, y: -52, duration: 1.05, ease: "power2.inOut" }, 4.08);
+  window.__timelines["claude-word-workflow"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    tl.seek(4.32).pause();
+    gsap.set(".claude-component", { x: -8, y: -4, opacity: 1, filter: "blur(0px)" });
+    gsap.set(".word-component", { x: -18, y: 8, opacity: 0.98, filter: "blur(0px)" });
+    gsap.set(".workflow-cursor", { x: 12, y: -52, opacity: 1 });
+    gsap.set(".click-ring", { opacity: 0 });
+  }
+</script>

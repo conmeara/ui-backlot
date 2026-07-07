@@ -1,0 +1,77 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "mac-dock",
+  "type": "hyperframes:block",
+  "title": "macOS Dock",
+  "description": "Macos-web-informed editable Dock with real app icons, magnification-free layout, and indicator dots. Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html).",
+  "tags": [
+    "mac",
+    "macos",
+    "dock",
+    "desktop",
+    "component-loader"
+  ],
+  "dimensions": {
+    "width": 760,
+    "height": 104
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "assets/app-icons/claude.svg",
+      "target": "assets/app-icons/claude.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/excel.svg",
+      "target": "assets/app-icons/excel.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/figma.svg",
+      "target": "assets/app-icons/figma.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/finder.png",
+      "target": "assets/app-icons/finder.png",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/notes.png",
+      "target": "assets/app-icons/notes.png",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/powerpoint.svg",
+      "target": "assets/app-icons/powerpoint.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/premiere.svg",
+      "target": "assets/app-icons/premiere.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/safari.png",
+      "target": "assets/app-icons/safari.png",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/terminal.png",
+      "target": "assets/app-icons/terminal.png",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/app-icons/word.svg",
+      "target": "assets/app-icons/word.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "mac-dock.html",
+      "target": "compositions/mac-dock.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": []
+}

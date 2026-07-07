@@ -1,0 +1,24 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "backlot-runtime",
+  "type": "hyperframes:component",
+  "title": "Backlot Runtime",
+  "description": "backlot-component-loader.js (mounts surfaces via data-backlot-mount-src) and backlot-interactions.js (scriptable cursor/typing/streaming actions on the HyperFrames timeline).",
+  "tags": [
+    "infrastructure",
+    "runtime",
+    "interactions"
+  ],
+  "files": [
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "runtime/backlot-interactions.js",
+      "target": "runtime/backlot-interactions.js",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

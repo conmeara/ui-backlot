@@ -1,0 +1,35 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-browser-chat-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Chat Shell Plus Browser Workflow",
+  "description": "Modular assembly proof using the lean Claude chat shell and editable browser surface. Short instructional clips that need only Claude plus a browser surface, without importing the task rail, Finder, Office, Codex terminal, Premiere, or the full desktop workflow.",
+  "tags": [
+    "workflow",
+    "claude",
+    "browser",
+    "chat-shell",
+    "lean-shell",
+    "modular-assembly"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-browser-chat-workflow.html",
+      "target": "compositions/claude-browser-chat-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "browser-app",
+    "claude-composed-app",
+    "mac-menu-bar"
+  ]
+}

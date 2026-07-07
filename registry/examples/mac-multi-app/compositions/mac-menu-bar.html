@@ -1,0 +1,211 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: start center;
+    overflow: hidden;
+    background: #f7f5ef;
+  }
+</style>
+
+<template id="mac-menu-bar-template">
+  <div id="mac-menu-bar-surface" data-composition-id="mac-menu-bar-surface" data-width="1920" data-height="30">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="f7-search" viewBox="0 0 56 56">
+        <path d="M 23.9570 41.7695 C 27.8476 41.7695 31.4804 40.5039 34.4336 38.3945 L 45.5429 49.5039 C 46.0585 50.0195 46.7382 50.2774 47.4414 50.2774 C 48.9648 50.2774 50.0664 49.1055 50.0664 47.6055 C 50.0664 46.9023 49.8322 46.2461 49.3162 45.7305 L 38.2773 34.6679 C 40.5976 31.6211 41.9804 27.8476 41.9804 23.7461 C 41.9804 13.8320 33.8710 5.7226 23.9570 5.7226 C 14.0195 5.7226 5.9336 13.8320 5.9336 23.7461 C 5.9336 33.6601 14.0195 41.7695 23.9570 41.7695 Z M 23.9570 37.8789 C 16.1992 37.8789 9.8242 31.4805 9.8242 23.7461 C 9.8242 16.0117 16.1992 9.6133 23.9570 9.6133 C 31.6914 9.6133 38.0898 16.0117 38.0898 23.7461 C 38.0898 31.4805 31.6914 37.8789 23.9570 37.8789 Z"/>
+      </symbol>
+      <!-- Hand-authored Control Center glyph (two toggle pills); the
+           Framework7 "control" symbol is a chevron and reads wrong here. -->
+      <symbol id="f7-control-center" viewBox="0 0 13 14" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="0.6" y="0.6" width="11.8" height="4.8" rx="2.4" />
+        <circle cx="9.75" cy="3" r="1.75" fill="currentColor" stroke="none" />
+        <rect x="0.6" y="8.6" width="11.8" height="4.8" rx="2.4" />
+        <circle cx="3.25" cy="11" r="1.75" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="f7-wifi" viewBox="0 0 56 56">
+        <path d="M 5.4648 25.0352 C 5.9102 25.4805 6.5664 25.4571 6.9882 25.0118 C 12.5195 19.1289 19.8320 16.0352 28.0117 16.0352 C 36.2382 16.0352 43.5742 19.1523 49.0819 25.0352 C 49.4803 25.4336 50.1135 25.4336 50.5354 24.9883 L 53.6525 21.8711 C 54.0274 21.4727 54.0274 20.9571 53.7226 20.5820 C 48.4258 14.0664 38.4648 9.2617 28.0117 9.2617 C 17.5586 9.2617 7.5976 14.0664 2.3007 20.5820 C 1.9726 20.9571 1.9961 21.4727 2.3711 21.8711 Z M 14.8398 34.4336 C 15.3086 34.9258 15.9180 34.8789 16.3633 34.3633 C 19.0820 31.3398 23.4882 29.1602 28.0117 29.2071 C 32.5820 29.1602 36.9648 31.4102 39.7070 34.4336 C 40.1523 34.9023 40.7382 34.9023 41.1836 34.4102 L 44.6758 30.9649 C 45.0507 30.5898 45.0976 30.0977 44.7461 29.6992 C 41.3476 25.5039 35.0429 22.4102 28.0117 22.4102 C 20.9804 22.4102 14.6758 25.5274 11.2773 29.6992 C 10.9258 30.0977 10.9726 30.5664 11.3476 30.9649 Z M 28.0117 46.7383 C 28.5039 46.7383 28.9492 46.4805 29.8164 45.6367 L 35.3007 40.3633 C 35.6523 40.0352 35.7226 39.5196 35.4180 39.1211 C 33.9414 37.2227 31.1758 35.5820 28.0117 35.5820 C 24.7773 35.5820 21.9648 37.2930 20.5117 39.2617 C 20.3007 39.5898 20.3711 40.0352 20.7226 40.3633 L 26.2070 45.6367 C 27.0742 46.4805 27.5195 46.7383 28.0117 46.7383 Z"/>
+      </symbol>
+      <symbol id="f7-battery" viewBox="0 0 56 56">
+        <rect x="2" y="14" width="46" height="28" rx="7" fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <rect x="8" y="20" width="27" height="16" rx="2.5" fill="currentColor"/>
+        <path d="M 52.7216 32.4835 C 54.1214 32.3949 56 30.6051 56 27.8937 C 56 25.2000 54.1214 23.4101 52.7216 23.3215 Z" fill="currentColor"/>
+      </symbol>
+    </svg>
+    <header class="mac-menu-bar-stage" data-primitive="mac-menu-bar" data-active-app="Claude" aria-label="Editable macOS menu bar">
+      <div class="menu-left">
+        <span class="apple-glyph" aria-hidden="true"></span>
+        <span class="active-app">Claude</span>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Window</span>
+        <span>Help</span>
+      </div>
+      <div></div>
+      <div class="menu-right">
+        <span class="status-icons" aria-hidden="true">
+          <svg class="backlot-icon status-icon battery-glyph" aria-hidden="true"><use href="#f7-battery"/></svg>
+          <svg class="backlot-icon status-icon wifi-glyph" aria-hidden="true"><use href="#f7-wifi"/></svg>
+          <svg class="backlot-icon status-icon search-glyph" aria-hidden="true"><use href="#f7-search"/></svg>
+          <svg class="backlot-icon status-icon control-center-glyph" aria-hidden="true"><use href="#f7-control-center"/></svg>
+        </span>
+        <span class="menu-date">Tue Apr 1&nbsp;&nbsp;9:41 AM</span>
+      </div>
+    </header>
+
+    <style>
+      #mac-menu-bar-surface {
+        --menu-bar-ink: rgba(0, 0, 0, 0.84);
+        --menu-bar-bg: rgba(246, 248, 248, 0.54);
+        --menu-bar-hover: rgba(255, 255, 255, 0.36);
+        width: 1920px;
+        height: 30px;
+        color: var(--menu-bar-ink);
+        font-family: var(--font-macos);
+      }
+
+      #mac-menu-bar-surface * {
+        box-sizing: border-box;
+      }
+
+      .mac-menu-bar-stage {
+        width: 1920px;
+        height: 30px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 0 12px;
+        background: transparent;
+        color: var(--menu-bar-ink);
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1;
+        text-shadow: 0 0 1px rgba(255, 255, 255, 0.28);
+      }
+
+      .menu-left,
+      .menu-right {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        white-space: nowrap;
+      }
+
+      .menu-left > span:not(.apple-glyph),
+      .menu-right > span:not(.status-icons) {
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 5px;
+      }
+
+      .menu-left > span:not(.apple-glyph):hover,
+      .menu-right > span:not(.status-icons):hover,
+      .status-icon:hover {
+        background: var(--menu-bar-hover);
+      }
+
+      .menu-left .active-app {
+        margin-left: 5px;
+        margin-right: 6px;
+        font-weight: 600;
+      }
+
+      .apple-glyph {
+        width: 27px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #050505;
+      }
+
+      .apple-glyph::before {
+        content: "";
+        width: 15px;
+        height: 17px;
+        display: block;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .status-icons {
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 3px;
+        color: rgba(29, 29, 31, 0.85);
+      }
+
+      .backlot-icon.status-icon {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        flex: none;
+        fill: currentColor;
+      }
+
+      .control-center-glyph {
+        width: 14px;
+        height: 14px;
+      }
+
+      .wifi-glyph {
+        width: 16px;
+        height: 16px;
+      }
+
+      .battery-glyph {
+        width: 22px;
+        height: 15px;
+      }
+
+      .menu-date {
+        margin-left: 6px;
+      }
+    </style>
+
+    <style>
+      .mac-menu-bar-stage.theme-dark {
+        background: #26262b;
+        color: #f5f5f7;
+        --menu-bar-ink: #f5f5f7;
+        --menu-bar-hover: rgba(255, 255, 255, 0.16);
+        text-shadow: none;
+      }
+
+      .mac-menu-bar-stage.theme-dark .apple-glyph {
+        color: #f5f5f7;
+      }
+
+      .mac-menu-bar-stage.theme-dark .status-icons {
+        color: #f5f5f7;
+      }
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/mac-menu-bar\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("mac-menu-bar-template");
+    const mount = () => {
+      if (!template || document.querySelector("#mac-menu-bar-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

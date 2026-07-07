@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "codex-thread-core",
+  "type": "hyperframes:block",
+  "title": "Codex Conversation Core",
+  "description": "High, pending sanitized live Codex capture. Zoomed-in cuts on the Codex working-thread body (user turn, assistant reply, command-output card, composer) without surrounding app chrome. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "codex",
+    "thread",
+    "conversation",
+    "command-output",
+    "composer",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 980,
+    "height": 840
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "codex-thread-core.html",
+      "target": "compositions/codex-thread-core.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

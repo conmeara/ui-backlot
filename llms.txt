@@ -1,0 +1,29 @@
+# UI Backlot
+
+> Editable, high-fidelity recreations of real app UIs (Claude, Codex, macOS,
+> Office, Figma, Premiere, browsers) for rendering scripted product-demo
+> videos with HyperFrames — no screen recording.
+
+## Use the surfaces in your own HyperFrames project
+
+1. In your project's `hyperframes.json`, set:
+   `"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"`
+2. Browse the machine-readable catalog (name, type, title, description, tags per item):
+   https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json
+3. Install a surface and its dependencies (fonts, foundation CSS, runtime, composed parts install transitively):
+   `npx hyperframes add <name>` — e.g. `npx hyperframes add excel-workbook` or `npx hyperframes add claude-excel-workflow`
+4. Paste the printed snippet into your host composition and render:
+   `npx hyperframes render --quality draft`
+
+Complete starter scenes (the CLI's `init --example` only reads the official registry, so scaffold these with degit):
+`npx degit conmeara/ui-backlot/registry/examples/mac-multi-app my-video && cd my-video && npx hyperframes render --composition index.html --quality draft`
+
+Dark variants: blocks tagged `dark-mode-ready` support `class="theme-dark"` on the composition root.
+
+## Key files
+
+- registry/registry.json — machine-readable item index (blocks, components, examples)
+- surfaces/registry.json — full surface inventory with provenance and capture metadata
+- docs/catalog.md — human-readable surface catalog
+- AGENTS.md / CLAUDE.md — how agents work inside this repo
+- runtime/backlot-interactions.js — scriptable UI actions (typing, clicking, streaming) for demo timelines

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-attachment-draft",
+  "type": "hyperframes:block",
+  "title": "Claude Attached Folder Draft",
+  "description": "High against public Claude Cowork layout evidence, pending sanitized live Claude attachment capture. Pre-submit scenes where a user has attached a local folder or files before Claude starts working.",
+  "tags": [
+    "claude",
+    "attachment",
+    "folder-context",
+    "composer",
+    "new-chat"
+  ],
+  "dimensions": {
+    "width": 1180,
+    "height": 780
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-attachment-draft.html",
+      "target": "compositions/claude-attachment-draft.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

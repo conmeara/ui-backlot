@@ -1,0 +1,78 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "quickstart",
+  "type": "hyperframes:example",
+  "title": "Quickstart",
+  "description": "The 14-second starter scene: macOS menu bar, browser surface, and Claude chat pane composed into one renderable demo. Fully self-contained: npx degit conmeara/ui-backlot/registry/examples/quickstart my-video && cd my-video && npx hyperframes render --composition index.html --quality draft",
+  "tags": [
+    "example",
+    "starter"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 14,
+  "files": [
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "compositions/browser-app.html",
+      "target": "compositions/browser-app.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-chat-pane.html",
+      "target": "compositions/claude-chat-pane.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/mac-menu-bar.html",
+      "target": "compositions/mac-menu-bar.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "hyperframes.json",
+      "target": "hyperframes.json",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "index.html",
+      "target": "index.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "styles/backlot-foundation.css",
+      "target": "styles/backlot-foundation.css",
+      "type": "hyperframes:style"
+    }
+  ]
+}

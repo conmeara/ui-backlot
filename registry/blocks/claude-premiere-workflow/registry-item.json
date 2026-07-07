@@ -1,0 +1,37 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-premiere-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Plus Premiere Workflow",
+  "description": "Modular assembly proof using current Claude working-thread and Premiere-style video editor components. Video editing, timeline review, trim, graphics, and export clips that need Claude with a Premiere-style editor, without browser, Finder, Office, Figma, Codex terminal, or the full desktop lab.",
+  "tags": [
+    "workflow",
+    "claude",
+    "premiere",
+    "video",
+    "timeline",
+    "editing",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-premiere-workflow.html",
+      "target": "compositions/claude-premiere-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-composed-app",
+    "mac-menu-bar",
+    "premiere-editor"
+  ]
+}

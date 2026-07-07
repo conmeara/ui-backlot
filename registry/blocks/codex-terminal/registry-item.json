@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "codex-terminal",
+  "type": "hyperframes:block",
+  "title": "Codex Terminal",
+  "description": "Code-native Terminal/Codex CLI shell, informed by local Codex CLI help and app metadata. Command-line Codex demos, test runs, diffs, and agent execution status scenes.",
+  "tags": [
+    "codex",
+    "terminal",
+    "cli",
+    "agent-status",
+    "developer-workflow"
+  ],
+  "dimensions": {
+    "width": 1120,
+    "height": 840
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "codex-terminal.html",
+      "target": "compositions/codex-terminal.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

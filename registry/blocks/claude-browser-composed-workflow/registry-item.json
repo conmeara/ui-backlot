@@ -1,0 +1,36 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-browser-composed-workflow",
+  "type": "hyperframes:block",
+  "title": "Claude Componentized Shell Plus Browser Workflow",
+  "description": "Nested modular assembly proof using the componentized Claude shell. Short clips that need a full Claude shell plus a browser app while preserving the reusable sidebar, thread core, composer, and rail as independently editable child components.",
+  "tags": [
+    "workflow",
+    "claude",
+    "browser",
+    "composed-shell",
+    "nested-components",
+    "modular-assembly",
+    "mac-menu-bar"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "claude-browser-composed-workflow.html",
+      "target": "compositions/claude-browser-composed-workflow.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-cursors",
+    "backlot-foundation",
+    "backlot-runtime",
+    "browser-app",
+    "claude-composed-app",
+    "mac-menu-bar"
+  ]
+}

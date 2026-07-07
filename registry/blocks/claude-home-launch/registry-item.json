@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-home-launch",
+  "type": "hyperframes:block",
+  "title": "Claude Launch Prompt Stack",
+  "description": "High against Sonnet 4.6 frame-64s launch prompt stack, pending official product capture. Full-frame launch prompt beats where a video needs the Sonnet-style user request stack without the desktop/sidebar Claude app shell.",
+  "tags": [
+    "claude",
+    "home",
+    "launch-video",
+    "prompt-stack",
+    "loader"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-home-launch.html",
+      "target": "compositions/claude-home-launch.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-code-terminal-session",
+  "type": "hyperframes:block",
+  "title": "Claude Code Terminal Session",
+  "description": "Reference-matched light terminal panel informed by the 2026-02-18 Claude Code-to-Figma video frames. Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell.",
+  "tags": [
+    "claude",
+    "claude-code",
+    "terminal",
+    "light-ui",
+    "figma-workflow",
+    "component"
+  ],
+  "dimensions": {
+    "width": 660,
+    "height": 760
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-code-terminal-session.html",
+      "target": "compositions/claude-code-terminal-session.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

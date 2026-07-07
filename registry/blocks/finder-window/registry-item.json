@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "finder-window",
+  "type": "hyperframes:block",
+  "title": "Finder Launch Deck Window",
+  "description": "High against synthetic Launch Deck reference capture. File/folder handoff scenes that need Finder without a full desktop shell. Dark theme: add class \"theme-dark\" to the composition root.",
+  "tags": [
+    "macos",
+    "finder",
+    "files",
+    "folder",
+    "launch-deck",
+    "dark-mode-ready"
+  ],
+  "dimensions": {
+    "width": 920,
+    "height": 436
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "finder-window.html",
+      "target": "compositions/finder-window.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "excel-workbook",
+  "type": "hyperframes:block",
+  "title": "Excel-style Workbook",
+  "description": "Code-native Office-style spreadsheet shell. Spreadsheet analysis, formula editing, chart updates, and workbook automation scenes.",
+  "tags": [
+    "excel",
+    "office",
+    "spreadsheet",
+    "formula",
+    "chart"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 760
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "excel-workbook.html",
+      "target": "compositions/excel-workbook.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}

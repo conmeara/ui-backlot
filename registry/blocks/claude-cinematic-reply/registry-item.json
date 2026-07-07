@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-cinematic-reply",
+  "type": "hyperframes:block",
+  "title": "Claude Cinematic Reply",
+  "description": "High against Sonnet 4.6 launch-frame reply rhythm, pending official product capture. Sparse launch-style Claude answer/composer beats when a clip does not need sidebar, task rail, or tool cards.",
+  "tags": [
+    "claude",
+    "cinematic",
+    "reply",
+    "composer",
+    "launch-reference"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-cinematic-reply.html",
+      "target": "compositions/claude-cinematic-reply.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation",
+    "backlot-runtime",
+    "claude-response-mark"
+  ]
+}

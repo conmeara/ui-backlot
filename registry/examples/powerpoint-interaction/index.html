@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PowerPoint — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="powerpoint-interaction" data-composition-id="powerpoint-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9">
+      <section class="pp-stage" data-primitive="powerpoint-interaction" aria-label="PowerPoint editing a slide title">
+        <div class="pp-window">
+          <div class="pp-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Launch Deck.pptx</span></div>
+          <div class="pp-tabs"><span>File</span><span class="active">Home</span><span>Insert</span><span>Design</span><span>Transitions</span><span>View</span></div>
+          <div class="pp-body">
+            <div class="pp-rail">
+              <div class="thumb active"><span>1</span><div class="mini"><div class="mini-title" data-role="mini"></div></div></div>
+              <div class="thumb"><span>2</span><div class="mini"></div></div>
+              <div class="thumb"><span>3</span><div class="mini"></div></div>
+            </div>
+            <div class="pp-canvas">
+              <div class="slide">
+                <div class="title-box" data-role="titlebox">
+                  <h1 class="slide-title" data-role="title"></h1>
+                </div>
+                <p class="slide-sub" data-role="sub"></p>
+              </div>
+            </div>
+          </div>
+          <div class="pp-status"><span>Slide 1 of 3</span><span class="right" data-role="status">Editing</span></div>
+        </div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#cdd0d5; }
+      #powerpoint-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; color:#16120f; }
+      #powerpoint-interaction * { box-sizing:border-box; }
+      .pp-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#edeef1,#e0e2e7); display:grid; place-items:center; }
+      .pp-window { position:relative; width:1040px; height:660px; background:#fff; border-radius:12px; border:1px solid rgba(20,30,48,0.12); box-shadow:0 34px 90px rgba(28,30,38,0.24); overflow:hidden; display:grid; grid-template-rows:40px 36px 1fr 28px; }
+      .pp-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#f7f7f7; border-bottom:1px solid rgba(20,30,48,0.08); }
+      .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
+      .fname { font-size:14px; font-weight:600; color:#c43e1c; }
+      .pp-tabs { display:flex; align-items:center; gap:20px; padding:0 18px; background:#fbfbfc; border-bottom:1px solid rgba(20,30,48,0.08); font-size:13px; color:#52514e; }
+      .pp-tabs .active { color:#c43e1c; font-weight:600; border-bottom:2px solid #c43e1c; height:100%; display:flex; align-items:center; }
+      .pp-body { display:grid; grid-template-columns:150px 1fr; background:#f1f2f4; overflow:hidden; }
+      .pp-rail { padding:14px 12px; display:flex; flex-direction:column; gap:12px; background:#fafafb; border-right:1px solid rgba(20,30,48,0.08); }
+      .thumb { display:grid; grid-template-columns:14px 1fr; gap:6px; align-items:center; }
+      .thumb span { font-size:11px; color:#8a8a90; }
+      .thumb .mini { height:66px; background:#fff; border:1px solid rgba(20,30,48,0.12); border-radius:3px; padding:8px; }
+      .thumb.active .mini { border-color:#c43e1c; box-shadow:0 0 0 1.5px #c43e1c; }
+      .mini-title { height:8px; width:60%; background:#c9ccd1; border-radius:2px; }
+      .pp-canvas { display:grid; place-items:center; padding:26px; }
+      .slide { position:relative; width:100%; max-width:640px; aspect-ratio:16/9; background:linear-gradient(135deg,#1f2937,#0f172a); border-radius:6px; box-shadow:0 10px 40px rgba(0,0,0,0.28); display:flex; flex-direction:column; justify-content:center; padding:0 54px; }
+      .title-box { position:relative; }
+      .title-box::before { content:""; position:absolute; inset:-14px -18px; border:2px solid transparent; border-radius:6px; }
+      .title-box.editing::before { border-color:rgba(255,255,255,0.55); border-style:dashed; }
+      .slide-title { font-size:38px; font-weight:700; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; }
+      .slide-sub { font-size:17px; color:#c7cfdb; margin:14px 0 0; }
+      .pp-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
+      .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:44px; height:44px; border:2.5px solid rgba(196,62,28,0.75); border-radius:50%; opacity:0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="runtime/backlot-component-loader.js"></script>
+    <script src="runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const stage = document.querySelector(".pp-stage");
+      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+      const titleBox = stage.querySelector('[data-role="titlebox"]');
+      const TITLE = "Q1 Budget Review";
+      const SUB = "Regional performance and outlook";
+
+      // 1) click the title box -> editing outline appears.
+      ix.click('[data-role="titlebox"]', { at: 0.8, moveDur: 0.9 });
+      tl.set(titleBox, { attr: { class: "title-box editing" } }, 1.25);
+      // 2) type the slide title (and mirror into the thumbnail).
+      ix.type('[data-role="title"]', TITLE, { at: 1.5, cps: 16 });
+      const subAt = 1.5 + TITLE.length / 16 + 0.5;
+      ix.type('[data-role="sub"]', SUB, { at: subAt, cps: 34 });
+      // thumbnail title bar grows in as the title is typed.
+      tl.fromTo('[data-role="mini"]', { width: "0%" }, { width: "62%", duration: TITLE.length / 16, ease: "none" }, 1.5);
+      // 3) click away -> editing outline clears.
+      const doneAt = subAt + SUB.length / 34 + 0.4;
+      tl.set(titleBox, { attr: { class: "title-box" } }, doneAt);
+      tl.set('[data-role="status"]', { textContent: "Saved" }, doneAt);
+
+      window.__timelines["powerpoint-interaction"] = tl;
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(8.3).pause();
+    </script>
+  </body>
+</html>

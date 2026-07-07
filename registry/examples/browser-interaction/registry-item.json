@@ -1,0 +1,43 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "browser-interaction",
+  "type": "hyperframes:example",
+  "title": "Browser Interaction",
+  "description": "Browser demo: type a URL, a loading bar sweeps, the page loads. Fully self-contained: npx degit conmeara/ui-backlot/registry/examples/browser-interaction my-video && cd my-video && npx hyperframes render --composition index.html --quality draft",
+  "tags": [
+    "example",
+    "starter"
+  ],
+  "dimensions": {
+    "width": 1280,
+    "height": 800
+  },
+  "duration": 9,
+  "files": [
+    {
+      "path": "assets/cursors/normal-select.svg",
+      "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "hyperframes.json",
+      "target": "hyperframes.json",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "index.html",
+      "target": "index.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "runtime/backlot-component-loader.js",
+      "target": "runtime/backlot-component-loader.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "runtime/backlot-interactions.js",
+      "target": "runtime/backlot-interactions.js",
+      "type": "hyperframes:asset"
+    }
+  ]
+}

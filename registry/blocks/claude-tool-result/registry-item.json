@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "claude-tool-result",
+  "type": "hyperframes:block",
+  "title": "Claude Completed Tool Result",
+  "description": "High against public Claude Cowork layout evidence, pending sanitized live Claude tool-result capture. Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.",
+  "tags": [
+    "claude",
+    "tool-result",
+    "completed-work",
+    "composer",
+    "artifact"
+  ],
+  "dimensions": {
+    "width": 1180,
+    "height": 780
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "claude-tool-result.html",
+      "target": "compositions/claude-tool-result.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": [
+    "backlot-foundation"
+  ]
+}
