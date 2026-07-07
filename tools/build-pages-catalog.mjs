@@ -4,20 +4,25 @@
 // `python3 -m http.server 4173` → http://localhost:4173/docs/, or enable
 // GitHub Pages (main branch, /docs folder) → https://conmeara.github.io/ui-backlot/
 //
-// Unlike the workspace review pages (data-URI, disposable), this page ships in
-// git: thumbnails are small stripped JPEGs referenced relatively, and demo GIFs
-// come from the already-tracked docs/media/. Regenerate after registry or
-// capture changes: npm run pages:catalog
+// Organized like the workspace gallery: a sticky row of real app icons filters
+// to one application; each app section shows its interaction demo GIFs and one
+// card per component, with variant chips (dark mode, pages, beats) that swap
+// the thumbnail in place. Unlike the workspace review pages (data-URI,
+// disposable), this page ships in git: thumbnails are small stripped JPEGs
+// referenced relatively, and demo GIFs come from the already-tracked
+// docs/media/. Regenerate after registry or capture changes: npm run pages:catalog
 
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { escapeHtml } from "./lib/inline-media.mjs";
+import { loadFamilies, familyOf, familyIconSvg, DEMO_FAMILY } from "./lib/app-families.mjs";
 
 const repoRoot = process.cwd();
 const registry = JSON.parse(fs.readFileSync(path.join(repoRoot, "surfaces", "registry.json"), "utf8"));
 const hfManifest = JSON.parse(fs.readFileSync(path.join(repoRoot, "registry", "registry.json"), "utf8"));
 const blockNames = new Set(hfManifest.items.filter((i) => i.type === "hyperframes:block").map((i) => i.name));
+const fams = loadFamilies(repoRoot);
 
 const thumbsDir = path.join(repoRoot, "docs", "catalog-media", "thumbs");
 fs.mkdirSync(thumbsDir, { recursive: true });
@@ -31,55 +36,109 @@ function thumb(s) {
   return fs.existsSync(out) ? `catalog-media/thumbs/${s.id}.jpg` : null;
 }
 
-// Same grouping as tools/generate-public-catalog.mjs — keep in sync.
-const groups = [
-  { key: "workflows", title: "Workflows", blurb: "Multi-surface scenes — the fastest path to a video.", match: (s) => s.kind === "workflow" },
-  { key: "claude", title: "Claude & Chat", blurb: "Assistant shells, chat panes, composers, progress rails.", match: (s) => s.tags?.includes("claude") && s.kind === "component" },
-  { key: "desktop", title: "Desktop & Browser", blurb: "macOS chrome and browser context around a demo.", match: (s) => ["macos", "mac", "finder", "browser", "web-app", "calendar"].some((t) => s.tags?.includes(t)) },
-  { key: "apps", title: "Productivity & Creative Apps", blurb: "Office, design, and editing surfaces.", match: (s) => ["powerpoint", "presentation", "word", "excel", "figma", "premiere", "office", "spreadsheet", "document", "video"].some((t) => s.tags?.includes(t)) },
-  { key: "terminal", title: "Codex & Terminal", blurb: "Agent coding, terminal, and review surfaces.", match: (s) => ["codex", "terminal", "cli", "developer-workflow"].some((t) => s.tags?.includes(t)) },
-];
+const surfaces = registry.surfaces.filter((s) => s.status !== "deprecated");
 
-const seen = new Set();
+// One card per source file; registry entries sharing a source are variants.
+const bySource = new Map();
+for (const s of surfaces) {
+  const key = s.source || s.id;
+  if (!bySource.has(key)) bySource.set(key, []);
+  bySource.get(key).push(s);
+}
+
+function variantLabel(s, baseId) {
+  const paren = /\(([^)]+)\)\s*$/.exec(s.title || "");
+  if (paren) return paren[1];
+  if (s.id === baseId) return "Default";
+  return s.id.slice(baseId.length).replace(/^-/, "").split("-").map((w) => w[0]?.toUpperCase() + w.slice(1)).join(" ") || "Default";
+}
+
+let cardSeq = 0;
 let cardCount = 0;
-function card(s, groupKey) {
-  const t = thumb(s);
-  const dims = s.dimensions ? `${s.dimensions.width}×${s.dimensions.height}` : "";
-  const dark = s.tags?.includes("dark-mode-ready") || fs.existsSync(path.join(repoRoot, "registry", "blocks", s.id));
-  const installable = blockNames.has(s.id);
+function card(group, famKey) {
+  group.sort((a, b) => a.id.length - b.id.length || a.id.localeCompare(b.id));
+  const base = group[0];
+  const cid = `c${cardSeq++}`;
+  const variants = group
+    .map((s) => ({ s, t: thumb(s), label: variantLabel(s, base.id) }))
+    .filter((v) => v.t || v.s.id === base.id);
+  if (!variants.length) return "";
   cardCount += 1;
-  return `<figure class="card" data-group="${groupKey}" data-search="${escapeHtml([s.id, s.title, ...(s.tags || [])].join(" ").toLowerCase())}">
-  ${t ? `<img loading="lazy" src="${t}" alt="${escapeHtml(s.title)}">` : `<div class="thumb-empty">capture pending</div>`}
+
+  const imgs = variants
+    .map((v, i) =>
+      v.t
+        ? `<img loading="lazy" src="${v.t}" alt="${escapeHtml(v.s.title)}" data-v="${i}"${i ? " hidden" : ""}>`
+        : `<div class="thumb-empty" data-v="${i}"${i ? " hidden" : ""}>capture pending</div>`
+    )
+    .join("\n  ");
+  const chips =
+    variants.length > 1
+      ? `<div class="variants">${variants
+          .map((v, i) => `<button data-card="${cid}" data-v="${i}" class="vchip${i ? "" : " active"}">${escapeHtml(v.label)}</button>`)
+          .join("")}</div>`
+      : "";
+  const dims = base.dimensions ? `${base.dimensions.width}×${base.dimensions.height}` : "";
+  const baseTitle = (base.title || base.id).replace(/\s*\([^)]*\)\s*$/, "");
+  const installable = blockNames.has(base.id);
+  const search = group.flatMap((s) => [s.id, s.title, ...(s.tags || [])]).join(" ").toLowerCase();
+  return `<figure class="card" id="${cid}" data-group="${famKey}" data-search="${escapeHtml(search)}">
+  ${imgs}
   <figcaption>
-    <strong>${escapeHtml(s.title)}</strong>
-    <span class="meta">${escapeHtml(s.kind)}${dims ? ` · ${dims}` : ""}${s.tags?.includes("dark-mode-ready") ? " · dark-ready" : ""}</span>
-    ${installable ? `<button class="install" data-cmd="npx hyperframes add ${escapeHtml(s.id)}"><code>npx hyperframes add ${escapeHtml(s.id)}</code></button>` : `<span class="meta">part of <code>${escapeHtml(s.id)}</code></span>`}
+    <strong>${escapeHtml(baseTitle)}</strong>
+    <span class="meta">${dims}${variants.length > 1 ? ` · ${variants.length} variants` : ""}${base.tags?.includes("dark-mode-ready") ? " · dark-ready" : ""}</span>
+    ${chips}
+    ${installable ? `<button class="install" data-cmd="npx hyperframes add ${escapeHtml(base.id)}"><code>npx hyperframes add ${escapeHtml(base.id)}</code></button> ` : `<span class="meta">part of <code>${escapeHtml(base.id)}</code></span>`}
   </figcaption>
 </figure>`;
 }
 
-const sections = groups.map((g) => {
-  const members = registry.surfaces.filter((s) => s.status !== "deprecated" && !seen.has(s.id) && g.match(s));
-  members.forEach((s) => seen.add(s.id));
-  if (!members.length) return "";
-  return `<section id="${g.key}">
-  <h2>${g.title} <span class="count">${members.length}</span></h2>
-  <p class="blurb">${g.blurb}</p>
-  <div class="grid">${members.map((s) => card(s, g.key)).join("\n")}</div>
-</section>`;
-}).join("\n");
-
+// Demo GIFs per family.
 const gifs = fs.readdirSync(path.join(repoRoot, "docs", "media")).filter((f) => f.endsWith(".gif")).sort();
-const demoCards = gifs.map((f) => {
+const demosByFamily = new Map();
+for (const f of gifs) {
   const name = f.replace(/\.gif$/, "");
-  return `<figure class="card" data-group="demos" data-search="${escapeHtml(name)}">
-  <img loading="lazy" src="media/${f}" alt="${escapeHtml(name)} demo">
-  <figcaption><strong>${escapeHtml(name)}</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
-</figure>`;
-}).join("\n");
+  const fam = DEMO_FAMILY[name] || "macos";
+  if (!demosByFamily.has(fam)) demosByFamily.set(fam, []);
+  demosByFamily.get(fam).push({ name, file: f });
+}
 
-const filters = [{ key: "all", title: "All" }, ...groups, { key: "demos", title: "Interaction demos" }]
-  .map((g, i) => `<button class="chip${i === 0 ? " active" : ""}" data-filter="${g.key}">${g.title}</button>`).join("\n");
+// Group cards per family.
+const cardsByFamily = new Map();
+for (const group of bySource.values()) {
+  const fam = familyOf(group[0], fams);
+  if (!cardsByFamily.has(fam)) cardsByFamily.set(fam, []);
+  cardsByFamily.get(fam).push(group);
+}
+
+const sections = fams
+  .map((f) => {
+    const groups = cardsByFamily.get(f.key) || [];
+    const demos = demosByFamily.get(f.key) || [];
+    if (!groups.length && !demos.length) return "";
+    const demoCards = demos
+      .map(
+        (d) => `<figure class="card demo" data-group="${f.key}" data-search="${escapeHtml(d.name)} demo interaction">
+  <img loading="lazy" src="media/${d.file}" alt="${escapeHtml(d.name)} demo">
+  <figcaption><strong>${escapeHtml(d.name.replace(/-/g, " "))}</strong><span class="meta">scripted interaction · rendered, not recorded · <code>examples/${escapeHtml(d.name)}.html</code></span></figcaption>
+</figure>`
+      )
+      .join("\n");
+    return `<section id="${f.key}" data-family="${f.key}" style="--fam: ${f.color}">
+  <h2>${familyIconSvg(f, 21)} ${f.label} <span class="count">${groups.length} component${groups.length === 1 ? "" : "s"}${demos.length ? ` · ${demos.length} demo${demos.length === 1 ? "" : "s"}` : ""}</span></h2>
+  <div class="grid">${demoCards}${groups.map((g) => card(g, f.key)).join("\n")}</div>
+</section>`;
+  })
+  .join("\n");
+
+const famCounts = {};
+for (const f of fams) famCounts[f.key] = (cardsByFamily.get(f.key) || []).length + (demosByFamily.get(f.key) || []).length;
+const filters = [
+  `<button class="chip active" data-filter="all">All</button>`,
+  ...fams
+    .filter((f) => famCounts[f.key])
+    .map((f) => `<button class="chip" data-filter="${f.key}" style="--fam: ${f.color}">${familyIconSvg(f, 15)} ${f.label} <span class="count">${famCounts[f.key]}</span></button>`),
+].join("\n");
 
 const html = `<!doctype html>
 <html lang="en">
@@ -87,7 +146,7 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UI Backlot — surface catalog</title>
-<meta name="description" content="Editable, high-fidelity recreations of real app UIs for HyperFrames demo videos. Browse and install every surface.">
+<meta name="description" content="Editable, high-fidelity recreations of real app UIs for HyperFrames demo videos. Browse by application and install every surface.">
 <style>
 :root {
   --paper: #f8f8f6; --ink: #0b0b0b; --muted: #6d6a64; --line: rgba(11,11,11,.12);
@@ -108,20 +167,28 @@ h1 .dot { color: var(--accent); }
 .hero-install code { font: 13px/1.4 "SF Mono", ui-monospace, Menlo, monospace; }
 nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .chips { max-width: 1200px; margin: 0 auto; padding: 12px 28px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.chip { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 14px; font-size: 13.5px; cursor: pointer; }
-.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 14px; font-size: 13.5px; cursor: pointer; }
+.chip svg { color: var(--fam, var(--muted)); flex: 0 0 auto; }
+.chip .count { font-size: 11.5px; color: var(--muted); }
+.chip:hover { border-color: color-mix(in srgb, var(--fam, var(--accent)) 55%, var(--line)); }
+.chip.active { border-color: var(--fam, var(--accent)); box-shadow: inset 0 0 0 1px var(--fam, var(--accent)); }
+.chip.active[data-filter="all"] { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: none; }
 #search { margin-left: auto; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 6px 14px; font-size: 13.5px; min-width: 180px; }
 main { max-width: 1200px; margin: 0 auto; padding: 8px 28px 90px; }
-h2 { font: 620 22px/1.2 ui-serif, Georgia, serif; margin: 44px 0 4px; }
-.count { color: var(--muted); font: 500 13px/1 -apple-system, sans-serif; vertical-align: 3px; }
-.blurb { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+h2 { display: flex; align-items: center; gap: 10px; font: 620 22px/1.2 ui-serif, Georgia, serif; margin: 44px 0 14px; }
+h2 svg { color: var(--fam, var(--accent)); }
+.count { color: var(--muted); font: 500 13px/1 -apple-system, sans-serif; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .card { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
 .card img { width: 100%; display: block; border-bottom: 1px solid var(--line); background: #dcdcd8; }
+.card.demo { outline: 1px solid color-mix(in srgb, var(--fam, var(--accent)) 40%, transparent); outline-offset: -1px; }
 .thumb-empty { display: grid; place-items: center; min-height: 150px; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
 figcaption { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px 14px; font-size: 14px; }
 .meta { color: var(--muted); font-size: 12.5px; }
 .meta code, .install code { font: 12px/1.4 "SF Mono", ui-monospace, Menlo, monospace; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+.variants { display: flex; gap: 5px; flex-wrap: wrap; }
+.vchip { font: inherit; font-size: 11.5px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+.vchip.active { border-color: var(--fam, var(--accent)); color: var(--ink); }
 .install { text-align: left; border: none; background: none; padding: 0; cursor: copy; }
 .install:hover code { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 .install.copied code { background: color-mix(in srgb, var(--accent) 38%, transparent); }
@@ -136,9 +203,11 @@ a { color: var(--accent-ink); }
 <header>
   <h1>UI Backlot<span class="dot">.</span> Editable software sets for demo videos.</h1>
   <p class="lede">Every surface below is a hand-built, high-fidelity HTML recreation of a real app —
-  scriptable, themeable, and renderable with HyperFrames. No screen recording. Click any install
-  command to copy it; point your <code>hyperframes.json</code> at
-  <a href="https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json">this registry</a> first.</p>
+  scriptable, themeable, and renderable with HyperFrames. No screen recording. Browse by application,
+  flip a card through its variants, and click any install command to copy it; point your
+  <code>hyperframes.json</code> at
+  <a href="https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json">this registry</a> first.
+  Starter scenes: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code>.</p>
   <div class="hero-install"><code>"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"</code></div>
 </header>
 <nav><div class="chips">
@@ -147,11 +216,6 @@ ${filters}
 </div></nav>
 <main>
 ${sections}
-<section id="demos">
-  <h2>Interaction demos <span class="count">${gifs.length}</span></h2>
-  <p class="blurb">Scripted with <code>backlot-interactions.js</code> — typing, cursor moves, streaming replies, rendered frame by frame. Install as starter projects: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code></p>
-  <div class="grid">${demoCards}</div>
-</section>
 </main>
 <footer><div class="inner">
   <a href="https://github.com/conmeara/ui-backlot">GitHub</a>
@@ -169,6 +233,11 @@ function apply() {
 }
 chips.forEach((ch) => ch.addEventListener("click", () => { chips.forEach((c) => c.classList.remove("active")); ch.classList.add("active"); apply(); }));
 search.addEventListener("input", apply);
+document.querySelectorAll(".vchip").forEach((b) => b.addEventListener("click", () => {
+  const card = document.getElementById(b.dataset.card);
+  card.querySelectorAll("[data-v]").forEach((el) => { el.hidden = el.dataset.v !== b.dataset.v; });
+  card.querySelectorAll(".vchip").forEach((x) => x.classList.toggle("active", x === b));
+}));
 document.querySelectorAll(".install").forEach((b) => b.addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(b.dataset.cmd); b.classList.add("copied"); setTimeout(() => b.classList.remove("copied"), 900); } catch {}
 }));
@@ -179,4 +248,4 @@ document.querySelectorAll(".install").forEach((b) => b.addEventListener("click",
 
 fs.writeFileSync(path.join(repoRoot, "docs", "index.html"), html);
 const thumbCount = fs.readdirSync(thumbsDir).length;
-console.log(`pages catalog: docs/index.html (${cardCount} surface cards, ${gifs.length} demos, ${thumbCount} thumbs in docs/catalog-media/thumbs/)`);
+console.log(`pages catalog: docs/index.html (${cardCount} component cards, ${gifs.length} demos, ${thumbCount} thumbs in docs/catalog-media/thumbs/)`);
