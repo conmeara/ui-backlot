@@ -139,6 +139,7 @@ const filters = [
     .filter((f) => famCounts[f.key])
     .map((f) => `<button class="chip" data-filter="${f.key}" style="--fam: ${f.color}">${familyIconSvg(f, 15)} ${f.label} <span class="count">${famCounts[f.key]}</span></button>`),
 ].join("\n");
+const appCount = fams.filter((f) => famCounts[f.key]).length;
 
 const html = `<!doctype html>
 <html lang="en">
@@ -146,7 +147,7 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UI Backlot — surface catalog</title>
-<meta name="description" content="Editable, high-fidelity recreations of real app UIs for HyperFrames demo videos. Browse by application and install every surface.">
+<meta name="description" content="Editable software sets for demo videos: high-fidelity HTML recreations of real app UIs, rendered with HyperFrames. Browse by application and install any surface.">
 <style>
 :root {
   --paper: #f8f8f6; --ink: #0b0b0b; --muted: #6d6a64; --line: rgba(11,11,11,.12);
@@ -159,12 +160,22 @@ const html = `<!doctype html>
 :root[data-theme="light"] { --paper: #f8f8f6; --ink: #0b0b0b; --muted: #6d6a64; --line: rgba(11,11,11,.12); --card: #ffffff; --accent: #e08a62; --accent-ink: #7c3f22; --code-bg: rgba(11,11,11,.06); }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 -apple-system, "SF Pro Text", "Segoe UI", sans-serif; }
-header { max-width: 1200px; margin: 0 auto; padding: 56px 28px 8px; }
-h1 { font: 640 clamp(30px, 5vw, 44px)/1.1 ui-serif, Georgia, "Times New Roman", serif; letter-spacing: -0.015em; margin: 0 0 10px; text-wrap: balance; }
+header { max-width: 1200px; margin: 0 auto; padding: 44px 28px 22px; }
+.masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 14px; }
+.eyebrow { font: 600 11.5px/1 -apple-system, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+.gh-link { font-size: 13.5px; color: var(--muted); text-decoration: none; }
+.gh-link:hover { color: var(--accent-ink); }
+h1 { font: 640 clamp(34px, 6vw, 56px)/1.05 ui-serif, Georgia, "Times New Roman", serif; letter-spacing: -0.015em; margin: 0 0 12px; text-wrap: balance; }
 h1 .dot { color: var(--accent); }
-.lede { max-width: 62ch; color: var(--muted); margin: 0 0 18px; }
-.hero-install { display: inline-flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
-.hero-install code { font: 13px/1.4 "SF Mono", ui-monospace, Menlo, monospace; }
+.lede { max-width: 60ch; font-size: 17px; color: var(--muted); margin: 0 0 20px; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.hero-install { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; max-width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; cursor: copy; color: var(--ink); font: inherit; text-align: left; }
+.hero-install code { font: 13px/1.4 "SF Mono", ui-monospace, Menlo, monospace; background: none; padding: 0; word-break: break-all; }
+.hero-install .hint { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.hero-install:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.hero-install.copied { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.hero-stats { color: var(--muted); font-size: 13px; margin: 14px 0 0; }
+.hero-stats code { font: 12px/1.4 "SF Mono", ui-monospace, Menlo, monospace; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
 nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .chips { max-width: 1200px; margin: 0 auto; padding: 12px 28px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 14px; font-size: 13.5px; cursor: pointer; }
@@ -201,14 +212,17 @@ a { color: var(--accent-ink); }
 </head>
 <body>
 <header>
-  <h1>UI Backlot<span class="dot">.</span> Editable software sets for demo videos.</h1>
-  <p class="lede">Every surface below is a hand-built, high-fidelity HTML recreation of a real app —
-  scriptable, themeable, and renderable with HyperFrames. No screen recording. Browse by application,
-  flip a card through its variants, and click any install command to copy it; point your
-  <code>hyperframes.json</code> at
-  <a href="https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json">this registry</a> first.
-  Starter scenes: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code>.</p>
-  <div class="hero-install"><code>"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"</code></div>
+  <div class="masthead">
+    <span class="eyebrow">Open-source HyperFrames registry</span>
+    <a class="gh-link" href="https://github.com/conmeara/ui-backlot">github.com/conmeara/ui-backlot ↗</a>
+  </div>
+  <h1>UI Backlot<span class="dot">.</span></h1>
+  <p class="lede"><strong>Editable software sets for demo videos.</strong> Every surface below is a
+  hand-built, high-fidelity HTML recreation of a real app — scriptable, themeable, and rendered
+  with HyperFrames instead of screen-recorded. Pick an application, flip a card through its
+  variants, and click an install command to copy it.</p>
+  <button class="hero-install" data-cmd='"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"'><code>"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"</code><span class="hint">copy → hyperframes.json</span></button>
+  <p class="hero-stats">${cardCount} components · ${gifs.length} scripted demos · ${appCount} applications — starter scenes: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code></p>
 </header>
 <nav><div class="chips">
 ${filters}
@@ -238,7 +252,7 @@ document.querySelectorAll(".vchip").forEach((b) => b.addEventListener("click", (
   card.querySelectorAll("[data-v]").forEach((el) => { el.hidden = el.dataset.v !== b.dataset.v; });
   card.querySelectorAll(".vchip").forEach((x) => x.classList.toggle("active", x === b));
 }));
-document.querySelectorAll(".install").forEach((b) => b.addEventListener("click", async () => {
+document.querySelectorAll(".install, .hero-install").forEach((b) => b.addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(b.dataset.cmd); b.classList.add("copied"); setTimeout(() => b.classList.remove("copied"), 900); } catch {}
 }));
 </script>

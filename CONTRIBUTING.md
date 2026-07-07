@@ -54,14 +54,15 @@ run `.claude/workflows/onboard-app.js` via the Workflow tool with
 truth, writes a measured spec, builds the surface, holds it to an adversarial
 judge, and registers it everywhere. See AGENTS.md.
 
-## Add A Demo Workflow
+## Add An Interaction Demo
 
-1. Prefer a wrapper composition that imports existing components.
-2. Keep the composition between 12 and 20 seconds unless the story needs more.
+1. Start from an existing `examples/*-interaction.html` — a composition that
+   mounts tracked components and scripts them with
+   `runtime/backlot-interactions.js`.
+2. Keep it between 12 and 20 seconds unless the story needs more.
 3. Register the timeline in `window.__timelines`.
-4. Add an npm render or capture command if the workflow is intended as a public
-   starter.
-5. Verify with HyperFrames lint, validate, inspect, capture, and draft render.
+4. Verify with HyperFrames lint, validate, inspect, and a draft render; ship
+   the GIF to `docs/media/`.
 
 ## Asset Rules
 
@@ -78,6 +79,9 @@ synthetic demo content in the tracked surfaces.
 - [ ] `npm run open-source:check` (catalog + surface registry + HyperFrames
       registry staleness + lint + validate + inspect)
 - [ ] At least one relevant `npm run capture:*` command
-- [ ] A draft render when a demo workflow changed
-- [ ] Visual sanity pass: `npm run review` and glance at the gallery/compare pages
+- [ ] **Before/after images in the PR description** for any change to how a
+      surface looks — and a short video or GIF when motion changed. Visual
+      diffs are how PRs get reviewed here; the capture scripts and
+      `npm run review` give you the images.
+- [ ] A draft render when an interaction demo changed
 - [ ] `git diff --check`

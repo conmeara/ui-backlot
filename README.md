@@ -7,10 +7,6 @@ demos with [HyperFrames](https://hyperframes.heygen.com) instead of screen
 recordings. Change one line of copy, re-render, done: no retakes, no fragile
 live captures.
 
-The long-term vision is in [VISION.md](VISION.md). Agents start with
-[CLAUDE.md](CLAUDE.md) / [AGENTS.md](AGENTS.md); external consumers start
-right here.
-
 ## Demos
 
 Everything below is a **rendered HyperFrames scene** — no screen recording. Real
@@ -19,13 +15,13 @@ streaming replies), rendered deterministically frame by frame.
 
 ![macOS desktop — open the Claude app, then Excel on top](docs/media/mac-multi-app-demo.gif)
 
-<sub>A cursor pulls the Claude app up from the dock, then opens Excel on top — real dock icons, real pointer, full app ribbons.</sub>
+<sub>The kind of prompt that produces this: *"Make a demo where a cursor pulls
+the Claude app up from the dock, then opens Excel on top."*</sub>
 
-### App interactions
-
-Scripted with [`runtime/backlot-interactions.js`](runtime/backlot-interactions.js)
-— a few lines per action ([authoring guide](#scriptable-interactions)). Worked
-examples live in [`examples/*-interaction.html`](examples/).
+Each interaction is a few lines of
+[`runtime/backlot-interactions.js`](runtime/backlot-interactions.js) — see the
+[authoring guide](#scriptable-interactions) and the worked examples in
+[`examples/*-interaction.html`](examples/).
 
 <table>
 <tr>
@@ -72,62 +68,45 @@ npx hyperframes add excel-workbook
 npx hyperframes add claude-chat-pane
 ```
 
-Each `add` prints a ready-to-paste `data-composition-src` snippet — scenes are
-composed by stacking blocks in your own composition, not installed pre-baked
-(the `mac-multi-app` example below shows the full pattern). Blocks tagged
-`dark-mode-ready` switch themes with `class="theme-dark"` on the composition
-root; parameterized surfaces expose their states as attributes
-(`claude-composed-app` takes `?page=chat|cowork|code`, `claude-cinematic`
-takes `?beat=prompt|reply|complete`).
+Each `add` prints a ready-to-paste snippet — scenes are composed by stacking
+blocks, not installed pre-baked. Variants are parameters: `class="theme-dark"`
+on blocks tagged `dark-mode-ready`, `?page=chat|cowork|code` on
+`claude-composed-app`, `?beat=prompt|reply|complete` on `claude-cinematic`.
 
-**Complete starter projects** ship as fully-vendored examples (the CLI's
-`init --example` only reads the official registry, so scaffold with degit):
+Complete starter projects scaffold with degit:
 
 ```bash
 npx degit conmeara/ui-backlot/registry/examples/mac-multi-app my-video
 cd my-video && npx hyperframes render --composition index.html --quality draft
 ```
 
-Agents: [`llms.txt`](llms.txt) has the machine-readable version of this
-section. The registry is regenerated from
-[`surfaces/registry.json`](surfaces/registry.json) by
-`npm run registry:hf:generate` and validated by `npm run registry:hf:check`.
+Agents: [`llms.txt`](llms.txt) is the machine-readable version of this section.
 
 ## Run this repo
 
 ```bash
 npm install
-npm run catalog:generate      # regenerate the surface catalog
-npm run registry:check        # validate the surface inventory
 npm run capture:quickstart-demo
 npm run example:quickstart:render   # ~14s draft video in renders/
 ```
 
 The quickstart composition is
 [examples/quickstart-demo.html](examples/quickstart-demo.html) — macOS menu
-bar + browser surface + Claude chat pane. The full gate before a PR:
+bar + browser surface + Claude chat pane. Before a PR:
 
 ```bash
 npm run open-source:check     # catalog + registries + lint + validate + inspect
-```
-
-Browse everything visually:
-
-```bash
-npm run review                # builds workspace/gallery.html + compare.html, serves on :4173
+npm run review                # gallery + compare pages on :4173
 ```
 
 ## Find a surface
 
-- **[Hosted catalog](https://conmeara.github.io/ui-backlot/)** — browse every
-  surface visually with thumbnails, demo GIFs, and copyable install commands
-  (GitHub Pages from [docs/index.html](docs/index.html); regenerate with
-  `npm run pages:catalog`).
-- [docs/catalog.md](docs/catalog.md) — generated catalog, grouped with a
-  selection recipe for agents.
+- **[Hosted catalog](https://conmeara.github.io/ui-backlot/)** — browse by
+  application with thumbnails, variants, demo GIFs, and copyable install
+  commands (regenerate with `npm run pages:catalog`).
 - [surfaces/registry.json](surfaces/registry.json) — the authoritative
-  inventory: source file, import selector, capture command, provenance, and
-  asset decision per surface.
+  inventory (source, import selector, capture command, provenance);
+  [docs/catalog.md](docs/catalog.md) is its generated, readable form.
 - [docs/guides/build-hyperframes-demo.md](docs/guides/build-hyperframes-demo.md)
   — composing a demo from tracked components.
 
@@ -135,12 +114,9 @@ npm run review                # builds workspace/gallery.html + compare.html, se
 
 `runtime/backlot-interactions.js` scripts realistic UI actions — typing,
 clicking, sending a chat, streaming an AI reply — onto the HyperFrames
-timeline. Because HyperFrames renders by **seeking** the timeline (and GSAP
-suppresses callbacks like `onUpdate` on seek), every reveal is done with an
-interpolated **property** (opacity/transform), so it scrubs frame-accurately.
-Text types/streams via per-character opacity stagger, not a callback.
-
-Author a demo in a few lines:
+timeline. HyperFrames renders by **seeking** the timeline, so every reveal is
+an interpolated property (opacity/transform), never a callback — it scrubs
+frame-accurately.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -161,61 +137,42 @@ Author a demo in a few lines:
 
 Actions: `moveTo` · `click` · `type` · `stream` · `send` · `show` · `hide` ·
 `think` · `press`. Rules: text targets start empty (use a separate placeholder
-element and `hide()` it); state flips use `tl.set(el, { attr: { class } })`
-(seek-safe), never `.call()`. Worked examples live in
-`examples/*-interaction.html`. Render with
+element and `hide()` it); state flips use `tl.set(el, { attr: { class } })`,
+never `.call()`. Render with
 `npx hyperframes render --composition examples/<name>.html --quality draft --low-memory-mode`.
 Details: [docs/interactions-system-plan.md](docs/interactions-system-plan.md).
 
 ## The self-improving loops
 
 Real apps keep changing, so the backlot maintains itself through agent
-workflows rather than manual upkeep. Surfaces are held to a **measured** bar:
-dated ground-truth reference sets live in `reference/<family>/<date>/`
-([reference/sources.json](reference/sources.json) declares how each family is
-acquired), and `npm run fidelity:score` writes ranked deltas to
-`reports/fidelity/` — fixes are made from measured deltas, never from memory
-of what an app looks like.
+workflows. Surfaces are held to a **measured** bar: dated ground-truth
+reference sets live in `reference/<family>/<date>/`, and
+`npm run fidelity:score` writes ranked deltas to `reports/fidelity/` — fixes
+come from measured deltas, never from memory of what an app looks like.
 
-Three multi-agent workflows (run via the Workflow tool; see
-[AGENTS.md](AGENTS.md)):
+Three workflows (run via the Workflow tool; see [AGENTS.md](AGENTS.md)):
 
-- **fidelity-push** — a scored pass over every surface family: deterministic
-  Score → design Critique (fed the measured deltas) → Fix rounds with
-  capture-verify → an adversarial Judge that enforces the score bar and runs a
-  **stranger test** (a fresh-context judge must pick the real app from
-  real-vs-rebuilt pairs; its tells become the next round's work) → full gates.
-- **onboard-app** — the front door for a net-new app family (args
-  `{family, title, urls}`): reference research → dated ground-truth capture →
-  measured spec → build → adversarial judge → registration everywhere.
-- **interaction-push** — the motion counterpart (args `{demos}`): renders each
-  interaction demo, extracts frames, and holds the recording to a motion judge
-  (state coherence, cursor believability, pacing, a stranger-recording test)
-  with repair rounds before the GIF ships.
+- **fidelity-push** — score every family, critique from the measured deltas,
+  fix, then an adversarial judge (including a stranger test: pick the real app
+  from real-vs-rebuilt pairs).
+- **onboard-app** — add a net-new app family end to end: research → dated
+  ground-truth capture → spec → build → judge → register.
+- **interaction-push** — the motion counterpart: render each demo, hold the
+  frames to a motion judge, repair, ship the GIF.
 
-Loop artifacts land in `workspace/` (gitignored), and two self-contained review
-pages make them inspectable — `npm run review` serves
-`workspace/compare.html` (reference vs current side by side, plus the latest
-pass's applied changes) and `workspace/gallery.html` (the catalog by app
-family, with variants and demo GIFs). Both inline their media, so agents can
-also publish them as Claude Code Artifacts for remote monitoring during long
-passes.
-
-```bash
-# capture a public live page into a dated reference set
-npm run reference:capture -- https://example.com --family <fam> --label web-app
-
-# score a surface against measured ground truth
-npm run fidelity:score -- --label <name> \
-  --ours captures/surface-<id>/capture.json \
-  --theirs reference/<fam>/<date>/<label>/tokens.json
-```
+Loop artifacts land in `workspace/` (gitignored); `npm run review` builds and
+serves two self-contained pages — `compare.html` (reference vs current, plus
+the latest pass's applied changes) and `gallery.html` (the catalog by app
+family). Both inline their media, so they can also be published as Claude Code
+Artifacts for remote monitoring during long passes.
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) — setup, the surface checklist, and the
-PR gates. The docs index is [docs/README.md](docs/README.md); design language
-lives in [docs/design-language.md](docs/design-language.md).
+PR gates. **Include before/after screenshots (or a short video/GIF) in any PR
+that changes how a surface looks or moves** — visual diffs are how reviews
+happen here. The docs index is [docs/README.md](docs/README.md); design
+language lives in [docs/design-language.md](docs/design-language.md).
 
 ## License, trademarks & third-party assets
 
@@ -223,8 +180,7 @@ lives in [docs/design-language.md](docs/design-language.md).
 - The surfaces are **original HTML/CSS recreations** of real product UIs,
   made for instructional and demonstrative purposes (fair use). All product
   names, logos, and brands are property of their respective owners; their use
-  here does not imply endorsement. The full attribution register — every icon
-  set, font, donor repo, and capture source with its license — is
+  here does not imply endorsement. The full attribution register is
   [RESOURCES.md](RESOURCES.md).
 - Privacy is the one hard constraint: contributors' own logged-in captures
   stay local (gitignored); tracked surfaces use synthetic demo content.
