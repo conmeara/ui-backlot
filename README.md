@@ -30,7 +30,7 @@ streaming replies), rendered deterministically frame by frame.
 ### App interactions
 
 Scripted with [`runtime/backlot-interactions.js`](runtime/backlot-interactions.js)
-— a few lines per action ([authoring guide](#scriptable-interactions-1)). Worked
+— a few lines per action ([authoring guide](#scriptable-interactions)). Worked
 examples live in [`examples/*-interaction.html`](examples/).
 
 <table>
