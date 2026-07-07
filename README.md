@@ -1,21 +1,15 @@
 # UI Backlot
 
-UI Backlot is an open-source, agent-first workspace for scripted product-demo
-videos. The core idea is to rebuild the software surfaces we want to teach as
-deterministic HTML/HyperFrames scenes, then render those scenes instead of
-relying on fragile live screen recordings.
+**Editable software sets for product-demo videos.** UI Backlot rebuilds the
+apps you want to show — Claude, Codex, macOS, Excel, Word, PowerPoint, Figma,
+Premiere, browsers — as high-fidelity, scriptable HTML surfaces, then renders
+demos with [HyperFrames](https://hyperframes.heygen.com) instead of screen
+recordings. Change one line of copy, re-render, done: no retakes, no fragile
+live captures.
 
-The project is capture-first: reference videos set the taste bar, but live apps,
-DOM/CSS, screenshots, and accessibility trees are the preferred source of truth
-for rebuilding editable UI surfaces.
-
-Open-source UI projects are now an explicit refinement lane. Use them as
-reference material and component donors for macOS, Claude/chat, browser, and
-Office-like surfaces, with license checks before copying code or assets.
-
-The long-term north star is tracked in [VISION.md](VISION.md). Agents should
-start with [AGENTS.md](AGENTS.md), then use [docs/catalog.md](docs/catalog.md)
-and [surfaces/registry.json](surfaces/registry.json) to find reusable surfaces.
+The long-term vision is in [VISION.md](VISION.md). Agents start with
+[CLAUDE.md](CLAUDE.md) / [AGENTS.md](AGENTS.md); external consumers start
+right here.
 
 ## Demos
 
@@ -50,126 +44,86 @@ examples live in [`examples/*-interaction.html`](examples/).
 <td><b>Finder</b><br><img src="docs/media/finder-interaction.gif" alt="Finder interaction"><br><sub>The real column-view Finder component — select files.</sub></td>
 <td><b>Codex CLI</b><br><img src="docs/media/codex-interaction.gif" alt="Codex CLI interaction"><br><sub>Type a command, stream the terminal output.</sub></td>
 </tr>
+<tr>
+<td><b>Claude Code CLI</b><br><img src="docs/media/claude-code-interaction.gif" alt="Claude Code CLI interaction"><br><sub>Type a command — tool calls and a summary stream in.</sub></td>
+<td></td>
+</tr>
 </table>
 
-## The Fidelity Loop
+## Use the surfaces in your own project
 
-Surfaces are held to a measured bar, not an eyeballed one. The system is
-described in [docs/fidelity-loop-plan-2026-07-05.md](docs/fidelity-loop-plan-2026-07-05.md)
-and runs as three loops:
+UI Backlot publishes a **HyperFrames registry** — install any surface into your
+own HyperFrames project and its dependencies (foundation CSS, fonts, runtime,
+composed parts) come with it. Tell your coding agent:
 
-1. **Ground-truth capture** — dated reference sets measured from the real
-   apps live in `reference/<family>/<YYYY-MM-DD>/` (computed-style
-   `tokens.json`, provenance `manifest.json`, and screenshots where pixels
-   could be captured — screenshots of logged-in sessions stay local-only).
-   [reference/sources.json](reference/sources.json) declares how each family
-   is acquired on a given machine: `live-web` (agent-driven browser capture),
-   `native-local` (installed app screenshots), `online-only` (official
-   docs/press re-scrape), or `manual-inbox` (human-provided screenshots filed
-   by `tools/import-reference.mjs`).
-2. **Drift detection** — re-capture on a schedule, diff against the previous
-   dated set with `tools/fidelity-score.mjs`, and turn real app changes into
-   work items.
-3. **Rebuild with a hard bar** — `npm run fidelity:score` compares a
-   surface's capture against measured ground truth (role-aware color diff,
-   typography, radii, spacing, shadows, plus pixel diff) and writes ranked,
-   actionable deltas to `reports/fidelity/`. The score is the bar: fixes are
-   made from measured deltas, never from memory of what an app looks like.
-
-### Repo workflows (agent-run)
-
-- `.claude/workflows/fidelity-push.js` — a full scored pass over existing
-  families: deterministic Score → Fable/Opus Critique (fed the measured
-  deltas) → Sonnet Fix with capture-verify loops → adversarial Judge that
-  enforces the score bar and runs a **stranger test** (a fresh-context judge
-  sees real-vs-rebuilt image pairs under neutral filenames and must pick the
-  real one; its tells become the next round's work) → full Gate sweep.
-- `.claude/workflows/onboard-app.js` — the front door for a **net-new app
-  family** (args `{family, title, urls}`): availability probe + official-
-  source sweep → dated ground-truth capture → measured spec → build →
-  adversarial judge rounds → registration in `registry.json`,
-  `sources.json`, and the fidelity-push family list.
-
-Model policy: Fable/Opus only where judgment is the product (critique, spec,
-judge, stranger test); Sonnet for build/fix iteration; Haiku for mechanical
-stages (scoring commands, staging, gates, registration).
-
-### Fidelity tooling
+> Add `"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"`
+> to my `hyperframes.json`, browse
+> [`registry.json`](https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json)
+> for available blocks, then `npx hyperframes add <name>` what the demo needs
+> and wire the printed snippets into my composition.
 
 ```bash
-# Capture a public live page into a dated reference set
-npm run reference:capture -- https://example.com --family <fam> --label web-app
+# one surface (foundation CSS + fonts install automatically)
+npx hyperframes add excel-workbook
 
-# File human-provided screenshots or browser-extracted token dumps
-npm run reference:import -- --family <fam> --label desktop-app --image shot.png
-
-# Score a surface against measured ground truth
-npm run fidelity:score -- --label <name> \
-  --ours captures/surface-<id>/capture.json \
-  --theirs reference/<fam>/<date>/<label>/tokens.json
+# a full "Claude working in Excel on a Mac" scene (11 items, transitively)
+npx hyperframes add claude-excel-workflow
 ```
 
-`tools/extract-ui-tokens.js` is the shared browser-injectable extractor both
-sides use (our captures and the live apps), so the comparison is symmetric.
-`tools/crop-to-beacons.mjs` crops window screenshots to the exact page
-content for logged-in apps that block automated browsers.
+Each `add` prints a ready-to-paste `data-composition-src` snippet. Blocks
+tagged `dark-mode-ready` switch themes with `class="theme-dark"` on the
+composition root.
 
-## Quickstart
+**Complete starter projects** ship as fully-vendored examples (the CLI's
+`init --example` only reads the official registry, so scaffold with degit):
+
+```bash
+npx degit conmeara/ui-backlot/registry/examples/mac-multi-app my-video
+cd my-video && npx hyperframes render --composition index.html --quality draft
+```
+
+Agents: [`llms.txt`](llms.txt) has the machine-readable version of this
+section. The registry is regenerated from
+[`surfaces/registry.json`](surfaces/registry.json) by
+`npm run registry:hf:generate` and validated by `npm run registry:hf:check`.
+
+## Run this repo
 
 ```bash
 npm install
-npm run catalog:generate
-npm run registry:check
+npm run catalog:generate      # regenerate the surface catalog
+npm run registry:check        # validate the surface inventory
 npm run capture:quickstart-demo
-npm run example:quickstart:render
+npm run example:quickstart:render   # ~14s draft video in renders/
 ```
 
-The quickstart demo lives at
-[examples/quickstart-demo.html](examples/quickstart-demo.html). It mounts the
-tracked macOS menu bar, browser surface, and Claude chat pane, then renders a
-14 second HyperFrames draft video.
-
-For the full source/catalog/HyperFrames gate, run:
+The quickstart composition is
+[examples/quickstart-demo.html](examples/quickstart-demo.html) — macOS menu
+bar + browser surface + Claude chat pane. The full gate before a PR:
 
 ```bash
-npm run open-source:check
+npm run open-source:check     # catalog + registries + lint + validate + inspect
 ```
 
-`open-source:check` does not render video; add `npm run example:quickstart:render`
-or a workflow-specific render command when changing demos.
-Generated capture PNGs are intentionally ignored, so `registry:check` validates
-capture metadata and scripts without requiring those files. After regenerating a
-local capture inventory, run `npm run registry:check:captures` to require every
-registered capture PNG on disk.
-
-To rebuild the one-page visual inventory of every registry surface, run:
+Browse everything visually:
 
 ```bash
-npm run inventory:refresh
+npm run review                # builds workspace/gallery.html + compare.html, serves on :4173
 ```
 
-That refreshes each ready capture, then writes the ignored local files
-`captures/surface-inventory.html` and `captures/surface-inventory.png`.
+## Find a surface
 
-The focused target is a Claude-on-Mac demo environment:
-
-- A Claude assistant surface.
-- A macOS desktop and Finder shell.
-- A PowerPoint-like presentation editor surface, with exact PowerPoint capture
-  still pending.
-- Reusable motion primitives for typing, cursor movement, drag/drop, file
-  selection, tool calls, agent progress, and app switching.
-
-## Surface Discovery
-
-- [docs/catalog.md](docs/catalog.md) - generated public catalog for humans and
-  agents.
-- [surfaces/registry.json](surfaces/registry.json) - authoritative
-  machine-readable surface inventory.
+- **[Hosted catalog](https://conmeara.github.io/ui-backlot/)** — browse every
+  surface visually with thumbnails, demo GIFs, and copyable install commands
+  (GitHub Pages from [docs/index.html](docs/index.html); regenerate with
+  `npm run pages:catalog`).
+- [docs/catalog.md](docs/catalog.md) — generated catalog, grouped with a
+  selection recipe for agents.
+- [surfaces/registry.json](surfaces/registry.json) — the authoritative
+  inventory: source file, import selector, capture command, provenance, and
+  asset decision per surface.
 - [docs/guides/build-hyperframes-demo.md](docs/guides/build-hyperframes-demo.md)
-  - guide for composing a HyperFrames demo from tracked components.
-
-Run `npm run catalog:generate` after editing `surfaces/registry.json`.
+  — composing a demo from tracked components.
 
 ## Scriptable interactions
 
@@ -202,83 +156,68 @@ Author a demo in a few lines:
 Actions: `moveTo` · `click` · `type` · `stream` · `send` · `show` · `hide` ·
 `think` · `press`. Rules: text targets start empty (use a separate placeholder
 element and `hide()` it); state flips use `tl.set(el, { attr: { class } })`
-(seek-safe), never `.call()`. Worked examples, one per app, live in
-`examples/*-interaction.html` (Claude chat, Excel, Word, PowerPoint, browser,
-Finder, Codex, cowork). Render with
+(seek-safe), never `.call()`. Worked examples live in
+`examples/*-interaction.html`. Render with
 `npx hyperframes render --composition examples/<name>.html --quality draft --low-memory-mode`.
-See [docs/interactions-system-plan.md](docs/interactions-system-plan.md).
+Details: [docs/interactions-system-plan.md](docs/interactions-system-plan.md).
 
-## Current Editable Surfaces
+## The self-improving loops
 
-- [index.html](index.html) - current 16 second HyperFrames composition.
-- [styles/workflow.css](styles/workflow.css) - visual styling for the current
-  composition.
-- [compositions/presentation-editor.html](compositions/presentation-editor.html)
-  - mounted PowerPoint-like editor sub-composition.
-- [compositions/browser-app.html](compositions/browser-app.html)
-  - mounted browser/app sub-composition derived from the standalone browser lab.
-- [assets](assets) - local asset notes. Font binaries copied from installed apps
-  are intentionally local-only and ignored by git.
-- [reference/open-source](reference/open-source) - local donor-repo clone area.
-  Restore ignored donor clones with `tools/clone-reference-repos.sh`.
-- [reference/claude](reference/claude) - local-only Claude launch media notes.
-  Downloaded videos, screenshots, and extracted frames are ignored by git.
-- [compositions/claude-composed-app.html](compositions/claude-composed-app.html)
-  - canonical Claude shell: mounts `claude-sidebar`, `claude-thread-core`,
-    `claude-composer`, and `claude-agent-rail` via
-    [runtime/backlot-component-loader.js](runtime/backlot-component-loader.js),
-    parameterized by `data-page="chat|cowork|code"`, `data-sidebar`/
-    `data-rail="on|off"`, and `.theme-dark`.
-- [surfaces/README.md](surfaces/README.md)
-- [PRIMITIVES.md](PRIMITIVES.md)
+Real apps keep changing, so the backlot maintains itself through agent
+workflows rather than manual upkeep. Surfaces are held to a **measured** bar:
+dated ground-truth reference sets live in `reference/<family>/<date>/`
+([reference/sources.json](reference/sources.json) declares how each family is
+acquired), and `npm run fidelity:score` writes ranked deltas to
+`reports/fidelity/` — fixes are made from measured deltas, never from memory
+of what an app looks like.
 
-## Project Boundaries
+Three multi-agent workflows (run via the Workflow tool; see
+[AGENTS.md](AGENTS.md)):
 
-- License: [ISC](LICENSE).
-- Asset stance: fidelity-first — recreate as closely as possible; the only
-  default is keeping the owner's own logged-in captures out of git (privacy).
-- Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md).
+- **fidelity-push** — a scored pass over every surface family: deterministic
+  Score → design Critique (fed the measured deltas) → Fix rounds with
+  capture-verify → an adversarial Judge that enforces the score bar and runs a
+  **stranger test** (a fresh-context judge must pick the real app from
+  real-vs-rebuilt pairs; its tells become the next round's work) → full gates.
+- **onboard-app** — the front door for a net-new app family (args
+  `{family, title, urls}`): reference research → dated ground-truth capture →
+  measured spec → build → adversarial judge → registration everywhere.
+- **interaction-push** — the motion counterpart (args `{demos}`): renders each
+  interaction demo, extracts frames, and holds the recording to a motion judge
+  (state coherence, cursor believability, pacing, a stranger-recording test)
+  with repair rounds before the GIF ships.
 
-Tracked surfaces should stay runnable from a fresh clone — keep private
-captures, donor-repo clones, downloaded product videos, and generated renders
-local (size and privacy), and use synthetic demo content in the surfaces
-themselves.
-
-Research starts in:
-
-- [docs/research/claude-release-video-references.md](docs/research/claude-release-video-references.md)
-- [docs/research/hyperframes-website-workflow.md](docs/research/hyperframes-website-workflow.md)
-- [docs/research/open-source-ui-donor-repos.md](docs/research/open-source-ui-donor-repos.md)
-- [docs/workflows/capture-first-ui-reconstruction.md](docs/workflows/capture-first-ui-reconstruction.md)
-- [docs/workflows/target-surface-inventory.md](docs/workflows/target-surface-inventory.md)
-
-Useful commands:
+Loop artifacts land in `workspace/` (gitignored), and two self-contained review
+pages make them inspectable — `npm run review` serves
+`workspace/compare.html` (reference | before | current, with overlay slider)
+and `workspace/gallery.html` (every surface + demo GIF). Both inline their
+media, so agents can also publish them as Claude Code Artifacts for remote
+monitoring during long passes.
 
 ```bash
-npm run catalog:generate
-npm run registry:check
-npm run registry:check:captures
-npm run capture:web -- <url-or-local-file> --slug <name> [--selector "main"]
-npm run capture:quickstart-demo
-npm run capture:surface
-npm run capture:finder
-npm run capture:browser-app
-npm run inventory:generate
-npm run inventory:refresh
-npm run compare:finder
-npm run compare:sheets
-npm run hf:lint
-npm run hf:validate
-npm run hf:inspect
-npm run hf:snapshot
-npm run hf:render
-npm run example:quickstart:render
+# capture a public live page into a dated reference set
+npm run reference:capture -- https://example.com --family <fam> --label web-app
+
+# score a surface against measured ground truth
+npm run fidelity:score -- --label <name> \
+  --ours captures/surface-<id>/capture.json \
+  --theirs reference/<fam>/<date>/<label>/tokens.json
 ```
 
-Current render artifact:
+## Contributing
 
-- `renders/claude-keynote-workflow-draft.mp4`
+See [CONTRIBUTING.md](CONTRIBUTING.md) — setup, the surface checklist, and the
+PR gates. The docs index is [docs/README.md](docs/README.md); design language
+lives in [docs/design-language.md](docs/design-language.md).
 
-The render filename is historical; the current composition content is focused on
-Claude, Finder, a browser/app background surface, and a PowerPoint-like
-presentation editor.
+## License, trademarks & third-party assets
+
+- Code and hand-built surfaces: [ISC](LICENSE).
+- The surfaces are **original HTML/CSS recreations** of real product UIs,
+  made for instructional and demonstrative purposes (fair use). All product
+  names, logos, and brands are property of their respective owners; their use
+  here does not imply endorsement. The full attribution register — every icon
+  set, font, donor repo, and capture source with its license — is
+  [RESOURCES.md](RESOURCES.md).
+- Privacy is the one hard constraint: contributors' own logged-in captures
+  stay local (gitignored); tracked surfaces use synthetic demo content.

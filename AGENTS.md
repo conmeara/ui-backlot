@@ -8,7 +8,7 @@ library of editable software sets, not as one monolithic video.
 Read these files first:
 
 1. `VISION.md` - product purpose and quality bar.
-2. `DESIGN.md` - visual identity and motion rules.
+2. `docs/design-language.md` - visual identity and motion rules.
 3. `docs/catalog.md` - human and agent-readable surface catalog.
 4. `surfaces/registry.json` - authoritative machine-readable inventory.
 5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
@@ -24,7 +24,19 @@ Read these files first:
    fidelity-push.js` = scored critique/fix/judge pass over existing families;
    `.claude/workflows/onboard-app.js` = add a NET-NEW app family end to end
    (research → capture → spec → build → judge → register), args
-   `{family, title, urls}`.
+   `{family, title, urls}`; `.claude/workflows/interaction-push.js` = motion
+   pass over interaction demos (author missing ones → render → frame-level
+   motion judge → fix rounds → ship GIF + README row), args `{demos}`.
+9. Working files go in `workspace/` (gitignored; loop scratch in
+   `workspace/fidelity/` and `workspace/interactions/`, ad-hoc files in
+   `workspace/scratch/`). Review loop results visually with `npm run review`
+   (builds self-contained `workspace/compare.html` + `workspace/gallery.html`,
+   serves on :4173) — see CLAUDE.md for the Artifact-publishing convention.
+10. External consumers install surfaces via the committed `registry/`
+   (HyperFrames format, generated from `surfaces/registry.json`). After
+   editing the surface registry or a published composition, run
+   `npm run registry:hf:generate` — `open-source:check` fails on a stale
+   `registry/`.
 
 ## Pick Surfaces
 
@@ -96,7 +108,7 @@ the registry and HyperFrames checks.
   renders, donor clones, or the owner's private/logged-in captures (size and
   privacy).
 - Add new reusable surfaces to `surfaces/registry.json`.
-- Regenerate `docs/catalog.md` with `npm run catalog:generate` after registry
-  changes.
+- Regenerate `docs/catalog.md` (`npm run catalog:generate`) AND the public
+  HyperFrames registry (`npm run registry:hf:generate`) after registry changes.
 - Keep examples small. A public starter should show how to compose surfaces,
   not hide the pattern behind a large bespoke scene.

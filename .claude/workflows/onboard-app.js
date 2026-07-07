@@ -13,7 +13,8 @@ export const meta = {
 }
 
 const ROOT = '/Users/conmeara/Projects/ui-backlot'
-const SCRATCH = '/private/tmp/ui-backlot-fidelity'
+// Repo-local + gitignored so the review pages (npm run review) can see it.
+const SCRATCH = ROOT + '/workspace/fidelity'
 
 if (!args || !args.family || !args.title) {
   throw new Error('onboard-app requires args {family, title, urls?, hints?} — e.g. {family: "slack", title: "Slack", urls: ["https://slack.com/features"]}')
@@ -35,7 +36,7 @@ const TOOLBOX =
   'FIDELITY-FIRST: recreate the app as closely as possible — match real fonts, glyphs, logos, colors, and layout exactly (tracking a real asset to nail the look is fine). Build editable HTML/CSS/SVG because surfaces must animate for video. HARD LINES (safety/privacy, not licensing): never enter credentials or complete CAPTCHAs/bot checks — a human does those; keep the owner\'s private/logged-in captures out of git (gitignore covers reference/*/20*/**/screenshot* and elements.json) and use synthetic demo content in the tracked surface.'
 
 const CONVENTIONS =
-  'REPO CONVENTIONS (read before building): PRIMITIVES.md (atoms → shells → workflows), DESIGN.md, docs/fidelity-loop-plan-2026-07-05.md, an exemplar composition (compositions/codex-app.html is a good single-window example). ' +
+  'REPO CONVENTIONS (read before building): docs/reference/primitives.md (atoms → shells → workflows), docs/design-language.md, docs/fidelity-loop-plan-2026-07-05.md, an exemplar composition (compositions/codex-app.html is a good single-window example). ' +
   'A new surface = compositions/' + FAM + '-app.html with: foundation @import in the OUTER style block, a <template id="..."> wrapping the component, a stage div with data-composition-id/width/height, inline <svg><symbol> icons copied from assets/icons/source-authentic/ or found via node tools/find-icon.mjs <terms> --symbol (200k+ icons offline, prints a paste-ready <symbol>; never hand-draw glyphs), namespaced CSS classes, and light theme first (.theme-dark later). ' +
   'It must render standalone via file:// for tools/capture-web-ui.mjs.'
 

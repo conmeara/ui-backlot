@@ -1,16 +1,8 @@
 # UI Backlot Vision
 
-UI Backlot should become the production backlot for agent-era software demos:
-a code-native studio where Claude, Codex, and related workflow videos can be
-planned, rebuilt, animated, rendered, revised, and shipped without depending on
-perfect live screen recordings.
-
-It should also remain understandable as a kit. A fresh contributor, and
-especially a coding agent, should be able to clone the repo, discover which
-surfaces exist, choose the right components for a workflow, compose a short
-HyperFrames video, run the verification gates, and understand which
-source-authentic assets each surface depends on. Public redistribution can be a
-separate packaging review; the working backlot optimizes for fidelity first.
+UI Backlot is a production backlot for agent-era software demos: a code-native
+studio where product-workflow videos are planned, rebuilt, animated, rendered,
+and revised — without depending on perfect live screen recordings.
 
 The core bet is simple: the best instructional and launch demos will not be
 recorded one fragile take at a time. They will be assembled from editable
@@ -18,135 +10,108 @@ software sets.
 
 ## North Star
 
-A creator should be able to describe a workflow, provide or capture a few real
-app states, and generate a polished demo video from reusable UI surfaces:
-Claude, Codex, Finder, browser apps, PowerPoint, Figma, Premiere, terminals,
-documents, spreadsheets, and whatever other software the story requires.
+A creator describes a workflow, provides or captures a few real app states, and
+generates a polished demo video from reusable UI surfaces: Claude, Codex,
+Finder, browsers, Office apps, Figma, Premiere, terminals — whatever software
+the story requires.
 
-The result should feel like a real product demo because the surfaces are based
-on real applications, but it should be as editable as a motion-graphics project:
-text, cursor moves, windows, files, tool calls, progress states, slides,
-browser content, and before/after changes can all be scripted and refined.
+The result feels like a real product demo because every surface is rebuilt from
+real applications. But it edits like a motion-graphics project: text, cursor
+moves, windows, files, tool calls, progress states, and before/after changes
+are all scripted and refined in code.
+
+Eventually the repo should feel like a reusable studio lot for software: the
+Finder street, the Claude office, the PowerPoint conference room, the browser
+storefront, the terminal basement. Each set is editable, lightable, scriptable,
+and ready for another scene.
 
 ## Why This Exists
 
-Live screen recordings are expensive in the wrong places. They make the human
-operator responsible for timing, cursor precision, clean data, window layout,
-network behavior, app state, narration, and retakes. They also make iteration
-painful: changing one line of copy or one UI state can require recording the
-whole demo again.
+Live screen recordings put the expensive work in the wrong place. A human
+operator becomes responsible for timing, cursor precision, clean data, window
+layout, app state, and retakes — and changing one line of copy can mean
+re-recording the whole demo.
 
 UI Backlot moves that work into code. We capture the truth of real software,
 rebuild the parts that need to be editable, and let agents produce many takes
 quickly. The human becomes the director and taste filter instead of the person
-trying to perform a perfect screen recording.
+performing a perfect take.
 
-## Product Shape
+## The System
 
-At maturity, UI Backlot should include:
+- **Surfaces** — a library of high-fidelity, editable app surfaces, each with
+  an agent-readable registry entry, capture commands, and validation hooks.
+- **Primitives** — reusable building blocks for cursors, typing, clicking,
+  dragging, tool calls, progress rows, app switching, and before/after reveals.
+- **Capture** — a pipeline that turns real app screenshots, DOM, accessibility
+  trees, and design references into rebuildable components. Open-source UI
+  projects and local apps serve as donors for real fonts, icons, and
+  measurements, with provenance kept explicit.
+- **Render** — a HyperFrames pipeline with repeatable preview, lint, validate,
+  inspect, snapshot, and video-output commands.
+- **Fidelity loop** — every surface is scored against real app captures and
+  reference material, not vibes. Improvements are verifiable through snapshots,
+  side-by-side comparisons, and render gates.
 
-- A library of high-fidelity editable app surfaces.
-- An agent-readable catalog and registry that make surface selection obvious.
-- A primitive system for cursors, typing, dragging, clicking, tool calls,
-  progress rows, app switching, focus pulls, and before/after changes.
-- A capture pipeline for turning real app screenshots, DOM, accessibility
-  trees, video frames, and design references into rebuildable UI components.
-- A donor-repo and local-app research lane for mining real fonts, icons, UI
-  elements, measurements, and component inspiration.
-- A scene/story system that lets one workflow drive both a video render and
-  optional real artifacts such as files, slides, docs, or datasets.
-- A render pipeline using HyperFrames, Remotion, or both, with repeatable
-  preview, lint, inspect, snapshot, and video output commands.
-- A quality loop that compares prototypes against reference videos and real app
-  captures instead of relying on vibes.
-- A contribution guide so the reusable kit can keep improving. The stance is
-  fidelity-first: recreate real surfaces as closely as possible, with the one
-  privacy default that the owner's own logged-in captures stay local.
+## Self-Improving by Design
 
-## First Vertical Slice
+Real apps keep changing, so the backlot is built to maintain and grow itself
+through multi-agent workflows rather than manual upkeep:
 
-The first production-quality workflow is Claude on a Mac helping with a
-PowerPoint-style presentation update.
+- **Fidelity push** — a recurring pass over every surface family: re-score
+  against freshly captured ground truth, critique the measured deltas, apply
+  tiered fixes, and hold the result to an adversarial judge and a stranger
+  test before it lands. When the real app ships a redesign, the backlot
+  follows.
+- **App onboarding** — adding a new app is a workflow, not a project. Agents
+  research official references, capture dated ground truth, write a measured
+  visual spec, build the surface with real fonts and icons, then score, judge,
+  and register it. Anyone should be able to bring their own app to the lot the
+  same way.
+- **Interaction push** — static fidelity is not enough; motion has its own
+  loop. For each surface, agents script a canonical interaction demo with the
+  primitive library, render it, and hold the recording to a motion judge —
+  timing, easing, cursor believability, and a stranger test — before it ships
+  as a worked example.
 
-That slice needs convincing editable versions of:
-
-- macOS desktop, menu bar, Dock, Finder, and cursor behavior.
-- Claude desktop or web app shell, including chat, composer, attachments,
-  reasoning/tool states, and completion summaries.
-- PowerPoint editing chrome, slide thumbnails, ribbon controls, slide canvas,
-  selected objects, comments, notes, and inspector panes.
-- A browser/app surface that can later branch into Airtable, Figma web,
-  internal dashboards, or other SaaS scenes.
-
-This first slice is the proving ground. Once it works, the same capture,
-rebuild, primitive, and render patterns should generalize to many demo types.
+The loops are as much the product as the surfaces are: every pass leaves
+behind dated captures, scores, and specs that make the next pass cheaper and
+the next surface easier.
 
 ## Operating Principles
 
 1. Build editable surfaces, not screenshots.
-2. Use real app state as the source of truth whenever possible.
-3. Use reference videos for taste, pacing, and quality, not as visible assets.
-4. Prefer small reusable primitives over one-off animation tricks.
-5. Treat open-source UI projects and local apps as reference material and
-   component donors for real fonts, icons, app marks, layout measurements, and
-   UI atoms.
-6. Track source-authentic assets when they materially improve fidelity and keep
-   their provenance explicit. Keep private data, raw donor clones, generated
-   renders, and bulky working captures out of product source.
-7. Make every improvement verifiable through preview, snapshot, inspect, render,
-   or side-by-side comparison.
-8. Optimize for future demo volume: once a surface is rebuilt, agents should be
-   able to reuse it across many stories.
-9. Keep the repo agent-first: every reusable surface should have enough
-   metadata, source evidence, capture commands, and validation hooks for an
-   agent to pick it up without reading the whole history.
+2. Real app state is the source of truth; reference videos set taste and
+   pacing, never appear as assets.
+3. Prefer small reusable primitives over one-off animation tricks.
+4. Make every improvement verifiable — preview, snapshot, inspect, render, or
+   side-by-side comparison.
+5. Keep the repo agent-first: a surface should carry enough metadata and
+   evidence for an agent to pick it up without reading the history.
+6. Keep private data, raw donor clones, generated renders, and bulky working
+   captures out of product source.
 
 ## Quality Bar
 
-UI Backlot is working when a demo can be changed materially without a new manual
-screen recording.
-
-A strong demo kit should prove:
+UI Backlot is working when a demo can be changed materially without a new
+manual screen recording. Concretely:
 
 - The preview opens locally with one command.
-- The composition renders a 12-20 second draft video reliably.
-- At least eight reusable UI or motion primitives are present.
-- Important app surfaces are editable HTML/CSS/React/HyperFrames, not flattened
-  screenshots.
-- Snapshot/contact-sheet evidence shows progress against reference videos or
-  real app captures.
-- Lint, validation, visual inspect, and render gates pass or have documented
+- Compositions render a 12–20 second draft video reliably.
+- App surfaces are editable HTML/CSS/HyperFrames, not flattened screenshots.
+- Lint, validation, inspect, and render gates pass, or carry documented
   intentional warnings.
-- The project docs explain what is source-captured, source-authentic,
-  hand-rebuilt, donor-informed, and what still needs fidelity work.
-
-## Long-Term System
-
-The long-term system should let an agent move through this loop:
-
-1. Read a workflow brief.
-2. Identify the apps and surfaces needed.
-3. Capture or inspect real app state.
-4. Rebuild editable UI components.
-5. Script motion and state changes.
-6. Render a draft video.
-7. Compare against references.
-8. Refine until the demo is believable.
-9. Reuse the new primitives in the next workflow.
-
-Eventually, UI Backlot should feel like a reusable studio lot for software:
-the Finder street, the Claude office, the PowerPoint conference room, the
-browser storefront, the Figma workshop, the terminal basement. Each set is
-editable, lightable, scriptable, and ready for another scene.
+- Snapshot and comparison evidence shows fidelity against real app captures.
+- Docs explain what is source-captured, hand-rebuilt, donor-informed, and what
+  still needs fidelity work.
 
 ## Non-Goals
 
-UI Backlot is not trying to become a generic website builder, a screen recorder,
-or a pile of static mockups. It should not ship private screenshots, raw
-reference videos, generated captures, or bulky donor repos as product assets.
-It should not clone fictional apps from reference videos unless they teach a
-reusable surface pattern.
+UI Backlot is not a website builder, a screen recorder, or a pile of static
+mockups. It does not ship private screenshots, raw reference videos, or donor
+repos as product assets, and it does not clone fictional apps unless they teach
+a reusable surface pattern.
 
 The aim is a practical creative-production system: faithful enough to teach
 real workflows, structured enough for agents to operate, and editable enough
-that iteration becomes cheap.
+that iteration is cheap.

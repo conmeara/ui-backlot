@@ -13,7 +13,8 @@ export const meta = {
 
 const ROOT = '/Users/conmeara/Projects/ui-backlot'
 // Stable scratch dir (survives across sessions; fix agents mkdir -p it).
-const SCRATCH = '/private/tmp/ui-backlot-fidelity'
+// Repo-local + gitignored so the review pages (npm run review) can see it.
+const SCRATCH = ROOT + '/workspace/fidelity'
 
 // scoreRef names a label inside the NEWEST dated dir under reference/<family>/
 // (created by tools/capture-live-reference.mjs / import-reference.mjs).
@@ -540,11 +541,28 @@ const gate = await agent(
   '1. Full capture sweep: every npm script whose name starts with "capture:" EXCEPT the argless wrappers capture:hf and capture:web. List them by reading package.json. Run each with npm run <name>; record which fail.\n' +
   '2. npm run registry:check:captures — report its counts; registryOk=false only on hard errors, not count drift (counts changed in the pass-102-111 consolidation).\n' +
   '3. npm run catalog:generate\n' +
-  '4. npm run hf:lint — BASELINE is 19 pre-existing errors (docs/prototypes/full-inventory-realism-audit-pass-097.md). Report the total and list any error lines that are NEW versus that baseline.\n' +
+  '4. npm run hf:lint — BASELINE is 29 intentional errors: 21x invalid_parent_traversal_in_asset_path (in-repo compositions use ../ because the capture pipeline loads them via file://; the published registry/ copies are root-relative) + 8x template_literal_selector (pre-existing). Report the total and list any error lines that are NEW versus that baseline.\n' +
   '5. npm run example:quickstart:render — expect a ~14s video to render successfully.\n' +
   '6. npm run inventory:generate\n' +
   'Report: captureFailures (script names), registryOk, lintErrors (count), newLintErrors, catalogOk, renderOk, inventoryOk, notes.',
   { label: 'gates', phase: 'Gate', model: 'haiku', effort: 'low', schema: GATE_SCHEMA }
+)
+
+// Persist the pass log for the compare page (npm run compare:page reads
+// workspace/fidelity/pass-log.json and lists each surface's applied changes).
+const passLog = {
+  pass: 'fidelity-push',
+  families: familyResults.filter(Boolean).map(r => ({
+    family: r.family,
+    verdict: r.judge ? r.judge.verdict : 'unknown',
+    applied: r.fix ? r.fix.applied : [],
+    regressions: r.judge ? r.judge.regressions : [],
+    remaining: r.judge ? (r.judge.remaining || []).slice(0, 10) : [],
+  })),
+}
+await agent(
+  'Mechanical file write. Write EXACTLY this JSON (pretty-printed) to ' + SCRATCH + '/pass-log.json (mkdir -p the directory first), then re-read the file and confirm it parses with node -e. Return applied=[{file:"pass-log.json",change:"written"}], skipped=[], capturesVerified=true, notes=byte count.\n' + JSON.stringify(passLog),
+  { label: 'pass-log', phase: 'Gate', model: 'haiku', effort: 'low', schema: FIX_SCHEMA }
 )
 
 const summary = familyResults.filter(Boolean).map(r => ({

@@ -17,6 +17,13 @@ npm run hf:inspect
 ```
 
 Node.js 22 or newer and FFmpeg are recommended for HyperFrames rendering.
+
+`hf:lint` has a known baseline of 29 intentional errors: 21×
+`invalid_parent_traversal_in_asset_path` (in-repo compositions use `../` paths
+because the capture pipeline loads them via `file://`; the published
+`registry/` copies are rewritten root-relative for consumers) and 8×
+`template_literal_selector` (pre-existing). New errors beyond that baseline
+should be fixed before a PR.
 Generated captures are ignored by git. `registry:check` validates capture
 metadata in a fresh clone; run `npm run registry:check:captures` after a local
 capture sweep when you want the registry to require every PNG on disk.
@@ -29,7 +36,14 @@ capture sweep when you want the registry to require every PNG on disk.
 4. Add a short prototype note in `docs/prototypes/` when the change introduces
    a new source, fidelity decision, or reusable pattern.
 5. Run the surface capture script and the validation commands.
-6. Regenerate `docs/catalog.md`.
+6. Regenerate `docs/catalog.md` (`npm run catalog:generate`) and the public
+   HyperFrames registry (`npm run registry:hf:generate`).
+
+**Adding a whole new app family?** That's a workflow, not a manual project:
+run `.claude/workflows/onboard-app.js` via the Workflow tool with
+`{family, title, urls}` — it researches references, captures dated ground
+truth, writes a measured spec, builds the surface, holds it to an adversarial
+judge, and registers it everywhere. See AGENTS.md.
 
 ## Add A Demo Workflow
 
@@ -52,11 +66,9 @@ synthetic demo content in the tracked surfaces.
 
 ## Pull Request Checklist
 
-- [ ] `npm run catalog:generate`
-- [ ] `npm run registry:check`
-- [ ] `npm run hf:lint`
-- [ ] `npm run hf:validate`
-- [ ] `npm run hf:inspect`
+- [ ] `npm run open-source:check` (catalog + surface registry + HyperFrames
+      registry staleness + lint + validate + inspect)
 - [ ] At least one relevant `npm run capture:*` command
 - [ ] A draft render when a demo workflow changed
+- [ ] Visual sanity pass: `npm run review` and glance at the gallery/compare pages
 - [ ] `git diff --check`
