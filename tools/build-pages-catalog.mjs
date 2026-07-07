@@ -217,10 +217,10 @@ a { color: var(--accent-ink); }
     <a class="gh-link" href="https://github.com/conmeara/ui-backlot">github.com/conmeara/ui-backlot ↗</a>
   </div>
   <h1>UI Backlot<span class="dot">.</span></h1>
-  <p class="lede"><strong>Editable software sets for demo videos.</strong> Every surface below is a
-  hand-built, high-fidelity HTML recreation of a real app — scriptable, themeable, and rendered
-  with HyperFrames instead of screen-recorded. Pick an application, flip a card through its
-  variants, and click an install command to copy it.</p>
+  <p class="lede"><strong>Editable software sets for demo videos.</strong> High-fidelity HTML
+  recreations of real apps — scriptable, themeable, and rendered with HyperFrames instead of
+  screen-recorded. Pick an application, flip a card through its variants, and click an install
+  command to copy it.</p>
   <button class="hero-install" data-cmd='"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"'><code>"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"</code><span class="hint">copy → hyperframes.json</span></button>
   <p class="hero-stats">${cardCount} components · ${gifs.length} scripted demos · ${appCount} applications — starter scenes: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code></p>
 </header>

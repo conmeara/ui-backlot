@@ -18,30 +18,25 @@ streaming replies), rendered deterministically frame by frame.
 <sub>The kind of prompt that produces this: *"Make a demo where a cursor pulls
 the Claude app up from the dock, then opens Excel on top."*</sub>
 
-Each interaction is a few lines of
-[`runtime/backlot-interactions.js`](runtime/backlot-interactions.js) — see the
-[authoring guide](#scriptable-interactions) and the worked examples in
-[`examples/*-interaction.html`](examples/).
-
 <table>
 <tr>
-<td width="50%"><b>Claude — chat</b><br><img src="docs/media/claude-chat-interaction.gif" alt="Claude chat interaction"><br><sub>Type a prompt → send → thinking → streamed reply.</sub></td>
-<td width="50%"><b>Claude — cowork</b><br><img src="docs/media/cowork-interaction.gif" alt="Claude cowork interaction"><br><sub>Prompt → a tool card runs → progress steps → streamed reply.</sub></td>
+<td width="50%"><b>Claude — chat</b><br><img src="docs/media/claude-chat-interaction.gif" alt="Claude chat interaction"></td>
+<td width="50%"><b>Claude — cowork</b><br><img src="docs/media/cowork-interaction.gif" alt="Claude cowork interaction"></td>
 </tr>
 <tr>
-<td><b>Excel</b><br><img src="docs/media/excel-interaction.gif" alt="Excel interaction"><br><sub>Select a cell, type <code>=SUM(C5:C7)</code>, the result reveals.</sub></td>
-<td><b>Word</b><br><img src="docs/media/word-interaction.gif" alt="Word interaction"><br><sub>The title types, body paragraphs stream, word count ticks up.</sub></td>
+<td><b>Excel</b><br><img src="docs/media/excel-interaction.gif" alt="Excel interaction"></td>
+<td><b>Word</b><br><img src="docs/media/word-interaction.gif" alt="Word interaction"></td>
 </tr>
 <tr>
-<td><b>PowerPoint</b><br><img src="docs/media/powerpoint-interaction.gif" alt="PowerPoint interaction"><br><sub>Click the title box, type the slide title, save.</sub></td>
-<td><b>Browser</b><br><img src="docs/media/browser-interaction.gif" alt="Browser interaction"><br><sub>Type a URL, a loading bar sweeps, the page loads.</sub></td>
+<td><b>PowerPoint</b><br><img src="docs/media/powerpoint-interaction.gif" alt="PowerPoint interaction"></td>
+<td><b>Browser</b><br><img src="docs/media/browser-interaction.gif" alt="Browser interaction"></td>
 </tr>
 <tr>
-<td><b>Finder</b><br><img src="docs/media/finder-interaction.gif" alt="Finder interaction"><br><sub>The real column-view Finder component — select files.</sub></td>
-<td><b>Codex CLI</b><br><img src="docs/media/codex-interaction.gif" alt="Codex CLI interaction"><br><sub>Type a command, stream the terminal output.</sub></td>
+<td><b>Finder</b><br><img src="docs/media/finder-interaction.gif" alt="Finder interaction"></td>
+<td><b>Codex CLI</b><br><img src="docs/media/codex-interaction.gif" alt="Codex CLI interaction"></td>
 </tr>
 <tr>
-<td><b>Claude Code CLI</b><br><img src="docs/media/claude-code-interaction.gif" alt="Claude Code CLI interaction"><br><sub>Type a command — tool calls and a summary stream in.</sub></td>
+<td><b>Claude Code CLI</b><br><img src="docs/media/claude-code-interaction.gif" alt="Claude Code CLI interaction"></td>
 <td></td>
 </tr>
 </table>
@@ -142,7 +137,7 @@ never `.call()`. Render with
 `npx hyperframes render --composition examples/<name>.html --quality draft --low-memory-mode`.
 Details: [docs/interactions-system-plan.md](docs/interactions-system-plan.md).
 
-## The self-improving loops
+## Loops
 
 Real apps keep changing, so the backlot maintains itself through agent
 workflows. Surfaces are held to a **measured** bar: dated ground-truth
@@ -155,10 +150,10 @@ Three workflows (run via the Workflow tool; see [AGENTS.md](AGENTS.md)):
 - **fidelity-push** — score every family, critique from the measured deltas,
   fix, then an adversarial judge (including a stranger test: pick the real app
   from real-vs-rebuilt pairs).
-- **onboard-app** — add a net-new app family end to end: research → dated
-  ground-truth capture → spec → build → judge → register.
 - **interaction-push** — the motion counterpart: render each demo, hold the
   frames to a motion judge, repair, ship the GIF.
+- **onboard-app** — add a net-new app family end to end: research → dated
+  ground-truth capture → spec → build → judge → register.
 
 Loop artifacts land in `workspace/` (gitignored); `npm run review` builds and
 serves two self-contained pages — `compare.html` (reference vs current, plus
@@ -176,7 +171,7 @@ language lives in [docs/design-language.md](docs/design-language.md).
 
 ## License, trademarks & third-party assets
 
-- Code and hand-built surfaces: [ISC](LICENSE).
+- Code and surfaces: [ISC](LICENSE).
 - The surfaces are **original HTML/CSS recreations** of real product UIs,
   made for instructional and demonstrative purposes (fair use). All product
   names, logos, and brands are property of their respective owners; their use
