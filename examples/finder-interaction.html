@@ -5,64 +5,36 @@
     <title>Finder — Interaction Demo</title>
   </head>
   <body>
-    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="8">
-      <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder column-view navigation">
-        <div class="fn-window">
-          <div class="fn-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fn-title" data-role="title">Projects</span></div>
-          <div class="fn-cols">
-            <div class="fn-col sidebar">
-              <div class="sec">Favorites</div>
-              <div class="row"><span class="ico">◷</span>Recents</div>
-              <div class="row sel-blue"><span class="ico">◧</span>Projects</div>
-              <div class="row"><span class="ico">◧</span>Documents</div>
-              <div class="row"><span class="ico">◧</span>Downloads</div>
-            </div>
-            <div class="fn-col">
-              <div class="row folder" data-role="c1a"><span class="ico">📁</span>Launch Deck<span class="chev">›</span></div>
-              <div class="row folder"><span class="ico">📁</span>Brand kit<span class="chev">›</span></div>
-              <div class="row folder"><span class="ico">📁</span>Research<span class="chev">›</span></div>
-              <div class="row"><span class="ico">📄</span>README.md</div>
-            </div>
-            <div class="fn-col" data-role="col2">
-              <div class="row" data-role="c2a"><span class="ico">📄</span>Q2 revenue.csv</div>
-              <div class="row"><span class="ico">📄</span>slide-notes.md</div>
-              <div class="row folder"><span class="ico">📁</span>exports<span class="chev">›</span></div>
-              <div class="row"><span class="ico">📄</span>design-feedback.txt</div>
-            </div>
-            <div class="fn-col preview" data-role="col3">
-              <div class="pv-icon">📄</div>
-              <div class="pv-name">Q2 revenue.csv</div>
-              <div class="pv-meta">CSV · 14 KB<br />Modified today, 9:41 AM</div>
-            </div>
-          </div>
-        </div>
+    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5">
+      <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder (real component) with a scripted selection">
+        <div class="wallpaper" aria-hidden="true"></div>
+        <div class="fn-frame component-frame"
+             data-primitive="finder-window"
+             data-backlot-mount-src="../compositions/finder-window.html"
+             data-backlot-mount-selector="#finder-window-surface"></div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
       </section>
     </div>
 
     <style>
-      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#c9ccd1; }
-      #finder-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; color:#16120f; }
+      @import url("../styles/backlot-foundation.css");
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#0b1020; }
+      #finder-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
       #finder-interaction * { box-sizing:border-box; }
-      .fn-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#e6e9ee,#d7dbe1); display:grid; place-items:center; }
-      .fn-window { position:relative; width:960px; height:560px; background:#f4f5f7; border-radius:12px; border:1px solid rgba(20,30,48,0.14); box-shadow:0 34px 90px rgba(28,30,38,0.26); overflow:hidden; display:grid; grid-template-rows:44px 1fr; }
-      .fn-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#ececef; border-bottom:1px solid rgba(20,30,48,0.1); }
-      .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
-      .fn-title { font-size:14px; font-weight:600; color:#1a1a1a; }
-      .fn-cols { display:grid; grid-template-columns:190px 1fr 1fr 200px; background:#fff; overflow:hidden; }
-      .fn-col { border-right:1px solid rgba(20,30,48,0.08); padding:8px; overflow:hidden; }
-      .fn-col.sidebar { background:#f0f1f4; }
-      .sec { font-size:11px; color:#8a8f98; padding:6px 8px 4px; }
-      .row { display:flex; align-items:center; gap:8px; font-size:13.5px; color:#1c1c1e; padding:6px 8px; border-radius:6px; position:relative; }
-      .row .ico { width:18px; text-align:center; }
-      .row .chev { margin-left:auto; color:#b0b4bb; }
-      .row.sel-blue { background:#e6e8ec; }
-      .row.is-selected { background:#2f7bf6; color:#fff; } .row.is-selected .chev { color:#dbe7ff; }
-      .fn-col.preview { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px; background:#fbfbfc; }
-      .pv-icon { font-size:52px; } .pv-name { font-size:14px; font-weight:600; } .pv-meta { font-size:12px; color:#67727f; line-height:1.5; }
-      .demo-cursor { position:absolute; left:640px; top:520px; z-index:90; width:26px; height:26px; background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
-      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(47,123,246,0.8); border-radius:50%; opacity:0; }
+      .fn-stage { position:relative; width:1280px; height:800px; overflow:hidden; }
+      .wallpaper { position:absolute; inset:0; background:
+        radial-gradient(120% 120% at 50% 55%,#3f7fd6 0%,#2a5bc0 45%,#16307e 100%),
+        linear-gradient(160deg,#6ea6e8 0%,#2f68c8 48%,#17348a 100%); }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* finder-window is 920x436; scale up and centre as a floating window */
+      .fn-frame { left:130px; top:170px; width:1196px; height:567px; border-radius:12px;
+        box-shadow:0 42px 110px rgba(6,18,54,0.45); }
+      .fn-frame > [data-backlot-mounted-component] { transform: scale(1.3); }
+      .demo-cursor { position:absolute; left:640px; top:520px; z-index:90; width:24px; height:24px;
+        background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(255,255,255,0.85); border-radius:50%; opacity:0; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -70,28 +42,34 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".fn-stage");
-      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      const c1a = stage.querySelector('[data-role="c1a"]');
-      const c2a = stage.querySelector('[data-role="c2a"]');
-      gsap.set(['[data-role="col2"]', '[data-role="col3"]'], { opacity: 0 });
+      // Build the timeline only after the real finder-window has mounted, so we
+      // can target its actual rows.
+      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        const cols = stage.querySelectorAll(".finder-column");
+        const col1 = cols[0];
+        const rows = col1 ? Array.from(col1.querySelectorAll(".file-row")) : [];
+        const cur = col1 ? col1.querySelector(".file-row.selected") : null;
+        const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      // 1) click "Launch Deck" -> it selects, column 2 slides in.
-      ix.click('[data-role="c1a"]', { at: 0.7, moveDur: 0.8 });
-      tl.set(c1a, { attr: { class: "row folder is-selected" } }, 1.15);
-      ix.show('[data-role="col2"]', { at: 1.2, dur: 0.3, from: { opacity: 0, x: -14 } });
-
-      // 2) click "Q2 revenue.csv" -> it selects, preview column appears.
-      ix.click('[data-role="c2a"]', { at: 2.2, moveDur: 0.7 });
-      tl.set(c2a, { attr: { class: "row is-selected" } }, 2.6);
-      ix.show('[data-role="col3"]', { at: 2.65, dur: 0.32, from: { opacity: 0, x: -14 } });
-      tl.set('[data-role="title"]', { textContent: "Q2 revenue.csv" }, 2.65);
-
-      window.__timelines["finder-interaction"] = tl;
-      const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(4.2).pause();
+        if (rows.length >= 5 && cur) {
+          rows[2].setAttribute("data-role", "r2");   // DESIGN.md
+          rows[4].setAttribute("data-role", "r4");   // index.html
+          // 1) select DESIGN.md
+          ix.click('[data-role="r2"]', { at: 0.7, moveDur: 0.9, press: false });
+          tl.set(cur, { attr: { class: "file-row" } }, 1.1);
+          tl.set(rows[2], { attr: { class: "file-row selected", "data-role": "r2" } }, 1.15);
+          // 2) select index.html
+          ix.click('[data-role="r4"]', { at: 2.1, moveDur: 0.8, press: false });
+          tl.set(rows[2], { attr: { class: "file-row", "data-role": "r2" } }, 2.5);
+          tl.set(rows[4], { attr: { class: "file-row selected", "data-role": "r4" } }, 2.55);
+        }
+        window.__timelines["finder-interaction"] = tl;
+        const cap = new URLSearchParams(location.search).get("capture");
+        if (cap === "hero") tl.seek(3.4).pause();
+      });
     </script>
   </body>
 </html>
