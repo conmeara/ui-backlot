@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI Backlot — surface catalog</title>
+<meta name="description" content="Editable, high-fidelity recreations of real app UIs for HyperFrames demo videos. Browse and install every surface.">
+<style>
+:root {
+  --paper: #f8f8f6; --ink: #0b0b0b; --muted: #6d6a64; --line: rgba(11,11,11,.12);
+  --card: #ffffff; --accent: #e08a62; --accent-ink: #7c3f22; --code-bg: rgba(11,11,11,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #161513; --ink: #eceae6; --muted: #9b978f; --line: rgba(236,234,230,.14); --card: #201f1c; --accent: #e08a62; --accent-ink: #f0b394; --code-bg: rgba(236,234,230,.09); }
+}
+:root[data-theme="dark"] { --paper: #161513; --ink: #eceae6; --muted: #9b978f; --line: rgba(236,234,230,.14); --card: #201f1c; --accent: #e08a62; --accent-ink: #f0b394; --code-bg: rgba(236,234,230,.09); }
+:root[data-theme="light"] { --paper: #f8f8f6; --ink: #0b0b0b; --muted: #6d6a64; --line: rgba(11,11,11,.12); --card: #ffffff; --accent: #e08a62; --accent-ink: #7c3f22; --code-bg: rgba(11,11,11,.06); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 -apple-system, "SF Pro Text", "Segoe UI", sans-serif; }
+header { max-width: 1200px; margin: 0 auto; padding: 56px 28px 8px; }
+h1 { font: 640 clamp(30px, 5vw, 44px)/1.1 ui-serif, Georgia, "Times New Roman", serif; letter-spacing: -0.015em; margin: 0 0 10px; text-wrap: balance; }
+h1 .dot { color: var(--accent); }
+.lede { max-width: 62ch; color: var(--muted); margin: 0 0 18px; }
+.hero-install { display: inline-flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.hero-install code { font: 13px/1.4 "SF Mono", ui-monospace, Menlo, monospace; }
+nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.chips { max-width: 1200px; margin: 0 auto; padding: 12px 28px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.chip { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 14px; font-size: 13.5px; cursor: pointer; }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+#search { margin-left: auto; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 6px 14px; font-size: 13.5px; min-width: 180px; }
+main { max-width: 1200px; margin: 0 auto; padding: 8px 28px 90px; }
+h2 { font: 620 22px/1.2 ui-serif, Georgia, serif; margin: 44px 0 4px; }
+.count { color: var(--muted); font: 500 13px/1 -apple-system, sans-serif; vertical-align: 3px; }
+.blurb { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.card { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.card img { width: 100%; display: block; border-bottom: 1px solid var(--line); background: #dcdcd8; }
+.thumb-empty { display: grid; place-items: center; min-height: 150px; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
+figcaption { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px 14px; font-size: 14px; }
+.meta { color: var(--muted); font-size: 12.5px; }
+.meta code, .install code { font: 12px/1.4 "SF Mono", ui-monospace, Menlo, monospace; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+.install { text-align: left; border: none; background: none; padding: 0; cursor: copy; }
+.install:hover code { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.install.copied code { background: color-mix(in srgb, var(--accent) 38%, transparent); }
+.install:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; }
+footer .inner { max-width: 1200px; margin: 0 auto; padding: 22px 28px; display: flex; gap: 18px; flex-wrap: wrap; }
+a { color: var(--accent-ink); }
+@media (prefers-reduced-motion: no-preference) { .card { transition: transform .15s ease; } .card:hover { transform: translateY(-2px); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>UI Backlot<span class="dot">.</span> Editable software sets for demo videos.</h1>
+  <p class="lede">Every surface below is a hand-built, high-fidelity HTML recreation of a real app —
+  scriptable, themeable, and renderable with HyperFrames. No screen recording. Click any install
+  command to copy it; point your <code>hyperframes.json</code> at
+  <a href="https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json">this registry</a> first.</p>
+  <div class="hero-install"><code>"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"</code></div>
+</header>
+<nav><div class="chips">
+<button class="chip active" data-filter="all">All</button>
+<button class="chip" data-filter="workflows">Workflows</button>
+<button class="chip" data-filter="claude">Claude & Chat</button>
+<button class="chip" data-filter="desktop">Desktop & Browser</button>
+<button class="chip" data-filter="apps">Productivity & Creative Apps</button>
+<button class="chip" data-filter="terminal">Codex & Terminal</button>
+<button class="chip" data-filter="demos">Interaction demos</button>
+<input id="search" type="search" placeholder="Filter surfaces…" aria-label="Filter surfaces">
+</div></nav>
+<main>
+<section id="workflows">
+  <h2>Workflows <span class="count">17</span></h2>
+  <p class="blurb">Multi-surface scenes — the fastest path to a video.</p>
+  <div class="grid"><figure class="card" data-group="workflows" data-search="claude-browser-chat-pane-workflow claude chat pane plus browser workflow workflow claude browser chat-pane lean-pane modular-assembly">
+  <img loading="lazy" src="catalog-media/thumbs/claude-browser-chat-pane-workflow.jpg" alt="Claude Chat Pane Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Chat Pane Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-browser-chat-pane-workflow"><code>npx hyperframes add claude-browser-chat-pane-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-browser-chat-workflow claude chat shell plus browser workflow workflow claude browser chat-shell lean-shell modular-assembly">
+  <img loading="lazy" src="catalog-media/thumbs/claude-browser-chat-workflow.jpg" alt="Claude Chat Shell Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Chat Shell Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-browser-chat-workflow"><code>npx hyperframes add claude-browser-chat-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-browser-composed-workflow claude componentized shell plus browser workflow workflow claude browser composed-shell nested-components modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-browser-composed-workflow.jpg" alt="Claude Componentized Shell Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Componentized Shell Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-browser-composed-workflow"><code>npx hyperframes add claude-browser-composed-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-browser-thread-workflow claude working thread plus browser workflow workflow claude browser working-thread modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-browser-thread-workflow.jpg" alt="Claude Working Thread Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Working Thread Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-browser-thread-workflow"><code>npx hyperframes add claude-browser-thread-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-browser-workflow claude plus browser workflow workflow claude browser modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-browser-workflow.jpg" alt="Claude Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <span class="meta">part of <code>claude-browser-workflow</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-code-figma-workflow claude code plus figma workflow workflow claude-code claude figma design terminal modular-assembly">
+  <img loading="lazy" src="catalog-media/thumbs/claude-code-figma-workflow.jpg" alt="Claude Code Plus Figma Workflow">
+  <figcaption>
+    <strong>Claude Code Plus Figma Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-code-figma-workflow"><code>npx hyperframes add claude-code-figma-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-codex-terminal-workflow claude plus codex terminal workflow workflow claude codex terminal cli modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-codex-terminal-workflow.jpg" alt="Claude Plus Codex Terminal Workflow">
+  <figcaption>
+    <strong>Claude Plus Codex Terminal Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-codex-terminal-workflow"><code>npx hyperframes add claude-codex-terminal-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-conversation-browser-workflow claude sparse conversation plus browser workflow workflow claude conversation browser launch-video modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-conversation-browser-workflow.jpg" alt="Claude Sparse Conversation Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Sparse Conversation Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-conversation-browser-workflow"><code>npx hyperframes add claude-conversation-browser-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-excel-workflow claude plus excel workflow workflow claude excel spreadsheet office formula chart modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-excel-workflow.jpg" alt="Claude Plus Excel Workflow">
+  <figcaption>
+    <strong>Claude Plus Excel Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-excel-workflow"><code>npx hyperframes add claude-excel-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-figma-workflow claude plus figma workflow workflow claude figma design canvas modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-figma-workflow.jpg" alt="Claude Plus Figma Workflow">
+  <figcaption>
+    <strong>Claude Plus Figma Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-figma-workflow"><code>npx hyperframes add claude-figma-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-finder-thread-workflow claude working thread plus finder workflow workflow claude finder files working-thread modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-finder-thread-workflow.jpg" alt="Claude Working Thread Plus Finder Workflow">
+  <figcaption>
+    <strong>Claude Working Thread Plus Finder Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-finder-thread-workflow"><code>npx hyperframes add claude-finder-thread-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-finder-workflow claude plus finder workflow workflow claude finder files modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-finder-workflow.jpg" alt="Claude Plus Finder Workflow">
+  <figcaption>
+    <strong>Claude Plus Finder Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <span class="meta">part of <code>claude-finder-workflow</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-launch-browser-workflow claude launch states plus browser workflow workflow claude browser launch-video prompt-stack completion modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-launch-browser-workflow.jpg" alt="Claude Launch States Plus Browser Workflow">
+  <figcaption>
+    <strong>Claude Launch States Plus Browser Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-launch-browser-workflow"><code>npx hyperframes add claude-launch-browser-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-premiere-workflow claude plus premiere workflow workflow claude premiere video timeline editing modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-premiere-workflow.jpg" alt="Claude Plus Premiere Workflow">
+  <figcaption>
+    <strong>Claude Plus Premiere Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-premiere-workflow"><code>npx hyperframes add claude-premiere-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-presentation-chat-pane-workflow claude chat pane plus presentation workflow workflow claude powerpoint presentation office chat-pane modular-assembly">
+  <img loading="lazy" src="catalog-media/thumbs/claude-presentation-chat-pane-workflow.jpg" alt="Claude Chat Pane Plus Presentation Workflow">
+  <figcaption>
+    <strong>Claude Chat Pane Plus Presentation Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-presentation-chat-pane-workflow"><code>npx hyperframes add claude-presentation-chat-pane-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-presentation-workflow claude plus presentation workflow workflow claude powerpoint presentation office modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-presentation-workflow.jpg" alt="Claude Plus Presentation Workflow">
+  <figcaption>
+    <strong>Claude Plus Presentation Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-presentation-workflow"><code>npx hyperframes add claude-presentation-workflow</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="workflows" data-search="claude-word-workflow claude plus word workflow workflow claude word document office review modular-assembly mac-menu-bar">
+  <img loading="lazy" src="catalog-media/thumbs/claude-word-workflow.jpg" alt="Claude Plus Word Workflow">
+  <figcaption>
+    <strong>Claude Plus Word Workflow</strong>
+    <span class="meta">workflow · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-word-workflow"><code>npx hyperframes add claude-word-workflow</code></button>
+  </figcaption>
+</figure></div>
+</section>
+<section id="claude">
+  <h2>Claude & Chat <span class="count">19</span></h2>
+  <p class="blurb">Assistant shells, chat panes, composers, progress rails.</p>
+  <div class="grid"><figure class="card" data-group="claude" data-search="claude-agent-rail claude agent context rail claude agent-status task-rail context artifacts cowork">
+  <img loading="lazy" src="catalog-media/thumbs/claude-agent-rail.jpg" alt="Claude Agent Context Rail">
+  <figcaption>
+    <strong>Claude Agent Context Rail</strong>
+    <span class="meta">component · 380×860</span>
+    <button class="install" data-cmd="npx hyperframes add claude-agent-rail"><code>npx hyperframes add claude-agent-rail</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-attachment-draft claude attached folder draft claude attachment folder-context composer new-chat">
+  <img loading="lazy" src="catalog-media/thumbs/claude-attachment-draft.jpg" alt="Claude Attached Folder Draft">
+  <figcaption>
+    <strong>Claude Attached Folder Draft</strong>
+    <span class="meta">component · 1180×780</span>
+    <button class="install" data-cmd="npx hyperframes add claude-attachment-draft"><code>npx hyperframes add claude-attachment-draft</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-chat-pane claude chat pane claude chat thread composer launch-reference pane">
+  <img loading="lazy" src="catalog-media/thumbs/claude-chat-pane.jpg" alt="Claude Chat Pane">
+  <figcaption>
+    <strong>Claude Chat Pane</strong>
+    <span class="meta">component · 1180×900</span>
+    <button class="install" data-cmd="npx hyperframes add claude-chat-pane"><code>npx hyperframes add claude-chat-pane</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-cinematic-reply claude cinematic reply claude cinematic reply composer launch-reference">
+  <img loading="lazy" src="catalog-media/thumbs/claude-cinematic-reply.jpg" alt="Claude Cinematic Reply">
+  <figcaption>
+    <strong>Claude Cinematic Reply</strong>
+    <span class="meta">component · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-cinematic-reply"><code>npx hyperframes add claude-cinematic-reply</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-code-terminal-session claude code terminal session claude claude-code terminal light-ui figma-workflow component">
+  <img loading="lazy" src="catalog-media/thumbs/claude-code-terminal-session.jpg" alt="Claude Code Terminal Session">
+  <figcaption>
+    <strong>Claude Code Terminal Session</strong>
+    <span class="meta">component · 660×760</span>
+    <button class="install" data-cmd="npx hyperframes add claude-code-terminal-session"><code>npx hyperframes add claude-code-terminal-session</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-completion-response claude completion response claude cinematic completion response launch-reference composer-free">
+  <img loading="lazy" src="catalog-media/thumbs/claude-completion-response.jpg" alt="Claude Completion Response">
+  <figcaption>
+    <strong>Claude Completion Response</strong>
+    <span class="meta">component · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-completion-response"><code>npx hyperframes add claude-completion-response</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-composed-app claude canonical desktop shell (composed) claude desktop-app canonical-shell component-loader composed-shell chat cowork code">
+  <img loading="lazy" src="catalog-media/thumbs/claude-composed-app.jpg" alt="Claude Canonical Desktop Shell (composed)">
+  <figcaption>
+    <strong>Claude Canonical Desktop Shell (composed)</strong>
+    <span class="meta">component · 1440×900</span>
+    <button class="install" data-cmd="npx hyperframes add claude-composed-app"><code>npx hyperframes add claude-composed-app</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-composer claude working composer claude composer attachment folder-context running-state chat cowork">
+  <img loading="lazy" src="catalog-media/thumbs/claude-composer.jpg" alt="Claude Working Composer">
+  <figcaption>
+    <strong>Claude Working Composer</strong>
+    <span class="meta">component · 900×220</span>
+    <button class="install" data-cmd="npx hyperframes add claude-composer"><code>npx hyperframes add claude-composer</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-conversation claude sparse conversation canvas claude conversation reply-composer launch-video sparse-thread">
+  <img loading="lazy" src="catalog-media/thumbs/claude-conversation.jpg" alt="Claude Sparse Conversation Canvas">
+  <figcaption>
+    <strong>Claude Sparse Conversation Canvas</strong>
+    <span class="meta">component · 1280×720</span>
+    <button class="install" data-cmd="npx hyperframes add claude-conversation"><code>npx hyperframes add claude-conversation</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-deck-chat-pane claude deck chat pane claude chat thread composer launch-reference pane deck powerpoint">
+  <img loading="lazy" src="catalog-media/thumbs/claude-deck-chat-pane.jpg" alt="Claude Deck Chat Pane">
+  <figcaption>
+    <strong>Claude Deck Chat Pane</strong>
+    <span class="meta">component · 1180×900</span>
+    <button class="install" data-cmd="npx hyperframes add claude-deck-chat-pane"><code>npx hyperframes add claude-deck-chat-pane</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-home claude new chat home claude home composer new-chat">
+  <img loading="lazy" src="catalog-media/thumbs/claude-home.jpg" alt="Claude New Chat Home">
+  <figcaption>
+    <strong>Claude New Chat Home</strong>
+    <span class="meta">component · 980×760</span>
+    <button class="install" data-cmd="npx hyperframes add claude-home"><code>npx hyperframes add claude-home</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-home-launch claude launch prompt stack claude home launch-video prompt-stack loader">
+  <img loading="lazy" src="catalog-media/thumbs/claude-home-launch.jpg" alt="Claude Launch Prompt Stack">
+  <figcaption>
+    <strong>Claude Launch Prompt Stack</strong>
+    <span class="meta">component · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-home-launch"><code>npx hyperframes add claude-home-launch</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-launch-completion claude launch completion claude cinematic completion reply-composer launch-reference">
+  <img loading="lazy" src="catalog-media/thumbs/claude-launch-completion.jpg" alt="Claude Launch Completion">
+  <figcaption>
+    <strong>Claude Launch Completion</strong>
+    <span class="meta">component · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-launch-completion"><code>npx hyperframes add claude-launch-completion</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-prompt-stack claude launch prompt stack claude chat prompt-stack launch-reference loading cinematic">
+  <img loading="lazy" src="catalog-media/thumbs/claude-prompt-stack.jpg" alt="Claude Launch Prompt Stack">
+  <figcaption>
+    <strong>Claude Launch Prompt Stack</strong>
+    <span class="meta">component · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add claude-prompt-stack"><code>npx hyperframes add claude-prompt-stack</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-response-mark claude response mark claude brand-mark response launch-reference editable-css">
+  <img loading="lazy" src="catalog-media/thumbs/claude-response-mark.jpg" alt="Claude Response Mark">
+  <figcaption>
+    <strong>Claude Response Mark</strong>
+    <span class="meta">component · 128×128</span>
+    <button class="install" data-cmd="npx hyperframes add claude-response-mark"><code>npx hyperframes add claude-response-mark</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-sidebar claude sidebar claude sidebar navigation chat cowork code workspace">
+  <img loading="lazy" src="catalog-media/thumbs/claude-sidebar.jpg" alt="Claude Sidebar">
+  <figcaption>
+    <strong>Claude Sidebar</strong>
+    <span class="meta">component · 360×840</span>
+    <button class="install" data-cmd="npx hyperframes add claude-sidebar"><code>npx hyperframes add claude-sidebar</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-thread-core claude working thread core claude thread tool-use reasoning message-parts cinematic">
+  <img loading="lazy" src="catalog-media/thumbs/claude-thread-core.jpg" alt="Claude Working Thread Core">
+  <figcaption>
+    <strong>Claude Working Thread Core</strong>
+    <span class="meta">component · 980×840</span>
+    <button class="install" data-cmd="npx hyperframes add claude-thread-core"><code>npx hyperframes add claude-thread-core</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-tool-result claude completed tool result claude tool-result completed-work composer artifact">
+  <img loading="lazy" src="catalog-media/thumbs/claude-tool-result.jpg" alt="Claude Completed Tool Result">
+  <figcaption>
+    <strong>Claude Completed Tool Result</strong>
+    <span class="meta">component · 1180×780</span>
+    <button class="install" data-cmd="npx hyperframes add claude-tool-result"><code>npx hyperframes add claude-tool-result</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="claude" data-search="claude-thread-core-dark claude working thread core (dark) claude thread tool-use reasoning message-parts">
+  <img loading="lazy" src="catalog-media/thumbs/claude-thread-core-dark.jpg" alt="Claude Working Thread Core (dark)">
+  <figcaption>
+    <strong>Claude Working Thread Core (dark)</strong>
+    <span class="meta">component · 980×840</span>
+    <span class="meta">part of <code>claude-thread-core-dark</code></span>
+  </figcaption>
+</figure></div>
+</section>
+<section id="desktop">
+  <h2>Desktop & Browser <span class="count">9</span></h2>
+  <p class="blurb">macOS chrome and browser context around a demo.</p>
+  <div class="grid"><figure class="card" data-group="desktop" data-search="browser-app editable browser app browser web-app tabs dashboard">
+  <img loading="lazy" src="catalog-media/thumbs/browser-app.jpg" alt="Editable Browser App">
+  <figcaption>
+    <strong>Editable Browser App</strong>
+    <span class="meta">component · 1712×944</span>
+    <button class="install" data-cmd="npx hyperframes add browser-app"><code>npx hyperframes add browser-app</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="calendar-app macos calendar app macos calendar schedule desktop">
+  <img loading="lazy" src="catalog-media/thumbs/calendar-app.jpg" alt="macOS Calendar App">
+  <figcaption>
+    <strong>macOS Calendar App</strong>
+    <span class="meta">surface · 1920×1080</span>
+    <button class="install" data-cmd="npx hyperframes add calendar-app"><code>npx hyperframes add calendar-app</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="finder-window finder launch deck window macos finder files folder launch-deck">
+  <img loading="lazy" src="catalog-media/thumbs/finder-window.jpg" alt="Finder Launch Deck Window">
+  <figcaption>
+    <strong>Finder Launch Deck Window</strong>
+    <span class="meta">component · 920×436</span>
+    <button class="install" data-cmd="npx hyperframes add finder-window"><code>npx hyperframes add finder-window</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="mac-menu-bar macos menu bar mac macos menu-bar desktop component-loader">
+  <img loading="lazy" src="catalog-media/thumbs/mac-menu-bar.jpg" alt="macOS Menu Bar">
+  <figcaption>
+    <strong>macOS Menu Bar</strong>
+    <span class="meta">component · 1920×30</span>
+    <button class="install" data-cmd="npx hyperframes add mac-menu-bar"><code>npx hyperframes add mac-menu-bar</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="mac-dock macos dock mac macos dock desktop component-loader">
+  <img loading="lazy" src="catalog-media/thumbs/mac-dock.jpg" alt="macOS Dock">
+  <figcaption>
+    <strong>macOS Dock</strong>
+    <span class="meta">component · 760×104</span>
+    <button class="install" data-cmd="npx hyperframes add mac-dock"><code>npx hyperframes add mac-dock</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="calendar-app-dark macos calendar app (dark) macos calendar schedule desktop">
+  <img loading="lazy" src="catalog-media/thumbs/calendar-app-dark.jpg" alt="macOS Calendar App (dark)">
+  <figcaption>
+    <strong>macOS Calendar App (dark)</strong>
+    <span class="meta">component · 1920×1080</span>
+    <span class="meta">part of <code>calendar-app-dark</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="finder-window-dark finder launch deck window (dark) macos finder files folder launch-deck">
+  <img loading="lazy" src="catalog-media/thumbs/finder-window-dark.jpg" alt="Finder Launch Deck Window (dark)">
+  <figcaption>
+    <strong>Finder Launch Deck Window (dark)</strong>
+    <span class="meta">component · 920×436</span>
+    <span class="meta">part of <code>finder-window-dark</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="mac-menu-bar-dark macos menu bar (dark) mac macos menu-bar desktop component-loader">
+  <img loading="lazy" src="catalog-media/thumbs/mac-menu-bar-dark.jpg" alt="macOS Menu Bar (dark)">
+  <figcaption>
+    <strong>macOS Menu Bar (dark)</strong>
+    <span class="meta">component · 1920×30</span>
+    <span class="meta">part of <code>mac-menu-bar-dark</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="desktop" data-search="browser-app-dark editable browser app (dark) browser web-app tabs dashboard">
+  <img loading="lazy" src="catalog-media/thumbs/browser-app-dark.jpg" alt="Editable Browser App (dark)">
+  <figcaption>
+    <strong>Editable Browser App (dark)</strong>
+    <span class="meta">component · 1712×944</span>
+    <span class="meta">part of <code>browser-app-dark</code></span>
+  </figcaption>
+</figure></div>
+</section>
+<section id="apps">
+  <h2>Productivity & Creative Apps <span class="count">7</span></h2>
+  <p class="blurb">Office, design, and editing surfaces.</p>
+  <div class="grid"><figure class="card" data-group="apps" data-search="excel-workbook excel-style workbook excel office spreadsheet formula chart">
+  <img loading="lazy" src="catalog-media/thumbs/excel-workbook.jpg" alt="Excel-style Workbook">
+  <figcaption>
+    <strong>Excel-style Workbook</strong>
+    <span class="meta">component · 1280×760</span>
+    <button class="install" data-cmd="npx hyperframes add excel-workbook"><code>npx hyperframes add excel-workbook</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="figma-editor figma-style design editor figma design canvas properties frames">
+  <img loading="lazy" src="catalog-media/thumbs/figma-editor.jpg" alt="Figma-style Design Editor">
+  <figcaption>
+    <strong>Figma-style Design Editor</strong>
+    <span class="meta">component · 1440×900</span>
+    <button class="install" data-cmd="npx hyperframes add figma-editor"><code>npx hyperframes add figma-editor</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="figma-onboarding-editor figma-style onboarding editor figma design canvas dark-ui onboarding mobile-frames">
+  <img loading="lazy" src="catalog-media/thumbs/figma-onboarding-editor.jpg" alt="Figma-style Onboarding Editor">
+  <figcaption>
+    <strong>Figma-style Onboarding Editor</strong>
+    <span class="meta">component · 1120×760</span>
+    <span class="meta">part of <code>figma-onboarding-editor</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="premiere-editor premiere-style video editor premiere video timeline editing captions">
+  <img loading="lazy" src="catalog-media/thumbs/premiere-editor.jpg" alt="Premiere-style Video Editor">
+  <figcaption>
+    <strong>Premiere-style Video Editor</strong>
+    <span class="meta">component · 1440×900</span>
+    <button class="install" data-cmd="npx hyperframes add premiere-editor"><code>npx hyperframes add premiere-editor</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="presentation-editor powerpoint-like presentation editor powerpoint presentation office ribbon slides">
+  <img loading="lazy" src="catalog-media/thumbs/presentation-editor.jpg" alt="PowerPoint-like Presentation Editor">
+  <figcaption>
+    <strong>PowerPoint-like Presentation Editor</strong>
+    <span class="meta">component · 836×438</span>
+    <button class="install" data-cmd="npx hyperframes add presentation-editor"><code>npx hyperframes add presentation-editor</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="word-editor word-style document editor word office document comments tracked-changes">
+  <img loading="lazy" src="catalog-media/thumbs/word-editor.jpg" alt="Word-style Document Editor">
+  <figcaption>
+    <strong>Word-style Document Editor</strong>
+    <span class="meta">component · 1280×760</span>
+    <button class="install" data-cmd="npx hyperframes add word-editor"><code>npx hyperframes add word-editor</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="apps" data-search="figma-editor-dark figma-style design editor (dark) figma design canvas properties frames">
+  <img loading="lazy" src="catalog-media/thumbs/figma-editor-dark.jpg" alt="Figma-style Design Editor (dark)">
+  <figcaption>
+    <strong>Figma-style Design Editor (dark)</strong>
+    <span class="meta">component · 1440×900</span>
+    <span class="meta">part of <code>figma-editor-dark</code></span>
+  </figcaption>
+</figure></div>
+</section>
+<section id="terminal">
+  <h2>Codex & Terminal <span class="count">5</span></h2>
+  <p class="blurb">Agent coding, terminal, and review surfaces.</p>
+  <div class="grid"><figure class="card" data-group="terminal" data-search="codex-app codex desktop workbench codex desktop app agent-status patch-preview developer-workflow">
+  <img loading="lazy" src="catalog-media/thumbs/codex-app.jpg" alt="Codex Desktop Workbench">
+  <figcaption>
+    <strong>Codex Desktop Workbench</strong>
+    <span class="meta">component · 1280×820</span>
+    <button class="install" data-cmd="npx hyperframes add codex-app"><code>npx hyperframes add codex-app</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="terminal" data-search="codex-terminal codex terminal codex terminal cli agent-status developer-workflow">
+  <img loading="lazy" src="catalog-media/thumbs/codex-terminal.jpg" alt="Codex Terminal">
+  <figcaption>
+    <strong>Codex Terminal</strong>
+    <span class="meta">component · 1120×840</span>
+    <button class="install" data-cmd="npx hyperframes add codex-terminal"><code>npx hyperframes add codex-terminal</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="terminal" data-search="codex-thread-core codex conversation core codex thread conversation command-output composer">
+  <img loading="lazy" src="catalog-media/thumbs/codex-thread-core.jpg" alt="Codex Conversation Core">
+  <figcaption>
+    <strong>Codex Conversation Core</strong>
+    <span class="meta">component · 980×840</span>
+    <button class="install" data-cmd="npx hyperframes add codex-thread-core"><code>npx hyperframes add codex-thread-core</code></button>
+  </figcaption>
+</figure>
+<figure class="card" data-group="terminal" data-search="codex-app-dark codex desktop workbench (dark) codex desktop app agent-status patch-preview developer-workflow">
+  <img loading="lazy" src="catalog-media/thumbs/codex-app-dark.jpg" alt="Codex Desktop Workbench (dark)">
+  <figcaption>
+    <strong>Codex Desktop Workbench (dark)</strong>
+    <span class="meta">component · 1280×820</span>
+    <span class="meta">part of <code>codex-app-dark</code></span>
+  </figcaption>
+</figure>
+<figure class="card" data-group="terminal" data-search="codex-thread-core-dark codex conversation core (dark) codex thread conversation command-output composer">
+  <img loading="lazy" src="catalog-media/thumbs/codex-thread-core-dark.jpg" alt="Codex Conversation Core (dark)">
+  <figcaption>
+    <strong>Codex Conversation Core (dark)</strong>
+    <span class="meta">component · 980×840</span>
+    <span class="meta">part of <code>codex-thread-core-dark</code></span>
+  </figcaption>
+</figure></div>
+</section>
+<section id="demos">
+  <h2>Interaction demos <span class="count">10</span></h2>
+  <p class="blurb">Scripted with <code>backlot-interactions.js</code> — typing, cursor moves, streaming replies, rendered frame by frame. Install as starter projects: <code>npx degit conmeara/ui-backlot/registry/examples/&lt;name&gt; my-video</code></p>
+  <div class="grid"><figure class="card" data-group="demos" data-search="browser-interaction">
+  <img loading="lazy" src="media/browser-interaction.gif" alt="browser-interaction demo">
+  <figcaption><strong>browser-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="claude-chat-interaction">
+  <img loading="lazy" src="media/claude-chat-interaction.gif" alt="claude-chat-interaction demo">
+  <figcaption><strong>claude-chat-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="claude-code-interaction">
+  <img loading="lazy" src="media/claude-code-interaction.gif" alt="claude-code-interaction demo">
+  <figcaption><strong>claude-code-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="codex-interaction">
+  <img loading="lazy" src="media/codex-interaction.gif" alt="codex-interaction demo">
+  <figcaption><strong>codex-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="cowork-interaction">
+  <img loading="lazy" src="media/cowork-interaction.gif" alt="cowork-interaction demo">
+  <figcaption><strong>cowork-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="excel-interaction">
+  <img loading="lazy" src="media/excel-interaction.gif" alt="excel-interaction demo">
+  <figcaption><strong>excel-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="finder-interaction">
+  <img loading="lazy" src="media/finder-interaction.gif" alt="finder-interaction demo">
+  <figcaption><strong>finder-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="mac-multi-app-demo">
+  <img loading="lazy" src="media/mac-multi-app-demo.gif" alt="mac-multi-app-demo demo">
+  <figcaption><strong>mac-multi-app-demo</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="powerpoint-interaction">
+  <img loading="lazy" src="media/powerpoint-interaction.gif" alt="powerpoint-interaction demo">
+  <figcaption><strong>powerpoint-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure>
+<figure class="card" data-group="demos" data-search="word-interaction">
+  <img loading="lazy" src="media/word-interaction.gif" alt="word-interaction demo">
+  <figcaption><strong>word-interaction</strong><span class="meta">scripted interaction · rendered, not recorded</span></figcaption>
+</figure></div>
+</section>
+</main>
+<footer><div class="inner">
+  <a href="https://github.com/conmeara/ui-backlot">GitHub</a>
+  <a href="https://github.com/conmeara/ui-backlot/blob/main/llms.txt">llms.txt (for agents)</a>
+  <a href="https://github.com/conmeara/ui-backlot/blob/main/CONTRIBUTING.md">Contribute a surface</a>
+  <span>Recreations are fair use; all marks belong to their owners.</span>
+</div></footer>
+<script>
+const chips = [...document.querySelectorAll(".chip")], cards = [...document.querySelectorAll(".card")], sections = [...document.querySelectorAll("main section")];
+const search = document.getElementById("search");
+function apply() {
+  const active = document.querySelector(".chip.active").dataset.filter, q = search.value.trim().toLowerCase();
+  cards.forEach((c) => { c.style.display = (active === "all" || c.dataset.group === active) && (!q || c.dataset.search.includes(q)) ? "" : "none"; });
+  sections.forEach((s) => { s.style.display = [...s.querySelectorAll(".card")].some((c) => c.style.display !== "none") ? "" : "none"; });
+}
+chips.forEach((ch) => ch.addEventListener("click", () => { chips.forEach((c) => c.classList.remove("active")); ch.classList.add("active"); apply(); }));
+search.addEventListener("input", apply);
+document.querySelectorAll(".install").forEach((b) => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.dataset.cmd); b.classList.add("copied"); setTimeout(() => b.classList.remove("copied"), 900); } catch {}
+}));
+</script>
+</body>
+</html>
