@@ -1,0 +1,254 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "mac-wallpaper",
+  "type": "hyperframes:block",
+  "title": "macOS Wallpaper Catalog",
+  "description": "75-wallpaper desktop-background catalog: the full macOS lineage (Cheetah→Tahoe) plus Mac/iMac colour masters as real bundled images, and an original CSS set of gradients, metallics, solid colours, and patterns. The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora).",
+  "tags": [
+    "mac",
+    "macos",
+    "wallpaper",
+    "desktop",
+    "background",
+    "catalog",
+    "component-loader"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 10,
+  "files": [
+    {
+      "path": "assets/wallpapers/macos/big-sur-color-day.jpg",
+      "target": "assets/wallpapers/macos/big-sur-color-day.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/big-sur-color-night.jpg",
+      "target": "assets/wallpapers/macos/big-sur-color-night.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/big-sur-day.jpg",
+      "target": "assets/wallpapers/macos/big-sur-day.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/big-sur-night.jpg",
+      "target": "assets/wallpapers/macos/big-sur-night.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/catalina-day.jpg",
+      "target": "assets/wallpapers/macos/catalina-day.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/catalina-night.jpg",
+      "target": "assets/wallpapers/macos/catalina-night.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/cheetah.jpg",
+      "target": "assets/wallpapers/macos/cheetah.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/el-capitan.jpg",
+      "target": "assets/wallpapers/macos/el-capitan.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/high-sierra.jpg",
+      "target": "assets/wallpapers/macos/high-sierra.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-blue.jpg",
+      "target": "assets/wallpapers/macos/imac-blue.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-green.jpg",
+      "target": "assets/wallpapers/macos/imac-green.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-orange.jpg",
+      "target": "assets/wallpapers/macos/imac-orange.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-pink.jpg",
+      "target": "assets/wallpapers/macos/imac-pink.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-purple.jpg",
+      "target": "assets/wallpapers/macos/imac-purple.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-silver.jpg",
+      "target": "assets/wallpapers/macos/imac-silver.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/imac-yellow.jpg",
+      "target": "assets/wallpapers/macos/imac-yellow.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/jaguar.jpg",
+      "target": "assets/wallpapers/macos/jaguar.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/leopard.jpg",
+      "target": "assets/wallpapers/macos/leopard.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/lion.jpg",
+      "target": "assets/wallpapers/macos/lion.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mac-blue.jpg",
+      "target": "assets/wallpapers/macos/mac-blue.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mac-pink.jpg",
+      "target": "assets/wallpapers/macos/mac-pink.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mac-purple.jpg",
+      "target": "assets/wallpapers/macos/mac-purple.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mac-yellow.jpg",
+      "target": "assets/wallpapers/macos/mac-yellow.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mavericks.jpg",
+      "target": "assets/wallpapers/macos/mavericks.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mojave-day.jpg",
+      "target": "assets/wallpapers/macos/mojave-day.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mojave-night.jpg",
+      "target": "assets/wallpapers/macos/mojave-night.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/monterey-dark.jpg",
+      "target": "assets/wallpapers/macos/monterey-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/monterey.jpg",
+      "target": "assets/wallpapers/macos/monterey.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/mountain-lion.jpg",
+      "target": "assets/wallpapers/macos/mountain-lion.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/panther.jpg",
+      "target": "assets/wallpapers/macos/panther.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/radial-sky-blue.jpg",
+      "target": "assets/wallpapers/macos/radial-sky-blue.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sequoia-dark.jpg",
+      "target": "assets/wallpapers/macos/sequoia-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sequoia-sunrise.jpg",
+      "target": "assets/wallpapers/macos/sequoia-sunrise.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sequoia.jpg",
+      "target": "assets/wallpapers/macos/sequoia.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sierra.jpg",
+      "target": "assets/wallpapers/macos/sierra.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/snow-leopard.jpg",
+      "target": "assets/wallpapers/macos/snow-leopard.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sonoma-dark.jpg",
+      "target": "assets/wallpapers/macos/sonoma-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sonoma-horizon.jpg",
+      "target": "assets/wallpapers/macos/sonoma-horizon.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/sonoma.jpg",
+      "target": "assets/wallpapers/macos/sonoma.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/tahoe-dark.jpg",
+      "target": "assets/wallpapers/macos/tahoe-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/tahoe-light.jpg",
+      "target": "assets/wallpapers/macos/tahoe-light.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/tiger.jpg",
+      "target": "assets/wallpapers/macos/tiger.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/ventura-dark.jpg",
+      "target": "assets/wallpapers/macos/ventura-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/ventura.jpg",
+      "target": "assets/wallpapers/macos/ventura.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/yosemite.jpg",
+      "target": "assets/wallpapers/macos/yosemite.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "mac-wallpaper.html",
+      "target": "compositions/mac-wallpaper.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "registryDependencies": []
+}

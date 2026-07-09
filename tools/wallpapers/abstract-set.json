@@ -1,0 +1,38 @@
+{
+  "note": "Hand-authored CSS-only wallpapers — gradients, metallics, solid colors and patterns. Photographic wallpapers are real bundled images (assets/wallpapers/manifest.json); these are the things CSS renders better than a JPEG: crisp gradients, flat colors, tiling patterns. Each `css` value is dropped straight into `background:`.",
+  "wallpapers": [
+    { "id": "hello-blue",   "name": "Hello Blue",   "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #4aa3ff 0%, #123 78%, #050914 100%)" },
+    { "id": "hello-green",  "name": "Hello Green",  "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #46e0a0 0%, #06371f 78%, #041108 100%)" },
+    { "id": "hello-orange", "name": "Hello Orange", "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ff9a3c 0%, #4a1e06 78%, #180800 100%)" },
+    { "id": "hello-pink",   "name": "Hello Pink",   "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.34), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ff6ec4 0%, #4a0e33 78%, #170414 100%)" },
+    { "id": "hello-purple", "name": "Hello Purple", "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #a56bff 0%, #2a0f52 78%, #0d0420 100%)" },
+    { "id": "hello-silver", "name": "Hello Silver", "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #e8ecf2 0%, #6a7078 60%, #23262b 100%)" },
+    { "id": "hello-yellow", "name": "Hello Yellow", "category": "metallic", "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.34), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ffd23c 0%, #4a3706 78%, #171000 100%)" },
+
+    { "id": "mesh-sunset",   "name": "Mesh Sunset",   "category": "gradient", "css": "radial-gradient(50% 50% at 20% 24%, rgba(255,94,98,0.9), rgba(255,94,98,0) 55%), radial-gradient(55% 55% at 82% 18%, rgba(255,179,71,0.9), rgba(255,179,71,0) 55%), radial-gradient(60% 60% at 72% 82%, rgba(160,68,190,0.9), rgba(160,68,190,0) 60%), radial-gradient(60% 60% at 18% 84%, rgba(90,42,120,0.9), rgba(90,42,120,0) 60%), linear-gradient(150deg, #ff8a5a, #b0468f 60%, #3a1a5a)" },
+    { "id": "mesh-aurora",   "name": "Mesh Aurora",   "category": "gradient", "css": "radial-gradient(50% 55% at 24% 30%, rgba(46,240,190,0.85), rgba(46,240,190,0) 55%), radial-gradient(55% 55% at 80% 26%, rgba(64,160,255,0.85), rgba(64,160,255,0) 55%), radial-gradient(60% 60% at 66% 80%, rgba(120,90,255,0.8), rgba(120,90,255,0) 60%), linear-gradient(160deg, #06251f, #0a2f4a 55%, #101a4a)" },
+    { "id": "midnight-mesh", "name": "Midnight Mesh", "category": "gradient", "css": "radial-gradient(55% 55% at 26% 28%, rgba(60,90,200,0.6), rgba(60,90,200,0) 55%), radial-gradient(55% 55% at 78% 30%, rgba(120,60,200,0.55), rgba(120,60,200,0) 55%), radial-gradient(70% 70% at 60% 90%, rgba(20,40,120,0.7), rgba(20,40,120,0) 60%), linear-gradient(160deg, #0a0e24, #0e1436 60%, #05070f)" },
+    { "id": "solar",         "name": "Solar",         "category": "gradient", "css": "radial-gradient(50% 50% at 50% 30%, rgba(255,214,106,0.95), rgba(255,214,106,0) 45%), radial-gradient(80% 80% at 50% 30%, rgba(255,94,98,0.85), rgba(255,94,98,0) 60%), linear-gradient(180deg, #ff8a3c 0%, #a83267 46%, #3a1550 100%)" },
+    { "id": "twilight",      "name": "Twilight",      "category": "gradient", "css": "linear-gradient(180deg, #1a2a6c 0%, #6a3093 55%, #b06ab3 100%)" },
+    { "id": "ocean",         "name": "Ocean",         "category": "gradient", "css": "linear-gradient(180deg, #2b5876 0%, #1f6f8b 50%, #4e9f9f 100%)" },
+    { "id": "ember",         "name": "Ember",         "category": "gradient", "css": "linear-gradient(160deg, #f83600 0%, #b81d3a 55%, #4a1030 100%)" },
+
+    { "id": "dot-grid",    "name": "Dot Grid",    "category": "pattern", "css": "radial-gradient(circle, rgba(255,255,255,0.14) 1.6px, transparent 1.8px) 0 0 / 44px 44px, linear-gradient(160deg, #1a2140, #0c1026)" },
+    { "id": "blueprint",   "name": "Blueprint",   "category": "pattern", "css": "linear-gradient(rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(90deg, rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(160deg, #0a2a5c, #062043)" },
+    { "id": "topographic", "name": "Topographic", "category": "pattern", "css": "repeating-radial-gradient(120% 120% at 30% 30%, rgba(255,255,255,0.06) 0 2px, transparent 2px 26px), linear-gradient(160deg, #17324a, #0c1e30)" },
+    { "id": "graphite",    "name": "Graphite",    "category": "pattern", "css": "radial-gradient(120% 100% at 50% 0%, #34363b 0%, #202226 55%, #131417 100%)" },
+
+    { "id": "solid-black",      "name": "Black",       "category": "solid", "css": "#101012" },
+    { "id": "solid-space-gray", "name": "Space Gray",  "category": "solid", "css": "#35373b" },
+    { "id": "solid-silver",     "name": "Silver",      "category": "solid", "css": "#c9ccd1" },
+    { "id": "solid-blue",       "name": "Blue",        "category": "solid", "css": "#1f6fe0" },
+    { "id": "solid-teal",       "name": "Teal",        "category": "solid", "css": "#0f8a94" },
+    { "id": "solid-cyan",       "name": "Cyan",        "category": "solid", "css": "#35b7d6" },
+    { "id": "solid-turquoise",  "name": "Turquoise",   "category": "solid", "css": "#1fb08a" },
+    { "id": "solid-red-orange", "name": "Red Orange",  "category": "solid", "css": "#e85a3a" },
+    { "id": "solid-gold",       "name": "Gold",        "category": "solid", "css": "#d7a24a" },
+    { "id": "solid-plum",       "name": "Plum",        "category": "solid", "css": "#7a3a6a" },
+    { "id": "solid-dusty-rose", "name": "Dusty Rose",  "category": "solid", "css": "#c98a94" },
+    { "id": "solid-stone",      "name": "Stone",       "category": "solid", "css": "#9a938a" }
+  ]
+}

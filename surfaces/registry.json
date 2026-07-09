@@ -1090,6 +1090,52 @@
       "recommendedUse": "Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html)."
     },
     {
+      "id": "mac-wallpaper",
+      "title": "macOS Wallpaper Catalog",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "75-wallpaper desktop-background catalog: the full macOS lineage (Cheetah→Tahoe) plus Mac/iMac colour masters as real bundled images, and an original CSS set of gradients, metallics, solid colours, and patterns",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "source": "compositions/mac-wallpaper.html",
+      "compositionId": "mac-wallpaper-surface",
+      "generated": "tools/wallpapers/build-wallpaper-surface.mjs",
+      "parameters": {
+        "data-wallpaper": "wallpaper id from surfaces/wallpapers.json (default sonoma); also ?wallpaper=<id> when previewed standalone"
+      },
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/mac-wallpaper.html",
+        "selector": "#mac-wallpaper-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:mac-wallpaper",
+        "selector": "#mac-wallpaper-surface",
+        "path": "captures/surface-mac-wallpaper/target.png"
+      },
+      "prototypeNote": "docs/prototypes/mac-wallpaper-catalog-build.md",
+      "tags": [
+        "mac",
+        "macos",
+        "wallpaper",
+        "desktop",
+        "background",
+        "catalog",
+        "component-loader"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "assets/wallpapers/NOTICE.md",
+        "assets/wallpapers/manifest.json",
+        "surfaces/wallpapers.json"
+      ],
+      "assetDecision": "Bundles real macOS wallpaper images (Apple-owned) so non-Mac users get desktop backdrops: lineage sourced from the 512pixels.net 6K archive, Mac/iMac colour masters converted from this machine's /System/Library/Desktop Pictures. Provenance + licensing in assets/wallpapers/NOTICE.md. Delete assets/wallpapers/macos+thumbs and run npm run wallpapers:assets to re-source locally; the CSS wallpapers are original and always ship.",
+      "recommendedUse": "The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora)."
+    },
+    {
       "id": "premiere-editor",
       "title": "Premiere-style Video Editor",
       "kind": "component",

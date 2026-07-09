@@ -98,7 +98,11 @@
     "capture:claude-cinematic": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-cinematic.html?capture=hero\" --slug surface-claude-cinematic --selector '.claude-cinematic-frame' --viewport 1920x1080",
     "capture:claude-cinematic-prompt": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-cinematic.html?capture=hero&beat=prompt\" --slug surface-claude-cinematic-prompt --selector '.claude-cinematic-frame' --viewport 1920x1080",
     "capture:claude-cinematic-complete": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-cinematic.html?capture=hero&beat=complete\" --slug surface-claude-cinematic-complete --selector '.claude-cinematic-frame' --viewport 1920x1080",
-    "capture:claude-cinematic-dark": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-cinematic.html?capture=hero&theme=dark\" --slug surface-claude-cinematic-dark --selector '.claude-cinematic-frame' --viewport 1920x1080"
+    "capture:claude-cinematic-dark": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-cinematic.html?capture=hero&theme=dark\" --slug surface-claude-cinematic-dark --selector '.claude-cinematic-frame' --viewport 1920x1080",
+    "wallpapers:assets": "node tools/wallpapers/build-wallpaper-assets.mjs",
+    "wallpapers:build": "node tools/wallpapers/build-wallpaper-surface.mjs",
+    "capture:mac-wallpaper": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/mac-wallpaper.html?wallpaper=sonoma\" --slug surface-mac-wallpaper --selector '#mac-wallpaper-surface' --viewport 1920x1080",
+    "wallpapers:gallery": "node tools/wallpapers/build-wallpaper-gallery.mjs"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.496",

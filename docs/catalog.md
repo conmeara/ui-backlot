@@ -61,6 +61,7 @@ Desktop context surfaces establish the environment around a product demo.
 | `finder-window` | component | Finder Launch Deck Window | [compositions/finder-window.html](../compositions/finder-window.html) | `capture:finder-window` | `macos` `finder` `files` `folder` `launch-deck` |
 | `mac-menu-bar` | component | macOS Menu Bar | [compositions/mac-menu-bar.html](../compositions/mac-menu-bar.html) | `capture:mac-menu-bar` | `mac` `macos` `menu-bar` `desktop` `component-loader` |
 | `mac-dock` | component | macOS Dock | [compositions/mac-dock.html](../compositions/mac-dock.html) | `capture:mac-dock` | `mac` `macos` `dock` `desktop` `component-loader` |
+| `mac-wallpaper` | component | macOS Wallpaper Catalog | [compositions/mac-wallpaper.html](../compositions/mac-wallpaper.html) | `capture:mac-wallpaper` | `mac` `macos` `wallpaper` `desktop` `background` `catalog` `component-loader` |
 | `calendar-app-dark` | component | macOS Calendar App (dark) | [compositions/calendar-app.html](../compositions/calendar-app.html) | `capture:calendar-app-dark` | `macos` `calendar` `schedule` `desktop` |
 | `finder-window-dark` | component | Finder Launch Deck Window (dark) | [compositions/finder-window.html](../compositions/finder-window.html) | `capture:finder-window-dark` | `macos` `finder` `files` `folder` `launch-deck` |
 | `mac-menu-bar-dark` | component | macOS Menu Bar (dark) | [compositions/mac-menu-bar.html](../compositions/mac-menu-bar.html) | `capture:mac-menu-bar-dark` | `mac` `macos` `menu-bar` `desktop` `component-loader` |

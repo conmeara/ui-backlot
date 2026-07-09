@@ -1,0 +1,668 @@
+{
+  "generated": "tools/wallpapers/build-wallpaper-surface.mjs",
+  "surface": "mac-wallpaper",
+  "default": "sonoma",
+  "count": 75,
+  "wallpapers": [
+    {
+      "id": "cheetah",
+      "name": "Cheetah",
+      "version": "10.0",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/cheetah.jpg",
+      "thumb": "assets/wallpapers/thumbs/cheetah.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "jaguar",
+      "name": "Jaguar",
+      "version": "10.2",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/jaguar.jpg",
+      "thumb": "assets/wallpapers/thumbs/jaguar.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "panther",
+      "name": "Panther",
+      "version": "10.3",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/panther.jpg",
+      "thumb": "assets/wallpapers/thumbs/panther.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "tiger",
+      "name": "Tiger",
+      "version": "10.4",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/tiger.jpg",
+      "thumb": "assets/wallpapers/thumbs/tiger.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "leopard",
+      "name": "Leopard",
+      "version": "10.5",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/leopard.jpg",
+      "thumb": "assets/wallpapers/thumbs/leopard.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "snow-leopard",
+      "name": "Snow Leopard",
+      "version": "10.6",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/snow-leopard.jpg",
+      "thumb": "assets/wallpapers/thumbs/snow-leopard.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "version": "10.7",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/lion.jpg",
+      "thumb": "assets/wallpapers/thumbs/lion.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "mountain-lion",
+      "name": "Mountain Lion",
+      "version": "10.8",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mountain-lion.jpg",
+      "thumb": "assets/wallpapers/thumbs/mountain-lion.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "mavericks",
+      "name": "Mavericks",
+      "version": "10.9",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mavericks.jpg",
+      "thumb": "assets/wallpapers/thumbs/mavericks.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "yosemite",
+      "name": "Yosemite",
+      "version": "10.10",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/yosemite.jpg",
+      "thumb": "assets/wallpapers/thumbs/yosemite.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "el-capitan",
+      "name": "El Capitan",
+      "version": "10.11",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/el-capitan.jpg",
+      "thumb": "assets/wallpapers/thumbs/el-capitan.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sierra",
+      "name": "Sierra",
+      "version": "10.12",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sierra.jpg",
+      "thumb": "assets/wallpapers/thumbs/sierra.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "high-sierra",
+      "name": "High Sierra",
+      "version": "10.13",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/high-sierra.jpg",
+      "thumb": "assets/wallpapers/thumbs/high-sierra.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "mojave-day",
+      "name": "Mojave (day)",
+      "version": "10.14",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mojave-day.jpg",
+      "thumb": "assets/wallpapers/thumbs/mojave-day.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "mojave-night",
+      "name": "Mojave (night)",
+      "version": "10.14",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mojave-night.jpg",
+      "thumb": "assets/wallpapers/thumbs/mojave-night.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "catalina-day",
+      "name": "Catalina (day)",
+      "version": "10.15",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/catalina-day.jpg",
+      "thumb": "assets/wallpapers/thumbs/catalina-day.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "catalina-night",
+      "name": "Catalina (night)",
+      "version": "10.15",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/catalina-night.jpg",
+      "thumb": "assets/wallpapers/thumbs/catalina-night.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "big-sur-day",
+      "name": "Big Sur (day)",
+      "version": "11",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/big-sur-day.jpg",
+      "thumb": "assets/wallpapers/thumbs/big-sur-day.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "big-sur-night",
+      "name": "Big Sur (night)",
+      "version": "11",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/big-sur-night.jpg",
+      "thumb": "assets/wallpapers/thumbs/big-sur-night.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "big-sur-color-day",
+      "name": "Big Sur Graphic (day)",
+      "version": "11",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/big-sur-color-day.jpg",
+      "thumb": "assets/wallpapers/thumbs/big-sur-color-day.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "big-sur-color-night",
+      "name": "Big Sur Graphic (night)",
+      "version": "11",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/big-sur-color-night.jpg",
+      "thumb": "assets/wallpapers/thumbs/big-sur-color-night.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "monterey",
+      "name": "Monterey (light)",
+      "version": "12",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/monterey.jpg",
+      "thumb": "assets/wallpapers/thumbs/monterey.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "monterey-dark",
+      "name": "Monterey (dark)",
+      "version": "12",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/monterey-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/monterey-dark.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "ventura",
+      "name": "Ventura (light)",
+      "version": "13",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/ventura.jpg",
+      "thumb": "assets/wallpapers/thumbs/ventura.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "ventura-dark",
+      "name": "Ventura (dark)",
+      "version": "13",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/ventura-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/ventura-dark.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sonoma",
+      "name": "Sonoma (light)",
+      "version": "14",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sonoma.jpg",
+      "thumb": "assets/wallpapers/thumbs/sonoma.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sonoma-dark",
+      "name": "Sonoma (dark)",
+      "version": "14",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sonoma-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/sonoma-dark.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sonoma-horizon",
+      "name": "Sonoma Horizon",
+      "version": "14",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sonoma-horizon.jpg",
+      "thumb": "assets/wallpapers/thumbs/sonoma-horizon.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sequoia",
+      "name": "Sequoia (light)",
+      "version": "15",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sequoia.jpg",
+      "thumb": "assets/wallpapers/thumbs/sequoia.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sequoia-dark",
+      "name": "Sequoia (dark)",
+      "version": "15",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sequoia-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/sequoia-dark.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "sequoia-sunrise",
+      "name": "Sequoia Sunrise",
+      "version": "15",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/sequoia-sunrise.jpg",
+      "thumb": "assets/wallpapers/thumbs/sequoia-sunrise.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "tahoe-light",
+      "name": "Tahoe (light)",
+      "version": "26",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/tahoe-light.jpg",
+      "thumb": "assets/wallpapers/thumbs/tahoe-light.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "tahoe-dark",
+      "name": "Tahoe (dark)",
+      "version": "26",
+      "category": "lineage",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/tahoe-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/tahoe-dark.jpg",
+      "provenance": "512pixels-archive"
+    },
+    {
+      "id": "radial-sky-blue",
+      "name": "Radial Sky Blue",
+      "version": "12",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/radial-sky-blue.jpg",
+      "thumb": "assets/wallpapers/thumbs/radial-sky-blue.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "mac-blue",
+      "name": "Mac Blue",
+      "version": "15",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mac-blue.jpg",
+      "thumb": "assets/wallpapers/thumbs/mac-blue.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "mac-pink",
+      "name": "Mac Pink",
+      "version": "15",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mac-pink.jpg",
+      "thumb": "assets/wallpapers/thumbs/mac-pink.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "mac-purple",
+      "name": "Mac Purple",
+      "version": "15",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mac-purple.jpg",
+      "thumb": "assets/wallpapers/thumbs/mac-purple.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "mac-yellow",
+      "name": "Mac Yellow",
+      "version": "15",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/mac-yellow.jpg",
+      "thumb": "assets/wallpapers/thumbs/mac-yellow.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-blue",
+      "name": "iMac Blue",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-blue.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-blue.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-green",
+      "name": "iMac Green",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-green.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-green.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-orange",
+      "name": "iMac Orange",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-orange.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-orange.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-pink",
+      "name": "iMac Pink",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-pink.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-pink.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-purple",
+      "name": "iMac Purple",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-purple.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-purple.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-silver",
+      "name": "iMac Silver",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-silver.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-silver.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "imac-yellow",
+      "name": "iMac Yellow",
+      "version": "11",
+      "category": "color",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/imac-yellow.jpg",
+      "thumb": "assets/wallpapers/thumbs/imac-yellow.jpg",
+      "provenance": "apple-local"
+    },
+    {
+      "id": "hello-blue",
+      "name": "Hello Blue",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #4aa3ff 0%, #123 78%, #050914 100%)"
+    },
+    {
+      "id": "hello-green",
+      "name": "Hello Green",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #46e0a0 0%, #06371f 78%, #041108 100%)"
+    },
+    {
+      "id": "hello-orange",
+      "name": "Hello Orange",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ff9a3c 0%, #4a1e06 78%, #180800 100%)"
+    },
+    {
+      "id": "hello-pink",
+      "name": "Hello Pink",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.34), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ff6ec4 0%, #4a0e33 78%, #170414 100%)"
+    },
+    {
+      "id": "hello-purple",
+      "name": "Hello Purple",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #a56bff 0%, #2a0f52 78%, #0d0420 100%)"
+    },
+    {
+      "id": "hello-silver",
+      "name": "Hello Silver",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #e8ecf2 0%, #6a7078 60%, #23262b 100%)"
+    },
+    {
+      "id": "hello-yellow",
+      "name": "Hello Yellow",
+      "category": "metallic",
+      "type": "css",
+      "css": "radial-gradient(40% 30% at 50% 38%, rgba(255,255,255,0.34), rgba(255,255,255,0) 60%), radial-gradient(62% 62% at 50% 46%, #ffd23c 0%, #4a3706 78%, #171000 100%)"
+    },
+    {
+      "id": "mesh-sunset",
+      "name": "Mesh Sunset",
+      "category": "gradient",
+      "type": "css",
+      "css": "radial-gradient(50% 50% at 20% 24%, rgba(255,94,98,0.9), rgba(255,94,98,0) 55%), radial-gradient(55% 55% at 82% 18%, rgba(255,179,71,0.9), rgba(255,179,71,0) 55%), radial-gradient(60% 60% at 72% 82%, rgba(160,68,190,0.9), rgba(160,68,190,0) 60%), radial-gradient(60% 60% at 18% 84%, rgba(90,42,120,0.9), rgba(90,42,120,0) 60%), linear-gradient(150deg, #ff8a5a, #b0468f 60%, #3a1a5a)"
+    },
+    {
+      "id": "mesh-aurora",
+      "name": "Mesh Aurora",
+      "category": "gradient",
+      "type": "css",
+      "css": "radial-gradient(50% 55% at 24% 30%, rgba(46,240,190,0.85), rgba(46,240,190,0) 55%), radial-gradient(55% 55% at 80% 26%, rgba(64,160,255,0.85), rgba(64,160,255,0) 55%), radial-gradient(60% 60% at 66% 80%, rgba(120,90,255,0.8), rgba(120,90,255,0) 60%), linear-gradient(160deg, #06251f, #0a2f4a 55%, #101a4a)"
+    },
+    {
+      "id": "midnight-mesh",
+      "name": "Midnight Mesh",
+      "category": "gradient",
+      "type": "css",
+      "css": "radial-gradient(55% 55% at 26% 28%, rgba(60,90,200,0.6), rgba(60,90,200,0) 55%), radial-gradient(55% 55% at 78% 30%, rgba(120,60,200,0.55), rgba(120,60,200,0) 55%), radial-gradient(70% 70% at 60% 90%, rgba(20,40,120,0.7), rgba(20,40,120,0) 60%), linear-gradient(160deg, #0a0e24, #0e1436 60%, #05070f)"
+    },
+    {
+      "id": "solar",
+      "name": "Solar",
+      "category": "gradient",
+      "type": "css",
+      "css": "radial-gradient(50% 50% at 50% 30%, rgba(255,214,106,0.95), rgba(255,214,106,0) 45%), radial-gradient(80% 80% at 50% 30%, rgba(255,94,98,0.85), rgba(255,94,98,0) 60%), linear-gradient(180deg, #ff8a3c 0%, #a83267 46%, #3a1550 100%)"
+    },
+    {
+      "id": "twilight",
+      "name": "Twilight",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(180deg, #1a2a6c 0%, #6a3093 55%, #b06ab3 100%)"
+    },
+    {
+      "id": "ocean",
+      "name": "Ocean",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(180deg, #2b5876 0%, #1f6f8b 50%, #4e9f9f 100%)"
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #f83600 0%, #b81d3a 55%, #4a1030 100%)"
+    },
+    {
+      "id": "dot-grid",
+      "name": "Dot Grid",
+      "category": "pattern",
+      "type": "css",
+      "css": "radial-gradient(circle, rgba(255,255,255,0.14) 1.6px, transparent 1.8px) 0 0 / 44px 44px, linear-gradient(160deg, #1a2140, #0c1026)"
+    },
+    {
+      "id": "blueprint",
+      "name": "Blueprint",
+      "category": "pattern",
+      "type": "css",
+      "css": "linear-gradient(rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(90deg, rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(160deg, #0a2a5c, #062043)"
+    },
+    {
+      "id": "topographic",
+      "name": "Topographic",
+      "category": "pattern",
+      "type": "css",
+      "css": "repeating-radial-gradient(120% 120% at 30% 30%, rgba(255,255,255,0.06) 0 2px, transparent 2px 26px), linear-gradient(160deg, #17324a, #0c1e30)"
+    },
+    {
+      "id": "graphite",
+      "name": "Graphite",
+      "category": "pattern",
+      "type": "css",
+      "css": "radial-gradient(120% 100% at 50% 0%, #34363b 0%, #202226 55%, #131417 100%)"
+    },
+    {
+      "id": "solid-black",
+      "name": "Black",
+      "category": "solid",
+      "type": "css",
+      "css": "#101012"
+    },
+    {
+      "id": "solid-space-gray",
+      "name": "Space Gray",
+      "category": "solid",
+      "type": "css",
+      "css": "#35373b"
+    },
+    {
+      "id": "solid-silver",
+      "name": "Silver",
+      "category": "solid",
+      "type": "css",
+      "css": "#c9ccd1"
+    },
+    {
+      "id": "solid-blue",
+      "name": "Blue",
+      "category": "solid",
+      "type": "css",
+      "css": "#1f6fe0"
+    },
+    {
+      "id": "solid-teal",
+      "name": "Teal",
+      "category": "solid",
+      "type": "css",
+      "css": "#0f8a94"
+    },
+    {
+      "id": "solid-cyan",
+      "name": "Cyan",
+      "category": "solid",
+      "type": "css",
+      "css": "#35b7d6"
+    },
+    {
+      "id": "solid-turquoise",
+      "name": "Turquoise",
+      "category": "solid",
+      "type": "css",
+      "css": "#1fb08a"
+    },
+    {
+      "id": "solid-red-orange",
+      "name": "Red Orange",
+      "category": "solid",
+      "type": "css",
+      "css": "#e85a3a"
+    },
+    {
+      "id": "solid-gold",
+      "name": "Gold",
+      "category": "solid",
+      "type": "css",
+      "css": "#d7a24a"
+    },
+    {
+      "id": "solid-plum",
+      "name": "Plum",
+      "category": "solid",
+      "type": "css",
+      "css": "#7a3a6a"
+    },
+    {
+      "id": "solid-dusty-rose",
+      "name": "Dusty Rose",
+      "category": "solid",
+      "type": "css",
+      "css": "#c98a94"
+    },
+    {
+      "id": "solid-stone",
+      "name": "Stone",
+      "category": "solid",
+      "type": "css",
+      "css": "#9a938a"
+    }
+  ]
+}

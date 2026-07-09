@@ -308,6 +308,21 @@
       ]
     },
     {
+      "name": "mac-wallpaper",
+      "type": "hyperframes:block",
+      "title": "macOS Wallpaper Catalog",
+      "description": "75-wallpaper desktop-background catalog: the full macOS lineage (Cheetah→Tahoe) plus Mac/iMac colour masters as real bundled images, and an original CSS set of gradients, metallics, solid colours, and patterns. The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora).",
+      "tags": [
+        "mac",
+        "macos",
+        "wallpaper",
+        "desktop",
+        "background",
+        "catalog",
+        "component-loader"
+      ]
+    },
+    {
       "name": "premiere-editor",
       "type": "hyperframes:block",
       "title": "Premiere-style Video Editor",
