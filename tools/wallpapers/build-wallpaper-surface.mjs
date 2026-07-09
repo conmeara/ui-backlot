@@ -71,8 +71,20 @@ const imageRules = images
   )
   .join("\n");
 
+// Fine-grain film tile (SVG fractal noise, baked-in low alpha). Prepended as the
+// top background layer for `grain: true` abstract wallpapers to kill gradient
+// banding and give a Raycast-style texture. Base64-encoded so the inline SVG's
+// own `filter="url(#n)"` reference isn't mis-parsed as an asset URL by the
+// HyperFrames registry rewriter.
+const NOISE_SVG =
+  `<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(#n)' opacity='0.05'/></svg>`;
+const NOISE = `url("data:image/svg+xml;base64,${Buffer.from(NOISE_SVG).toString("base64")}") 0 0 / 180px 180px repeat`;
+
 const abstractRules = abstract
-  .map((a) => `          ${S}[data-wallpaper="${a.id}"] { background: ${a.css}; }`)
+  .map((a) => {
+    const bg = a.grain ? `${NOISE}, ${a.css}` : a.css;
+    return `          ${S}[data-wallpaper="${a.id}"] { background: ${bg}; }`;
+  })
   .join("\n");
 
 const html = `<!DOCTYPE html>

@@ -19,9 +19,12 @@ const cat = JSON.parse(readFileSync(resolve(ROOT, "surfaces/wallpapers.json"), "
 const GROUPS = [
   ["lineage", "macOS lineage — real images", "Every default OS X / macOS wallpaper, Cheetah → Tahoe"],
   ["color", "Mac & iMac colour masters — real images", "Apple's on-device colour wallpapers"],
+  ["raycast", "Raycast — real images", "Raycast's wallpaper set (misc-assets.raycast.com)"],
+  ["mesh", "Mesh gradients — CSS", "Original multi-blob mesh gradients with fine grain"],
+  ["gradient", "Gradients — CSS", "Original linear & duotone gradients"],
+  ["spotlight", "Spotlights — CSS", "Radial glow on dark — good behind terminals & app windows"],
   ["metallic", "Hello metallics — CSS", "Original radial metallics"],
-  ["gradient", "Gradients — CSS", "Original mesh & linear gradients"],
-  ["pattern", "Patterns — CSS", "Tiling dot-grid, blueprint, topographic, graphite"],
+  ["pattern", "Patterns — CSS", "Tiling grids, dots, stripes, topographic, carbon"],
   ["solid", "Solid colours — CSS", "Flat desktop colours"],
 ];
 

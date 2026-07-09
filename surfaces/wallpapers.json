@@ -2,7 +2,7 @@
   "generated": "tools/wallpapers/build-wallpaper-surface.mjs",
   "surface": "mac-wallpaper",
   "default": "sonoma",
-  "count": 75,
+  "count": 141,
   "wallpapers": [
     {
       "id": "cheetah",
@@ -455,6 +455,346 @@
       "provenance": "apple-local"
     },
     {
+      "id": "raycast-autumnal-peach",
+      "name": "Raycast Autumnal Peach",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-autumnal-peach.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-autumnal-peach.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blob-red",
+      "name": "Raycast Blob Red",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blob-red.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blob-red.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blob",
+      "name": "Raycast Blob",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blob.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blob.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blossom-2",
+      "name": "Raycast Blossom 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blossom-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blossom-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blue-distortion-1",
+      "name": "Raycast Blue Distortion 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blue-distortion-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blue-distortion-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blue-distortion-2",
+      "name": "Raycast Blue Distortion 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blue-distortion-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blue-distortion-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-blushing-fire",
+      "name": "Raycast Blushing Fire",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-blushing-fire.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-blushing-fire.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-bright-rain",
+      "name": "Raycast Bright Rain",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-bright-rain.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-bright-rain.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-chromatic-dark-1",
+      "name": "Raycast Chromatic Dark 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-chromatic-dark-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-chromatic-dark-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-chromatic-dark-2",
+      "name": "Raycast Chromatic Dark 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-chromatic-dark-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-chromatic-dark-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-chromatic-light-1",
+      "name": "Raycast Chromatic Light 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-chromatic-light-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-chromatic-light-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-chromatic-light-2",
+      "name": "Raycast Chromatic Light 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-chromatic-light-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-chromatic-light-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-cube-mono",
+      "name": "Raycast Cube Mono",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-cube-mono.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-cube-mono.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-cube-prod",
+      "name": "Raycast Cube Prod",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-cube-prod.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-cube-prod.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-floss",
+      "name": "Raycast Floss",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-floss.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-floss.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-glass-rainbow",
+      "name": "Raycast Glass Rainbow",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-glass-rainbow.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-glass-rainbow.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-glaze-1",
+      "name": "Raycast Glaze 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-glaze-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-glaze-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-glaze-2",
+      "name": "Raycast Glaze 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-glaze-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-glaze-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-good-vibes",
+      "name": "Raycast Good Vibes",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-good-vibes.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-good-vibes.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-loupe-mono-dark",
+      "name": "Raycast Loupe Mono Dark",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-loupe-mono-dark.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-loupe-mono-dark.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-loupe-mono-light",
+      "name": "Raycast Loupe Mono Light",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-loupe-mono-light.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-loupe-mono-light.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-loupe",
+      "name": "Raycast Loupe",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-loupe.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-loupe.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-mono-dark-distortion-1",
+      "name": "Raycast Mono Dark Distortion 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-mono-dark-distortion-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-mono-dark-distortion-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-mono-dark-distortion-2",
+      "name": "Raycast Mono Dark Distortion 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-mono-dark-distortion-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-mono-dark-distortion-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-mono-light-distortion-1",
+      "name": "Raycast Mono Light Distortion 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-mono-light-distortion-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-mono-light-distortion-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-mono-light-distortion-2",
+      "name": "Raycast Mono Light Distortion 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-mono-light-distortion-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-mono-light-distortion-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-moonrise",
+      "name": "Raycast Moonrise",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-moonrise.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-moonrise.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-ray-of-lights",
+      "name": "Raycast Ray Of Lights",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-ray-of-lights.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-ray-of-lights.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-raycast-logo",
+      "name": "Raycast Raycast Logo",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-raycast-logo.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-raycast-logo.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-red-distortion-1",
+      "name": "Raycast Red Distortion 1",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-red-distortion-1.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-red-distortion-1.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-red-distortion-2",
+      "name": "Raycast Red Distortion 2",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-red-distortion-2.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-red-distortion-2.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-red-distortion-3",
+      "name": "Raycast Red Distortion 3",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-red-distortion-3.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-red-distortion-3.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-red-distortion-4",
+      "name": "Raycast Red Distortion 4",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-red-distortion-4.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-red-distortion-4.jpg",
+      "provenance": "raycast"
+    },
+    {
+      "id": "raycast-rose-thorn",
+      "name": "Raycast Rose Thorn",
+      "version": null,
+      "category": "raycast",
+      "type": "image",
+      "asset": "assets/wallpapers/macos/raycast-rose-thorn.jpg",
+      "thumb": "assets/wallpapers/thumbs/raycast-rose-thorn.jpg",
+      "provenance": "raycast"
+    },
+    {
       "id": "hello-blue",
       "name": "Hello Blue",
       "category": "metallic",
@@ -506,23 +846,107 @@
     {
       "id": "mesh-sunset",
       "name": "Mesh Sunset",
-      "category": "gradient",
+      "category": "mesh",
       "type": "css",
-      "css": "radial-gradient(50% 50% at 20% 24%, rgba(255,94,98,0.9), rgba(255,94,98,0) 55%), radial-gradient(55% 55% at 82% 18%, rgba(255,179,71,0.9), rgba(255,179,71,0) 55%), radial-gradient(60% 60% at 72% 82%, rgba(160,68,190,0.9), rgba(160,68,190,0) 60%), radial-gradient(60% 60% at 18% 84%, rgba(90,42,120,0.9), rgba(90,42,120,0) 60%), linear-gradient(150deg, #ff8a5a, #b0468f 60%, #3a1a5a)"
+      "css": "radial-gradient(60% 60% at 18% 22%, rgba(255,120,90,0.95), rgba(255,120,90,0) 60%), radial-gradient(55% 55% at 84% 16%, rgba(255,196,110,0.9), rgba(255,196,110,0) 55%), radial-gradient(70% 70% at 74% 84%, rgba(180,74,200,0.9), rgba(180,74,200,0) 60%), radial-gradient(70% 70% at 14% 88%, rgba(120,52,150,0.9), rgba(120,52,150,0) 62%), linear-gradient(150deg, #ff9a6a, #b0468f 58%, #3a1a5a)"
     },
     {
       "id": "mesh-aurora",
       "name": "Mesh Aurora",
-      "category": "gradient",
+      "category": "mesh",
       "type": "css",
-      "css": "radial-gradient(50% 55% at 24% 30%, rgba(46,240,190,0.85), rgba(46,240,190,0) 55%), radial-gradient(55% 55% at 80% 26%, rgba(64,160,255,0.85), rgba(64,160,255,0) 55%), radial-gradient(60% 60% at 66% 80%, rgba(120,90,255,0.8), rgba(120,90,255,0) 60%), linear-gradient(160deg, #06251f, #0a2f4a 55%, #101a4a)"
+      "css": "radial-gradient(60% 60% at 22% 28%, rgba(60,240,190,0.85), rgba(60,240,190,0) 60%), radial-gradient(60% 60% at 82% 26%, rgba(70,160,255,0.85), rgba(70,160,255,0) 58%), radial-gradient(70% 70% at 64% 84%, rgba(130,100,255,0.8), rgba(130,100,255,0) 62%), linear-gradient(160deg, #0a2b26, #0d3350 55%, #14204e)"
+    },
+    {
+      "id": "mesh-ocean",
+      "name": "Mesh Ocean",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 24% 26%, rgba(90,210,255,0.85), rgba(90,210,255,0) 58%), radial-gradient(60% 60% at 80% 30%, rgba(60,120,240,0.85), rgba(60,120,240,0) 58%), radial-gradient(70% 70% at 60% 88%, rgba(30,90,180,0.8), rgba(30,90,180,0) 60%), linear-gradient(160deg, #0a2540, #0c3a63 55%, #06213f)"
+    },
+    {
+      "id": "mesh-candy",
+      "name": "Mesh Candy",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 20% 24%, rgba(255,140,200,0.9), rgba(255,140,200,0) 58%), radial-gradient(60% 60% at 82% 22%, rgba(150,140,255,0.9), rgba(150,140,255,0) 58%), radial-gradient(70% 70% at 70% 86%, rgba(120,180,255,0.85), rgba(120,180,255,0) 60%), linear-gradient(150deg, #ffd6ec, #d9c9ff 52%, #bcd6ff)"
+    },
+    {
+      "id": "mesh-peach",
+      "name": "Mesh Peach",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 22% 24%, rgba(255,180,140,0.95), rgba(255,180,140,0) 58%), radial-gradient(60% 60% at 82% 26%, rgba(255,140,150,0.9), rgba(255,140,150,0) 58%), radial-gradient(70% 70% at 66% 86%, rgba(255,206,160,0.85), rgba(255,206,160,0) 60%), linear-gradient(150deg, #ffe0cf, #ffc2b0 55%, #f7a68f)"
+    },
+    {
+      "id": "mesh-mint",
+      "name": "Mesh Mint",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 24% 26%, rgba(140,240,200,0.9), rgba(140,240,200,0) 58%), radial-gradient(60% 60% at 80% 28%, rgba(120,220,230,0.9), rgba(120,220,230,0) 58%), radial-gradient(70% 70% at 66% 86%, rgba(160,235,180,0.85), rgba(160,235,180,0) 60%), linear-gradient(150deg, #d9fbec, #b9f0dd 55%, #9fe6cf)"
+    },
+    {
+      "id": "mesh-grape",
+      "name": "Mesh Grape",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 22% 24%, rgba(170,110,255,0.9), rgba(170,110,255,0) 58%), radial-gradient(60% 60% at 82% 24%, rgba(120,90,240,0.9), rgba(120,90,240,0) 58%), radial-gradient(70% 70% at 66% 88%, rgba(90,60,200,0.85), rgba(90,60,200,0) 60%), linear-gradient(155deg, #2a1550, #3a1d70 55%, #180a34)"
+    },
+    {
+      "id": "mesh-ember",
+      "name": "Mesh Ember",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 22% 24%, rgba(255,120,70,0.95), rgba(255,120,70,0) 58%), radial-gradient(60% 60% at 82% 26%, rgba(230,60,90,0.9), rgba(230,60,90,0) 58%), radial-gradient(70% 70% at 64% 88%, rgba(150,30,60,0.85), rgba(150,30,60,0) 62%), linear-gradient(155deg, #3a0f12, #6a1620 55%, #1c0608)"
+    },
+    {
+      "id": "mesh-arctic",
+      "name": "Mesh Arctic",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 24% 26%, rgba(150,220,255,0.9), rgba(150,220,255,0) 58%), radial-gradient(60% 60% at 80% 26%, rgba(120,180,240,0.85), rgba(120,180,240,0) 58%), radial-gradient(70% 70% at 66% 86%, rgba(200,230,250,0.8), rgba(200,230,250,0) 60%), linear-gradient(160deg, #eaf4ff, #cfe4fb 55%, #b3d2f2)"
+    },
+    {
+      "id": "mesh-dusk",
+      "name": "Mesh Dusk",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(62% 62% at 20% 24%, rgba(255,150,110,0.9), rgba(255,150,110,0) 58%), radial-gradient(60% 60% at 84% 30%, rgba(150,90,220,0.9), rgba(150,90,220,0) 58%), radial-gradient(72% 72% at 62% 88%, rgba(60,60,150,0.85), rgba(60,60,150,0) 62%), linear-gradient(160deg, #4a2a55, #2a2160 55%, #14113a)"
+    },
+    {
+      "id": "mesh-coral",
+      "name": "Mesh Coral",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 22% 24%, rgba(255,130,120,0.95), rgba(255,130,120,0) 58%), radial-gradient(60% 60% at 82% 24%, rgba(255,170,120,0.9), rgba(255,170,120,0) 58%), radial-gradient(70% 70% at 66% 88%, rgba(240,110,150,0.85), rgba(240,110,150,0) 60%), linear-gradient(150deg, #ffcabf, #ff9f9a 55%, #e87a86)"
+    },
+    {
+      "id": "mesh-forest",
+      "name": "Mesh Forest",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 24% 26%, rgba(120,220,140,0.9), rgba(120,220,140,0) 58%), radial-gradient(60% 60% at 82% 28%, rgba(90,190,150,0.9), rgba(90,190,150,0) 58%), radial-gradient(70% 70% at 66% 88%, rgba(40,120,90,0.85), rgba(40,120,90,0) 62%), linear-gradient(155deg, #10331f, #16492c 55%, #08200f)"
+    },
+    {
+      "id": "mesh-slate",
+      "name": "Mesh Slate",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(62% 62% at 22% 26%, rgba(120,140,180,0.7), rgba(120,140,180,0) 60%), radial-gradient(60% 60% at 82% 28%, rgba(90,110,150,0.7), rgba(90,110,150,0) 58%), radial-gradient(72% 72% at 64% 88%, rgba(60,72,100,0.7), rgba(60,72,100,0) 62%), linear-gradient(160deg, #232a38, #2c3548 55%, #171c26)"
+    },
+    {
+      "id": "mesh-rose",
+      "name": "Mesh Rose",
+      "category": "mesh",
+      "type": "css",
+      "css": "radial-gradient(60% 60% at 22% 24%, rgba(255,150,190,0.9), rgba(255,150,190,0) 58%), radial-gradient(60% 60% at 82% 26%, rgba(230,110,170,0.9), rgba(230,110,170,0) 58%), radial-gradient(70% 70% at 66% 88%, rgba(170,70,130,0.85), rgba(170,70,130,0) 62%), linear-gradient(155deg, #3a1428, #5a1d3c 55%, #1e0a16)"
     },
     {
       "id": "midnight-mesh",
       "name": "Midnight Mesh",
-      "category": "gradient",
+      "category": "mesh",
       "type": "css",
-      "css": "radial-gradient(55% 55% at 26% 28%, rgba(60,90,200,0.6), rgba(60,90,200,0) 55%), radial-gradient(55% 55% at 78% 30%, rgba(120,60,200,0.55), rgba(120,60,200,0) 55%), radial-gradient(70% 70% at 60% 90%, rgba(20,40,120,0.7), rgba(20,40,120,0) 60%), linear-gradient(160deg, #0a0e24, #0e1436 60%, #05070f)"
+      "css": "radial-gradient(60% 60% at 26% 28%, rgba(70,100,220,0.6), rgba(70,100,220,0) 58%), radial-gradient(58% 58% at 78% 30%, rgba(130,70,210,0.55), rgba(130,70,210,0) 58%), radial-gradient(72% 72% at 60% 90%, rgba(24,44,130,0.7), rgba(24,44,130,0) 62%), linear-gradient(160deg, #0a0e24, #0e1436 60%, #05070f)"
     },
     {
       "id": "solar",
@@ -553,6 +977,104 @@
       "css": "linear-gradient(160deg, #f83600 0%, #b81d3a 55%, #4a1030 100%)"
     },
     {
+      "id": "grad-sky",
+      "name": "Sky",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(180deg, #7db9ff 0%, #4a86e8 50%, #2b5cc0 100%)"
+    },
+    {
+      "id": "grad-sunrise",
+      "name": "Sunrise",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #ff9a5a 0%, #ff6a88 55%, #a8408f 100%)"
+    },
+    {
+      "id": "grad-lavender",
+      "name": "Lavender",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #c7b8ff 0%, #a58bf0 50%, #7a5fd0 100%)"
+    },
+    {
+      "id": "grad-emerald",
+      "name": "Emerald",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #2fa07a 0%, #178a6a 50%, #0c5a48 100%)"
+    },
+    {
+      "id": "grad-indigo",
+      "name": "Indigo",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #4b4fd0 0%, #33307f 55%, #16143a 100%)"
+    },
+    {
+      "id": "grad-flamingo",
+      "name": "Flamingo",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #ff7eb3 0%, #ff6a6a 55%, #d0417e 100%)"
+    },
+    {
+      "id": "grad-mono",
+      "name": "Mono",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #3a3f47 0%, #24272e 55%, #14161b 100%)"
+    },
+    {
+      "id": "grad-mint",
+      "name": "Mint Fade",
+      "category": "gradient",
+      "type": "css",
+      "css": "linear-gradient(160deg, #bff5e0 0%, #8fe6cf 50%, #5fc3b0 100%)"
+    },
+    {
+      "id": "spot-blue",
+      "name": "Spotlight Blue",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(70,140,255,0.4), rgba(70,140,255,0) 62%), radial-gradient(120% 100% at 50% 0%, #14213f 0%, #0a0e1c 60%, #06080f 100%)"
+    },
+    {
+      "id": "spot-violet",
+      "name": "Spotlight Violet",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(150,90,255,0.42), rgba(150,90,255,0) 62%), radial-gradient(120% 100% at 50% 0%, #1e1440 0%, #0e0a22 60%, #07050f 100%)"
+    },
+    {
+      "id": "spot-warm",
+      "name": "Spotlight Warm",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(255,150,80,0.4), rgba(255,150,80,0) 62%), radial-gradient(120% 100% at 50% 0%, #2a1810 0%, #140c08 60%, #0b0604 100%)"
+    },
+    {
+      "id": "spot-green",
+      "name": "Spotlight Green",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(70,220,150,0.38), rgba(70,220,150,0) 62%), radial-gradient(120% 100% at 50% 0%, #0c2a20 0%, #071510 60%, #040b08 100%)"
+    },
+    {
+      "id": "spot-teal",
+      "name": "Spotlight Teal",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(60,200,220,0.4), rgba(60,200,220,0) 62%), radial-gradient(120% 100% at 50% 0%, #0c2630 0%, #07141a 60%, #040b0e 100%)"
+    },
+    {
+      "id": "spot-mono",
+      "name": "Spotlight Mono",
+      "category": "spotlight",
+      "type": "css",
+      "css": "radial-gradient(60% 55% at 50% 38%, rgba(200,210,230,0.22), rgba(200,210,230,0) 62%), radial-gradient(120% 100% at 50% 0%, #1c1f26 0%, #101216 60%, #08090c 100%)"
+    },
+    {
       "id": "dot-grid",
       "name": "Dot Grid",
       "category": "pattern",
@@ -560,11 +1082,53 @@
       "css": "radial-gradient(circle, rgba(255,255,255,0.14) 1.6px, transparent 1.8px) 0 0 / 44px 44px, linear-gradient(160deg, #1a2140, #0c1026)"
     },
     {
+      "id": "dot-grid-warm",
+      "name": "Dot Grid Warm",
+      "category": "pattern",
+      "type": "css",
+      "css": "radial-gradient(circle, rgba(255,220,180,0.16) 1.6px, transparent 1.8px) 0 0 / 40px 40px, linear-gradient(160deg, #2a2018, #150f0a)"
+    },
+    {
       "id": "blueprint",
       "name": "Blueprint",
       "category": "pattern",
       "type": "css",
       "css": "linear-gradient(rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgba(120,190,255,0.16) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(90deg, rgba(120,190,255,0.28) 1px, transparent 1px) 0 0 / 240px 240px, linear-gradient(160deg, #0a2a5c, #062043)"
+    },
+    {
+      "id": "grid-fine",
+      "name": "Fine Grid",
+      "category": "pattern",
+      "type": "css",
+      "css": "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(160deg, #191b22, #0f1116)"
+    },
+    {
+      "id": "graph-paper",
+      "name": "Graph Paper",
+      "category": "pattern",
+      "type": "css",
+      "css": "linear-gradient(rgba(90,120,200,0.12) 1px, transparent 1px) 0 0 / 26px 26px, linear-gradient(90deg, rgba(90,120,200,0.12) 1px, transparent 1px) 0 0 / 26px 26px, #f4f6fb"
+    },
+    {
+      "id": "diagonal-stripes",
+      "name": "Diagonal Stripes",
+      "category": "pattern",
+      "type": "css",
+      "css": "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 14px, transparent 14px 28px), linear-gradient(160deg, #1c2030, #10131c)"
+    },
+    {
+      "id": "crosshatch",
+      "name": "Crosshatch",
+      "category": "pattern",
+      "type": "css",
+      "css": "repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 16px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 16px), linear-gradient(160deg, #1a1d26, #101218)"
+    },
+    {
+      "id": "carbon",
+      "name": "Carbon",
+      "category": "pattern",
+      "type": "css",
+      "css": "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 1px, transparent 1.4px) 0 0 / 10px 10px, linear-gradient(160deg, #202228, #131418)"
     },
     {
       "id": "topographic",

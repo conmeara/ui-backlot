@@ -175,6 +175,176 @@
       "type": "hyperframes:asset"
     },
     {
+      "path": "assets/wallpapers/macos/raycast-autumnal-peach.jpg",
+      "target": "assets/wallpapers/macos/raycast-autumnal-peach.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blob-red.jpg",
+      "target": "assets/wallpapers/macos/raycast-blob-red.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blob.jpg",
+      "target": "assets/wallpapers/macos/raycast-blob.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blossom-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-blossom-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blue-distortion-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-blue-distortion-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blue-distortion-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-blue-distortion-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-blushing-fire.jpg",
+      "target": "assets/wallpapers/macos/raycast-blushing-fire.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-bright-rain.jpg",
+      "target": "assets/wallpapers/macos/raycast-bright-rain.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-chromatic-dark-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-chromatic-dark-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-chromatic-dark-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-chromatic-dark-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-chromatic-light-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-chromatic-light-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-chromatic-light-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-chromatic-light-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-cube-mono.jpg",
+      "target": "assets/wallpapers/macos/raycast-cube-mono.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-cube-prod.jpg",
+      "target": "assets/wallpapers/macos/raycast-cube-prod.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-floss.jpg",
+      "target": "assets/wallpapers/macos/raycast-floss.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-glass-rainbow.jpg",
+      "target": "assets/wallpapers/macos/raycast-glass-rainbow.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-glaze-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-glaze-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-glaze-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-glaze-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-good-vibes.jpg",
+      "target": "assets/wallpapers/macos/raycast-good-vibes.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-loupe-mono-dark.jpg",
+      "target": "assets/wallpapers/macos/raycast-loupe-mono-dark.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-loupe-mono-light.jpg",
+      "target": "assets/wallpapers/macos/raycast-loupe-mono-light.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-loupe.jpg",
+      "target": "assets/wallpapers/macos/raycast-loupe.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-mono-dark-distortion-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-mono-dark-distortion-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-mono-dark-distortion-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-mono-dark-distortion-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-mono-light-distortion-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-mono-light-distortion-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-mono-light-distortion-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-mono-light-distortion-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-moonrise.jpg",
+      "target": "assets/wallpapers/macos/raycast-moonrise.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-ray-of-lights.jpg",
+      "target": "assets/wallpapers/macos/raycast-ray-of-lights.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-raycast-logo.jpg",
+      "target": "assets/wallpapers/macos/raycast-raycast-logo.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-red-distortion-1.jpg",
+      "target": "assets/wallpapers/macos/raycast-red-distortion-1.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-red-distortion-2.jpg",
+      "target": "assets/wallpapers/macos/raycast-red-distortion-2.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-red-distortion-3.jpg",
+      "target": "assets/wallpapers/macos/raycast-red-distortion-3.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-red-distortion-4.jpg",
+      "target": "assets/wallpapers/macos/raycast-red-distortion-4.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/wallpapers/macos/raycast-rose-thorn.jpg",
+      "target": "assets/wallpapers/macos/raycast-rose-thorn.jpg",
+      "type": "hyperframes:asset"
+    },
+    {
       "path": "assets/wallpapers/macos/sequoia-dark.jpg",
       "target": "assets/wallpapers/macos/sequoia-dark.jpg",
       "type": "hyperframes:asset"

@@ -37,6 +37,7 @@ const FULL = { w: 2560, h: 1600, q: 80 };
 const THUMB = { w: 768, h: 480, q: 72 };
 
 const CDN = "https://media.512pixels.net/downloads/macos-wallpapers-6k";
+const CDN_RC = "https://misc-assets.raycast.com/wallpapers";
 const DP = "/System/Library/Desktop Pictures";
 
 // id | name | version | category | variant | source
@@ -90,10 +91,47 @@ const SOURCES = [
   ["imac-purple", "iMac Purple", "11", "color", null, local(`${DP}/iMac Purple.heic`)],
   ["imac-silver", "iMac Silver", "11", "color", null, local(`${DP}/iMac Silver.heic`)],
   ["imac-yellow", "iMac Yellow", "11", "color", null, local(`${DP}/iMac Yellow.heic`)],
+
+  // ---- Raycast wallpapers (misc-assets.raycast.com; provenance flagged) ----
+  ["raycast-autumnal-peach", "Raycast Autumnal Peach", null, "raycast", null, raycastUrl("autumnal-peach.png")],
+  ["raycast-blob-red", "Raycast Blob Red", null, "raycast", null, raycastUrl("blob-red.heic")],
+  ["raycast-blob", "Raycast Blob", null, "raycast", null, raycastUrl("blob.heic")],
+  ["raycast-blossom-2", "Raycast Blossom 2", null, "raycast", null, raycastUrl("blossom-2.png")],
+  ["raycast-blue-distortion-1", "Raycast Blue Distortion 1", null, "raycast", null, raycastUrl("blue_distortion_1.heic")],
+  ["raycast-blue-distortion-2", "Raycast Blue Distortion 2", null, "raycast", null, raycastUrl("blue_distortion_2.heic")],
+  ["raycast-blushing-fire", "Raycast Blushing Fire", null, "raycast", null, raycastUrl("blushing-fire.png")],
+  ["raycast-bright-rain", "Raycast Bright Rain", null, "raycast", null, raycastUrl("bright-rain.png")],
+  ["raycast-chromatic-dark-1", "Raycast Chromatic Dark 1", null, "raycast", null, raycastUrl("chromatic_dark_1.heic")],
+  ["raycast-chromatic-dark-2", "Raycast Chromatic Dark 2", null, "raycast", null, raycastUrl("chromatic_dark_2.heic")],
+  ["raycast-chromatic-light-1", "Raycast Chromatic Light 1", null, "raycast", null, raycastUrl("chromatic_light_1.heic")],
+  ["raycast-chromatic-light-2", "Raycast Chromatic Light 2", null, "raycast", null, raycastUrl("chromatic_light_2.heic")],
+  ["raycast-cube-mono", "Raycast Cube Mono", null, "raycast", null, raycastUrl("cube_mono.heic")],
+  ["raycast-cube-prod", "Raycast Cube Prod", null, "raycast", null, raycastUrl("cube_prod.heic")],
+  ["raycast-floss", "Raycast Floss", null, "raycast", null, raycastUrl("floss.png")],
+  ["raycast-glass-rainbow", "Raycast Glass Rainbow", null, "raycast", null, raycastUrl("glass-rainbow.png")],
+  ["raycast-glaze-1", "Raycast Glaze 1", null, "raycast", null, raycastUrl("glaze_1.heic")],
+  ["raycast-glaze-2", "Raycast Glaze 2", null, "raycast", null, raycastUrl("glaze_2.heic")],
+  ["raycast-good-vibes", "Raycast Good Vibes", null, "raycast", null, raycastUrl("good-vibes.png")],
+  ["raycast-loupe-mono-dark", "Raycast Loupe Mono Dark", null, "raycast", null, raycastUrl("loupe-mono-dark.heic")],
+  ["raycast-loupe-mono-light", "Raycast Loupe Mono Light", null, "raycast", null, raycastUrl("loupe-mono-light.heic")],
+  ["raycast-loupe", "Raycast Loupe", null, "raycast", null, raycastUrl("loupe.heic")],
+  ["raycast-mono-dark-distortion-1", "Raycast Mono Dark Distortion 1", null, "raycast", null, raycastUrl("mono_dark_distortion_1.heic")],
+  ["raycast-mono-dark-distortion-2", "Raycast Mono Dark Distortion 2", null, "raycast", null, raycastUrl("mono_dark_distortion_2.heic")],
+  ["raycast-mono-light-distortion-1", "Raycast Mono Light Distortion 1", null, "raycast", null, raycastUrl("mono_light_distortion_1.heic")],
+  ["raycast-mono-light-distortion-2", "Raycast Mono Light Distortion 2", null, "raycast", null, raycastUrl("mono_light_distortion_2.heic")],
+  ["raycast-moonrise", "Raycast Moonrise", null, "raycast", null, raycastUrl("moonrise.png")],
+  ["raycast-ray-of-lights", "Raycast Ray Of Lights", null, "raycast", null, raycastUrl("ray-of-lights.png")],
+  ["raycast-raycast-logo", "Raycast Raycast Logo", null, "raycast", null, raycastUrl("raycast-logo.heic")],
+  ["raycast-red-distortion-1", "Raycast Red Distortion 1", null, "raycast", null, raycastUrl("red_distortion_1.heic")],
+  ["raycast-red-distortion-2", "Raycast Red Distortion 2", null, "raycast", null, raycastUrl("red_distortion_2.heic")],
+  ["raycast-red-distortion-3", "Raycast Red Distortion 3", null, "raycast", null, raycastUrl("red_distortion_3.heic")],
+  ["raycast-red-distortion-4", "Raycast Red Distortion 4", null, "raycast", null, raycastUrl("red_distortion_4.heic")],
+  ["raycast-rose-thorn", "Raycast Rose Thorn", null, "raycast", null, raycastUrl("rose-thorn.png")],
 ];
 
-function url(file) { return { type: "url", ref: `${CDN}/${file}`, ext: file.split(".").pop() }; }
-function local(path) { return { type: "local", ref: path, ext: path.split(".").pop() }; }
+function url(file) { return { type: "url", ref: `${CDN}/${file}`, ext: file.split(".").pop(), provenance: "512pixels-archive" }; }
+function local(path) { return { type: "local", ref: path, ext: path.split(".").pop(), provenance: "apple-local" }; }
+function raycastUrl(file) { return { type: "url", ref: `${CDN_RC}/${file}`, ext: file.split(".").pop(), provenance: "raycast" }; }
 
 const args = process.argv.slice(2);
 const force = args.includes("--force");
@@ -189,7 +227,7 @@ async function main() {
         thumb: `assets/wallpapers/thumbs/${e.id}.jpg`,
         width: FULL.w,
         height: FULL.h,
-        provenance: e.src.type === "local" ? "apple-local" : "512pixels-archive",
+        provenance: e.src.provenance,
         sourceUrl: e.src.type === "url" ? e.src.ref : null,
       });
     } catch (err) {

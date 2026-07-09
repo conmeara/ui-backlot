@@ -23,6 +23,14 @@ Sources for the bundled, web-optimized (2560×1600 JPEG) copies:
 - **Mac / iMac colour masters + Radial Sky Blue**: converted from this build
   machine's `/System/Library/Desktop Pictures/` (Apple ships these only
   on-device). Marked `"provenance": "apple-local"` in `manifest.json`.
+- **Raycast set**: downloaded from `misc-assets.raycast.com/wallpapers/`
+  (the collection at <https://www.raycast.com/wallpapers>). These are
+  **© Raycast Technologies** and offered by Raycast as free desktop
+  wallpapers; Raycast has not published them under a redistribution license, so
+  they are included here on the same "demo backdrop, rights reserved by the
+  owner" basis as the Apple set. Marked `"provenance": "raycast"` in
+  `manifest.json`. Remove them the same way (delete + re-source) if that
+  provenance is a concern for your fork.
 
 If redistributing Apple's wallpaper imagery in a public repository is a concern
 for your fork, delete `macos/` + `thumbs/` and run `npm run wallpapers:assets`
