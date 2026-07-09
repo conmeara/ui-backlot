@@ -32,8 +32,10 @@
             <div class="composer-actions">
               <button class="attach" aria-label="Attach">+</button>
               <span class="model">Opus 4.8</span>
-              <button class="send-button" data-role="send" aria-label="Send">
-                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+              <span class="model-spinner" data-role="spinner" aria-hidden="true"></span>
+              <button class="send-button" data-role="send" data-state="idle" aria-label="Send">
+                <svg class="icon-arrow" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+                <svg class="icon-stop" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3" /></svg>
               </button>
             </div>
           </div>
@@ -93,7 +95,16 @@
       .composer-actions { position: absolute; right: 26px; bottom: 26px; display: flex; align-items: center; gap: 12px; }
       .composer .attach { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(11,11,11,0.12); background: #fff; color: #52514e; font-size: 18px; line-height: 1; }
       .composer .model { font-size: 13.5px; color: #52514e; }
+      .model-spinner {
+        width: 12px; height: 12px; border-radius: 50%; display: inline-block; opacity: 0;
+        border: 1.6px solid rgba(82,81,78,0.28); border-top-color: #4a90d9; border-right-color: #4a90d9;
+      }
       .send-button { width: 34px; height: 34px; border-radius: 10px; border: none; background: #d97757; color: #fff; display: grid; place-items: center; }
+      .send-button svg { grid-area: 1 / 1; }
+      .send-button .icon-stop { opacity: 0; }
+      .send-button[data-state="stop"] { background: #211f1c; }
+      .send-button[data-state="stop"] .icon-arrow { opacity: 0; }
+      .send-button[data-state="stop"] .icon-stop { opacity: 1; }
 
       .demo-cursor {
         position: absolute; left: 660px; top: 640px; z-index: 90; width: 26px; height: 26px;
@@ -115,6 +126,9 @@
       // AI bubble + thinking hidden to start.
       gsap.set('[data-role="ai-msg"]', { opacity: 0 });
       gsap.set('[data-role="thinking"]', { opacity: 0 });
+      // Click-ring parks off-canvas at rest so it never reads as a stray glitch
+      // near the origin before its first use.
+      gsap.set('.demo-click-ring', { opacity: 0, left: -100, top: -100 });
 
       const PROMPT = "Summarize the Q2 launch deck in three bullet points.";
       const REPLY =
@@ -147,6 +161,24 @@
       ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
       tl.to(caret, { opacity: 0, duration: 0.12 }, sendAt);
       ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
+
+      // Composer reacts to being in a generating state: the send arrow swaps
+      // to a stop square and a spinner appears by the model name, for the
+      // whole thinking + streaming stretch. Both flips are attr-driven
+      // tl.set() calls so they render correctly on seek.
+      const sendBtn = stage.querySelector('[data-role="send"]');
+      const spinner = stage.querySelector('[data-role="spinner"]');
+      gsap.set(spinner, { opacity: 0, rotation: 0 });
+      const streamEndAt = 11.6;
+      tl.set(sendBtn, { attr: { "data-state": "stop" } }, sendAt + 0.05);
+      tl.set(spinner, { opacity: 1 }, sendAt + 0.05);
+      tl.to(spinner, { rotation: "+=360", duration: 0.8, ease: "none", repeat: 10 }, sendAt + 0.05);
+      tl.set(sendBtn, { attr: { "data-state": "idle" } }, streamEndAt);
+      tl.set(spinner, { opacity: 0 }, streamEndAt);
+
+      // Cursor drifts off the send button while the reply streams, rather
+      // than staying glued on top of it for the whole generation.
+      tl.to(".demo-cursor", { left: 660, top: 460, duration: 0.6, ease: "power2.out" }, sendAt + 0.4);
 
       // 3) AI turn: bubble appears, thinks, then streams the reply word-by-word
       //    with a gentle rise + soft fade — reads like a real streamed reply.

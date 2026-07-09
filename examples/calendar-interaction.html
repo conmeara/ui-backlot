@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="calendar-interaction" data-composition-id="calendar-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.8">
+      <section class="cal-stage" data-primitive="calendar-interaction" aria-label="macOS Calendar week view with a scripted new-event creation">
+        <div class="wallpaper" aria-hidden="true"></div>
+
+        <section class="calendar-window" data-primitive="macos-calendar-window" aria-label="Calendar week window">
+          <header class="titlebar">
+            <div class="traffic" aria-hidden="true">
+              <span class="red"></span>
+              <span class="yellow"></span>
+              <span class="green"></span>
+            </div>
+            <div class="window-tools left" aria-hidden="true">
+              <span class="tool-icon calendar-list"></span>
+              <span class="tool-icon inbox"></span>
+              <span class="inbox-count">23</span>
+              <span class="toolbar-add">+</span>
+            </div>
+            <div class="view-switcher" aria-label="Calendar view switcher">
+              <span class="view-option">Day</span>
+              <span class="view-option active">Week</span>
+              <span class="view-option">Month</span>
+              <span class="view-option">Year</span>
+            </div>
+            <div class="window-tools right" aria-hidden="true">
+              <span class="toolbar-nav">
+                <span class="toolbar-chevron prev" role="button" aria-label="Previous week"></span>
+                <span class="toolbar-today" role="button">Today</span>
+                <span class="toolbar-chevron next" role="button" aria-label="Next week"></span>
+              </span>
+              <span class="toolbar-search"></span>
+            </div>
+          </header>
+
+          <section class="main-area">
+            <aside class="calendar-sidebar" data-primitive="calendar-sidebar" aria-label="Calendar sidebar">
+              <header class="sidebar-header">
+                <span class="sidebar-title">iCloud</span>
+              </header>
+
+              <section class="sidebar-section" aria-label="Calendar sources">
+                <ul class="calendar-source-list">
+                  <li class="calendar-source" style="--source-color: #34aadc;">
+                    <span class="source-check"></span>
+                    <span>Calendar</span>
+                  </li>
+                  <li class="calendar-source" style="--source-color: #63da38;">
+                    <span class="source-check"></span>
+                    <span>Personal</span>
+                  </li>
+                  <li class="calendar-source" style="--source-color: #ff3b30;">
+                    <span class="source-check"></span>
+                    <span>Work</span>
+                  </li>
+                  <li class="calendar-source" style="--source-color: #ff9500;">
+                    <span class="source-check"></span>
+                    <span>Family</span>
+                  </li>
+                  <li class="calendar-source" style="--source-color: #ffcc00;">
+                    <span class="source-check"></span>
+                    <span>School</span>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="sidebar-section" aria-label="Other calendars">
+                <div class="sidebar-section-title">
+                  <span>Other</span>
+                </div>
+                <ul class="calendar-source-list">
+                  <li class="calendar-source" style="--source-color: #ff3b30;">
+                    <span class="source-check"></span>
+                    <span>Scheduled Reminders</span>
+                  </li>
+                  <li class="calendar-source" style="--source-color: #af52de;">
+                    <span class="source-check"></span>
+                    <span>Birthdays</span>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="mini-calendar" aria-label="Mini calendar">
+                <div class="mini-header">
+                  <span class="mini-nav" role="button" aria-label="Previous month">&lt;</span>
+                  <span class="mini-month">April 2025</span>
+                  <span class="mini-nav" role="button" aria-label="Next month">&gt;</span>
+                </div>
+                <div class="mini-grid">
+                  <span class="mini-weekday">S</span>
+                  <span class="mini-weekday">M</span>
+                  <span class="mini-weekday">T</span>
+                  <span class="mini-weekday">W</span>
+                  <span class="mini-weekday">T</span>
+                  <span class="mini-weekday">F</span>
+                  <span class="mini-weekday">S</span>
+                  <span class="mini-day other">30</span>
+                  <span class="mini-day other">31</span>
+                  <span class="mini-day today has-event">1</span>
+                  <span class="mini-day">2</span>
+                  <span class="mini-day">3</span>
+                  <span class="mini-day">4</span>
+                  <span class="mini-day">5</span>
+                  <span class="mini-day">6</span>
+                  <span class="mini-day">7</span>
+                  <span class="mini-day">8</span>
+                  <span class="mini-day">9</span>
+                  <span class="mini-day">10</span>
+                  <span class="mini-day">11</span>
+                  <span class="mini-day">12</span>
+                  <span class="mini-day">13</span>
+                  <span class="mini-day">14</span>
+                  <span class="mini-day">15</span>
+                  <span class="mini-day">16</span>
+                  <span class="mini-day">17</span>
+                  <span class="mini-day">18</span>
+                  <span class="mini-day">19</span>
+                  <span class="mini-day">20</span>
+                  <span class="mini-day">21</span>
+                  <span class="mini-day">22</span>
+                  <span class="mini-day">23</span>
+                  <span class="mini-day">24</span>
+                  <span class="mini-day">25</span>
+                  <span class="mini-day">26</span>
+                  <span class="mini-day">27</span>
+                  <span class="mini-day">28</span>
+                  <span class="mini-day">29</span>
+                  <span class="mini-day">30</span>
+                  <span class="mini-day other">1</span>
+                  <span class="mini-day other">2</span>
+                  <span class="mini-day other">3</span>
+                </div>
+              </section>
+            </aside>
+
+            <div class="calendar-content">
+              <header class="calendar-header">
+                <div class="month-title" aria-label="April 2025">
+                  <span class="month">April</span>
+                  <span class="year">2025</span>
+                </div>
+              </header>
+
+              <section class="week-view" aria-label="April 2025 week schedule">
+                <div class="week-days" aria-label="Week dates">
+                  <span></span>
+                  <span class="week-day weekend">Sun 30</span>
+                  <span class="week-day">Mon 31</span>
+                  <span class="week-day is-today">Tue <span class="today-badge">1</span></span>
+                  <span class="week-day">Wed 2</span>
+                  <span class="week-day">Thu 3</span>
+                  <span class="week-day">Fri 4</span>
+                  <span class="week-day weekend">Sat 5</span>
+                </div>
+
+                <div class="all-day-row" aria-label="All-day events">
+                  <span class="all-day-label">all-day</span>
+                  <span class="all-day-cell">
+                    <span class="all-day-event" style="--event-color: #af52de;"><span>Eid al-Fitr</span></span>
+                  </span>
+                  <span class="all-day-cell">
+                    <span class="all-day-event" style="--event-color: #af52de;"><span>Eid al-Fitr</span></span>
+                  </span>
+                  <span class="all-day-cell">
+                    <span class="all-day-reminder" style="--event-color: #ff9500;"><span>Take out recycling</span></span>
+                  </span>
+                  <span class="all-day-cell"></span>
+                  <span class="all-day-cell"></span>
+                  <span class="all-day-cell"></span>
+                  <span class="all-day-cell"></span>
+                </div>
+
+                <div class="schedule-grid" data-role="grid" aria-label="Timed week events">
+                  <span class="time-cell">8<span class="ampm">&#8201;AM</span></span>
+                  <span class="time-cell">9<span class="ampm">&#8201;AM</span></span>
+                  <span class="time-cell">10<span class="ampm">&#8201;AM</span></span>
+                  <span class="time-cell">11<span class="ampm">&#8201;AM</span></span>
+                  <span class="time-cell noon">Noon</span>
+                  <span class="time-cell">1<span class="ampm">&#8201;PM</span></span>
+                  <span class="time-cell">2<span class="ampm">&#8201;PM</span></span>
+                  <span class="time-cell">3<span class="ampm">&#8201;PM</span></span>
+                  <span class="time-cell">4<span class="ampm">&#8201;PM</span></span>
+
+                  <span class="day-lane" style="grid-column: 2; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 3; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 4; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 5; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 6; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 7; grid-row: 1 / -1;"></span>
+                  <span class="day-lane" style="grid-column: 8; grid-row: 1 / -1;"></span>
+
+                  <span class="current-time"></span>
+                  <span class="now-dot"></span>
+
+                  <span class="week-event" style="--col: 1; --top: 0px; --height: 52px; --event-color: #34aadc;">
+                    <strong>Morning ride</strong>
+                  </span>
+                  <span class="week-event" style="--col: 2; --top: 116px; --height: 48px; --event-color: #ff3b30;">
+                    <strong>Portfolio review</strong>
+                  </span>
+                  <span class="week-event" style="--col: 2; --top: 290px; --height: 58px; --event-color: #ff3b30;">
+                    <strong>Team retro</strong>
+                  </span>
+                  <span class="week-event" style="--col: 3; --top: 40px; --height: 58px; --event-color: #34aadc;">
+                    <strong>Design sync</strong>
+                  </span>
+                  <span class="week-event" style="--col: 3; --top: 186px; --height: 104px; --event-color: #34aadc;">
+                    <strong>Stretching + weights</strong>
+                    <span>11AM - 1PM</span>
+                  </span>
+                  <span class="week-event declined" style="--col: 4; --top: 98px; --height: 48px; --event-color: #63da38;">
+                    <strong>Face Time Dad</strong>
+                  </span>
+                  <span class="week-event" style="--col: 4; --top: 290px; --height: 52px; --event-color: #34aadc;">
+                    <strong>Lunch with Priya</strong>
+                  </span>
+                  <span class="week-event" style="--col: 6; --top: 116px; --height: 42px; --event-color: #ff3b30;">
+                    <strong>Budget review</strong>
+                  </span>
+                  <span class="week-event" style="--col: 6; --top: 406px; --height: 58px; --event-color: #ff3b30;">
+                    <strong>Sprint planning</strong>
+                  </span>
+                  <span class="week-event" style="--col: 7; --top: 116px; --height: 92px; --event-color: #34aadc;">
+                    <strong>Hike with Rigo</strong>
+                    <span>10 - 11:30AM</span>
+                  </span>
+
+                  <!-- col 5 (Thu) is the deliberately empty slot the demo clicks into -->
+                  <span class="week-event-slot" data-role="empty-slot" style="--col: 5; --top: 348px; --height: 58px;" aria-hidden="true"></span>
+                  <span class="new-event-ring" data-role="new-event-ring" style="--col: 5; --top: 348px; --height: 58px; --event-color: #34aadc;" aria-hidden="true"></span>
+                  <span class="week-event" data-role="new-event" style="--col: 5; --top: 348px; --height: 58px; --event-color: #34aadc;">
+                    <strong data-role="new-event-title"></strong>
+                    <strong class="new-event-placeholder" data-role="new-event-placeholder" aria-hidden="true"><span class="placeholder-selected">New Event</span></strong>
+                  </span>
+                </div>
+              </section>
+            </div>
+          </section>
+        </section>
+
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      @import url("../styles/backlot-foundation.css");
+
+      :root {
+        --calendar-red: #ec4d3d;
+        --system-text: #1d1d1f;
+        --window-shadow-active: 0 44px 128px rgba(23, 31, 46, 0.29);
+      }
+
+      html, body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #0d1b2a;
+      }
+
+      #calendar-interaction {
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+        color: var(--system-text);
+      }
+
+      #calendar-interaction * { box-sizing: border-box; }
+
+      .cal-stage {
+        position: relative;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+      }
+
+      .wallpaper {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 20%),
+          radial-gradient(circle at 84% 14%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 18%),
+          linear-gradient(145deg, #7bd2f1 0%, #4db4e4 34%, #e8f7f2 35%, #fff7dc 56%, #f4d59b 100%);
+      }
+
+      /* ---- window chrome (ported 1:1 from compositions/calendar-app.html at
+         its native 1260x788 so every interior calc() stays pixel-accurate) --- */
+
+      .calendar-window {
+        --title-bar-height: 40px;
+        position: absolute;
+        left: 10px;
+        top: 6px;
+        width: 1260px;
+        height: 788px;
+        overflow: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.13);
+        border-radius: 18px;
+        background: rgba(252, 252, 253, 0.97);
+        box-shadow: var(--window-shadow-active);
+        backdrop-filter: blur(30px) saturate(1.25);
+      }
+
+      .titlebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: var(--title-bar-height);
+        background: linear-gradient(to right, #f6f6f6 282px, #fefefe 282px);
+        border-bottom: 1px solid transparent;
+      }
+
+      .traffic { position: absolute; left: 18px; top: 14px; display: flex; gap: 8px; }
+      .traffic span { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); }
+      .traffic .red { background: #ff5f57; }
+      .traffic .yellow { background: #febc2e; }
+      .traffic .green { background: #28c840; }
+
+      .window-tools { position: absolute; display: flex; align-items: center; gap: 0; }
+      .window-tools.left { left: 122px; top: 5px; gap: 12px; }
+      .window-tools.right { right: 14px; top: 5px; gap: 10px; }
+
+      .tool-icon {
+        position: relative; width: 20px; height: 30px; display: inline-flex;
+        align-items: center; justify-content: center; border: 0; background: transparent;
+        box-shadow: none; color: #6e6e73;
+      }
+      .tool-icon::before { content: ""; display: block; width: 17px; height: 17px; background: currentColor; }
+
+      .inbox-count { margin-left: -4px; color: #86868b; font-size: 13px; font-weight: 500; line-height: 1; }
+
+      .tool-icon.calendar-list::before {
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.4'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.4'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .tool-icon.inbox::before {
+        width: 18px; height: 16px;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 7.3 6.9 3.4h10.2l2.7 3.9v8.1c0 1-.8 1.8-1.8 1.8H6c-1 0-1.8-.8-1.8-1.8Z'/%3E%3Cpath d='M4.2 7.3h5.1c.4 1.4 1.3 2.2 2.7 2.2s2.3-.8 2.7-2.2h5.1'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 7.3 6.9 3.4h10.2l2.7 3.9v8.1c0 1-.8 1.8-1.8 1.8H6c-1 0-1.8-.8-1.8-1.8Z'/%3E%3Cpath d='M4.2 7.3h5.1c.4 1.4 1.3 2.2 2.7 2.2s2.3-.8 2.7-2.2h5.1'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .toolbar-add {
+        position: relative; width: 28px; height: 28px; display: inline-flex; align-items: center;
+        justify-content: center; border-radius: 50%; border: 1px solid #d9d9de; background: #ffffff;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.08); color: #1d1d1f; font-size: 0; margin-left: 4px;
+      }
+      .toolbar-add::before, .toolbar-add::after {
+        content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.6px;
+        border-radius: 2px; background: currentColor; transform: translate(-50%, -50%);
+      }
+      .toolbar-add::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+      .toolbar-search {
+        position: relative; width: 20px; height: 30px; display: inline-flex; align-items: center;
+        justify-content: center; border: 0; background: transparent; box-shadow: none; color: #1d1d1f;
+      }
+      .toolbar-search::before {
+        content: ""; display: block; width: 17px; height: 17px; background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9.4' cy='9.4' r='6.2'/%3E%3Cpath d='m14.1 14.1 5 5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9.4' cy='9.4' r='6.2'/%3E%3Cpath d='m14.1 14.1 5 5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .toolbar-nav {
+        display: inline-flex; align-items: center; gap: 0; height: 28px; padding: 1px;
+        border: 1px solid #d9d9de; border-radius: 14px; background: #ffffff;
+        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.08); margin-right: 4px;
+      }
+      .toolbar-chevron {
+        width: 30px; height: 26px; display: inline-flex; align-items: center; justify-content: center;
+        border: 0; border-radius: 13px; background: transparent; color: #1d1d1f; font-size: 0;
+      }
+      .toolbar-chevron::before { content: ""; width: 7px; height: 7px; border-top: 1.8px solid currentColor; border-left: 1.8px solid currentColor; }
+      .toolbar-chevron.prev::before { transform: translateX(2px) rotate(-45deg); }
+      .toolbar-chevron.next::before { transform: translateX(-2px) rotate(135deg); }
+      .toolbar-today { height: 26px; display: inline-flex; align-items: center; padding: 0 13px; border-radius: 13px; background: transparent; color: #1d1d1f; font-size: 13px; font-weight: 500; }
+
+      .view-switcher {
+        position: absolute; left: 50%; top: 7px; height: 28px; display: flex; align-items: center;
+        gap: 0; padding: 2px; border-radius: 14px; background: rgba(0, 0, 0, 0.04); box-shadow: none;
+        transform: translateX(-50%);
+      }
+      .view-option { position: relative; height: 26px; display: flex; align-items: center; justify-content: center; padding: 0 14px; border-radius: 12px; color: #1d1d1f; font-size: 13px; font-weight: 450; }
+      .view-option:not(.active) + .view-option:not(.active)::before { content: ""; position: absolute; left: -0.5px; top: 6px; bottom: 6px; width: 1px; background: rgba(0, 0, 0, 0.12); }
+      .view-option.active { padding: 0 14px; border-radius: 12px; background: #e4e4e7; box-shadow: none; color: #1d1d1f; font-weight: 450; }
+
+      .main-area { position: absolute; left: 0; top: var(--title-bar-height); width: 100%; height: calc(100% - var(--title-bar-height)); display: flex; flex-direction: row; overflow: hidden; background: #fefefe; color: var(--system-text); }
+
+      .calendar-sidebar { width: 282px; min-width: 282px; height: 100%; margin: 0; display: flex; flex-direction: column; overflow: hidden; border: 0; border-radius: 0; background: #f6f6f6; box-shadow: none; }
+      .sidebar-header { height: 34px; display: flex; align-items: center; justify-content: space-between; padding: 6px 18px 0; }
+      .sidebar-title { color: #86868b; font-size: 12px; font-weight: 400; }
+      .sidebar-section { padding: 0 14px 8px; }
+      .sidebar-section-title { display: flex; align-items: center; justify-content: space-between; height: 26px; padding: 0 4px; color: #86868b; font-size: 12px; font-weight: 400; }
+      .calendar-source-list { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
+      .calendar-source { position: relative; height: 26px; display: flex; align-items: center; gap: 9px; padding: 0 4px; border-radius: 0; color: #1d1d1f; font-size: 13px; font-weight: 400; }
+      .source-check { width: 16px; height: 16px; flex: 0 0 auto; border: 0; border-radius: 4px; background: var(--source-color); }
+      .source-check::before { content: ""; display: block; width: 8px; height: 4.5px; margin: 4.5px 0 0 3.5px; border-left: 1.6px solid #fff; border-bottom: 1.6px solid #fff; border-radius: 1px; transform: rotate(-45deg); }
+
+      .mini-calendar { margin: auto 14px 12px; padding: 10px 14px 12px; border-top: 1px solid rgba(0, 0, 0, 0.08); border-radius: 0; background: transparent; }
+      .mini-header { display: grid; grid-template-columns: 20px 1fr 20px; align-items: center; margin-bottom: 6px; }
+      .mini-month { justify-self: center; color: #1d1d1f; font-size: 13px; font-weight: 600; }
+      .mini-nav { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: transparent; color: #86868b; font-size: 0; }
+      .mini-nav::before { content: ""; width: 6px; height: 6px; border-top: 1.5px solid currentColor; border-left: 1.5px solid currentColor; }
+      .mini-nav[aria-label="Previous month"]::before { transform: translateX(1.5px) rotate(-45deg); }
+      .mini-nav[aria-label="Next month"]::before { transform: translateX(-1.5px) rotate(135deg); }
+      .mini-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; justify-items: center; }
+      .mini-weekday, .mini-day { width: 24px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+      .mini-weekday { color: #86868b; font-size: 11px; font-weight: 400; }
+      .mini-day { position: relative; color: #1d1d1f; font-size: 12px; font-weight: 400; }
+      .mini-day.other { color: #c7c7cc; }
+      .mini-day.today { width: 20px; height: 20px; background: var(--calendar-red); color: #fff; font-weight: 500; }
+      .mini-day.has-event::after { content: ""; position: absolute; left: 50%; bottom: 2px; width: 4px; height: 4px; border-radius: 50%; background: currentColor; transform: translateX(-50%); }
+
+      .calendar-content { min-width: 0; height: calc(100% - 16px); margin: 8px 8px 8px 0; flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 10px; background: #fff; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03), 0 4px 14px rgba(0, 0, 0, 0.05); }
+      .calendar-header { height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px 0 32px; border-bottom: 0; background: rgba(255, 255, 255, 0.82); }
+      .month-title { display: flex; align-items: baseline; gap: 8px; }
+      .month { color: #1d1d1f; font-size: 34px; font-weight: 730; letter-spacing: -0.01em; }
+      .year { color: #1d1d1f; font-size: 34px; font-weight: 400; letter-spacing: -0.01em; }
+
+      .week-view { position: relative; flex: 1 1 auto; min-height: 0; display: grid; grid-template-rows: 42px 62px 1fr; background: #fff; overflow: hidden; }
+      .week-days, .all-day-row { display: grid; grid-template-columns: 52px repeat(7, 1fr); }
+      .week-days { border-bottom: 1px solid #e6e6e8; }
+      .week-day { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0; color: #1d1d1f; font-size: 16px; font-weight: 500; }
+      .week-day.weekend { color: #9a9a9e; }
+      .week-day.is-today { gap: 6px; }
+      .week-day .today-badge { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--calendar-red); color: #fff; font-size: 15px; font-weight: 500; }
+
+      .all-day-row { border-bottom: 1px solid #d7d7d9; }
+      .all-day-label { display: flex; align-items: flex-start; justify-content: flex-end; padding: 6px 8px 0 0; color: #86868b; font-size: 13px; font-weight: 400; }
+      .all-day-cell { position: relative; min-width: 0; display: flex; flex-direction: column; gap: 3px; padding: 4px 4px; border-left: 1px solid #e6e6e8; }
+      .all-day-event, .all-day-reminder { height: 18px; display: flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden; border-radius: 9px; padding: 0 7px; background: color-mix(in srgb, var(--event-color) 15%, transparent); color: color-mix(in srgb, var(--event-color), black 60%); font-size: 12px; font-weight: 620; white-space: nowrap; }
+      .all-day-event > span, .all-day-reminder > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .all-day-event::before, .all-day-reminder::before {
+        content: ""; width: 13px; height: 13px; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' fill-rule='evenodd' d='M3.5 2h9A2.5 2.5 0 0 1 15 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 11.5v-7A2.5 2.5 0 0 1 3.5 2zm-.9 4.6v4.9c0 .5.4.9.9.9h9c.5 0 .9-.4.9-.9V6.6zm1.4 1.6h1.6v1.2H4zm3.2 0h1.6v1.2H7.2zm3.2 0H12v1.2h-1.6zM4 10.6h1.6v1.2H4zm3.2 0h1.6v1.2H7.2z'/%3E%3C/svg%3E") center / 9px 9px no-repeat, var(--event-color);
+      }
+
+      .schedule-grid { position: relative; display: grid; grid-template-columns: 52px repeat(7, 1fr); grid-template-rows: repeat(9, 58px); overflow: hidden; }
+      .time-cell { grid-column: 1; display: flex; align-items: flex-start; justify-content: flex-end; padding: 6px 8px 0 0; border-top: 1px solid #ececee; color: #86868b; font-size: 13px; font-weight: 400; white-space: nowrap; }
+      .time-cell .ampm { font-size: 9px; font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.02em; margin-left: 1px; }
+      .time-cell.noon { font-size: 11px; font-weight: 400; }
+      .day-lane { position: relative; border-left: 1px solid #e6e6e8; background: repeating-linear-gradient(to bottom, transparent 0, transparent 57px, #ececee 57px, #ececee 58px); }
+
+      .current-time { position: absolute; left: 52px; right: 0; top: 94px; height: 1px; background: rgba(236, 77, 61, 0.35); z-index: 3; }
+      .current-time::before { content: "9:41"; position: absolute; right: calc(100% + 6px); top: -8px; height: 16px; display: flex; align-items: center; padding: 0 6px; border-radius: 8px; background: var(--calendar-red); color: #fff; font-size: 11px; font-weight: 500; line-height: 1; }
+      .current-time::after { content: ""; position: absolute; left: calc((100% / 7) * 2); width: calc(100% / 7); top: -0.5px; height: 2px; background: var(--calendar-red); }
+      .now-dot { position: absolute; left: calc(52px + ((100% - 52px) / 7 * 2)); top: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--calendar-red); transform: translateX(-50%); z-index: 4; }
+
+      .week-event {
+        position: absolute;
+        left: calc(52px + ((100% - 52px) / 7 * (var(--col) - 1)) + 4px);
+        top: var(--top);
+        width: calc((100% - 52px) / 7 - 8px);
+        height: var(--height);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-left: 3px solid var(--event-color);
+        border-radius: 5px;
+        padding: 5px 7px;
+        background: color-mix(in srgb, var(--event-color) 12%, transparent);
+        color: color-mix(in srgb, var(--event-color), black 60%);
+        font-size: 11px;
+        line-height: 1.18;
+      }
+      .week-event strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; font-weight: 600; }
+      /* direct-child combinator: the time-label <span> is a direct child of
+         .week-event, distinct from the per-character "bl-char" spans ix.type()
+         injects *inside* the title <strong> — a descendant selector here would
+         also catch those and wrongly give every typed letter its own icon/row. */
+      .week-event > span { display: flex; align-items: center; gap: 3px; margin-top: 1px; overflow: hidden; white-space: nowrap; color: color-mix(in srgb, var(--event-color), black 60%); font-size: 11px; font-weight: 400; font-variant-caps: all-small-caps; }
+      .week-event > span::before {
+        content: ""; width: 10px; height: 10px; flex: 0 0 auto; background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M8 4.6V8l2.4 1.4' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M8 4.6V8l2.4 1.4' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+      }
+      .week-event.declined { background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0 4px, transparent 4px 8px), #f3f3f5; color: #6e6e73; }
+      .week-event.declined strong, .week-event.declined span { color: #6e6e73; }
+
+      /* placeholder title macOS Calendar drops into a freshly-created event —
+         "New Event" pre-selected for immediate typing. Positioned absolutely
+         (relative to .week-event's padding box) so it sits exactly where the
+         real title text starts, without disturbing the (empty) title's own
+         flex-column slot. */
+      .new-event-placeholder { position: absolute; left: 7px; top: 5px; right: 7px; pointer-events: none; }
+      .new-event-placeholder .placeholder-selected {
+        background: rgba(255, 255, 255, 0.32);
+        color: #fff;
+        border-radius: 2px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+
+      /* selected/editing state for the freshly-created event: the real app
+         renders the actively-named event as a solid accent-filled block with
+         white text, not the light unselected tint every other event uses. */
+      .week-event[data-role="new-event"] { background: var(--event-color); color: #fff; border-left: 0; }
+      .week-event[data-role="new-event"] strong { color: #fff; }
+
+      /* invisible hit target over the empty Thu 2-3PM cell */
+      .week-event-slot {
+        position: absolute;
+        left: calc(52px + ((100% - 52px) / 7 * (var(--col) - 1)) + 4px);
+        top: var(--top);
+        width: calc((100% - 52px) / 7 - 8px);
+        height: var(--height);
+        display: block;
+        z-index: 1;
+      }
+
+      /* selection ring around the freshly-created event, echoing the app's
+         own "selected event" affordance while it's being named */
+      .new-event-ring {
+        position: absolute;
+        left: calc(52px + ((100% - 52px) / 7 * (var(--col) - 1)) + 2px);
+        top: calc(var(--top) - 2px);
+        width: calc((100% - 52px) / 7 - 4px);
+        height: calc(var(--height) + 4px);
+        border: 2px solid var(--event-color);
+        border-radius: 7px;
+        pointer-events: none;
+        z-index: 6;
+      }
+
+      .demo-cursor {
+        position: absolute; left: 1120px; top: 660px; z-index: 90; width: 26px; height: 26px;
+        background: url("../assets/cursors/normal-select.svg") top left / contain no-repeat;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+      }
+      .demo-click-ring { position: absolute; left: 0; top: 0; z-index: 89; width: 40px; height: 40px; border: 2.5px solid rgba(52, 170, 220, 0.75); border-radius: 50%; opacity: 0; }
+
+      .bl-char { display: inline; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      const stage = document.querySelector(".cal-stage");
+      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+      // Start hidden: the new event and its selection ring begin at opacity 0
+      // (their own fromTo "from" state), so no separate t=0 pin is needed —
+      // unlike the click-ring below, whose fromTo "from" is a VISIBLE state
+      // (opacity 0.9) and therefore does need pinning.
+      gsap.set('[data-role="new-event"]', { opacity: 0 });
+      gsap.set('[data-role="new-event-ring"]', { opacity: 0 });
+      gsap.set('[data-role="new-event-placeholder"]', { opacity: 0 });
+
+      // 1) Glide to, then double-click, the empty Thursday 2-3PM slot — a
+      //    single click there only moves the time selection in real macOS
+      //    Calendar; creating an event needs the second click in place.
+      ix.click('[data-role="empty-slot"]', { at: 2.5, moveDur: 1.1 });
+      ix.click('[data-role="empty-slot"]', { at: 2.63, move: false });
+
+      // 2) The new event materializes right where the click landed, with its
+      //    selection ring and Calendar's real behavior: a pre-filled,
+      //    pre-selected "New Event" placeholder title (never a blank block).
+      ix.show('[data-role="new-event"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.9 } });
+      ix.show('[data-role="new-event-ring"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.94 } });
+      ix.show('[data-role="new-event-placeholder"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.9 } });
+
+      // 3) Name it — typing replaces the selected placeholder (hidden fast,
+      //    as a real text replace would read) with the human-typed title
+      //    into the still-empty <strong>.
+      ix.hide('[data-role="new-event-placeholder"]', { at: 3.45, dur: 0.1 });
+      ix.type('[data-role="new-event-title"]', "Product sync", { at: 3.45, cps: 17 });
+
+      // Pin the shared click-ring hidden at t=0 (see note above) so the
+      // opening at-rest frames render clean before the click at 2.5.
+      tl.set(".demo-click-ring", { opacity: 0 }, 0);
+
+      window.__timelines["calendar-interaction"] = tl;
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(4.8).pause();
+    </script>
+  </body>
+</html>

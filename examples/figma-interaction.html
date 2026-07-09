@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Figma — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="figma-interaction" data-composition-id="figma-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.6">
+      <section class="fg-stage" data-primitive="figma-interaction" aria-label="Figma design editor (real component) with a scripted layer selection and drag">
+        <div class="fg-frame component-frame"
+             data-primitive="figma-editor-window"
+             data-backlot-mount-src="../compositions/figma-editor.html"
+             data-backlot-mount-selector="#figma-editor-surface"></div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      @import url("../styles/backlot-foundation.css");
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#e5e5e5; }
+      #figma-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
+      #figma-interaction * { box-sizing:border-box; }
+      .fg-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:#e5e5e5; }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* figma-editor-surface is exactly 1440x900 — that ratio (8:5) matches our
+         1280x800 stage exactly (scale 8/9 both axes), so the real window fills
+         the frame edge-to-edge with no letterboxing or invented backdrop. */
+      .fg-frame { left:0; top:0; width:1280px; height:800px; }
+      .fg-frame > [data-backlot-mounted-component] { transform: scale(0.888889); }
+      .demo-cursor { position:absolute; left:660px; top:718px; z-index:90; width:24px; height:24px;
+        background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.45)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(13,153,255,0.75); border-radius:50%; opacity:0; }
+      /* The mounted figma-editor composition ships its own baked, motionless
+         "second pointer" (a static black arrow near the funding card, plus a
+         labeled multiplayer collaborator cursor) for its own standalone
+         captures. Our scripted .demo-cursor is the only pointer that should
+         read as "in use" in this recording — hide the composition's own. */
+      .fg-frame .cursor, .fg-frame .multiplayer-cursor { display:none !important; }
+      /* Red measurement/spacing guides shown only while the funding card is
+         being dragged (see drag tween below), matching Figma's own
+         move-object guide chrome. */
+      .fg-guide-line { position:absolute; height:1px; background:#f24822; z-index:40; transform-origin:left center; pointer-events:none; }
+      .fg-guide-label { position:absolute; transform:translate(-50%,-100%); margin-top:-3px; font-size:11px; line-height:1; font-weight:600;
+        color:#f24822; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; white-space:nowrap; pointer-events:none; z-index:41;
+        text-shadow:0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff; }
+      /* Figma's W x H dimension badge, shown centered below a selected node's
+         bounding box (persists unchanged through a move since W/H don't
+         change on a drag — only the Position X/Y readouts do). Added here
+         rather than in compositions/figma-editor.html since it is purely a
+         scripted overlay for this recording. */
+      .fg-dim-badge { position:absolute; left:50%; bottom:-28px; transform:translateX(-50%);
+        z-index:6; height:20px; padding:0 8px; display:grid; place-items:center; border-radius:5px;
+        background:#0d99ff; color:#fff; font-family:-apple-system,"SF Pro Text",Inter,sans-serif;
+        font-size:11px; font-weight:700; line-height:1; white-space:nowrap; pointer-events:none; }
+      /* Figma tints the selected row in the layers panel with its accent-10
+         blue, not a neutral grey hover fill — override the composition's own
+         (grey) .layer-row.active rule for this recording only. */
+      #figma-interaction .fg-frame .layer-row.active { background:#e5f4ff !important; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const stage = document.querySelector(".fg-stage");
+
+      // Register the timeline SYNCHRONOUSLY with a full-duration hold so the
+      // renderer never probes a zero-duration composition (figma-editor mounts
+      // asynchronously; the selection/drag tweens are layered on once it is
+      // ready). Without the hold, a fast render start races the mount and the
+      // render fails with "Composition has zero duration".
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: 6.6 }, 0);   // no-op hold → duration is always 6.6
+      window.__timelines["figma-interaction"] = tl;
+
+      function centerOf(el) {
+        const r = el.getBoundingClientRect();
+        const base = stage.getBoundingClientRect();
+        return { x: r.left - base.left + r.width / 2, y: r.top - base.top + r.height / 2 };
+      }
+
+      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+        const cursorEl = stage.querySelector(".demo-cursor");
+
+        const rows = Array.from(stage.querySelectorAll(".layer-row"));
+        const fundingRow = rows.find((r) => r.textContent.trim().startsWith("Funding card"));
+        const fundingCard = stage.querySelector('[data-primitive="figma-selected-layer"]');
+        const panel = stage.querySelector(".properties-panel");
+        if (!fundingRow || !fundingCard || !panel) return;
+
+        // Figma's W x H dimension pill — the funding card is 326 x 274 (same
+        // values the properties panel's Layout > W/H fields show), created
+        // here since the mounted composition doesn't ship this badge.
+        const dimBadge = document.createElement("div");
+        dimBadge.className = "fg-dim-badge";
+        dimBadge.textContent = "326 x 274";
+        fundingCard.appendChild(dimBadge);
+
+        const overlayBits = Array.from(fundingCard.querySelectorAll(".object-label, .resize-handle, .rotation-handle")).concat(dimBadge);
+        const propNodes = Array.from(panel.querySelectorAll(".selected-layer-card, .selection-actions, .property-group"));
+        const propGroups = Array.from(panel.querySelectorAll(".property-group"));
+        const positionGroup = propGroups.find((g) => (g.querySelector(".property-title") || {}).textContent === "Position");
+        const posLabels = positionGroup ? positionGroup.querySelectorAll(".property-grid.two label span") : [];
+        const xSpan = posLabels[0];
+        const ySpan = posLabels[1];
+
+        // Rest state: nothing selected yet — the funding-card layer row is
+        // plain (no active highlight), its on-canvas selection chrome
+        // (outline + resize handles + "Funding card" tag) is invisible, and
+        // the properties panel is empty below the tabs. Same pattern as the
+        // excel-interaction hidden-overlay convention: a one-time bare
+        // gsap.set for elements with a single reveal event later, not
+        // fought over by any other tween.
+        gsap.set(fundingRow, { attr: { class: "layer-row child" } });
+        gsap.set(fundingCard, { outlineColor: "rgba(13,153,255,0)" });
+        gsap.set(overlayBits, { opacity: 0 });
+        gsap.set(propNodes, { opacity: 0 });
+
+        // 1) Click "Funding card" in the layers panel — cursor glides from
+        //    its rest position, then a quiet click (no press-dip on a thin
+        //    row, matching the finder-interaction row-click convention).
+        ix.click(fundingRow, { at: 1.3, moveDur: 0.9, press: false });
+
+        // 2) Selection registers instantly, matching the real app: layer row
+        //    tints, the canvas outline sweeps in, and the resize handles /
+        //    dimension badge / properties panel all appear in the same frame
+        //    — no invented bounce or staggered slide-in on a plain click.
+        tl.set(fundingRow, { attr: { class: "layer-row child active" } }, 1.35);
+        tl.to(fundingCard, { outlineColor: "#0d99ff", duration: 0.22, ease: "sine.out" }, 1.35);
+        tl.set(overlayBits, { opacity: 1, scale: 1 }, 1.35);
+        tl.set(propNodes, { opacity: 1, x: 0 }, 1.35);
+
+        // Beat: let the reveal settle and read before the next action.
+        // 3) Grab the frame: cursor glides to the card and presses.
+        ix.click(fundingCard, { at: 4.1, moveDur: 0.8 });
+
+        // 4) Drag it a few pixels down-right. Canvas is at 52% zoom (per the
+        //    zoom-menu readout), so an 8x4 on-canvas px nudge is ~15x8 Figma
+        //    units — the Position X/Y readouts tick via the same tweened-
+        //    counter technique the library's own type()/stream() use
+        //    (onUpdate driven by an interpolated value, so it re-evaluates
+        //    correctly on seek).
+        const dragStart = 4.45;
+        const dragDur = 0.65;
+        const grabPoint = centerOf(fundingCard);
+        tl.to(fundingCard, { x: 8, y: 4, duration: dragDur, ease: "power2.inOut" }, dragStart);
+        tl.to(cursorEl, { left: grabPoint.x + 8, top: grabPoint.y + 4, duration: dragDur, ease: "power2.inOut" }, dragStart);
+        if (xSpan && ySpan) {
+          const posX = { v: 984 };
+          const posY = { v: 232 };
+          tl.to(posX, { v: 999, duration: dragDur, ease: "power2.inOut", onUpdate() { xSpan.textContent = String(Math.round(posX.v)); } }, dragStart);
+          tl.to(posY, { v: 240, duration: dragDur, ease: "power2.inOut", onUpdate() { ySpan.textContent = String(Math.round(posY.v)); } }, dragStart);
+        }
+
+        // Red spacing-guide chrome (mirrors Figma's own move-object guides):
+        // a 1px line from each side of the card out to the parent frame's
+        // edge, with a small pixel-distance label on each, visible only
+        // during the drag window. Geometry is measured once at mount time
+        // (rest position, same pattern as grabPoint above) via
+        // getBoundingClientRect diffed against the stage — a pure function
+        // of DOM layout, not of playback time, so it holds correctly on seek.
+        const parentFrame = stage.querySelector(".design-frame.selected-frame");
+        if (parentFrame) {
+          const localRect = (el) => {
+            const r = el.getBoundingClientRect();
+            const b = stage.getBoundingClientRect();
+            return { left: r.left - b.left, top: r.top - b.top, right: r.right - b.left, bottom: r.bottom - b.top, width: r.width, height: r.height };
+          };
+          const frameRect = localRect(parentFrame);
+          const cardRect = localRect(fundingCard);
+          const midY = cardRect.top + cardRect.height / 2;
+          const leftGap = Math.round(cardRect.left - frameRect.left);
+          const rightGap = Math.round(frameRect.right - cardRect.right);
+
+          const makeLine = (left, width) => {
+            const el = document.createElement("div");
+            el.className = "fg-guide-line";
+            el.style.left = left + "px";
+            el.style.top = midY + "px";
+            el.style.width = Math.max(0, width) + "px";
+            stage.appendChild(el);
+            return el;
+          };
+          const makeLabel = (left, text) => {
+            const el = document.createElement("div");
+            el.className = "fg-guide-label";
+            el.style.left = left + "px";
+            el.style.top = midY + "px";
+            el.textContent = text;
+            stage.appendChild(el);
+            return el;
+          };
+
+          const guideLeftLine = makeLine(frameRect.left, cardRect.left - frameRect.left);
+          const guideRightLine = makeLine(cardRect.right, frameRect.right - cardRect.right);
+          const guideLeftLabel = makeLabel(frameRect.left + (cardRect.left - frameRect.left) / 2, String(leftGap));
+          const guideRightLabel = makeLabel(cardRect.right + (frameRect.right - cardRect.right) / 2, String(rightGap));
+          const guideEls = [guideLeftLine, guideRightLine, guideLeftLabel, guideRightLabel];
+
+          gsap.set(guideEls, { opacity: 0 });
+          tl.to(guideEls, { opacity: 1, duration: 0.12, ease: "none" }, dragStart);
+          tl.to(guideEls, { opacity: 0, duration: 0.12, ease: "none" }, dragStart + dragDur + 0.05);
+        }
+
+        // The click-ring's fromTo tweens render their "from" state for any
+        // timeline time before the tween's own start — pin it hidden at t=0
+        // inside the timeline itself (a bare gsap.set only runs once at
+        // parse time and gets overwritten by the later ix.click() calls).
+        tl.set(".demo-click-ring", { opacity: 0 }, 0);
+      }).catch(() => {});
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(6.6).pause();
+    </script>
+  </body>
+</html>

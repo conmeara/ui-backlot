@@ -1,0 +1,10 @@
+{
+  "source": "https://www.youtube.com/watch?v=OBvtlyHBhlg @ 00:06:45-00:07:03 (\"Word 2024 for Mac - The Complete Course\", Kaceli TechTraining, chapter \"The Basics of Using Word for Mac\")",
+  "method": "yt-dlp+ffmpeg (video-frame-mine, motion ladder rung 3 — family tier is online-only/availableOnThisMachine:false in reference/sources.json, no installed app or live web session to record instead)",
+  "interaction": "Real Word for Mac (2024/Microsoft 365) desktop app, screen-recorded by the tutorial creator: a blank Document1 canvas with a blinking caret, then a document title (\"Using Microsoft Word for Mac OS by Kaceli TechTraining\") and the first body sentence appear, then the body paragraph grows sentence-by-sentence over several seconds as more text is added below the title.",
+  "note": "Real pixels of the current Word-for-Mac ribbon, caret, hyperlink styling (auto-linked 'TechTraining'), and text-insertion cadence — matches 2 of the 3 requested story beats (title typing in, body paragraphs streaming). The word-count tick-up beat is NOT visible: this recording is cropped to the ribbon+canvas and never shows the bottom status bar, so word-count pacing still has no real-footage source and should be treated as a plausible approximation, not calibrated. Also note the title+first-sentence appear as a hard jump between two consecutive sampled seconds (t=16->17 in the source), i.e. the creator likely sped up or cut the actual keystroke-by-keystroke typing in editing — so per-character caret timing is NOT recoverable from this clip; only the coarser sentence-by-sentence reveal cadence (paragraph 'streaming') is real-timed. Video is 1080p; clip trimmed from the source's 00:06:45 mark for 18s. Mac desktop chrome (traffic lights, ribbon, status search box) is genuine, not web chrome.",
+  "acquiredOn": "2026-07-09",
+  "acquiredBy": "motion-ground-truth subagent (Part 1.5 of docs/reference-and-asset-sourcing.md)",
+  "fps": 2,
+  "clipSeconds": 18
+}

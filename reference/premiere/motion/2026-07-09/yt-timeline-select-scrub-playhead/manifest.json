@@ -1,0 +1,9 @@
+{
+  "source": "https://www.youtube.com/watch?v=eBLiBmblvqo @ 00:02:08-00:02:17 (\"Sifting & Selecting Footage in Premiere Pro | Essential Workflows with Parker Walbeck | Adobe\", Adobe Creative Cloud official YouTube channel, published 2020-04-28)",
+  "method": "yt-dlp+ffmpeg",
+  "interaction": "Timeline clip already selected (BD8I0329.MP4 on V1, shown with a bright/white selection border); editor drags the playhead back and forth across the selected clip. The Program Monitor's current-time readout (top-left, blue text) and the timeline's blue current-time indicator both tick through timecodes (00:00:36:15 -> 00:00:28:06 -> 00:00:34:12) as the scrub happens, then settle when the mouse is released.",
+  "note": "Real screen-captured footage of the actual Premiere Pro desktop app in use (not a marketing recreation) -- best-available rung for this family since Premiere Pro is not installed locally and has no free web version (per reference/sources.json, family tier 'online-only', video-frame-mine is the top target). Selection-click itself happens slightly before this cut (clip was already selected going in); what's captured is the scrub-with-selection + timecode-ticking beat the demo needs. Video downloaded at up to 2160p via yt-dlp; clip cut 128s-137s of the source video with ffmpeg, frames extracted at fps=2 per the motion-reference convention (docs/reference-and-asset-sourcing.md Part 1.5).",
+  "appVersion": "unknown (UI matches a 2019-2020-era Premiere Pro CC build: source/program monitor layout, clip highlighting style, playback-resolution dropdown all consistent with video's 2020-04-28 publish date)",
+  "durationSeconds": 9,
+  "frameRateExtracted": 2
+}

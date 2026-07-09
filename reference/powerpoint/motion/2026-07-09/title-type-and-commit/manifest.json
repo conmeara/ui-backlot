@@ -1,0 +1,13 @@
+{
+  "source": "https://www.youtube.com/watch?v=gkNGtBlZOwo @ 00:00:14-00:00:24 (\"How to create a presentation in PowerPoint\" — Microsoft 365 official YouTube channel)",
+  "method": "yt-dlp+ffmpeg (Part 1.5 rung 3: official vendor video frame-mining, downloaded 1080p webm, trimmed to the relevant window with ffmpeg, re-encoded h264, extracted frames at fps=2)",
+  "interaction": "Click the slide title placeholder box, type a title (\"Contoso\" -> \"Contoso Sales\"), watch it commit live in both the canvas and the slide thumbnail rail.",
+  "note": "Family tier is online-only (PowerPoint is not installed on this Mac and no office.com session exists in the user's Chrome, so rungs 1-2 of the motion ladder were unavailable). This is Windows PowerPoint (2016-era ribbon, no Mac traffic lights/vertical tabs) from an official Microsoft 365 tutorial compilation, not a Mac capture -- discount window chrome accordingly. Trust: caret idiom (blinking I-beam, no visible debounce), instant per-keystroke commit into the canvas AND the thumbnail simultaneously, and the placeholder-text disappearing on first keystroke (no fade). The clip sits between two chapter-title bumper cards in the source video (\"Create a presentation from a theme\"); no explicit Save action appears in this window -- only the title box click/type/commit beat was available in a clean, chapter-card-free stretch. App version: PowerPoint circa 2016/2019 desktop ribbon (exact build not stated in video); publish date of source video 2019-12-04, channel-official upload.",
+  "appVersion": "PowerPoint for Windows, 2016/2019-era ribbon UI (unspecified build)",
+  "themes": ["light"],
+  "clip": {
+    "fps": 2,
+    "durationSeconds": 10,
+    "frameCount": 20
+  }
+}
