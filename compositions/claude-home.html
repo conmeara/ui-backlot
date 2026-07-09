@@ -159,6 +159,7 @@
         <button class="new-chat-row" type="button">
           <span class="row-icon compose"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span>
           <span>New chat</span>
+          <span class="new-chat-kbd">⇧⌘O</span>
         </button>
         <button class="new-chat-row" type="button">
           <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-messages-square"/></svg></span>
@@ -457,6 +458,15 @@
         width: 20px;
         height: 20px;
         color: #121212;
+      }
+
+      .new-chat-kbd {
+        margin-left: auto;
+        flex: 0 0 auto;
+        color: var(--text-400);
+        font-size: 11.5px;
+        font-weight: 430;
+        letter-spacing: 0.01em;
       }
 
       .row-icon {

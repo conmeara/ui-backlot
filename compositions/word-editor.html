@@ -107,7 +107,7 @@
           </div>
           <div class="page">
             <h1><span class="change-bar h1-bar"></span><span>Q2 launch </span><span class="revision-delete">notes</span><span class="revision-insert">brief</span></h1>
-            <p class="lede">Claude revised the opening narrative into a <span class="text-selection">sharper executive brief</span> while preserving source-backed details from the Launch Deck folder.</p>
+            <p class="lede">Claude revised the opening narrative into a sharper executive brief while preserving source-backed details from the Launch Deck folder.</p>
             <p>The update connects revenue, adoption, and customer feedback into one page the team can reuse across the deck, video script, and launch memo.</p>
             <p class="revision-insert-block"><span class="change-bar"></span><strong>Updated positioning.</strong> Lead with the workflow outcome first, then support it with the three strongest proof points.</p>
             <table class="doc-table" aria-label="Launch proof points">
@@ -1225,8 +1225,8 @@
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        border: 1.5px solid #107c10;
-        border-top-color: transparent;
+        background: #107c10;
+        border: 0;
       }
 
       .autosave span {
@@ -1449,11 +1449,15 @@
       }
 
       .ribbon-large.accept .office-icon {
-        color: #4a4a4a;
+        color: #107c10;
       }
 
       .ribbon-large.reject .office-icon {
-        color: #4a4a4a;
+        color: #c4314b;
+      }
+
+      .track-command .office-icon {
+        color: #2b579a;
       }
 
       .ribbon-stack {
@@ -1572,6 +1576,16 @@
         padding: 0 9px;
         white-space: nowrap;
         font-size: 11px;
+      }
+
+      .review-chip::after {
+        content: "";
+        width: 5px;
+        height: 5px;
+        margin-left: 6px;
+        border-right: 1.3px solid #56616d;
+        border-bottom: 1.3px solid #56616d;
+        transform: rotate(45deg) translateY(-1px);
       }
 
       .pane-chip {
@@ -1698,6 +1712,7 @@
         border-left-width: 4px;
         border-right-width: 4px;
         border-top-width: 5px;
+        border-top-color: #8a857e;
       }
 
       .ruler.vertical {
@@ -1948,8 +1963,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const wordDuration = 12;
-      const syncRepeat = Math.max(0, Math.floor((wordDuration - 1.6) / 0.9) - 1);
       const tl = gsap.timeline({ paused: true });
 
       tl.from(".word-window", { opacity: 0, y: 20, scale: 0.987, duration: 0.42, ease: "power2.out" }, 0.12);
@@ -1962,7 +1975,6 @@
       tl.from(".revision-insert-block", { opacity: 0, x: -8, duration: 0.3, ease: "power2.out" }, 2.18);
       tl.from(".comment-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 2.36);
       tl.from(".doc-table", { opacity: 0, y: 8, duration: 0.3, ease: "power2.out" }, 2.62);
-      tl.to(".sync-dot", { rotation: 360, duration: 0.9, repeat: syncRepeat, ease: "none" }, 1.6);
 
       window.__timelines["word-editor-surface"] = tl;
     </script>

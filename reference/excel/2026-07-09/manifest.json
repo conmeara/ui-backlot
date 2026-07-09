@@ -1,0 +1,38 @@
+{
+  "capturedAt": "2026-07-09T19:59:22.207Z",
+  "entries": [
+    {
+      "label": "app-store-mac-chart-contextual-ribbon",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[3] 'Data visualization with charts', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-09T19:59:44.895Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Real Excel-for-Mac UI: contextual 'Chart Design' + 'Format' ribbon tabs (bold/underlined when a chart object is selected), open chart-style gallery flyout, an embedded donut chart with selection handles, and a FOUR-tab sheet strip (Charts, Expense Trends, Loan Options, Budget Wheel) -- confirms tab-strip behavior with more tabs and the contextual-tab visual treatment neither prior capture shows. Marketing-staged content; trust chrome/geometry, discount workbook data.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "app-store-mac-grid-formula-bar",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[1] 'Data Analysis made easy', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-09T19:59:22.207Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Real Excel-for-Mac UI, flat/non-tilted: full ribbon (Home/Insert/Draw/Page Layout/Formulas/Data/Review/View/Automate + Table contextual tab), name box + fx formula bar, column/row grid headers, Analyze Data pane, sheet tabs (Charts, Expense Trends) and status bar (Ready / Accessibility / view toggles / zoom) all visible in one frame. Screenshot is marketing-curated (staged workbook content, green accent theme) but chrome/geometry/typography are the real current app -- trust layout & spacing, discount the demo data/colors as a marketing skin.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "app-store-mac-sheet-tabs-status-bar",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[2] 'Manage complex data tasks', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-09T19:59:30.574Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Real Excel-for-Mac UI, flat/non-tilted: Formulas ribbon tab active, native Sort/Filter dialog (traffic-light-less floating panel with search + checkbox list + Apply/Clear Filter buttons) overlaying the grid, THREE sheet tabs (Charts, Expense Trends, Loan Options) plus '+' new-sheet control, and the same status bar (Ready / Accessibility: Good to go / view toggles / zoom slider) as the other capture -- best single source for sheet-tab strip styling (active-tab underline, spacing, + button) and in-app dialog chrome. Marketing-staged content; trust chrome/geometry, discount workbook data.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

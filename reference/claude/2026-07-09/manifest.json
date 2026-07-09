@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-09T20:03:43.299Z",
+  "entries": [
+    {
+      "label": "web-app-composer-dark-official",
+      "method": "docs-press",
+      "source": "https://support.claude.com/en/articles/8887527-customizing-your-appearance-settings (Anthropic's own Claude Help Center, 'Color mode' illustration, Light/Match system/Dark side-by-side)",
+      "capturedAt": "2026-07-09T20:03:43.299Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Official vendor help-center illustration of the composer component in Light vs Dark color mode (Settings > Appearance > Color mode). Not a full-page capture of web-app-chat or web-app-home (no sidebar/thread visible) -- it is a small illustrative crop built from the real composer/model-selector/send-button styling, staged for the help doc rather than a raw screencap. Useful for grounding the dark-theme chrome palette (near-black card background, hairline borders, model-selector and 'Choose style' pill colors, orange send button unchanged across themes) pending a full live-web dark capture of claude.ai chat + claude.ai/new via the owner's logged-in Chrome session (claude-in-chrome was not connected this run).",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
