@@ -1,17 +1,18 @@
 export const meta = {
   name: 'fidelity-push',
-  description: 'Per-family design critique vs measured ground truth: score + critique, tiered fix, adversarial judge with hard score bar + stranger test, full gates',
-  whenToUse: 'Run one full visual-fidelity pass over all ui-backlot surface families',
+  description: 'Per-family design critique vs measured ground truth: reference health + acquisition, score + critique, tiered fix, adversarial judge with hard score bar + stranger test, full gates',
+  whenToUse: 'Run one full visual-fidelity pass over all ui-backlot surface families. Args: {families:[...]} to scope, {skipRefresh:true} to skip the Reference phase.',
   phases: [
+    { title: 'Reference', detail: 'Per-family reference health check; acquisition on stale/weak/missing (docs/reference-and-asset-sourcing.md)', model: 'sonnet' },
     { title: 'Score', detail: 'Deterministic fidelity-score baselines vs dated reference sets', model: 'haiku' },
-    { title: 'Critique', detail: 'Fable/Opus design critics per app family vs references + measured deltas' },
+    { title: 'Critique', detail: 'Opus design critics per app family vs references + measured deltas', model: 'opus' },
     { title: 'Fix', detail: 'Sonnet fix rounds driven by typed repairs, re-scored each round until plateau (max 4)', model: 'sonnet' },
     { title: 'Judge', detail: 'Re-score + Opus before/after adversarial judgment + stranger test + Sonnet repair on regression', model: 'opus' },
     { title: 'Gate', detail: 'Full capture sweep + registry/catalog/lint/render gates', model: 'haiku' },
   ],
 }
 
-const ROOT = '/Users/conmeara/Projects/ui-backlot'
+const ROOT = '/Users/botbot/Projects/ui-backlot'
 // Stable scratch dir (survives across sessions; fix agents mkdir -p it).
 // Repo-local + gitignored so the review pages (npm run review) can see it.
 const SCRATCH = ROOT + '/workspace/fidelity'
@@ -19,9 +20,12 @@ const SCRATCH = ROOT + '/workspace/fidelity'
 // scoreRef names a label inside the NEWEST dated dir under reference/<family>/
 // (created by tools/capture-live-reference.mjs / import-reference.mjs).
 // Surfaces without scoreRef are critiqued from reference images only.
+// MODEL POLICY: 'opus' is the ceiling for criticModel — NEVER 'fable' in this
+// workflow (cost; owner directive 2026-07-09). Judgment stages are Opus,
+// build/fix is Sonnet, mechanical stages are Haiku.
 const FAMILIES = [
   {
-    key: 'claude', criticModel: 'fable',
+    key: 'claude', criticModel: 'opus',
     surfaces: [
       // bespokeContent: the surface is a staged demo scene, not a 1:1 of the
       // reference view's content — element add/remove repairs are content
@@ -34,7 +38,7 @@ const FAMILIES = [
     siblings: 'compositions/claude-sidebar.html, compositions/claude-thread-core.html, compositions/claude-composer.html, compositions/claude-agent-rail.html, compositions/claude-chat-pane.html, compositions/claude-conversation.html, compositions/claude-prompt-stack.html, compositions/claude-home-launch.html',
   },
   {
-    key: 'macos', criticModel: 'fable',
+    key: 'macos', criticModel: 'opus',
     surfaces: [
       { id: 'finder-window', src: 'compositions/finder-window.html', cap: 'captures/surface-finder-window-component/target.png', script: 'capture:finder-window' },
       { id: 'mac-menu-bar', src: 'compositions/mac-menu-bar.html', cap: 'captures/surface-mac-menu-bar/target.png', script: 'capture:mac-menu-bar' },
@@ -228,13 +232,72 @@ const STRANGER_SCHEMA = {
   },
 }
 
+const REF_HEALTH_SCHEMA = {
+  type: 'object', required: ['status', 'newestSet', 'gaps'], additionalProperties: false,
+  properties: {
+    status: { enum: ['fresh', 'stale', 'weak', 'missing'] },
+    newestSet: { type: ['string', 'null'] },
+    ageDays: { type: ['integer', 'null'] },
+    gaps: { type: 'array', items: { type: 'string' } },
+    notes: { type: 'string' },
+  },
+}
+
+const REF_ACQUIRE_SCHEMA = {
+  type: 'object', required: ['acquired', 'skipped', 'notes'], additionalProperties: false,
+  properties: {
+    acquired: { type: 'array', items: { type: 'object', required: ['label', 'method', 'source'], additionalProperties: false, properties: { label: { type: 'string' }, method: { type: 'string' }, source: { type: 'string' }, files: { type: 'array', items: { type: 'string' } } } } },
+    skipped: { type: 'array', items: { type: 'string' } },
+    notes: { type: 'string' },
+  },
+}
+
+// Reference freshness bar: live-capturable tiers should be re-grounded at
+// least this often (the real apps ship UI changes continuously).
+const REFRESH_STALE_DAYS = 45
+
+// Phase 0 per family: grade the ground truth, and when it is below 'fresh',
+// dispatch an acquisition agent that works the sourcing ladder in
+// docs/reference-and-asset-sourcing.md. Weak references were the loop's
+// biggest blind spot — critics judging marketing shots (or nothing at all)
+// produce confident-but-wrong fixes.
+async function referenceStage(f) {
+  if (skipRefresh) return { health: null, acquired: null }
+  const health = await agent(
+    'Reference HEALTH CHECK for the "' + f.key + '" family in ' + ROOT + ' (work from that root; READ-ONLY — no edits, no downloads).\n' +
+    'Surfaces this family must ground: ' + f.surfaces.map(s => s.id).join(', ') + '.\n' +
+    'Declared references: ' + f.refs + '\n' +
+    '1. List dated sets: ls -d ' + f.refDir + '/2*/ — note the newest and its age in days vs today (date +%F).\n' +
+    '2. Read that set\'s manifest.json + spot-check its images (Read renders them): do the pixels actually show the CURRENT real app at useful resolution, and is every surface above covered by at least one usable image?\n' +
+    '3. Read reference/sources.json for this family\'s tier and fallbacks.\n' +
+    'Grade status: "fresh" = every surface has real-pixel coverage newer than ' + REFRESH_STALE_DAYS + ' days (or the family is online-only tier with a solid official set); "stale" = usable but older than that for a live-capturable tier; "weak" = coverage exists but is marketing-only, low-res, or misses some surface; "missing" = no usable references.\n' +
+    'gaps: one line per concrete hole, specific enough to acquire against (e.g. "no real Excel grid screenshot — only shared Office chrome shots", "premiere: zero real pixels on disk").',
+    { label: 'ref-health:' + f.key, phase: 'Reference', model: 'haiku', effort: 'low', schema: REF_HEALTH_SCHEMA }
+  )
+  if (!health) return { health: null, acquired: null }
+  log('ref-health:' + f.key + ' → ' + health.status + (health.ageDays != null ? ' (newest set ' + health.ageDays + 'd old)' : ''))
+  if (health.status === 'fresh') return { health: health, acquired: null }
+  const acquired = await agent(
+    'Reference ACQUISITION for the "' + f.key + '" family in ' + ROOT + ' (work from that root). The health check graded this family "' + health.status + '" with these gaps:\n' + JSON.stringify(health.gaps, null, 1) + '\n\n' +
+    'Read docs/reference-and-asset-sourcing.md (Part 1) and reference/sources.json (this family\'s entry) FIRST, then work the acquisition ladder against the gaps above. Be creative but honest about provenance — real pixels of the current version beat everything; staged/marketing material is acceptable when labeled as such.\n' +
+    'Budget: acquire the 2-4 HIGHEST-VALUE items only — this is a refresh, not an exhaustive crawl. Prefer no-auth rungs when browser MCPs are unavailable (App Store lookup API, official video frame-mining, docs/press, hyperframes capture).\n' +
+    'File EVERYTHING as a dated set via: node tools/import-reference.mjs --family ' + f.key + ' --label <label> --image <file> --method <method> --source "<url/provenance>" --note "<caveats, e.g. web-app chrome differs from Mac desktop>".\n' +
+    'HARD RULES: never log in to anything; never touch bot checks/CAPTCHAs; the owner\'s logged-in captures stay local; no git commands. If a durable NEW source was found, append it to this family\'s fallbacks in reference/sources.json (keep valid JSON — verify with node -e after editing).\n' +
+    'If a gap is only fillable by the user (e.g. a screenshot from a machine that has the app), put a precise request in skipped ("ask user: ...").\n' +
+    'Return acquired (label/method/source/files), skipped, notes.',
+    { label: 'ref-acquire:' + f.key, phase: 'Reference', model: 'sonnet', schema: REF_ACQUIRE_SCHEMA }
+  )
+  if (acquired) log('ref-acquire:' + f.key + ' → ' + (acquired.acquired || []).length + ' item(s) filed')
+  return { health: health, acquired: acquired }
+}
+
 function surfaceLines(f) {
   return f.surfaces.map(s => '- ' + s.id + ': current capture at ' + s.cap + ' | source ' + s.src + ' | recapture with: npm run ' + s.script).join('\n')
 }
 
 const GOTCHAS = [
   '1. CASCADE TRAP: the big composition files contain LATER style blocks that re-style the same selectors as earlier blocks — the LAST rule wins. Before editing any rule, grep the file for ALL occurrences of the selector and edit the effective (last) one, or your change silently does nothing.',
-  '2. ICONS: never hand-draw glyphs or use Unicode symbols as icons — they read as fake. Use the closest real glyph: copy <symbol> elements from assets/icons/source-authentic/ (see assets/icons/sprite-manifest.json) into the composition hidden <svg style="display:none"> block and reference them with <svg class="backlot-icon"><use href="#symbol-id"/></svg>. Office apps use fluent-* symbols, macOS uses f7-*, claude/browser use lucide-*. When the needed glyph is not in the sprite set, SEARCH 200k+ icons offline: node tools/find-icon.mjs <terms> [--sets lucide,fluent,f7,simple-icons] --symbol prints a ready-to-paste <symbol> — matching the real icon matters more than sticking to the existing set.',
+  '2. ICONS: never hand-draw glyphs or use Unicode symbols as icons — they read as fake. Use the closest real glyph: copy <symbol> elements from assets/icons/source-authentic/ (see assets/icons/sprite-manifest.json) into the composition hidden <svg style="display:none"> block and reference them with <svg class="backlot-icon"><use href="#symbol-id"/></svg>. Office apps use fluent-* symbols, macOS uses f7-*, claude/browser use lucide-*. When the needed glyph is not in the sprite set, SEARCH 200k+ icons offline: node tools/find-icon.mjs <terms> [--sets lucide,fluent,f7,simple-icons] --symbol prints a ready-to-paste <symbol> — matching the real icon matters more than sticking to the existing set. This generalizes to ALL assets (app icons, logos, wallpapers, cursors, fonts): SOURCE the real thing instead of recreating it — repo assets/ dirs, then find-icon.mjs, then extract from this Mac (sips -s format png <App>.app/Contents/Resources/*.icns), then pinned donor repos (reference/open-source/, extend via tools/clone-reference-repos.sh), then the vendor\'s own brand/press kits and SVGs. Full recipes: docs/reference-and-asset-sourcing.md Part 2. Record provenance in the nearest NOTICE.md.',
   '3. FIDELITY-FIRST: recreate the real app as closely as possible — match real fonts, glyphs, logos, colors, and spacing exactly (tracking a real font or icon to nail it is fine). Build in editable HTML/CSS/SVG because surfaces must animate for video, not because of any asset rule. Only hard line: do not commit the owner\'s private/logged-in captures (use synthetic demo content in surfaces). SCOPE: do not edit styles/backlot-foundation.css, tools/, runtime/, or files outside your scope list.',
   '4. PATHS: captures load compositions via file:// so keep each file existing relative asset-path convention exactly as-is. Keep the foundation @import in the OUTER style block (outside <template>) where that pattern exists.',
   '5. MOUNTING: compositions are mounted into workflow wrappers by runtime/backlot-component-loader.js, which strips <script> tags and inherits parent fonts — do not rely on scripts for visual state; keep styles inside the template.',
@@ -276,14 +339,19 @@ function critiqueStage(preScore, f) {
   const scoreBlock = preScore && preScore.scores && preScore.scores.length
     ? '\nMEASURED SCORECARD (deterministic, from tools/fidelity-score.mjs vs live-app computed styles — treat these deltas as ground truth and turn them into fixes FIRST, before anything eyeballed):\n' + JSON.stringify(preScore.scores, null, 1) + '\n'
     : ''
+  const acq = preScore && preScore.refReport && preScore.refReport.acquired ? (preScore.refReport.acquired.acquired || []) : []
+  const refFreshBlock = acq.length
+    ? '\nJUST-ACQUIRED REFERENCES (filed this run by the Reference phase into the newest dated dir under ' + f.refDir + ' — read these, they may be better than the older material described above):\n' + JSON.stringify(acq, null, 1) + '\n'
+    : ''
   return agent(
     'Visual fidelity audit of the "' + f.key + '" family in ' + ROOT + ' (work from that root).\n' +
     'This repo is a studio backlot of hand-built HTML/CSS recreations of real apps, used to shoot agent-made demo videos. Any visual tell breaks the illusion. Your job: find what still reads as fake.\n\n' +
     'Surfaces to audit — Read each capture PNG visually:\n' + surfaceLines(f) + '\n\n' +
     'Ground-truth references: ' + f.refs + '\n' +
+    'ALSO list ' + f.refDir + '/2*/ and read the NEWEST dated set — the Reference phase may have refreshed it this run beyond what the description above covers.\n' +
     'Read the actual reference images FIRST (the Read tool renders images). Then skim the composition source files to understand what is implemented.\n' +
-    scoreBlock + '\n' +
-    'Hunt specifically for: wrong font size/weight/family, wrong padding and spacing rhythm, wrong colors and hairlines, fake-looking icons, controls that do not exist in the real app, misaligned chrome (titlebar, traffic lights, tabs, sidebars), text or content that contradicts itself between panes, and anything that would flicker as "off" in a moving demo video.\n' +
+    scoreBlock + refFreshBlock + '\n' +
+    'Hunt specifically for: wrong font size/weight/family, wrong padding and spacing rhythm, wrong colors and hairlines, fake-looking icons, controls that do not exist in the real app, misaligned chrome (titlebar, traffic lights, tabs, sidebars), text or content that contradicts itself between panes, and anything that would flicker as "off" in a moving demo video. ALSO hunt for hand-drawn/approximated ASSETS (icons, logos, wallpaper, artwork) where a real one is sourceable — for those, the fix spec should name the real asset and where to source it (ladder in docs/reference-and-asset-sourcing.md Part 2), never a redraw.\n' +
     'HOUSE RULE — abstract before you approximate: when a control cannot be rendered at the right size/font/icon, the correct fix is to REMOVE it, not to shrink or fake it. Recommend removals freely.\n\n' +
     'For every gap give a concrete, directly implementable fix spec: exact px, hex, font-weight, element to delete, or symbol id to use. A Sonnet implementer will apply your specs verbatim — vague specs produce bad fixes.\n' +
     'Max 7 gaps, ranked most severe first (illusion-breaking, then noticeable, then polish). Only report gaps you are confident about. Where no reference exists, flag only what you are certain of from product knowledge. In referenceQuality, note how strong your ground truth was.',
@@ -521,14 +589,16 @@ async function judgeStage(prev, f, idx) {
 let argv = args
 if (typeof argv === 'string') { try { argv = JSON.parse(argv) } catch { argv = undefined } }
 const wantFamilies = argv && Array.isArray(argv.families) ? argv.families : null
+const skipRefresh = !!(argv && argv.skipRefresh)
 const selected = wantFamilies ? FAMILIES.filter(f => wantFamilies.includes(f.key)) : FAMILIES
 if (wantFamilies && selected.length === 0) throw new Error('No families matched ' + JSON.stringify(wantFamilies) + ' — valid keys: ' + FAMILIES.map(f => f.key).join(', '))
 log('Fidelity push over ' + selected.length + ' families: ' + selected.map(f => f.key).join(', ') + (wantFamilies ? ' (requested: ' + wantFamilies.join(',') + ')' : ' (all)'))
 
-phase('Score')
+phase('Reference')
 const familyResults = await pipeline(
   selected,
-  f => scoreStage(f, 'before', 'Score'),
+  referenceStage,
+  (refReport, f) => scoreStage(f, 'before', 'Score').then(s => (s ? { ...s, refReport: refReport } : s)),
   critiqueStage,
   fixStage,
   judgeStage

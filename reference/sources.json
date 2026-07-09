@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). See docs/fidelity-loop-plan-2026-07-05.md.",
+  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). Additional no-auth methods: app-store-api (iTunes lookup screenshotUrls — real current-version UI), yt-dlp+ffmpeg (frame-mining official vendor videos). Recipes + acquisition ladder: docs/reference-and-asset-sourcing.md; loop design: docs/fidelity-loop-plan-2026-07-05.md.",
   "families": [
     {
       "family": "claude",
@@ -108,16 +108,33 @@
       "availableOnThisMachine": false,
       "targets": [
         {
+          "label": "app-store-screens",
+          "method": "app-store-api",
+          "bundleId": "com.microsoft.Word",
+          "notes": "curl 'https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us' -> results[0].screenshotUrls (validated 2026-07-09). Edit the mzstatic size suffix upward (800x500bb.jpg -> 2400x1500bb.png) for full res. Real current Word-for-Mac UI; content is lightly staged — trust chrome/geometry/colors, discount document content."
+        },
+        {
+          "label": "web-app",
+          "url": "https://www.office.com",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "notes": "Word for the web is free with a personal Microsoft account. Canvas, typography, comment balloons, dialogs = ground truth; web ribbon and window chrome differ from Mac desktop — record that caveat in the manifest note. Flip tier to live-web once a Microsoft session exists in Chrome."
+        },
+        {
           "label": "docs-scrape",
           "urls": [
             "https://support.microsoft.com/en-us/word",
             "https://www.microsoft.com/en-us/microsoft-365/word"
           ],
           "method": "playwright-public",
-          "notes": "Official docs/marketing screenshots; staged, critic must discount. Flip tier to live-web if a Microsoft 365 web session becomes available."
+          "notes": "Official docs/marketing screenshots; staged, critic must discount."
         }
       ],
-      "fallbacks": ["reference/word/", "reference/open-source/fluentui (pinned)"]
+      "fallbacks": [
+        "video-frame-mine: Microsoft 365 YouTube channel Word-for-Mac tutorials (yt-dlp + ffmpeg, recipe in docs/reference-and-asset-sourcing.md)",
+        "reference/word/",
+        "reference/open-source/fluentui (pinned)"
+      ]
     },
     {
       "family": "excel",
@@ -125,12 +142,28 @@
       "availableOnThisMachine": false,
       "targets": [
         {
+          "label": "app-store-screens",
+          "method": "app-store-api",
+          "bundleId": "com.microsoft.Excel",
+          "notes": "Same iTunes-lookup recipe as word. Real current Excel-for-Mac UI incl. the grid + formula bar this family has never had real pixels of."
+        },
+        {
+          "label": "web-app",
+          "url": "https://www.office.com",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "notes": "Excel for the web: grid, formula bar, cell styling = ground truth; ribbon/chrome differ from Mac desktop."
+        },
+        {
           "label": "docs-scrape",
           "urls": ["https://support.microsoft.com/en-us/excel"],
           "method": "playwright-public"
         }
       ],
-      "fallbacks": ["reference/open-source/fluentui (pinned)"]
+      "fallbacks": [
+        "video-frame-mine: Microsoft 365 YouTube Excel-for-Mac tutorials",
+        "reference/open-source/fluentui (pinned)"
+      ]
     },
     {
       "family": "powerpoint",
@@ -138,18 +171,41 @@
       "availableOnThisMachine": false,
       "targets": [
         {
+          "label": "app-store-screens",
+          "method": "app-store-api",
+          "bundleId": "com.microsoft.Powerpoint",
+          "notes": "Same iTunes-lookup recipe as word."
+        },
+        {
+          "label": "web-app",
+          "url": "https://www.office.com",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "notes": "PowerPoint for the web: slide canvas, thumbnail rail idiom = ground truth; ribbon/chrome differ from Mac desktop."
+        },
+        {
           "label": "docs-scrape",
           "urls": ["https://support.microsoft.com/en-us/powerpoint"],
           "method": "playwright-public"
         }
       ],
-      "fallbacks": ["reference/powerpoint/", "reference/open-source/fluentui (pinned)"]
+      "fallbacks": [
+        "video-frame-mine: Microsoft 365 YouTube PowerPoint-for-Mac tutorials",
+        "reference/powerpoint/",
+        "reference/open-source/fluentui (pinned)"
+      ]
     },
     {
       "family": "premiere",
       "tier": "online-only",
       "availableOnThisMachine": false,
       "targets": [
+        {
+          "label": "video-frame-mine",
+          "urls": ["https://www.youtube.com/@AdobeVideo"],
+          "method": "yt-dlp+ffmpeg",
+          "notes": "Adobe's official video channel: 1080p-4K tutorials showing the real Premiere UI at rest — the best real-pixel source for this family (not on the Mac App Store, app not installed here). Pick frames with no overlays/zooms; file with --source '<video url> @ <timestamp>'. Recipe: docs/reference-and-asset-sourcing.md Part 1.4."
+        },
         {
           "label": "docs-scrape",
           "urls": [
@@ -159,7 +215,10 @@
           "notes": "Adobe help + launch-video frame studies. App not installed here."
         }
       ],
-      "fallbacks": []
+      "fallbacks": [
+        "press: news.adobe.com press images / Adobe brand kit",
+        "manual-inbox: 7-day Premiere trial screenshots if the user opts in"
+      ]
     }
   ]
 }

@@ -12,7 +12,7 @@ export const meta = {
   ],
 }
 
-const ROOT = '/Users/conmeara/Projects/ui-backlot'
+const ROOT = '/Users/botbot/Projects/ui-backlot'
 const SCRATCH = ROOT + '/workspace/consolidation'
 const AUDIT_DOC = 'docs/component-consolidation-audit-2026-07-02.md'
 

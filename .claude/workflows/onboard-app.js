@@ -12,7 +12,7 @@ export const meta = {
   ],
 }
 
-const ROOT = '/Users/conmeara/Projects/ui-backlot'
+const ROOT = '/Users/botbot/Projects/ui-backlot'
 // Repo-local + gitignored so the review pages (npm run review) can see it.
 const SCRATCH = ROOT + '/workspace/fidelity'
 
@@ -120,7 +120,7 @@ const [probe, sweep] = await parallel([
   ),
   () => agent(
     'Official-source reference sweep for the app "' + TITLE + '".\n' +
-    'Find the highest-fidelity OFFICIAL imagery of the current UI: help-center articles, official docs, press kit, release notes, design blog posts. Starting points: ' + (URLS.join(', ') || 'search for them') + '.\n' +
+    'Work the acquisition ladder in docs/reference-and-asset-sourcing.md (Part 1) — not just docs pages: Mac App Store screenshots via the iTunes lookup API (real current-version UI, no auth), a free web version of the app if one exists, official video frame-mining (yt-dlp + ffmpeg on the vendor\'s YouTube channel), help-center articles, press kits, release notes, design blog posts. Starting points: ' + (URLS.join(', ') || 'search for them') + '.\n' +
     'Save the best screenshots (max 10, current-version UI only) to ' + ROOT + '/reference/' + FAM + '/actual-app/ and write source-index.json there following the exact pattern of reference/figma/actual-app/source-index.json (capturedAt, assetDecision, refs[] with file/page/url/note). Use curl or WebFetch to download; verify each file is a real image (file command).\n' +
     TOOLBOX,
     { label: 'sweep:' + FAM, phase: 'Research', model: 'sonnet', schema: CAPTURE_SCHEMA }
@@ -138,7 +138,7 @@ const capture = await agent(
   '- live-web PUBLIC page: npm run reference:capture -- <url> --family ' + FAM + ' --label web-app --viewport 1440x900 (writes screenshot+tokens+manifest).\n' +
   '- live-web LOGGED-IN app: drive the user\'s Chrome via claude-in-chrome (ToolSearch first): open the app tab, inject tools/extract-ui-tokens.js via javascript_tool, run extractUiTokens(null,{slim:true}), stash in window.__backlotDump, read it out in ~800-char slices, write to a temp file, then node tools/import-reference.mjs --family ' + FAM + ' --label web-app-light --tokens <file> --method claude-in-chrome. For pixels use the beacon + screencapture + tools/crop-to-beacons.mjs procedure from the plan doc (verify the captured image IS the app before filing).\n' +
   '- native-local: fixed window size, screencapture via Bash (or computer-use screenshot after request_access), file with import-reference.mjs --image.\n' +
-  '- online-only: the Research sweep already saved official refs; import the 2-3 best as a dated set (import-reference.mjs --image --method online-only) so drift detection has a baseline. For public URLs ALSO try npx hyperframes capture <url> -o reference/' + FAM + '/hf-capture --json (first-party rich capture: scroll screenshots, palette, fonts, assets, Web Animations data — the only source of MOTION ground truth; it may timeout on bot-checked pages, which is fine, move on).\n' +
+  '- online-only: the Research sweep already saved official refs; import the 2-3 best as a dated set (import-reference.mjs --image --method online-only) so drift detection has a baseline. If the sweep was thin, work the no-auth rungs of docs/reference-and-asset-sourcing.md (App Store lookup API, official video frame-mining) before settling for marketing shots. For public URLs ALSO try npx hyperframes capture <url> -o reference/' + FAM + '/hf-capture --json (first-party rich capture: scroll screenshots, palette, fonts, assets, Web Animations data — the only source of MOTION ground truth; it may timeout on bot-checked pages, which is fine, move on).\n' +
   'NEVER log in, never complete verification checkboxes — if blocked, capture what is public and say so in notes.\n' + TOOLBOX,
   { label: 'capture:' + FAM, phase: 'Capture', model: 'sonnet', schema: CAPTURE_SCHEMA }
 )

@@ -14,6 +14,9 @@ Read these files first:
 5. `docs/guides/build-hyperframes-demo.md` - how to assemble a demo.
 6. Asset stance: fidelity-first — recreate as closely as possible; keep the
    owner's own logged-in captures local (privacy). No other asset constraints.
+   Source real assets instead of redrawing them, and hunt real-app references
+   creatively when local ones are weak — ladders and recipes in
+   `docs/reference-and-asset-sourcing.md`.
 7. `docs/fidelity-loop-plan-2026-07-05.md` - the ground-truth capture /
    drift / rebuild loop. `reference/sources.json` declares how each family's
    real-app references are acquired; `reference/<family>/<date>/` holds dated
@@ -21,12 +24,22 @@ Read these files first:
    and writes `reports/fidelity/`. Fix fidelity gaps from measured deltas in
    those reports, not from memory of what the app looks like.
 8. Repo workflows (run via the Workflow tool): `.claude/workflows/
-   fidelity-push.js` = scored critique/fix/judge pass over existing families;
-   `.claude/workflows/onboard-app.js` = add a NET-NEW app family end to end
-   (research → capture → spec → build → judge → register), args
-   `{family, title, urls}`; `.claude/workflows/interaction-push.js` = motion
-   pass over interaction demos (author missing ones → render → frame-level
-   motion judge → fix rounds → ship GIF + README row), args `{demos}`.
+   fidelity-push.js` = reference refresh + scored critique/fix/judge pass over
+   existing families; `.claude/workflows/onboard-app.js` = add a NET-NEW app
+   family end to end (research → capture → spec → build → judge → register),
+   args `{family, title, urls}`; `.claude/workflows/interaction-push.js` =
+   motion pass over interaction demos (motion refs → author missing ones →
+   render → frame-level motion judge vs real recordings → fix rounds → ship
+   GIF + README row), args `{demos}`; `.claude/workflows/drift-watch.js` =
+   cheap weekly probe (app versions + drift diff) that emits the fidelity-push
+   work order; `.claude/workflows/publish-sync.js` = after surfaces change,
+   re-sync every derived artifact (catalog, HyperFrames registry, Pages site,
+   review pages, demo GIFs, README); `.claude/workflows/consumer-smoke.js` =
+   install from the committed registry like an external user, compose + render
+   following only the public docs, report friction (args `{remote:true}` to
+   test the pushed GitHub registry). Model policy for ALL loops: Opus is the
+   ceiling (judgment only), Sonnet builds/fixes/captures, Haiku for anything
+   mechanical — never Fable.
 9. Working files go in `workspace/` (gitignored; loop scratch in
    `workspace/fidelity/` and `workspace/interactions/`, ad-hoc files in
    `workspace/scratch/`). Review loop results visually with `npm run review`

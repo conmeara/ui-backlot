@@ -10,7 +10,7 @@ This builds on what already exists — the fidelity-push harness
 What was missing: fresh ground truth, a mechanical measuring stick, and a
 schedule. This plan adds those.
 
-## The three loops
+## The loops
 
 ### Loop A — Ground-truth capture
 
@@ -38,6 +38,16 @@ failing:
 | `online-only` | App not installed / not accessible here | word, excel, powerpoint, premiere | Weekly re-scrape of official docs, help-center, press kits, launch-video frame studies (the existing `reference/figma/actual-app/source-index.json` pattern, generalized). For public URLs prefer `npx hyperframes capture <url> --json` (first-party, richer than our Playwright path: scroll-depth screenshots, pixel-sampled palette with oklch, font files, semantically named assets, and **Web Animations API extraction** — the only motion ground truth in the pipeline). Cloudflare-fronted pages still time out — same no-bypass rule applies. |
 | `manual-inbox` | Human-provided screenshots | any (esp. Claude desktop app states agents can't reach) | User drops PNGs anywhere; `tools/import-reference.mjs` files them into a dated set with a manifest entry. First-class citizens of the loop. |
 
+Acquisition recipes — including the no-auth sources for apps this machine
+doesn't have (Mac App Store screenshot API, free web versions of desktop apps,
+official-video frame mining, press kits, Wayback) — live in
+`docs/reference-and-asset-sourcing.md`. fidelity-push opens with a per-family
+**Reference phase**: a Haiku health check grades the newest dated set
+(`fresh`/`stale`/`weak`/`missing`) and anything below `fresh` dispatches a
+Sonnet acquisition agent that works that playbook against the named gaps
+before any critic runs — bad or missing references never silently feed a
+critique again.
+
 Two constraints this design absorbs deliberately:
 
 1. **Agents cannot drive the Claude desktop app.** The desktop app is Electron
@@ -56,14 +66,20 @@ local, and surfaces use synthetic demo content.
 
 ### Loop B — Drift detection (the weekly trigger)
 
-Weekly run per family, in tier order:
+Implemented as `.claude/workflows/drift-watch.js` (2026-07-09). Weekly run,
+kept deliberately cheap (Haiku probes; Sonnet only for actual captures):
 
-1. Capture a fresh reference set (Loop A).
-2. Diff against the previous dated set: token diff (colors/typography/radii/
-   shadows via `tools/fidelity-score.mjs --mode drift`) + pixel diff of
-   screenshots at the same viewport.
-3. Drift above threshold → file a GitHub issue with the token delta and
-   before/after crops. The issue queue is the work queue.
+1. **Probe** — one sweep of version signals per family: Mac App Store lookup
+   API (`version` + `currentVersionReleaseDate`), installed-app Info.plist
+   versions, vendor release-notes pages — compared against
+   `reports/drift/state.json`.
+2. **Capture** — a fresh reference set (Loop A, cheapest tier) ONLY for
+   families whose version moved or whose newest set is older than 45 days.
+3. **Diff** — token score between the two newest dated sets + pixel diff of
+   same-label screenshots → `drifted` / `stable` / `inconclusive`.
+4. **Report** — `reports/drift/<date>.json` + state update + a work order
+   naming the exact `fidelity-push {families:[...]}` runs to do. (GitHub
+   issue filing can be layered on once CI exists.)
 
 Scheduling split (because CI has no desktop, and no logged-in sessions):
 
@@ -96,6 +112,39 @@ Loop C runs until the scorecard stops improving. The builder never grades
 itself; judges get fresh context and actual pixels. Reports live in
 `reports/fidelity/` (tracked in git — they are the lineage).
 
+### Loop D — Motion fidelity (interaction-push)
+
+`.claude/workflows/interaction-push.js`: per-demo author → render → frame-level
+Opus motion judge → Sonnet fix rounds → ship GIF + README row. Since
+2026-07-09 it opens with a **Motion refs** phase: per app family it looks for
+real interaction recordings under `reference/<family>/motion/<date>/` and
+acquires one when missing (screencapture -v of local apps, Chrome recordings,
+official-video clips — playbook Part 1.5); the judge calibrates cursor speed,
+easing, and beat length against those frames instead of intuition.
+
+### Loop E — Publish sync (derived artifacts)
+
+`.claude/workflows/publish-sync.js`: whenever surfaces change (any loop above,
+or manual edits), re-sync everything downstream — `docs/catalog.md`, the
+committed HyperFrames `registry/`, the GitHub Pages catalog
+(`docs/index.html` + thumbs), review pages, the demo GIFs whose surfaces
+changed (scoped by git diff, `{full:true}` for all), quickstart render, and
+stale README counts/claims — then gate and emit a publish manifest. No
+judgment stages: Haiku/Sonnet only. Run it before any push that touched
+surfaces; the intended cadence is fidelity-push / interaction-push →
+publish-sync → human commit.
+
+### Loop F — Consumer smoke test (the outside view)
+
+`.claude/workflows/consumer-smoke.js`: a Sonnet "stranger" whose only allowed
+knowledge is the public docs installs surfaces from the committed `registry/`
+(`{remote:true}` = the raw.githubusercontent URL real consumers hit), composes
+a demo per the documented pattern, and renders it. Every stumble is a typed
+friction finding (`docs-gap`, `broken-install`, `broken-asset`, …) with a
+suggested fix; the report lands in `reports/smoke/`. Every other gate runs
+in-repo — this is the only loop that tests what an external HyperFrames user
+actually experiences. Run before registry/README-touching releases.
+
 ## Onboarding a net-new app family
 
 `.claude/workflows/onboard-app.js` is the front door of the loop — run it with
@@ -115,10 +164,11 @@ itself; judges get fresh context and actual pixels. Reports live in
 6. **Register** — registry.json, sources.json, and a fidelity-push FAMILIES
    entry, so the weekly loop owns the new family from day one.
 
-Model policy across both workflows: Fable/Opus only where judgment is the
+Model policy across all loop workflows: **Opus is the ceiling — never Fable
+in loops** (cost; owner directive 2026-07-09). Opus where judgment is the
 product (critique, spec, judge, stranger test); Sonnet for build/fix
-iteration; Haiku for mechanical stages (scoring commands, file staging,
-gates, registration).
+iteration and reference acquisition; Haiku for mechanical stages (scoring
+commands, file staging, gates, registration, reference health checks).
 
 ## Rollout — status as of 2026-07-06
 
@@ -135,10 +185,19 @@ gates, registration).
   <symbol> markup (`npm run icons:find -- <terms> --symbol`).
   First scored passes: claude-composed-app 0.828→0.859, claude-home
   0.822→0.871 (pass 113, run before the convergence loop existed).
-- **Phase 3 (next):** weekly local scheduled session (re-capture ground truth,
-  drift-diff vs prior dated set, file issues); roll remaining families through
-  their tiers — the stopped-v1 leftovers in the other 8 families get
-  adjudicated by their first v3 pass.
+- **Phase 2.5 ✅ (2026-07-09)** Reference phase in fidelity-push (per-family
+  health check + conditional acquisition via
+  `docs/reference-and-asset-sourcing.md`); `sources.json` enriched with
+  no-auth sources (app-store-api screenshots, office.com web apps,
+  video-frame-mine); asset-sourcing ladder wired into fixer rules + critic
+  prompts (source real assets, never redraw); Fable removed from loop models.
+- **Phase 3 ✅ (2026-07-09)** Loop B shipped as `drift-watch.js` (version
+  probes → conditional capture → drift diff → work order in `reports/drift/`);
+  Loop E shipped as `publish-sync.js` (catalog/registry/Pages/GIF/README
+  re-sync scoped by git diff); interaction-push gained the Motion refs phase
+  (real-recording pacing calibration). Remaining from old Phase 3: actually
+  SCHEDULE the weekly drift-watch session, and roll the stopped-v1 leftover
+  families through their first v3 fidelity pass.
 - **Phase 4:** GitHub Actions (registry gates, capture sweep on changed
   surfaces, pixel-regression vs committed baselines, PR diff comments),
   GitHub Pages gallery from `catalog:generate` with per-surface scores,

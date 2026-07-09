@@ -1,8 +1,9 @@
 export const meta = {
   name: 'interaction-push',
   description: 'Motion-fidelity loop per interaction demo: author (if missing), render to video, frame-level motion judge with stranger-recording test, fix rounds, then ship GIF + README row',
-  whenToUse: 'Run a full motion pass over the interaction demos (examples/*-interaction.html), or author canonical demos for surfaces that lack one. Args: {demos: ["figma", "excel", ...]} to scope; omit for all.',
+  whenToUse: 'Run a full motion pass over the interaction demos (examples/*-interaction.html), or author canonical demos for surfaces that lack one. Args: {demos: ["figma", "excel", ...]} to scope; {skipRefresh: true} to skip motion-reference acquisition.',
   phases: [
+    { title: 'Motion refs', detail: 'Per-family real-recording check; acquisition when missing (docs/reference-and-asset-sourcing.md Part 1.5)', model: 'sonnet' },
     { title: 'Author', detail: 'Sonnet authors canonical demos for surfaces that lack one, copying the structure of existing examples', model: 'sonnet' },
     { title: 'Render', detail: 'Draft video render + frame extraction for judging', model: 'haiku' },
     { title: 'Judge', detail: 'Opus motion judge reads the frame sequence: pacing, cursor believability, state coherence, stranger-recording test', model: 'opus' },
@@ -11,7 +12,7 @@ export const meta = {
   ],
 }
 
-const ROOT = '/Users/conmeara/Projects/ui-backlot'
+const ROOT = '/Users/botbot/Projects/ui-backlot'
 // Stable scratch dir (survives across sessions; agents mkdir -p it).
 // Repo-local + gitignored so the review pages (npm run review) can see it.
 const SCRATCH = ROOT + '/workspace/interactions'
@@ -104,6 +105,29 @@ const DEMOS = [
   },
 ]
 
+// App family per demo — motion references are shared per family
+// (reference/<family>/motion/), several demos show the same app.
+const DEMO_FAMILY = {
+  'claude-chat': 'claude', cowork: 'claude', 'claude-code': 'claude',
+  excel: 'excel', word: 'word', powerpoint: 'powerpoint',
+  browser: 'browser', finder: 'macos', 'mac-multi-app-demo': 'macos', calendar: 'macos',
+  codex: 'codex', figma: 'figma', premiere: 'premiere',
+}
+
+// family -> absolute frames dir of the best real interaction recording,
+// populated by the Motion refs phase; judgePrompt reads it at call time.
+const motionByFamily = {}
+
+const MOTION_REF_SCHEMA = {
+  type: 'object', required: ['found', 'framesDir', 'notes'], additionalProperties: false,
+  properties: {
+    found: { type: 'boolean' },
+    framesDir: { type: ['string', 'null'] },
+    frameCount: { type: ['integer', 'null'] },
+    notes: { type: 'string' },
+  },
+}
+
 const AUTHOR_SCHEMA = {
   type: 'object', required: ['authored', 'file', 'actions', 'durationSeconds', 'notes'], additionalProperties: false,
   properties: {
@@ -184,7 +208,7 @@ const GOTCHAS = [
   '3. STRUCTURE: copy the structure of an existing example exactly — a stage div with data-composition-id/data-width="1280"/data-height="800"/data-duration, a .demo-cursor and .demo-click-ring element, gsap 3.14.2 + ../runtime/backlot-interactions.js (and ../runtime/backlot-component-loader.js when mounting a composition) loaded the same way. Read 2-3 neighbors in examples/ before writing anything.',
   '4. HUMAN PACING: the recording must read as a real person using the app. Cursor GLIDES to a target before clicking (never teleports), a 0.3-0.8s beat separates actions, typing runs ~15-25 cps, AI streaming ~40-55 cps, and the demo starts at rest and ends settled for ~1s. Total duration 6-14 seconds.',
   '5. SCOPE: edit only the example file for your demo. If a mounted composition lacks a stable hook class you genuinely need, you may add the class attribute (no visual change) — then run its capture script (npm run capture:<basename>) and confirm the PNG is visually unchanged. Never edit runtime/, tools/, or styles/backlot-foundation.css.',
-  '6. FIDELITY: any element you add must match the surface idiom — real fonts, real glyphs (assets/icons/source-authentic/ sprites or node tools/find-icon.mjs), no hand-drawn icons, no invented UI. If an interaction needs a control the surface lacks, pick a different interaction.',
+  '6. FIDELITY: any element you add must match the surface idiom — real fonts, real glyphs (assets/icons/source-authentic/ sprites or node tools/find-icon.mjs), no hand-drawn icons, no invented UI. If an interaction needs a control the surface lacks, pick a different interaction. INTERACTION RESPONSES are part of fidelity too: how a control reacts to a press, how typed text appears and commits, and the app\'s own animation durations/easings must copy the REAL app (check reference/<family>/motion/ frames when they exist) — never invent a reaction the app does not have.',
   '7. Do NOT run any git commands (no commit, stash, checkout, restore). The orchestrator handles version control.',
 ].join('\n')
 
@@ -227,17 +251,25 @@ function renderStage(prev, d) {
   ).then(r => ({ author: prev, render: r }))
 }
 
+function motionBlock(d) {
+  const dir = motionByFamily[DEMO_FAMILY[d.id]]
+  if (!dir) return ''
+  return '\nREAL-MOTION CALIBRATION: a real recording of this app exists. BEFORE judging, Read 5-10 frames from ' + dir + ' (0.5s apart, same cadence as the demo frames) to calibrate how the real APP RESPONDS to interaction — control press states, how typed text appears and commits, the duration/easing of its native animations (selections, loading bars, transitions), and beat length between actions. Hold the demo to that bar, and where its app responses or pacing deviate from the real idiom, cite the reference frame in the issue.\n'
+}
+
 function judgePrompt(d, framesDir, round) {
   return 'Motion judgment of an interaction demo recording, "' + d.id + '", in ' + ROOT + (round > 1 ? ' (re-judge after repair round ' + (round - 1) + ' — verify the earlier issues are actually gone before anything else)' : '') + '.\n' +
     'This repo renders scripted UI demos that must read as REAL screen recordings of a person using the app. You are judging the motion, not the static pixels — static fidelity has its own loop.\n\n' +
-    'STORY the demo must tell: ' + d.story + '\n\n' +
+    'STORY the demo must tell: ' + d.story + '\n' +
+    motionBlock(d) + '\n' +
     'EVIDENCE — Read ALL frames in ' + framesDir + ' IN ORDER (f-001.png, f-002.png, ...; they are 0.5s apart), then Read the timeline source ' + d.example + ' to check scripted timings against what the frames show.\n\n' +
     'JUDGE, in priority order:\n' +
-    '1. STATE COHERENCE: every frame must be a plausible instant of the story — nothing appears before its cause (reply before send, result before typing finishes), nothing pops in fully-formed without motion, no frame shows contradictory state.\n' +
-    '2. CURSOR BELIEVABILITY: the cursor is visible when it should be, GLIDES between consecutive frames (no teleports), arrives at a target before the click effect, and the click ring fires at the click moment.\n' +
+    '1. APP-RESPONSE FIDELITY (the top concern): every way the APP reacts to an interaction must be 1:1 with the real app — how a control visually responds to a press (highlight, depress, focus ring, active state), how typing appears (caret idiom, cell-edit vs field-edit behavior, where the text commits), and how the app\'s own animations run (selection outlines, loading/progress bars, panel and state transitions, streaming reveals) at the right duration and easing. Flag BOTH invented reactions the real app does not have AND real-app reactions that are missing. Judge this against the real recording frames when they exist; otherwise flag only what you are certain of.\n' +
+    '2. STATE COHERENCE: every frame must be a plausible instant of the story — nothing appears before its cause (reply before send, result before typing finishes), nothing pops in fully-formed without motion, no frame shows contradictory state.\n' +
     '3. PACING: typing reads at human speed (~15-25 cps), streaming reads as AI output (~40-55 cps), actions are separated by natural beats, the demo starts at rest and ends settled. Flag rushed or dead stretches with timestamps.\n' +
     '4. VISUAL INTEGRITY IN MOTION: no clipped/overlapping text mid-reveal, no empty icon boxes, no layout shift that reads as a glitch.\n' +
-    '5. STRANGER-RECORDING TEST: forget the context; flip through the frames as a stranger. Would you accept this as a screen recording of the real app? Record readsAsRecording and the concrete tells if not.\n\n' +
+    '5. CURSOR MECHANICS (the cursor rig is a shared global — do not re-litigate its styling per demo): flag only real defects — teleports between frames, click ring firing before arrival, cursor missing when an action happens.\n' +
+    '6. STRANGER-RECORDING TEST: forget the context; flip through the frames as a stranger. Would you accept this as a screen recording of the real app? Record readsAsRecording and the concrete tells if not.\n\n' +
     'For every issue: atSeconds (frame number x 0.5), target (element/selector), issue, and a directly implementable fix (exact ix.* call to change, at/dur/cps value, or element to fix) — a Sonnet implementer applies your specs verbatim. Max 7, most severe first. Only report issues you are confident about.\n' +
     'verdict: "pass" if the recording is believable with at most polish-level issues; "fix" if repairable issues remain; "unusable" only if the demo fundamentally cannot tell its story (wrong interaction, broken render).'
 }
@@ -284,9 +316,49 @@ async function judgeFixLoop(prev, d) {
 let argv = args
 if (typeof argv === 'string') { try { argv = JSON.parse(argv) } catch { argv = undefined } }
 const wantDemos = argv && Array.isArray(argv.demos) ? argv.demos : null
+const skipRefresh = !!(argv && argv.skipRefresh)
 const selected = wantDemos ? DEMOS.filter(d => wantDemos.includes(d.id)) : DEMOS
 if (wantDemos && selected.length === 0) throw new Error('No demos matched ' + JSON.stringify(wantDemos) + ' — valid ids: ' + DEMOS.map(d => d.id).join(', '))
 log('Interaction push over ' + selected.length + ' demo(s): ' + selected.map(d => d.id + (d.status === 'new' ? ' (new)' : '')).join(', '))
+
+// Motion ground truth, deduped per app family (several demos share one app).
+// Static screenshots can't ground pacing — the judge calibrates cursor speed,
+// easing, and beat length against frames of a REAL recording when one exists.
+if (!skipRefresh) {
+  phase('Motion refs')
+  const families = Array.from(new Set(selected.map(d => DEMO_FAMILY[d.id]).filter(Boolean)))
+  const checks = await parallel(families.map(fam => () =>
+    agent(
+      'Motion-reference check for the "' + fam + '" app family in ' + ROOT + ' (work from that root; READ-ONLY).\n' +
+      'Look for extracted real-recording frames: ls -d reference/' + fam + '/motion/2*/*/frames 2>/dev/null. If several, read the sibling manifest.json files and pick the newest label that shows real UI interaction footage.\n' +
+      'Return found, framesDir (ABSOLUTE path to the frames dir, or null), frameCount (PNG count in it), notes.',
+      { label: 'motion-check:' + fam, phase: 'Motion refs', model: 'haiku', effort: 'low', schema: MOTION_REF_SCHEMA }
+    ).then(r => ({ fam: fam, check: r }))
+  ))
+  for (const c of checks.filter(Boolean)) {
+    if (c.check && c.check.found && c.check.framesDir) motionByFamily[c.fam] = c.check.framesDir
+  }
+  const misses = families.filter(fam => !motionByFamily[fam])
+  if (misses.length) {
+    log('Motion refs missing for: ' + misses.join(', ') + ' — acquiring')
+    const acqs = await parallel(misses.map(fam => () => {
+      const stories = selected.filter(d => DEMO_FAMILY[d.id] === fam).map(d => d.story).join(' | ')
+      return agent(
+        'Acquire MOTION ground truth for the "' + fam + '" app family in ' + ROOT + ' (work from that root). No real interaction recording exists on disk yet.\n' +
+        'Read docs/reference-and-asset-sourcing.md Part 1.5 and reference/sources.json (this family\'s tier), then work the motion ladder: record the real local app with screencapture -v, record the web app in the user\'s Chrome, or cut a clip from an official vendor video (yt-dlp + ffmpeg; brew install yt-dlp if missing).\n' +
+        'The demos needing calibration tell these stories: ' + stories + ' — footage of the SAME kind of interaction is ideal; any real footage of the app in use beats nothing. What matters most in the clip is the APP\'S RESPONSE: press/active states on controls, how typed text appears and commits, native animation durations and easing (selections, loading, transitions).\n' +
+        'File as reference/' + fam + '/motion/$(date +%F)/<label>/ with clip.mp4, frames/ extracted at fps=2 (ffmpeg -i clip.mp4 -vf fps=2 frames/f-%03d.png), and manifest.json {source, interaction, note}. Clips/frames are gitignored (local-only) — expected.\n' +
+        'Budget: ONE good 5-15s clip is enough. If no rung works without logging in or heavy setup, return found=false and list what you tried in notes. HARD RULES: never log in, never touch bot checks, no git commands.\n' +
+        'Return found, framesDir (ABSOLUTE), frameCount, notes.',
+        { label: 'motion-acquire:' + fam, phase: 'Motion refs', model: 'sonnet', schema: MOTION_REF_SCHEMA }
+      ).then(r => ({ fam: fam, acq: r }))
+    }))
+    for (const a of acqs.filter(Boolean)) {
+      if (a.acq && a.acq.found && a.acq.framesDir) motionByFamily[a.fam] = a.acq.framesDir
+    }
+  }
+  log('Motion refs ready for: ' + (Object.keys(motionByFamily).join(', ') || 'none'))
+}
 
 phase('Author')
 const results = await pipeline(selected, authorStage, renderStage, judgeFixLoop)

@@ -32,3 +32,7 @@ workspace/*
 reports/fidelity/diff-latest.png
 # Legacy scratch location (folded into workspace/scratch/)
 scratchpad/
+
+# motion ground truth: clips/frames are local-only (size); manifests tracked
+reference/*/motion/**/clip*
+reference/*/motion/**/frames/
