@@ -6,8 +6,8 @@ This is the public, agent-readable catalog of editable UI surfaces in UI Backlot
 
 ## Agent Selection Recipe
 
-1. Choose one `workflow` when the requested video already matches a pair such as Claude plus browser, Finder, PowerPoint, Word, Excel, Figma, Premiere, or terminal.
-2. Choose individual `component` entries when a video needs custom assembly. Mount them with `data-backlot-mount-src` and `data-backlot-mount-selector` using `runtime/backlot-component-loader.js`.
+1. Scenes are composed, not shipped: stack `mac-menu-bar` (plus `mac-dock` if the desktop shows), one or more app surfaces, and a Claude or Codex component in your own composition — [`examples/quickstart-demo.html`](../examples/quickstart-demo.html) is the worked pattern.
+2. Mount each `component` with `data-backlot-mount-src` and `data-backlot-mount-selector` using `runtime/backlot-component-loader.js`.
 3. Prefer surfaces whose tags match the app, scene, and interaction in the prompt. Use `recommendedUse`, `sourceEvidence`, and `assetDecision` from `surfaces/registry.json` when you need more detail.
 4. Run the listed capture script for at least one touched surface, then run the HyperFrames checks before rendering.
 
@@ -15,17 +15,16 @@ This is the public, agent-readable catalog of editable UI surfaces in UI Backlot
 
 | id | kind | title | source | capture | tags |
 | --- | --- | --- | --- | --- | --- |
-| `browser-app` | component | Editable Browser App | [compositions/browser-app.html](../compositions/browser-app.html) | `capture:browser-app` | `browser` `web-app` `tabs` `dashboard` |
-| `presentation-editor` | component | PowerPoint-like Presentation Editor | [compositions/presentation-editor.html](../compositions/presentation-editor.html) | `capture:presentation-editor` | `powerpoint` `presentation` `office` `ribbon` `slides` |
+| `claude-composed-app` | component | Claude Canonical Desktop Shell (composed) | [compositions/claude-composed-app.html](../compositions/claude-composed-app.html) | `capture:claude-composed-app` | `claude` `desktop-app` `canonical-shell` `component-loader` `composed-shell` `chat` `cowork` `code` |
+| `claude-chat-pane` | component | Claude Chat Pane | [compositions/claude-chat-pane.html](../compositions/claude-chat-pane.html) | `capture:claude-chat-pane` | `claude` `chat` `thread` `composer` `launch-reference` `pane` |
+| `claude-cinematic` | component | Claude Cinematic Conversation | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
+| `claude-code-terminal-session` | component | Claude Code Terminal Session | [compositions/claude-code-terminal-session.html](../compositions/claude-code-terminal-session.html) | `capture:claude-code-terminal-session` | `claude` `claude-code` `terminal` `light-ui` `figma-workflow` `component` |
+| `codex-app` | component | Codex Desktop Workbench | [compositions/codex-app.html](../compositions/codex-app.html) | `capture:codex-app` | `codex` `desktop` `app` `agent-status` `patch-preview` `developer-workflow` |
+| `mac-menu-bar` | component | macOS Menu Bar | [compositions/mac-menu-bar.html](../compositions/mac-menu-bar.html) | `capture:mac-menu-bar` | `mac` `macos` `menu-bar` `desktop` `component-loader` |
+| `excel-workbook` | component | Excel-style Workbook | [compositions/excel-workbook.html](../compositions/excel-workbook.html) | `capture:excel-workbook` | `excel` `office` `spreadsheet` `formula` `chart` |
 | `figma-editor` | component | Figma-style Design Editor | [compositions/figma-editor.html](../compositions/figma-editor.html) | `capture:figma-editor` | `figma` `design` `canvas` `properties` `frames` |
-| `codex-terminal` | component | Codex Terminal | [compositions/codex-terminal.html](../compositions/codex-terminal.html) | `capture:codex-terminal` | `codex` `terminal` `cli` `agent-status` `developer-workflow` |
-
-## Start Here
-
-Workflow wrappers are the fastest path to a video because they already combine multiple surfaces.
-
-| id | kind | title | source | capture | tags |
-| --- | --- | --- | --- | --- | --- |
+| `browser-app` | component | Editable Browser App | [compositions/browser-app.html](../compositions/browser-app.html) | `capture:browser-app` | `browser` `web-app` `tabs` `dashboard` |
+| `finder-window` | component | Finder Launch Deck Window | [compositions/finder-window.html](../compositions/finder-window.html) | `capture:finder-window` | `macos` `finder` `files` `folder` `launch-deck` |
 
 ## Claude And Chat
 

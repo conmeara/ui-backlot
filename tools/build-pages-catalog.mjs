@@ -27,11 +27,22 @@ const fams = loadFamilies(repoRoot);
 const thumbsDir = path.join(repoRoot, "docs", "catalog-media", "thumbs");
 fs.mkdirSync(thumbsDir, { recursive: true });
 
+// ImageMagick when available, macOS-builtin sips otherwise.
+const hasMagick = (() => {
+  try { execFileSync("magick", ["-version"], { stdio: "pipe" }); return true; } catch { return false; }
+})();
+
 function thumb(s) {
   const src = s.capture?.path ? path.join(repoRoot, s.capture.path) : null;
   const out = path.join(thumbsDir, `${s.id}.jpg`);
   if (src && fs.existsSync(src)) {
-    execFileSync("magick", [src, "-resize", "560x>", "-strip", "-quality", "70", out], { stdio: "pipe" });
+    if (hasMagick) {
+      execFileSync("magick", [src, "-resize", "560x>", "-strip", "-quality", "70", out], { stdio: "pipe" });
+    } else {
+      const width = Number(execFileSync("sips", ["-g", "pixelWidth", src], { stdio: "pipe" }).toString().match(/pixelWidth: (\d+)/)?.[1] || 0);
+      const resize = width > 560 ? ["--resampleWidth", "560"] : [];
+      execFileSync("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "70", ...resize, src, "--out", out], { stdio: "pipe" });
+    }
   }
   return fs.existsSync(out) ? `catalog-media/thumbs/${s.id}.jpg` : null;
 }

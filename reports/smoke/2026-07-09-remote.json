@@ -1,0 +1,59 @@
+{
+  "mode": "remote registry (raw.githubusercontent.com)",
+  "journey": {
+    "installed": [
+      "mac-menu-bar",
+      "excel-workbook",
+      "claude-chat-pane (transitively pulled in claude-composer.html and claude-thread-core.html)"
+    ],
+    "composed": "/Users/botbot/Projects/ui-backlot/workspace/smoke/demo/index.html",
+    "rendered": "/Users/botbot/Projects/ui-backlot/workspace/smoke/demo/demo.mp4",
+    "friction": [
+      {
+        "step": "README 'Use the surfaces in your own project' section, before running any `npx hyperframes add`",
+        "kind": "docs-gap",
+        "detail": "The README never states how to bootstrap a HyperFrames project from zero. It jumps straight to 'Add \"registry\": ... to my hyperframes.json' as if a hyperframes.json / project already exists. A brand-new external consumer with an empty folder has no documented starting command. I had to discover `npx hyperframes init` myself via `--help`. Worse, running it (non-interactively, to unblock) silently installs a full suite of 'AI coding skills' into the user's GLOBAL `~/.claude/skills` and `~/.agents/skills` directories (8 skills, one flagged 'Critical Risk' by its own Snyk-style table) with no prompt in non-interactive mode and no mention anywhere in the ui-backlot docs that this happens.",
+        "suggestedFix": "README.md, in the 'Use the surfaces in your own project' section (~line 44-56): add an explicit first step for consumers starting from an empty directory, e.g. `npx hyperframes init my-video --example blank --non-interactive` (or hand them a minimal hyperframes.json to paste), and a one-line warning that `init` installs global agent skills unless `--skip-skills`/`HYPERFRAMES_SKIP_SKILLS=1` is set."
+      },
+      {
+        "step": "Pasting the snippet printed/copied by `npx hyperframes add mac-menu-bar` / `excel-workbook` / `claude-chat-pane` into the host composition, then running `npx hyperframes lint` (the documented verify step in docs/guides/build-hyperframes-demo.md #5 and AGENTS.md)",
+        "kind": "docs-wrong",
+        "detail": "Every single `add` command's printed 'Include snippet' (e.g. `<div data-composition-src=\"compositions/mac-menu-bar.html\" data-duration=\"10\" data-width=\"1920\" data-height=\"30\"></div>`) omits `data-composition-id`. Pasting it verbatim, exactly as instructed ('wire the printed snippets into my composition'), and then running the documented `hyperframes lint` fails immediately with `host_missing_composition_id` for all three blocks. A stranger following the docs literally hits a lint error on their very first mount.",
+        "suggestedFix": "docs/guides/build-hyperframes-demo.md, section '2. Mount Components': add a line noting that every `data-composition-src` host div also needs a unique `data-composition-id` attribute (not included in the CLI's printed/clipboard snippet), since `hyperframes lint` requires it."
+      },
+      {
+        "step": "`npx hyperframes render --composition index.html --quality draft --low-memory-mode --output demo.mp4` on the composed mac-menu-bar + excel-workbook + claude-chat-pane scene",
+        "kind": "confusing",
+        "detail": "Every render stalls ~45 seconds on `[FrameCapture] Sub-composition timelines not registered after 45000ms: menu-bar, mac-menu-bar-surface, excel, claude, claude-chat-pane-surface` before falling back to screenshot capture — because the installed static blocks never call `window.__timelines[id]` for their own inner composition ids. The runtime's own hint (`data-no-timeline` on the host) only silences the outer host ids and the excel-workbook block; mac-menu-bar and claude-chat-pane still stall on their *inner* composition ids (`mac-menu-bar-surface`, `claude-chat-pane-surface`) with no documented attribute to suppress that. Neither README.md nor docs/guides/build-hyperframes-demo.md mentions this at all, so composing exactly the trio the README itself recommends costs ~45 dead seconds per render with a scary-looking warning and no full fix available from the docs.",
+        "suggestedFix": "docs/guides/build-hyperframes-demo.md step 4 ('Capture And Render'): document `data-no-timeline` and call out that mac-menu-bar.html and claude-chat-pane.html (unlike excel-workbook.html) still trigger the 45s wait via their inner data-composition-id even with the host flagged — either fix those two compositions to register an empty `window.__timelines[id]` on load, or document the full workaround."
+      },
+      {
+        "step": "`npx hyperframes validate` on the freshly composed, unmodified stock surfaces (documented verify step)",
+        "kind": "confusing",
+        "detail": "A completely vanilla install/composition of the three README-recommended blocks produces 75 WCAG AA contrast warnings out of the box (menu bar text, ribbon section labels, etc.) — all from the tracked surfaces themselves, nothing the consumer wrote. It's non-blocking (0 errors) but neither doc mentions this is expected, so a first-time user running the documented check step sees '75 warning(s)' on the official surfaces and may reasonably assume they broke something.",
+        "suggestedFix": "docs/guides/build-hyperframes-demo.md step 5 ('Verify'): add a one-line note that `hyperframes validate` contrast warnings on stock surfaces are known/expected and non-blocking, so consumers don't mistake them for install errors."
+      }
+    ]
+  },
+  "verify": {
+    "videoOk": true,
+    "installOk": true,
+    "details": [
+      "demo.mp4 exists (484,777 bytes) with video stream, duration 10s (exceeds 2s), dimensions 1920x1080 match composition stage",
+      "All 3 mounted compositions exist and are non-empty: mac-menu-bar.html (9,569B), excel-workbook.html (30,594B), claude-chat-pane.html (13,989B)",
+      "Sub-compositions referenced by mounted blocks present: claude-composer.html (14,834B), claude-thread-core.html (32,308B)",
+      "All SVG icon definitions (#f7-*, #fluent-*, #lucide-*) present in their respective composition files",
+      "No broken local asset references: zero file:// URLs, zero broken relative paths, all internal anchors resolved",
+      "All required data attributes present on mounted blocks: data-composition-src, data-start, data-duration, data-width, data-height, data-track-index"
+    ],
+    "notes": "Consumer-smoke artifacts in workspace/smoke/demo/ are mechanically valid. Video renders successfully with 1920x1080 dimensions at 10s duration. All 5 composition files (1 root + 3 mounted + 1 sub-mounted) are properly structured with embedded SVG defs and zero external/missing asset dependencies. Runtime scripts and foundation styles are available in runtime/ and styles/ directories."
+  },
+  "generatedAt": "2026-07-09T00:00:00Z",
+  "verdict": "friction",
+  "workOrder": [
+    "docs/guides/build-hyperframes-demo.md section '2. Mount Components': add explicit note that every data-composition-src host div requires a unique data-composition-id attribute (omitted from CLI add output but required by hyperframes lint)",
+    "README.md 'Use the surfaces in your own project' section (~line 44-56): add first-step bootstrap guidance for empty directories (e.g. 'npx hyperframes init my-video --example blank --non-interactive') and warn that init installs ~8 global agent skills to ~/.claude/skills unless --skip-skills/HYPERFRAMES_SKIP_SKILLS=1 is set",
+    "docs/guides/build-hyperframes-demo.md step 4 ('Capture And Render'): document data-no-timeline attribute and note that mac-menu-bar.html and claude-chat-pane.html still trigger 45s timeline registration waits via inner data-composition-ids even when host is flagged; either fix those compositions to register empty window.__timelines[id] on load, or provide full workaround",
+    "docs/guides/build-hyperframes-demo.md step 5 ('Verify'): add one-line note that hyperframes validate produces known/expected WCAG AA contrast warnings from stock surfaces (non-blocking, 75 on vanilla three-block install) so consumers don't mistake them for install errors"
+  ]
+}

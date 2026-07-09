@@ -40,7 +40,9 @@ capture sweep when you want the registry to require every PNG on disk.
 
 ## Add Or Improve A Surface
 
-1. Capture or inspect real reference state when possible.
+1. Capture or inspect real reference state when possible — the acquisition
+   ladder (live app, web version, donor repos, marketing shots, as a last
+   resort) is [docs/reference-and-asset-sourcing.md](docs/reference-and-asset-sourcing.md).
 2. Rebuild the important UI as editable HTML/CSS/SVG.
 3. Add or update the entry in `surfaces/registry.json`.
 4. Add a short prototype note in `docs/prototypes/` when the change introduces
@@ -74,6 +76,25 @@ Keep the following local (for size and privacy, not licensing): your own
 private/logged-in captures, downloaded product videos, extracted frames,
 donor-repo clones, product app bundles, and generated captures/renders. Use
 synthetic demo content in the tracked surfaces.
+
+## Maintenance Workflows
+
+Beyond the fidelity-push / interaction-push / onboard-app loops (see
+AGENTS.md), a few narrower workflows keep the repo honest — run any of them
+via the Workflow tool:
+
+- **publish-sync** — after surfaces change, regenerates the catalog,
+  HyperFrames registry, Pages site, review pages, demo GIFs, and README copy
+  in one pass; a faster alternative to step 6 above done by hand.
+- **drift-watch** — a cheap periodic probe for real-app version changes; it
+  doesn't fix anything, it just outputs a scoped `{families:[...]}` work order
+  for fidelity-push.
+- **consumer-smoke** — installs from the committed registry exactly like an
+  external HyperFrames user and reports friction; run before a release/push
+  that touches the registry, README, or guides.
+- **consolidate-surfaces** — the component-consolidation plan (one canonical
+  surface per app, variants as parameters); see
+  [docs/component-consolidation-audit-2026-07-02.md](docs/component-consolidation-audit-2026-07-02.md).
 
 ## Pull Request Checklist
 

@@ -36,6 +36,12 @@ components with:
 The selector should come from `surfaces/registry.json` under
 `surface.import.selector`.
 
+Installing blocks from the published registry instead (`npx hyperframes add`)?
+The snippet each `add` prints uses `data-composition-src` and omits
+`data-composition-id` — add a unique `data-composition-id` to every pasted
+host `<div>` yourself, or `hyperframes lint` fails with
+`host_missing_composition_id`.
+
 Include the component loader:
 
 ```html
@@ -70,6 +76,14 @@ npm run example:quickstart:render
 For an existing component, use the capture script listed in `docs/catalog.md`
 or `surfaces/registry.json`.
 
+Static blocks (no animation of their own) should carry `data-no-timeline` on
+their host `<div>` so the renderer does not wait for a timeline that never
+registers. Known gap: `mac-menu-bar` and `claude-chat-pane` currently still
+trigger a ~45s "Sub-composition timelines not registered" wait via their
+*inner* composition ids even with the host flagged — the render falls back to
+screenshot capture and completes correctly, so the warning is safe to ignore
+until those compositions register empty timelines.
+
 ## 5. Verify
 
 Before sharing a reusable demo workflow:
@@ -85,6 +99,11 @@ git diff --check
 Use `npm run open-source:check` for the standard source/catalog/HyperFrames
 gate. Add at least one relevant capture command and one draft render command
 for visual proof.
+
+Expect `hyperframes validate` to emit WCAG AA contrast *warnings* on stock
+surfaces (~75 on the menu-bar + Excel + Claude trio) — they come from the
+recreated apps' real color choices, are known, and are non-blocking. Only
+`error`-level findings mean something is wrong.
 
 Capture PNGs are generated artifacts and are not committed. Use
 `npm run registry:check` for fresh-clone metadata validation, and use

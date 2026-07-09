@@ -54,6 +54,10 @@ composed parts) come with it. Tell your coding agent:
 > and wire the printed snippets into my composition.
 
 ```bash
+# starting from an empty folder? bootstrap a project first
+npx hyperframes init my-video --example blank --non-interactive
+cd my-video
+
 # one surface (foundation CSS + fonts install automatically)
 npx hyperframes add excel-workbook
 
@@ -63,8 +67,14 @@ npx hyperframes add excel-workbook
 npx hyperframes add claude-chat-pane
 ```
 
+> `hyperframes init` also installs its agent skills into your global
+> `~/.claude/skills` — pass `--skip-skills` (or `HYPERFRAMES_SKIP_SKILLS=1`)
+> if you only want the project scaffold.
+
 Each `add` prints a ready-to-paste snippet — scenes are composed by stacking
-blocks, not installed pre-baked. Variants are parameters: `class="theme-dark"`
+blocks, not installed pre-baked. Give each pasted host `<div>` a unique
+`data-composition-id` (the printed snippet omits it, `hyperframes lint`
+requires it). Variants are parameters: `class="theme-dark"`
 on blocks tagged `dark-mode-ready`, `?page=chat|cowork|code` on
 `claude-composed-app`, `?beat=prompt|reply|complete` on `claude-cinematic`.
 

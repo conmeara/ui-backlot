@@ -9,11 +9,6 @@ const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 
 const groups = [
   {
-    title: "Start Here",
-    match: (surface) => surface.kind === "workflow",
-    note: "Workflow wrappers are the fastest path to a video because they already combine multiple surfaces."
-  },
-  {
     title: "Claude And Chat",
     match: (surface) => surface.tags?.includes("claude") && surface.kind === "component",
     note: "Claude components can be paired with any app surface when a demo needs an assistant, chat pane, composer, progress rail, or completion state."
@@ -45,16 +40,16 @@ function row(surface) {
 }
 
 const recommended = [
-  "claude-browser-chat-pane-workflow",
-  "claude-presentation-chat-pane-workflow",
-  "claude-finder-workflow",
-  "claude-code-figma-workflow",
-  "claude-codex-terminal-workflow",
-  "claude-app",
-  "browser-app",
-  "presentation-editor",
+  "claude-composed-app",
+  "claude-chat-pane",
+  "claude-cinematic",
+  "claude-code-terminal-session",
+  "codex-app",
+  "mac-menu-bar",
+  "excel-workbook",
   "figma-editor",
-  "codex-terminal"
+  "browser-app",
+  "finder-window"
 ].map((id) => byId.get(id)).filter(Boolean);
 
 const lines = [
@@ -66,8 +61,8 @@ const lines = [
   "",
   "## Agent Selection Recipe",
   "",
-  "1. Choose one `workflow` when the requested video already matches a pair such as Claude plus browser, Finder, PowerPoint, Word, Excel, Figma, Premiere, or terminal.",
-  "2. Choose individual `component` entries when a video needs custom assembly. Mount them with `data-backlot-mount-src` and `data-backlot-mount-selector` using `runtime/backlot-component-loader.js`.",
+  "1. Scenes are composed, not shipped: stack `mac-menu-bar` (plus `mac-dock` if the desktop shows), one or more app surfaces, and a Claude or Codex component in your own composition — [`examples/quickstart-demo.html`](../examples/quickstart-demo.html) is the worked pattern.",
+  "2. Mount each `component` with `data-backlot-mount-src` and `data-backlot-mount-selector` using `runtime/backlot-component-loader.js`.",
   "3. Prefer surfaces whose tags match the app, scene, and interaction in the prompt. Use `recommendedUse`, `sourceEvidence`, and `assetDecision` from `surfaces/registry.json` when you need more detail.",
   "4. Run the listed capture script for at least one touched surface, then run the HyperFrames checks before rendering.",
   "",
