@@ -125,6 +125,11 @@
       "type": "hyperframes:asset"
     },
     {
+      "path": "runtime/backlot-liquid-glass.js",
+      "target": "runtime/backlot-liquid-glass.js",
+      "type": "hyperframes:asset"
+    },
+    {
       "path": "styles/backlot-foundation.css",
       "target": "styles/backlot-foundation.css",
       "type": "hyperframes:style"

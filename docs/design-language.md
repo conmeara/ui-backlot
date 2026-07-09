@@ -64,6 +64,32 @@ background texture. Important readable text must be 20px or larger.
 - Cursor movement should be precise and slightly eased, with click rings where
   useful.
 
+## Materials
+
+### Liquid Glass
+
+macOS Tahoe surfaces (Dock, menu bar, floating panels) use Apple's Liquid
+Glass: a backdrop lens that bends and chromatically fringes the content behind
+it at the rim, not just a frosted blur. Add it to any element with the shared
+runtime:
+
+```html
+<div class="dock" data-liquid-glass
+     data-lg-displacement="58" data-lg-aberration="2.4"
+     data-lg-blur="7" data-lg-saturation="1.7" data-lg-brightness="1.05"
+     style="backdrop-filter: blur(7px) saturate(1.7);">
+<script src="../runtime/backlot-liquid-glass.js"></script>
+```
+
+- Params: `displacement` (edge-bend strength), `aberration` (rim colour
+  fringe), plus `blur` / `saturation` / `brightness`. Omit any to take the
+  defaults. Call `BacklotLiquidGlass.init(root)` to (re)scan after mounting.
+- ALWAYS keep a plain `backdrop-filter: blur() saturate()` on the element as a
+  fallback. The refraction needs `backdrop-filter: url()`, which is Chromium-only
+  today — our capture/render engine is Chromium, so renders get the full lens;
+  Safari/Firefox and script-stripped mounts show the frosted fallback.
+- Applied to `mac-dock`. Provenance + license: `runtime/NOTICE.md`.
+
 ## UI Motifs To Match
 
 - Pale paper background with soft sage/coral blocks.

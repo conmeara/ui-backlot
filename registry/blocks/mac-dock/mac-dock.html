@@ -7,7 +7,10 @@
   <body>
     <template id="mac-dock-surface-template">
       <div id="mac-dock-surface" data-composition-id="mac-dock-surface" data-width="760" data-height="104">
-        <div class="mac-dock" data-primitive="mac-dock" aria-label="macOS Dock">
+        <div class="mac-dock" data-primitive="mac-dock" aria-label="macOS Dock"
+             data-liquid-glass
+             data-lg-displacement="58" data-lg-aberration="2.4"
+             data-lg-blur="7" data-lg-saturation="1.7" data-lg-brightness="1.05">
           <div class="dock-tile" data-app="finder"><img class="app-icon" src="assets/app-icons/finder.png" alt="Finder" /></div>
           <div class="dock-tile" data-app="claude"><img class="app-icon" src="assets/app-icons/claude.svg" alt="Claude" /></div>
           <div class="dock-tile" data-app="safari"><img class="app-icon" src="assets/app-icons/safari.png" alt="Safari" /></div>
@@ -80,6 +83,18 @@
           const fragment = template.content.cloneNode(true);
           fragment.querySelectorAll("script").forEach((s) => s.remove());
           document.body.appendChild(fragment);
+          /* Load the shared Liquid Glass runtime so the dock refracts the
+             wallpaper behind it (Chromium; our capture/render engine). It
+             auto-applies to [data-liquid-glass]. When mounted by the backlot
+             loader this script is stripped and the parent scene owns runtime
+             loading; the dock's CSS backdrop-filter is the fallback either way. */
+          if (window.BacklotLiquidGlass) {
+            window.BacklotLiquidGlass.init();
+          } else {
+            const s = document.createElement("script");
+            s.src = "runtime/backlot-liquid-glass.js";
+            document.body.appendChild(s);
+          }
         };
         if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
         else mount();

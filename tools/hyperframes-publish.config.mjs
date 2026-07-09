@@ -30,11 +30,12 @@ export const SHARED_COMPONENTS = [
   {
     name: "backlot-runtime",
     title: "Backlot Runtime",
-    description: "backlot-component-loader.js (mounts surfaces via data-backlot-mount-src) and backlot-interactions.js (scriptable cursor/typing/streaming actions on the HyperFrames timeline).",
+    description: "backlot-component-loader.js (mounts surfaces via data-backlot-mount-src), backlot-interactions.js (scriptable cursor/typing/streaming actions on the HyperFrames timeline), and backlot-liquid-glass.js (Apple-style optical refraction on any [data-liquid-glass] element).",
     tags: ["infrastructure", "runtime", "interactions"],
     files: [
       "runtime/backlot-component-loader.js",
       "runtime/backlot-interactions.js",
+      "runtime/backlot-liquid-glass.js",
     ],
   },
   {

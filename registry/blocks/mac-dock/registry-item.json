@@ -73,5 +73,7 @@
       "type": "hyperframes:composition"
     }
   ],
-  "registryDependencies": []
+  "registryDependencies": [
+    "backlot-runtime"
+  ]
 }
