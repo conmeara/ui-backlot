@@ -9,6 +9,7 @@ export const meta = {
     { title: 'Fix', detail: 'Sonnet fix rounds driven by typed repairs, re-scored each round until plateau (max 4)', model: 'sonnet' },
     { title: 'Judge', detail: 'Re-score + Opus before/after adversarial judgment + stranger test + Sonnet repair on regression', model: 'opus' },
     { title: 'Gate', detail: 'Full capture sweep + registry/catalog/lint/render gates', model: 'haiku' },
+    { title: 'PR', detail: 'Branch + commit + PR to main with before/after images per surface (CONTRIBUTING checklist) for phone review', model: 'sonnet' },
   ],
 }
 
@@ -635,6 +636,57 @@ await agent(
   { label: 'pass-log', phase: 'Gate', model: 'haiku', effort: 'low', schema: FIX_SCHEMA }
 )
 
+// ---- PR phase: the ONE agent allowed to touch git. The loop's changes ship
+// as a reviewable PR with before/after pixels (CONTRIBUTING.md checklist), so
+// the owner can approve from a phone. main itself is never committed to.
+const PR_SCHEMA = {
+  type: 'object', required: ['branch', 'prUrl', 'notes'], additionalProperties: false,
+  properties: {
+    branch: { type: ['string', 'null'] },
+    prUrl: { type: ['string', 'null'] },
+    mediaFiles: { type: 'array', items: { type: 'string' } },
+    notes: { type: 'string' },
+  },
+}
+
+phase('PR')
+const changedFamilies = familyResults.filter(Boolean).filter(r => r.fix && (r.fix.applied || []).length)
+let pr = null
+if (changedFamilies.length === 0) {
+  log('No family applied any change — skipping PR')
+} else {
+  const capById = {}
+  for (const fam of FAMILIES) for (const s of fam.surfaces) capById[s.id] = s.cap
+  const prSurfaces = []
+  for (const r of changedFamilies) {
+    const fam = FAMILIES.find(x => x.key === r.family)
+    for (const s of (fam ? fam.surfaces : [])) prSurfaces.push({ id: s.id, cap: s.cap, family: r.family })
+  }
+  const prFacts = changedFamilies.map(r => ({
+    family: r.family,
+    verdict: r.judge ? r.judge.verdict : 'unknown',
+    applied: (r.fix.applied || []).slice(0, 12),
+    scoreBefore: r.scores && r.scores.before ? (r.scores.before.scores || []).map(s => ({ surface: s.surface, tokenOverall: s.tokenOverall })) : null,
+    scoreAfter: r.scores && r.scores.after ? (r.scores.after.scores || []).map(s => ({ surface: s.surface, tokenOverall: s.tokenOverall })) : null,
+    remaining: r.judge ? (r.judge.remaining || []).slice(0, 6) : [],
+  }))
+  pr = await agent(
+    'Open the review PR for a completed fidelity pass in ' + ROOT + ' (work from that root). You are the ONE agent in this loop ALLOWED to run git and gh — everything below is yours to execute.\n\n' +
+    'PASS RESULTS:\n' + JSON.stringify(prFacts, null, 1) + '\n' +
+    'SURFACES (id -> current capture path):\n' + JSON.stringify(prSurfaces, null, 1) + '\n\n' +
+    'STEPS:\n' +
+    '1. BRANCH="fidelity-push-$(date +%Y%m%d-%H%M)"; git checkout -b "$BRANCH" (from current main state).\n' +
+    '2. BEFORE/AFTER MEDIA (captures are gitignored, so commit copies): mkdir -p reports/fidelity/pr-media/"$BRANCH"; for each surface above copy ' + SCRATCH + '/before-<id>.png to reports/fidelity/pr-media/"$BRANCH"/<id>-before.png (skip if missing) and the current capture (cap path) to <id>-after.png.\n' +
+    '3. git add -A && git commit with a message summarizing the pass (families, verdicts, headline fixes). Commit author is already configured.\n' +
+    '4. git push -u origin "$BRANCH"\n' +
+    '5. gh pr create --base main --head "$BRANCH" --title "Fidelity pass: <families> (<date>)" --body-file <a file you write>. BODY REQUIREMENTS (CONTRIBUTING.md checklist: before/after images for any visual change — the reviewer is on a PHONE): per family a short verdict line + score movement, then per surface a two-column markdown table | Before | After | embedding the images with absolute raw URLs: https://raw.githubusercontent.com/conmeara/ui-backlot/"$BRANCH"/reports/fidelity/pr-media/"$BRANCH"/<id>-before.png (same for -after). Keep each image on its own row so it renders large on mobile. End with "Remaining" bullets and the standard footer: 🤖 Generated with [Claude Code](https://claude.com/claude-code).\n' +
+    '6. git checkout main — leave main exactly as it was; the pass lives on the branch/PR.\n' +
+    'If gh pr create fails, still push the branch and put the error + branch name in notes. Return branch, prUrl, mediaFiles, notes.',
+    { label: 'pr', phase: 'PR', model: 'sonnet', schema: PR_SCHEMA }
+  )
+  if (pr && pr.prUrl) log('PR opened: ' + pr.prUrl)
+}
+
 const summary = familyResults.filter(Boolean).map(r => ({
   family: r.family,
   verdict: r.judge ? r.judge.verdict : 'unknown',
@@ -652,4 +704,4 @@ const summary = familyResults.filter(Boolean).map(r => ({
   judgeSummary: r.judge ? r.judge.summary : null,
   referenceQuality: r.crit ? r.crit.referenceQuality : null,
 }))
-return { families: summary, gate: gate }
+return { families: summary, gate: gate, pr: pr }

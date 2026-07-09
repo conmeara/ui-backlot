@@ -9,6 +9,7 @@ export const meta = {
     { title: 'Judge', detail: 'Opus motion judge reads the frame sequence: pacing, cursor believability, state coherence, stranger-recording test', model: 'opus' },
     { title: 'Fix', detail: 'Sonnet applies motion repairs, re-renders, re-judges (max 3 repair rounds)', model: 'sonnet' },
     { title: 'Ship', detail: 'Palette-GIF conversion into docs/media + README demo-table rows for passed demos', model: 'sonnet' },
+    { title: 'PR', detail: 'Branch + commit + PR to main with before/after GIFs per demo (CONTRIBUTING checklist) for phone review', model: 'sonnet' },
   ],
 }
 
@@ -390,6 +391,44 @@ if (passed.length === 0) {
   )
 }
 
+// ---- PR phase: the ONE agent allowed to touch git. Motion changes ship as a
+// PR with before/after GIFs (CONTRIBUTING checklist) so the owner can review
+// actual motion on a phone. main itself is never committed to.
+const PR_SCHEMA = {
+  type: 'object', required: ['branch', 'prUrl', 'notes'], additionalProperties: false,
+  properties: {
+    branch: { type: ['string', 'null'] },
+    prUrl: { type: ['string', 'null'] },
+    notes: { type: 'string' },
+  },
+}
+
+phase('PR')
+let pr = null
+const shippedIds = ship && ship.shipped ? ship.shipped : []
+if (shippedIds.length === 0) {
+  log('Nothing shipped — skipping PR')
+} else {
+  const prDemos = shippedIds.map(id => {
+    const d = DEMOS.find(x => x.id === id)
+    const r = results.filter(Boolean).find(x => x.demo === id)
+    return d ? { id: id, status: d.status, example: d.example, gif: d.gif, story: d.story, verdict: r ? r.verdict : 'unknown', repairRounds: r ? r.rounds.length : 0 } : null
+  }).filter(Boolean)
+  pr = await agent(
+    'Open the review PR for a completed interaction (motion) pass in ' + ROOT + ' (work from that root). You are the ONE agent in this loop ALLOWED to run git and gh.\n\n' +
+    'SHIPPED DEMOS:\n' + JSON.stringify(prDemos, null, 1) + '\n\n' +
+    'STEPS:\n' +
+    '1. BRANCH="interaction-push-$(date +%Y%m%d-%H%M)"; git checkout -b "$BRANCH".\n' +
+    '2. git add -A && git commit summarizing the pass (demos, verdicts, repair rounds). Author is already configured.\n' +
+    '3. git push -u origin "$BRANCH"\n' +
+    '4. gh pr create --base main --head "$BRANCH" --title "Interaction pass: <demo ids> (<date>)" --body-file <a file you write>. BODY REQUIREMENTS (CONTRIBUTING.md: a short video or GIF when motion changed — reviewer is on a PHONE): one section per demo with the story line + verdict, then a Before/After pair of GIFs each on its OWN line so they render full-width on mobile: BEFORE = https://raw.githubusercontent.com/conmeara/ui-backlot/main/<gif path> (write "new demo — no before" for demos whose status is "new"), AFTER = https://raw.githubusercontent.com/conmeara/ui-backlot/"$BRANCH"/<gif path>. End with any judge-remaining bullets and the footer: 🤖 Generated with [Claude Code](https://claude.com/claude-code).\n' +
+    '5. git checkout main — leave main untouched; the pass lives on the branch/PR.\n' +
+    'If gh pr create fails, still push the branch and put the error + branch in notes. Return branch, prUrl, notes.',
+    { label: 'pr', phase: 'PR', model: 'sonnet', schema: PR_SCHEMA }
+  )
+  if (pr && pr.prUrl) log('PR opened: ' + pr.prUrl)
+}
+
 const summary = results.filter(Boolean).map(r => ({
   demo: r.demo,
   status: r.status,
@@ -400,4 +439,4 @@ const summary = results.filter(Boolean).map(r => ({
   strangerRead: r.judge ? r.judge.strangerRead : null,
   judgeSummary: r.judge ? r.judge.summary : null,
 }))
-return { demos: summary, ship: ship }
+return { demos: summary, ship: ship, pr: pr }
