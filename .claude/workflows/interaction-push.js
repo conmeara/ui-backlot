@@ -263,7 +263,9 @@ function judgePrompt(d, framesDir, round) {
     'This repo renders scripted UI demos that must read as REAL screen recordings of a person using the app. You are judging the motion, not the static pixels — static fidelity has its own loop.\n\n' +
     'STORY the demo must tell: ' + d.story + '\n' +
     motionBlock(d) + '\n' +
-    'EVIDENCE — Read ALL frames in ' + framesDir + ' IN ORDER (f-001.png, f-002.png, ...; they are 0.5s apart), then Read the timeline source ' + d.example + ' to check scripted timings against what the frames show.\n\n' +
+    (round === 1
+      ? 'EVIDENCE — Read ALL frames in ' + framesDir + ' IN ORDER (f-001.png, f-002.png, ...; they are 0.5s apart), then Read the timeline source ' + d.example + ' to check scripted timings against what the frames show.\n\n'
+      : 'EVIDENCE — this is a RE-JUDGE: read frames in ' + framesDir + ' selectively, not exhaustively. First the frames around each previously-flagged timestamp (frame ≈ atSeconds x 2, ±2 frames) to verify the fixes landed, then every 3rd-4th frame as a regression skim, plus the first and last frames for rest states. Read ' + d.example + ' only if a timing question arises.\n\n') +
     'JUDGE, in priority order:\n' +
     '1. APP-RESPONSE FIDELITY (the top concern): every way the APP reacts to an interaction must be 1:1 with the real app — how a control visually responds to a press (highlight, depress, focus ring, active state), how typing appears (caret idiom, cell-edit vs field-edit behavior, where the text commits), and how the app\'s own animations run (selection outlines, loading/progress bars, panel and state transitions, streaming reveals) at the right duration and easing. Flag BOTH invented reactions the real app does not have AND real-app reactions that are missing. Judge this against the real recording frames when they exist; otherwise flag only what you are certain of.\n' +
     '2. STATE COHERENCE: every frame must be a plausible instant of the story — nothing appears before its cause (reply before send, result before typing finishes), nothing pops in fully-formed without motion, no frame shows contradictory state.\n' +
@@ -305,7 +307,7 @@ async function judgeFixLoop(prev, d) {
     )
     rounds.push({ round: round, applied: fix ? (fix.applied || []).length : 0, skipped: fix ? (fix.skipped || []).length : 0 })
     if (!fix || !fix.reRendered) { log('fix:' + d.id + ' round ' + round + ' did not re-render — stopping loop'); break }
-    judge = await agent(judgePrompt(d, c.frames, round + 1), { label: 'rejudge:' + d.id + ':r' + round, phase: 'Fix', model: 'opus', effort: 'high', schema: JUDGE_SCHEMA })
+    judge = await agent(judgePrompt(d, c.frames, round + 1), { label: 'rejudge:' + d.id + ':r' + round, phase: 'Fix', model: 'opus', effort: 'medium', schema: JUDGE_SCHEMA })
     log('fix:' + d.id + ' round ' + round + ' → verdict ' + (judge ? judge.verdict : 'none'))
   }
 
@@ -349,7 +351,7 @@ if (!skipRefresh) {
         'Read docs/reference-and-asset-sourcing.md Part 1.5 and reference/sources.json (this family\'s tier), then work the motion ladder: record the real local app with screencapture -v, record the web app in the user\'s Chrome, or cut a clip from an official vendor video (yt-dlp + ffmpeg; brew install yt-dlp if missing).\n' +
         'The demos needing calibration tell these stories: ' + stories + ' — footage of the SAME kind of interaction is ideal; any real footage of the app in use beats nothing. What matters most in the clip is the APP\'S RESPONSE: press/active states on controls, how typed text appears and commits, native animation durations and easing (selections, loading, transitions).\n' +
         'File as reference/' + fam + '/motion/$(date +%F)/<label>/ with clip.mp4, frames/ extracted at fps=2 (ffmpeg -i clip.mp4 -vf fps=2 frames/f-%03d.png), and manifest.json {source, interaction, note}. Clips/frames are gitignored (local-only) — expected.\n' +
-        'Budget: ONE good 5-15s clip is enough. If no rung works without logging in or heavy setup, return found=false and list what you tried in notes. HARD RULES: never log in, never touch bot checks, no git commands.\n' +
+        'Budget: ONE good 5-15s clip is enough, and this stage is a bounded side-quest — cap yourself at roughly 15 tool calls. If the ladder has not produced a clip by then, return found=false with what you tried (the judge falls back to product knowledge; a missing motion ref is acceptable, a 40-minute acquisition is not). HARD RULES: never log in, never touch bot checks, no git commands.\n' +
         'Return found, framesDir (ABSOLUTE), frameCount, notes.',
         { label: 'motion-acquire:' + fam, phase: 'Motion refs', model: 'sonnet', schema: MOTION_REF_SCHEMA }
       ).then(r => ({ fam: fam, acq: r }))
@@ -421,8 +423,9 @@ if (shippedIds.length === 0) {
     '1. BRANCH="interaction-push-$(date +%Y%m%d-%H%M)"; git checkout -b "$BRANCH".\n' +
     '2. git add -A && git commit summarizing the pass (demos, verdicts, repair rounds). Author is already configured.\n' +
     '3. git push -u origin "$BRANCH"\n' +
-    '4. gh pr create --base main --head "$BRANCH" --title "Interaction pass: <demo ids> (<date>)" --body-file <a file you write>. BODY REQUIREMENTS (CONTRIBUTING.md: a short video or GIF when motion changed — reviewer is on a PHONE): one section per demo with the story line + verdict, then a Before/After pair of GIFs each on its OWN line so they render full-width on mobile: BEFORE = https://raw.githubusercontent.com/conmeara/ui-backlot/main/<gif path> (write "new demo — no before" for demos whose status is "new"), AFTER = https://raw.githubusercontent.com/conmeara/ui-backlot/"$BRANCH"/<gif path>. End with any judge-remaining bullets and the footer: 🤖 Generated with [Claude Code](https://claude.com/claude-code).\n' +
-    '5. git checkout main — leave main untouched; the pass lives on the branch/PR.\n' +
+    '4. MP4 copies (raw MP4 links open the phone\'s native player): mkdir -p reports/interactions/pr-media/"$BRANCH"; for each shipped demo copy renders/<demo>-interaction-push.mp4 to reports/interactions/pr-media/"$BRANCH"/<demo>.mp4; git add + amend or follow-up commit + push.\n' +
+    '5. gh pr create --base main --head "$BRANCH" --title "Interaction pass: <demo ids> (<date>)" --body-file <a file you write>. BODY: Read docs/loop-pr-template.md FIRST and follow its interaction skeleton EXACTLY — TL;DR bullets up top; one ### section per demo with 1-2 sentences on WHAT CHANGED in its motion (from the applied fixes, not the story restated); Before/After GIFs STACKED via markdown image syntax ![label](raw url) (NEVER bare URLs — they render as links, not media; this exact mistake already failed review once); the ▶ MP4 link per demo; judge notes in <details>; a "Not shipped (work in progress)" section naming any committed file whose demo did NOT pass and why it is on the branch.\n' +
+    '6. git checkout main — leave main untouched; the pass lives on the branch/PR.\n' +
     'If gh pr create fails, still push the branch and put the error + branch in notes. Return branch, prUrl, notes.',
     { label: 'pr', phase: 'PR', model: 'sonnet', schema: PR_SCHEMA }
   )
