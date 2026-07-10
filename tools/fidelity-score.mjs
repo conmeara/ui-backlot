@@ -390,6 +390,7 @@ function normalizeElements(payload) {
       role: el.role || "",
       hint: el.id ? "#" + el.id : el.className ? "." + String(el.className).split(/\s+/)[0] : el.tag,
       text: (el.text || "").slice(0, 80),
+      textNorm: (el.text || "").slice(0, 80).toLowerCase().replace(/\s+/g, " ").trim(),
       cx: (el.rect.x + el.rect.width / 2 - base.x) / base.width,
       cy: (el.rect.y + el.rect.height / 2 - base.y) / base.height,
       w: el.rect.width / base.width,
@@ -402,20 +403,113 @@ function normalizeElements(payload) {
     }));
 }
 
+/* Ancestry hint: for each element, record the text of its smallest enclosing
+ * element that has text. Two counterparts should sit in similar-reading
+ * containers even when the elements themselves are textless icons. */
+function attachContext(els) {
+  for (const el of els) {
+    let best = null;
+    const area = el.px.width * el.px.height;
+    for (const other of els) {
+      if (other === el || !other.textNorm) continue;
+      const r = other.px;
+      const s = el.px;
+      if (r.x <= s.x + 1 && r.y <= s.y + 1 && r.x + r.width >= s.x + s.width - 1 && r.y + r.height >= s.y + s.height - 1) {
+        const otherArea = r.width * r.height;
+        if (otherArea > area * 1.15 && (!best || otherArea < best.area)) best = { area: otherArea, text: other.textNorm };
+      }
+    }
+    el.ctx = best ? best.text : "";
+  }
+}
+
+/* Truncation-tolerant text equality: capture tools clip text at different
+ * lengths, so a long prefix counts as exact. */
+function exactText(ta, tb) {
+  if (!ta || !tb) return false;
+  if (ta === tb) return true;
+  return ta.length >= 12 && tb.length >= 12 && (ta.startsWith(tb) || tb.startsWith(ta));
+}
+
+function textSimilarity(a, b) {
+  if (a.textNorm && b.textNorm) {
+    if (exactText(a.textNorm, b.textNorm)) return 1;
+    return diceBigrams(a.textNorm, b.textNorm);
+  }
+  if (a.textNorm || b.textNorm) return 0.15; // texty node vs textless node: almost certainly different
+  return null; // both textless — text is uninformative
+}
+
+/* Style affinity is a TIE-BREAKER only (small cost weight): among reference
+ * candidates that read the same and sit in the same place (nested wrappers),
+ * prefer the one whose computed style agrees with ours. Kept weak so a genuine
+ * style bug still matches its true counterpart via text + geometry. */
+function styleAffinity(a, b) {
+  let s = 0;
+  let n = 0;
+  if (a.fontSize && b.fontSize) {
+    s += Math.max(0, 1 - Math.abs(a.fontSize - b.fontSize) / 12);
+    n += 1;
+  }
+  if (a.fontWeight && b.fontWeight) {
+    s += Math.max(0, 1 - Math.abs(a.fontWeight - b.fontWeight) / 300);
+    n += 1;
+  }
+  if (a.color && b.color) {
+    s += Math.max(0, 1 - ciede2000(a.color, b.color) / 40);
+    n += 1;
+  }
+  if (a.bg && b.bg) {
+    s += Math.max(0, 1 - ciede2000(a.bg, b.bg) / 40);
+    n += 1;
+  } else if (!!a.bg !== !!b.bg) {
+    s += 0.3; // one paints a background, the other is transparent
+    n += 1;
+  }
+  return n ? s / n : 0.5;
+}
+
+/* Geometry veto: two elements more than 30% of the frame apart are not the
+ * same control unless their text matches exactly. */
+const GEO_VETO_DIST = 0.3;
+const PAIR_COST_MAX = 2.0;
+
 function pairCost(a, b) {
   const centerDist = Math.hypot(a.cx - b.cx, a.cy - b.cy);
+  const textSim = textSimilarity(a, b);
+  const exact = textSim === 1 && a.textNorm && b.textNorm;
+  if (centerDist > GEO_VETO_DIST && !exact) return Infinity;
   const sizeDiff = Math.abs(a.w - b.w) + Math.abs(a.h - b.h);
-  const textSim = a.text && b.text ? diceBigrams(a.text, b.text) : a.text || b.text ? 0.3 : 0.6;
-  const tagBonus = a.tag === b.tag ? 0 : 0.25;
-  return centerDist * 2 + sizeDiff + (1 - textSim) * 0.8 + tagBonus;
+  const textCost = textSim === null ? 0.55 : (1 - textSim) * 1.8; // text equality dominates
+  const tagCost = a.tag === b.tag ? 0 : 0.25;
+  const roleCost = a.role || b.role ? (a.role === b.role ? 0 : 0.15) : 0;
+  const ctxCost = a.ctx && b.ctx ? (1 - diceBigrams(a.ctx, b.ctx)) * 0.35 : 0.15;
+  const styleCost = (1 - styleAffinity(a, b)) * 0.3;
+  return centerDist * 1.6 + sizeDiff * 0.9 + textCost + tagCost + roleCost + ctxCost + styleCost;
 }
 
 function matchElements(ours, theirs) {
+  attachContext(ours);
+  attachContext(theirs);
   const pairs = [];
+  // Best/second-best cost per element on each side — a small margin between
+  // them means the match was ambiguous (duplicate wrappers), so downgrade
+  // confidence even when the winning pair looks good in isolation.
+  const bestOurs = ours.map(() => [Infinity, Infinity]);
+  const bestTheirs = theirs.map(() => [Infinity, Infinity]);
+  const note = (slot, cost) => {
+    if (cost < slot[0]) {
+      slot[1] = slot[0];
+      slot[0] = cost;
+    } else if (cost < slot[1]) slot[1] = cost;
+  };
   for (let i = 0; i < ours.length; i += 1) {
     for (let j = 0; j < theirs.length; j += 1) {
       const cost = pairCost(ours[i], theirs[j]);
-      if (cost < 1.6) pairs.push({ i, j, cost });
+      if (!Number.isFinite(cost)) continue;
+      note(bestOurs[i], cost);
+      note(bestTheirs[j], cost);
+      if (cost < PAIR_COST_MAX) pairs.push({ i, j, cost });
     }
   }
   pairs.sort((p, q) => p.cost - q.cost);
@@ -426,13 +520,40 @@ function matchElements(ours, theirs) {
     if (usedOurs.has(p.i) || usedTheirs.has(p.j)) continue;
     usedOurs.add(p.i);
     usedTheirs.add(p.j);
-    matched.push({ ours: ours[p.i], theirs: theirs[p.j], cost: p.cost });
+    const margin = Math.min(bestOurs[p.i][1] - bestOurs[p.i][0], bestTheirs[p.j][1] - bestTheirs[p.j][0]);
+    matched.push({
+      ours: ours[p.i],
+      theirs: theirs[p.j],
+      cost: p.cost,
+      confidence: matchConfidence(ours[p.i], theirs[p.j], Number.isFinite(margin) ? margin : 1)
+    });
   }
   return {
     matched,
     unmatchedOurs: ours.filter((_, i) => !usedOurs.has(i)),
     unmatchedTheirs: theirs.filter((_, j) => !usedTheirs.has(j))
   };
+}
+
+/* Per-match confidence in [0,1]: how sure are we these two nodes are the same
+ * control. Repairs from low-confidence matches are quarantined in
+ * elements.uncertainRepairs instead of typedRepairs. */
+const CONFIDENT_MATCH = 0.6;
+
+function matchConfidence(a, b, margin) {
+  const textSim = textSimilarity(a, b);
+  const textConf = textSim === null ? 0.4 : a.textNorm && b.textNorm ? textSim : 0.2;
+  const dist = Math.hypot(a.cx - b.cx, a.cy - b.cy);
+  const geoConf = Math.max(0, 1 - dist / 0.25);
+  const sizeConf = Math.max(0, 1 - (Math.abs(a.w - b.w) + Math.abs(a.h - b.h)) / 0.3);
+  const tagConf = a.tag === b.tag ? 1 : 0.4;
+  const base = textConf * 0.45 + geoConf * 0.25 + sizeConf * 0.15 + tagConf * 0.15;
+  let conf = Math.min(1, base + Math.min(Math.max(margin, 0), 0.5) * 0.3);
+  // A short label ("Artifacts", "Code") recurring elsewhere in an app is weak
+  // evidence: an exact-text match far from home is likely a different control
+  // that happens to share the word.
+  if (dist > 0.25 && (!a.textNorm || a.textNorm.length < 15)) conf = Math.min(conf, 0.5);
+  return Math.round(conf * 100) / 100;
 }
 
 function scoreElements(oursPayload, theirsPayload) {
@@ -458,6 +579,7 @@ function scoreElements(oursPayload, theirsPayload) {
         type: "move",
         target: m.ours.hint,
         severity: 1 - pos,
+        confidence: m.confidence,
         detail: `${m.ours.hint} ("${m.ours.text.slice(0, 30)}") sits at (${m.ours.px.x},${m.ours.px.y}); real counterpart center offset ${(dist * 100).toFixed(1)}% of frame`
       });
     }
@@ -471,6 +593,7 @@ function scoreElements(oursPayload, theirsPayload) {
             type: "recolor",
             target: m.ours.hint,
             severity: Math.min(1, dE / 40),
+            confidence: m.confidence,
             detail: `${m.ours.hint} ${key === "color" ? "text" : "background"} ${toHex(m.ours[key])} → real ${toHex(m.theirs[key])} (ΔE00 ${dE.toFixed(1)})`
           });
         }
@@ -486,6 +609,7 @@ function scoreElements(oursPayload, theirsPayload) {
           type: "retype",
           target: m.ours.hint,
           severity: 1 - Math.min(sizeScore, weightScore),
+          confidence: m.confidence,
           detail: `${m.ours.hint} is ${m.ours.fontSize}px/${m.ours.fontWeight}; real is ${m.theirs.fontSize}px/${m.theirs.fontWeight}`
         });
       }
@@ -496,7 +620,16 @@ function scoreElements(oursPayload, theirsPayload) {
     }
   }
 
-  for (const el of unmatchedTheirs.sort((a, b) => weight(b) - weight(a)).slice(0, 12)) {
+  // Nested wrappers report the same missing content many times over — one
+  // add per distinct text reading is enough for a fix agent.
+  const seenAddText = new Set();
+  let addCount = 0;
+  for (const el of unmatchedTheirs.sort((a, b) => weight(b) - weight(a))) {
+    if (addCount >= 12) break;
+    const sig = el.textNorm ? el.textNorm.slice(0, 40) : `${el.tag}@${Math.round(el.cx * 20)},${Math.round(el.cy * 20)}`;
+    if (seenAddText.has(sig)) continue;
+    seenAddText.add(sig);
+    addCount += 1;
     repairs.push({
       type: "add",
       target: el.hint,
@@ -513,6 +646,10 @@ function scoreElements(oursPayload, theirsPayload) {
     });
   }
   repairs.sort((a, b) => b.severity - a.severity);
+  // Match-derived repairs from shaky correspondences are quarantined: a fix
+  // agent should treat uncertainRepairs as "verify visually first", not apply.
+  const confident = repairs.filter((r) => r.confidence === undefined || r.confidence >= CONFIDENT_MATCH);
+  const uncertain = repairs.filter((r) => r.confidence !== undefined && r.confidence < CONFIDENT_MATCH);
 
   const n = matched.length || 1;
   const sub = {
@@ -535,7 +672,8 @@ function scoreElements(oursPayload, theirsPayload) {
     counts: { ours: ours.length, theirs: theirs.length, matched: matched.length },
     subscores: sub,
     elementOverall: wSum ? overall / wSum : null,
-    typedRepairs: repairs.slice(0, 30)
+    typedRepairs: confident.slice(0, 30),
+    uncertainRepairs: uncertain.slice(0, 20)
   };
 }
 
@@ -720,7 +858,13 @@ async function main() {
   if (elements?.typedRepairs.length) {
     console.log(`  typed repairs (top 10 of ${elements.typedRepairs.length}):`);
     for (const r of elements.typedRepairs.slice(0, 10)) {
-      console.log(`    - [${r.type}] ${r.detail}`);
+      console.log(`    - [${r.type}${r.confidence !== undefined ? ` c${r.confidence}` : ""}] ${r.detail}`);
+    }
+  }
+  if (elements?.uncertainRepairs.length) {
+    console.log(`  uncertain repairs — shaky element correspondence, verify visually (top 5 of ${elements.uncertainRepairs.length}):`);
+    for (const r of elements.uncertainRepairs.slice(0, 5)) {
+      console.log(`    - [${r.type} c${r.confidence}] ${r.detail}`);
     }
   }
   console.log(outPath);

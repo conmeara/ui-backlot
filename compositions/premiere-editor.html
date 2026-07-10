@@ -1831,7 +1831,11 @@
       tl.from(".clip.selected", { outlineColor: "rgba(229,204,93,0)", duration: 0.28, ease: "sine.out" }, 1.56);
       tl.from(".snap-line", { opacity: 0, duration: 0.24, stagger: 0.06, ease: "sine.out" }, 1.66);
       tl.from(".playhead", { opacity: 0, duration: 0.22, ease: "sine.out" }, 1.84);
-      tl.to(".playhead", { left: "65%", duration: 1.35, ease: "power2.inOut" }, 2.05);
+      // 52% -> 65% of the track area, as a transform (animating `left` snaps
+      // to integer device pixels; hf:lint flags it as gsap_non_transform_motion)
+      const playheadEl = document.querySelector(".playhead");
+      const playheadShift = playheadEl ? playheadEl.parentElement.getBoundingClientRect().width * 0.13 : 0;
+      tl.to(".playhead", { x: playheadShift, duration: 1.35, ease: "power2.inOut" }, 2.05);
       tl.to(".program-progress span", { width: "84%", duration: 0.72, ease: "power2.inOut" }, 2.34);
       tl.to(".level.l", { height: "76%", duration: 0.34, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.08);
       tl.to(".level.r", { height: "66%", duration: 0.31, repeat: 4, yoyo: true, ease: "sine.inOut" }, 2.12);
