@@ -5,7 +5,7 @@
     <title>Calendar — Interaction Demo</title>
   </head>
   <body>
-    <div id="calendar-interaction" data-composition-id="calendar-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.8">
+    <div id="calendar-interaction" data-composition-id="calendar-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.3">
       <section class="cal-stage" data-primitive="calendar-interaction" aria-label="macOS Calendar week view with a scripted new-event creation">
         <div class="wallpaper" aria-hidden="true"></div>
 
@@ -510,6 +510,18 @@
       .week-event[data-role="new-event"] { background: var(--event-color); color: #fff; border-left: 0; }
       .week-event[data-role="new-event"] strong { color: #fff; }
 
+      /* committed state: once Return finalizes the title, the block drops the
+         solid accent fill for the same light tint every neighboring event
+         uses (see .week-event above) — a completed create-and-name settles. */
+      .week-event[data-role="new-event"].is-committed {
+        background: color-mix(in srgb, var(--event-color) 12%, transparent);
+        color: color-mix(in srgb, var(--event-color), black 60%);
+        border-left: 3px solid var(--event-color);
+      }
+      .week-event[data-role="new-event"].is-committed strong {
+        color: color-mix(in srgb, var(--event-color), black 60%);
+      }
+
       /* invisible hit target over the empty Thu 2-3PM cell */
       .week-event-slot {
         position: absolute;
@@ -563,30 +575,41 @@
 
       // 1) Glide to, then double-click, the empty Thursday 2-3PM slot — a
       //    single click there only moves the time selection in real macOS
-      //    Calendar; creating an event needs the second click in place.
-      ix.click('[data-role="empty-slot"]', { at: 2.5, moveDur: 1.1 });
-      ix.click('[data-role="empty-slot"]', { at: 2.63, move: false });
+      //    Calendar; creating an event needs the second click in place. The
+      //    demo opens on a short establishing beat (rest on the week view)
+      //    before the cursor moves, so the click still reads as a deliberate
+      //    action without padding the clip with dead time.
+      ix.click('[data-role="empty-slot"]', { at: 2.4, moveDur: 1.1 });
+      ix.click('[data-role="empty-slot"]', { at: 2.53, move: false });
 
       // 2) The new event materializes right where the click landed, with its
       //    selection ring and Calendar's real behavior: a pre-filled,
       //    pre-selected "New Event" placeholder title (never a blank block).
-      ix.show('[data-role="new-event"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.9 } });
-      ix.show('[data-role="new-event-ring"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.94 } });
-      ix.show('[data-role="new-event-placeholder"]', { at: 2.78, dur: 0.28, from: { opacity: 0, scale: 0.9 } });
+      //    Real macOS Calendar pops a freshly-created event in at full size
+      //    with no scale flourish, so this is an instant-feeling opacity pop.
+      ix.show('[data-role="new-event"]', { at: 2.68, dur: 0.12, from: { opacity: 0 } });
+      ix.show('[data-role="new-event-ring"]', { at: 2.68, dur: 0.12, from: { opacity: 0 } });
+      ix.show('[data-role="new-event-placeholder"]', { at: 2.68, dur: 0.12, from: { opacity: 0 } });
 
       // 3) Name it — typing replaces the selected placeholder (hidden fast,
       //    as a real text replace would read) with the human-typed title
       //    into the still-empty <strong>.
-      ix.hide('[data-role="new-event-placeholder"]', { at: 3.45, dur: 0.1 });
-      ix.type('[data-role="new-event-title"]', "Product sync", { at: 3.45, cps: 17 });
+      ix.hide('[data-role="new-event-placeholder"]', { at: 3.35, dur: 0.1 });
+      ix.type('[data-role="new-event-title"]', "Product sync", { at: 3.35, cps: 17 });
+
+      // 4) Commit: Return finalizes the new event ~0.4s after typing settles —
+      //    the selection ring fades away and the block drops its solid-fill
+      //    editing state for the same light tint every neighboring event uses.
+      ix.hide('[data-role="new-event-ring"]', { at: 4.46, dur: 0.2 });
+      tl.set('[data-role="new-event"]', { attr: { class: "week-event is-committed" } }, 4.46);
 
       // Pin the shared click-ring hidden at t=0 (see note above) so the
-      // opening at-rest frames render clean before the click at 2.5.
+      // opening at-rest frames render clean before the click at 4.0.
       tl.set(".demo-click-ring", { opacity: 0 }, 0);
 
       window.__timelines["calendar-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(4.8).pause();
+      if (cap === "hero") tl.seek(5.0).pause();
     </script>
   </body>
 </html>

@@ -107,6 +107,12 @@
         ix.click(".clip.amber", { at: 1.7, moveDur: 0.8 });
         tl.set(graphicClip, { attr: { class: "clip graphic" } }, 1.75);
         tl.set(amberClip, { attr: { class: "clip amber selected" } }, 1.75);
+        // Premiere selects a linked A/V pair together - volunteer_day.wav on
+        // A1 is the audio half of the volunteer_day.mov clip we just clicked,
+        // so it highlights alongside the video clip (it starts unselected,
+        // so no reset is needed at t=0).
+        const amberAudio = [...stage.querySelectorAll(".clip.audio")].find((c) => c.textContent.includes("volunteer_day.wav"));
+        if (amberAudio) tl.set(amberAudio, { attr: { class: "clip audio green selected" } }, 1.75);
         if (propHeading) tl.set(propHeading, { textContent: "volunteer_day.mov" }, 1.75);
         if (propPosition && propPosition.length === 2) {
           tl.set(propPosition[0], { textContent: "960.0" }, 1.75);
@@ -168,9 +174,13 @@
             // at pct 82, inside the footage clip's span.
             if (programFrameEl) {
               const onGraphic = tcState.pct < 65;
-              const pastAmber = tcState.pct > 84;
-              programFrameEl.classList.toggle("scrub-b", !onGraphic && !pastAmber);
-              programFrameEl.classList.toggle("scrub-c", pastAmber);
+              // Second footage still swaps in partway through the scrub so the
+              // monitor doesn't hold one frozen picture across the whole
+              // footage span (74 sits inside 65-82, well before the drag
+              // settles at END_PCT=82).
+              const secondStill = tcState.pct >= 74;
+              programFrameEl.classList.toggle("scrub-b", !onGraphic && !secondStill);
+              programFrameEl.classList.toggle("scrub-c", !onGraphic && secondStill);
               if (programCardEl) programCardEl.style.opacity = onGraphic ? "1" : "0";
               if (lowerThirdEl) lowerThirdEl.style.opacity = onGraphic ? "1" : "0";
             }
