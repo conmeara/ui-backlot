@@ -1,7 +1,7 @@
 export const meta = {
   name: 'fidelity-push',
   description: 'Per-family design critique vs measured ground truth: reference health + acquisition, score + critique, tiered fix, adversarial judge with hard score bar + stranger test, full gates',
-  whenToUse: 'Run one full visual-fidelity pass over all ui-backlot surface families. Args: {families:[...]} to scope, {skipRefresh:true} to skip the Reference phase.',
+  whenToUse: 'Run one full visual-fidelity pass over all ui-backlot surface families. Args: {families:[...]} to scope, {skipRefresh:true} to skip the Reference phase, {fullGate:true} to force the full all-surfaces capture sweep instead of the scoped one.',
   phases: [
     { title: 'Reference', detail: 'Per-family reference health check; acquisition on stale/weak/missing (docs/reference-and-asset-sourcing.md)', model: 'sonnet' },
     { title: 'Score', detail: 'Deterministic fidelity-score baselines vs dated reference sets', model: 'haiku' },
@@ -359,6 +359,13 @@ function critiqueStage(preScore, f) {
     'Max 7 gaps, ranked most severe first (illusion-breaking, then noticeable, then polish). Only report gaps you are confident about. Where no reference exists, flag only what you are certain of from product knowledge. In referenceQuality, note how strong your ground truth was.',
     { label: 'critique:' + f.key, phase: 'Critique', model: f.criticModel, effort: 'high', schema: CRITIQUE_SCHEMA }
   ).then(crit => ({ preScore: preScore, crit: crit }))
+    // A thrown critique (schema failure, terminal API error) must not drop the
+    // whole family from the pipeline (that silently skipped figma in the first
+    // full run) — degrade to typed-repairs-only fixing instead.
+    .catch(err => {
+      log('critique:' + f.key + ' failed (' + (err && err.message ? err.message : err) + ') — continuing with typed repairs only')
+      return { preScore: preScore, crit: null }
+    })
 }
 
 // Convergence loop (research: iterate 3-5 rounds with element-level feedback;
@@ -490,7 +497,8 @@ function repairsBlock(score, f) {
   const note = bespoke.size
     ? '(For ' + Array.from(bespoke).join(', ') + ' the content is intentionally staged demo material — element add/remove suggestions were filtered out; do NOT copy the reference\'s conversation content into it.)\n'
     : ''
-  return 'TYPED REPAIRS (machine-measured element-level diffs vs live ground truth — your PRIMARY work list; each names the element, what is wrong, and the real value):\n' + lines.join('\n') + '\n' + note
+  return 'TYPED REPAIRS (machine-measured element-level diffs vs live ground truth — your PRIMARY work list; each names the element, what is wrong, and the real value):\n' + lines.join('\n') + '\n' + note +
+    'CAUTION — the scorer matches our elements to reference elements automatically and occasionally mis-corresponds (pairs our element with the wrong real node). When a repair looks suspicious — it would make text invisible, contradicts what you SEE in the reference image, or two repairs appear swapped relative to each other — verify against the newest reference set\'s tokens.json/elements.json BEFORE applying, and skip it with the evidence as your reason. Disproving a false repair is a valid outcome; blindly applying one is a regression.\n'
 }
 
 async function strangerStage(f, idx) {
@@ -607,10 +615,21 @@ const familyResults = await pipeline(
 )
 
 phase('Gate')
+// Scoped sweep: only surfaces this run could have touched (family surfaces +
+// their sibling compositions), not all ~40 capture scripts. {fullGate:true}
+// forces the old full sweep when shared CSS or cross-family changes are
+// suspected.
+const gateCaptures = Array.from(new Set(selected.flatMap(f => [
+  ...f.surfaces.map(s => s.script),
+  ...(f.siblings ? f.siblings.split(',').map(s => 'capture:' + s.trim().replace(/^compositions\//, '').replace(/\.html$/, '')) : []),
+])))
+const fullGate = !!(argv && argv.fullGate)
 const gate = await agent(
-  'Run the full verification gate for ' + ROOT + ' (work from that root) and report deltas from baseline.\n' +
+  'Run the verification gate for ' + ROOT + ' (work from that root) and report deltas from baseline.\n' +
   'To avoid shell-quoting problems, write a bash script to ' + SCRATCH + '/run-gates.sh and execute it. Steps, sequential:\n' +
-  '1. Full capture sweep: every npm script whose name starts with "capture:" EXCEPT the argless wrappers capture:hf and capture:web. List them by reading package.json. Run each with npm run <name>; record which fail.\n' +
+  (fullGate
+    ? '1. FULL capture sweep: every npm script whose name starts with "capture:" EXCEPT the argless wrappers capture:hf and capture:web. List them by reading package.json. Run each with npm run <name>; record which fail.\n'
+    : '1. Scoped capture sweep — run each of these npm scripts, PLUS its "-dark" variant wherever package.json defines one (check each); record which fail (a script absent from package.json is a failure to report, not to invent):\n' + gateCaptures.map(s => '   npm run ' + s).join('\n') + '\n') +
   '2. npm run registry:check:captures — report its counts; registryOk=false only on hard errors, not count drift (counts changed in the pass-102-111 consolidation).\n' +
   '3. npm run catalog:generate\n' +
   '4. npm run hf:lint — BASELINE is 29 intentional errors: 21x invalid_parent_traversal_in_asset_path (in-repo compositions use ../ because the capture pipeline loads them via file://; the published registry/ copies are root-relative) + 8x template_literal_selector (pre-existing). Report the total and list any error lines that are NEW versus that baseline.\n' +
