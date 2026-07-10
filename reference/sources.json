@@ -27,7 +27,8 @@
       ],
       "fallbacks": [
         "manual-inbox: user screenshots of the desktop app (chat/cowork/code pages)",
-        "reference/claude/frame-study/ launch-video extracts"
+        "reference/claude/frame-study/ launch-video extracts",
+        "docs-press: support.claude.com Help Center articles ship official illustration crops of real components (e.g. articles/8887527-customizing-your-appearance-settings 'Color mode' card shows the composer in light/dark) -- no-auth, useful for chrome-color grounding when claude-in-chrome isn't connected, but these are small staged crops, not full-page captures"
       ]
     },
     {
@@ -145,14 +146,14 @@
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Excel",
-          "notes": "Same iTunes-lookup recipe as word. Real current Excel-for-Mac UI incl. the grid + formula bar this family has never had real pixels of."
+          "notes": "Validated 2026-07-09: v16.110.3, 6 screenshotUrls, upsize to 2400x1500bb.png for full res. 3 filed to reference/excel/2026-07-09/ (app-store-mac-grid-formula-bar, app-store-mac-sheet-tabs-status-bar, app-store-mac-chart-contextual-ribbon) covering ribbon, name-box+fx formula bar, grid headers, sheet-tab strip (incl. + control and 2-4 tab widths), status bar, a native Sort/Filter dialog, and the Chart Design contextual ribbon tab. Marketing-staged workbook content/color skin; trust chrome geometry and typography, discount the demo data."
         },
         {
           "label": "web-app",
           "url": "https://www.office.com",
           "auth": "user-session",
           "method": "claude-in-chrome",
-          "notes": "Excel for the web: grid, formula bar, cell styling = ground truth; ribbon/chrome differ from Mac desktop."
+          "notes": "Excel for the web: grid, formula bar, cell styling = ground truth; ribbon/chrome differ from Mac desktop. Still not captured as of 2026-07-09 -- no Chrome browser was connected via claude-in-chrome this session (list_connected_browsers returned empty), so this rung was skipped rather than attempting a login. Retry once a browser is connected; use a free personal Microsoft account, never the owner's other logged-in accounts."
         },
         {
           "label": "docs-scrape",
@@ -217,7 +218,8 @@
       ],
       "fallbacks": [
         "press: news.adobe.com press images / Adobe brand kit",
-        "manual-inbox: 7-day Premiere trial screenshots if the user opts in"
+        "manual-inbox: 7-day Premiere trial screenshots if the user opts in",
+        "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) — short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
       ]
     }
   ]

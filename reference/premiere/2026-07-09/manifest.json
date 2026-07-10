@@ -1,0 +1,38 @@
+{
+  "capturedAt": "2026-07-09T20:02:27.437Z",
+  "entries": [
+    {
+      "label": "yt-frame-adobe-stock-panel",
+      "method": "yt-dlp+ffmpeg",
+      "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", version 26.0, published 2026-01-20) @ 00:02:49",
+      "capturedAt": "2026-07-09T20:02:34.498Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "In-app Adobe Stock panel: top tab bar (Film Impact Dashboard / Search / Effects / Adobe Stock / Project name), St logo header, Videos/Video Templates/Images/Audio sub-tabs, search field, saved-search result rows with title/duration/mood tags and blue Download buttons. Real current UI chrome and typography for the Stock integration panel; Program Monitor at right is out of focus (bokeh) in this frame.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "yt-frame-effect-controls-timeline",
+      "method": "yt-dlp+ffmpeg",
+      "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", title card confirms version 26.0, published 2026-01-20) @ 00:00:00.5",
+      "capturedAt": "2026-07-09T20:02:27.437Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Full-window frame at rest (no cursor mid-gesture beyond a static crosshair): Project bin (left), Program Monitor with an active Object Mask overlay + AI tracking-progress dialog (center), Effect Controls panel showing Motion properties (right), multi-track Timeline (V1/V2 video, A1/A2 audio with fx badges, waveforms, track-color coding) across the bottom. Screen-recording crop excludes OS window chrome and the vertical Tools (selection/razor) strip; treat panel interiors, timeline track styling, and Effect Controls layout as the ground truth, not overall window framing.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "yt-frame-lumetri-curves",
+      "method": "yt-dlp+ffmpeg",
+      "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", version 26.0, published 2026-01-20) @ 00:01:42",
+      "capturedAt": "2026-07-09T20:02:47.784Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Effect Controls > Lumetri Color > Curves > RGB Curves panel expanded: channel swatches (white/red/green/blue), curve graph with active white-channel curve and cursor-drag handle, plus surrounding Opacity/Time Remapping/Object Mask (Tracker, Feather, Opacity, Expansion, Inverted, Blend Mode) rows. Program Monitor shows a masked garment callout with lower-third text ('...erproof.') and Timeline ruler/track at bottom. Real current UI for color-panel and effect-stack styling.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

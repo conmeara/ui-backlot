@@ -48,17 +48,32 @@
         <symbol id="fluent-sort-20" viewBox="0 0 20 20">
         <path d="M2.35 7.35 5 4.71V16.5a.5.5 0 0 0 1 0V4.7l2.65 2.65a.5.5 0 0 0 .7-.7l-3.49-3.5A.5.5 0 0 0 5.5 3a.5.5 0 0 0-.39.18L1.65 6.65a.5.5 0 1 0 .7.7Zm15.3 5.3L15 15.29V3.5a.5.5 0 0 0-1 0v11.8l-2.65-2.65a.5.5 0 0 0-.7.7l3.49 3.5a.5.5 0 0 0 .36.15.5.5 0 0 0 .39-.18l3.46-3.47a.5.5 0 1 0-.7-.7Z"/>
         </symbol>
+        <symbol id="fluent-chevron-left-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M7.53 2.22a.75.75 0 0 1 0 1.06L4.81 6l2.72 2.72a.75.75 0 0 1-1.06 1.06L3.22 6.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0"/>
+        </symbol>
+        <symbol id="fluent-chevron-right-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M4.47 2.22a.75.75 0 0 0 0 1.06L7.19 6L4.47 8.72a.75.75 0 0 0 1.06 1.06l3.25-3.25a.75.75 0 0 0 0-1.06L5.53 2.22a.75.75 0 0 0-1.06 0"/>
+        </symbol>
+        <symbol id="fluent-chevron-down-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M2.22 4.47a.75.75 0 0 1 1.06 0L6 7.19l2.72-2.72a.75.75 0 0 1 1.06 1.06L6.53 8.78a.75.75 0 0 1-1.06 0L2.22 5.53a.75.75 0 0 1 0-1.06"/>
+        </symbol>
+        <symbol id="fluent-dismiss-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="m1.897 2.054l.073-.084a.75.75 0 0 1 .976-.073l.084.073L6 4.939l2.97-2.97a.75.75 0 1 1 1.06 1.061L7.061 6l2.97 2.97a.75.75 0 0 1 .072.976l-.073.084a.75.75 0 0 1-.976.073l-.084-.073L6 7.061l-2.97 2.97A.75.75 0 1 1 1.97 8.97L4.939 6l-2.97-2.97a.75.75 0 0 1-.072-.976l.073-.084z"/>
+        </symbol>
+        <symbol id="fluent-checkmark-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M9.765 3.205a.75.75 0 0 1 .03 1.06l-4.25 4.5a.75.75 0 0 1-1.075.015L2.22 6.53a.75.75 0 0 1 1.06-1.06l1.705 1.704l3.72-3.939a.75.75 0 0 1 1.06-.03"/>
+        </symbol>
       </svg>
       <header class="excel-titlebar">
         <div class="excel-traffic" aria-hidden="true"></div>
         <div class="autosave"><span></span>AutoSave</div>
-        <div class="workbook-title">Launch Metrics.xlsx</div>
+        <div class="workbook-title">Launch Metrics.xlsx <em class="saved-state">· Saved</em></div>
         <div class="title-search">Search workbook</div>
-        <div class="title-actions"><span>Share</span><span>Comments</span></div>
+        <div class="title-actions"><span class="comments">Comments</span><span class="share">Share</span></div>
       </header>
 
       <nav class="excel-tabs" aria-label="Excel ribbon tabs">
-        <span>Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span>
+        <span>Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span>Automate</span>
       </nav>
 
       <div class="excel-ribbon" aria-label="Excel Home ribbon">
@@ -93,8 +108,8 @@
       </div>
 
       <div class="formula-bar">
-        <div class="name-box">D8</div>
-        <div class="formula-tools"><span>fx</span></div>
+        <div class="name-box">D8 <svg class="office-icon nb-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></div>
+        <div class="formula-tools"><svg class="office-icon fb-x" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-dismiss-12-filled"></use></svg><svg class="office-icon fb-ok" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-checkmark-12-filled"></use></svg><span>fx</span></div>
         <div class="formula-input">=SUM(D5:D7)</div>
       </div>
 
@@ -134,9 +149,10 @@
       </div>
 
       <footer class="excel-statusbar">
+        <div class="sheet-nav"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-left-12-filled"></use></svg><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-right-12-filled"></use></svg></div>
         <div class="sheet-tabs"><span class="active">Launch metrics</span><span>Revenue</span><span>Feedback</span><button type="button">+</button></div>
         <span class="status-spacer"></span>
-        <span>Ready</span><span>Average: 5.5</span><span>Sum: 44</span><span>Count: 8</span><span class="zoom-line"></span><span>115%</span>
+        <span>Ready</span><span>Average: 5.5</span><span>Sum: 44</span><span>Count: 8</span><span class="zoom-line"></span><span>100%</span>
       </footer>
     </section>
 
@@ -186,7 +202,7 @@
       .excel-titlebar {
         height: 34px;
         display: grid;
-        grid-template-columns: 58px auto auto 1fr auto;
+        grid-template-columns: 58px auto 1fr auto auto;
         align-items: center;
         gap: 9px;
         padding: 0 13px;
@@ -221,7 +237,16 @@
       }
 
       .workbook-title {
-        min-width: 150px;
+        justify-self: center;
+        font-weight: 650;
+        color: #2d3540;
+        white-space: nowrap;
+      }
+
+      .saved-state {
+        font-style: normal;
+        font-weight: 500;
+        color: #7c8792;
       }
 
       .autosave,
@@ -255,8 +280,7 @@
       }
 
       .title-search {
-        justify-self: center;
-        width: 250px;
+        width: 210px;
         height: 22px;
         display: flex;
         align-items: center;
@@ -277,6 +301,27 @@
         background: #eef0f3;
         color: #384450;
         font-size: 11px;
+      }
+
+      .title-actions .comments {
+        background: transparent;
+        color: #444d57;
+        padding: 0 8px;
+      }
+
+      .title-actions .share {
+        background: var(--excel);
+        color: #fff;
+        font-weight: 600;
+        padding: 0 12px;
+        border-radius: 6px;
+      }
+
+      .title-actions .share::after {
+        content: "\2304";
+        margin-left: 6px;
+        font-size: 9px;
+        opacity: 0.9;
       }
 
       .excel-tabs {
@@ -557,7 +602,7 @@
       .formula-bar {
         height: 35px;
         display: grid;
-        grid-template-columns: 72px 22px 1fr;
+        grid-template-columns: 78px 58px 1fr;
         align-items: center;
         gap: 4px;
         padding: 5px 11px;
@@ -580,16 +625,31 @@
 
       .name-box {
         padding: 0 9px;
+        gap: 4px;
         font-weight: 650;
+      }
+
+      .nb-caret {
+        width: 8px;
+        height: 8px;
+        color: #8a939c;
       }
 
       .formula-tools {
         justify-content: center;
+        gap: 8px;
         background: transparent;
         border: 0;
         color: #4a5560;
         font-weight: 600;
         font-style: italic;
+      }
+
+      .fb-x,
+      .fb-ok {
+        width: 11px;
+        height: 11px;
+        color: #b7bec6;
       }
 
       .formula-input {
@@ -758,18 +818,19 @@
         height: 150px;
         display: flex;
         align-items: end;
-        gap: 14px;
+        gap: 10px;
         padding: 18px 20px;
         margin-bottom: 16px;
         border-radius: 12px;
         background: #fff;
         border: 1px solid rgba(20, 30, 48, 0.1);
+        border-bottom: 1px solid rgba(20, 30, 48, 0.12);
       }
 
       .bar {
         width: 32px;
-        border-radius: 7px 7px 0 0;
-        background: linear-gradient(180deg, #43b875, #107c41);
+        border-radius: 0;
+        background: var(--excel);
       }
 
       .bar.b1 { height: 58px; }
@@ -812,6 +873,20 @@
         font-size: 11px;
       }
 
+      .sheet-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-right: 8px;
+        color: #8a939c;
+      }
+
+      .sheet-nav .office-icon {
+        width: 8px;
+        height: 8px;
+        color: #8a939c;
+      }
+
       .sheet-tabs {
         display: flex;
         align-items: center;
@@ -849,11 +924,24 @@
       }
 
       .zoom-line {
+        position: relative;
         width: 88px;
         height: 4px;
         border-radius: 999px;
-        background:
-          linear-gradient(90deg, var(--excel) 0 62%, #c9d0d8 62% 100%);
+        background: #c9d0d8;
+      }
+
+      .zoom-line::after {
+        content: "";
+        position: absolute;
+        left: 62%;
+        top: 50%;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid rgba(20, 30, 48, 0.25);
+        transform: translate(-50%, -50%);
       }
     </style>
 

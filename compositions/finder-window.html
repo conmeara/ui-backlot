@@ -21,7 +21,7 @@
         <defs>
           <linearGradient id="folderGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#8ac6ef"/>
-            <stop offset="1" stop-color="#5aabdd"/>
+            <stop offset="1" stop-color="#74b8e6"/>
           </linearGradient>
         </defs>
         <symbol id="f7-clock" viewBox="0 0 56 56">
@@ -498,19 +498,31 @@
         width: 15px;
         height: 19px;
         background: #ffffff;
-        border: 1px solid #c9c9ce;
-        border-radius: 2px;
+        clip-path: polygon(0 0, 66% 0, 100% 22%, 100% 100%, 0 100%);
+        border-radius: 0 0 2px 2px;
+        filter: drop-shadow(0 0 0.5px #c9c9ce);
+      }
+
+      .file-icon.doc::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 34%;
+        height: 22%;
+        background: #dcdce0;
+        clip-path: polygon(0 0, 100% 100%, 0 100%);
       }
 
       .file-icon.doc::after {
         content: "";
         position: absolute;
         left: 3px;
-        top: 5px;
+        top: 8px;
         width: 8px;
         height: 1px;
-        background: #b4b4b8;
-        box-shadow: 0 4px 0 #b4b4b8, 0 8px 0 #b4b4b8;
+        background: #b8b8bd;
+        box-shadow: 0 4px 0 #b8b8bd, 0 8px 0 #b8b8bd;
       }
 
     </style>

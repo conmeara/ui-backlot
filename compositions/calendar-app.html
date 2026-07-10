@@ -315,8 +315,8 @@
       }
 
       .tool-icon.calendar-list::before {
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.4'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.8' y='2.8' width='14.4' height='14.4' rx='2.4'/%3E%3Cpath d='M2.8 7.1h14.4M7.1 2.8v14.4M12.9 2.8v14.4M2.8 11.35h14.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.6' y='3.4' width='14.8' height='13.4' rx='2.6'/%3E%3Cpath d='M2.6 7.6h14.8'/%3E%3C/g%3E%3Cg fill='black' stroke='none'%3E%3Ccircle cx='6' cy='11' r='0.9'/%3E%3Ccircle cx='10' cy='11' r='0.9'/%3E%3Ccircle cx='14' cy='11' r='0.9'/%3E%3Ccircle cx='6' cy='14' r='0.9'/%3E%3Ccircle cx='10' cy='14' r='0.9'/%3E%3Ccircle cx='14' cy='14' r='0.9'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.6' y='3.4' width='14.8' height='13.4' rx='2.6'/%3E%3Cpath d='M2.6 7.6h14.8'/%3E%3C/g%3E%3Cg fill='black' stroke='none'%3E%3Ccircle cx='6' cy='11' r='0.9'/%3E%3Ccircle cx='10' cy='11' r='0.9'/%3E%3Ccircle cx='14' cy='11' r='0.9'/%3E%3Ccircle cx='6' cy='14' r='0.9'/%3E%3Ccircle cx='10' cy='14' r='0.9'/%3E%3Ccircle cx='14' cy='14' r='0.9'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
       }
 
       .tool-icon.inbox::before {
@@ -678,9 +678,8 @@
       .mini-day.today {
         width: 20px;
         height: 20px;
-        background: var(--calendar-red);
-        color: #fff;
-        font-weight: 500;
+        background: #c7c7cc;
+        font-weight: 400;
       }
 
       .mini-day.has-event::after {
@@ -931,12 +930,10 @@
         height: 16px;
         display: flex;
         align-items: center;
-        padding: 0 6px;
-        border-radius: 8px;
-        background: var(--calendar-red);
-        color: #fff;
+        background: transparent;
+        color: var(--calendar-red);
         font-size: 11px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1;
       }
 
@@ -1438,6 +1435,11 @@
 
       .calendar-window.theme-dark .mini-day.other {
         color: #5a5a61;
+      }
+
+      .calendar-window.theme-dark .mini-day.today {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ececf1;
       }
 
       .calendar-window.theme-dark .calendar-content {
