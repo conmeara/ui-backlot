@@ -5,7 +5,7 @@
     <title>Codex — Interaction Demo</title>
   </head>
   <body>
-    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="11">
+    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="10.5">
       <section class="cx-stage" data-primitive="codex-interaction" aria-label="Codex CLI typing a command and streaming output">
         <div class="cx-window">
           <div class="cx-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="cx-title">ui-backlot — codex — 120x34</span></div>
@@ -15,9 +15,10 @@
               <div class="line dim">model: <b>gpt-5.2-codex</b> <span class="mut">/model to change</span></div>
               <div class="line dim">directory: ~/Projects/ui-backlot</div>
             </div>
-            <div class="cx-prompt"><span class="caret">&gt;</span> <span class="cmd" data-role="cmd"></span></div>
+            <div class="cx-prompt"><span class="caret">&gt;</span> <span class="cmd-reveal" data-role="cmd-reveal"><span class="cmd" data-role="cmd"></span></span><span class="blk" data-role="blk"></span></div>
+            <div class="cx-working" data-role="working">&bull; Working</div>
             <div class="cx-out" data-role="out"></div>
-            <div class="cx-status" data-role="status"></div>
+            <div class="cx-status" data-role="status">⏎ send   ⇧⏎ newline   ^T transcript   ^C quit</div>
           </div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -37,9 +38,12 @@
       .cx-screen { padding:20px 22px; font-size:14px; line-height:1.65; overflow:hidden; }
       .cx-splash { border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px 14px; margin-bottom:18px; width:max-content; }
       .line.dim { color:#9aa3b1; } .line b { color:#e7ebf1; font-weight:600; } .mut { color:#5f6a79; }
-      .cx-prompt { color:#e7ebf1; margin-bottom:14px; } .caret { color:#6ad08f; }
+      .cx-prompt { color:#e7ebf1; margin-bottom:14px; white-space:nowrap; } .caret { color:#6ad08f; }
+      .cmd-reveal { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; }
+      .blk { display:inline-block; width:8px; height:1.05em; vertical-align:text-bottom; background:#e7ebf1; margin-left:1px; opacity:0; }
       .cx-out { color:#8fbf8f; white-space:pre-wrap; }
       .cx-out .k { color:#7fb2ff; } .cx-out .g { color:#6ad08f; } .cx-out .y { color:#e0b45e; }
+      .cx-working { color:#5f6a79; margin-bottom:2px; opacity:0; }
       .cx-status { color:#5f6a79; margin-top:12px; }
       .demo-cursor { position:absolute; left:640px; top:560px; z-index:90; width:26px; height:26px; background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(106,208,143,0.7); border-radius:50%; opacity:0; }
@@ -54,6 +58,12 @@
       const stage = document.querySelector(".cx-stage");
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
+      // Click-ring starts hidden and parked at the cursor's resting spot.
+      // Bound to the timeline at position 0 (not a bare gsap.set) so it wins
+      // deterministically over the click tween's fromTo() "from" state for
+      // any time before the first real click, regardless of source order.
+      tl.set(".demo-click-ring", { opacity: 0, left: 640, top: 560 }, 0);
+
       const CMD = "make the launch page match the Q2 deck";
       const OUT =
         "\nExplored\n" +
@@ -65,19 +75,47 @@
         "  3. Update the metrics row (16% / 42% / +50%)\n\n" +
         "Applied 3 edits to launch-page.html — 42 insertions, 11 deletions.";
 
-      // 1) type the command.
-      ix.click('[data-role="cmd"]', { at: 0.6, moveDur: 0.7 });
-      ix.type('[data-role="cmd"]', CMD, { at: 1.0, cps: 20 });
+      // 1) type the command. The command text sits inside a width-clipped
+      // reveal box (0 -> full width), so the trailing block cursor rides the
+      // leading edge exactly like a real terminal caret — fully seek-safe,
+      // no CSS transitions/keyframes involved.
+      const cmdReveal = stage.querySelector('[data-role="cmd-reveal"]');
+      const cmdEl = stage.querySelector('[data-role="cmd"]');
+      const blk = stage.querySelector('[data-role="blk"]');
+      const typeStart = 1.0, typeCps = 20;
+      cmdEl.textContent = CMD;
+      const fullW = cmdReveal.getBoundingClientRect().width;
+      const typeDur = CMD.length / typeCps;
+      gsap.set(cmdReveal, { width: 0 });
+      gsap.set(blk, { opacity: 1 }); // caret visible at rest, over the empty input
 
-      // 2) stream the terminal output, then a status line.
-      const outAt = 1.0 + CMD.length / 20 + 0.5;
-      ix.stream('[data-role="out"]', OUT, { at: outAt, cps: 90 });
-      const doneAt = outAt + OUT.length / 90 + 0.3;
-      ix.type('[data-role="status"]', "✔ Done · 8.4s · Esc to interrupt", { at: doneAt, cps: 40, fade: 0.05 });
+      ix.click('[data-role="cmd-reveal"]', { at: 0.6, moveDur: 0.7 });
+      tl.to(cmdReveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
+      // idle blink once typing settles, resumes trailing the committed command.
+      // Kept short (settles well before the send beat below) so it can never
+      // still be mid-cycle when the caret needs to go away for good.
+      tl.to(blk, { opacity: 0, duration: 0.18, repeat: 3, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.05);
+
+      // 2) send beat: the command is now committed transcript text, so the
+      // live block caret goes away (it must not keep blinking while the
+      // agent's output streams below it), a brief "Working" status marks
+      // that the prompt was sent, then the terminal streams its output. The
+      // key-hint footer is real-TUI chrome present from frame one — it is
+      // never typed in, only the transient "Working" line animates.
+      const outAt = 1.0 + CMD.length / 20 + 1.0;
+      tl.to(blk, { opacity: 0, duration: 0.12 }, outAt - 0.1);
+
+      const workingAt = typeStart + typeDur + 0.3;
+      ix.show('[data-role="working"]', { at: workingAt, dur: 0.2 });
+      tl.to('[data-role="working"]', { opacity: 0, duration: 0.15 }, outAt - 0.15);
+
+      ix.stream('[data-role="out"]', OUT, { at: outAt, cps: 55 });
+
+      tl.set('[data-role="status"]', { opacity: 1 }, 0);
 
       window.__timelines["codex-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(10.4).pause();
+      if (cap === "hero") tl.seek(9.5).pause();
     </script>
   </body>
 </html>

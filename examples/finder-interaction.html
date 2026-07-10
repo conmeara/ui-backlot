@@ -54,24 +54,56 @@
       tl.to(stage, { opacity: 1, duration: 3.4 }, 0);   // no-op hold → duration is always 3.4
       window.__timelines["finder-interaction"] = tl;
 
+      // Park the click-ring hidden and off-stage at t=0 so it can never show
+      // as a stray artifact before the first click: BacklotInteractions'
+      // click() uses gsap.fromTo() for the ring pulse, whose immediateRender
+      // paints the "from" state (opacity 0.9) onto the DOM the instant this
+      // script runs, before the timeline ever reaches that click's time. An
+      // explicit set() at t=0 gives the timeline its own keyframe there so a
+      // seek(0) always renders the ring hidden, regardless of that leak.
+      tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
+
       (window.__backlotComponentsReady || Promise.resolve()).then(() => {
         const cols = stage.querySelectorAll(".finder-column");
-        const col1 = cols[0];
-        const rows = col1 ? Array.from(col1.querySelectorAll(".file-row")) : [];
-        const cur = col1 ? col1.querySelector(".file-row.selected") : null;
+        // Column-view Finder holds exactly one selection path: col1's
+        // "demo-workspace" stays the gray (inactive) ancestor untouched, and
+        // the blue active-leaf selection walks rightward, col2 → col3, so
+        // every downstream column stays coherent with what's on screen.
+        const col2 = cols[1] || null;                 // "Launch Deck" (active leaf, blue)
+        const col3 = cols[2] || null;                 // Launch Deck's children
+        const launchDeck = col2 ? col2.querySelector(".file-row") : null;
+        const col3Rows = col3 ? Array.from(col3.querySelectorAll(".file-row")) : [];
+        const target = col3Rows[0] || null;            // design-feedback.txt
         const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-        if (rows.length >= 5 && cur) {
-          rows[2].setAttribute("data-role", "r2");   // DESIGN.md
-          rows[4].setAttribute("data-role", "r4");   // index.html
-          // 1) select DESIGN.md
-          ix.click('[data-role="r2"]', { at: 0.7, moveDur: 0.9, press: false });
-          tl.set(cur, { attr: { class: "file-row" } }, 1.1);
-          tl.set(rows[2], { attr: { class: "file-row selected", "data-role": "r2" } }, 1.15);
-          // 2) select index.html
-          ix.click('[data-role="r4"]', { at: 2.1, moveDur: 0.8, press: false });
-          tl.set(rows[2], { attr: { class: "file-row", "data-role": "r2" } }, 2.5);
-          tl.set(rows[4], { attr: { class: "file-row selected", "data-role": "r4" } }, 2.55);
+        if (launchDeck && target) {
+          // Column 3 starts empty-looking and reveals its rows as the direct
+          // consequence of the first click, so drilling col1→col2→col3 reads
+          // as a real reaction instead of a click on an already-active leaf.
+          if (col3Rows.length) tl.set(col3Rows, { opacity: 0 }, 0);
+          // Rest frame must be a state real Finder actually renders: Launch
+          // Deck starts UNselected (matches the empty col3 beside it), so the
+          // first click has a real payoff instead of re-clicking an
+          // already-active leaf next to a column the app would never leave
+          // blank.
+          tl.set(launchDeck, { attr: { class: "file-row large" } }, 0);
+          // 1) advance into column 2: cursor visits Launch Deck and the
+          //    click atomically selects it AND populates col3 on the same
+          //    beat — real column-view Finder never fades a folder's
+          //    children in row-by-row, it shows them the instant the folder
+          //    is selected.
+          ix.click(launchDeck, { at: 0.7, moveDur: 0.9, press: false });
+          tl.set(launchDeck, { attr: { class: "file-row selected large" } }, 0.72);
+          if (col3Rows.length) tl.set(col3Rows, { opacity: 1 }, 0.72);
+          // 2) advance into column 3: design-feedback.txt becomes the new
+          //    blue active leaf; Launch Deck drops "selected" (demoted to a
+          //    plain gray ancestor row, never fully unhighlighted) so the
+          //    selection breadcrumb stays coherent while only one leaf is
+          //    blue at a time. Committed on the same beat as the click so
+          //    the highlight never lags behind the mousedown.
+          ix.click(target, { at: 2.1, moveDur: 0.8, press: false });
+          tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 2.15);
+          tl.set(target, { attr: { class: "file-row selected large" } }, 2.15);
         }
       }).catch(() => {});
 

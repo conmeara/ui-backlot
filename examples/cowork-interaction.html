@@ -5,7 +5,7 @@
     <title>Claude Cowork — Interaction Demo</title>
   </head>
   <body>
-    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12.2">
+    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12.9">
       <section class="cw-stage" data-primitive="cowork-interaction" aria-label="Claude cowork: prompt, tool run, progress, streamed reply">
         <div class="cw-window">
           <div class="cw-sidebar">
@@ -24,17 +24,18 @@
               <div class="ai-col">
                 <div class="ai-lead" data-role="lead"></div>
                 <div class="toolcard" data-role="toolcard">
-                  <div class="tc-head"><span class="tc-ico">&gt;_</span> Running command <span class="tc-chev">⌄</span></div>
+                  <div class="tc-head"><span class="tc-ico">&gt;_</span> <span class="tc-spin" data-role="tcspin"></span> <span class="tc-status" data-role="tcstatus">Running command</span> <span class="tc-chev">⌄</span></div>
                   <div class="tc-body"><span class="tc-label">Request</span>
                     <div class="tc-code">{ "command": "find /sessions/launch-deck -type f -maxdepth 2", "description": "List selected project files" }</div>
                   </div>
+                  <div class="tc-result" data-role="tcresult" style="opacity:0">3 files · notes.md, q2.csv, launch-deck.pptx</div>
                 </div>
                 <div class="ai-response" data-role="ai"></div>
               </div>
             </div>
             <div class="cw-composer">
               <span class="ph" data-role="ph">Reply…</span>
-              <span class="cw-input" data-role="input"></span>
+              <span class="cw-field"><span class="cw-input" data-role="input"><span class="cw-reveal" data-role="reveal"></span></span><span class="cw-caret" data-role="caret"></span></span>
               <button class="cw-send" data-role="send"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
             </div>
           </div>
@@ -45,7 +46,7 @@
               <div class="stepper">
                 <span class="step" data-role="s1"><svg class="chk" viewBox="0 0 24 24"><path d="M6 12.5 L10.3 17 L18 8"/></svg></span><span class="line"></span>
                 <span class="step" data-role="s2"><svg class="chk" viewBox="0 0 24 24"><path d="M6 12.5 L10.3 17 L18 8"/></svg></span><span class="line"></span>
-                <span class="step" data-role="s3"></span>
+                <span class="step" data-role="s3"><svg class="chk" viewBox="0 0 24 24"><path d="M6 12.5 L10.3 17 L18 8"/></svg></span>
               </div>
               <div class="rail-caption" data-role="caption">Steps will show as the task unfolds.</div>
             </div>
@@ -83,12 +84,18 @@
       .ai-lead { font-size:16px; line-height:1.6; color:#141414; margin-bottom:12px; }
       .toolcard { border:1px solid rgba(11,11,11,0.1); border-radius:12px; overflow:hidden; margin-bottom:12px; background:#fffdf7; }
       .tc-head { display:flex; align-items:center; gap:8px; padding:10px 14px; font-size:13.5px; color:#141414; border-bottom:1px solid rgba(11,11,11,0.06); } .tc-ico { font-family:monospace; color:#8a8378; } .tc-chev { margin-left:auto; color:#b0a89a; }
+      .tc-spin { width:13px; height:13px; border-radius:50%; border:2px solid rgba(11,11,11,0.15); border-top-color:#d97757; display:inline-block; opacity:0; }
       .tc-body { padding:12px 14px; } .tc-label { font-size:11px; color:#8a8378; text-transform:uppercase; letter-spacing:.04em; }
       .tc-code { font-family:"SF Mono",ui-monospace,monospace; font-size:12.5px; color:#3f7f4f; margin-top:8px; line-height:1.5; word-break:break-word; }
+      .tc-result { font-size:12.5px; color:#52514e; padding:9px 14px; border-top:1px solid rgba(11,11,11,0.06); }
       .ai-response { font-size:16px; line-height:1.62; color:#141414; white-space:pre-wrap; overflow-wrap:anywhere; }
       .ai-response .bl-word { display:inline-block; }
       .cw-composer { position:absolute; left:30px; right:30px; bottom:22px; display:flex; align-items:center; min-height:52px; background:#fff; border:1px solid rgba(11,11,11,0.12); border-radius:14px; padding:14px 16px; box-shadow:0 1px 2px rgba(0,0,0,0.05); }
-      .cw-composer .ph { position:absolute; color:#8a877f; font-size:15px; } .cw-input { font-size:15px; color:#141414; flex:1; }
+      .cw-composer .ph { position:absolute; color:#8a877f; font-size:15px; }
+      .cw-field { flex:1; min-width:0; }
+      .cw-input { font-size:15px; color:#141414; white-space:nowrap; }
+      .cw-reveal { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; }
+      .cw-caret { display:inline-block; width:1.5px; height:18px; margin-left:1px; background:#141414; border-radius:1px; vertical-align:bottom; opacity:0; }
       .cw-send { margin-left:auto; width:32px; height:32px; border:none; border-radius:9px; background:#d97757; color:#fff; display:grid; place-items:center; }
       .cw-rail { background:#f4efe8; border-left:1px solid rgba(11,11,11,0.07); padding:18px 16px; display:flex; flex-direction:column; gap:14px; }
       .rail-card { background:#fff; border:1px solid rgba(11,11,11,0.08); border-radius:12px; padding:14px; }
@@ -118,20 +125,52 @@
       const REPLY = "Done — updated slides 1–3 with the corrected Q2 figures (revenue 16% above target) and refreshed the revenue chart. The deck is ready for review.";
 
       gsap.set(['[data-role="aimsg"]', '[data-role="toolcard"]', '[data-role="s1"]', '[data-role="s2"]', '[data-role="s3"]'], { opacity: 0 });
+      gsap.set('.demo-click-ring', { opacity: 0, autoAlpha: 0 });
 
       // 1) type + send the prompt.
+      // Width-clip reveal: the reveal box grows from 0 to full width so the
+      // text wipes in left-to-right and the caret (inline right after the
+      // field) rides the leading edge — a real typewriter, and fully
+      // seek-deterministic (mirrors claude-chat-interaction.html).
       ix.click('[data-role="input"]', { at: 0.7, moveDur: 0.7 });
       ix.hide('[data-role="ph"]', { at: 1.1, dur: 0.12 });
-      ix.type('[data-role="input"]', PROMPT, { at: 1.3, cps: 24 });
-      const sendAt = 1.3 + PROMPT.length / 24 + 0.4;
+      const reveal = stage.querySelector('[data-role="reveal"]');
+      const caret = stage.querySelector('[data-role="caret"]');
+      const typeStart = 1.3, typeCps = 24;
+      reveal.textContent = PROMPT;
+      const fullW = reveal.getBoundingClientRect().width;
+      const typeDur = PROMPT.length / typeCps;
+      gsap.set(reveal, { width: 0 });
+      gsap.set(caret, { opacity: 0 });
+      tl.to(reveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
+      tl.to(caret, { opacity: 1, duration: 0.1 }, 1.15);
+      tl.to(caret, { opacity: 0, duration: 0.15, repeat: 1, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.05); // idle blink before send
+
+      const sendAt = typeStart + typeDur + 0.4;
       ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
+      tl.to(caret, { opacity: 0, duration: 0.1 }, sendAt);
       ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
+
+      // The cursor drifts off the send button into the reading area rather
+      // than freezing there through the whole streamed AI turn.
+      tl.to('.demo-cursor', { left: 660, top: 500, duration: 0.6, ease: "power2.inOut" }, sendAt + 0.45);
 
       // 2) AI turn: lead line, tool card runs, progress steps check off.
       ix.show('[data-role="aimsg"]', { at: sendAt + 0.5, dur: 0.3 });
       ix.type('[data-role="lead"]', LEAD, { at: sendAt + 0.7, cps: 46 });
       const cardAt = sendAt + 0.7 + LEAD.length / 46 + 0.3;
       ix.show('[data-role="toolcard"]', { at: cardAt, dur: 0.3, from: { opacity: 0, y: 8 } });
+
+      // Tool card runs, then resolves: a dedicated spinner (not the ">_"
+      // glyph) turns while the command is in flight, then the head flips
+      // to a completed label and the result row reveals — matching the
+      // reply's claim that the task finished.
+      const resolveAt = cardAt + 1.55;
+      ix.show('[data-role="tcspin"]', { at: cardAt, dur: 0.15, from: { opacity: 0 } });
+      tl.to('[data-role="tcspin"]', { rotation: 360, duration: 0.8, ease: "none", repeat: 3, transformOrigin: "50% 50%" }, cardAt);
+      tl.set('[data-role="tcspin"]', { opacity: 0 }, resolveAt);
+      tl.set('[data-role="tcstatus"]', { textContent: "Ran command" }, resolveAt);
+      ix.show('[data-role="tcresult"]', { at: resolveAt, dur: 0.3 });
 
       // Progress stepper: each done step pops in (spring), the ring fills green,
       // and the checkmark draws itself in (stroke-dashoffset) — all property-only
@@ -159,6 +198,13 @@
       // 3) streamed reply — word-by-word with a soft fade, like a real reply.
       const replyAt = cardAt + 2.0;
       ix.stream('[data-role="ai"]', REPLY, { at: replyAt, cps: 46, unit: "word", rise: 3, fade: 0.26 });
+
+      // 4) the task settles: step 3 completes and the caption reflects it,
+      // so the demo ends resolved rather than mid-run.
+      const finishAt = replyAt + REPLY.length / 46 - 0.2;
+      tl.to('[data-role="s3"]', { borderColor: "#3f7f4f", backgroundColor: "#3f7f4f", boxShadow: "none", duration: 0.2 }, finishAt);
+      tl.fromTo('[data-role="s3"] path', { strokeDashoffset: 22 }, { strokeDashoffset: 0, duration: 0.3 }, finishAt + 0.1);
+      tl.set('[data-role="caption"]', { textContent: "Deck updated — ready for review" }, finishAt + 0.1);
 
       window.__timelines["cowork-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");

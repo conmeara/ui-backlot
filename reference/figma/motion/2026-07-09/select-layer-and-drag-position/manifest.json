@@ -1,0 +1,8 @@
+{
+  "source": "https://www.youtube.com/watch?v=ATzuLlsN9ew @ 00:00:17-00:00:29 (\"Copy and paste positioning\", official Figma YouTube channel, @Figma, 3840x2160)",
+  "method": "yt-dlp+ffmpeg (video-frame-mine, docs/reference-and-asset-sourcing.md Part 1.5 rung 3)",
+  "interaction": "Paste a copied circle layer into a frame: it appears already selected with the canvas selection outline (blue handles) and the right-side Design properties panel showing X/Y/W/H; the cursor then drags it, live alignment guides (dashed pink centerlines) and a floating distance/size badge appear, and the X/Y fields in the properties panel update in real time as the drag continues. Near the end of the clip the parent Frame itself is selected instead, showing the frame-specific properties panel (Frame type toggles, Clip content, Auto layout, Layout grid).",
+  "note": "Story match is close but not exact: the demo calls for clicking an existing layer in the LEFT layers panel; this clip instead shows a freshly pasted layer arriving pre-selected (paste, not a layers-panel click) before being dragged. The app's response that matters for calibration is present and real: selection outline styling, properties-panel field layout/values, live-updating X/Y during drag, and the smart-guide/distance-badge idiom. Treat cursor drag speed and guide-appearance timing as ground truth; the specific trigger (paste vs. layers-panel click) is directional only. 4K source, UI at native resolution, no overlays/zooms in the selected window.",
+  "appVersion": "figma.com web app, captured in this official tutorial video (undated upload, current Figma UI3 chrome as of 2026-07-09)",
+  "acquiredOn": "2026-07-09"
+}

@@ -37,7 +37,7 @@ the Claude app up from the dock, then opens Excel on top."*</sub>
 </tr>
 <tr>
 <td><b>Claude Code CLI</b><br><img src="docs/media/claude-code-interaction.gif" alt="Claude Code CLI interaction"></td>
-<td></td>
+<td><b>Figma</b><br><img src="docs/media/figma-interaction.gif" alt="Figma interaction"></td>
 </tr>
 </table>
 

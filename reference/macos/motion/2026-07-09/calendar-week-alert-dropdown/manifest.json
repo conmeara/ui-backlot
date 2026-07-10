@@ -1,0 +1,19 @@
+{
+  "family": "macos",
+  "label": "calendar-week-alert-dropdown",
+  "capturedAt": "2026-07-09",
+  "source": {
+    "type": "official-vendor-video",
+    "title": "How to set up alerts in Calendar on Mac | Apple Support",
+    "channel": "Apple Support (official Apple YouTube channel)",
+    "url": "https://www.youtube.com/watch?v=4ss38QnlEUs",
+    "clipTimestamp": "00:00:46-00:00:58",
+    "downloadedFormat": "itag 18 (mp4, 640x360, h264) via yt-dlp android client — highest format available without a GVS PO token",
+    "method": "yt-dlp (android player client) + ffmpeg -ss 46 -t 12 to cut, ffmpeg -vf fps=2 to extract frames"
+  },
+  "interaction": "Real macOS Calendar app, Week view, an existing event's detail popover open. The clip shows clicking the 'alert' field's dropdown control: the option list is open (frame 1), the cursor hovers/presses the target row '2 hours before' which highlights (~frame 13, blue highlight on the row), then the dropdown collapses and the alert field commits to the new value (frame 24). This is the same control family (Week-view event popover, click-to-open dropdown, click-to-commit, collapse) that the demo's 'click empty slot -> new event -> type title' story exercises, though this specific clip is an existing-event alert edit rather than a from-scratch event creation — closest available real footage without driving the live app or logging in.",
+  "note": "This session's computer-use/AppleScript control of the local Finder/Calendar apps was denied/blocked (no interactive user available to approve GUI-automation permission dialogs in this subagent context), so rung 1 (native-local screencapture -v of the real installed Calendar app) and computer-use driving were not available. Fell back to rung 3 of the motion ladder (docs/reference-and-asset-sourcing.md Part 1.5): an official Apple vendor video frame-mined with yt-dlp. Only itag 18 (360p) was obtainable without a GVS PO token — YouTube blocked higher-resolution web/ios/tv client formats for this session. Use for pacing/easing/press-state calibration; do not treat pixel fidelity below 360p source as authoritative for cropped detail.",
+  "assetDecision": "Frame-mined stills/clip from a public, official Apple YouTube video. Reference-only for pacing/state-transition calibration; do not copy the video's pixels, event content, or map imagery into any shipped surface.",
+  "clip": "clip.mp4",
+  "frames": "frames/ (fps=2, 24 frames, f-001..f-024)"
+}

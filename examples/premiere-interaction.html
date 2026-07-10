@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Premiere — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="premiere-interaction" data-composition-id="premiere-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.6">
+      <section class="pr-stage" data-primitive="premiere-interaction" aria-label="Premiere (real component) with a scripted clip selection and playhead scrub">
+        <div class="pr-frame component-frame"
+             data-primitive="premiere-editor-window"
+             data-backlot-mount-src="../compositions/premiere-editor.html"
+             data-backlot-mount-selector="#premiere-editor-surface"></div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#0b0b0b; }
+      #premiere-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
+      #premiere-interaction * { box-sizing:border-box; }
+      .pr-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:#141414; }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* premiere-editor-surface's .premiere-window is a fixed 1440x900; scale
+         0.888889 maps it to exactly 1280x800 - a full-bleed fill, no letterbox. */
+      .pr-frame { left:0; top:0; width:1280px; height:800px; background:#141414; }
+      .pr-frame > [data-backlot-mounted-component] { transform: scale(0.8888888889); }
+      .demo-cursor { position:absolute; left:150px; top:770px; z-index:90; width:24px; height:24px;
+        background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(255,255,255,0.85); border-radius:50%; opacity:0; }
+      /* Program monitor re-composite states while the playhead scrubs past
+         clip boundaries - see the tcState.onUpdate below. Scoped to classes
+         that only ever exist on the cloned mount at runtime (added via
+         tl.set), so the composition's own default capture is untouched. */
+      .program-monitor .program-frame.scrub-b {
+        background:
+          radial-gradient(circle at 60% 30%, rgba(255, 226, 158, 0.38), transparent 30%),
+          linear-gradient(150deg, #3c5a2e 0%, #6f8f45 45%, #274022 100%);
+      }
+      .program-monitor .program-frame.scrub-c {
+        background:
+          radial-gradient(circle at 34% 62%, rgba(255, 214, 150, 0.3), transparent 28%),
+          linear-gradient(150deg, #33502a 0%, #55742f 50%, #203419 100%);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const stage = document.querySelector(".pr-stage");
+      const TOTAL_DUR = 6.6;
+
+      // Register the timeline SYNCHRONOUSLY with a full-duration hold so the
+      // renderer never probes a zero-duration composition (the real
+      // premiere-editor mounts asynchronously; the clip-select + playhead-drag
+      // tweens are layered on once it is ready). Without the hold, a fast
+      // browser start races the mount and the render fails with "Composition
+      // has zero duration".
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: TOTAL_DUR }, 0); // no-op hold -> duration is always TOTAL_DUR
+      window.__timelines["premiere-interaction"] = tl;
+
+      function formatTimecode(totalSeconds) {
+        const fps = 24;
+        let frames = Math.max(0, Math.round(totalSeconds * fps));
+        const hh = Math.floor(frames / (fps * 3600)); frames -= hh * fps * 3600;
+        const mm = Math.floor(frames / (fps * 60)); frames -= mm * fps * 60;
+        const ss = Math.floor(frames / fps); frames -= ss * fps;
+        const ff = frames;
+        const pad = (n) => String(n).padStart(2, "0");
+        return `${pad(hh)}:${pad(mm)}:${pad(ss)}:${pad(ff)}`;
+      }
+
+      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        const graphicClip = stage.querySelector(".clip.graphic");   // funding_card.png - starts selected
+        const amberClip = stage.querySelector(".clip.amber");       // volunteer_day.mov - the clip we select
+        const playhead = stage.querySelector(".playhead");
+        const playheadFlag = stage.querySelector(".playhead span");
+        const tracksEl = stage.querySelector(".tracks");
+        const tcEl = stage.querySelector(".program-monitor .monitor-controls .timecode.active");
+        const propHeading = stage.querySelector(".properties-panel .property-heading strong");
+        const propLines = stage.querySelectorAll(".properties-panel .prop-line.keyframed");
+        const propPosition = propLines[0] ? propLines[0].querySelectorAll("strong") : null;
+        const propAnchor = propLines[1] ? propLines[1].querySelectorAll("strong") : null;
+        const programFrameEl = stage.querySelector(".program-monitor .program-frame");
+        const programCardEl = stage.querySelector(".program-monitor .program-card");
+        const lowerThirdEl = stage.querySelector(".program-monitor .lower-third");
+        const programTimecodeEl = stage.querySelector(".program-monitor .program-timecode");
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+        if (!graphicClip || !amberClip || !playhead || !playheadFlag || !tracksEl || !tcEl) return;
+
+        // The program image's burned-in "00:00:31:12" is a static prop in the
+        // composition's default markup with no live tie to the transport
+        // readout below it; once the playhead moves it would read as a
+        // frozen/contradictory timestamp, so retire it for the whole demo.
+        if (programTimecodeEl) tl.set(programTimecodeEl, { opacity: 0 }, 0);
+
+        // 1) Click the volunteer_day.mov clip to select it (swaps the yellow
+        //    selection outline from the currently-selected graphic clip) and
+        //    retargets the Properties panel to the newly selected clip, the
+        //    way a real Premiere selection change does.
+        ix.click(".clip.amber", { at: 1.7, moveDur: 0.8 });
+        tl.set(graphicClip, { attr: { class: "clip graphic" } }, 1.75);
+        tl.set(amberClip, { attr: { class: "clip amber selected" } }, 1.75);
+        if (propHeading) tl.set(propHeading, { textContent: "volunteer_day.mov" }, 1.75);
+        if (propPosition && propPosition.length === 2) {
+          tl.set(propPosition[0], { textContent: "960.0" }, 1.75);
+          tl.set(propPosition[1], { textContent: "540.0" }, 1.75);
+        }
+        if (propAnchor && propAnchor.length === 2) {
+          tl.set(propAnchor[0], { textContent: "960.0" }, 1.75);
+          tl.set(propAnchor[1], { textContent: "540.0" }, 1.75);
+        }
+
+        // 2) Grab the playhead flag and drag it across the now-selected clip
+        //    (56%-82% of the track width, settling inside volunteer_day.mov's
+        //    56-85% span so the program monitor legitimately holds footage at
+        //    rest). The playhead starts at its authored 52% - just left of the
+        //    clip - and the readout in the program monitor's control bar ticks
+        //    as it travels, matching the 52% -> 00:00:31:12 anchor already
+        //    burned into the composition's static markup.
+        const DRAG_START = 3.2;
+        const DRAG_DUR = 2.6;
+        const START_PCT = 52;
+        const END_PCT = 82;
+        const SEC_PER_PCT = 31.5 / 52; // anchors to the static "00:00:31:12" @ 52%
+
+        ix.click(".playhead span", { at: DRAG_START, moveDur: 0.75, press: false });
+
+        const stageRect = stage.getBoundingClientRect();
+        const tracksRect = tracksEl.getBoundingClientRect();
+        const endX = tracksRect.left - stageRect.left + tracksRect.width * (END_PCT / 100);
+        const flagRect = playheadFlag.getBoundingClientRect();
+        const endY = flagRect.top - stageRect.top + flagRect.height / 2;
+        // Drive the drag with a transform (x), not `left` - `left` is a layout
+        // property that snaps to integer device pixels under the seek-by-frame
+        // capture engine and stutters on a slow ease-out tail; x interpolates
+        // sub-pixel. The playhead's authored 52% position (left:52% in its
+        // stylesheet) stays put as the anchor; we translate on top of it.
+        const MOUNT_SCALE = 0.8888888889; // .pr-frame > [data-backlot-mounted-component] scale (line 29) - the
+        // playhead's x-transform is applied inside the mounted, scaled component, so divide the on-screen
+        // (post-scale) drag distance by the mount scale to get the pre-scale distance that keeps the
+        // rendered playhead glued under the (unscaled) cursor for the whole drag.
+        const dragPx = tracksRect.width * ((END_PCT - START_PCT) / 100) / MOUNT_SCALE;
+        tl.to(playhead, { x: dragPx, duration: DRAG_DUR, ease: "power1.inOut" }, DRAG_START);
+        tl.to(".demo-cursor", { left: endX, top: endY, duration: DRAG_DUR, ease: "power1.inOut" }, DRAG_START);
+
+        const tcState = { pct: START_PCT };
+        tl.to(tcState, {
+          pct: END_PCT,
+          duration: DRAG_DUR,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            tcEl.textContent = formatTimecode(tcState.pct * SEC_PER_PCT);
+            // Re-composite the Program monitor at each clip boundary the
+            // playhead crosses so the scrub reads as live footage instead of
+            // a frozen picture: the funding_card.png graphic + its lower
+            // third are on screen while pct<65 (the graphic clip's actual
+            // right edge on V3, the topmost track), then the composite hands
+            // off to volunteer_day.mov's footage for 65<=pct<=84 (its clip
+            // span) - two distinct stills tied directly to tcState.pct so
+            // they stay perfectly in sync with the drag and the drag settles
+            // at pct 82, inside the footage clip's span.
+            if (programFrameEl) {
+              const onGraphic = tcState.pct < 65;
+              const pastAmber = tcState.pct > 84;
+              programFrameEl.classList.toggle("scrub-b", !onGraphic && !pastAmber);
+              programFrameEl.classList.toggle("scrub-c", pastAmber);
+              if (programCardEl) programCardEl.style.opacity = onGraphic ? "1" : "0";
+              if (lowerThirdEl) lowerThirdEl.style.opacity = onGraphic ? "1" : "0";
+            }
+          },
+        }, DRAG_START);
+
+        // The click-ring's fromTo tweens (via ix.click above) render their
+        // "from" state (opacity 0.9) for any timeline time before the tween's
+        // own start - pin it hidden at t=0 inside the timeline itself so the
+        // opening at-rest frames render clean (see excel-interaction.html).
+        tl.set(".demo-click-ring", { opacity: 0 }, 0);
+      }).catch(() => {});
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(TOTAL_DUR).pause();
+    </script>
+  </body>
+</html>

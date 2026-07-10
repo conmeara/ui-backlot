@@ -1,0 +1,15 @@
+{
+  "source": "https://www.youtube.com/watch?v=-u-9f3QrdAQ",
+  "sourceTitle": "How to use the SUM function in Microsoft Excel",
+  "channel": "Microsoft 365 (official, @Microsoft365)",
+  "method": "yt-dlp+ffmpeg",
+  "originalDuration": "38s (1920x1080, av1)",
+  "clipRange": "00:00:05.000-00:00:25.500 (20.5s) from the downloaded source video",
+  "interaction": "Select a cell, type =SUM(, select a range of cells to add (H5:H8), type ) and press Enter, the formula commits and the summed result appears in the cell (43) with a 'Total' callout.",
+  "note": "Vendor tutorial overlay (Windows Excel ribbon chrome, ribbon/ribbon ribbon differs slightly from Mac Excel desktop, ribbon icons and title bar are directional only) but the grid/formula-bar mechanics are real current Excel UI and the SAME story this family's demo tells: select cell -> type =SUM( -> select range -> close paren + Enter -> result reveal. Frames show: function-tooltip appearing under the cell as soon as '=SUM(' is typed, the marching-ants/dashed selection outline while picking the range, and the commit-on-Enter reveal of the summed value. No login, no bot-check involved (public YouTube video, no auth). Chosen because no Excel is installed on this machine and no office.com session was reachable (Chrome MCP extension was disconnected at capture time), so this is the highest rung actually available per docs/reference-and-asset-sourcing.md Part 1.5 (rung 3: official video frame-mining).",
+  "acquisitionLadder": {
+    "rung1_native_local": "not available - Excel not installed on this Mac (checked /Applications, mdfind)",
+    "rung2_live_web_office_com": "not available - claude-in-chrome extension reported disconnected when navigating to office.com/launch/excel",
+    "rung3_vendor_video": "used - official Microsoft 365 YouTube channel video, downloaded via yt-dlp, trimmed with ffmpeg"
+  }
+}

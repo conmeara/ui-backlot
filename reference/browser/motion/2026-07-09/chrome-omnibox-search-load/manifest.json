@@ -1,0 +1,9 @@
+{
+  "source": "https://www.youtube.com/watch?v=D_QWIcfSVQw",
+  "sourceTitle": "A more powerful address bar with AI built in",
+  "channel": "Google Chrome (official, @googlechrome)",
+  "acquiredVia": "yt-dlp+ffmpeg (rung 3 of the motion ladder — native-local Chrome recording was unavailable this session: computer-use browser control is read-only/denied by the user, and the claude-in-chrome extension was not connected)",
+  "clipRange": "67s-81s of the source video (14s)",
+  "interaction": "Real Chrome desktop: a query is typed and committed in the omnibox on the New Tab page (autocomplete dropdown visible, address bar text mid-entry), the tab favicon shows the native loading spinner as the page navigates, Google's AI Mode results page shows a shimmering gradient loading bar under the query with progressive status text (\"Thinking…\" → \"Loading AI response→\" → \"Pulling it all together…\"), then the answer content resolves: paragraph text fades in first, followed by a row of product-comparison cards populating left-to-right.",
+  "note": "Closest available real-footage match for the 'type a URL into the omnibox, a loading bar sweeps, the page content loads' story without login or bot-check: it's a search query rather than a raw URL and the destination is an AI Mode results page rather than a plain site, but the omnibox commit, native tab-loading spinner, and the shimmer-bar-to-content-resolve motion idiom are genuine Chrome UI captured from an official Google Chrome channel video, not recreated. Use for: omnibox caret/commit timing, tab spinner behavior, loading-bar shimmer easing, and staggered content-reveal pacing (text-first, then cards)."
+}
