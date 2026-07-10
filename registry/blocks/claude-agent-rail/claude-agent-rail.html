@@ -8,7 +8,7 @@
     display: grid;
     place-items: center;
     overflow: hidden;
-    background: #fffdfa;
+    background: #f8f8f6;
   }
 </style>
 
@@ -36,6 +36,10 @@
         <path d="M16 13H8" />
         <path d="M16 17H8" />
       </symbol>
+      <symbol id="lucide-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+      </symbol>
     </svg>
     <section class="claude-agent-rail-stage" data-primitive="claude-agent-rail-stage" aria-label="Editable Claude agent rail surface">
       <aside class="agent-rail-panel" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
@@ -53,19 +57,19 @@
 
         <section class="rail-card">
           <div class="rail-head"><span class="rail-title">Artifacts</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
-          <div class="rail-row"><span class="rail-file-ico"><b>HTML</b></span><span data-copy="artifact-1">publish-checklist.html</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>HTML</b></span><span data-copy="artifact-1">revenue-chart-q2.html</span></div>
         </section>
 
         <section class="rail-card">
           <div class="rail-head"><span class="rail-title">Context</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
           <div class="rail-sub"><svg class="backlot-icon rail-sub-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg><span>Selected folders</span><span class="rail-sub-count">1</span></div>
-          <div class="rail-row indent"><span class="rail-file-ico folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span data-copy="context-folder">blog-drafts</span></div>
+          <div class="rail-row indent"><span class="rail-file-ico folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span data-copy="context-folder">launch-deck</span></div>
           <div class="rail-label">Connectors</div>
           <div class="rail-row"><span class="rail-file-ico conn"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></span><span>Web search</span></div>
           <div class="rail-label">Working files</div>
-          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-1">team-digest-october-2025.md</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-2">draft-coverage-notes-octob…</span></div>
-          <div class="rail-row"><span class="rail-file-ico"><b>MD</b></span><span data-copy="context-file-3">team-digest-november-2025.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>PPTX</b></span><span data-copy="context-file-1">Launch Deck.pptx</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>MD</b></span><span data-copy="context-file-2">slide-notes.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>CSV</b></span><span data-copy="context-file-3">Q2 revenue.csv</span></div>
         </section>
       </aside>
     </section>
@@ -112,7 +116,7 @@
         padding: 20px 22px;
         border: 1px solid rgba(11, 11, 11, 0.1);
         border-radius: 12px;
-        background: rgba(255, 254, 250, 0.94);
+        background: rgba(248, 248, 246, 0.94);
         box-shadow: 0 1px 3px rgba(52, 43, 34, 0.04);
       }
 
@@ -189,16 +193,28 @@
         flex: 0 0 auto;
         display: grid;
         place-items: center;
-        border-radius: 8px;
-        background: #efeae0;
-        color: #52514e;
+        border-radius: 6px;
+        background: #ececea;
+        color: #7b7974;
       }
 
-      .rail-file-ico svg { width: 14px; height: 14px; }
+      .rail-file-ico > * { grid-area: 1 / 1; }
+
+      .rail-file-ico.folder svg,
+      .rail-file-ico.conn svg { width: 14px; height: 14px; }
+
+      .rail-file-glyph {
+        width: 16px;
+        height: 16px;
+        color: #7b7974;
+      }
 
       .rail-file-ico b {
-        font-size: 7px;
+        margin-top: 6px;
+        color: #7b7974;
+        font-size: 6px;
         font-weight: 700;
+        line-height: 1;
         letter-spacing: 0.02em;
       }
 
@@ -265,6 +281,11 @@
 
       .theme-dark .rail-file-ico {
         background: rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-file-glyph,
+      .theme-dark .rail-file-ico b {
         color: var(--claude-text-faint);
       }
 

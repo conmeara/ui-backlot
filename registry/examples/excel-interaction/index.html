@@ -23,9 +23,9 @@
             <div class="rh">5</div><div class="cell">Speaker notes</div><div class="cell">Ready</div><div class="cell num" data-cell="C5">2</div><div class="cell num">2</div>
             <div class="rh">6</div><div class="cell">Opening slide</div><div class="cell">Ready</div><div class="cell num" data-cell="C6">4</div><div class="cell num">4</div>
             <div class="rh">7</div><div class="cell">Chart update</div><div class="cell">Working</div><div class="cell num" data-cell="C7">6</div><div class="cell num">5</div>
-            <div class="rh">8</div><div class="cell strong">Deck total</div><div class="cell"></div><div class="cell num result" data-cell="C8" data-role="result"></div><div class="cell num">9</div>
+            <div class="rh">8</div><div class="cell strong">Deck total</div><div class="cell"></div><div class="cell num result" data-cell="C8" data-role="result"><span class="c8-echo" data-role="c8-echo"></span><span class="c8-value" data-role="c8-value">12</span></div><div class="cell num">9</div>
           </div>
-          <div class="xl-status"><span data-role="status">Ready</span><span class="right">Sum: <b data-role="sum">0</b></span></div>
+          <div class="xl-status"><span data-role="status">Ready</span><span class="right">Average: <b data-role="avg">0</b>&nbsp;&nbsp;&nbsp;Count: <b data-role="cnt">0</b>&nbsp;&nbsp;&nbsp;Sum: <b data-role="sum">0</b></span></div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
@@ -51,12 +51,20 @@
       .cell.num { justify-content:flex-end; font-variant-numeric:tabular-nums; }
       .cell.head { font-weight:700; } .cell.strong { font-weight:700; }
       .cell.result { color:#0b6631; font-weight:700; }
+      .cell.num.editing { justify-content:flex-start; }
+      .cell.result.editing { color:#16120f; font-weight:400; font-family:"SF Mono",ui-monospace,monospace; }
+      .cell-caret { display:inline-block; width:1px; height:1.1em; margin-left:1px; background:#16120f; opacity:0; }
       .sel-range { position:absolute; border:1.5px solid rgba(33,163,102,0.5); background:rgba(33,163,102,0.08); pointer-events:none; z-index:5; }
       .active-outline { position:absolute; border:2px solid #217346; pointer-events:none; z-index:6; }
+      .ref-range { position:absolute; border:1.5px dashed #2f6fed; background-color:rgba(47,111,237,0.08); background-image:repeating-linear-gradient(-45deg, rgba(47,111,237,0.35) 0 3px, rgba(47,111,237,0) 3px 8px); background-size:12px 12px; pointer-events:none; z-index:5; }
+      .fn-tip { position:absolute; z-index:7; pointer-events:none; background:#fff; border:1px solid rgba(20,30,48,0.12); border-radius:4px; box-shadow:0 10px 24px rgba(20,30,48,0.22); padding:5px 9px; font-size:12px; font-family:"SF Mono",ui-monospace,monospace; color:#3b4653; white-space:nowrap; }
+      .fn-tip b { font-weight:700; color:#16120f; }
       .xl-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
       .demo-cursor { position:absolute; left:640px; top:640px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(33,163,102,0.7); border-radius:50%; opacity:0; }
       .bl-char { display:inline; }
+      .c8-echo { display:inline; }
+      .c8-value { display:inline; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -79,11 +87,50 @@
       const act = document.createElement("div"); act.className = "active-outline";
       act.style.cssText += `left:${c8.left}px;top:${c8.top}px;width:${c8.w}px;height:${c8.h}px;`;
       grid.appendChild(act);
+      // Reference-range box: the dashed "marching ants" highlight Excel draws
+      // over a range cited inside a formula while it's being typed.
+      const refRange = document.createElement("div"); refRange.className = "ref-range";
+      refRange.style.cssText = `left:${c5.left}px;top:${c5.top}px;width:${c5.w}px;height:${rangeH}px;`;
+      grid.appendChild(refRange);
+      // SUM() function-signature tooltip Excel pops just under the active
+      // cell the instant "=SUM(" is entered.
+      const fnTip = document.createElement("div"); fnTip.className = "fn-tip";
+      fnTip.innerHTML = 'SUM(<b>number1</b>, [number2], &hellip;)';
+      fnTip.style.cssText = `left:${c8.left}px;top:${c8.top + c8.h + 6}px;`;
+      grid.appendChild(fnTip);
       gsap.set([sel, act], { opacity: 0 });
       const statusRight = stage.querySelector(".xl-status .right");
       gsap.set(statusRight, { opacity: 0 });
+      // Pinned in the timeline itself (see the click-ring note near the end
+      // of this file) so these new elements stay hidden across every seek,
+      // not just parse time.
+      tl.set([refRange, fnTip], { opacity: 0 }, 0);
 
       const FORMULA = "=SUM(C5:C7)";
+      const TYPE_CPS = 16;
+      const EDIT_AT = 4.45;                                   // formula edit start (shared by bar + cell mirror)
+      const EACH = 1 / TYPE_CPS;
+      const TYPE_DUR = FORMULA.length / TYPE_CPS;
+      const commitAt = EDIT_AT + TYPE_DUR + 0.4;
+      // Range-box / tooltip timings derived from the same per-character
+      // stagger ix.type() uses on the formula bar below, so they land in
+      // sync with the exact characters they annotate.
+      const parenIdx = FORMULA.indexOf("(");                  // "=SUM(" complete
+      const tipAt = EDIT_AT + parenIdx * EACH;
+      const rangeIdx = FORMULA.indexOf("C5:C7");
+      const rangeRevealAt = EDIT_AT + (rangeIdx + "C5:C7".length - 1) * EACH + 0.12;
+
+      // Colors the substring of a typed target's per-char spans (built by
+      // ix.type()) that matches `sub`, so a cell reference reads blue like
+      // Excel's own formula syntax highlighting.
+      function colorRef(target, full, sub, color) {
+        const el = typeof target === "string" ? stage.querySelector(target) : target;
+        if (!el) return;
+        const start = full.indexOf(sub);
+        if (start < 0) return;
+        const kids = el.children;
+        for (let i = start; i < start + sub.length && i < kids.length; i++) kids[i].style.color = color;
+      }
 
       // 1) Drag-select the range C5:C7 — cursor presses at C5 and drags down to
       //    C7 while the selection rectangle grows under it (property-only height
@@ -96,22 +143,81 @@
       tl.to(sel, { height: rangeH, duration: 0.95, ease: "power2.inOut" }, 1.52); // drag grows selection
       tl.set('[data-role="namebox"]', { textContent: "3R x 1C" }, 2.2);
       tl.set('[data-role="namebox"]', { textContent: "C5" }, 2.5);
-      // status bar live-sums the selection as Excel does
+      // status bar shows the selection aggregate atomically (Excel computes
+      // it, it isn't typed) as the .right container fades in.
       tl.to(statusRight, { opacity: 1, duration: 0.2 }, 2.5);
-      ix.type('[data-role="sum"]', "12", { at: 2.55, cps: 22, fade: 0.05 });
+      tl.set('[data-role="avg"]', { textContent: "4" }, 2.5);
+      tl.set('[data-role="cnt"]', { textContent: "3" }, 2.5);
+      tl.set('[data-role="sum"]', { textContent: "12" }, 2.5);
 
-      // 2) select the total cell C8, then type =SUM(C5:C7) in the formula bar.
+      // 2) select the total cell C8, then type =SUM(C5:C7). Mirrored into the
+      //    cell itself (Excel always echoes the live formula in-cell, with a
+      //    blinking caret; the formula bar is a secondary mirror), with the
+      //    referenced range picked out in blue in both places.
       ix.click('[data-cell="C8"]', { at: 3.25, moveDur: 0.85 });
       tl.to(sel, { opacity: 0, duration: 0.2 }, 3.25); // clicking C8 clears the C5:C7 drag-selection
       tl.to(statusRight, { opacity: 0, duration: 0.2 }, 3.25); // and Excel drops the status-bar aggregate when selection collapses to one cell
       ix.show(act, { at: 3.3, dur: 0.18, from: { opacity: 0, scale: 0.92 } });
       tl.set('[data-role="namebox"]', { textContent: "C8" }, 3.3);
       ix.click('[data-role="formula"]', { at: 4.05, moveDur: 0.55 });
-      ix.type('[data-role="formula"]', FORMULA, { at: 4.45, cps: 16 });
-      // 3) commit: the result appears in C8 atomically (formula results don't type in) and the cell flashes.
-      const commitAt = 4.45 + FORMULA.length / 16 + 0.4;
-      tl.set('[data-role="result"]', { textContent: "12" }, commitAt);
-      tl.fromTo('[data-role="result"]', { opacity: 0 }, { opacity: 1, duration: 0.12 }, commitAt);
+
+      const resultEl = stage.querySelector('[data-role="result"]');
+      const c8EchoEl = stage.querySelector('[data-role="c8-echo"]');
+      const c8ValueEl = stage.querySelector('[data-role="c8-value"]');
+
+      tl.set(resultEl, { attr: { class: "cell num result editing" } }, EDIT_AT); // left-align + plain formula styling while live
+      ix.type('[data-role="formula"]', FORMULA, { at: EDIT_AT, cps: TYPE_CPS });
+      colorRef('[data-role="formula"]', FORMULA, "C5:C7", "#2f6fed");
+      // In-cell echo: same char-stagger technique as the formula bar above,
+      // typed into its own child span (c8-echo) rather than resultEl itself.
+      // resultEl also holds a separate, pre-rendered c8-value span ("12")
+      // that stays hidden until commit — see the commit block below for why
+      // this two-span split matters (not just an opacity-timing nuance).
+      ix.type('[data-role="c8-echo"]', FORMULA, { at: EDIT_AT, cps: TYPE_CPS });
+      colorRef(c8EchoEl, FORMULA, "C5:C7", "#2f6fed");
+      // Pin the in-cell echo characters hidden at t=0 (mirrors the
+      // refRange/fnTip/click-ring pinning pattern above): ix.type()'s own
+      // gsap.set(spans, {opacity:0}) only applies once at build time, so on
+      // a seek-driven render the un-driven chars must be re-pinned inside
+      // the timeline itself, or every frame before EDIT_AT shows them at
+      // full opacity — i.e. the finished formula sitting in the cell before
+      // it's typed.
+      tl.set(c8EchoEl.querySelectorAll(".bl-char"), { opacity: 0 }, 0);
+      tl.set(c8ValueEl, { opacity: 0 }, 0);
+      const c8Caret = document.createElement("span");
+      c8Caret.className = "cell-caret";
+      c8EchoEl.appendChild(c8Caret);
+      tl.set(c8Caret, { opacity: 0 }, 0);
+      tl.set(c8Caret, { opacity: 1 }, EDIT_AT);
+      tl.to(c8Caret, { opacity: 0, duration: 0.1, repeat: 3, yoyo: true, ease: "steps(1)" }, EDIT_AT + TYPE_DUR + 0.03);
+      tl.set(c8Caret, { opacity: 0 }, commitAt);
+
+      // SUM() signature tooltip, right after "=SUM(" is entered.
+      ix.show(fnTip, { at: tipAt, dur: 0.2, from: { opacity: 0, y: 4 } });
+      ix.hide(fnTip, { at: commitAt, dur: 0.15 });
+      // Marching-ants reference-range box over C5:C7, live for as long as the
+      // range is cited in the formula.
+      tl.to(refRange, { opacity: 1, duration: 0.15 }, rangeRevealAt);
+      tl.fromTo(refRange, { backgroundPosition: "0px 0px" }, { backgroundPosition: "16px 0px", duration: Math.max(0.2, commitAt - rangeRevealAt), ease: "none" }, rangeRevealAt);
+      tl.to(refRange, { opacity: 0, duration: 0.12 }, commitAt);
+
+      // 3) commit: the result replaces the echoed formula atomically (formula
+      //    results don't type in) and the cell flashes. Swaps opacity between
+      //    the two sibling spans (c8-echo <-> c8-value) rather than
+      //    overwriting resultEl.textContent directly: a destructive
+      //    textContent set discards the .bl-char spans it replaces, and this
+      //    render engine's static-frame verification pass seeks the timeline
+      //    out of order (including past this commit point) before the real
+      //    capture runs — GSAP's reverse-render for a plain string/complex
+      //    property snaps back to a flattened text-only cache, not the
+      //    original per-char markup, so every frame before the commit would
+      //    then show the fully-typed formula as a single un-animatable text
+      //    node. Toggling opacity on two always-present spans is a normal
+      //    numeric tween in both directions, so it survives out-of-order
+      //    seeking.
+      tl.set(c8EchoEl, { opacity: 0 }, commitAt);
+      tl.set(c8ValueEl, { opacity: 1 }, commitAt);
+      tl.set(resultEl, { attr: { class: "cell num result" } }, commitAt); // back to right-aligned result styling
       tl.fromTo(act, { scale: 1 }, { scale: 1.05, yoyo: true, repeat: 1, duration: 0.13, transformOrigin: "50% 50%" }, commitAt);
 
       // The click-ring's fromTo tweens above (via the ix.click/ix.moveTo

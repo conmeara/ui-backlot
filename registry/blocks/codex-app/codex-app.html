@@ -48,6 +48,9 @@
       <symbol id="codex-icon-undo" viewBox="0 0 24 24"><path d="M9 8H5V4"></path><path d="M5 8c2.2-2.6 5.6-3.7 8.8-2.7a7 7 0 1 1-6 12.5"></path></symbol>
       <symbol id="codex-icon-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></symbol>
       <symbol id="codex-icon-commit-node" viewBox="0 0 24 24"><path d="M3 12h6"></path><circle cx="12" cy="12" r="3.4"></circle><path d="M15.4 12h5.6"></path></symbol>
+      <symbol id="codex-icon-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></symbol>
+      <symbol id="codex-icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></symbol>
+      <symbol id="codex-icon-folder-git" viewBox="0 0 24 24"><path d="M18 19a5 5 0 0 1-5-5v8"></path><path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"></path><circle cx="13" cy="12" r="2"></circle><circle cx="20" cy="19" r="2"></circle></symbol>
     </svg>
     <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
       <aside class="codex-sidebar" data-primitive="codex-sidebar">
@@ -58,8 +61,8 @@
             <span class="green"></span>
           </div>
           <button class="sidebar-icon ghost icon-button" type="button" aria-label="Toggle sidebar"><svg><use href="#codex-icon-sidebar"></use></svg></button>
-          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#codex-icon-chevron-left"></use></svg></button>
-          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-chevron-right"></use></svg></button>
+          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#codex-icon-arrow-left"></use></svg></button>
+          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-arrow-right"></use></svg></button>
         </div>
 
         <nav class="primary-nav" aria-label="Codex navigation">
@@ -99,12 +102,12 @@
             <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
             <svg class="mini-action plus-small"><use href="#codex-icon-plus"></use></svg>
           </div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>burger-restaurant</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>fitness-tracker</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codex-voxel</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>codespottr</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>voxel-snake</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder"></use></svg>jump-and-run</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>burger-restaurant</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>fitness-tracker</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codex-voxel</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codespottr</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>voxel-snake</div>
+          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>jump-and-run</div>
         </section>
 
         <section class="sidebar-group chats">
@@ -200,18 +203,18 @@
               <button class="icon-button" type="button"><svg><use href="#codex-icon-chevron-up"></use></svg></button>
             </header>
             <div class="fold-row"><span></span>2 unmodified lines</div>
-            <div class="code-row context"><em>3</em><code>&lt;head&gt;</code></div>
-            <div class="code-row remove"><em>6</em><code>&lt;title&gt;Chuck's Burgers | San Francisco Smash Counter&lt;/title&gt;</code></div>
-            <div class="code-row add"><em>6</em><code>&lt;title&gt;Chuck's Burgers | Late-Night Smash Counter in San Francisco&lt;/title&gt;</code></div>
-            <div class="code-row context"><em>8</em><code>&lt;meta</code></div>
-            <div class="code-row remove"><em>9</em><code>content="Chuck's Burgers is a San Francisco smash counter"</code></div>
-            <div class="code-row add"><em>9</em><code>content="Chuck's Burgers is a modern San Francisco smash counter"</code></div>
-            <div class="code-row context"><em>11</em><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;</code></div>
-            <div class="code-row add"><em>13</em><code>href="https://fonts.googleapis.com/css2?family=Bebas+Neue"</code></div>
-            <div class="code-row context"><em>16</em><code>&lt;/head&gt;</code></div>
+            <div class="code-row context"><em>3</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span></code></div>
+            <div class="code-row remove"><em>6</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span>Chuck's Burgers | San Francisco Smash Counter<span class="tk-punc">&lt;/</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span></code></div>
+            <div class="code-row add"><em>6</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span>Chuck's Burgers | Late-Night Smash Counter in San Francisco<span class="tk-punc">&lt;/</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span></code></div>
+            <div class="code-row context"><em>8</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">meta</span></code></div>
+            <div class="code-row remove"><em>9</em><code><span class="tk-attr">content</span><span class="tk-punc">=</span><span class="tk-str">"Chuck's Burgers is a San Francisco smash counter"</span></code></div>
+            <div class="code-row add"><em>9</em><code><span class="tk-attr">content</span><span class="tk-punc">=</span><span class="tk-str">"Chuck's Burgers is a modern San Francisco smash counter"</span></code></div>
+            <div class="code-row context"><em>11</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">link</span> <span class="tk-attr">rel</span><span class="tk-punc">=</span><span class="tk-str">"preconnect"</span> <span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"https://fonts.googleapis.com"</span> <span class="tk-punc">/&gt;</span></code></div>
+            <div class="code-row add"><em>13</em><code><span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"https://fonts.googleapis.com/css2?family=Bebas+Neue"</span></code></div>
+            <div class="code-row context"><em>16</em><code><span class="tk-punc">&lt;/</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span></code></div>
             <div class="fold-row"><span></span>3 unmodified lines</div>
-            <div class="code-row add"><em>23</em><code>&lt;span&gt;Chuck's &lt;strong&gt;Burgers&lt;/strong&gt;&lt;/span&gt;</code></div>
-            <div class="code-row add"><em>31</em><code>&lt;a href="#story"&gt;About&lt;/a&gt;</code></div>
+            <div class="code-row add"><em>23</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">span</span><span class="tk-punc">&gt;</span>Chuck's <span class="tk-punc">&lt;</span><span class="tk-tag">strong</span><span class="tk-punc">&gt;</span>Burgers<span class="tk-punc">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punc">&gt;</span><span class="tk-punc">&lt;/</span><span class="tk-tag">span</span><span class="tk-punc">&gt;</span></code></div>
+            <div class="code-row add"><em>31</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">a</span> <span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"#story"</span><span class="tk-punc">&gt;</span>About<span class="tk-punc">&lt;/</span><span class="tk-tag">a</span><span class="tk-punc">&gt;</span></code></div>
           </section>
 
           <div class="review-actions">
@@ -911,7 +914,7 @@
       .change-row {
         height: 34px;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto 12px 14px;
+        grid-template-columns: max-content max-content max-content max-content 1fr;
         gap: 5px;
         align-items: center;
         padding: 0 12px 0 14px;
@@ -949,6 +952,7 @@
         border-right: 1.6px solid #6d7480;
         border-bottom: 1.6px solid #6d7480;
         transform: rotate(45deg);
+        justify-self: end;
       }
 
       .composer {
@@ -1383,13 +1387,37 @@
         font-style: normal;
       }
 
+      .code-row.remove em {
+        color: #a15550;
+      }
+
+      .code-row.add em {
+        color: #4e8c5c;
+      }
+
       .code-row code {
         overflow: hidden;
         display: block;
         background: transparent;
-        color: #42505f;
+        color: #1f2328;
         text-overflow: clip;
         white-space: nowrap;
+      }
+
+      .code-row .tk-tag {
+        color: #a14a45;
+      }
+
+      .code-row .tk-attr {
+        color: #3d6aa8;
+      }
+
+      .code-row .tk-punc {
+        color: #6e7781;
+      }
+
+      .code-row .tk-str {
+        color: #4b7a3d;
       }
 
       .code-row.remove {
@@ -1400,14 +1428,6 @@
       .code-row.add {
         background: #e4f4e7;
         box-shadow: inset 3px 0 0 #4caf72;
-      }
-
-      .code-row.remove code {
-        color: #2b2f35;
-      }
-
-      .code-row.add code {
-        color: #2b2f35;
       }
 
       .review-actions {
@@ -1953,8 +1973,32 @@
         color: #8a877c;
       }
 
+      .codex-app-window.theme-dark .code-row.remove em {
+        color: #d99a98;
+      }
+
+      .codex-app-window.theme-dark .code-row.add em {
+        color: #8fcf9c;
+      }
+
       .codex-app-window.theme-dark .code-row code {
         color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .code-row .tk-tag {
+        color: #d99a98;
+      }
+
+      .codex-app-window.theme-dark .code-row .tk-attr {
+        color: #a3cee0;
+      }
+
+      .codex-app-window.theme-dark .code-row .tk-punc {
+        color: #9099a6;
+      }
+
+      .codex-app-window.theme-dark .code-row .tk-str {
+        color: #a8cf9e;
       }
 
       .codex-app-window.theme-dark .code-row.remove {
@@ -1965,11 +2009,6 @@
       .codex-app-window.theme-dark .code-row.add {
         background: rgba(111, 191, 142, 0.16);
         box-shadow: inset 3px 0 0 #6fbf8e;
-      }
-
-      .codex-app-window.theme-dark .code-row.remove code,
-      .codex-app-window.theme-dark .code-row.add code {
-        color: #d8d5cc;
       }
 
       .codex-app-window.theme-dark .review-actions {

@@ -22,6 +22,10 @@
       <path d="M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282z" />
       <path d="m5 8 4 4" />
       </symbol>
+      <symbol id="lucide-rotate-ccw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 9-9a9.75 9.75 0 0 0-6.74 2.74L3 8" />
+      <path d="M3 3v5h5" />
+      </symbol>
     </svg>
     <section class="premiere-window" data-primitive="premiere-video-editor-window" aria-label="Editable Premiere-style video editor surface">
       <header class="premiere-titlebar" data-primitive="premiere-titlebar">
@@ -65,16 +69,12 @@
           </div>
           <div class="monitor-frame source-frame">
             <div class="video-still interview">
-              <div class="monitor-overlay top-left">A005_C037_0925SG_001.mp4</div>
               <div class="subject"></div>
               <div class="background-card"></div>
               <div class="source-timecode">00:01:14:09</div>
             </div>
             <div class="source-waveform" aria-hidden="true">
-              <span style="height: 19px"></span><span style="height: 31px"></span><span style="height: 24px"></span><span style="height: 41px"></span>
-              <span style="height: 18px"></span><span style="height: 34px"></span><span style="height: 28px"></span><span style="height: 45px"></span>
-              <span style="height: 22px"></span><span style="height: 36px"></span><span style="height: 27px"></span><span style="height: 50px"></span>
-              <span style="height: 26px"></span><span style="height: 33px"></span><span style="height: 21px"></span><span style="height: 39px"></span>
+              <span class="scrub-tick"></span>
             </div>
           </div>
           <div class="monitor-controls">
@@ -97,7 +97,6 @@
           </div>
           <div class="monitor-frame program-frame">
             <div class="safe-guides"></div>
-            <div class="monitor-overlay top-left">Editing workspace · 1920 x 1080</div>
             <div class="program-card">
               <div class="program-title">Maple Grove Playground</div>
               <div class="program-subtitle">Community launch video</div>
@@ -120,7 +119,7 @@
 
         <aside class="audio-meters" data-primitive="premiere-audio-meters" aria-label="Audio meters">
           <div class="meter-title">Audio</div>
-          <div class="meter-scale"><span>0</span><span>-6</span><span>-12</span><span>-24</span><span>-48</span></div>
+          <div class="meter-scale"><span>0</span><span>-6</span><span>-12</span><span>-18</span><span>-24</span><span>-36</span><span>-48</span></div>
           <div class="meter-columns">
             <div class="meter"><span class="level l"></span></div>
             <div class="meter"><span class="level r"></span></div>
@@ -222,15 +221,15 @@
               </div>
               <div class="track-row video">
                 <div class="clip graphic selected" style="left: 48%; width: 17%">
-                  <span class="clip-fx">fx</span><span class="clip-handle left"></span><strong>funding_card.png</strong><em>Motion · Scale keyframes</em><span class="clip-handle right"></span>
+                  <span class="clip-fx">fx</span><span class="clip-handle left"></span><strong>funding_card.png</strong><span class="clip-handle right"></span>
                 </div>
               </div>
               <div class="track-row video">
-                <div class="clip title" style="left: 35%; width: 20%"><span class="clip-fx">T</span><strong>Lower third</strong><em>Graphics · 2 layers</em></div>
+                <div class="clip title" style="left: 35%; width: 20%"><span class="clip-fx">T</span><strong>Lower third</strong></div>
               </div>
               <div class="track-row video">
-                <div class="clip blue" style="left: 4%; width: 26%"><span class="clip-fx">fx</span><strong>playground_broll.mp4</strong><em>V · Warp Stabilizer</em><span class="transition right"></span></div>
-                <div class="clip teal" style="left: 32%; width: 22%"><span class="clip-fx">fx</span><strong>interview_selects.mov</strong><em>V · Lumetri</em></div>
+                <div class="clip blue" style="left: 4%; width: 26%"><span class="clip-fx">fx</span><strong>playground_broll.mp4</strong><span class="transition right"></span></div>
+                <div class="clip teal" style="left: 32%; width: 22%"><span class="clip-fx">fx</span><strong>interview_selects.mov</strong></div>
                 <div class="clip amber" style="left: 56%; width: 28%"><strong>volunteer_day.mov</strong><em>V</em><span class="transition left"></span></div>
               </div>
               <div class="track-row audio">
@@ -261,13 +260,13 @@
             <div class="property-heading"><strong>funding_card.png</strong><i></i></div>
             <div class="disclosure open">Transform</div>
             <div class="mini-icons"><span></span><span></span></div>
-            <div class="prop-line keyframed"><span>Position</span><strong>320.0</strong><strong>180.0</strong><i></i></div>
-            <div class="prop-line keyframed"><span>Anchor point</span><strong>320.0</strong><strong>180.0</strong><i></i></div>
-            <div class="prop-line"><span>Scale</span><strong>100.0%</strong><strong></strong><i></i></div>
-            <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i></i></div>
-            <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i></i></div>
+            <div class="prop-line keyframed"><span>Position</span><strong>320.0</strong><strong>180.0</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line keyframed"><span>Anchor point</span><strong>320.0</strong><strong>180.0</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line"><span>Scale</span><strong>100.0%</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="disclosure open audio">Audio</div>
-            <div class="prop-line volume"><span>Volume</span><strong>0.0 dB</strong><i></i></div>
+            <div class="prop-line volume"><span>Volume</span><strong>0.0 dB</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="audio-slider"><span></span></div>
             <button type="button" class="adjust-speed">Adjust speed...</button>
           </section>
@@ -296,7 +295,7 @@
         --orange: #c18436;
         --pink: #ff5ca8;
         --yellow: #e5cc5d;
-        --playhead-red: #e5493f;
+        --playhead-red: #4a9de0;
         width: 1440px;
         height: 900px;
         overflow: visible;
@@ -634,7 +633,7 @@
 
       .source-frame {
         display: grid;
-        grid-template-rows: 1fr 46px;
+        grid-template-rows: 1fr 20px;
       }
 
       .video-still {
@@ -694,22 +693,30 @@
       }
 
       .source-waveform {
+        position: relative;
         display: flex;
         align-items: center;
-        gap: 3px;
         padding: 0 10px;
         border-top: 1px solid #292929;
-        background:
-          linear-gradient(90deg, rgba(143, 124, 255, 0.12), transparent 44%),
-          #0e0f14;
+        background: #1b1b1b;
       }
 
-      .source-waveform span {
-        flex: 1;
-        max-width: 13px;
-        border-radius: 3px;
-        background: #6fa2ff;
-        opacity: 0.72;
+      .source-waveform::before {
+        content: "";
+        position: relative;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        background: #2a2a2a;
+      }
+
+      .source-waveform .scrub-tick {
+        position: absolute;
+        left: calc(10px + 55% - 1.5px);
+        width: 3px;
+        height: 12px;
+        border-radius: 1px;
+        background: #4a9de0;
       }
 
       .program-frame {
@@ -1492,8 +1499,8 @@
 
       .playhead {
         left: 52%;
-        border-left: 1px solid var(--playhead-red);
-        box-shadow: 0 0 0 1px rgba(229, 73, 63, 0.18);
+        border-left: 1px solid #4a9de0;
+        box-shadow: 0 0 0 1px rgba(74, 157, 224, 0.20);
       }
 
       .playhead span {
@@ -1502,7 +1509,7 @@
         left: -5px;
         width: 10px;
         height: 10px;
-        background: var(--playhead-red);
+        background: #4a9de0;
         clip-path: polygon(50% 0, 100% 44%, 100% 100%, 0 100%, 0 44%);
       }
 
@@ -1568,13 +1575,10 @@
         position: absolute;
         right: 5px;
         bottom: 3px;
-        top: auto;
         text-transform: lowercase;
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.7);
         font-size: 8px;
         font-weight: 700;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        line-height: 1.2;
       }
 
       .transition {
@@ -1731,11 +1735,16 @@
       }
 
       .prop-line i {
+        display: inline-flex;
         width: 13px;
         height: 13px;
-        border: 1.5px solid #a6a6a6;
-        border-radius: 50%;
         opacity: 0.85;
+      }
+
+      .prop-line i .backlot-icon {
+        width: 12px;
+        height: 12px;
+        color: #9a9a9a;
       }
 
       .prop-line.volume {

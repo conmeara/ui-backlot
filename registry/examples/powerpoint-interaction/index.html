@@ -5,7 +5,7 @@
     <title>PowerPoint — Interaction Demo</title>
   </head>
   <body>
-    <div id="powerpoint-interaction" data-composition-id="powerpoint-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9">
+    <div id="powerpoint-interaction" data-composition-id="powerpoint-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6">
       <section class="pp-stage" data-primitive="powerpoint-interaction" aria-label="PowerPoint editing a slide title">
         <div class="pp-window">
           <div class="pp-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Launch Deck.pptx</span></div>
@@ -19,7 +19,7 @@
             <div class="pp-canvas">
               <div class="slide">
                 <div class="title-box" data-role="titlebox">
-                  <h1 class="slide-title" data-role="title"></h1>
+                  <h1 class="slide-title"><span class="title-ph" data-role="ph">Click to add title</span><span class="type-reveal" data-role="title-reveal"></span><span class="type-caret" data-role="title-caret"></span></h1>
                 </div>
                 <p class="slide-sub" data-role="sub"></p>
               </div>
@@ -55,7 +55,12 @@
       .title-box { position:relative; }
       .title-box::before { content:""; position:absolute; inset:-14px -18px; border:2px solid transparent; border-radius:6px; }
       .title-box.editing::before { border-color:rgba(255,255,255,0.55); border-style:dashed; }
-      .slide-title { font-size:38px; font-weight:700; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; }
+      .slide-title { font-size:38px; font-weight:700; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; white-space:nowrap; }
+      .title-ph { color:rgba(255,255,255,0.4); }
+      /* Text reveals by clipping width (overflow hidden), so the caret sibling
+         after it rides the leading edge -- a real typewriter, seek-safe. */
+      .type-reveal { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; }
+      .type-caret { display:inline-block; width:2px; height:0.9em; margin-left:2px; background:#fff; border-radius:1px; vertical-align:-0.08em; opacity:0; }
       .slide-sub { font-size:17px; color:#c7cfdb; margin:14px 0 0; }
       .pp-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
       .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
@@ -70,28 +75,46 @@
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".pp-stage");
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+      gsap.set(".demo-click-ring", { opacity: 0 });
 
       const titleBox = stage.querySelector('[data-role="titlebox"]');
+      const reveal = stage.querySelector('[data-role="title-reveal"]');
+      const caret = stage.querySelector('[data-role="title-caret"]');
       const TITLE = "Q1 Budget Review";
-      const SUB = "Regional performance and outlook";
+      const typeStart = 1.5, typeCps = 16;
 
       // 1) click the title box -> editing outline appears.
+      tl.set(".demo-click-ring", { opacity: 0 }, 0);
       ix.click('[data-role="titlebox"]', { at: 0.8, moveDur: 0.9 });
-      tl.set(titleBox, { attr: { class: "title-box editing" } }, 1.25);
-      // 2) type the slide title (and mirror into the thumbnail).
-      ix.type('[data-role="title"]', TITLE, { at: 1.5, cps: 16 });
-      const subAt = 1.5 + TITLE.length / 16 + 0.5;
-      ix.type('[data-role="sub"]', SUB, { at: subAt, cps: 34 });
+      tl.set(titleBox, { attr: { class: "title-box editing" } }, 0.9);
+      tl.set('[data-role="ph"]', { display: "none" }, 0.9);
+      tl.set(".demo-cursor", { background: 'url("assets/cursors/text-select.svg") top left / contain no-repeat' }, 0.9);
+
+      // 2) type the slide title via a width-clip reveal so the caret sibling
+      //    rides the leading edge -- hard-edge characters (no per-char fade)
+      //    with a real blinking I-beam, matching the app's own typing.
+      reveal.textContent = TITLE;
+      const fullW = reveal.getBoundingClientRect().width;
+      const typeDur = TITLE.length / typeCps;
+      gsap.set(reveal, { width: 0 });
+      gsap.set(caret, { opacity: 0 });
+      tl.to(reveal, { width: fullW, duration: typeDur, ease: `steps(${TITLE.length})` }, typeStart);
+      tl.to(caret, { opacity: 1, duration: 0.1 }, 0.9);                                      // caret shows on focus
+      tl.to(caret, { opacity: 0, duration: 0.53, repeat: 10, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.04); // idle blink
+
       // thumbnail title bar grows in as the title is typed.
-      tl.fromTo('[data-role="mini"]', { width: "0%" }, { width: "62%", duration: TITLE.length / 16, ease: "none" }, 1.5);
-      // 3) click away -> editing outline clears.
-      const doneAt = subAt + SUB.length / 34 + 0.4;
-      tl.set(titleBox, { attr: { class: "title-box" } }, doneAt);
+      tl.fromTo('[data-role="mini"]', { width: "0%" }, { width: "62%", duration: typeDur, ease: "none" }, typeStart);
+
+      // 3) a brief look-it-over pause (caret blinks visibly) then autosave
+      //    fires while still editing -- box stays open, caret keeps blinking,
+      //    status flips to reflect the save. No click-away, so nothing
+      //    resets the editing state out from under the still-blinking caret.
+      const doneAt = typeStart + typeDur + 2.5;
       tl.set('[data-role="status"]', { textContent: "Saved" }, doneAt);
 
       window.__timelines["powerpoint-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(8.3).pause();
+      if (cap === "hero") tl.seek(5.5).pause();
     </script>
   </body>
 </html>

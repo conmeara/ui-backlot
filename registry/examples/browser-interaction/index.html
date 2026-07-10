@@ -5,7 +5,7 @@
     <title>Browser — Interaction Demo</title>
   </head>
   <body>
-    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9">
+    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.2">
       <section class="br-stage" data-primitive="browser-interaction" aria-label="Browser typing a URL and loading a page">
         <div class="br-window">
           <div class="br-tabs">
@@ -14,7 +14,14 @@
           </div>
           <div class="br-toolbar">
             <span class="nav">‹</span><span class="nav dim">›</span><span class="nav">⟳</span>
-            <div class="omnibox"><span class="lock">🔒</span><span class="url" data-role="omnibox"></span></div>
+            <div class="omnibox">
+              <span class="lock">🔍</span><span class="url" data-role="omnibox"></span>
+              <div class="br-suggest" data-role="suggest">
+                <span class="br-suggest-ic">🔍</span>
+                <span class="br-suggest-txt" data-role="suggest-txt"></span>
+                <span class="br-suggest-suf">— visit site</span>
+              </div>
+            </div>
             <span class="avatar">CB</span>
           </div>
           <div class="br-loadbar" data-role="loadbar"></div>
@@ -51,9 +58,13 @@
       .plus { color:#5f6368; padding:6px 10px; font-size:16px; }
       .br-toolbar { display:flex; align-items:center; gap:10px; padding:0 14px; background:#f6f7f9; }
       .nav { color:#5f6368; font-size:18px; width:26px; text-align:center; } .nav.dim { color:#bdc1c6; }
-      .omnibox { flex:1; display:flex; align-items:center; gap:8px; height:32px; background:#fff; border:1px solid #dfe1e5; border-radius:16px; padding:0 14px; font-size:13.5px; color:#202124; }
+      .omnibox { position:relative; flex:1; display:flex; align-items:center; gap:8px; height:32px; background:#fff; border:1px solid #dfe1e5; border-radius:16px; padding:0 14px; font-size:13.5px; color:#202124; z-index:1; }
       .lock { font-size:11px; filter:grayscale(1); opacity:.7; }
       .url { font-family:-apple-system,sans-serif; }
+      .br-suggest { position:absolute; left:-1px; right:-1px; top:calc(100% + 6px); z-index:40; display:flex; align-items:center; gap:9px; height:34px; padding:0 14px; background:#fff; border:1px solid #e2e5e9; border-radius:10px; box-shadow:0 8px 20px rgba(28,30,38,0.16); opacity:0; }
+      .br-suggest-ic { font-size:11px; filter:grayscale(1); opacity:.6; }
+      .br-suggest-txt { font-size:13px; color:#202124; }
+      .br-suggest-suf { font-size:12.5px; color:#80868b; }
       .avatar { width:26px; height:26px; border-radius:50%; background:#c96442; color:#fff; font-size:11px; display:grid; place-items:center; }
       .br-loadbar { height:3px; background:#1a73e8; width:0%; }
       .br-page { position:relative; background:#fff; overflow:hidden; }
@@ -81,26 +92,52 @@
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
       const URLTXT = "launch-metrics.internal/q2-dashboard";
+      const TYPE_AT = 1.1;
+      const TYPE_CPS = 22;
       const tabLabel = stage.querySelector(".tab span:nth-child(2)");
+      const cursorEl = stage.querySelector(".demo-cursor");
+      const suggestTxt = stage.querySelector('[data-role="suggest-txt"]');
       gsap.set('[data-role="page"]', { opacity: 0 });
 
       // 1) click the omnibox, type the URL.
       ix.click('[data-role="omnibox"]', { at: 0.7, moveDur: 0.8 });
-      ix.type('[data-role="omnibox"]', URLTXT, { at: 1.1, cps: 26 });
+      tl.set('.demo-click-ring', { opacity: 0 }, 0);
+      // cursor drifts off the text into the page body right after the click
+      // lands, clearing the typed URL / lock glyph for the rest of the beat.
+      tl.to(cursorEl, { left: 560, top: 320, duration: 0.5, ease: "power2.inOut" }, 1.15);
+      ix.type('[data-role="omnibox"]', URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
+
+      // focus response: the omnibox snaps to a blue focus ring the instant it
+      // takes focus, and holds it while typing.
+      tl.to('.omnibox', { borderColor: "#1a73e8", boxShadow: "0 1px 6px rgba(26,115,232,0.28)", duration: 0.15 }, 0.85);
+
+      // autocomplete suggestion panel: fades in with focus, echoes the typed
+      // value as it's revealed, and hides again once the load starts.
+      const typeDur = URLTXT.length / TYPE_CPS;
+      ix.show('[data-role="suggest"]', { at: 0.85, dur: 0.12, from: { opacity: 0 } });
+      tl.set(suggestTxt, { textContent: "launch-me" }, TYPE_AT + 0.05 * typeDur);
+      tl.set(suggestTxt, { textContent: "launch-metrics.int" }, TYPE_AT + 0.15 * typeDur);
+      tl.set(suggestTxt, { textContent: URLTXT }, TYPE_AT + 0.35 * typeDur);
 
       // 2) "enter" -> loading bar sweeps, blank page hides, content fades in.
-      const enterAt = 1.1 + URLTXT.length / 26 + 0.35;
+      const enterAt = TYPE_AT + URLTXT.length / TYPE_CPS + 0.35;
+      ix.hide('[data-role="suggest"]', { at: enterAt, dur: 0.1 });
       tl.fromTo('[data-role="loadbar"]', { width: "0%" }, { width: "70%", duration: 0.5, ease: "power1.out" }, enterAt);
       tl.to('[data-role="loadbar"]', { width: "100%", duration: 0.35, ease: "power1.in" }, enterAt + 0.5);
       tl.to('[data-role="loadbar"]', { opacity: 0, duration: 0.2 }, enterAt + 0.85);
       tl.to('[data-role="blank"]', { opacity: 0, duration: 0.25 }, enterAt + 0.85);
-      ix.show('[data-role="page"]', { at: enterAt + 0.9, dur: 0.4, from: { opacity: 0, y: 10 } });
-      // tab label updates to the site title.
+      ix.show('[data-role="page"]', { at: enterAt + 0.9, dur: 0.2, from: { opacity: 0 } });
+      // tab label + favicon update to the loaded site's identity.
       tl.set(tabLabel, { textContent: "Q2 Launch Dashboard" }, enterAt + 0.9);
+      tl.set('.tab .fav', { background: "linear-gradient(135deg,#2f9e6e,#177a4e)" }, enterAt + 0.9);
+      // lock replaces the search glyph once the secure page has loaded; the
+      // omnibox focus ring releases on load too.
+      tl.set('.lock', { textContent: "🔒" }, enterAt + 0.9);
+      tl.to('.omnibox', { borderColor: "#dfe1e5", boxShadow: "none", duration: 0.2 }, enterAt);
 
       window.__timelines["browser-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(8.2).pause();
+      if (cap === "hero") tl.seek(4.7).pause();
     </script>
   </body>
 </html>

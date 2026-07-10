@@ -12,11 +12,16 @@
     "width": 1280,
     "height": 800
   },
-  "duration": 9,
+  "duration": 6,
   "files": [
     {
       "path": "assets/cursors/normal-select.svg",
       "target": "assets/cursors/normal-select.svg",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/cursors/text-select.svg",
+      "target": "assets/cursors/text-select.svg",
       "type": "hyperframes:asset"
     },
     {

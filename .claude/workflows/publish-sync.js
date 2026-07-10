@@ -117,6 +117,7 @@ if (FULL || (mediaTargets && mediaTargets.length) || detect.quickstartAffected) 
     (FULL
       ? 'Scope: ALL interaction examples that have a GIF in the README demo table (ls examples/*-interaction.html + examples/mac-multi-app-demo.html; match each to its docs/media/*.gif).\n'
       : 'Scope: EXACTLY these demos:\n' + JSON.stringify(mediaTargets, null, 1) + '\n') +
+    'SHIPPED-ONLY RULE: this is a REFRESH — only re-render demos whose GIF already exists in docs/media/. Never create a first GIF for a demo that has none: shipping a new demo is interaction-push\'s judged decision (its motion judge must pass it), not a sync side effect. Skip GIF-less demos and list them in notes.\n' +
     'For each: render mp4 (npx hyperframes render --composition <example> --quality draft --low-memory-mode --output renders/<basename>.mp4), then convert to GIF with the repo recipe:\n' +
     'ffmpeg -y -v error -i <mp4> -vf "fps=50/3,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4" <gif>\n' +
     'Verify each GIF with ffprobe (exists, same dimensions as mp4, under 25MB — if larger, drop fps to 12 and retry). Overwrite the existing docs/media GIF in place so README links keep working.\n' +
@@ -134,7 +135,7 @@ phase('Docs')
 const docs = await agent(
   'Docs-sync pass in ' + ROOT + ' (work from that root). The catalog/registry/pages were just regenerated' + (media ? ' and these media files were refreshed: ' + JSON.stringify((media.refreshed || []).slice(0, 20)) : '') + '.\n' +
   'Fix what is stale AND keep the public story current — but keep every diff small and reviewable:\n' +
-  '1. README demo table ("App interactions"): every row\'s GIF exists in docs/media/ and every shipped GIF has a row. Fix broken image paths; do not reorder rows.\n' +
+  '1. README demo table ("App interactions"): every row\'s GIF exists in docs/media/. Fix broken image paths; do not reorder rows. NEVER add a row for a demo that has no row yet — new rows are added by interaction-push\'s Ship phase after its motion judge passes the demo, not by this sync. Report GIF-less or row-less demos in notes instead.\n' +
   '2. Stale COUNTS/CLAIMS in README.md and CONTRIBUTING.md: surface counts, wallpaper counts, family lists. Compute truth from surfaces/registry.json (node -e with JSON.parse) and docs/catalog.md, then correct any number that drifted.\n' +
   '3. docs/catalog.md is generated — never hand-edit it; if it looks wrong, report in notes instead.\n' +
   '4. CAPABILITY FRESHNESS (proactive): compare what README.md / CONTRIBUTING.md advertise against what the repo actually offers now — read each .claude/workflows/*.js meta block (name/description/whenToUse) and skim docs/ for guides the entry docs never mention. Where something user-relevant is missing or stale, add a concise mention in the right home: consumer-facing capability → README; contributor loop/workflow → CONTRIBUTING.md (AGENTS.md is agent-maintained, leave it). Match the surrounding tone and brevity.\n' +

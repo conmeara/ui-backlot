@@ -151,12 +151,12 @@
             <div class="side-row"><span class="side-dot"></span>Launch assets<span class="side-count">18</span></div>
             <div class="side-row"><span class="side-dot"></span>Review notes<span class="side-count">12</span></div>
             <div class="side-label">Views</div>
-            <div class="side-row"><span class="side-dot"></span>Grid view<span class="side-count">live</span></div>
-            <div class="side-row"><span class="side-dot"></span>Timeline<span class="side-count">6w</span></div>
+            <div class="side-row"><svg class="backlot-icon side-view-icon" aria-hidden="true"><use href="#lucide-layout-grid"/></svg>Grid view<span class="side-count">live</span></div>
+            <div class="side-row"><span class="side-view-icon"><span class="tile-icon timeline"></span></span>Timeline<span class="side-count">6w</span></div>
             <div class="side-row"><span class="side-dot"></span>Approvals<span class="side-count">5</span></div>
             <div class="side-label">Interface</div>
             <div class="side-row"><span class="side-dot"></span>Count element<span class="side-count">1</span></div>
-            <div class="side-row"><span class="side-dot"></span>Chart element<span class="side-count">2</span></div>
+            <div class="side-row"><span class="side-view-icon"><span class="tile-icon chart"></span></span>Chart element<span class="side-count">2</span></div>
             <div class="side-footer">
               <strong>Claude workspace</strong>
               Connected to local notes, a CSV export, and a deck outline.
@@ -1045,6 +1045,25 @@
         opacity: 1;
       }
 
+      .side-view-icon {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+        color: #7d838d;
+      }
+
+      span.side-view-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      span.side-view-icon .tile-icon {
+        transform: scale(0.6);
+        flex: 0 0 auto;
+      }
+
       .side-footer {
         margin-top: auto;
         padding: 12px;
@@ -1225,7 +1244,7 @@
 
       .metric-delta {
         margin-top: 5px;
-        color: #2f8e5c;
+        color: #7b838d;
         font-size: 11px;
       }
 
@@ -1501,8 +1520,8 @@
 
       .edit-badge {
         position: absolute;
-        left: 468px;
-        top: 358px;
+        left: 300px;
+        top: 700px;
         z-index: 5;
         display: flex;
         align-items: center;
@@ -1520,8 +1539,8 @@
 
       .cursor {
         position: absolute;
-        left: 886px;
-        top: 628px;
+        left: 560px;
+        top: 472px;
         z-index: 6;
         width: 32px;
         height: 32px;

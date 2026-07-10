@@ -50,7 +50,6 @@
         <div class="quick-access" aria-label="Quick access toolbar">
           <span class="qa-save"></span><span class="qa-undo"></span><span class="qa-redo"></span>
         </div>
-        <span class="sync-status">Saved</span>
         <span class="autosave-toggle"><span></span>AutoSave</span>
         <span class="presentation-name">Launch Deck.pptx</span>
         <div class="titlebar-search">Search in Presentation</div>
@@ -108,8 +107,7 @@
           <div class="slide-thumb active">
             <div class="mini dark">
               <i class="m-title">Q1 Budget Review</i>
-              <i class="m-subtitle"></i>
-              <div class="m-bars ghost"><u></u><u></u><u></u><u></u></div>
+              <i class="m-subtitle">Review and analysis by region for Q1 2024</i>
             </div>
           </div>
           <div class="thumb-label">2</div>
@@ -149,7 +147,7 @@
             <div class="slide-title"><span class="before-title">Q1 Budget Review</span><span class="after-title">Q1 Budget Analysis</span></div>
             <div class="slide-subtitle">Review and analysis by region for Q1 2024</div>
           </div>
-          <div class="speaker-notes"><strong>Notes</strong><span>Thank everyone for last years numbers. Introduce the regional forecast changes.</span></div>
+          <div class="speaker-notes"><strong>Notes</strong><span>Thank everyone for last year's numbers. Introduce the regional forecast changes.</span></div>
           <div class="slide-status">
             <span>Slide 1 of 4</span>
             <span>English (US)</span>
@@ -164,7 +162,7 @@
           <div class="pane-title"><strong>Comments</strong><button>New</button><i class="pane-close"></i></div>
           <div class="comments-card active-thread">
             <span class="comment-dot">C</span>
-            <p><b>Claude</b><small>Just now</small>Updated the opening title to Q1 Budget Analysis and tightened the subtitle.<em>Resolve</em></p>
+            <p><b>Claude</b><small>Just now</small>Renaming the opening title to Q1 Budget Analysis and tightening the subtitle — take a look.<em>Resolve</em></p>
           </div>
           <div class="comments-card">
             <span class="comment-dot user">A</span>
@@ -326,16 +324,6 @@
 
       .qa-redo {
         transform: scaleX(-1);
-      }
-
-      .sync-status {
-        height: 20px;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        color: #66707a;
-        font-size: 10px;
-        font-weight: 560;
       }
 
       .autosave-toggle {
@@ -1564,7 +1552,6 @@
         font-weight: 600;
       }
 
-      .sync-status,
       .autosave-toggle {
         height: 18px;
         gap: 4px;
@@ -1652,7 +1639,6 @@
 
       .ribbon-tabs .contextual {
         color: #8f2f1f;
-        box-shadow: inset 0 -2px 0 var(--powerpoint);
       }
 
       .powerpoint-ribbon {
@@ -1796,6 +1782,11 @@
         background: #fff;
       }
 
+      .tool-toggle {
+        border: 0;
+        background: transparent;
+      }
+
       .ribbon-mini,
       .split-mini {
         min-width: 34px;
@@ -1909,12 +1900,18 @@
 
       .m-subtitle {
         position: absolute;
-        left: 34%;
-        right: 34%;
-        top: 33px;
-        height: 2px;
-        border-radius: 1px;
-        background: rgba(255, 255, 255, 0.55);
+        left: 4%;
+        right: 4%;
+        top: 25px;
+        color: rgba(255, 255, 255, 0.65);
+        font-family: var(--font-office-ui);
+        font-size: 3px;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .m-head {

@@ -5,7 +5,7 @@
     <title>Claude Code — Interaction Demo</title>
   </head>
   <body>
-    <div id="claude-code-interaction" data-composition-id="claude-code-interaction" data-width="1280" data-height="800" data-start="0" data-duration="8.3">
+    <div id="claude-code-interaction" data-composition-id="claude-code-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9.6">
       <section class="cc-stage" data-primitive="claude-code-interaction" aria-label="Claude Code CLI typing a command and streaming output">
         <div class="cc-window">
           <div class="cc-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="cc-title">ui-backlot — claude — 120x34</span></div>
@@ -16,8 +16,25 @@
               <div class="line dim">cwd: ~/Projects/ui-backlot</div>
             </div>
             <div class="cc-prompt"><span class="caret">&gt;</span> <span class="cmd" data-role="cmd"></span></div>
-            <div class="cc-out" data-role="out"></div>
-            <div class="cc-status" data-role="status"></div>
+            <div class="cc-out" data-role="out">
+              <div class="cc-tool">
+                <div class="cc-tool-label" data-role="tool1-label"></div>
+                <div class="cc-tool-result" data-role="tool1-result"></div>
+              </div>
+              <div class="cc-tool">
+                <div class="cc-tool-label" data-role="tool2-label"></div>
+                <div class="cc-tool-result" data-role="tool2-result"></div>
+              </div>
+              <div class="cc-tool cc-tool-last">
+                <div class="cc-tool-label" data-role="tool3-label"></div>
+                <div class="cc-tool-result" data-role="tool3-result"></div>
+              </div>
+              <div class="cc-summary" data-role="summary"></div>
+            </div>
+            <div class="cc-status-row">
+              <span class="cc-working" data-role="working"><span class="cc-working-glyph">✳</span> Working… · <span data-role="tokens">2.1k</span> tokens</span>
+              <span class="cc-status" data-role="status"></span>
+            </div>
           </div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -38,9 +55,18 @@
       .cc-splash { border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px 14px; margin-bottom:18px; width:max-content; }
       .line.dim { color:#9aa3b1; } .line b { color:#e7ebf1; font-weight:600; } .mut { color:#5f6a79; } .line b.mark { color:#d97757; }
       .cc-prompt { color:#e7ebf1; margin-bottom:14px; } .caret { color:#d97757; }
-      .cc-out { color:#c8cdd6; white-space:pre-wrap; }
+      .cc-prompt.sent .caret { opacity:0; }
+      .cc-prompt.sent .cmd { color:#9aa3b1; }
+      .cc-out { color:#c8cdd6; }
       .cc-out .k { color:#d97757; } .cc-out .g { color:#6ad08f; } .cc-out .y { color:#e0b45e; }
-      .cc-status { color:#5f6a79; margin-top:12px; }
+      .cc-tool-label, .cc-tool-result, .cc-summary { white-space:pre-wrap; }
+      .cc-tool { margin-bottom:10px; }
+      .cc-tool-last { margin-bottom:16px; }
+      .cc-status-row { position:relative; height:20px; margin-top:12px; white-space:nowrap; }
+      .cc-working, .cc-status { position:absolute; left:0; top:0; }
+      .cc-working { color:#5f6a79; }
+      .cc-working-glyph { display:inline-block; color:#d97757; }
+      .cc-status { color:#5f6a79; }
       .demo-cursor { position:absolute; left:640px; top:560px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(217,119,87,0.7); border-radius:50%; opacity:0; }
     </style>
@@ -54,30 +80,75 @@
       const stage = document.querySelector(".cc-stage");
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
+      // Click-ring parks off-canvas at rest so it never reads as a stray
+      // glitch near the origin before its first use (it defaults to 0,0).
+      gsap.set('.demo-click-ring', { autoAlpha: 0, left: -100, top: -100 });
+      // Working indicator hidden to start.
+      gsap.set('[data-role="working"]', { opacity: 0 });
+
       const CMD = "update the launch page to match the Q2 deck";
-      const OUT =
-        "\n⏺ Read(compositions/launch-page.html)\n" +
-        "  ⎿ 148 lines\n" +
-        "⏺ Read(reference/deck/q2-deck.pdf)\n" +
-        "  ⎿ 12 pages\n\n" +
-        "⏺ Update(launch-page.html)\n" +
-        "  ⎿ Updated launch-page.html with 3 additions and 1 removal\n\n" +
+      const TOOL1_LABEL = "⏺ Read(compositions/launch-page.html)";
+      const TOOL1_RESULT = "  ⎿ 148 lines";
+      const TOOL2_LABEL = "⏺ Read(reference/deck/q2-deck.pdf)";
+      const TOOL2_RESULT = "  ⎿ 12 pages";
+      const TOOL3_LABEL = "⏺ Update(launch-page.html)";
+      const TOOL3_RESULT = "  ⎿ Updated launch-page.html with 3 additions and 1 removal";
+      const SUMMARY =
         "Matched the hero headline and Q2 revenue figure to the deck, recolored\n" +
         "the CTA to the deck accent, and refreshed the metrics row.";
 
-      // 1) type the command.
+      // 1) type the command, then commit it into a sent-prompt treatment.
       ix.click('[data-role="cmd"]', { at: 0.6, moveDur: 0.7 });
       ix.type('[data-role="cmd"]', CMD, { at: 1.0, cps: 20 });
+      const cmdEndAt = 1.0 + CMD.length / 20;
+      const submitAt = cmdEndAt + 0.15;
+      tl.set('.cc-prompt', { attr: { class: "cc-prompt sent" } }, submitAt);
 
-      // 2) stream the terminal output, then a status line.
-      const outAt = 1.0 + CMD.length / 20 + 0.5;
-      ix.stream('[data-role="out"]', OUT, { at: outAt, cps: 90 });
-      const doneAt = outAt + OUT.length / 90 + 0.3;
+      // 2) working indicator: an animated glyph + token-count line, persistent
+      // for the whole tool-use + streaming stretch, cleared when Done lands.
+      const toolsStart = submitAt + 0.35;
+      ix.show('[data-role="working"]', { at: submitAt, dur: 0.2 });
+
+      // 3) tool blocks snap in whole (label, then its result ~0.35s later,
+      // as an execution beat), staggered ~0.4s tool-to-tool - reads as the
+      // agent invoking, running, and getting a result back, not typing.
+      ix.type('[data-role="tool1-label"]', TOOL1_LABEL, { at: toolsStart, cps: 400 });
+      ix.type('[data-role="tool1-result"]', TOOL1_RESULT, { at: toolsStart + 0.35, cps: 400 });
+      ix.type('[data-role="tool2-label"]', TOOL2_LABEL, { at: toolsStart + 0.4, cps: 400 });
+      ix.type('[data-role="tool2-result"]', TOOL2_RESULT, { at: toolsStart + 0.75, cps: 400 });
+      ix.type('[data-role="tool3-label"]', TOOL3_LABEL, { at: toolsStart + 0.8, cps: 400 });
+      ix.type('[data-role="tool3-result"]', TOOL3_RESULT, { at: toolsStart + 1.15, cps: 400 });
+
+      // 4) the prose summary streams like AI output (slower, softer) once the
+      // last tool result is back.
+      const summaryAt = toolsStart + 1.15 + 0.3;
+      ix.stream('[data-role="summary"]', SUMMARY, { at: summaryAt, cps: 45 });
+
+      const doneAt = summaryAt + SUMMARY.length / 45 + 0.3;
+      ix.hide('[data-role="working"]', { at: doneAt, dur: 0.15 });
       ix.type('[data-role="status"]', "✔ Done · 8.4s", { at: doneAt, cps: 40, fade: 0.05 });
+
+      // Spin the working glyph continuously across its visible stretch -
+      // a plain rotation tween, so it stays a pure function of time on seek.
+      tl.to('.cc-working-glyph', { rotation: "+=1800", duration: doneAt - submitAt, ease: "none" }, submitAt);
+
+      // Token counter ticks live across the same stretch (2.1k -> 8.4k),
+      // landing consistent with the "Done · 8.4s" beat - a plain numeric
+      // tween driven by onUpdate, still a pure function of timeline time.
+      const tokenCounter = { v: 2.1 };
+      tl.to(tokenCounter, {
+        v: 8.4,
+        duration: doneAt - submitAt,
+        ease: "none",
+        onUpdate: () => {
+          const el = stage.querySelector('[data-role="tokens"]');
+          if (el) el.textContent = tokenCounter.v.toFixed(1) + "k";
+        },
+      }, submitAt);
 
       window.__timelines["claude-code-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(10.4).pause();
+      if (cap === "hero") tl.seek(9.5).pause();
     </script>
   </body>
 </html>
