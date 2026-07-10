@@ -39,6 +39,10 @@ the Claude app up from the dock, then opens Excel on top."*</sub>
 <td><b>Claude Code CLI</b><br><img src="docs/media/claude-code-interaction.gif" alt="Claude Code CLI interaction"></td>
 <td><b>Figma</b><br><img src="docs/media/figma-interaction.gif" alt="Figma interaction"></td>
 </tr>
+<tr>
+<td><b>Premiere</b><br><img src="docs/media/premiere-interaction.gif" alt="Premiere interaction"><br><sub>Click a clip in the timeline to select it, then drag the playhead across it — the timecode ticks as it moves.</sub></td>
+<td><b>Calendar</b><br><img src="docs/media/calendar-interaction.gif" alt="Calendar interaction"><br><sub>Click an empty slot in the week view — a new event block appears and its title types in.</sub></td>
+</tr>
 </table>
 
 ## Use the surfaces in your own project
