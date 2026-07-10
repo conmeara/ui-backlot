@@ -50,7 +50,7 @@ Compare-page conventions:
 | Score vs ground truth | `npm run fidelity:score -- --label <n> --ours <capture.json> --theirs <tokens.json>` |
 | Render the quickstart | `npm run example:quickstart:render` |
 | Review pages | `npm run review` |
-| Regenerate the hosted catalog (docs/index.html + thumbs) | `npm run pages:catalog` |
+| Regenerate the hosted catalog + llms.txt (docs/index.html, thumbs, wallpaper thumbs) | `npm run pages:catalog` |
 
 After editing `surfaces/registry.json` or any published composition, run BOTH
 `catalog:generate` and `registry:hf:generate` — the committed `registry/` is

@@ -40,8 +40,8 @@ the Claude app up from the dock, then opens Excel on top."*</sub>
 <td><b>Figma</b><br><img src="docs/media/figma-interaction.gif" alt="Figma interaction"></td>
 </tr>
 <tr>
-<td><b>Premiere</b><br><img src="docs/media/premiere-interaction.gif" alt="Premiere interaction"><br><sub>Click a clip in the timeline to select it, then drag the playhead across it — the timecode ticks as it moves.</sub></td>
-<td><b>Calendar</b><br><img src="docs/media/calendar-interaction.gif" alt="Calendar interaction"><br><sub>Click an empty slot in the week view — a new event block appears and its title types in.</sub></td>
+<td><b>Premiere</b><br><img src="docs/media/premiere-interaction.gif" alt="Premiere interaction"></td>
+<td><b>Calendar</b><br><img src="docs/media/calendar-interaction.gif" alt="Calendar interaction"></td>
 </tr>
 </table>
 
@@ -89,7 +89,9 @@ npx degit conmeara/ui-backlot/registry/examples/mac-multi-app my-video
 cd my-video && npx hyperframes render --composition index.html --quality draft
 ```
 
-Agents: [`llms.txt`](llms.txt) is the machine-readable version of this section.
+Agents: [`llms.txt`](llms.txt) is the machine-readable version of this section
+plus the full inventory — every block, variant, and wallpaper id (generated,
+never stale: `npm run pages:catalog`).
 
 ## Run this repo
 
@@ -110,9 +112,9 @@ npm run review                # gallery + compare pages on :4173
 
 ## Find a surface
 
-- **[Hosted catalog](https://conmeara.github.io/ui-backlot/)** — browse by
-  application with thumbnails, variants, demo GIFs, and copyable install
-  commands (regenerate with `npm run pages:catalog`).
+- **[Hosted catalog](https://conmeara.github.io/ui-backlot/)** — click into an
+  application to see every component, variant, dark mode, wallpaper, and demo
+  GIF, with copyable install commands (regenerate with `npm run pages:catalog`).
 - [surfaces/registry.json](surfaces/registry.json) — the authoritative
   inventory (source, import selector, capture command, provenance);
   [docs/catalog.md](docs/catalog.md) is its generated, readable form.

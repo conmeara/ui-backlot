@@ -8,25 +8,117 @@
 
 1. In your project's `hyperframes.json`, set:
    `"registry": "https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry"`
-2. Browse the machine-readable catalog (name, type, title, description, tags per item):
-   https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry/registry.json
-3. Install a surface and its dependencies (fonts, foundation CSS, runtime, composed parts install transitively):
+2. Install a surface and its dependencies (fonts, foundation CSS, runtime, composed parts install transitively):
    `npx hyperframes add <name>` — e.g. `npx hyperframes add excel-workbook`
-4. Compose scenes yourself by stacking blocks — e.g. a "Claude working in Excel on a Mac"
+3. Compose scenes yourself by stacking blocks — e.g. a "Claude working in Excel on a Mac"
    scene = `mac-menu-bar` + `mac-dock` + `excel-workbook` + `claude-chat-pane`, each mounted
    in your host composition (see the mac-multi-app example for the pattern).
-5. Paste the printed snippets into your host composition and render:
-   `npx hyperframes render --quality draft`
+4. Paste the printed snippets into your host composition, give each pasted host `<div>` a
+   unique `data-composition-id`, and render: `npx hyperframes render --quality draft`
 
-Complete starter scenes (the CLI's `init --example` only reads the official registry, so scaffold these with degit):
+Complete starter scenes (scaffold with degit; the CLI's `init --example` only reads the official registry):
 `npx degit conmeara/ui-backlot/registry/examples/mac-multi-app my-video && cd my-video && npx hyperframes render --composition index.html --quality draft`
+Available examples: browser-interaction, claude-chat-interaction, claude-code-interaction, codex-interaction, cowork-interaction, excel-interaction, finder-interaction, mac-multi-app, powerpoint-interaction, quickstart, word-interaction.
 
 Dark variants: blocks tagged `dark-mode-ready` support `class="theme-dark"` on the composition root.
+
+## Full inventory by application
+
+Every installable block, its size, its variants, and how to parameterize it.
+Entries marked (part) are internal components that install transitively with their parent block.
+
+### Claude (12 blocks, 3 scripted demos)
+
+- `claude-agent-rail` — Claude Agent Context Rail, 380×860. Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.
+- `claude-attachment-draft` — Claude Attached Folder Draft, 1180×780. Pre-submit scenes where a user has attached a local folder or files before Claude starts working.
+- `claude-chat-pane` — Claude Chat Pane, 1180×900. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.
+- `claude-cinematic` — Claude Cinematic Conversation, 1920×1080. The one zoomed cinematic Claude conversation for close-up video beats: ?beat=prompt (user asks + thinking loader), ?beat=reply (large serif answer + composer), ?beat=complete (done copy). Copy overridable via data-copy slots; add class theme-dark for dark.
+  Registry variants: `claude-cinematic` (Default), `claude-cinematic-dark` (Dark), `claude-cinematic-prompt` (Prompt Beat), `claude-cinematic-complete` (Complete Beat).
+- `claude-code-terminal-session` — Claude Code Terminal Session, 660×760. Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell.
+- `claude-composed-app` — Claude Canonical Desktop Shell, 1440×900. Canonical parameterized Claude desktop shell: data-page="chat|cowork|code" (default cowork), data-sidebar/data-rail on|off toggles, .theme-dark for dark; one file replaces the stacked claude-desktop pages while keeping sidebar, thread, composer, and rail independently editable atoms. Capture variants: capture:claude-composed-app{,-chat,-code,-dark,-chat-dark}.
+- `claude-composer` — Claude Working Composer, 900×220. Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell.
+- `claude-home` — Claude New Chat Home, 980×760. Opening prompt scenes before a working Claude thread exists.
+- `claude-response-mark` — Claude Response Mark, 128×128. Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry.
+- `claude-sidebar` — Claude Sidebar, 360×840. Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.
+- `claude-thread-core` — Claude Working Thread Core, 980×840. Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window.
+  Registry variants: `claude-thread-core` (Default), `claude-thread-core-dark` (dark).
+- `claude-tool-result` — Claude Completed Tool Result, 1180×780. Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.
+  Scripted demos (compositions under `examples/`): `claude-chat-interaction`, `claude-code-interaction`, `cowork-interaction`.
+
+### Codex (3 blocks, 1 scripted demo)
+
+- `codex-app` — Codex Desktop Workbench, 1280×820. Desktop Codex demos that need a light-mode current app shell with real-product-like sidebar navigation, active thread, model/permission composer, toolbar controls, Git diff review pane, and local-work metadata, without importing Terminal, Claude, Finder, browser, Office, Figma, or Premiere surfaces.
+  Registry variants: `codex-app` (Default), `codex-app-dark` (dark).
+- `codex-terminal` — Codex Terminal, 1120×840. Command-line Codex demos, test runs, diffs, and agent execution status scenes.
+- `codex-thread-core` — Codex Conversation Core, 980×840. Zoomed-in cuts on the Codex working-thread body (user turn, assistant reply, command-output card, composer) without surrounding app chrome.
+  Registry variants: `codex-thread-core` (Default), `codex-thread-core-dark` (dark).
+  Scripted demos (compositions under `examples/`): `codex-interaction`.
+
+### Excel (1 block, 1 scripted demo)
+
+- `excel-workbook` — Excel-style Workbook, 1280×760. Spreadsheet analysis, formula editing, chart updates, and workbook automation scenes.
+  Scripted demos (compositions under `examples/`): `excel-interaction`.
+
+### Word (1 block, 1 scripted demo)
+
+- `word-editor` — Word-style Document Editor, 1280×760. Document editing, review, comments, tracked-change, and memo workflow scenes.
+  Scripted demos (compositions under `examples/`): `word-interaction`.
+
+### PowerPoint (1 block, 1 scripted demo)
+
+- `presentation-editor` — PowerPoint-like Presentation Editor, 836×438. Deck-editing demos and main Claude-to-PowerPoint workflow scenes.
+  Scripted demos (compositions under `examples/`): `powerpoint-interaction`.
+
+### Figma (1 block, 1 scripted demo)
+
+- `figma-editor` — Figma-style Design Editor, 1440×900. Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes.
+  Registry variants: `figma-editor` (Default), `figma-editor-dark` (dark), `figma-onboarding-editor` (Onboarding).
+  Scripted demos (compositions under `examples/`): `figma-interaction`.
+
+### Premiere (1 block, 1 scripted demo)
+
+- `premiere-editor` — Premiere-style Video Editor, 1440×900. Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes.
+  Scripted demos (compositions under `examples/`): `premiere-interaction`.
+
+### Browser (1 block, 1 scripted demo)
+
+- `browser-app` — Editable Browser App, 1712×944. Browser-backed demos such as SaaS tools, internal dashboards, Airtable-like scenes, or web research workflows.
+  Registry variants: `browser-app` (Default), `browser-app-dark` (dark).
+  Scripted demos (compositions under `examples/`): `browser-interaction`.
+
+### Calendar (1 block, 1 scripted demo)
+
+- `calendar-app` — macOS Calendar App, 1920×1080. Scheduling, coordination, and calendar-driven workflow scenes.
+  Registry variants: `calendar-app` (Default), `calendar-app-dark` (dark).
+  Scripted demos (compositions under `examples/`): `calendar-interaction`.
+
+### macOS (4 blocks, 2 scripted demos, 141 wallpapers)
+
+- `finder-window` — Finder Launch Deck Window, 920×436. File/folder handoff scenes that need Finder without a full desktop shell.
+  Registry variants: `finder-window` (Default), `finder-window-dark` (dark).
+- `mac-menu-bar` — macOS Menu Bar, 1920×30. Wrapper compositions that need Mac desktop context without duplicating menu bar HTML/CSS or importing a full desktop lab.
+  Registry variants: `mac-menu-bar` (Default), `mac-menu-bar-dark` (dark).
+- `mac-dock` — macOS Dock, 760×104. Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html).
+- `mac-wallpaper` — macOS Wallpaper Catalog, 1920×1080. The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora).
+  Scripted demos (compositions under `examples/`): `finder-interaction`, `mac-multi-app-demo`.
+
+#### Wallpapers (`mac-wallpaper` block — set `data-wallpaper="<id>"`, default `sonoma`)
+- macOS lineage (33): cheetah, jaguar, panther, tiger, leopard, snow-leopard, lion, mountain-lion, mavericks, yosemite, el-capitan, sierra, high-sierra, mojave-day, mojave-night, catalina-day, catalina-night, big-sur-day, big-sur-night, big-sur-color-day, big-sur-color-night, monterey, monterey-dark, ventura, ventura-dark, sonoma, sonoma-dark, sonoma-horizon, sequoia, sequoia-dark, sequoia-sunrise, tahoe-light, tahoe-dark
+- Mac colors (12): radial-sky-blue, mac-blue, mac-pink, mac-purple, mac-yellow, imac-blue, imac-green, imac-orange, imac-pink, imac-purple, imac-silver, imac-yellow
+- Raycast (34): raycast-autumnal-peach, raycast-blob-red, raycast-blob, raycast-blossom-2, raycast-blue-distortion-1, raycast-blue-distortion-2, raycast-blushing-fire, raycast-bright-rain, raycast-chromatic-dark-1, raycast-chromatic-dark-2, raycast-chromatic-light-1, raycast-chromatic-light-2, raycast-cube-mono, raycast-cube-prod, raycast-floss, raycast-glass-rainbow, raycast-glaze-1, raycast-glaze-2, raycast-good-vibes, raycast-loupe-mono-dark, raycast-loupe-mono-light, raycast-loupe, raycast-mono-dark-distortion-1, raycast-mono-dark-distortion-2, raycast-mono-light-distortion-1, raycast-mono-light-distortion-2, raycast-moonrise, raycast-ray-of-lights, raycast-raycast-logo, raycast-red-distortion-1, raycast-red-distortion-2, raycast-red-distortion-3, raycast-red-distortion-4, raycast-rose-thorn
+- Metallic (7): hello-blue, hello-green, hello-orange, hello-pink, hello-purple, hello-silver, hello-yellow
+- Mesh (15): mesh-sunset, mesh-aurora, mesh-ocean, mesh-candy, mesh-peach, mesh-mint, mesh-grape, mesh-ember, mesh-arctic, mesh-dusk, mesh-coral, mesh-forest, mesh-slate, mesh-rose, midnight-mesh
+- Gradient (12): solar, twilight, ocean, ember, grad-sky, grad-sunrise, grad-lavender, grad-emerald, grad-indigo, grad-flamingo, grad-mono, grad-mint
+- Spotlight (6): spot-blue, spot-violet, spot-warm, spot-green, spot-teal, spot-mono
+- Pattern (10): dot-grid, dot-grid-warm, blueprint, grid-fine, graph-paper, diagonal-stripes, crosshatch, carbon, topographic, graphite
+- Solid (12): solid-black, solid-space-gray, solid-silver, solid-blue, solid-teal, solid-cyan, solid-turquoise, solid-red-orange, solid-gold, solid-plum, solid-dusty-rose, solid-stone
 
 ## Key files
 
 - registry/registry.json — machine-readable item index (blocks, components, examples)
 - surfaces/registry.json — full surface inventory with provenance and capture metadata
+- surfaces/wallpapers.json — full wallpaper inventory (ids, categories, provenance)
 - docs/catalog.md — human-readable surface catalog
+- https://conmeara.github.io/ui-backlot/ — browsable catalog (this file's visual twin)
 - AGENTS.md / CLAUDE.md — how agents work inside this repo
 - runtime/backlot-interactions.js — scriptable UI actions (typing, clicking, streaming) for demo timelines

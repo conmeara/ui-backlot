@@ -74,6 +74,9 @@ export const DEMO_FAMILY = {
   "word-interaction": "word",
   "powerpoint-interaction": "powerpoint",
   "browser-interaction": "browser",
+  "figma-interaction": "figma",
+  "premiere-interaction": "premiere",
+  "calendar-interaction": "calendar",
   "finder-interaction": "macos",
   "mac-multi-app-demo": "macos",
 };
