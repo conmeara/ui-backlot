@@ -95,10 +95,11 @@
         <div class="file-context">
           <div class="file-context-toprow">
             <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
+            <svg class="backlot-icon" style="width:12px;height:12px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
             <span class="file-context-spacer" aria-hidden="true"></span>
             <button class="panel-icon-button collapse" type="button" aria-label="Toggle UI"></button>
           </div>
-          <strong>Playground Page</strong>
+          <strong>Playground Page<svg class="backlot-icon" style="width:12px;height:12px;color:var(--figma-muted);margin-left:2px;vertical-align:middle" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></strong>
           <span>UI Backlot</span>
         </div>
         <div class="panel-tabs">
@@ -107,13 +108,12 @@
           <svg class="backlot-icon panel-search-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
         </div>
         <div class="page-section">
-          <div class="panel-heading">Pages</div>
+          <div class="panel-heading" style="display:flex;align-items:center;justify-content:space-between">Pages<svg class="backlot-icon" style="width:14px;height:14px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-plus"/></svg></div>
           <div class="page-row active"><span class="page-dot"></span><span>Landing page</span></div>
           <div class="page-row"><span class="page-dot"></span><span>Components</span></div>
         </div>
         <div class="layers-title">
           <div class="panel-heading">Layers</div>
-          <div class="layer-actions" aria-hidden="true"><span></span><span></span></div>
         </div>
         <div class="layer-tree">
           <div class="layer-row frame selected"><span class="layer-caret open"></span><span class="layer-icon frame"></span><span>Desktop - Home</span><span class="layer-state visible"></span></div>
@@ -126,12 +126,6 @@
           <div class="layer-row frame"><span class="layer-caret"></span><span class="layer-icon section"></span><span>Prototype flows</span><span class="layer-state"></span></div>
           <div class="layer-row frame"><span class="layer-caret"></span><span class="layer-icon frame"></span><span>Design notes</span><span class="layer-state"></span></div>
         </div>
-        <section class="asset-preview" aria-label="Assets preview">
-          <div class="panel-heading">Assets</div>
-          <div class="asset-search">Search components</div>
-          <div class="asset-row"><span class="asset-glyph component"></span><strong>Button / Active</strong></div>
-          <div class="asset-row"><span class="asset-glyph frame"></span><strong>Header / Desktop</strong></div>
-        </section>
       </aside>
 
       <main class="canvas" data-primitive="figma-canvas">
@@ -777,22 +771,6 @@
         align-items: center;
         justify-content: space-between;
         padding-right: 12px;
-      }
-
-      .layer-actions {
-        display: flex;
-        gap: 8px;
-      }
-
-      .layer-actions span {
-        width: 13px;
-        height: 13px;
-        border: 1.5px solid var(--figma-soft);
-        border-radius: 3px;
-      }
-
-      .layer-actions span:last-child {
-        border-radius: 50%;
       }
 
       .page-section .panel-heading {
@@ -1993,8 +1971,10 @@
         border: 0;
         border-radius: 0;
         background:
-          linear-gradient(#444 0 0) 0 6px / 16px 2px no-repeat,
-          linear-gradient(#444 0 0) 6px 0 / 2px 16px no-repeat;
+          linear-gradient(#444 0 0) 0 4px / 16px 1.6px no-repeat,
+          linear-gradient(#444 0 0) 0 10px / 16px 1.6px no-repeat,
+          linear-gradient(#444 0 0) 4px 0 / 1.6px 16px no-repeat,
+          linear-gradient(#444 0 0) 10px 0 / 1.6px 16px no-repeat;
       }
 
       .layer-icon.component {
