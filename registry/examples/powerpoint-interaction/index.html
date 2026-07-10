@@ -20,6 +20,12 @@
               <div class="slide">
                 <div class="title-box" data-role="titlebox">
                   <h1 class="slide-title"><span class="title-ph" data-role="ph">Click to add title</span><span class="type-reveal" data-role="title-reveal"></span><span class="type-caret" data-role="title-caret"></span></h1>
+                  <div class="box-handles" data-role="handles">
+                    <span class="handle handle-nw"></span><span class="handle handle-n"></span><span class="handle handle-ne"></span>
+                    <span class="handle handle-e"></span><span class="handle handle-se"></span><span class="handle handle-s"></span>
+                    <span class="handle handle-sw"></span><span class="handle handle-w"></span>
+                    <span class="handle-rotate-stem"></span><span class="handle handle-rotate"></span>
+                  </div>
                 </div>
                 <p class="slide-sub" data-role="sub"></p>
               </div>
@@ -55,6 +61,14 @@
       .title-box { position:relative; }
       .title-box::before { content:""; position:absolute; inset:-14px -18px; border:2px solid transparent; border-radius:6px; }
       .title-box.editing::before { border-color:rgba(255,255,255,0.55); border-style:dashed; }
+      .box-handles { display:none; position:absolute; inset:-14px -18px; }
+      .title-box.editing .box-handles { display:block; }
+      .handle { position:absolute; width:8px; height:8px; margin:-4px; background:#fff; border:1px solid #3a3a3a; box-sizing:border-box; }
+      .handle-nw { left:0; top:0; } .handle-n { left:50%; top:0; } .handle-ne { left:100%; top:0; }
+      .handle-e { left:100%; top:50%; } .handle-se { left:100%; top:100%; } .handle-s { left:50%; top:100%; }
+      .handle-sw { left:0; top:100%; } .handle-w { left:0; top:50%; }
+      .handle-rotate-stem { position:absolute; left:50%; top:-20px; width:1px; height:20px; margin-left:-0.5px; background:rgba(255,255,255,0.7); }
+      .handle-rotate { position:absolute; left:50%; top:-24px; width:9px; height:9px; margin:-4.5px; border-radius:50%; background:#fff; border:1px solid #3a3a3a; }
       .slide-title { font-size:38px; font-weight:700; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; white-space:nowrap; }
       .title-ph { color:rgba(255,255,255,0.4); }
       /* Text reveals by clipping width (overflow hidden), so the caret sibling
@@ -109,8 +123,9 @@
       //    fires while still editing -- box stays open, caret keeps blinking,
       //    status flips to reflect the save. No click-away, so nothing
       //    resets the editing state out from under the still-blinking caret.
-      const doneAt = typeStart + typeDur + 2.5;
-      tl.set('[data-role="status"]', { textContent: "Saved" }, doneAt);
+      const saveAt = typeStart + typeDur + 0.8;
+      tl.set('[data-role="status"]', { textContent: "Saving…" }, saveAt);
+      tl.set('[data-role="status"]', { textContent: "Saved" }, saveAt + 0.5);
 
       window.__timelines["powerpoint-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
