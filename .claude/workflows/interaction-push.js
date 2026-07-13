@@ -229,6 +229,17 @@ function renderCmds(d) {
 
 function authorStage(d) {
   if (d.status !== 'new') return Promise.resolve({ authored: false, file: d.example, actions: [], durationSeconds: null, notes: 'existing demo — skipped authoring' })
+  // A throw (schema failure, terminal API error) must not drop the demo from
+  // the pipeline — same failure class that silently dropped excel from the
+  // 2026-07-13 fidelity-push. Degrade; renderStage will report render-failed
+  // if nothing usable was authored.
+  return authorStageInner(d).catch(err => {
+    log('author:' + d.id + ' failed (' + (err && err.message ? err.message : err) + ') — demo continues unauthored')
+    return { authored: false, file: d.example, actions: [], durationSeconds: null, notes: 'author agent failed: ' + (err && err.message ? err.message : err) }
+  })
+}
+
+function authorStageInner(d) {
   return agent(
     'Author a new interaction demo in ' + ROOT + ' (work from that root): ' + d.example + '\n\n' +
     'STORY (the canonical ~10s demo for this surface): ' + d.story + '\n' +
@@ -249,7 +260,13 @@ function renderStage(prev, d) {
     'Then: ls ' + c.frames + ' | wc -l for frameCount, and confirm the mp4 exists and is non-trivial (>50KB). renderOk=false if the render errored or produced no frames — put the exact error in notes.\n' +
     'Return: renderOk, videoPath=' + c.video + ', framesDir=' + c.frames + ', frameCount, notes.',
     { label: 'render:' + d.id, phase: 'Render', model: 'haiku', effort: 'low', schema: RENDER_SCHEMA }
-  ).then(r => ({ author: prev, render: r }))
+  ).then(
+    r => ({ author: prev, render: r }),
+    err => {
+      log('render:' + d.id + ' failed (' + (err && err.message ? err.message : err) + ') — demo reports render-failed')
+      return { author: prev, render: { renderOk: false, videoPath: '', framesDir: '', frameCount: 0, notes: 'render agent failed: ' + (err && err.message ? err.message : err) } }
+    }
+  )
 }
 
 function motionBlock(d) {
@@ -282,6 +299,18 @@ function judgePrompt(d, framesDir, round) {
 const MAX_REPAIR_ROUNDS = 3
 
 async function judgeFixLoop(prev, d) {
+  // Degrade on any throw: a failed judge/fix agent must surface as a
+  // 'judge-failed' demo in the summary (and stay off the ship list), never
+  // silently vanish from the pipeline.
+  try {
+    return await judgeFixLoopInner(prev, d)
+  } catch (err) {
+    log('judge:' + d.id + ' failed (' + (err && err.message ? err.message : err) + ') — recording judge-failed')
+    return { demo: d.id, status: d.status, verdict: 'judge-failed', author: prev ? prev.author : null, rounds: [], judge: { summary: 'judge/fix stage threw: ' + (err && err.message ? err.message : err) } }
+  }
+}
+
+async function judgeFixLoopInner(prev, d) {
   if (!prev || !prev.render) return { demo: d.id, status: d.status, verdict: 'render-failed', author: prev ? prev.author : null, rounds: [], judge: null }
   if (!prev.render.renderOk) return { demo: d.id, status: d.status, verdict: 'render-failed', author: prev.author, rounds: [], judge: { summary: prev.render.notes } }
   const c = renderCmds(d)

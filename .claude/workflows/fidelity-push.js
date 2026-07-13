@@ -701,7 +701,9 @@ const passLog = {
   })),
 }
 await agent(
-  'Mechanical file write. Write EXACTLY this JSON (pretty-printed) to ' + SCRATCH + '/pass-log.json (mkdir -p the directory first), then re-read the file and confirm it parses with node -e. Return applied=[{file:"pass-log.json",change:"written"}], skipped=[], capturesVerified=true, notes=byte count.\n' + JSON.stringify(passLog),
+  'Mechanical file MERGE-write. Target: ' + SCRATCH + '/pass-log.json (mkdir -p the directory first).\n' +
+  'If the target already exists and parses as JSON with a families array: REPLACE its entries whose family matches one in the new data below, KEEP its other family entries, and append any new families — a scoped run must not clobber the earlier full-run log the compare page renders. If it is missing or unparseable, write the new data as-is.\n' +
+  'Write the merged JSON pretty-printed, then re-read the file and confirm it parses with node -e. Return applied=[{file:"pass-log.json",change:"merged"}], skipped=[], capturesVerified=true, notes=family count + byte count.\nNEW DATA:\n' + JSON.stringify(passLog),
   { label: 'pass-log', phase: 'Gate', model: 'haiku', effort: 'low', schema: FIX_SCHEMA }
 )
 
