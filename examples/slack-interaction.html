@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Slack — Interaction Demo</title>
+  </head>
+  <body>
+    <div id="slack-interaction" data-composition-id="slack-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.4">
+      <section class="sk-stage" data-primitive="slack-interaction" aria-label="Slack (real component) with a scripted channel switch, message compose, and send">
+        <div class="sk-backdrop" aria-hidden="true"></div>
+        <div class="sk-frame component-frame"
+             data-primitive="slack-app-window"
+             data-backlot-mount-src="../compositions/slack-app.html"
+             data-backlot-mount-selector="#slack-app-surface"></div>
+        <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
+        <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <style>
+      @import url("../styles/backlot-foundation.css");
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#0b0910; }
+      #slack-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
+      #slack-interaction * { box-sizing:border-box; }
+      .sk-stage { position:relative; width:1280px; height:800px; overflow:hidden; }
+      .sk-backdrop { position:absolute; inset:0; background:
+        radial-gradient(120% 120% at 15% 10%, rgba(97,31,105,0.55) 0%, rgba(97,31,105,0) 40%),
+        radial-gradient(120% 120% at 85% 90%, rgba(74,21,75,0.5) 0%, rgba(74,21,75,0) 42%),
+        linear-gradient(160deg,#1c0e1f 0%,#120a15 100%); }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* slack-app-surface is a fixed 1440x900; 1280/1440 = 800/900 = 8/9 exactly,
+         so scaling by 8/9 fills the 1280x800 stage edge-to-edge with zero
+         letterboxing and no cropping — mounting the real composition beats an
+         inline reduction here (unlike a 1560x980-vs-1280x800 non-integer fit). */
+      .sk-frame { left:0; top:0; width:1280px; height:800px; }
+      .sk-frame > [data-backlot-mounted-component] { transform: scale(0.888889); }
+      .demo-cursor { position:absolute; left:1100px; top:650px; z-index:90; width:24px; height:24px;
+        background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(74,21,75,0.75); border-radius:50%; opacity:0; }
+
+      /* ---- interaction-only additions (runtime DOM built after mount) ---- */
+      .channel-view { position:absolute; inset:0; padding:48px 20px 14px; background:#fff; overflow:hidden; }
+      .composer-placeholder { position:absolute; left:14px; top:10px; pointer-events:none; }
+      .composer-caret { display:inline-block; width:1px; height:1.05em; margin-left:1px; vertical-align:text-bottom; background:#1d1c1d; opacity:0; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../runtime/backlot-component-loader.js"></script>
+    <script src="../runtime/backlot-interactions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const stage = document.querySelector(".sk-stage");
+
+      // Register the timeline SYNCHRONOUSLY with a full-duration hold, exactly
+      // like finder-interaction: slack-app.html also mounts asynchronously via
+      // the component loader, so the renderer must never probe a zero-duration
+      // composition while that mount is still in flight.
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: 6.4 }, 0); // no-op hold -> duration is always 6.4
+      window.__timelines["slack-interaction"] = tl;
+
+      // Park the click-ring hidden and off-stage at t=0 (see finder/excel
+      // interactions for why: click()'s fromTo ring pulse otherwise leaks its
+      // "from" state onto every pre-click frame on seek).
+      tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
+
+      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+        const rows = Array.from(stage.querySelectorAll(".sb-row"));
+        // Row text is "#project-updates" / "#roadmap" (the "#" sb-hash span
+        // concatenates directly onto the channel-name span, no space).
+        const projectRow = rows.find((r) => r.textContent.trim().endsWith("project-updates"));
+        const roadmapRow = rows.find((r) => r.textContent.trim().endsWith("roadmap"));
+        const chTitle = stage.querySelector(".ch-title");
+        const chMembersCount = stage.querySelector(".ch-members span");
+        const messageList = stage.querySelector(".message-list");
+        const composerInput = stage.querySelector(".composer-input");
+        const sendBtn = stage.querySelector(".send-btn");
+
+        if (!projectRow || !roadmapRow || !chTitle || !messageList || !composerInput || !sendBtn) return;
+
+        // --- Rebuild the channel-name text as a dedicated span so its swap is
+        // a plain textContent set (GSAP's generic property setter — the same
+        // technique excel-interaction uses for the name-box / status figures),
+        // never a bare-text-node hack. Same glyphs, same visual result.
+        chTitle.innerHTML = '<span class="sb-hash">#</span><span class="ch-title-name">project-updates</span>';
+        const chTitleName = chTitle.querySelector(".ch-title-name");
+
+        // --- Split the composer into an empty typing target + a separate,
+        // absolutely-positioned placeholder carrying the original greeked
+        // text (rule: text targets start EMPTY; the placeholder is a distinct
+        // hide()-able element, positioned so it never shares the inline flow
+        // with the typed text mid-fade).
+        composerInput.style.position = "relative";
+        composerInput.innerHTML = "";
+        const placeholder = document.createElement("span");
+        placeholder.className = "composer-placeholder";
+        placeholder.innerHTML = 'Message <span class="sb-hash">#</span><span class="composer-channel-name">project-updates</span>';
+        const typed = document.createElement("span");
+        typed.className = "composer-typed";
+        typed.style.color = "var(--ink)";
+        const caret = document.createElement("span");
+        caret.className = "composer-caret";
+        composerInput.append(placeholder, typed, caret);
+        const composerChannelName = placeholder.querySelector(".composer-channel-name");
+
+        // --- Two full-bleed channel panes, swapped on click, so the switch
+        // shows genuinely different (synthetic) content, not just a relabel.
+        const channelA = document.createElement("div");
+        channelA.className = "channel-view channel-a";
+        while (messageList.firstChild) channelA.appendChild(messageList.firstChild);
+        const channelB = document.createElement("div");
+        channelB.className = "channel-view channel-b";
+        channelB.innerHTML = `
+          <div class="date-divider"><span>Today<svg><use href="#slack-icon-chevron-down"></use></svg></span></div>
+          <div class="msg-group">
+            <span class="msg-avatar" data-tone="b">SK</span>
+            <div class="msg-body-col">
+              <div class="msg-meta"><strong>Sam Kim</strong><time>9:02 AM</time></div>
+              <p class="msg-text">Pushed the new roadmap doc, Q3 milestones are up.</p>
+            </div>
+          </div>
+          <div class="msg-group">
+            <span class="msg-avatar" data-tone="a">AR</span>
+            <div class="msg-body-col">
+              <div class="msg-meta"><strong>Alex Rivera</strong><time>9:14 AM</time></div>
+              <p class="msg-text">Nice, I'll flag the ones that slipped.</p>
+            </div>
+          </div>
+        `;
+        const sentGroup = document.createElement("div");
+        sentGroup.className = "msg-group";
+        sentGroup.innerHTML = `
+          <span class="msg-avatar" style="background:#8f4cd6">JL</span>
+          <div class="msg-body-col">
+            <div class="msg-meta"><strong>Jamie Lin</strong><time>9:18 AM</time></div>
+            <p class="msg-text"></p>
+          </div>
+        `;
+        channelB.appendChild(sentGroup);
+        messageList.append(channelA, channelB);
+        const sentText = sentGroup.querySelector(".msg-text");
+        const MESSAGE_TEXT = "Synced with the team, Q3 plan looks solid";
+        // Set once at build time: a posted message appears already-formed
+        // (it doesn't retype itself) — only sentGroup's reveal is animated.
+        sentText.textContent = MESSAGE_TEXT;
+
+        // --- Rest-frame pins (t=0): lock in the pre-interaction baseline so
+        // an out-of-order seek (HyperFrames' static-frame verification pass)
+        // can't lose it — same defensive pattern as finder/excel-interaction.
+        tl.set(projectRow, { attr: { class: "sb-row indent selected" } }, 0);
+        tl.set(roadmapRow, { attr: { class: "sb-row indent unread" } }, 0);
+        tl.set(sendBtn, { attr: { class: "send-btn" } }, 0);
+        tl.set(channelA, { opacity: 1 }, 0);
+        tl.set(channelB, { opacity: 0 }, 0);
+        tl.set(sentGroup, { opacity: 0 }, 0);
+        tl.set(caret, { opacity: 0 }, 0);
+
+        // 1) Click "roadmap" in the sidebar — the channel switch: the
+        //    selected-row highlight moves, the header + composer placeholder
+        //    relabel, and the message list swaps to roadmap's synthetic thread.
+        const SWITCH_AT = 1.0;
+        ix.click(roadmapRow, { at: SWITCH_AT, moveDur: 0.8, press: false });
+        tl.set(projectRow, { attr: { class: "sb-row indent" } }, SWITCH_AT);
+        tl.set(roadmapRow, { attr: { class: "sb-row indent selected" } }, SWITCH_AT);
+        tl.set(chTitleName, { textContent: "roadmap" }, SWITCH_AT);
+        tl.set(composerChannelName, { textContent: "roadmap" }, SWITCH_AT);
+        if (chMembersCount) tl.set(chMembersCount, { textContent: "8" }, SWITCH_AT);
+        tl.set(channelA, { opacity: 0 }, SWITCH_AT);
+        tl.set(channelB, { opacity: 1 }, SWITCH_AT);
+
+        // 2) Click into the composer to focus it, then a short human pause
+        //    (reading the new channel) before typing.
+        const FOCUS_AT = 1.7;
+        ix.click(composerInput, { at: FOCUS_AT, moveDur: 0.6, press: false });
+
+        // 3) Type the message. The placeholder fades right as typing starts;
+        //    the send button lights up green once the first character is
+        //    actually visible.
+        const TYPE_AT = 2.2;
+        const TYPE_CPS = 20;
+        const CHAR_INTERVAL = 1 / TYPE_CPS;
+        // Placeholder hide must fully finish before the send button goes
+        // green (dur shortened from 0.12 -> 0.08 so it completes at
+        // TYPE_AT + 0.03, ahead of the one-char-interval green trigger
+        // below at TYPE_AT + 0.05).
+        ix.hide(placeholder, { at: TYPE_AT - 0.05, dur: 0.08 });
+
+        // --- Build the typed-text reveal ourselves (not via ix.type): an
+        // opacity-only reveal leaves unrevealed .bl-char spans transparent
+        // but still laid out at full width, so the trailing caret sits at
+        // the END of the whole message from frame one instead of hugging
+        // the last visible glyph. Unrevealed chars must take ZERO layout
+        // width. Each span starts display:none and flips to display:inline
+        // via a paired tl.set (baseline at t=0, flip at its own reveal time)
+        // — the same pin-at-0/flip-later pattern used for the row classes
+        // and channel swap above, so it stays a pure, seek-safe function of
+        // timeline time in both directions.
+        const typedChars = [];
+        for (let i = 0; i < MESSAGE_TEXT.length; i++) {
+          const ch = MESSAGE_TEXT[i];
+          const s = document.createElement("span");
+          s.className = "bl-char";
+          if (ch === " ") s.style.whiteSpace = "pre";
+          s.textContent = ch;
+          typed.appendChild(s);
+          typedChars.push(s);
+        }
+        tl.set(typedChars, { display: "none" }, 0);
+        for (let i = 0; i < typedChars.length; i++) {
+          tl.set(typedChars[i], { display: "inline" }, TYPE_AT + i * CHAR_INTERVAL);
+        }
+        tl.set(sendBtn, { attr: { class: "send-btn has-text" } }, TYPE_AT + CHAR_INTERVAL);
+        const TYPE_END = TYPE_AT + MESSAGE_TEXT.length / TYPE_CPS;
+
+        // Blinking caret while focused: a bounded yoyo tween (evaluates at any
+        // time, so it's seek-safe) that ends before the send click so the
+        // hide-set below never fights an still-active tween on the same prop.
+        const BLINK_START = FOCUS_AT + 0.05;
+        tl.set(caret, { opacity: 1 }, FOCUS_AT);
+
+        // 4) Beat, then click send.
+        const SEND_CLICK_AT = TYPE_END + 0.4;
+        const BLINK_STOP = SEND_CLICK_AT - 0.05;
+        const blinkReps = Math.max(0, Math.floor((BLINK_STOP - BLINK_START) / 0.1) - 1);
+        tl.to(caret, { opacity: 0, duration: 0.1, yoyo: true, repeat: blinkReps, ease: "steps(1)" }, BLINK_START);
+        tl.set(caret, { opacity: 0 }, SEND_CLICK_AT);
+        ix.click(sendBtn, { at: SEND_CLICK_AT, moveDur: 0.55 });
+
+        // 5) Commit: composer clears by fading (never destructively, so a
+        //    backward seek mid-type still shows partial text correctly),
+        //    placeholder returns, send button dims, and the message posts
+        //    into the channel with avatar + bold sender + timestamp.
+        const COMMIT_AT = SEND_CLICK_AT + 0.1;
+        ix.hide(typed, { at: COMMIT_AT, dur: 0.16 });
+        tl.set(placeholder, { opacity: 1 }, COMMIT_AT + 0.16);
+        tl.set(sendBtn, { attr: { class: "send-btn" } }, COMMIT_AT + 0.16);
+        // Real Slack posts messages in place (no vertical travel) — fade
+        // only, no y offset.
+        ix.show(sentGroup, { at: COMMIT_AT + 0.2, dur: 0.12, from: { opacity: 0 } });
+      }).catch(() => {});
+
+      const cap = new URLSearchParams(location.search).get("capture");
+      if (cap === "hero") tl.seek(6.4).pause();
+    </script>
+  </body>
+</html>
