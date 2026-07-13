@@ -5,7 +5,7 @@
       "label": "yt-frame-adobe-stock-panel",
       "method": "yt-dlp+ffmpeg",
       "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", version 26.0, published 2026-01-20) @ 00:02:49",
-      "capturedAt": "2026-07-09T20:02:34.498Z",
+      "capturedAt": "2026-07-13T19:24:40.433Z",
       "files": [
         "screenshot.png"
       ],
@@ -16,7 +16,7 @@
       "label": "yt-frame-effect-controls-timeline",
       "method": "yt-dlp+ffmpeg",
       "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", title card confirms version 26.0, published 2026-01-20) @ 00:00:00.5",
-      "capturedAt": "2026-07-09T20:02:27.437Z",
+      "capturedAt": "2026-07-13T19:24:32.431Z",
       "files": [
         "screenshot.png"
       ],
@@ -27,7 +27,7 @@
       "label": "yt-frame-lumetri-curves",
       "method": "yt-dlp+ffmpeg",
       "source": "https://www.youtube.com/watch?v=OGKbVm94uoE (Adobe Video / @AdobeVideo, \"What's New in Premiere | 2026 Updates\", version 26.0, published 2026-01-20) @ 00:01:42",
-      "capturedAt": "2026-07-09T20:02:47.784Z",
+      "capturedAt": "2026-07-13T19:24:35.565Z",
       "files": [
         "screenshot.png"
       ],

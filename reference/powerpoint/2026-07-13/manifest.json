@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-13T19:15:49.214Z",
+  "entries": [
+    {
+      "label": "app-store-mac-design-ribbon-gallery",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Powerpoint&country=us -> screenshotUrls[2] 'Make beautiful presentations', Microsoft PowerPoint v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-13T19:15:49.214Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Real PowerPoint-for-Mac UI, flat/non-tilted: Design ribbon tab active with theme-variant gallery (8 Aa swatches) + color-scheme swatches, full traffic-light window chrome, AutoSave/Home/Print/Undo-Redo controls, presence avatars + Record/Comments/Present in Teams/Share, thumbnail rail (8 slides visible, one with a comment badge), Designer suggestion pane open on the right (5 layout variants), and status bar (Slide 4 of 9 / English (United States) / Accessibility: Good to go / view toggles / zoom slider). Marketing-staged workbook content (Lucerne Publishing deck) but chrome/geometry/typography are the real current app -- trust layout, ribbon iconography, and pane placement; discount the demo slide content/colors as a marketing skin.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "app-store-mac-presenter-view",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Powerpoint&country=us -> screenshotUrls[1] 'Present & share your stories', Microsoft PowerPoint v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-13T19:15:49.274Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Real PowerPoint-for-Mac Presenter View (Slide Show mode), flat: black toolbar with End Show/Tips/Use Slide Show controls (top-left), elapsed timer + pause/reset + wall clock (top), current-slide pane (large, left) with next-slide thumbnail + speaker notes pane (right), and a bottom control strip (back arrow / pen / magnifier / captions / camera / more-options / forward arrow) over a filmstrip of upcoming slide thumbnails. Distinct surface from the editing-canvas + ribbon captures -- best single source for presenter-mode chrome, notes-pane layout, and slide-show toolbar iconography. Marketing-staged deck content; trust chrome/geometry, discount slide content.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "probes": [
+    {
+      "family": "claude",
+      "current": "1.20186.1",
+      "previous": null,
+      "changed": false,
+      "captureAgeDays": 4,
+      "method": "installed app CFBundleShortVersionString",
+      "notes": "Desktop app installed at /Applications/Claude.app"
+    },
+    {
+      "family": "codex",
+      "current": null,
+      "previous": null,
+      "changed": true,
+      "captureAgeDays": null,
+      "method": "installed app check",
+      "notes": "Not installed; /Applications/Codex.app not found. No dated reference capture available."
+    },
+    {
+      "family": "figma",
+      "current": null,
+      "previous": null,
+      "changed": true,
+      "captureAgeDays": null,
+      "method": "release-notes fetch",
+      "notes": "Figma release notes show June 15, 2026 update but no traditional version number (uses dated release announcements). No dated reference capture available."
+    },
+    {
+      "family": "macos",
+      "current": "26.5.2",
+      "previous": null,
+      "changed": false,
+      "captureAgeDays": 7,
+      "method": "sw_vers -productVersion",
+      "notes": "System version via sw_vers"
+    },
+    {
+      "family": "browser",
+      "current": "150.0.7871.100",
+      "previous": null,
+      "changed": true,
+      "captureAgeDays": null,
+      "method": "installed app CFBundleShortVersionString",
+      "notes": "Chrome browser installed. No dated reference capture available."
+    },
+    {
+      "family": "word",
+      "current": "16.110.3",
+      "previous": null,
+      "changed": true,
+      "captureAgeDays": null,
+      "method": "app-store iTunes lookup bundleId com.microsoft.Word",
+      "notes": "Microsoft Word from App Store. No dated reference capture available."
+    },
+    {
+      "family": "excel",
+      "current": "16.110.3",
+      "previous": null,
+      "changed": false,
+      "captureAgeDays": 4,
+      "method": "app-store iTunes lookup bundleId com.microsoft.Excel",
+      "notes": "Microsoft Excel from App Store. Has reference capture from 2026-07-09."
+    },
+    {
+      "family": "powerpoint",
+      "current": "16.110.3",
+      "previous": null,
+      "changed": true,
+      "captureAgeDays": null,
+      "method": "app-store iTunes lookup bundleId com.microsoft.Powerpoint",
+      "notes": "Microsoft PowerPoint from App Store. No dated reference capture available."
+    },
+    {
+      "family": "premiere",
+      "current": null,
+      "previous": null,
+      "changed": false,
+      "captureAgeDays": 4,
+      "method": "release-notes fetch (timeout)",
+      "notes": "Adobe Premiere Pro release notes URL timed out; unable to fetch current version. Has reference capture from 2026-07-09 (4 days old)."
+    }
+  ],
+  "diffs": [
+    {
+      "family": "codex",
+      "captured": [
+        "app-screenshot-light",
+        "app-screenshot-dark"
+      ],
+      "drift": "inconclusive",
+      "deltas": [],
+      "notes": "Only one dated capture set exists (2026-07-13). Previous dated directory unavailable on filesystem or in git history. Capture manifest indicates previous 2026-06-18 reference measurement exists (external source: developers.openai.com) and documents drift analysis: content matches, only resolution increased (1920x1081 → 3600x2026). No tokens.json or .png files present for automated fidelity scoring. Cannot complete full drift comparison without previous dated set directory. Manifest assessment: no visual drift detected."
+    },
+    {
+      "family": "figma",
+      "captured": [
+        "help-center-ui3-overview",
+        "help-center-left-panel"
+      ],
+      "drift": "inconclusive",
+      "deltas": [],
+      "notes": "No previous dated reference directory exists for comparison. The 2026-07-13 capture is the first and only dated measurement set in reference/figma/. Drift assessment requires two dated measurement sets to measure change over time; a future capture will enable meaningful drift comparison against this baseline."
+    },
+    {
+      "family": "browser",
+      "captured": [],
+      "drift": "capture-failed",
+      "deltas": [],
+      "notes": "Worked from /Users/conmeara/Projects/ui-backlot (the /Users/botbot path given in the trigger does not exist on this machine; this is the actual ui-backlot checkout matching the CLAUDE.md/AGENTS.md context supplied).\n\nreference/sources.json → family \"browser\": tier native-local, availableOnThisMachine:true, single target {label:\"chrome-window\", app:\"Google Chrome\", method:\"screencapture\", notes:\"Tab strip, omnibox, window chrome. Page content is ours by design.\"}, fallbacks:[]. No prior dated static set exists (reference/browser/ only has a motion/2026-07-09/chrome-omnibox-search-load/ dir, no static screenshot set to diff against) — this would have been the first static capture, using the sources.json target label \"chrome-window\".\n\nWhat I tried:\n1. Confirmed Google Chrome.app is installed (/Applications/Google Chrome.app) and requested computer-use access at \"read\" tier (browsers are read-only: visible, no click/type — fine for a passive window-chrome shot, no login/interaction needed).\n2. Brought Chrome to front (open_application) and took a computer-use screenshot: visually confirmed real, current Chrome window chrome (tab strip, omnibox with \"Chrome | chrome://whats-new\", profile avatar, extensions icon, traffic lights) on Chrome's own \"What's New\" onboarding page — no login, no bot check, nothing personal.\n3. Could not file it: `screenshot --save_to_disk` returned no filesystem path in the tool result (only an inline image), and repeated filesystem searches (find over /private/tmp, the session scratchpad, ~/Desktop, ~/Downloads, /var/folders) turned up no new file. This subagent's Bash/computer-use appear to run in separate sandboxes without a shared save path in this session.\n4. Tried a direct `screencapture -x` via Bash as a workaround — it captured a DIFFERENT screen than the one computer-use controls (Mail.app frontmost, plus an unrelated video file from what looks like a concurrent sibling subagent's session), confirming Bash and computer-use are disjoint environments here. Discarded/deleted that file immediately rather than filing leaked, unrelated, non-consented content.\n5. Checked the Mac App Store fallback (rung 3): real Google Chrome is NOT distributed on the Mac App Store (itunes lookup for bundleId com.google.Chrome returns 0 results; search only surfaces unrelated third-party apps with \"chrome\" in the name). sources.json also lists no fallbacks for this family. Did not proceed to heavier rungs (yt-dlp video frame-mining, press-kit hunting) given the \"cheapest meaningful, drift-check not re-ground\" scope and that they wouldn't have this filing problem solved anyway since the blocker is local infra, not source availability.\n\nNet: the native-local tier is reachable and Chrome's current window chrome was visually verified as unchanged in general appearance, but no bytes could be persisted to reference/browser/<date>/chrome-window/ in this session, so no dated set was written and no scored diff is possible. Recommend either (a) re-running this capture in a session where computer-use save_to_disk resolves to a Bash-visible path, or (b) manual-inbox: ask the user for a single Chrome window screenshot (cmd+shift+4+space) to file via `node tools/import-reference.mjs --family browser --label chrome-window --image <path> --method manual-inbox`."
+    },
+    {
+      "family": "word",
+      "captured": [
+        "app-store-hero",
+        "app-store-review-editor"
+      ],
+      "drift": "inconclusive",
+      "deltas": [],
+      "notes": "This is the inaugural drift-watch capture for the word family (2026-07-13). Both labels (app-store-hero, app-store-review-editor) have screenshot.png files from the App Store API (Word version 16.110.3). No prior dated reference set exists in git history for comparison. The capture was triggered by a version bump from the previous recorded state. Cannot assess drift without a baseline."
+    },
+    {
+      "family": "powerpoint",
+      "captured": [
+        "app-store-mac-design-ribbon-gallery",
+        "app-store-mac-presenter-view"
+      ],
+      "drift": "inconclusive",
+      "deltas": [],
+      "notes": "Only one dated reference set exists for powerpoint family (2026-07-13). No previous dated directory is available for drift comparison. This is a fresh capture with no prior baseline to measure against. The captured labels are sourced from app-store API screenshots (real PowerPoint for Mac v16.110.3): design-ribbon-gallery (editing canvas with ribbon, sidebar, and theme picker) and presenter-view (slide show mode with toolbar and notes pane)."
+    }
+  ],
+  "generatedAt": "2026-07-13"
+}

@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-13T19:33:27.761Z",
+  "entries": [
+    {
+      "label": "chrome-window-incognito",
+      "method": "screencapture",
+      "source": "Google Chrome 150.0.7871.115 (native-local, macOS, isolated --user-data-dir profile, incognito window), apple.com/wikipedia.org neutral tabs",
+      "capturedAt": "2026-07-13T19:33:27.789Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Incognito window chrome variant: dark tab strip/toolbar, incognito glasses badge on favicon + traffic-light area, 'Incognito' pill in toolbar, no profile avatar, no bookmarks bar. Dark-chrome ground truth independent of macOS system appearance.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "chrome-window-light",
+      "method": "screencapture",
+      "source": "Google Chrome 150.0.7871.115 (native-local, macOS, isolated --user-data-dir profile — no user data/history/logins), apple.com/wikipedia.org/nytimes.com neutral tabs",
+      "capturedAt": "2026-07-13T19:33:27.761Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Full chrome window: traffic lights, tab strip with 3 tabs (favicons + close buttons), omnibox with site-info icon/star/profile/menu, link-preview status bar on hover. Light appearance, no bookmarks bar, no profile signed in. Captured in a throwaway isolated profile to avoid touching the owner's real browsing session.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

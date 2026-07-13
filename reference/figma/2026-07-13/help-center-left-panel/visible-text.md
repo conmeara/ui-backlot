@@ -1,0 +1,456 @@
+- header @ 0,0: Discover and learn about what is new from Config 2026! Learn more Figma Learn Get started Product documentation Administration Courses, tutorials, projects Help Sign up
+- fl-announcement-banner @ 0,0: Discover and learn about what is new from Config 2026! Learn more
+- div @ 0,0: Discover and learn about what is new from Config 2026! Learn more
+- p @ 24,12: Discover and learn about what is new from Config 2026!
+- a [link] @ 447.8,12: Learn more
+- div @ 50,46.4: Figma Learn Get started Product documentation Administration Courses, tutorials, projects Help Sign up
+- div @ 244.7,46.4: Get started Product documentation Administration Courses, tutorials, projects Help
+- nav @ 244.7,46.4: Get started Product documentation Administration Courses, tutorials, projects Help
+- a [link] @ 244.7,52.4: Get started
+- button [button] @ 352.6,52.4: Product documentation
+- button [button] @ 566.8,52.4: Administration
+- button [button] @ 716.3,52.4: Courses, tutorials, projects
+- button [button] @ 955.9,52.4: Help
+- div @ 1258.8,68: Sign up
+- span @ 1320.8,68: Sign up
+- a [link] @ 1320.8,68: Sign up
+- div @ 1266.8,68.4: enterto select ↑↓to navigate escto close ⌘ K
+- div @ 1266.8,68.4: enterto select ↑↓to navigate escto close ⌘ K
+- button [button] @ 1266.8,68.4: ⌘ K
+- div @ 1345.8,77: Sign up
+- p @ 1345.8,77: Sign up
+- strong @ 74,77.4: Figma
+- a [link] @ 74,79.4: Figma Learn
+- div @ 74,79.4: Figma Learn
+- span @ 74,79.4: Figma Learn
+- fl-button @ 1320.8,82: Sign up
+- main [main] @ 0,137.4: Figma Design Tour the interface Explore Explore the navigation bar and left sidebar Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view acces
+- div @ 150,137.4: Figma Design Tour the interface Explore Explore the navigation bar and left sidebar Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view acces
+- article @ 150,137.4: Figma Design Tour the interface Explore Explore the navigation bar and left sidebar Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view acces
+- section @ 1050,137.4: In this article Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications 10 min
+- section @ 1051,137.4: In this article Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications 10 min
+- fl-metabar @ 1075,185.4: In this article Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications 10 min
+- div @ 1075,185.4: In this article Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications 10 min
+- section @ 1075,185.4: In this article Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications 10 min
+- header @ 1076,186.4: In this article
+- h2 @ 1120,194.4: In this article
+- nav @ 150,201.4: Figma Design Tour the interface Explore
+- ol @ 150,201.4: Figma Design Tour the interface Explore
+- li @ 150,201.4: Figma Design
+- a [link] @ 150,201.4: Figma Design
+- li @ 269.2,201.4: Tour the interface
+- a [link] @ 269.2,201.4: Tour the interface
+- li @ 420.1,201.4: Explore
+- a [link] @ 428.1,201.4: Explore
+- div @ 1076,225.8: Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications
+- ul [list] @ 1092,233.8: Figma Design files now have a new navigation bar! Navigation bar Left sidebar Figma menu File tab Agents tab Assets tab Tools tab Variables view File notifications
+- li [listitem] @ 1092,233.8: Figma Design files now have a new navigation bar!
+- a [link] @ 1092,233.8: Figma Design files now have a new navigation bar!
+- header @ 150,254.2: Explore the navigation bar and left sidebar
+- h1 @ 150,254.2: Explore the navigation bar and left sidebar
+- span @ 150,254.2: Explore the navigation bar and left sidebar
+- li [listitem] @ 1092,306.8: Navigation bar
+- a [link] @ 1092,306.8: Navigation bar
+- div @ 150,321.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab
+- div @ 151,322.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab
+- section @ 150,324.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab Figma Design files now have a new navigation bar! The new na
+- div @ 150,324.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab Figma Design files now have a new navigation bar! The new na
+- div @ 150,324.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab Figma Design files now have a new navigation bar! The new na
+- section @ 150,324.2: Who can use this feature Available on all plans Anyone with can edit access can interact with all tabs in the navigation bar Anyone with only can view access can view the File tab
+- p @ 175,342.2: Who can use this feature
+- li [listitem] @ 1092,355.8: Left sidebar
+- a [link] @ 1092,355.8: Left sidebar
+- div @ 175,378.2: Available on all plans
+- p @ 207,378.2: Available on all plans
+- a [link] @ 298.4,383.2: all plans
+- li [listitem] @ 1092,404.8: Figma menu
+- a [link] @ 1092,404.8: Figma menu
+- div @ 175,419: Anyone with can edit access can interact with all tabs in the navigation bar
+- p @ 207,419: Anyone with can edit access can interact with all tabs in the navigation bar
+- code @ 305.2,421: can edit
+- li [listitem] @ 1092,453.8: File tab
+- a [link] @ 1092,453.8: File tab
+- div @ 175,459.8: Anyone with only can view access can view the File tab
+- p @ 207,459.8: Anyone with only can view access can view the File tab
+- code @ 339.4,461.8: can view
+- strong @ 576.5,464.8: File
+- li [listitem] @ 1092,502.8: Agents tab
+- a [link] @ 1092,502.8: Agents tab
+- div @ 150,536.6: Figma Design files now have a new navigation bar! The new navigation bar provides entry points to your file’s essential workflows—like accessing the layers panel, the Figma agent, tools, viewing assets, updating variables, and more. The nav
+- div @ 150,536.6: Figma Design files now have a new navigation bar! The new navigation bar provides entry points to your file’s essential workflows—like accessing the layers panel, the Figma agent, tools, viewing assets, updating variables, and more. The nav
+- li [listitem] @ 1092,551.8: Assets tab
+- a [link] @ 1092,551.8: Assets tab
+- h2 @ 175,553.6: Figma Design files now have a new navigation bar!
+- p @ 175,598.4: The new navigation bar provides entry points to your file’s essential workflows—like accessing the layers panel, the Figma agent, tools, viewing assets, updating variables, and more. The navigation bar sits along the left side of the file.
+- li [listitem] @ 1092,600.8: Tools tab
+- a [link] @ 1092,600.8: Tools tab
+- li [listitem] @ 1092,649.8: Variables view
+- a [link] @ 1092,649.8: Variables view
+- li [listitem] @ 1092,698.8: File notifications
+- a [link] @ 1092,698.8: File notifications
+- footer @ 1076,738.8: 10 min
+- div @ 1092,747.8: 10 min
+- h2 @ 1120,747.8: 10 min
+- h4 @ 175,1362.8: Here's what changed
+- ul @ 195,1407.6: The variables view, formerly called the variables modal, has moved from the Properties panel (right sidebar) to the new navigation bar. Now you can access your variables collections at any time, even when you have layers selected. The File 
+- li @ 195,1407.6: The variables view, formerly called the variables modal, has moved from the Properties panel (right sidebar) to the new navigation bar. Now you can access your variables collections at any time, even when you have layers selected.
+- a [link] @ 226.1,1412.6: variables view
+- li @ 195,1502: The File tab and Assets tab have moved from the left sidebar to the navigation bar.
+- a [link] @ 226.1,1507: File tab
+- a [link] @ 314.8,1507: Assets tab
+- strong @ 789,1507: .
+- li @ 195,1538.8: File notifications and warnings, such as library updates and missing font alerts, are now at the bottom of the navigation bar.
+- a [link] @ 195,1543.8: File notifications and warnings
+- h4 @ 175,1620.3: Additional tips
+- ul @ 195,1665.1: Additional labels are turned on by default to help you identify each tab. You can toggle the labels on and off by going to > View. Need a bit more room on the canvas? You can still minimize your UI by pressing ⌘ Command ⇧ Shift \ (Mac) or C
+- li @ 195,1665.1: Additional labels are turned on by default to help you identify each tab. You can toggle the labels on and off by going to > View.
+- strong @ 195,1670.1: Additional labels
+- strong @ 327.2,1698.9: View
+- li @ 195,1730.7: Need a bit more room on the canvas? You can still minimize your UI by pressing ⌘ Command ⇧ Shift \ (Mac) or Ctrl Shift \ (Windows). This collapses the navigation bar, left sidebar, and right sidebar for an expanded view.
+- kbd @ 775.2,1734.7: ⌘ Command
+- kbd @ 893.5,1734.7: ⇧ Shift
+- strong @ 195,1735.7: Need a bit more room on the canvas?
+- kbd @ 199,1763.5: \
+- kbd @ 294.4,1763.5: Ctrl
+- kbd @ 347.8,1763.5: Shift
+- kbd @ 409.4,1763.5: \
+- p @ 150,1862.1: Figma Design files have five distinct interactive areas: a toolbar, a navigation bar, left and right panels, and a scrollable canvas. These areas allow you to access, create, and adjust elements of your design.
+- p @ 150,1939.7: In this article, we’ll cover two areas of your design file: the (A) navigation bar and (B) left sidebar. We'll provide an overview of the main workflows for each section of the navigation bar and left sidebar.
+- a [link] @ 599.3,1944.7: navigation bar
+- strong @ 599.3,1944.7: navigation bar
+- a [link] @ 763.3,1944.7: left sidebar
+- strong @ 763.3,1944.7: left sidebar
+- div @ 150,2752.8: Looking to explore other parts of the file? Get an overview of the Figma Design file to learn about the canvas, toolbar, sidebars, and more.
+- div @ 150,2752.8: Looking to explore other parts of the file? Get an overview of the Figma Design file to learn about the canvas, toolbar, sidebars, and more.
+- p @ 175,2769.8: Looking to explore other parts of the file? Get an overview of the Figma Design file to learn about the canvas, toolbar, sidebars, and more.
+- strong @ 175,2774.8: Looking to explore other parts of the file?
+- a [link] @ 484,2774.8: Get an overview of the Figma Design file
+- h2 @ 150,2884.4: Navigation bar
+- p @ 150,2943.6: The navigation bar is the left-most vertical bar in a design file and contains tabs for essential workflows for your canvas—like navigating layers and pages, inserting components, managing variables, and reviewing file notifications. The na
+- strong @ 181.1,2948.6: navigation bar
+- ul @ 170,3050: Figma menu Files tab Agents tab Assets tab Tools tab Variables view File notifications
+- li @ 190,3050: Figma menu
+- a [link] @ 190,3055: Figma menu
+- li @ 190,3086.8: Files tab
+- a [link] @ 190,3091.8: Files tab
+- li @ 190,3123.6: Agents tab
+- a [link] @ 190,3128.6: Agents tab
+- li @ 190,3160.4: Assets tab
+- a [link] @ 190,3165.4: Assets tab
+- li @ 190,3197.2: Tools tab
+- a [link] @ 190,3202.2: Tools tab
+- li @ 190,3234: Variables view
+- a [link] @ 190,3239: Variables view
+- li @ 190,3270.8: File notifications
+- a [link] @ 190,3275.8: File notifications
+- h2 @ 150,3339.6: Left sidebar
+- p @ 150,3398.8: The left sidebar is the panel next to the navigation bar and contains dynamic content that changes based on the selected tab.
+- strong @ 181.1,3403.8: left sidebar
+- div @ 150,3476.3: Tip: You can adjust the width of the left sidebar. This allows you to better see layer or asset names. Hover your cursor over the right-edge of the sidebar. A bidirectional arrow will appear. Click and drag to adjust the width of the sideba
+- div @ 150,3476.3: Tip: You can adjust the width of the left sidebar. This allows you to better see layer or asset names. Hover your cursor over the right-edge of the sidebar. A bidirectional arrow will appear. Click and drag to adjust the width of the sideba
+- p @ 175,3493.3: Tip: You can adjust the width of the left sidebar. This allows you to better see layer or asset names.
+- strong @ 175,3498.3: Tip:
+- ol @ 195,3538.1: Hover your cursor over the right-edge of the sidebar. A bidirectional arrow will appear. Click and drag to adjust the width of the sidebar. Release to set the sidebar width.
+- li @ 215,3538.1: Hover your cursor over the right-edge of the sidebar. A bidirectional arrow will appear.
+- li @ 215,3574.9: Click and drag to adjust the width of the sidebar.
+- li @ 215,3611.7: Release to set the sidebar width.
+- h2 @ 150,3705.5: Figma menu
+- p @ 150,4127.7: The Figma menu at the top of the sidebar provides access to various app commands, layer actions, file creation, and file preferences like dark mode.
+- strong @ 214.9,4132.7: Figma menu
+- a [link] @ 327.2,4161.5: dark mode
+- h2 @ 150,4225.3: File tab
+- p @ 150,4647.5: The File tab provides access to the file’s pages and layers. You can also rename the file, set file specific preferences, and minimize the file’s Figma UI panels and bars.
+- strong @ 214.9,4652.5: File
+- p @ 150,4725.1: You can quickly access the File tab using the keyboard shortcut:
+- strong @ 348.1,4730.1: File
+- ul @ 170,4773.9: Mac: ⌥ Option 1 Windows: Alt 1
+- li @ 190,4773.9: Mac: ⌥ Option 1
+- kbd @ 234,4777.9: ⌥ Option
+- kbd @ 329.9,4777.9: 1
+- li @ 190,4810.7: Windows: Alt 1
+- kbd @ 269.3,4814.7: Alt
+- kbd @ 316.3,4814.7: 1
+- h3 @ 150,4875.5: The edit file menu
+- p @ 150,4927.5: The Edit file menu allows you to perform file-specific actions—such as renaming the file, viewing its version history, setting its color profile, and moving the file to a different project.
+- strong @ 181.1,4932.5: Edit file menu
+- a [link] @ 664.9,4932.5: renaming the file
+- a [link] @ 876.8,4932.5: version history
+- a [link] @ 227.5,4961.3: color profile
+- a [link] @ 354.2,4961.3: moving the file to a different project
+- p @ 150,5005.1: To access the Edit file menu, click next to the file name.
+- strong @ 252.7,5010.1: Edit file menu
+- h3 @ 150,5069.9: Pages panel
+- p @ 150,5121.9: You can create as many pages as you need within a file and are a great way to organize designs and content in a file. Each page has its own canvas, where you can explore and iterate on your designs. You can even create separate prototypes o
+- a [link] @ 217.6,5184.5: prototypes
+- a [link] @ 503.2,5184.5: create and manage pages
+- h3 @ 150,5244.3: Find
+- p @ 150,5296.3: Use Find to quickly search the entire file for text, images, frames, components, and more. You can also switch to Replace to make bulk text changes. Learn more about find and replace.
+- strong @ 215.7,5301.3: Find
+- strong @ 150,5330.1: Replace
+- a [link] @ 542.7,5330.1: find and replace
+- h3 @ 150,5389.9: Layers panel
+- p @ 150,5441.9: Any frames, groups, or objects you add to the canvas will be visible in the Layers section of the File tab. New layers are added to the top of the list, or to the top of the group, frame, or section it is contained within. Or, just above th
+- strong @ 683.7,5446.9: Layers
+- strong @ 840.2,5446.9: File
+- p @ 150,5548.3: You can determine if a layer is a frame, group or a specific type of object by the icon next to it:
+- ul @ 170,5597.1: Frame Group Component Instance Text Shape—icon varies depending on the shape. Image Auto layout—icon varies depending on the auto layout's flow. Section Animated GIF or video Slot
+- li @ 190,5597.1: Frame
+- li @ 190,5633.9: Group
+- li @ 190,5670.7: Component
+- li @ 190,5707.5: Instance
+- li @ 190,5744.3: Text
+- li @ 190,5781.1: Shape—icon varies depending on the shape.
+- a [link] @ 499.7,5786.1: shape
+- li @ 190,5817.9: Image
+- li @ 190,5854.7: Auto layout—icon varies depending on the auto layout's flow.
+- a [link] @ 536.5,5859.7: auto layout's flow
+- li @ 190,5891.5: Section
+- li @ 190,5928.3: Animated GIF or video
+- li @ 190,5965: Slot
+- p @ 150,6017.8: Figma nests any child objects within their parent group or frame. This allows you to collapse and expand layers within a group or Frame.
+- div @ 150,6095.4: Tip: To collapse all expanded layers, click Collapse layers in the top right corner of the Layers panel. If you've already selected a layer when you collapse layers, all expanded layers collapse except for your selection.
+- div @ 150,6095.4: Tip: To collapse all expanded layers, click Collapse layers in the top right corner of the Layers panel. If you've already selected a layer when you collapse layers, all expanded layers collapse except for your selection.
+- p @ 175,6112.4: Tip: To collapse all expanded layers, click Collapse layers in the top right corner of the Layers panel. If you've already selected a layer when you collapse layers, all expanded layers collapse except for your selection.
+- strong @ 175,6117.4: Tip
+- strong @ 508.7,6117.4: Collapse layers
+- p @ 150,6207: There are many other ways to interact with layers:
+- ul @ 170,6255.8: Select layers, groups, and frames Adjust the z-index with layer order Rename layers individually or in bulk Toggle layer visibility Lock and unlock layers
+- li @ 190,6255.8: Select layers, groups, and frames
+- a [link] @ 190,6260.8: Select layers, groups, and frames
+- li @ 190,6292.6: Adjust the z-index with layer order
+- a [link] @ 190,6297.6: Adjust the z-index with layer order
+- li @ 190,6329.4: Rename layers individually or in bulk
+- a [link] @ 190,6334.4: Rename layers individually or in bulk
+- li @ 190,6366.2: Toggle layer visibility
+- a [link] @ 190,6371.2: Toggle layer visibility
+- li @ 190,6403: Lock and unlock layers
+- a [link] @ 190,6408: Lock and unlock layers
+- div @ 150,6455.8: Tip: You can enable or disable the Highlight layers on hover setting. Go to Menu > Preferences > Highlight layers on hover.
+- div @ 150,6455.8: Tip: You can enable or disable the Highlight layers on hover setting. Go to Menu > Preferences > Highlight layers on hover.
+- p @ 175,6472.8: Tip: You can enable or disable the Highlight layers on hover setting. Go to Menu > Preferences > Highlight layers on hover.
+- strong @ 175,6477.8: Tip:
+- strong @ 175,6477.8: Highlight layers on hover
+- strong @ 422.8,6477.8: Highlight layers on hover
+- strong @ 712.9,6477.8: Menu
+- strong @ 767.6,6477.8: Preferences
+- h3 @ 150,6583.4: Minimize the UI
+- p @ 150,6635.4: If you want more space to view the contents of your canvas, you can click Minimize next to the file name to collapse the navigation bar, left sidebar, and right sidebar. You can also use the keyboard shortcut:
+- strong @ 718.1,6640.4: Minimize
+- ul @ 170,6713: Mac: ⌘ Command ⇧ Shift \ Windows: Ctrl Shift \
+- li @ 190,6713: Mac: ⌘ Command ⇧ Shift \
+- kbd @ 234,6717: ⌘ Command
+- kbd @ 352.4,6717: ⇧ Shift
+- kbd @ 434,6717: \
+- li @ 190,6749.8: Windows: Ctrl Shift \
+- kbd @ 269.3,6753.8: Ctrl
+- kbd @ 322.7,6753.8: Shift
+- kbd @ 384.3,6753.8: \
+- p @ 150,6802.6: If you select an object while the panels are minimized, the left sidebar remains minimized while the right sidebar expands so you can update the properties of the selected object. Once all objects are deselected, the right panel minimizes a
+- h2 @ 150,7483.3: Agents tab
+- p @ 150,7905.5: Open the Agents tab to collaborate with the Figma agent to generate and remix designs, build plugins and shaders, automate busywork, and get design feedback.
+- strong @ 255.7,7910.5: Agents
+- p @ 150,7983: The left sidebar will contain a history of past chats that have taken place within file including chats you’ve created and chats by file collaborators if they’ve made it available to you.
+- p @ 150,8060.6: Click the New chat at the top of the sidebar to initiate a new conversation. You can click More options to change the chat access that other collaborators will have to the chat.
+- strong @ 252.2,8065.6: New chat
+- strong @ 859.8,8065.6: More options
+- p @ 150,8138.2: Learn more about the Figma agent.
+- a [link] @ 150,8143.2: Learn more about the Figma agent.
+- h2 @ 150,8207: Assets tab
+- p @ 150,8629.2: Components are UI elements that can be reused throughout your designs. This can be things like buttons or icons, or more complex assets like navigation menus or status bars.
+- a [link] @ 150,8634.2: Components
+- p @ 150,8706.8: The Assets tab provides access to local components, or components from the current file, as well as components from kits or libraries (requires edit access) that have been added to the file. You can drag any component from the assets panel 
+- strong @ 214.9,8711.8: Assets
+- a [link] @ 474.3,8711.8: components
+- a [link] @ 187.7,8740.6: kits
+- a [link] @ 236.8,8740.6: libraries
+- p @ 150,8813.2: You can quickly access the Assets tab by using the keyboard shortcut:
+- strong @ 348.1,8818.2: Assets
+- ul @ 170,8862: Mac: ⌥ Option 2 Windows: Alt 2
+- li @ 190,8862: Mac: ⌥ Option 2
+- kbd @ 233.9,8866: ⌥ Option
+- kbd @ 329.7,8866: 2
+- strong @ 190,8867: Mac
+- li @ 190,8898.8: Windows: Alt 2
+- kbd @ 270,8902.8: Alt
+- kbd @ 317,8902.8: 2
+- strong @ 190,8903.8: Windows
+- p @ 150,8951.6: Once you've opened the assets view, you can:
+- ul @ 170,9000.4: Open the Libraries modal Use the search field to find a specific component. Figma looks for components in the current file, as well as any libraries you can access. Open Libraries and settings to filter through available libraries, and to s
+- li @ 190,9000.4: Open the Libraries modal
+- a [link] @ 295.7,9005.4: Libraries
+- li @ 190,9037.2: Use the search field to find a specific component. Figma looks for components in the current file, as well as any libraries you can access.
+- li @ 190,9102.8: Open Libraries and settings to filter through available libraries, and to switch between Grid and List views
+- strong @ 267.5,9107.8: Libraries and settings
+- strong @ 853.2,9107.8: Grid
+- strong @ 919.7,9107.8: List
+- li @ 190,9139.6: Browse through All libraries that have been added to the file
+- strong @ 309.3,9144.6: All libraries
+- li @ 190,9176.4: Explore a file, page, or frame by clicking on the arrow to expand it
+- li @ 190,9213.2: Figma lists team or organization libraries added to the file, and enabled UI kits, in the assets view
+- li @ 190,9250: Create an instance by dragging a component from the assets view on to the canvas
+- p @ 150,9302.8: Learn how to insert components from the assets tab.
+- a [link] @ 150,9307.8: Learn how to insert components from the assets tab.
+- div @ 150,9351.6: Note: Figma groups components in the assets view by heading. If you have many components, Figma will present them as a path: file > page > frame.
+- div @ 150,9351.6: Note: Figma groups components in the assets view by heading. If you have many components, Figma will present them as a path: file > page > frame.
+- p @ 175,9368.6: Note: Figma groups components in the assets view by heading. If you have many components, Figma will present them as a path: file > page > frame.
+- strong @ 175,9373.6: Note
+- strong @ 290.4,9402.4: file
+- strong @ 327.4,9402.4: page
+- strong @ 380.7,9402.4: frame
+- h3 @ 150,9479.2: Libraries modal
+- p @ 150,9531.2: The Libraries modal allows you to publish assets—styles, components, and variables—from your files as a library. You can also use assets from other published libraries by adding them to the current file.
+- strong @ 214.9,9536.2: Libraries
+- p @ 150,9608.8: To access your libraries from the assets tab, click Libraries to open the libraries modal.
+- strong @ 542.4,9613.8: Libraries
+- p @ 150,9657.6: You can also quickly access the Libraries modal tab by using the keyboard shortcut:
+- strong @ 381.4,9662.6: Libraries
+- ul @ 170,9706.4: Mac: ⌥ Option 3 Windows: Alt 3
+- li @ 190,9706.4: Mac: ⌥ Option 3
+- kbd @ 233.9,9710.4: ⌥ Option
+- kbd @ 329.7,9710.4: 3
+- strong @ 190,9711.4: Mac
+- li @ 190,9743.2: Windows: Alt 3
+- kbd @ 270,9747.2: Alt
+- kbd @ 317,9747.2: 3
+- strong @ 190,9748.2: Windows
+- p @ 150,9796: Get started with libraries.
+- a [link] @ 150,9801: Get started with libraries
+- div @ 150,9844.8: Note: A blue dot is added to the Libraries icon and the label changed to Review library updates if the file contains component instances with available updates. Learn about library updates.
+- div @ 150,9844.8: Note: A blue dot is added to the Libraries icon and the label changed to Review library updates if the file contains component instances with available updates. Learn about library updates.
+- p @ 175,9861.8: Note: A blue dot is added to the Libraries icon and the label changed to Review library updates if the file contains component instances with available updates. Learn about library updates.
+- strong @ 175,9866.8: Note
+- strong @ 410.7,9866.8: Libraries
+- strong @ 696.2,9866.8: Review library updates
+- a [link] @ 662,9895.5: library updates
+- h2 @ 150,9976.3: Tools tab
+- p @ 150,10413.3: The Tools tab contains an assortment of plugins, widgets, shaders, and Weave tools that you can use to extend the capabilities of Figma Design and support your specific workflows.
+- p @ 150,10490.9: Find specific tools from the search bar or use various filters to narrow down your search.
+- h3 @ 150,10555.7: Plugins
+- p @ 150,10607.7: Plugins are applications that extend the functionality of Figma's products. You can automate repetitive tasks and add functionality that isn't native to the tool, like generating content, cleaning up layers, or connecting to external tools.
+- p @ 150,10685.3: Learn how to find and use plugins, or build your own.
+- a [link] @ 247,10690.3: find and use plugins
+- a [link] @ 420,10690.3: build your own
+- div @ 150,10734: Tip: Filter by Created by Figma to find plugins built by the Figma team that you can use for free in your design files. Available to everyone.
+- div @ 150,10734: Tip: Filter by Created by Figma to find plugins built by the Figma team that you can use for free in your design files. Available to everyone.
+- p @ 175,10751: Tip: Filter by Created by Figma to find plugins built by the Figma team that you can use for free in your design files. Available to everyone.
+- strong @ 175,10756: Tip
+- strong @ 269.4,10756: Created by Figma
+- h3 @ 150,10861.6: Widgets
+- p @ 150,10913.6: Widgets are interactive objects that you can add to the canvas to customize how you and your team work together. You can add things like voting widgets, data from external applications, or new ways to play.
+- p @ 150,10991.2: Learn how to find and use widgets, or build your own.
+- a [link] @ 247,10996.2: find and use widgets
+- a [link] @ 424.8,10996.2: build your own
+- h3 @ 150,11056: Shaders
+- p @ 150,11108: Shaders fills and shader effects give you precise control over the visual appearance of how something is rendered on your screen, allowing you to create striking visuals like frosted glass, holographic shimmers, and realistic fire textures.
+- p @ 150,11185.6: Add a shader fill to create a visual element, like a pattern or complex gradient. Apply a shader effect to modify how a layer renders, like adding a distortion on an existing image.
+- strong @ 195.9,11190.6: shader fill
+- strong @ 777.2,11190.6: shader effect
+- p @ 150,11263.2: Learn how to use shader fills and shader effects in your designs, or build your own shaders.
+- a [link] @ 276.5,11268.2: shader fills and shader effects
+- a [link] @ 636.6,11268.2: build your own shaders
+- div @ 150,11312: Tip: Filter by Created by Figma to find shaders built by the Figma team that you can use for free in your design files. Available to everyone.
+- div @ 150,11312: Tip: Filter by Created by Figma to find shaders built by the Figma team that you can use for free in your design files. Available to everyone.
+- p @ 175,11329: Tip: Filter by Created by Figma to find shaders built by the Figma team that you can use for free in your design files. Available to everyone.
+- strong @ 175,11334: Tip
+- strong @ 269.4,11334: Created by Figma
+- h3 @ 150,11439.6: Weave tools
+- p @ 150,11491.6: Weave tools bring AI-powered capabilities into your design workflow, helping you generate, edit, and refine work without leaving the canvas.
+- p @ 150,11569.2: Learn more about Weave tools.
+- a [link] @ 150,11574.2: Learn more about Weave tools.
+- h2 @ 150,11638: Variables view
+- p @ 150,12060.2: Variables in Figma Design store reusable values and tokens that can be applied to all kinds of design properties. The Variables view gives you access to creating and editing variables, modes, and collections.
+- strong @ 183.8,12094: Variables
+- p @ 150,12137.8: Learn how to create and manage variables.
+- a [link] @ 150,12142.8: Learn how to create and manage variables.
+- h2 @ 150,12206.6: File notifications
+- p @ 150,12628.8: The bottom of the navigation bar contains notifications and warnings specific to the file, if any exist. This can include things such as library updates, missing font alerts, and offline statuses—which will only appear in the case that any 
+- a [link] @ 258.3,12662.6: library updates
+- a [link] @ 375.6,12662.6: missing font alerts
+- a [link] @ 549.7,12662.6: offline statuses
+- footer @ 150,12735.2: Was this article helpful? Yes No
+- div @ 150,12831.2: Was this article helpful? Yes No
+- div [radiogroup] @ 851.1,12831.2: Yes No
+- button [button] @ 851.1,12831.2: Yes
+- button [button] @ 945.2,12831.2: No
+- span @ 619.4,12845.2: Was this article helpful?
+- div @ 0,13069.2: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Template
+- footer @ 170,13133.2: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Template
+- div @ 170,13133.2: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- div @ 472,13133.2: USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Templates Remote design
+- div @ 774,13133.2: EXPLORE Design features Prototyping features Design systems features Collaboration features FigJam Pricing Enterprise Students and educators Customers Security Integrations Contact
+- div @ 1076,13133.2: RESOURCES Blog Best practices Support Developers Learn design Downloads What's new Releases Careers About us Agency partners Privacy Status
+- h6 @ 472,13149.2: USE CASES
+- h6 @ 774,13149.2: EXPLORE
+- h6 @ 1076,13149.2: RESOURCES
+- ul @ 170,13193.8: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- li @ 170,13193.8: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- ul @ 472,13194: UI design UX design Prototyping Graphic design Wireframing Brainstorming Templates Remote design
+- li @ 472,13194: UI design
+- a [link] @ 472,13194: UI design
+- ul @ 774,13194: Design features Prototyping features Design systems features Collaboration features FigJam Pricing Enterprise Students and educators Customers Security Integrations Contact
+- li @ 774,13194: Design features
+- a [link] @ 774,13194: Design features
+- ul @ 1076,13194: Blog Best practices Support Developers Learn design Downloads What's new Releases Careers About us Agency partners Privacy Status
+- li @ 1076,13194: Blog
+- a [link] @ 1076,13194: Blog
+- select [menu] @ 170,13198.6: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- li @ 472,13231.5: UX design
+- a [link] @ 472,13231.5: UX design
+- li @ 774,13231.5: Prototyping features
+- a [link] @ 774,13231.5: Prototyping features
+- li @ 1076,13231.5: Best practices
+- a [link] @ 1076,13231.5: Best practices
+- li @ 472,13269: Prototyping
+- a [link] @ 472,13269: Prototyping
+- li @ 774,13269: Design systems features
+- a [link] @ 774,13269: Design systems features
+- li @ 1076,13269: Support
+- a [link] @ 1076,13269: Support
+- li @ 472,13306.5: Graphic design
+- a [link] @ 472,13306.5: Graphic design
+- li @ 774,13306.5: Collaboration features
+- a [link] @ 774,13306.5: Collaboration features
+- li @ 1076,13306.5: Developers
+- a [link] @ 1076,13306.5: Developers
+- li @ 472,13344: Wireframing
+- a [link] @ 472,13344: Wireframing
+- li @ 774,13344: FigJam
+- a [link] @ 774,13344: FigJam
+- li @ 1076,13344: Learn design
+- a [link] @ 1076,13344: Learn design
+- li @ 472,13381.5: Brainstorming
+- a [link] @ 472,13381.5: Brainstorming
+- li @ 774,13381.5: Pricing
+- a [link] @ 774,13381.5: Pricing
+- li @ 1076,13381.5: Downloads
+- a [link] @ 1076,13381.5: Downloads
+- li @ 472,13419: Templates
+- a [link] @ 472,13419: Templates
+- li @ 774,13419: Enterprise
+- a [link] @ 774,13419: Enterprise
+- li @ 1076,13419: What's new
+- a [link] @ 1076,13419: What's new
+- li @ 472,13456.5: Remote design
+- a [link] @ 472,13456.5: Remote design
+- li @ 774,13456.5: Students and educators
+- a [link] @ 774,13456.5: Students and educators
+- li @ 1076,13456.5: Releases
+- a [link] @ 1076,13456.5: Releases
+- li @ 774,13494: Customers
+- a [link] @ 774,13494: Customers
+- li @ 1076,13494: Careers
+- a [link] @ 1076,13494: Careers
+- li @ 774,13531.5: Security
+- a [link] @ 774,13531.5: Security
+- li @ 1076,13531.5: About us
+- a [link] @ 1076,13531.5: About us
+- li @ 774,13569: Integrations
+- a [link] @ 774,13569: Integrations
+- li @ 1076,13569: Agency partners
+- a [link] @ 1076,13569: Agency partners
+- li @ 774,13606.5: Contact
+- a [link] @ 774,13606.5: Contact
+- li @ 1076,13606.5: Privacy
+- a [link] @ 1076,13606.5: Privacy
+- li @ 1076,13644: Status
+- a [link] @ 1076,13644: Status

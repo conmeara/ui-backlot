@@ -35,16 +35,16 @@
           <symbol id="lucide-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
           </symbol>
-          <symbol id="lucide-tune" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 5H3" />
-            <path d="M12 19H3" />
-            <path d="M14 3v4" />
-            <path d="M16 17v4" />
-            <path d="M21 12h-9" />
-            <path d="M21 19h-5" />
-            <path d="M21 5h-7" />
-            <path d="M8 10v4" />
-            <path d="M8 12H3" />
+          <symbol id="lucide-page-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h9" />
+            <path d="M17 7h4" />
+            <circle cx="14.5" cy="7" r="2" />
+            <path d="M3 17h4" />
+            <path d="M12 17h9" />
+            <circle cx="9.5" cy="17" r="2" />
+          </symbol>
+          <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6" />
           </symbol>
           <symbol id="lucide-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
@@ -83,6 +83,7 @@
           <span class="green"></span>
         </div>
         <div class="browser-tabs">
+          <button class="tab-search" type="button" aria-label="Search tabs"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
           <div class="tab active">
             <span class="tab-favicon board">D</span>
             <span class="tab-title">Launch Deck Review</span>
@@ -91,14 +92,17 @@
           <div class="tab">
             <span class="tab-favicon csv">X</span>
             <span class="tab-title">Q2 revenue.csv</span>
+            <span class="tab-close" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tab-close"/></svg></span>
           </div>
           <div class="tab">
             <span class="tab-favicon note">M</span>
             <span class="tab-title">slide-notes.md</span>
+            <span class="tab-close" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tab-close"/></svg></span>
           </div>
           <div class="tab">
             <span class="tab-favicon ref">A</span>
             <span class="tab-title">Airtable references</span>
+            <span class="tab-close" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tab-close"/></svg></span>
           </div>
           <button class="tab-add" type="button" aria-label="New tab"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tab-plus"/></svg></button>
           <div class="tab-spacer"></div>
@@ -110,12 +114,11 @@
             <span class="nav-button reload"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-reload"/></svg></span>
           </div>
           <div class="url-bar">
-            <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-tune"/></svg></span>
+            <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-page-info"/></svg></span>
             <span class="url-text"><span class="url-host">review.local</span><span class="url-path">/launch-deck/board?view=grid&agent=claude</span></span>
             <span class="star-icon" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-star"/></svg></span>
           </div>
           <div class="toolbar-actions">
-            <span class="toolbar-button capture"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-extensions"/></svg></span>
             <span class="toolbar-button profile">CB</span>
             <span class="toolbar-button more"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-kebab"/></svg></span>
           </div>
@@ -562,10 +565,28 @@
         display: flex;
         align-items: end;
         gap: 0;
-        padding: 7px 14px 0 82px;
-        background: #dee1e6;
+        padding: 7px 14px 0 76px;
+        background: #d6e3fb;
         border-bottom: 1px solid rgba(16, 18, 22, 0.1);
         overflow: hidden;
+      }
+
+      .tab-search {
+        width: 28px;
+        height: 28px;
+        margin: 2px 8px 0 0;
+        border: 0;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        color: #3c4043;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+
+      .tab-search .backlot-icon {
+        width: 16px;
+        height: 16px;
       }
 
       .tab {
@@ -723,7 +744,7 @@
         align-items: center;
         gap: 13px;
         padding: 0 14px;
-        background: #fff;
+        background: #eef2f9;
         border-bottom: 1px solid rgba(16, 18, 22, 0.08);
       }
 
@@ -769,7 +790,7 @@
         border-radius: 999px;
         color: #59616b;
         font-size: 12px;
-        background: #f1f3f4;
+        background: #e7ecf6;
         border: 1px solid transparent;
       }
 

@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-13T19:15:36.967Z",
+  "entries": [
+    {
+      "label": "app-store-hero",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us -> screenshotUrls[0] (Hero), full-res via /2400x1500bb.png suffix",
+      "capturedAt": "2026-07-13T19:15:36.967Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Drift-watch refresh 2026-07-13, triggered by app-store version bump to 16.110.3 (released 2026-07-07). Real Word-for-Mac ribbon/window chrome: Home tab active, ribbon groups (Paste/Font/Paragraph/Styles/Editing/Copilot), title bar with AutoSave+traffic lights+doc title+Comments/Editing/Share, status bar (Page 1 of 2, 145 words, language, accessibility). Staged marketing content ('Seattle Coffee Culture' doc) and a 3D-tilted product-shot presentation -- discount composition/perspective, trust chrome geometry/colors/typography/iconography. Version matches drift trigger (current 16.110.3, no previous dated screenshot set existed for this family to diff against).",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "app-store-review-editor",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us -> screenshotUrls[1] (Value_1), full-res via /2400x1500bb.png suffix",
+      "capturedAt": "2026-07-13T19:15:36.997Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Drift-watch refresh 2026-07-13, same App Store listing/version (16.110.3) as app-store-hero, filed same run. Flat (non-tilted) full window capture -- better for pixel/geometry comparison than the hero shot. Review tab ribbon active (Editor, Spelling & Grammar, Thesaurus, Word Count, Read Aloud, Check Accessibility, Translate/Language, comment controls, Track Changes, Accept/Reject/Compare, Block Authors/Protect Document/Always Open Read-Only/Restrict Permission, Hide Ink), open Editor sidebar (Editor Score 86%, Corrections: Spelling 11/Grammar 3, Refinements: Conciseness, Similarity, Insights), and a live spelling-correction flyout ('Cofee' misspelling with Coffee/Coffees/Cafe suggestions). Staged document content ('History of Coffee') -- discount; chrome/dialog/flyout geometry and color are real current-version UI.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

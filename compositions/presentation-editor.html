@@ -43,6 +43,10 @@
         <symbol id="fluent-search-20" viewBox="0 0 20 20">
     <path d="M13.73 14.44a6.5 6.5 0 1 1 .7-.7l3.42 3.4a.5.5 0 0 1-.63.77l-.07-.06-3.42-3.41Zm-.71-.71A5.54 5.54 0 0 0 15 9.5a5.5 5.5 0 1 0-1.98 4.23Z"/>
   </symbol>
+        <symbol id="fluent-accessibility-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M6.75 3.25a1.25 1.25 0 1 1 2.5 0a1.25 1.25 0 0 1-2.5 0M8 1a2.25 2.25 0 0 0-2.19 2.766l-1.612-.65a1.6 1.6 0 0 0-2.076.872a1.58 1.58 0 0 0 .87 2.07L5 6.869v2.384l-1.813 3.41a1.591 1.591 0 1 0 2.81 1.495L8 10.39l2.004 3.768a1.591 1.591 0 0 0 2.81-1.494L11 9.252V6.869l2.008-.811a1.58 1.58 0 0 0 .87-2.07a1.6 1.6 0 0 0-2.076-.873l-1.611.651q.058-.248.059-.516A2.25 2.25 0 0 0 8 1M3.047 4.369a.6.6 0 0 1 .776-.327l3.428 1.385a2 2 0 0 0 1.498 0l3.428-1.385a.6.6 0 0 1 .776.327a.58.58 0 0 1-.32.762l-2.008.81A1 1 0 0 0 10 6.87v2.383a1 1 0 0 0 .117.47l1.814 3.411a.592.592 0 0 1-1.044.556L8.883 9.92a1 1 0 0 0-1.766 0l-2.003 3.767a.591.591 0 1 1-1.044-.555l1.813-3.41A1 1 0 0 0 6 9.253V6.869a1 1 0 0 0-.625-.927L3.367 5.13a.58.58 0 0 1-.32-.762"/></symbol>
+        <symbol id="fluent-subtract-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8"/></symbol>
+        <symbol id="fluent-add-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/></symbol>
+        <symbol id="fluent-arrow-maximize-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M12.4 3a.6.6 0 0 1 .6.6v4.9a.5.5 0 0 1-1 0V4.707L4.707 12H8.5a.5.5 0 0 1 0 1H3.6a.6.6 0 0 1-.6-.6V7.5a.5.5 0 0 1 1 0v3.793L11.293 4H7.5a.5.5 0 0 1 0-1z"/></symbol>
       </svg>
       <div class="powerpoint-titlebar">
         <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
@@ -50,16 +54,24 @@
         <div class="quick-access" aria-label="Quick access toolbar">
           <span class="qa-save"></span><span class="qa-undo"></span><span class="qa-redo"></span>
         </div>
-        <span class="autosave-toggle"><span></span>AutoSave</span>
-        <span class="presentation-name">Launch Deck.pptx</span>
-        <div class="titlebar-search">Search in Presentation</div>
-        <div class="collab-strip" aria-label="Collaborators">
-          <span>C</span><span>A</span><i></i>
+        <span class="autosave-toggle">AutoSave<span></span></span>
+        <div class="titlebar-name-group">
+          <span class="presentation-name">Launch Deck.pptx</span>
+          <span class="save-state">• Saved <i class="save-state-caret"></i></span>
         </div>
-        <div class="titlebar-actions"><span>Share</span></div>
+        <div class="titlebar-search"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-search-20"/></svg>Search</div>
       </div>
       <div class="ribbon-tabs">
-        <span class="file-tab">File</span><span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
+        <span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span><span>Recording</span><span class="contextual">Shape Format</span>
+        <div class="ribbon-collab-cluster">
+          <div class="collab-strip" aria-label="Collaborators">
+            <span>C</span><span>A</span>
+          </div>
+          <button class="ribbon-text-btn"><i class="record-dot" aria-hidden="true"></i>Record</button>
+          <button class="ribbon-text-btn">Comments</button>
+          <button class="ribbon-text-btn">Present in Teams</button>
+          <button class="ribbon-share-btn">Share<i class="share-caret" aria-hidden="true"></i></button>
+        </div>
       </div>
       <div class="powerpoint-ribbon">
         <div class="ribbon-group clipboard">
@@ -150,12 +162,17 @@
           <div class="speaker-notes"><strong>Notes</strong><span>Thank everyone for last year's numbers. Introduce the regional forecast changes.</span></div>
           <div class="slide-status">
             <span>Slide 1 of 4</span>
-            <span>English (US)</span>
-            <span class="status-chip good">Accessibility: Good</span>
+            <span>English (United States)</span>
+            <span class="status-chip good"><svg class="backlot-icon a11y-glyph" aria-hidden="true"><use href="#fluent-accessibility-16-regular"/></svg>Accessibility: Good to go</span>
             <span class="status-chip comments">2 comments</span>
             <span class="view-buttons"><i></i><i></i><i></i></span>
-            <span class="zoom-track"></span>
-            <span class="zoom-percent">118%</span>
+            <span class="zoom-controls">
+              <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-subtract-16-regular"/></svg>
+              <span class="zoom-track"></span>
+              <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-add-16-regular"/></svg>
+            </span>
+            <span class="zoom-percent">100%</span>
+            <svg class="backlot-icon fit-glyph" aria-hidden="true"><use href="#fluent-arrow-maximize-16-regular"/></svg>
           </div>
         </div>
         <aside class="inspector comments-pane">
@@ -1486,7 +1503,7 @@
 
       .powerpoint-titlebar {
         height: 28px;
-        grid-template-columns: 56px auto auto minmax(120px, auto) 1fr auto auto;
+        grid-template-columns: 56px auto 1fr auto;
         gap: 5px;
         padding: 0 8px;
         border-bottom-color: #d0d0d0;
@@ -1546,10 +1563,35 @@
       }
 
       .presentation-name {
-        min-width: 120px;
+        min-width: 0;
         color: #202020;
         font-size: 11px;
         font-weight: 600;
+      }
+
+      .titlebar-name-group {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        justify-self: center;
+        margin: 0 auto;
+      }
+
+      .save-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        color: #6a6a6a;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .save-state-caret {
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid #6a6a6a;
       }
 
       .autosave-toggle {
@@ -1572,8 +1614,10 @@
       }
 
       .titlebar-search {
-        width: 146px;
+        justify-self: end;
+        width: 96px;
         height: 18px;
+        gap: 5px;
         padding: 0 8px;
         border-radius: 10px;
         background: #eceff1;
@@ -1581,6 +1625,11 @@
         color: #767676;
         font-size: 9px;
         font-weight: 500;
+      }
+
+      .titlebar-search .backlot-icon {
+        width: 11px;
+        height: 11px;
       }
 
       .collab-strip span {
@@ -1612,18 +1661,20 @@
       .ribbon-tabs {
         height: 24px;
         align-items: end;
-        padding-left: 6px;
+        padding-left: 4px;
         background: #f7f7f7;
         border-bottom-color: #d3d3d3;
         color: #1f1f1f;
-        font-size: 10px;
+        font-size: 9.5px;
         font-weight: 500;
       }
 
       .ribbon-tabs span {
         height: 22px;
-        padding: 0 7px;
+        padding: 0 3px;
         border-radius: 0;
+        white-space: nowrap;
+        flex: 0 0 auto;
       }
 
       .ribbon-tabs .active {
@@ -1639,6 +1690,77 @@
 
       .ribbon-tabs .contextual {
         color: #8f2f1f;
+      }
+
+      .ribbon-collab-cluster {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        align-self: center;
+        flex: 0 0 auto;
+        padding-right: 1px;
+      }
+
+      .ribbon-collab-cluster .collab-strip {
+        padding-left: 0;
+      }
+
+      .ribbon-collab-cluster .collab-strip span {
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+      }
+
+      .ribbon-text-btn {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        padding: 0 4px;
+        border: 0;
+        background: transparent;
+        color: #2b2b2b;
+        font-family: inherit;
+        font-size: 10px;
+        font-weight: 500;
+        cursor: default;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+
+      .record-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #c6421f;
+        display: inline-block;
+      }
+
+      .ribbon-share-btn {
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 999px;
+        background: #c9472b;
+        color: #fff;
+        font-family: inherit;
+        font-size: 10px;
+        font-weight: 500;
+        cursor: default;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+
+      .share-caret {
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid #fff;
       }
 
       .powerpoint-ribbon {
@@ -2178,8 +2300,8 @@
 
       .slide-status {
         height: 22px;
-        grid-template-columns: auto auto 1fr auto auto auto 76px;
-        gap: 8px;
+        grid-template-columns: auto auto 1fr auto auto auto auto 16px;
+        gap: 5px;
         padding: 0 8px;
         background: #f7f7f7;
         color: #313131;
@@ -2193,7 +2315,36 @@
       }
 
       .status-chip.good {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
         color: #222;
+        white-space: nowrap;
+      }
+
+      .a11y-glyph {
+        width: 11px;
+        height: 11px;
+        color: #444;
+      }
+
+      .zoom-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .zoom-glyph {
+        width: 9px;
+        height: 9px;
+        color: #555;
+      }
+
+      .fit-glyph {
+        width: 11px;
+        height: 11px;
+        color: #555;
+        justify-self: end;
       }
 
       .status-chip.comments::before {
@@ -2233,7 +2384,7 @@
 
       .zoom-track {
         position: relative;
-        width: 70px;
+        width: 46px;
         height: 2px;
         border-radius: 0;
         background: #c4c4c4;

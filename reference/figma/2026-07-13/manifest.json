@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-13T19:15:14.208Z",
+  "entries": [
+    {
+      "label": "help-center-left-panel",
+      "method": "playwright-public",
+      "url": "https://help.figma.com/hc/en-us/articles/360039831974-View-layers-and-pages-in-the-left-sidebar",
+      "viewport": "1500x960",
+      "theme": "light",
+      "selector": null,
+      "capturedAt": "2026-07-13T19:15:35.790Z",
+      "note": "Second drift-check label: same Help Center article that sourced actual-figma-left-panel-layers-pages.png / actual-figma-assets-panel.png / actual-figma-minimized-ui-selection.png in reference/figma/actual-app.",
+      "assetDecision": "Ground-truth reference of a live/public page for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "help-center-ui3-overview",
+      "method": "playwright-public",
+      "url": "https://help.figma.com/hc/en-us/articles/23954856027159-Navigating-UI3",
+      "viewport": "1500x960",
+      "theme": "light",
+      "selector": null,
+      "capturedAt": "2026-07-13T19:15:14.164Z",
+      "note": "Drift check for June 15 2026 UI3 release-notes update; refreshing the online-only Help Center rung (source for reference/figma/actual-app) since claude-in-chrome is disconnected and the live-web editor tier is unavailable.",
+      "assetDecision": "Ground-truth reference of a live/public page for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
