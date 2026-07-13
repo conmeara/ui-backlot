@@ -104,6 +104,16 @@ const DEMOS = [
     composition: 'compositions/calendar-app.html',
     story: 'Click an empty slot in the Calendar week view — a new event block appears and its title types in.',
   },
+  {
+    // Requires compositions/slack-app.html (PR #9); harmless to include before
+    // the merge — the author agent reports the missing composition and the
+    // demo lands as render-failed instead of blocking the pass.
+    id: 'slack', status: 'new',
+    example: 'examples/slack-interaction.html',
+    gif: 'docs/media/slack-interaction.gif',
+    composition: 'compositions/slack-app.html',
+    story: 'Click a channel in the Slack sidebar, type a short message into the composer, press send — the message posts to the channel with the sender avatar and timestamp.',
+  },
 ]
 
 // App family per demo — motion references are shared per family
@@ -112,7 +122,7 @@ const DEMO_FAMILY = {
   'claude-chat': 'claude', cowork: 'claude', 'claude-code': 'claude',
   excel: 'excel', word: 'word', powerpoint: 'powerpoint',
   browser: 'browser', finder: 'macos', 'mac-multi-app-demo': 'macos', calendar: 'macos',
-  codex: 'codex', figma: 'figma', premiere: 'premiere',
+  codex: 'codex', figma: 'figma', premiere: 'premiere', slack: 'slack',
 }
 
 // family -> absolute frames dir of the best real interaction recording,
