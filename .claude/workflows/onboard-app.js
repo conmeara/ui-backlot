@@ -12,7 +12,7 @@ export const meta = {
   ],
 }
 
-const ROOT = '/Users/botbot/Projects/ui-backlot'
+const ROOT = '/Users/conmeara/Projects/ui-backlot'
 // Repo-local + gitignored so the review pages (npm run review) can see it.
 const SCRATCH = ROOT + '/workspace/fidelity'
 

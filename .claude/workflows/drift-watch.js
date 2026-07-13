@@ -13,7 +13,7 @@ export const meta = {
 // MODEL POLICY: this loop must stay CHEAP enough to run weekly without thought.
 // Haiku everywhere except the capture agents (Sonnet — they drive browsers and
 // tools). No Opus, no Fable: drift-watch detects, fidelity-push judges.
-const ROOT = '/Users/botbot/Projects/ui-backlot'
+const ROOT = '/Users/conmeara/Projects/ui-backlot'
 const SCRATCH = ROOT + '/workspace/drift'
 const STATE = 'reports/drift/state.json' // tracked — drift lineage lives in reports/
 const STALE_DAYS = 45

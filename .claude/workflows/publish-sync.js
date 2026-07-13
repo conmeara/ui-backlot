@@ -14,7 +14,7 @@ export const meta = {
 // MODEL POLICY: no judgment stage in this loop — Haiku for mechanical work,
 // Sonnet where edits need care (media pipeline, README copy). Never Opus or
 // Fable here; publishing is bookkeeping, not critique.
-const ROOT = '/Users/botbot/Projects/ui-backlot'
+const ROOT = '/Users/conmeara/Projects/ui-backlot'
 const SCRATCH = ROOT + '/workspace/publish'
 
 let argv = args

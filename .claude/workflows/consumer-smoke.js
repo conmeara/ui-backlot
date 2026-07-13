@@ -12,7 +12,7 @@ export const meta = {
 
 // MODEL POLICY: no Opus/Fable — the deliverable is a friction log, not a
 // design judgment. Sonnet plays the stranger; Haiku does the bookkeeping.
-const ROOT = '/Users/botbot/Projects/ui-backlot'
+const ROOT = '/Users/conmeara/Projects/ui-backlot'
 const SANDBOX = ROOT + '/workspace/smoke' // gitignored with the rest of workspace/
 
 let argv = args
