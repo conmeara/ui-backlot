@@ -16,13 +16,18 @@ const ROOT = '/Users/conmeara/Projects/ui-backlot'
 // Repo-local + gitignored so the review pages (npm run review) can see it.
 const SCRATCH = ROOT + '/workspace/fidelity'
 
-if (!args || !args.family || !args.title) {
+// args may arrive as an object OR a JSON string — parse defensively (same
+// guard as fidelity-push/interaction-push; the missing guard aborted the
+// 2026-07-13 slack onboarding at t=0).
+let argv = args
+if (typeof argv === 'string') { try { argv = JSON.parse(argv) } catch { argv = undefined } }
+if (!argv || !argv.family || !argv.title) {
   throw new Error('onboard-app requires args {family, title, urls?, hints?} — e.g. {family: "slack", title: "Slack", urls: ["https://slack.com/features"]}')
 }
-const FAM = args.family
-const TITLE = args.title
-const URLS = args.urls || []
-const HINTS = args.hints || ''
+const FAM = argv.family
+const TITLE = argv.title
+const URLS = argv.urls || []
+const HINTS = argv.hints || ''
 
 // Every agent below may use EVERY tool it can reach: Bash, Read/Write/Edit,
 // WebSearch/WebFetch, and — via ToolSearch — the claude-in-chrome MCP (the
