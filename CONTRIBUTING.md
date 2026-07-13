@@ -38,6 +38,14 @@ Generated captures are ignored by git. `registry:check` validates capture
 metadata in a fresh clone; run `npm run registry:check:captures` after a local
 capture sweep when you want the registry to require every PNG on disk.
 
+To test the committed `registry/` with `hyperframes add` BEFORE pushing, serve
+it over http first — `python3 -m http.server` from `registry/` (or `npx serve
+registry`) — and point `hyperframes.json`'s `registry` field at that local
+`http://127.0.0.1:<port>` URL. Filesystem paths and `file://` URLs do NOT work
+(`hyperframes add` fetches `<registry>/registry.json` with Node fetch, which
+has no `file://` support) and fail with a misleading `Item not found —
+registry unreachable or empty` error.
+
 ## Add Or Improve A Surface
 
 1. Capture or inspect real reference state when possible — the acquisition

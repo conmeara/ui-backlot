@@ -78,11 +78,13 @@ or `surfaces/registry.json`.
 
 Static blocks (no animation of their own) should carry `data-no-timeline` on
 their host `<div>` so the renderer does not wait for a timeline that never
-registers. Known gap: `mac-menu-bar` and `claude-chat-pane` currently still
-trigger a ~45s "Sub-composition timelines not registered" wait via their
-*inner* composition ids even with the host flagged — the render falls back to
-screenshot capture and completes correctly, so the warning is safe to ignore
-until those compositions register empty timelines.
+registers. The general rule: ANY installed block whose `compositions/*.html`
+never assigns `window.__timelines[id] = ...` will stall ~45s per host with a
+"Sub-composition timelines not registered" warning unless flagged — check the
+block's HTML for a `__timelines` assignment before assuming it animates
+(`excel-workbook`, `mac-menu-bar`, and `claude-chat-pane` are known static
+blocks). The render still completes correctly via screenshot fallback, so a
+stall you do hit is slow, not broken.
 
 ## 5. Verify
 
