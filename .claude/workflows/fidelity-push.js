@@ -264,6 +264,18 @@ const REFRESH_STALE_DAYS = 45
 // produce confident-but-wrong fixes.
 async function referenceStage(f) {
   if (skipRefresh) return { health: null, acquired: null }
+  // Any throw here (schema failure, terminal API error) must degrade to
+  // "no refresh", not drop the family: excel was silently dropped from the
+  // 2026-07-13 full run when its ref-health agent failed StructuredOutput.
+  try {
+    return await referenceStageInner(f)
+  } catch (err) {
+    log('reference:' + f.key + ' failed (' + (err && err.message ? err.message : err) + ') — continuing without refresh')
+    return { health: null, acquired: null }
+  }
+}
+
+async function referenceStageInner(f) {
   const health = await agent(
     'Reference HEALTH CHECK for the "' + f.key + '" family in ' + ROOT + ' (work from that root; READ-ONLY — no edits, no downloads).\n' +
     'Surfaces this family must ground: ' + f.surfaces.map(s => s.id).join(', ') + '.\n' +
@@ -307,17 +319,24 @@ const GOTCHAS = [
   '7. Do NOT run any git commands (no commit, stash, checkout, restore). The orchestrator handles version control.',
 ].join('\n')
 
-const REF_RESOLVE = 'REF=$(ls -d ROOTDIR/FAMDIR/2*/ 2>/dev/null | sort | tail -1)'
+// Resolve the newest dated dir that actually CONTAINS the needed label file —
+// NOT just the newest dir. A drift-watch refresh can file a new dated set
+// covering only some labels; blindly taking the newest dir then scores (or
+// stranger-tests) a surface against a missing or unrelated image (the
+// 2026-07-13 run compared claude-composed-app against a settings figure).
+function refResolveFor(f, label, file) {
+  return 'REF=$(for d in $(ls -d ' + ROOT + '/' + f.refDir + '/2*/ 2>/dev/null | sort -r); do if [ -s "${d}' + label + '/' + file + '" ]; then echo "$d"; break; fi; done)'
+}
 
 function scoreScript(f, tag) {
   const scored = f.surfaces.filter(s => s.scoreRef)
-  const resolve = REF_RESOLVE.replace('ROOTDIR', ROOT).replace('FAMDIR', f.refDir)
   const cmds = scored.map(s =>
+    refResolveFor(f, s.scoreRef, 'tokens.json') + '\n' +
     'node tools/fidelity-score.mjs --label ' + s.id + '-' + tag +
     ' --ours ' + s.json + ' --theirs "${REF}' + s.scoreRef + '/tokens.json"' +
     ' --out ' + SCRATCH + '/score-' + s.id + '-' + tag + '.json'
   )
-  return 'mkdir -p ' + SCRATCH + ' && cd ' + ROOT + ' && ' + resolve + '\n' + cmds.join('\n')
+  return 'mkdir -p ' + SCRATCH + ' && cd ' + ROOT + '\n' + cmds.join('\n')
 }
 
 function scoreStage(f, tag, phaseTitle) {
@@ -396,6 +415,8 @@ async function fixStage(prev, f) {
           ? 'FIX SPECS from the design critic — implement alongside the typed repairs, most severe first:\n' + JSON.stringify(crit.gaps, null, 1) + '\n'
           : 'Critic specs from round 1 (skip any already applied; revisit ones skipped earlier only if now feasible):\n' + JSON.stringify(crit.gaps, null, 1) + '\n')
       : ''
+    // A thrown fix round (schema failure, terminal API error) ends the loop
+    // but must keep the rounds already applied — never drop the family.
     const fix = await agent(
       'Implement visual-fidelity fixes in ' + ROOT + ' (work from that root). Fix round ' + round + ' of up to ' + MAX_FIX_ROUNDS + ' — the loop re-scores after each round and stops when scores plateau, so prioritize the changes that move the measured score.\n\n' +
       'SCOPE — you may edit ONLY these files:\n' + f.surfaces.map(s => '- ' + s.src).join('\n') + '\n' +
@@ -407,13 +428,17 @@ async function fixStage(prev, f) {
       'VERIFY: after your edits, run the capture script for each surface you changed (npm run <script> from the repo root) and Read the produced PNG against the reference images (' + f.refs + '). A capture that errors means your edit broke the template — fix it before finishing. If a spec cannot be implemented cleanly, skip it with a reason (do not force a bad approximation).\n' +
       'Return: applied (surface/file/what changed), skipped (issue/reason), capturesVerified, notes.',
       { label: 'fix:' + f.key + ':r' + round, phase: 'Fix', model: 'sonnet', schema: FIX_SCHEMA }
-    )
+    ).catch(err => {
+      log('fix:' + f.key + ' round ' + round + ' failed (' + (err && err.message ? err.message : err) + ') — keeping earlier rounds')
+      return { applied: [], skipped: [], capturesVerified: false, notes: 'round ' + round + ' agent failed', roundFailed: true }
+    })
     if (fix) {
       applied.push(...(fix.applied || []))
       skipped.push(...(fix.skipped || []))
       notes = fix.notes || notes
     }
-    const newScore = await scoreStage(f, 'r' + round, 'Fix')
+    if (fix && fix.roundFailed) break
+    const newScore = await scoreStage(f, 'r' + round, 'Fix').catch(() => null)
     const gain = bestGain(latestScore, newScore)
     rounds.push({
       round: round,
@@ -504,19 +529,20 @@ function repairsBlock(score, f) {
 async function strangerStage(f, idx) {
   const scored = f.surfaces.filter(s => s.scoreRef)
   if (scored.length === 0) return null
-  const resolve = REF_RESOLVE.replace('ROOTDIR', ROOT).replace('FAMDIR', f.refDir)
   // Stage pairs under neutral names so the judge cannot read provenance from
   // paths. Parity (surface index) decides which side is real — recorded here,
-  // never shown to the stranger.
+  // never shown to the stranger. REF resolves per surface to the newest dated
+  // dir that actually holds this label's screenshot.
   const prep = scored.map((s, i) => {
     const real = '"${REF}' + s.scoreRef + '/screenshot.png"'
     const ours = ROOT + '/' + s.cap
     const a = (idx + i) % 2 === 0 ? real : ours
     const b = (idx + i) % 2 === 0 ? ours : real
-    return 'cp ' + a + ' ' + SCRATCH + '/stranger-' + s.id + '-A.png 2>/dev/null; cp ' + b + ' ' + SCRATCH + '/stranger-' + s.id + '-B.png 2>/dev/null'
+    return refResolveFor(f, s.scoreRef, 'screenshot.png') + '\n' +
+      'cp ' + a + ' ' + SCRATCH + '/stranger-' + s.id + '-A.png 2>/dev/null; cp ' + b + ' ' + SCRATCH + '/stranger-' + s.id + '-B.png 2>/dev/null'
   }).join('\n')
   await agent(
-    'Stage image pairs (mechanical, no judgment). Run as bash:\nmkdir -p ' + SCRATCH + ' && cd ' + ROOT + ' && ' + resolve + '\n' + prep + '\nReturn applied=[], skipped=[], capturesVerified=true, notes listing which stranger-*.png files now exist (ls ' + SCRATCH + '/stranger-*.png).',
+    'Stage image pairs (mechanical, no judgment). Run as bash:\nmkdir -p ' + SCRATCH + ' && cd ' + ROOT + '\n' + prep + '\nReturn applied=[], skipped=[], capturesVerified=true, notes listing which stranger-*.png files now exist (ls ' + SCRATCH + '/stranger-*.png).',
     { label: 'stage-pairs:' + f.key, phase: 'Judge', model: 'haiku', effort: 'low', schema: FIX_SCHEMA }
   )
   const stranger = await agent(
@@ -535,6 +561,26 @@ async function strangerStage(f, idx) {
 }
 
 async function judgeStage(prev, f, idx) {
+  // A thrown judge (schema failure, terminal API error) must not drop the
+  // family: its applied fixes would silently vanish from the pass log AND
+  // the PR. Degrade to an unjudged result instead.
+  try {
+    return await judgeStageInner(prev, f, idx)
+  } catch (err) {
+    log('judge:' + f.key + ' failed (' + (err && err.message ? err.message : err) + ') — shipping unjudged')
+    return {
+      family: f.key,
+      crit: prev ? prev.crit : null,
+      fix: prev ? prev.fix : null,
+      rounds: prev ? (prev.rounds || []) : [],
+      judge: { verdict: 'mixed', pairwise: [], regressions: [], remaining: ['judge stage failed this run — re-judge in the next pass'], summary: 'Judge agent failed; fixes shipped unjudged.' },
+      scores: { before: prev ? prev.preScore : null, after: null, bar: null },
+      stranger: null,
+    }
+  }
+}
+
+async function judgeStageInner(prev, f, idx) {
   if (!prev) return { family: f.key, crit: null, fix: null, judge: null, scores: null, stranger: null }
   if (!prev.fix) return { family: f.key, crit: prev.crit, fix: null, rounds: [], judge: { verdict: 'no-change', pairwise: [], regressions: [], remaining: [], summary: 'No confident gaps found; nothing changed.' }, scores: { before: prev.preScore, after: null, bar: null }, stranger: null }
 
@@ -584,7 +630,10 @@ async function judgeStage(prev, f, idx) {
     if (recheck) judge = recheck
   }
 
-  const stranger = await strangerStage(f, idx)
+  const stranger = await strangerStage(f, idx).catch(err => {
+    log('stranger:' + f.key + ' failed (' + (err && err.message ? err.message : err) + ') — skipping stranger test')
+    return null
+  })
   if (stranger && judge) {
     const tells = stranger.pairs.filter(p => p.imagesFound && !p.fooled).flatMap(p => (p.tells || []).map(t => '[stranger:' + p.surface + '] ' + t))
     judge.remaining = (judge.remaining || []).concat(tells)
@@ -629,7 +678,7 @@ const gate = await agent(
   'To avoid shell-quoting problems, write a bash script to ' + SCRATCH + '/run-gates.sh and execute it. Steps, sequential:\n' +
   (fullGate
     ? '1. FULL capture sweep: every npm script whose name starts with "capture:" EXCEPT the argless wrappers capture:hf and capture:web. List them by reading package.json. Run each with npm run <name>; record which fail.\n'
-    : '1. Scoped capture sweep — run each of these npm scripts, PLUS its "-dark" variant wherever package.json defines one (check each); record which fail (a script absent from package.json is a failure to report, not to invent):\n' + gateCaptures.map(s => '   npm run ' + s).join('\n') + '\n') +
+    : '1. Scoped capture sweep — run each of these npm scripts, PLUS its "-dark" variant wherever package.json defines one (check each). Record scripts that RUN and fail in captureFailures; scripts simply absent from package.json (sibling compositions without a capture script — known config drift) go in notes only, never captureFailures:\n' + gateCaptures.map(s => '   npm run ' + s).join('\n') + '\n') +
   '2. npm run registry:check:captures — report its counts; registryOk=false only on hard errors, not count drift (counts changed in the pass-102-111 consolidation).\n' +
   '3. npm run catalog:generate\n' +
   '4. npm run hf:lint — BASELINE is 29 intentional errors: 21x invalid_parent_traversal_in_asset_path (in-repo compositions use ../ because the capture pipeline loads them via file://; the published registry/ copies are root-relative) + 8x template_literal_selector (pre-existing). Report the total and list any error lines that are NEW versus that baseline.\n' +
