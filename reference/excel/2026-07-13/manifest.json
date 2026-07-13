@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-13T20:23:44.104Z",
+  "entries": [
+    {
+      "label": "app-store-mac-titlebar-comments-pane",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[4] 'Collaborate in real time', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-13T20:23:44.104Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "NEW coverage vs 2026-07-09 set: only App Store shot with the FULL window chrome visible incl. traffic lights (red/yellow/green), AutoSave toggle, editable document title 'Daily Checklist Challenge' + Saved indicator, and top-right Search box + avatar row -- none of the three previously filed shots show the title bar. Also the only one with the Comments pane open on the right (avatar, name, timestamp, reply threads, @mention composer) and the Review ribbon tab's comment-cluster controls (New/Delete/Previous/Next/Show Comments) fully labeled. Formula bar shows an active cell reference (M365) and a comment marker glyph on a cell. Single 'Charts' sheet tab. Marketing-staged content (staged checklist/chart data); trust chrome geometry, comments-pane layout, and title-bar treatment.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
