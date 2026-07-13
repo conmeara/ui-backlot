@@ -1,0 +1,41 @@
+{
+  "mode": "local committed registry/",
+  "journey": {
+    "installed": [
+      "mac-menu-bar",
+      "excel-workbook",
+      "claude-chat-pane"
+    ],
+    "composed": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/index.html",
+    "rendered": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+    "friction": [
+      {
+        "step": "Set \"registry\" in hyperframes.json to the local committed registry/ path, then run `npx hyperframes add mac-menu-bar`",
+        "kind": "broken-install",
+        "detail": "Pointing `registry` at a local filesystem path (plain absolute path or a `file://` URL) makes every `hyperframes add` fail with `Item \"mac-menu-bar\" not found — registry unreachable or empty.` — indistinguishable from a typo'd item name. Root cause (found only by reading the installed hyperframes CLI's own bundled source, src/registry/remote.ts): the resolver always does `fetch(`${baseUrl}/registry.json`)`, and Node's fetch has no file:// support, so any non-http(s) registry value silently produces an empty manifest. Real external consumers pasting the README's `https://raw.githubusercontent.com/...` URL never hit this since it's already http(s) — this only bites when validating the registry locally before pushing (a step CONTRIBUTING.md never mentions). Workaround used: `python3 -m http.server` inside `registry/` and point `registry` at `http://127.0.0.1:<port>`.",
+        "suggestedFix": "Add a short note to CONTRIBUTING.md (or docs/guides/build-hyperframes-demo.md) near the registry section: to test the not-yet-pushed registry locally, serve it (`npx serve registry` or `python3 -m http.server` from `registry/`) and point `hyperframes.json`'s `registry` field at that local URL — filesystem paths are not supported by `hyperframes add`."
+      },
+      {
+        "step": "Render the composed demo (`npx hyperframes render --composition index.html --quality draft --low-memory-mode --output demo.mp4`)",
+        "kind": "docs-gap",
+        "detail": "build-hyperframes-demo.md names only `mac-menu-bar` and `claude-chat-pane` as the blocks with the known ~45s \"Sub-composition timelines not registered\" stall (and says it happens \"even with the host flagged\"). In the exact three-block composition the docs' own example scene suggests (mac-menu-bar + excel-workbook + claude-chat-pane), the stall instead fired for `excel-workbook` and `claude-chat-pane` — not `mac-menu-bar`, which I'd flagged with `data-no-timeline` per the doc's instruction and which correctly skipped the wait. `excel-workbook` isn't mentioned anywhere as a static/no-timeline block, so there was no way to know in advance it would also cost a 45s stall (render still completed correctly via screenshot fallback, just slower and with a scary-looking log line).",
+        "suggestedFix": "In docs/guides/build-hyperframes-demo.md, replace the two named exceptions with either a complete, current list of every registry block that registers no timeline (apparently including excel-workbook), or state the general rule: any installed block whose compositions/*.html never calls `window.__timelines[id] = ...` will stall ~45s per host unless flagged `data-no-timeline` — check each block's HTML before assuming it's animated."
+      }
+    ]
+  },
+  "verify": {
+    "videoOk": true,
+    "installOk": true,
+    "details": [
+      "Video file exists at /Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+      "Video has valid stream: codec_type=video, width=1920, height=1080, duration=10.0s (exceeds 2s minimum)",
+      "All 5 composition files exist and non-empty: mac-menu-bar.html (212 lines), excel-workbook.html (987 lines), claude-chat-pane.html (402 lines), claude-thread-core.html (873 lines), claude-composer.html (390 lines)",
+      "All 3 runtime files exist and non-empty: backlot-component-loader.js (179 lines), backlot-interactions.js (245 lines), backlot-liquid-glass.js (237 lines)",
+      "CSS foundation file exists: styles/backlot-foundation.css (92 lines)",
+      "All 4 font assets exist and properly referenced: AnthropicSans/Serif romans and italics in assets/fonts/",
+      "No broken local asset references detected; all src/href attributes resolve to existing files or inline data URIs"
+    ],
+    "notes": "Consumer-smoke demo is fully installed with all blocks mounted correctly. Video render completed successfully with proper dimensions and duration. All mounted compositions reference valid local assets with no missing file dependencies."
+  },
+  "generatedAt": "2026-07-13T00:00:00Z"
+}
