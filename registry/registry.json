@@ -349,6 +349,19 @@
       ]
     },
     {
+      "name": "slack-app",
+      "type": "hyperframes:block",
+      "title": "Slack Workspace App",
+      "description": "Editable Slack desktop app shell informed by real Slack v4.50.143 native app captures and App Store screenshots. Slack workspace demos, messaging workflow scenes, collaboration panels, and multi-app compositions that feature team communication.",
+      "tags": [
+        "slack",
+        "messaging",
+        "collaboration",
+        "chat",
+        "desktop-app"
+      ]
+    },
+    {
       "name": "word-editor",
       "type": "hyperframes:block",
       "title": "Word-style Document Editor",

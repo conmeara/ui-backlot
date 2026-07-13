@@ -1665,6 +1665,45 @@
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
       "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window."
+    },
+    {
+      "id": "slack-app",
+      "title": "Slack Workspace App",
+      "kind": "component",
+      "status": "prototype",
+      "fidelity": "editable Slack desktop app shell informed by real Slack v4.50.143 native app captures and App Store screenshots",
+      "dimensions": {
+        "width": 1560,
+        "height": 980
+      },
+      "source": "compositions/slack-app.html",
+      "compositionId": "slack-app-surface",
+      "import": {
+        "type": "hyperframes-composition",
+        "src": "compositions/slack-app.html",
+        "selector": "#slack-app-surface"
+      },
+      "capture": {
+        "status": "ready",
+        "script": "capture:slack-app",
+        "selector": ".slack-app-window",
+        "path": "captures/surface-slack-app/target.png"
+      },
+      "prototypeNote": "docs/prototypes/slack-app-surface-pass-000.md",
+      "tags": [
+        "slack",
+        "messaging",
+        "collaboration",
+        "chat",
+        "desktop-app"
+      ],
+      "dependencies": [],
+      "sourceEvidence": [
+        "reference/slack/2026-07-13/",
+        "reference/slack/actual-app/source-index.json"
+      ],
+      "assetDecision": "Hand-authored HTML/CSS informed by real Slack desktop app chrome (sidebar, icon rail, workspace switcher, message list, compose box) and App Store screenshots; uses curated icon symbols for sidebar navigation and message tools; no Slack product code, app assets, private workspace data, or private messages copied.",
+      "recommendedUse": "Slack workspace demos, messaging workflow scenes, collaboration panels, and multi-app compositions that feature team communication."
     }
   ]
 }

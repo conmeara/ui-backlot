@@ -1,0 +1,1408 @@
+<style>
+  @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(74, 21, 75, 0.22), rgba(74, 21, 75, 0) 32%),
+      radial-gradient(circle at 80% 75%, rgba(63, 14, 64, 0.22), rgba(63, 14, 64, 0) 34%),
+      linear-gradient(135deg, #efe7ef 0%, #f7f5f3 48%, #eee6ee 100%);
+  }
+</style>
+
+<template id="slack-app-surface-template">
+  <div id="slack-app-surface" data-composition-id="slack-app-surface" data-width="1440" data-height="900">
+    <svg class="icon-sprite" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+      <symbol id="slack-icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+      <symbol id="slack-icon-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+      <symbol id="slack-icon-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="slack-icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+      <symbol id="slack-icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="slack-icon-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/></symbol>
+      <symbol id="slack-icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="slack-icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+      <symbol id="slack-icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+      <symbol id="slack-icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+      <symbol id="slack-icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="slack-icon-more" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/><circle cx="5" cy="12" r="1.9"/></symbol>
+      <symbol id="slack-icon-kebab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></symbol>
+      <symbol id="slack-icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0a2.34 2.34 0 0 0 3.319 1.915a2.34 2.34 0 0 1 2.33 4.033a2.34 2.34 0 0 0 0 3.831a2.34 2.34 0 0 1-2.33 4.033a2.34 2.34 0 0 0-3.319 1.915a2.34 2.34 0 0 1-4.659 0a2.34 2.34 0 0 0-3.32-1.915a2.34 2.34 0 0 1-2.33-4.033a2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="slack-icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></symbol>
+      <symbol id="slack-icon-messages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2zm4-1a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></symbol>
+      <symbol id="slack-icon-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></symbol>
+      <symbol id="slack-icon-listchecks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></symbol>
+      <symbol id="slack-icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="M21.854 2.147 10.914 13.086"/></symbol>
+      <symbol id="slack-icon-idcard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect width="20" height="14" x="2" y="5" rx="2"/></symbol>
+      <symbol id="slack-icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+      <symbol id="slack-icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+      <symbol id="slack-icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+      <symbol id="slack-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+      <symbol id="slack-icon-wand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></symbol>
+      <symbol id="slack-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="slack-icon-bold" viewBox="0 0 20 20"><path d="M5.5 4.25C5.5 3.56 6.06 3 6.75 3h3.5a4 4 0 0 1 3.17 6.44c.9.7 1.58 1.8 1.58 3.31A4.23 4.23 0 0 1 10.75 17h-4c-.69 0-1.25-.56-1.25-1.25V4.25ZM8 11v3.5h2.75c.81 0 1.75-.62 1.75-1.75S11.56 11 10.75 11H8Zm0-2.5h2.25a1.5 1.5 0 1 0 0-3H8v3Z"/></symbol>
+      <symbol id="slack-icon-italic" viewBox="0 0 20 20"><path d="M16 3a.5.5 0 0 1 0 1h-3.16L8.23 16h3.27a.5.5 0 0 1 0 1H4a.5.5 0 0 1 0-1h3.16l4.61-12H8.5a.5.5 0 0 1 0-1H16Z"/></symbol>
+      <symbol id="slack-icon-underline" viewBox="0 0 20 20"><path d="M6 3.5a.5.5 0 0 0-1 0v6.45A5.02 5.02 0 0 0 10 15c2.77 0 5-2.26 5-5.05V3.5a.5.5 0 0 0-1 0v6.45C14 12.2 12.2 14 10 14s-4-1.8-4-4.05V3.5Zm-1 13c0-.28.22-.5.5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Z"/></symbol>
+      <symbol id="slack-icon-strike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4H9a3 3 0 0 0-2.83 4"/><path d="M14 12a4 4 0 0 1 0 8H6"/><path d="M4 12h16"/></symbol>
+      <symbol id="slack-icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="slack-icon-numlist" viewBox="0 0 20 20"><path d="M5 1.5a.5.5 0 0 0-.39-.49.5.5 0 0 0-.56.27l-.07.12a2.96 2.96 0 0 1-1.2 1.15.5.5 0 1 0 .44.9c.3-.15.56-.34.78-.53V5.5a.5.5 0 0 0 1 0v-4ZM2.65 7.65a.5.5 0 0 0 .7.7l.05-.04.2-.12C3.76 8.09 4 8 4.3 8c.23 0 .41.06.53.15.1.07.16.17.16.35a.5.5 0 0 1-.21.44c-.15.12-.35.22-.62.35l-.14.08c-.32.15-.7.36-1 .7-.33.35-.53.81-.53 1.43 0 .28.22.5.5.5h2.5a.5.5 0 0 0 0-1H3.59c.04-.1.1-.2.17-.27a2.38 2.38 0 0 1 .83-.53c.27-.13.59-.29.84-.5.33-.27.57-.65.57-1.2 0-.5-.22-.9-.57-1.15A1.92 1.92 0 0 0 4.33 7h-.01a2.5 2.5 0 0 0-1.66.63v.01h-.01ZM4.25 15a.5.5 0 1 0 0 1c.34 0 .53.1.63.18.1.09.13.2.13.3-.01.2-.19.52-.76.52-.41 0-.63-.1-.72-.17a.42.42 0 0 1-.1-.07.5.5 0 0 0-.88.46v.01l.02.02a.8.8 0 0 0 .1.15c.07.08.17.17.3.27.28.18.7.33 1.28.33 1.03 0 1.73-.67 1.76-1.48.01-.37-.12-.74-.4-1.02.28-.28.41-.65.4-1.02-.03-.8-.73-1.48-1.76-1.48-.59 0-1 .15-1.28.33a1.4 1.4 0 0 0-.4.42l-.01.01v.01a.5.5 0 0 0 .87.48.42.42 0 0 1 .1-.08c.1-.07.3-.17.72-.17.57 0 .75.33.76.52 0 .1-.04.21-.13.3-.1.08-.29.18-.63.18ZM8.5 4a.5.5 0 1 0 0 1h8a.5.5 0 0 0 0-1h-8Zm0 5a.5.5 0 1 0 0 1h8a.5.5 0 0 0 0-1h-8ZM8 14.5c0-.28.22-.5.5-.5h8a.5.5 0 1 1 0 1h-8a.5.5 0 0 1-.5-.5Z"/></symbol>
+      <symbol id="slack-icon-bulletlist" viewBox="0 0 20 20"><path d="M3 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm3-1c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm0 5c0-.28.22-.5.5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm.5 4.5a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11Zm-2.5.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-1-4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></symbol>
+      <symbol id="slack-icon-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5H3m18 7H8m13 7H8m-5-7v7"/></symbol>
+      <symbol id="slack-icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+      <symbol id="slack-icon-codeblock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2a2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1m8 0h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></symbol>
+      <symbol id="slack-icon-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2s4-2 4-2M9 9h.01M15 9h.01"/></symbol>
+      <symbol id="slack-icon-atsign" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol>
+      <symbol id="slack-icon-sendup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+      <symbol id="slack-icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+      <symbol id="slack-icon-canvas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5M9 15h6m-3 3v-6"/></symbol>
+      <symbol id="slack-icon-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2m16 0h2m-7-1v2m-6-2v2"/></symbol>
+    </svg>
+
+    <section class="slack-app-window" data-primitive="slack-app-window" aria-label="Editable Slack desktop app surface">
+      <div class="slack-titlebar" data-primitive="slack-titlebar">
+        <div class="window-traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <button class="tb-nav icon-button" type="button" aria-label="Back"><svg><use href="#slack-icon-back"></use></svg></button>
+        <button class="tb-nav icon-button disabled" type="button" aria-label="Forward"><svg><use href="#slack-icon-forward"></use></svg></button>
+        <button class="tb-nav icon-button" type="button" aria-label="History"><svg><use href="#slack-icon-history"></use></svg></button>
+        <div class="tb-search">
+          <svg><use href="#slack-icon-search"></use></svg>
+          <span>Search Acme Robotics</span>
+        </div>
+        <button class="tb-switcher" type="button" aria-label="Workspace switcher">
+          <span class="tb-switcher-mark"></span>
+          <svg class="tb-switcher-chevron"><use href="#slack-icon-chevron-down"></use></svg>
+        </button>
+        <button class="tb-help icon-button" type="button" aria-label="Help"><svg><use href="#slack-icon-help"></use></svg></button>
+      </div>
+
+      <div class="slack-body">
+        <nav class="slack-rail" data-primitive="slack-icon-rail" aria-label="Workspace rail">
+          <div class="rail-ws-avatar">AR</div>
+          <button class="rail-item selected" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-home"></use></svg></span>
+            <label>Home</label>
+          </button>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-chat"></use></svg></span>
+            <label>DMs</label>
+          </button>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-bell"></use></svg></span>
+            <label>Activity</label>
+          </button>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-copy"></use></svg></span>
+            <label>Files</label>
+          </button>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-bookmark"></use></svg></span>
+            <label>Later</label>
+          </button>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-more"></use></svg></span>
+            <label>More</label>
+          </button>
+          <div class="rail-divider"></div>
+          <button class="rail-item" type="button">
+            <span class="rail-tile"><svg><use href="#slack-icon-settings"></use></svg></span>
+            <label>Admin</label>
+          </button>
+          <div class="rail-spacer"></div>
+          <div class="rail-user-avatar">
+            <span>JL</span>
+            <i class="presence-dot"></i>
+          </div>
+        </nav>
+
+        <aside class="slack-sidebar" data-primitive="slack-sidebar" aria-label="Channel sidebar">
+          <div class="sb-header">
+            <button class="sb-ws-name" type="button">
+              <span>Acme Robotics</span>
+              <svg class="sb-chevron"><use href="#slack-icon-chevron-down"></use></svg>
+            </button>
+            <button class="sb-icon-btn icon-button" type="button" aria-label="Settings"><svg><use href="#slack-icon-settings"></use></svg></button>
+            <button class="sb-icon-btn icon-button" type="button" aria-label="Compose"><svg><use href="#slack-icon-pencil"></use></svg></button>
+          </div>
+
+          <div class="sb-search">
+            <svg><use href="#slack-icon-search"></use></svg>
+            <span>Find a conversation</span>
+          </div>
+
+          <nav class="sb-quicknav">
+            <div class="sb-row"><svg class="sb-row-icon"><use href="#slack-icon-messages"></use></svg><span>Threads</span></div>
+            <div class="sb-row"><svg class="sb-row-icon"><use href="#slack-icon-headphones"></use></svg><span>Huddles</span></div>
+            <div class="sb-row"><svg class="sb-row-icon"><use href="#slack-icon-listchecks"></use></svg><span>Recap</span></div>
+            <div class="sb-row"><svg class="sb-row-icon"><use href="#slack-icon-send"></use></svg><span>Drafts &amp; sent</span></div>
+            <div class="sb-row"><svg class="sb-row-icon"><use href="#slack-icon-idcard"></use></svg><span>Directories</span></div>
+          </nav>
+
+          <div class="sb-divider"></div>
+
+          <section class="sb-section">
+            <div class="sb-section-label"><svg><use href="#slack-icon-star"></use></svg><span>Starred</span></div>
+            <div class="sb-row indent"><svg class="sb-row-icon"><use href="#slack-icon-lock"></use></svg><span>ops-room</span></div>
+          </section>
+
+          <section class="sb-section">
+            <div class="sb-section-label"><svg><use href="#slack-icon-grid"></use></svg><span>Channels</span></div>
+            <div class="sb-row indent"><span class="sb-hash">#</span><span>general</span></div>
+            <div class="sb-row indent"><svg class="sb-row-icon"><use href="#slack-icon-lock"></use></svg><span>design</span></div>
+            <div class="sb-row indent selected"><span class="sb-hash">#</span><span>project-updates</span></div>
+            <div class="sb-row indent unread"><span class="sb-hash">#</span><span>roadmap</span></div>
+          </section>
+
+          <section class="sb-section">
+            <div class="sb-section-label"><svg><use href="#slack-icon-chat"></use></svg><span>Direct messages</span></div>
+            <div class="sb-row indent dm">
+              <span class="sb-dm-avatar"><svg><use href="#slack-icon-user"></use></svg><i class="presence-dot"></i></span>
+              <span>Jordan Lee</span>
+            </div>
+          </section>
+
+          <section class="sb-section">
+            <div class="sb-section-label"><svg><use href="#slack-icon-grid"></use></svg><span>Agents &amp; apps</span></div>
+            <div class="sb-row indent dm">
+              <span class="sb-app-avatar slackbot"><svg><use href="#slack-icon-bot"></use></svg></span>
+              <span>Slackbot</span>
+            </div>
+          </section>
+        </aside>
+
+        <div class="slack-content" data-primitive="slack-content">
+          <header class="content-header">
+            <div class="ch-title-row">
+              <button class="ch-star icon-button" type="button" aria-label="Star channel"><svg><use href="#slack-icon-star"></use></svg></button>
+              <h1 class="ch-title"><span class="sb-hash">#</span>project-updates</h1>
+              <div class="ch-title-spacer"></div>
+              <button class="ch-members" type="button"><svg><use href="#slack-icon-user"></use></svg><span>5</span></button>
+              <button class="ch-huddle" type="button"><svg><use href="#slack-icon-headphones"></use></svg><svg class="ch-huddle-caret"><use href="#slack-icon-chevron-down"></use></svg></button>
+              <button class="ch-kebab icon-button" type="button" aria-label="More actions"><svg><use href="#slack-icon-kebab"></use></svg></button>
+            </div>
+            <div class="ch-tab-row">
+              <button class="ch-tab active" type="button"><span class="ch-tab-dot"></span>Messages</button>
+              <button class="ch-tab" type="button"><svg><use href="#slack-icon-canvas"></use></svg>Add canvas</button>
+              <button class="ch-tab" type="button"><svg><use href="#slack-icon-copy"></use></svg>Files &amp; links</button>
+              <button class="ch-tab-add icon-button" type="button" aria-label="Add tab"><svg><use href="#slack-icon-plus"></use></svg></button>
+            </div>
+          </header>
+
+          <div class="message-list">
+            <div class="new-messages-pill">
+              <svg><use href="#slack-icon-sendup" style="transform:rotate(0deg)"></use></svg>
+              <span>6 new messages</span>
+              <button class="icon-button" type="button" aria-label="Dismiss"><svg><use href="#slack-icon-x"></use></svg></button>
+            </div>
+
+            <div class="date-divider"><span>Today<svg><use href="#slack-icon-chevron-down"></use></svg></span></div>
+
+            <div class="msg-group">
+              <span class="msg-avatar" data-tone="a">MK</span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Morgan Kim</strong><time>10:12 AM</time></div>
+                <p class="msg-text">Can someone share the latest deck for the client review?</p>
+                <div class="thread-summary">
+                  <span class="facepile"><i data-tone="b">TC</i><i data-tone="c">AR</i></span>
+                  <a class="thread-link">3 replies</a>
+                  <span class="thread-meta-muted">&nbsp;Last reply 45m ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="msg-group">
+              <span class="msg-avatar bot">
+                <svg><use href="#slack-icon-wand"></use></svg>
+              </span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Assistant</strong><span class="agent-chip">AGENT</span><time>10:15 AM</time></div>
+                <p class="msg-text">Sure — sending the updated deck now. Pinging <a class="mention">@Taylor&nbsp;Chen</a> for final approval.</p>
+              </div>
+            </div>
+
+            <div class="msg-group">
+              <span class="msg-avatar" data-tone="b">TC</span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Taylor Chen</strong><time>10:20 AM</time></div>
+                <p class="msg-text">Looks great, thanks!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer" data-primitive="slack-composer">
+            <div class="composer-toolbar">
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-bold"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-italic"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-underline"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-strike"></use></svg></button>
+              <span class="toolbar-sep"></span>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-link"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-numlist"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-bulletlist"></use></svg></button>
+              <span class="toolbar-sep"></span>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-quote"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-code"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-codeblock"></use></svg></button>
+            </div>
+            <div class="composer-input">Message <span class="sb-hash">#</span>project-updates</div>
+            <div class="composer-bottom">
+              <button class="icon-button" type="button" aria-label="Attach"><svg><use href="#slack-icon-plus"></use></svg></button>
+              <button class="aa-toggle" type="button">Aa</button>
+              <button class="icon-button" type="button" aria-label="Emoji"><svg><use href="#slack-icon-smile"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="Mention"><svg><use href="#slack-icon-atsign"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="More"><svg><use href="#slack-icon-more"></use></svg></button>
+              <div class="composer-bottom-spacer"></div>
+              <button class="send-btn" type="button" aria-label="Send"><svg><use href="#slack-icon-send"></use></svg></button>
+              <button class="send-caret" type="button" aria-label="Send options"><svg><use href="#slack-icon-chevron-down"></use></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="slack-thread" data-primitive="slack-thread-panel">
+          <header class="thread-header">
+            <h2>Thread</h2>
+            <div class="thread-header-actions">
+              <button class="icon-button" type="button" aria-label="Summarize"><svg><use href="#slack-icon-wand"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="More"><svg><use href="#slack-icon-kebab"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="Close"><svg><use href="#slack-icon-x"></use></svg></button>
+            </div>
+          </header>
+
+          <div class="thread-body">
+            <div class="msg-group">
+              <span class="msg-avatar" data-tone="a">MK</span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Morgan Kim</strong><time>3 minutes ago</time></div>
+                <p class="msg-text">Can you confirm the launch date for the roadmap?</p>
+              </div>
+            </div>
+
+            <div class="msg-group">
+              <span class="msg-avatar bot"><svg><use href="#slack-icon-wand"></use></svg></span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Assistant</strong><span class="agent-chip">AGENT</span><time>2 minutes ago</time></div>
+                <p class="msg-text">Yes — here's what's confirmed so far:</p>
+                <ul class="msg-list">
+                  <li>Launch date: Aug 3</li>
+                  <li>Owner: Taylor Chen</li>
+                  <li>Channel: <span class="sb-hash">#</span>project-updates</li>
+                  <li>Status: on track</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="msg-group">
+              <span class="msg-avatar" data-tone="a">MK</span>
+              <div class="msg-body-col">
+                <div class="msg-meta"><strong>Morgan Kim</strong><time>Just now</time></div>
+                <p class="msg-text">Perfect, thank you!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="thread-composer" data-primitive="slack-thread-composer">
+            <label class="also-send"><input type="checkbox" /><span>Also send to <span class="sb-hash">#</span>project-updates</span></label>
+            <div class="composer-toolbar">
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-bold"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-italic"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-underline"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-strike"></use></svg></button>
+              <span class="toolbar-sep"></span>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-link"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-numlist"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-bulletlist"></use></svg></button>
+              <span class="toolbar-sep"></span>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-quote"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-code"></use></svg></button>
+              <button class="icon-button" type="button"><svg><use href="#slack-icon-codeblock"></use></svg></button>
+            </div>
+            <div class="composer-input">Reply…</div>
+            <div class="composer-bottom">
+              <button class="icon-button" type="button" aria-label="Attach"><svg><use href="#slack-icon-plus"></use></svg></button>
+              <button class="aa-toggle" type="button">Aa</button>
+              <button class="icon-button" type="button" aria-label="Emoji"><svg><use href="#slack-icon-smile"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="Mention"><svg><use href="#slack-icon-atsign"></use></svg></button>
+              <button class="icon-button" type="button" aria-label="More"><svg><use href="#slack-icon-more"></use></svg></button>
+              <div class="composer-bottom-spacer"></div>
+              <button class="send-btn thread" type="button" aria-label="Send"><svg><use href="#slack-icon-send"></use></svg></button>
+              <button class="send-caret thread" type="button" aria-label="Send options"><svg><use href="#slack-icon-chevron-down"></use></svg></button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      #slack-app-surface {
+        --rail-bg: #3b0e3e;
+        --sidebar-bg: #532e58;
+        --titlebar-bg: #3f0e40;
+        --search-fill: rgba(255, 255, 255, 0.18);
+        --selected-row-bg: rgba(255, 255, 255, 0.1);
+        --hover-row-bg: rgba(255, 255, 255, 0.06);
+        --text-inactive: rgba(255, 255, 255, 0.72);
+        --text-active: #ffffff;
+        --content-bg: #ffffff;
+        --ink: #1d1c1d;
+        --muted: #616061;
+        --border: #dddddd;
+        --hover-bg: #f8f8f8;
+        --link-blue: #1264a3;
+        --send-green: #007a5a;
+        --send-green-hover: #148567;
+        --font-slack: Lato, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        width: 1440px;
+        height: 900px;
+        font-family: var(--font-slack);
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      #slack-app-surface * {
+        box-sizing: border-box;
+      }
+
+      #slack-app-surface button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: default;
+        text-align: left;
+      }
+
+      #slack-app-surface svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+      }
+
+      #slack-app-surface .icon-button {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        flex: 0 0 auto;
+      }
+
+      #slack-app-surface .icon-button svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      #slack-app-surface .slack-app-window {
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        background: var(--content-bg);
+        box-shadow: 0 32px 95px rgba(35, 10, 40, 0.32), 0 0 0 1px rgba(20, 6, 22, 0.2);
+      }
+
+      /* ---------- R1 title bar ---------- */
+      #slack-app-surface .slack-titlebar {
+        flex: 0 0 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 14px;
+        background: var(--titlebar-bg);
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      #slack-app-surface .window-traffic {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-right: 6px;
+      }
+
+      #slack-app-surface .window-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+      }
+
+      .window-traffic .red { background: #ff5f57; }
+      .window-traffic .yellow { background: #febc2e; }
+      .window-traffic .green { background: #28c840; }
+
+      #slack-app-surface .slack-titlebar .tb-nav {
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      #slack-app-surface .slack-titlebar .tb-nav svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      #slack-app-surface .slack-titlebar .tb-nav.disabled {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      #slack-app-surface .tb-search {
+        flex: 1 1 auto;
+        max-width: 620px;
+        height: 28px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        border-radius: 6px;
+        background: var(--search-fill);
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 13px;
+      }
+
+      #slack-app-surface .tb-search svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+      }
+
+      #slack-app-surface .tb-switcher {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #slack-app-surface .tb-switcher-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: radial-gradient(circle at 30% 30%, #ffb199, #e0654a 65%);
+      }
+
+      #slack-app-surface .tb-switcher-chevron {
+        width: 12px;
+        height: 12px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      #slack-app-surface .tb-help {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      #slack-app-surface .tb-help svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ---------- body row ---------- */
+      #slack-app-surface .slack-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+      }
+
+      /* ---------- R2 icon rail ---------- */
+      #slack-app-surface .slack-rail {
+        flex: 0 0 70px;
+        width: 70px;
+        background: var(--rail-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 14px;
+        color: var(--text-active);
+      }
+
+      #slack-app-surface .rail-ws-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #d9d9d9;
+        color: #2b2b2b;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 13px;
+        margin-bottom: 14px;
+      }
+
+      #slack-app-surface .rail-item {
+        width: 54px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        padding: 4px 0;
+        margin-bottom: 4px;
+      }
+
+      #slack-app-surface .rail-tile {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+      }
+
+      #slack-app-surface .rail-tile svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      #slack-app-surface .rail-item.selected .rail-tile {
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      #slack-app-surface .rail-item label {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      #slack-app-surface .rail-divider {
+        width: 30px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.18);
+        margin: 4px 0 8px;
+      }
+
+      #slack-app-surface .rail-spacer {
+        flex: 1 1 auto;
+      }
+
+      #slack-app-surface .rail-user-avatar {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #6dc7b7, #3f9e8f);
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 8px;
+      }
+
+      #slack-app-surface .presence-dot {
+        position: absolute;
+        right: -2px;
+        bottom: -2px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #007a5a;
+        box-shadow: 0 0 0 2px var(--rail-bg);
+      }
+
+      /* ---------- R3 channel sidebar ---------- */
+      #slack-app-surface .slack-sidebar {
+        flex: 0 0 328px;
+        width: 328px;
+        background: var(--sidebar-bg);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 12px 12px 0;
+        color: var(--text-inactive);
+      }
+
+      #slack-app-surface .sb-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+
+      #slack-app-surface .sb-ws-name {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        min-width: 0;
+        margin-right: auto;
+      }
+
+      #slack-app-surface .sb-ws-name span {
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--text-active);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      #slack-app-surface .sb-chevron {
+        width: 13px;
+        height: 13px;
+        flex: 0 0 auto;
+        color: var(--text-active);
+      }
+
+      #slack-app-surface .sb-icon-btn {
+        color: var(--text-inactive);
+      }
+
+      #slack-app-surface .sb-icon-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      #slack-app-surface .sb-search {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 10px;
+        border-radius: 6px;
+        background: var(--search-fill);
+        color: var(--text-inactive);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      #slack-app-surface .sb-search svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+      }
+
+      #slack-app-surface .sb-quicknav {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #slack-app-surface .sb-row {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 6px;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 400;
+        color: var(--text-inactive);
+      }
+
+      #slack-app-surface .sb-row-icon {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+      }
+
+      #slack-app-surface .sb-row.indent {
+        padding-left: 6px;
+      }
+
+      #slack-app-surface .sb-row.selected {
+        background: #f7eefe;
+        color: #1d1c1d;
+        font-weight: 700;
+      }
+
+      #slack-app-surface .sb-row.selected .sb-hash {
+        color: #1d1c1d;
+        opacity: 1;
+      }
+
+      #slack-app-surface .sb-row.unread {
+        color: var(--text-active);
+        font-weight: 700;
+      }
+
+      #slack-app-surface .sb-hash {
+        width: 16px;
+        flex: 0 0 auto;
+        text-align: center;
+        font-weight: 600;
+        opacity: 0.85;
+      }
+
+      #slack-app-surface .sb-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.14);
+        margin: 8px 0;
+      }
+
+      #slack-app-surface .sb-section {
+        margin-bottom: 6px;
+      }
+
+      #slack-app-surface .sb-section-label {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: none;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      #slack-app-surface .sb-section-label svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      #slack-app-surface .sb-row.dm {
+        gap: 8px;
+      }
+
+      .sb-dm-avatar,
+      #slack-app-surface .sb-app-avatar {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+        font-size: 9px;
+        font-weight: 700;
+        color: #fff;
+        background: #8a8a8f;
+        flex: 0 0 auto;
+      }
+
+      .sb-dm-avatar svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      #slack-app-surface .sb-app-avatar {
+        background: #4c6ef5;
+        color: #ffffff;
+      }
+
+      #slack-app-surface .sb-app-avatar svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      #slack-app-surface .sb-app-avatar.slackbot {
+        background: #1a4d47;
+        color: #2eb67d;
+      }
+
+      #slack-app-surface .sb-dm-avatar .presence-dot {
+        box-shadow: 0 0 0 2px var(--sidebar-bg);
+      }
+
+      /* ---------- R4 content column ---------- */
+      #slack-app-surface .slack-content {
+        flex: 0 0 524px;
+        width: 524px;
+        background: var(--content-bg);
+        display: flex;
+        flex-direction: column;
+        color: var(--ink);
+        border-right: 1px solid var(--border);
+      }
+
+      #slack-app-surface .content-header {
+        flex: 0 0 86px;
+        height: 86px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+
+      #slack-app-surface .ch-title-row {
+        flex: 0 0 46px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 16px;
+      }
+
+      #slack-app-surface .ch-star {
+        color: var(--ink);
+      }
+
+      #slack-app-surface .ch-star svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      #slack-app-surface .ch-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #slack-app-surface .ch-title .sb-hash {
+        color: var(--muted);
+        opacity: 1;
+        width: auto;
+      }
+
+      #slack-app-surface .ch-title-spacer {
+        flex: 1 1 auto;
+      }
+
+      #slack-app-surface .ch-members {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 9px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .ch-members svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      #slack-app-surface .ch-huddle {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 8px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--ink);
+      }
+
+      #slack-app-surface .ch-huddle svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      #slack-app-surface .ch-huddle-caret {
+        width: 11px !important;
+        height: 11px !important;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .ch-kebab {
+        color: var(--ink);
+      }
+
+      #slack-app-surface .ch-kebab svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      #slack-app-surface .ch-tab-row {
+        flex: 0 0 40px;
+        display: flex;
+        align-items: stretch;
+        padding: 0 16px;
+        gap: 20px;
+      }
+
+      #slack-app-surface .ch-tab {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--muted);
+        position: relative;
+      }
+
+      #slack-app-surface .ch-tab svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      #slack-app-surface .ch-tab.active {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      #slack-app-surface .ch-tab.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--sidebar-bg);
+      }
+
+      #slack-app-surface .ch-tab-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      #slack-app-surface .ch-tab-add {
+        margin-left: auto;
+        align-self: center;
+        color: var(--muted);
+      }
+
+      /* ---------- R4b message list ---------- */
+      #slack-app-surface .message-list {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+        padding: 48px 20px 14px;
+        position: relative;
+      }
+
+      #slack-app-surface .new-messages-pill {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 28px;
+        padding: 0 8px 0 10px;
+        border-radius: 14px;
+        background: var(--link-blue);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(18, 100, 163, 0.35);
+        z-index: 2;
+      }
+
+      #slack-app-surface .new-messages-pill svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      #slack-app-surface .new-messages-pill .icon-button {
+        width: 20px;
+        height: 20px;
+        color: #fff;
+      }
+
+      #slack-app-surface .new-messages-pill .icon-button svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      #slack-app-surface .date-divider {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 6px 0 18px;
+      }
+
+      #slack-app-surface .date-divider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 1px;
+        background: #e8e8e8;
+        z-index: 0;
+      }
+
+      #slack-app-surface .date-divider span {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        height: 24px;
+        padding: 0 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        background: #fff;
+      }
+
+      #slack-app-surface .date-divider svg {
+        width: 11px;
+        height: 11px;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .msg-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      #slack-app-surface .msg-avatar {
+        flex: 0 0 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .msg-avatar[data-tone="a"] { background: #e8912d; }
+      .msg-avatar[data-tone="b"] { background: #4a9e8f; }
+      .msg-avatar[data-tone="c"] { background: #4c6ef5; }
+
+      #slack-app-surface .msg-avatar.bot {
+        background: #1c1c1c;
+        color: #6fe0a8;
+      }
+
+      #slack-app-surface .msg-avatar.bot svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      #slack-app-surface .msg-body-col {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      #slack-app-surface .msg-meta {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 2px;
+      }
+
+      #slack-app-surface .msg-meta strong {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      #slack-app-surface .msg-meta time {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .agent-chip {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--muted);
+        background: #f0f0f0;
+        border-radius: 3px;
+        padding: 1px 5px;
+      }
+
+      #slack-app-surface .msg-text {
+        margin: 0;
+        font-size: 15px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+
+      #slack-app-surface .mention {
+        color: var(--link-blue);
+        font-weight: 600;
+        background: rgba(18, 100, 163, 0.08);
+        border-radius: 3px;
+        padding: 0 2px;
+      }
+
+      #slack-app-surface .msg-list {
+        margin: 6px 0 0;
+        padding-left: 18px;
+        font-size: 15px;
+        line-height: 22px;
+        color: var(--ink);
+      }
+
+      #slack-app-surface .thread-summary {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 6px;
+        font-size: 13px;
+      }
+
+      #slack-app-surface .facepile {
+        display: flex;
+      }
+
+      #slack-app-surface .facepile i {
+        font-style: normal;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        display: grid;
+        place-items: center;
+        font-size: 9px;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 0 0 2px #fff;
+        margin-left: -6px;
+      }
+
+      #slack-app-surface .facepile i:first-child {
+        margin-left: 0;
+      }
+
+      .facepile i[data-tone="b"] { background: linear-gradient(135deg, #6dc7b7, #3f9e8f); }
+      .facepile i[data-tone="c"] { background: linear-gradient(135deg, #8fa6e0, #5b74c6); }
+
+      #slack-app-surface .thread-link {
+        color: var(--link-blue);
+        font-weight: 700;
+      }
+
+      #slack-app-surface .thread-meta-muted {
+        color: var(--muted);
+      }
+
+      /* ---------- R4c / R5c composer ---------- */
+      #slack-app-surface .composer {
+        flex: 0 0 142px;
+        margin: 0 20px 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      #slack-app-surface .composer-toolbar {
+        flex: 0 0 36px;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 0 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #slack-app-surface .composer-toolbar .icon-button {
+        color: var(--muted);
+        width: 26px;
+        height: 26px;
+      }
+
+      #slack-app-surface .composer-toolbar .icon-button svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      #slack-app-surface .toolbar-sep {
+        width: 1px;
+        height: 18px;
+        background: var(--border);
+        margin: 0 4px;
+      }
+
+      #slack-app-surface .composer-input {
+        flex: 1 1 auto;
+        padding: 10px 14px 0;
+        font-size: 15px;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .composer-bottom {
+        flex: 0 0 40px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 10px;
+      }
+
+      #slack-app-surface .composer-bottom .icon-button {
+        color: var(--muted);
+      }
+
+      #slack-app-surface .composer-bottom .icon-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      #slack-app-surface .aa-toggle {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        border-radius: 6px;
+        text-decoration: underline;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 2px;
+      }
+
+      #slack-app-surface .composer-bottom-spacer {
+        flex: 1 1 auto;
+      }
+
+      #slack-app-surface .send-btn {
+        width: 30px;
+        height: 26px;
+        border-radius: 6px 0 0 6px;
+        background: transparent;
+        color: var(--muted);
+        display: grid;
+        place-items: center;
+      }
+
+      #slack-app-surface .send-btn.has-text {
+        background: var(--send-green);
+        color: #fff;
+      }
+
+      #slack-app-surface .send-btn svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      #slack-app-surface .send-caret {
+        width: 18px;
+        height: 26px;
+        border-radius: 0 6px 6px 0;
+        background: transparent;
+        color: var(--muted);
+        display: grid;
+        place-items: center;
+        border-left: 1px solid var(--border);
+        margin-left: -4px;
+      }
+
+      #slack-app-surface .send-caret.has-text {
+        background: var(--send-green);
+        color: rgba(255, 255, 255, 0.7);
+        border-left: 1px solid rgba(255, 255, 255, 0.25);
+      }
+
+      #slack-app-surface .send-caret svg {
+        width: 11px;
+        height: 11px;
+      }
+
+      /* ---------- R5 thread panel ---------- */
+      #slack-app-surface .slack-thread {
+        flex: 0 0 518px;
+        width: 518px;
+        background: var(--content-bg);
+        display: flex;
+        flex-direction: column;
+        color: var(--ink);
+      }
+
+      #slack-app-surface .thread-header {
+        flex: 0 0 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #slack-app-surface .thread-header h2 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      #slack-app-surface .thread-header-actions {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #slack-app-surface .thread-header-actions .icon-button {
+        color: var(--ink);
+      }
+
+      #slack-app-surface .thread-header-actions .icon-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      #slack-app-surface .thread-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+        padding: 16px 20px;
+      }
+
+      #slack-app-surface .thread-composer {
+        flex: 0 0 168px;
+        margin: 0 20px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      #slack-app-surface .also-send {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      #slack-app-surface .also-send input {
+        width: 14px;
+        height: 14px;
+      }
+
+      .thread-composer .composer-toolbar,
+      .thread-composer .composer-input,
+      #slack-app-surface .thread-composer .composer-bottom {
+        border: 1px solid var(--border);
+        border-bottom: none;
+      }
+
+      #slack-app-surface .thread-composer {
+        border: none;
+      }
+
+      #slack-app-surface .thread-composer .composer-toolbar {
+        border-radius: 8px 8px 0 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #slack-app-surface .thread-composer .composer-input {
+        border-bottom: none;
+        padding-top: 8px;
+      }
+
+      #slack-app-surface .thread-composer .composer-bottom {
+        border-top: none;
+        border-bottom: 1px solid var(--border);
+        border-radius: 0 0 8px 8px;
+        padding-bottom: 2px;
+      }
+
+    </style>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/slack-app\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const template = document.getElementById("slack-app-surface-template");
+    const mount = () => {
+      if (!template || document.querySelector("#slack-app-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>

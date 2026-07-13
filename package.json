@@ -48,6 +48,7 @@
     "capture:claude-launch-browser-workflow-prompt": "node tools/capture-web-ui.mjs \"file://$PWD/compositions/claude-launch-browser-workflow.html?capture=prompt\" --slug surface-claude-launch-browser-prompt-workflow --selector '.launch-browser-workflow-stage' --viewport 1960x1120",
     "capture:codex-app": "node tools/capture-web-ui.mjs compositions/codex-app.html --slug surface-codex-app --selector '.codex-app-window' --viewport 1380x900",
     "capture:codex-app-dark": "node tools/capture-web-ui.mjs compositions/codex-app.html --slug surface-codex-app-dark --selector '.codex-app-window' --viewport 1380x900 --root-class theme-dark",
+    "capture:slack-app": "node tools/capture-web-ui.mjs compositions/slack-app.html --slug surface-slack-app --selector '.slack-app-window' --viewport 1560x980",
     "capture:finder-window": "node tools/capture-web-ui.mjs compositions/finder-window.html --slug surface-finder-window-component --selector '.finder-window' --viewport 1000x520 --scale 2",
     "capture:finder-window-dark": "node tools/capture-web-ui.mjs compositions/finder-window.html --slug surface-finder-window-dark --selector '.finder-window' --viewport 1000x520 --scale 2 --root-class theme-dark",
     "capture:codex-terminal": "node tools/capture-web-ui.mjs compositions/codex-terminal.html --slug surface-codex-terminal --selector '.terminal-window' --viewport 1240x940",
