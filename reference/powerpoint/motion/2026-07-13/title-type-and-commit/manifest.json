@@ -1,0 +1,13 @@
+{
+  "source": "https://www.youtube.com/watch?v=gkNGtBlZOwo @ 00:00:10-00:00:26 (\"How to create a presentation in PowerPoint\" -- Microsoft 365 official YouTube channel)",
+  "method": "yt-dlp+ffmpeg (Part 1.5 rung 3: official vendor video frame-mining, downloaded itag 18 mp4 via --download-sections, re-encoded h264/yuv420p, extracted frames at fps=2)",
+  "interaction": "Click the slide title placeholder box, type a title (\"Contoso\" -> \"Contoso Sales\"), watch it commit live in both the canvas and the slide thumbnail rail, then save.",
+  "note": "Family tier is online-only (PowerPoint is not installed on this Mac and no office.com session exists in the user's Chrome, so rungs 1-2 of the motion ladder were unavailable). This is Windows PowerPoint (2016/2019-era ribbon, no Mac traffic lights/vertical tabs) from an official Microsoft 365 tutorial, not a Mac capture -- discount window chrome accordingly. The window also includes the preceding template-picker beat (selecting Blank Presentation) and the 'Click and start typing' placeholder-prompt tutorial card before the title-typing beat lands around frame ~24-27/32 -- keep the clip trimmed conceptually to that back half when calibrating. Trust for the title-typing beat: caret idiom (blinking I-beam at end of typed text, no visible debounce), instant per-keystroke commit into the canvas AND the thumbnail rail simultaneously, and the placeholder-text ('Click and start typing' / 'Double tap to add title') disappearing on first keystroke with no fade. No explicit Save/Ctrl+S action appears on-screen in this window (AutoSave toggle is visible top-left but not exercised) -- title-typing commit is the calibratable beat; save affordance is not directly observed here and should fall back to product knowledge (Ctrl+S / Cmd+S, title bar filename update, no modal for an already-named/cloud-synced file). App version: PowerPoint circa 2016/2019 desktop ribbon (exact build not stated in video); publish date of source video 2019-12-04, channel-official upload.",
+  "appVersion": "PowerPoint for Windows, 2016/2019-era ribbon UI (unspecified build)",
+  "themes": ["light"],
+  "clip": {
+    "fps": 2,
+    "durationSeconds": 16,
+    "frameCount": 32
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "source": "native-local: Google Chrome.app on this Mac, recorded via `screencapture -v`",
+  "interaction": "Typed \"wikipedia.org\" into a blank tab's omnibox (Cmd+L to focus, real keystrokes via System Events, then Return) and let the page load.",
+  "note": "16 frames @ fps=2 from an 8s clip. Frames ~1-6 show the omnibox in typing/edit state with the real Chrome autocomplete dropdown (URL suggestion pill, search suggestions) open under the address bar. Frames ~7-9 show the URL commit + native tab-loading state. Frames ~10+ show the loaded Wikipedia page. One caveat: because the recording session was driven via the claude-in-chrome extension's CDP connection, a transient blue \"Claude started debugging this browser\" infobar appears under the omnibox in the post-load frames -- that banner is NOT native Chrome chrome and should be ignored/cropped out when calibrating; the omnibox, tab strip, autocomplete dropdown, and loading spinner/progress states are all real native pixels. No login, no bot-check pages were touched; only public example.com and wikipedia.org were visited."
+}

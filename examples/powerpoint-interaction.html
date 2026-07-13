@@ -55,15 +55,15 @@
       .thumb span { font-size:11px; color:#8a8a90; }
       .thumb .mini { height:66px; background:#fff; border:1px solid rgba(20,30,48,0.12); border-radius:3px; padding:8px; }
       .thumb.active .mini { border-color:#c43e1c; box-shadow:0 0 0 1.5px #c43e1c; }
-      .mini-title { height:8px; width:60%; background:#c9ccd1; border-radius:2px; }
+      .mini-title { display:block; overflow:hidden; white-space:nowrap; width:0%; font-size:7px; font-weight:700; line-height:1.4; letter-spacing:-.01em; color:#1f2937; }
       .pp-canvas { display:grid; place-items:center; padding:26px; }
       .slide { position:relative; width:100%; max-width:640px; aspect-ratio:16/9; background:linear-gradient(135deg,#1f2937,#0f172a); border-radius:6px; box-shadow:0 10px 40px rgba(0,0,0,0.28); display:flex; flex-direction:column; justify-content:center; padding:0 54px; }
       .title-box { position:relative; }
       .title-box::before { content:""; position:absolute; inset:-14px -18px; border:2px solid transparent; border-radius:6px; }
-      .title-box.editing::before { border-color:rgba(255,255,255,0.55); border-style:dashed; }
+      .title-box.editing::before { border-color:rgba(255,255,255,0.55); border-style:solid; }
       .box-handles { display:none; position:absolute; inset:-14px -18px; }
       .title-box.editing .box-handles { display:block; }
-      .handle { position:absolute; width:8px; height:8px; margin:-4px; background:#fff; border:1px solid #3a3a3a; box-sizing:border-box; }
+      .handle { position:absolute; width:8px; height:8px; margin:-4px; background:#fff; border:1px solid #3a3a3a; border-radius:50%; box-sizing:border-box; }
       .handle-nw { left:0; top:0; } .handle-n { left:50%; top:0; } .handle-ne { left:100%; top:0; }
       .handle-e { left:100%; top:50%; } .handle-se { left:100%; top:100%; } .handle-s { left:50%; top:100%; }
       .handle-sw { left:0; top:100%; } .handle-w { left:0; top:50%; }
@@ -116,7 +116,9 @@
       tl.to(caret, { opacity: 1, duration: 0.1 }, 0.9);                                      // caret shows on focus
       tl.to(caret, { opacity: 0, duration: 0.53, repeat: 10, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.04); // idle blink
 
-      // thumbnail title bar grows in as the title is typed.
+      // thumbnail shows the actual title text, revealed by the same
+      // width-clip tween as the main title (not a generic gray bar).
+      stage.querySelector('[data-role="mini"]').textContent = TITLE;
       tl.fromTo('[data-role="mini"]', { width: "0%" }, { width: "62%", duration: typeDur, ease: "none" }, typeStart);
 
       // 3) a brief look-it-over pause (caret blinks visibly) then autosave
