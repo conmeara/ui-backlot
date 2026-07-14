@@ -120,6 +120,15 @@ const FAMILIES = [
     refs: 'No real screenshots on disk. Use Adobe Premiere Pro product knowledge (dark theme, panel chrome, timeline idiom) and be conservative — only flag what you are certain of; prefer abstraction over invented detail.',
     siblings: '',
   },
+  {
+    key: 'slack', criticModel: 'opus',
+    surfaces: [
+      { id: 'slack-app', src: 'compositions/slack-app.html', cap: 'captures/surface-slack-app/target.png', script: 'capture:slack-app' },
+    ],
+    refDir: 'reference/slack',
+    refs: 'reference/slack/2026-07-13/ — real native Slack v4.50.143 app capture at 1440x900 (desktop app window), plus reference/slack/actual-app/source-index.json covering 9 App Store screenshots at full res (sidebar/rail, message list, thread panel, huddle grid, Canvas, modals). Real current-version UI; trust chrome geometry/colors/typography/iconography, discount staged copy and user avatars. Native-local ground truth is gitignored (screenshot.png) per privacy policy; manifest.json + measured tokens (if available) are tracked.',
+    siblings: '',
+  },
 ]
 
 const CRITIQUE_SCHEMA = {

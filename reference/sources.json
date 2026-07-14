@@ -221,6 +221,47 @@
         "manual-inbox: 7-day Premiere trial screenshots if the user opts in",
         "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) — short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
       ]
+    },
+    {
+      "family": "slack",
+      "tier": "native-local",
+      "availableOnThisMachine": true,
+      "targets": [
+        {
+          "label": "app-chrome-default",
+          "app": "Slack",
+          "method": "screencapture",
+          "notes": "Validated 2026-07-13: /Applications/Slack.app is installed and already signed into the user's own workspace (v4.50.143). Fixed window to 1440x900 (AppleScript position/size), screencapture -R of the window bounds, filed via tools/import-reference.mjs --image. Captures purple sidebar + icon rail, workspace switcher, channel list, top search bar, message list with reactions/threads, open thread panel, rich-text compose box. This is a live, real, private workspace (actual names/messages) -- discount all text/avatar content, trust chrome geometry/colors/typography/iconography only; screenshot.png is gitignored (reference/*/20*/**/screenshot*.png), manifest.json is not. No login was performed or attempted -- the app was already authenticated when this was discovered. CAUTION: clicking generic accessibility matches (e.g. 'button whose description contains Close') inside the live message list can hit an in-message hyperlink and open the default browser instead of the intended app control (happened once this session, landed on Slack's public web sign-in page harmlessly -- closed the tab without interacting). Prefer precise UI-element targeting or leave transient panels (e.g. an open thread) as-is rather than risk another stray click."
+        },
+        {
+          "label": "app-store-screens",
+          "method": "app-store-api",
+          "bundleId": "com.tinyspeck.slackmacgap",
+          "notes": "Validated 2026-07-13: v4.50.143, 9 screenshotUrls, upsize to 2400x1500bb.png for full res. All 9 filed to reference/slack/actual-app/ (source-index.json) covering the purple sidebar chrome + icon rail, channel/DM message list with attachments and reactions, thread panel, live huddle video grid + control bar, Canvas doc, Slack Connect 'add people' modal, Lists table, Slackbot AI side panel, Apps directory grid, and the Workflow Builder Reminder-step modal. Real current-version UI composited into marketing cards; trust chrome geometry/colors/typography, discount the staged copy in headlines and avatar photos. Kept as a cross-check even now that native-local is available -- higher-res and covers surfaces (huddle grid, Canvas, modals) the default desktop view doesn't show."
+        },
+        {
+          "label": "web-app",
+          "url": "https://app.slack.com/client",
+          "auth": "user-session",
+          "method": "claude-in-chrome",
+          "notes": "Slack web client is the same UI as desktop (Electron wraps the web app). Superseded as primary ground truth by the native-local desktop app now that it's installed and signed in; still useful for cross-checking web-only chrome (browser tab/omnibox) if ever needed."
+        },
+        {
+          "label": "docs-scrape",
+          "urls": [
+            "https://slack.com/help/articles/212596808-Adjust-your-sidebar-preferences",
+            "https://slack.com/help",
+            "https://slack.com/media-kit"
+          ],
+          "method": "playwright-public",
+          "notes": "Help Center articles ship real annotated UI diagrams (e.g. the sidebar-anatomy callout image filed alongside the App Store set); media-kit is brand assets (logo/wordmark), not app-chrome screenshots."
+        }
+      ],
+      "fallbacks": [
+        "video-frame-mine: Slack's official YouTube channel (@SlackHQ) product-tour and launch videos",
+        "reference/slack/actual-app/source-index.json (App Store + Help Center scrape, refreshable via online-only pass)",
+        "manual-inbox: user screenshots of their own logged-in Slack workspace if they opt in"
+      ]
     }
   ]
 }

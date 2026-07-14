@@ -1,0 +1,66 @@
+{
+  "capturedAt": "2026-07-13T21:23:00.000Z",
+  "assetDecision": "Official Mac App Store product-page screenshots (real current-version 4.50.143 UI composited into marketing cards, no auth) and one official Slack Help Center anatomy diagram saved for visual reference only. Do not copy proprietary Slack source code, vector assets, icons, or screenshot pixels into editable surfaces; use these references to measure the purple sidebar chrome, channel/DM list density, message list and composer layout, thread/huddle panel structure, canvas doc styling, and modal patterns (Connect, Workflow Builder).",
+  "refs": [
+    {
+      "file": "actual-slack-appstore-dm-channel-schedule.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cb/3d/03/cb3d036a-8ed1-cbfa-ee27-67cf55c35db7/card1_-_DM.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card1, current v4.50.143): full window chrome (traffic lights, search bar), icon rail (Home/Activity/More), channel header with avatar stack + huddle icon, message list with audio-clip attachment and Canvas file card, emoji reaction pills, and the Schedule-message popover on the composer."
+    },
+    {
+      "file": "actual-slack-appstore-sidebar-thread-huddle.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/de/a8/85/dea88543-12cd-d82d-cba2-c3d5bc65ccdd/card2_-_channels.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card2, current v4.50.143): full left sidebar with Threads/Huddles/Recap/Drafts rail, Active projects section, channel list with an active huddle badge, live 'Join the huddle' banner in the message list, and the bottom-left huddle participant tray overlay."
+    },
+    {
+      "file": "actual-slack-appstore-huddle-video-thread.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5e/0b/3b/5e0b3ba6-34f0-4af4-bc57-77dfad2726d7/card3_-_huddles.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card3, current v4.50.143): active huddle video grid (avatar tiles with mic/reaction badges), the floating window title bar for a detached huddle, the AI-notes toggle + huddle control bar (mic/camera/share/raise-hand/emoji/canvas/leave), and a docked Thread panel."
+    },
+    {
+      "file": "actual-slack-appstore-canvas-doc.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/28/5b/65/285b6580-0144-f4c5-7744-db68aeddff4f/card4_-_coordinate.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card4, current v4.50.143): a Canvas document window (Share button, heading/body typography scale, strikethrough checklist items, embedded chart block, and the floating inline-insert toolbar)."
+    },
+    {
+      "file": "actual-slack-appstore-connect-external-modal.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/95/b0/1d/95b01d60-9e34-42ed-b219-24c747994366/card5_-_slack_connect.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card5, current v4.50.143): the 'Add people to #channel' Slack Connect modal (email chips, Add button) layered over a channel with an external-org banner and a file card with a permissions dropdown."
+    },
+    {
+      "file": "actual-slack-appstore-lists-table.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/65/19/f2/6519f2cf-2c89-fc94-119a-a6b270aea4c2/card6_-_lists.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card6, current v4.50.143): Slack Lists table view (Task/Status/Priority/Owners/Due date columns, colored status+priority pills, @-mention owner chips, Add item button)."
+    },
+    {
+      "file": "actual-slack-appstore-slackbot-ai-search.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/96/bf/d1/96bfd1fb-383a-465b-9217-022eb87a0de5/card7_-_collaborate.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card7, current v4.50.143): split-pane Slackbot AI side panel (Messages/History tabs, search-progress callout bubbles, streaming answer with emoji section headers and loading bars) next to a channel message pane."
+    },
+    {
+      "file": "actual-slack-appstore-apps-directory.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3e/46/88/3e4688da-734b-a5d6-9120-09624cd531f5/card8_-_apps.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card8, current v4.50.143): Apps directory grid (3x3 cards with logo, name, greeked description lines) and the icon rail variant that includes Agents/Tools entries."
+    },
+    {
+      "file": "actual-slack-appstore-workflow-builder-modal.png",
+      "page": "https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/99/9a/95/999a953f-a294-458f-70e7-99781cae1041/card9_-_workflows.en-GB.png/2400x1500bb.png",
+      "note": "Official Mac App Store product screenshot (card9, current v4.50.143): Workflow Builder 'Reminder' step modal (Start date / Time dropdowns, optional Note field with channel-mention highlight, Close/Publish buttons) over a channel sidebar with VIP-unread and locked-channel affordances."
+    },
+    {
+      "file": "actual-slack-helpcenter-sidebar-anatomy.png",
+      "page": "https://slack.com/help/articles/212596808-Adjust-your-sidebar-preferences",
+      "url": "https://slack.zendesk.com/hc/article_attachments/37362177496467",
+      "note": "Official Slack Help Center annotated diagram ('Desktop - 7.png') numbering the four sidebar zones: (1) window/pane toolbar with back/forward + history + search, (2) workspace-switcher icon rail, (3) view-icon column (Home/Threads/Activity/Later/More), (4) channel-list pane. Greeked content but authoritative for exact icon set, order, and column widths."
+    }
+  ]
+}

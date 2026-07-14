@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-13T21:31:57.177Z",
+  "entries": [
+    {
+      "label": "app-chrome-default",
+      "method": "screencapture",
+      "source": "Native macOS Slack.app (v4.50.143), user's own logged-in workspace, fixed 1440x900 window",
+      "capturedAt": "2026-07-13T21:31:57.177Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "native-local capture: purple sidebar + icon rail, workspace switcher, channel list, top search bar, message list with reactions/threads, open thread panel, rich-text compose box. Live workspace content (names, channel messages) is real and private -- discount all text/avatar content, trust chrome geometry/colors/typography/iconography only. No login performed; app was already signed in when this task started.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
