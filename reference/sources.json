@@ -72,6 +72,12 @@
       "availableOnThisMachine": true,
       "targets": [
         {
+          "label": "desktop-app-editor",
+          "app": "Figma",
+          "method": "screencapture",
+          "notes": "Validated 2026-07-13: /Applications/Figma.app installed + logged in. open -a Figma, osascript System Events front-window bounds, screencapture -x -R<bounds>. Opens on the last file; shows the real UI3 chrome: dark tab strip w/ traffic lights + file tabs (the Mac window chrome), left icon rail (File/Agents/Assets/Tools/Variables), light side panels, dark canvas. Owner's real file names visible - pixels stay local/gitignored."
+        },
+        {
           "label": "editor",
           "url": "https://www.figma.com",
           "auth": "user-session",

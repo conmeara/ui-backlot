@@ -3,7 +3,7 @@
   "name": "figma-editor",
   "type": "hyperframes:block",
   "title": "Figma-style Design Editor",
-  "description": "Code-native design editor shell. Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes. Dark theme: add class \"theme-dark\" to the composition root.",
+  "description": "Editable Figma DESKTOP APP editor rebuilt against a real logged-in Figma.app capture (reference/figma/2026-07-13/desktop-app-editor): Mac tab strip with traffic lights + file tabs, UI3 icon rail (File/Agents/Assets/Tools/Variables), attached side panels, dark canvas, floating bottom toolbar. Design handoff, frame editing, selection-handle, and Claude-to-design workflow scenes. Dark theme: add class \"theme-dark\" to the composition root.",
   "tags": [
     "figma",
     "design",

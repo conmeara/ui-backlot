@@ -2,6 +2,17 @@
   "capturedAt": "2026-07-13T19:15:14.208Z",
   "entries": [
     {
+      "label": "desktop-app-editor",
+      "method": "screencapture",
+      "source": "screencapture of installed Figma.app (retina 3024x1898), logged in, Untitled draft open",
+      "capturedAt": "2026-07-14T01:43:38.395Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Figma MAC DESKTOP APP editor. TOP: dark tab strip (~40pt) = the window chrome: traffic lights left (grey=unfocused), home-icon tab, file tabs w/ figma-file glyph + title (active tab lighter w/ close x), + button, right grid icon. LEFT: UI3 icon rail File/Agents/Assets/Tools/Variables (icons + 10px labels, ~72pt wide) then light panel: file header 'Untitled v / Drafts Free', Pages (+search/+), Page 1, Layers, frame rows. RIGHT light panel: avatar/play/Share, Design|Prototype + zoom, Frame section, 'Copy to Figma Slides' button, Position/Alignment grid, Layout Flow icons, Dimensions W/H, Clip content checkbox. CANVAS: dark (#1e1e1e-ish) w/ selected frame, bottom floating toolbar (move/frame/rect/pen/text/comment/actions + second group w/ collab cursors, measure, dev </>) and h-scrollbar. Discount file names/survey modal (private/transient). Pixels stay local.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
       "label": "help-center-left-panel",
       "method": "playwright-public",
       "url": "https://help.figma.com/hc/en-us/articles/360039831974-View-layers-and-pages-in-the-left-sidebar",
