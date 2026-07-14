@@ -32,7 +32,7 @@ Entries marked (part) are internal components that install transitively with the
 - `claude-cinematic` — Claude Cinematic Conversation, 1920×1080. The one zoomed cinematic Claude conversation for close-up video beats: ?beat=prompt (user asks + thinking loader), ?beat=reply (large serif answer + composer), ?beat=complete (done copy). Copy overridable via data-copy slots; add class theme-dark for dark.
   Registry variants: `claude-cinematic` (Default), `claude-cinematic-dark` (Dark), `claude-cinematic-prompt` (Prompt Beat), `claude-cinematic-complete` (Complete Beat).
 - `claude-code-terminal-session` — Claude Code Terminal Session, 660×760. Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell.
-- `claude-composed-app` — Claude Canonical Desktop Shell, 1440×900. Canonical parameterized Claude desktop shell: data-page="chat|cowork|code" (default cowork), data-sidebar/data-rail on|off toggles, .theme-dark for dark; one file replaces the stacked claude-desktop pages while keeping sidebar, thread, composer, and rail independently editable atoms. Capture variants: capture:claude-composed-app{,-chat,-code,-dark,-chat-dark}.
+- `claude-composed-app` — Claude App, 1440×900. Any scene that shows the Claude app. Pages via ?page=home|chat|cowork|code (default home; chat+cowork are one page in the real app - the composer pill picks the mode). data-sidebar="off" gives the sidebar-less pane (replaces claude-chat-pane), data-rail toggles the cowork agent rail, theme-dark supported.
   Scripted demos (compositions under `examples/`): `claude-chat-interaction`, `claude-code-interaction`, `cowork-interaction`.
 
 ### Codex (3 blocks, 1 scripted demo)

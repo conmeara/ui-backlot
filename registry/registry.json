@@ -59,8 +59,8 @@
     {
       "name": "claude-composed-app",
       "type": "hyperframes:block",
-      "title": "Claude Canonical Desktop Shell (composed)",
-      "description": "High against pass-100 claude-desktop chat/cowork/code pages (element rects and sampled surfaces pixel-match the claude-desktop captures per page and theme), pending sanitized live Claude full-shell capture. Canonical parameterized Claude desktop shell: data-page=\"chat|cowork|code\" (default cowork), data-sidebar/data-rail on|off toggles, .theme-dark for dark; one file replaces the stacked claude-desktop pages while keeping sidebar, thread, composer, and rail independently editable atoms. Capture variants: capture:claude-composed-app{,-chat,-code,-dark,-chat-dark}. Dark theme: add class \"theme-dark\" to the composition root.",
+      "title": "Claude App (Mac desktop)",
+      "description": "The one canonical Claude app, rebuilt against real Claude.app captures (reference/claude/2026-07-13/mac-app-*): Home|Code sidebar tabs, home page with the merged Chat/Cowork composer toggle, chat/cowork session views, and the light Claude Code desktop session pane. Any scene that shows the Claude app. Pages via ?page=home|chat|cowork|code (default home; chat+cowork are one page in the real app - the composer pill picks the mode). data-sidebar=\"off\" gives the sidebar-less pane (replaces claude-chat-pane), data-rail toggles the cowork agent rail, theme-dark supported. Dark theme: add class \"theme-dark\" to the composition root.",
       "tags": [
         "claude",
         "desktop-app",

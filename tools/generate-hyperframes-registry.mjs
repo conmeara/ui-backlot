@@ -160,10 +160,18 @@ for (const s of surfaces) {
   const refs = new Set();
   const rewritten = rewriteHtml(html, path.dirname(srcAbs), refs);
 
+  // Walk the reference closure. Vendored HTML (e.g. a deprecated atom folded
+  // into its composed shell) is itself rewritten against its own dir, and its
+  // references join the same closure — so nothing vendored keeps a '../'.
   const deps = new Set();
   const vendored = [];
-  for (const ref of [...refs].sort()) {
-    if (ref === s.source) continue;
+  const vendoredContent = new Map(); // repo-rel path → rewritten content
+  const seen = new Set([s.source]);
+  const queue = [...refs].sort();
+  while (queue.length) {
+    const ref = queue.shift();
+    if (seen.has(ref)) continue;
+    seen.add(ref);
     const shared = sharedByPrefix.find((r) => ref === r.prefix || ref.startsWith(r.prefix));
     if (shared && (sharedFileSet.has(ref) || shared.prefix.endsWith("/"))) { deps.add(shared.item); continue; }
     if (ref.startsWith("compositions/")) {
@@ -172,7 +180,13 @@ for (const s of surfaces) {
     }
     if (!fs.existsSync(path.join(repoRoot, ref))) throw new Error(`${s.id}: broken reference ${ref}`);
     vendored.push(ref);
+    if (ref.endsWith(".html")) {
+      const nested = new Set();
+      vendoredContent.set(ref, rewriteHtml(fs.readFileSync(path.join(repoRoot, ref), "utf8"), path.dirname(path.join(repoRoot, ref)), nested));
+      queue.push(...[...nested].sort());
+    }
   }
+  vendored.sort();
   // Foundation css pulls the fonts; cursors are their own item — a block that
   // uses either needs the runtime only if it mounts something.
   const mainFile = `${s.id}.html`;
@@ -194,7 +208,7 @@ for (const s of surfaces) {
     ],
     registryDependencies: [...deps],
   };
-  writeItem("blocks", s.id, item, [[mainFile, rewritten], ...vendored.map((v) => [v, readRepo(v)])]);
+  writeItem("blocks", s.id, item, [[mainFile, rewritten], ...vendored.map((v) => [v, vendoredContent.get(v) ?? readRepo(v)])]);
   publishedBlocks.set(s.id, item);
   manifestItems.push({ name: s.id, type: item.type, title: s.title, description, tags });
 }

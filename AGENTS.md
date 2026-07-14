@@ -71,9 +71,12 @@ surfaces, and a Claude or Codex component in your own composition —
 
 Good defaults per role:
 
-- The realistic Claude app: `claude-composed-app` (`?page=chat|cowork|code`,
-  `data-sidebar`/`data-rail` toggles, `theme-dark`).
-- Claude next to an app window: `claude-chat-pane` (sidebar-less pane).
+- The realistic Claude app: `claude-composed-app` (`?page=home|chat|cowork|code`,
+  default home — chat and cowork are ONE page in the real app, picked by the
+  composer's Chat|Cowork pill; `data-sidebar`/`data-rail` toggles, `theme-dark`).
+  Ground truth is the real Claude MAC app (`reference/claude/<date>/mac-app-*`).
+- Claude next to an app window: `claude-composed-app` with `data-sidebar="off"`
+  (the standalone `claude-chat-pane` is deprecated/folded in).
 - Zoomed conversation close-ups: `claude-cinematic`
   (`?beat=prompt|reply|complete`, copy via `data-copy` slots).
 - Claude in a terminal: `claude-code-terminal-session`; Codex: `codex-app` /

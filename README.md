@@ -83,7 +83,7 @@ Each `add` prints a ready-to-paste snippet — scenes are composed by stacking
 blocks, not installed pre-baked. Give each pasted host `<div>` a unique
 `data-composition-id` (the printed snippet omits it, `hyperframes lint`
 requires it). Variants are parameters: `class="theme-dark"`
-on blocks tagged `dark-mode-ready`, `?page=chat|cowork|code` on
+on blocks tagged `dark-mode-ready`, `?page=home|chat|cowork|code` on
 `claude-composed-app`, `?beat=prompt|reply|complete` on `claude-cinematic`.
 
 Complete starter projects scaffold with degit:

@@ -1,5 +1,5 @@
 <style>
-      @import url("../styles/backlot-foundation.css");
+      @import url("styles/backlot-foundation.css");
   html,
   body {
     width: 100%;
@@ -29,6 +29,11 @@
         <path d="m5 12 7-7 7 7" />
         <path d="M12 19V5" />
       </symbol>
+      <symbol id="lucide-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19v3" />
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+        <rect x="9" y="2" width="6" height="13" rx="3" />
+      </symbol>
     </svg>
 
     <section class="claude-composer-stage" data-primitive="claude-composer-stage" aria-label="Editable Claude composer surface">
@@ -55,6 +60,26 @@
           </div>
         </div>
         <div class="cw-disclaimer">Claude is AI and can make mistakes. Please double-check responses.</div>
+      </div>
+
+      <!-- ============ HOME PAGE — the merged chat+cowork composer.
+           Ground truth: reference/claude/2026-07-13/mac-app-home (real
+           Claude.app capture): idle placeholder, + button, Chat | Cowork
+           pill toggle, model chip, mic. ============ -->
+      <div class="composer-panel panel-home" data-primitive="claude-home-composer" aria-label="Claude home composer">
+        <div class="hm-card">
+          <div class="hm-placeholder">How can I help you today?</div>
+          <div class="hm-controls">
+            <button class="hm-plus" type="button" aria-label="Attach"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+            <span class="hm-mode" aria-label="Chat or Cowork">
+              <button type="button">Chat</button>
+              <button class="active" type="button">Cowork</button>
+            </span>
+            <span class="hm-controls-spacer"></span>
+            <button class="hm-model" type="button">Sonnet 4.6&ensp;<em>Medium</em><svg class="backlot-icon hm-model-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></button>
+            <button class="hm-mic" type="button" aria-label="Dictate"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-mic"/></svg></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -105,8 +130,9 @@
         width: 720px;
       }
 
-      #claude-composer-surface:not([data-page="cowork"]) .panel-chat,
-      #claude-composer-surface[data-page="cowork"] .panel-cowork {
+      #claude-composer-surface:not([data-page="cowork"]):not([data-page="home"]) .panel-chat,
+      #claude-composer-surface[data-page="cowork"] .panel-cowork,
+      #claude-composer-surface[data-page="home"] .panel-home {
         display: block;
       }
 
@@ -256,6 +282,111 @@
         font-size: 12.5px;
       }
 
+      /* ---- HOME PAGE composer (.hm-card) — measured vs the real
+         Claude.app home: white card on #fdfdfd, ~16px radius, hairline +
+         soft shadow; Chat|Cowork toggle where Cowork sits in a bordered
+         white pill (active border #3a3a3a). ---- */
+      .claude-composer-stage .panel-home .hm-card {
+        display: grid;
+        grid-template-rows: 1fr 40px;
+        gap: 14px;
+        min-height: 118px;
+        padding: 18px 16px 14px;
+        border: 0;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.06),
+          0 0 0 0.5px rgba(31, 31, 30, 0.22);
+      }
+
+      .hm-placeholder {
+        color: var(--claude-text-faint);
+        font-size: 15.5px;
+      }
+
+      .hm-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hm-plus {
+        width: 30px;
+        height: 30px;
+        padding: 6px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 18px;
+      }
+
+      .hm-mode {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        height: 32px;
+        padding: 2px;
+        border-radius: 16px;
+      }
+
+      .hm-mode button {
+        height: 28px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 14px;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 13.5px;
+        font-weight: 460;
+      }
+
+      .hm-mode .active {
+        border: 1px solid #3a3a3a;
+        background: #fff;
+        color: var(--claude-ink);
+        font-weight: 520;
+      }
+
+      .hm-controls-spacer { flex: 1; }
+
+      .hm-model {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 6px;
+        border: 0;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 13.5px;
+        font-weight: 450;
+        white-space: nowrap;
+      }
+
+      .hm-model em {
+        color: var(--claude-text-faint);
+        font-style: normal;
+      }
+
+      .hm-model-chev { width: 13px; height: 13px; color: var(--claude-text-faint); }
+
+      .hm-mic {
+        width: 30px;
+        height: 30px;
+        padding: 6px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--claude-text-muted);
+        font-size: 18px;
+      }
+
       /* ============ DARK VARIANT ============
          Scoped under .theme-dark so light rendering is byte-for-byte
          unaffected; must stay the LAST rules (cascade: last wins). The
@@ -299,6 +430,29 @@
       .theme-dark .cw-prompt-model { color: #eceae4; }
       .theme-dark .cw-sel-chev { color: #8a8578; }
       .theme-dark .cw-disclaimer { color: #8a8578; }
+
+      .theme-dark .claude-composer-stage .panel-home .hm-card,
+      .claude-composer-stage.theme-dark .panel-home .hm-card {
+        background: #30302c;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.2),
+          0 12px 34px rgba(0, 0, 0, 0.28),
+          0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .theme-dark .hm-placeholder { color: #8a8578; }
+      .theme-dark .hm-plus,
+      .theme-dark .hm-mic { color: #98948a; }
+      .theme-dark .hm-mode button { color: #b7b2a8; }
+
+      .theme-dark .hm-mode .active {
+        border-color: #b7b2a8;
+        background: #3a3935;
+        color: #eceae4;
+      }
+
+      .theme-dark .hm-model { color: #b7b2a8; }
+      .theme-dark .hm-model em { color: #8a8578; }
     </style>
 
     <style>
