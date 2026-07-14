@@ -34,15 +34,22 @@
          clip boundaries - see the tcState.onUpdate below. Scoped to classes
          that only ever exist on the cloned mount at runtime (added via
          tl.set), so the composition's own default capture is untouched. */
+      .program-monitor .program-frame.scrub-a {
+        background:
+          radial-gradient(circle at 40% 26%, rgba(255, 228, 176, 0.24), transparent 30%),
+          linear-gradient(155deg, #172219 0%, #2a3b22 42%, #131f10 100%);
+      }
       .program-monitor .program-frame.scrub-b {
         background:
-          radial-gradient(circle at 60% 30%, rgba(255, 226, 158, 0.38), transparent 30%),
-          linear-gradient(150deg, #3c5a2e 0%, #6f8f45 45%, #274022 100%);
+          radial-gradient(circle at 62% 26%, rgba(255, 235, 190, 0.42), transparent 30%),
+          linear-gradient(180deg, #4c6a48 0%, #3c5a2e 38%, #23371c 62%, #12200e 100%),
+          radial-gradient(circle at 50% 108%, rgba(0, 0, 0, 0.55), transparent 62%);
       }
       .program-monitor .program-frame.scrub-c {
         background:
-          radial-gradient(circle at 34% 62%, rgba(255, 214, 150, 0.3), transparent 28%),
-          linear-gradient(150deg, #33502a 0%, #55742f 50%, #203419 100%);
+          radial-gradient(circle at 32% 34%, rgba(255, 214, 158, 0.34), transparent 26%),
+          linear-gradient(180deg, #42604a 0%, #33502a 40%, #1c2f16 64%, #0f1a0a 100%),
+          radial-gradient(circle at 46% 110%, rgba(0, 0, 0, 0.6), transparent 60%);
       }
     </style>
 
@@ -174,11 +181,18 @@
             // at pct 82, inside the footage clip's span.
             if (programFrameEl) {
               const onGraphic = tcState.pct < 65;
+              // Intermediate still partway through the graphic phase so the
+              // monitor re-composites at least once before the footage
+              // handoff instead of holding one frozen title-card picture
+              // across the whole 52-65 scrub span (58 sits inside it, well
+              // before the 65 handoff).
+              const graphicStill = tcState.pct >= 58;
               // Second footage still swaps in partway through the scrub so the
               // monitor doesn't hold one frozen picture across the whole
               // footage span (74 sits inside 65-82, well before the drag
               // settles at END_PCT=82).
               const secondStill = tcState.pct >= 74;
+              programFrameEl.classList.toggle("scrub-a", onGraphic && graphicStill);
               programFrameEl.classList.toggle("scrub-b", !onGraphic && !secondStill);
               programFrameEl.classList.toggle("scrub-c", !onGraphic && secondStill);
               if (programCardEl) programCardEl.style.opacity = onGraphic ? "1" : "0";

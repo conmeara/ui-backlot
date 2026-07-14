@@ -5,7 +5,7 @@
     <title>Figma — Interaction Demo</title>
   </head>
   <body>
-    <div id="figma-interaction" data-composition-id="figma-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.6">
+    <div id="figma-interaction" data-composition-id="figma-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.6">
       <section class="fg-stage" data-primitive="figma-interaction" aria-label="Figma design editor (real component) with a scripted layer selection and drag">
         <div class="fg-frame component-frame"
              data-primitive="figma-editor-window"
@@ -73,7 +73,7 @@
       // ready). Without the hold, a fast render start races the mount and the
       // render fails with "Composition has zero duration".
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 6.6 }, 0);   // no-op hold → duration is always 6.6
+      tl.to(stage, { opacity: 1, duration: 4.6 }, 0);   // no-op hold → duration is always 4.6
       window.__timelines["figma-interaction"] = tl;
 
       function centerOf(el) {
@@ -136,7 +136,7 @@
 
         // Beat: let the reveal settle and read before the next action.
         // 3) Grab the frame: cursor glides to the card and presses.
-        ix.click(fundingCard, { at: 4.1, moveDur: 0.8 });
+        ix.click(fundingCard, { at: 2.7, moveDur: 0.8 });
 
         // 4) Drag it a few pixels down-right. Canvas is at 52% zoom (per the
         //    zoom-menu readout), so an 8x4 on-canvas px nudge is ~15x8 Figma
@@ -144,7 +144,7 @@
         //    counter technique the library's own type()/stream() use
         //    (onUpdate driven by an interpolated value, so it re-evaluates
         //    correctly on seek).
-        const dragStart = 4.45;
+        const dragStart = 3.05;
         const dragDur = 0.65;
         const grabPoint = centerOf(fundingCard);
         tl.to(fundingCard, { x: 8, y: 4, duration: dragDur, ease: "power2.inOut" }, dragStart);
@@ -214,7 +214,7 @@
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(6.6).pause();
+      if (cap === "hero") tl.seek(4.6).pause();
     </script>
   </body>
 </html>

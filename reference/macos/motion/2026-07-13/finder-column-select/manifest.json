@@ -1,0 +1,16 @@
+{
+  "family": "macos",
+  "label": "finder-column-select",
+  "capturedAt": "2026-07-13",
+  "source": {
+    "type": "native-local",
+    "app": "Finder",
+    "appVersion": "macOS Finder (local machine, 2026-07-13)",
+    "method": "screencapture -R<finder-window-bounds> -V 9 clip.mov, driven by AppleScript `tell application \"Finder\" to select item N of front window` calls spaced ~0.9s apart to move the selection through the Applications folder and then through Applications/Utilities; window region-cropped to the Finder window bounds only (no other screen content captured). Converted to clip.mp4 with ffmpeg, frames extracted at fps=2 with `ffmpeg -i clip.mp4 -vf fps=2 frames/f-%03d.png`."
+  },
+  "interaction": "Real macOS Finder, column view (Cmd+3), window showing Applications > Utilities. The clip shows the selection moving down the Utilities column item by item (Activity Monitor -> Disk Utility -> Grapher), each step highlighting the row with Finder's solid blue selection color and the third column preview pane live-updating (app icon, name, size, Created/Modified dates, version) to match the newly selected item. This is the exact story the demo's 'cursor selects files column by column' interaction needs: real column-view selection highlight color/shape and the preview-pane update cadence, captured directly from the local app rather than approximated.",
+  "note": "Rung 1 of the motion ladder (docs/reference-and-asset-sourcing.md Part 1.5): native-local screencapture of the installed Finder app, selection driven via AppleScript (no login, no bot-check, no git commands). AppleScript `select` was used instead of literal cursor movement/clicks -- it produces the same native selection-highlight animation and preview-pane update the app renders on a real click, which is what the motion judge needs (app response), even though the mouse cursor itself isn't visibly moving across columns in this clip. First attempt (unscoped full-screen capture) was discarded because unrelated Chrome tabs with sensitive content were visible in the background; this final clip is cropped to the Finder window bounds only.",
+  "assetDecision": "Local screen recording of the installed Finder app on this machine, showing only local file/folder names (default macOS Utilities apps) and generic macOS system UI. No account-specific or private data visible. Reference-only for pacing/selection-highlight/preview-panel calibration -- do not copy captured pixels into any shipped surface.",
+  "clip": "clip.mp4",
+  "frames": "frames/ (fps=2, 18 frames, f-001..f-018)"
+}
