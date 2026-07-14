@@ -1,0 +1,1122 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 13%, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 20%),
+      linear-gradient(140deg, #f1ede5 0%, #fbfaf6 58%, #e7f0ea 100%);
+  }
+</style>
+
+<div id="claude-composed-app" data-composition-id="claude-composed-app" data-width="1440" data-height="900" data-start="0" data-duration="8" data-page="home">
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M9 3v18" />
+    </symbol>
+    <symbol id="lucide-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v13" />
+      <path d="m16 6-4-4-4 4" />
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+    </symbol>
+    <symbol id="lucide-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="19" cy="12" r="1" />
+      <circle cx="5" cy="12" r="1" />
+    </symbol>
+    <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="lucide-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 18 6-6-6-6" />
+    </symbol>
+    <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </symbol>
+    <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+    </symbol>
+    <symbol id="lucide-git-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 6a9 9 0 0 0-9 9V3" />
+    <circle cx="18" cy="6" r="3" />
+    <circle cx="6" cy="18" r="3" />
+    </symbol>
+    <symbol id="lucide-git-pr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="18" r="3" />
+      <circle cx="6" cy="6" r="3" />
+      <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+      <path d="M6 9v12" />
+    </symbol>
+    <symbol id="lucide-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19v3" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <rect x="9" y="2" width="6" height="13" rx="3" />
+    </symbol>
+    <symbol id="lucide-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z" />
+      <path d="M20.054 15.987H3.946" />
+    </symbol>
+    <symbol id="lucide-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 17 6-6-6-6" />
+      <path d="M12 19h8" />
+    </symbol>
+    <symbol id="lucide-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+      <path d="M2 12h20" />
+    </symbol>
+    <symbol id="lucide-panel-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M15 3v18" />
+    </symbol>
+    <symbol id="lucide-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </symbol>
+    <symbol id="lucide-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
+      <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" />
+      <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" />
+      <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+    </symbol>
+    <symbol id="lucide-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+    </symbol>
+    <symbol id="lucide-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v8" />
+      <path d="m4.93 10.93 1.41 1.41" />
+      <path d="M2 18h2" />
+      <path d="M20 18h2" />
+      <path d="m19.07 10.93-1.41 1.41" />
+      <path d="M22 22H2" />
+      <path d="m8 6 4-4 4 4" />
+      <path d="M16 18a4 4 0 0 0-8 0" />
+    </symbol>
+    <symbol id="lucide-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 12h-6l-2 3h-4l-2-3H2" />
+      <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </symbol>
+    <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+      <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+      <path d="M10 9H8" />
+      <path d="M16 13H8" />
+      <path d="M16 17H8" />
+    </symbol>
+    <symbol id="lucide-square-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+    </symbol>
+    <symbol id="si-claude" viewBox="0 0 24 24">
+      <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+    </symbol>
+  </svg>
+
+  <article class="claude-shell-window" data-primitive="claude-composed-app" aria-label="Claude desktop app composed from atoms">
+    <div class="shell-traffic" aria-hidden="true"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+
+    <div
+      class="component-slot sidebar-slot"
+      data-primitive="claude-sidebar"
+      data-embed="flat"
+      data-backlot-mount-src="compositions/claude-sidebar.html"
+      data-backlot-mount-selector="#claude-sidebar-surface"
+    ></div>
+
+    <main class="shell-main" data-primitive="claude-shell-main">
+      <!-- Thread topbar (chat + cowork session views) -->
+      <header class="shell-topbar shell-topbar-thread" data-primitive="claude-thread-topbar">
+        <div class="shell-thread-title">Update Launch Deck opening slides</div>
+        <span class="shell-topbar-spacer"></span>
+        <button class="shell-topbar-icon" type="button" aria-label="Share"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg></button>
+        <button class="shell-topbar-icon" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
+      </header>
+
+      <!-- ============ HOME (default) — chat + cowork are ONE page now.
+           Ground truth: reference/claude/2026-07-13/mac-app-home. ============ -->
+      <section class="shell-home" data-primitive="claude-home-page" aria-label="Claude home">
+        <div class="shell-hero">
+          <svg class="backlot-icon shell-hero-mark" aria-hidden="true"><use href="#si-claude"/></svg>
+          <h1>Good evening, Avery</h1>
+        </div>
+
+        <div class="shell-home-composer">
+          <div
+            class="component-slot composer-slot composer-slot-home"
+            data-primitive="claude-home-composer"
+            data-embed="flat"
+            data-backlot-mount-src="compositions/claude-composer.html"
+            data-backlot-mount-selector="#claude-composer-surface"
+          ></div>
+          <div class="shell-home-tray">
+            <span class="tray-item"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg>Project or folder<svg class="backlot-icon tray-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+            <span class="tray-item"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-hand"/></svg>Manual<svg class="backlot-icon tray-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+            <span class="tray-spacer"></span>
+            <span class="tray-usage"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-zap"/></svg>2&times; more usage until August 5</span>
+          </div>
+        </div>
+
+        <div class="shell-ideas">
+          <div class="shell-ideas-label">Ideas for you</div>
+          <div class="shell-idea"><span class="shell-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sunrise"/></svg></span><span>Send me a daily briefing</span></div>
+          <div class="shell-idea"><span class="shell-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-inbox"/></svg></span><span>Organize my inbox</span></div>
+          <div class="shell-idea"><span class="shell-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></span><span>Customize Cowork for me</span></div>
+        </div>
+      </section>
+
+      <!-- ============ Thread column (chat + cowork session views) ============ -->
+      <div
+        class="component-slot thread-slot"
+        data-primitive="claude-thread-core"
+        data-embed="flat"
+        data-backlot-mount-src="compositions/claude-thread-core.html"
+        data-backlot-mount-selector="#claude-thread-core-surface"
+      ></div>
+
+      <footer class="shell-thread-composer" data-primitive="claude-thread-composer-dock">
+        <div
+          class="component-slot composer-slot composer-slot-cowork"
+          data-primitive="claude-working-composer"
+          data-embed="flat"
+          data-backlot-mount-src="compositions/claude-composer.html"
+          data-backlot-mount-selector="#claude-composer-surface"
+        ></div>
+      </footer>
+
+      <!-- ============ CODE — Claude Code desktop session, LIGHT.
+           Ground truth: reference/claude/2026-07-13/mac-app-code +
+           mac-app-code-split (real Claude.app captures). ============ -->
+      <div class="shell-code-main" data-primitive="claude-code-session" aria-label="Claude Code session pane">
+        <header class="code-head">
+          <span class="code-head-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-laptop"/></svg></span>
+          <span class="code-head-title">Fix checkout rounding bug</span>
+          <span class="code-head-repo">storefront</span>
+          <span class="shell-topbar-spacer"></span>
+          <button class="code-head-glyph" type="button" aria-label="Terminal"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-terminal"/></svg></button>
+          <button class="code-head-glyph" type="button" aria-label="Panel"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-panel-right"/></svg></button>
+          <button class="code-head-glyph" type="button" aria-label="Web"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></button>
+          <button class="code-head-glyph" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
+          <button class="code-head-glyph" type="button" aria-label="Close"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-x"/></svg></button>
+        </header>
+
+        <div class="code-scroll">
+          <div class="code-toolline">Read 3 files, ran 2 commands<svg class="backlot-icon code-tool-chev" aria-hidden="true"><use href="#lucide-chevron-right"/></svg></div>
+          <p class="code-prose">The rounding error comes from applying the discount before tax. Two line items in <code>cart.ts</code> need the fix — the subtotal keeps full precision and only the displayed total rounds:</p>
+          <div class="code-toolline">Edited <span class="code-file">cart.ts</span> <span class="code-plus">+14</span> <span class="code-minus">-6</span><svg class="backlot-icon code-tool-chev" aria-hidden="true"><use href="#lucide-chevron-right"/></svg></div>
+          <div class="code-user-row"><div class="code-user-bubble">run the tests too</div></div>
+          <div class="code-toolline">Ran <span class="code-file">npm test</span> — 42 passed<svg class="backlot-icon code-tool-chev" aria-hidden="true"><use href="#lucide-chevron-right"/></svg></div>
+          <p class="code-prose">All 42 tests pass. The cart now rounds once at the final total, so the receipt view and the checkout summary agree to the cent.</p>
+          <div class="code-pr-chip">
+            <svg class="backlot-icon code-pr-ico" aria-hidden="true"><use href="#lucide-git-pr"/></svg>
+            <span class="code-pr-num">#147</span>
+            <span class="code-pr-repo">storefront</span>
+            <span class="code-pr-branch">fix/cart-rounding</span>
+            <span class="shell-topbar-spacer"></span>
+            <span class="code-pr-state">Open</span>
+            <svg class="backlot-icon code-pr-x" aria-hidden="true"><use href="#lucide-x"/></svg>
+          </div>
+          <div class="code-turnmeta"><span class="code-turn-dot"></span>2m 12s &middot; 8.4k tokens</div>
+        </div>
+
+        <div class="code-branchbar">
+          <span class="code-branch-repo">storefront</span>
+          <span class="code-branch-name">main</span>
+          <span class="shell-topbar-spacer"></span>
+          <span class="code-diffcount"><span class="code-plus">+14</span> <span class="code-minus">-6</span></span>
+          <button class="code-createpr" type="button">Create PR</button>
+        </div>
+
+        <div class="code-composer">
+          <span class="code-placeholder">Type / for commands</span>
+          <svg class="backlot-icon code-composer-box" aria-hidden="true"><use href="#lucide-square-check"/></svg>
+        </div>
+
+        <div class="code-undercomposer">
+          <span class="code-bypass">Bypass permissions</span>
+          <button class="code-under-glyph" type="button" aria-label="Add"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></button>
+          <button class="code-under-glyph" type="button" aria-label="Dictate"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-mic"/></svg></button>
+          <svg class="backlot-icon code-under-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
+          <span class="shell-topbar-spacer"></span>
+          <span class="code-model">Sonnet 4.6</span>
+          <span class="code-effort">High</span>
+        </div>
+      </div>
+    </main>
+
+    <div
+      class="component-slot rail-slot"
+      data-primitive="claude-agent-context-rail"
+      data-embed="flat"
+      data-backlot-mount-src="compositions/claude-agent-rail.html"
+      data-backlot-mount-selector="#claude-agent-rail-surface"
+    ></div>
+  </article>
+
+<style>
+  /* ============================================================
+     Canonical Claude desktop app, composed from the atoms
+     (claude-sidebar / claude-thread-core / claude-composer /
+     claude-agent-rail) via runtime/backlot-component-loader.js.
+
+     Visual source of truth: reference/claude/2026-07-13/mac-app-home,
+     mac-app-code, mac-app-code-split — real captures of the Claude MAC
+     APP, which is now the primary ground truth (the web app shares the
+     UI). Chat and cowork are ONE page in the real app (a composer pill
+     toggle), and Claude Code desktop lives behind the sidebar's
+     Home | Code switch.
+
+     Parameters (on #claude-composed-app, all pure CSS):
+       data-page="home" | "chat" | "cowork" | "code"   (default home)
+         home   = greeting + composer (Chat|Cowork pills) + Ideas
+         chat   = active conversation thread
+         cowork = thread + agent rail (a running Cowork session)
+         code   = Claude Code desktop session (light)
+       data-sidebar="on" | "off"              (default on)
+       data-rail="on" | "off"                 (default: on for cowork only)
+     Direct preview also accepts ?page= / ?sidebar= / ?rail=.
+
+     Cascade note: this style block sits after the mount slots, so it
+     comes later in the document than every mounted atom's styles and
+     wins equal-specificity ties. Shell overrides that repaint atom
+     internals therefore always declare both light and dark values. */
+  #claude-composed-app {
+    --claude-ink: #0b0b0b;
+    --claude-ink-soft: #373734;
+    --claude-text-muted: #52514e;
+    --claude-text-faint: #7b7974;
+    width: 1440px;
+    height: 900px;
+    position: relative;
+    color: var(--claude-ink);
+    font-family: var(--font-claude-ui);
+  }
+
+  #claude-composed-app * {
+    box-sizing: border-box;
+  }
+
+  :where(#claude-composed-app *) {
+    border-color: rgba(11, 11, 11, 0.1);
+  }
+
+  #claude-composed-app button {
+    font: inherit;
+    cursor: default;
+  }
+
+  .claude-shell-window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fdfdfd;
+    box-shadow:
+      0 40px 120px rgba(54, 42, 31, 0.22),
+      0 0 0 1px rgba(55, 42, 31, 0.08);
+  }
+
+  /* ---- Slots ---- */
+  .component-slot {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .component-slot > [data-backlot-mounted-component] {
+    display: block;
+    pointer-events: none;
+  }
+
+  .sidebar-slot {
+    flex: 0 0 auto;
+    width: 264px;
+  }
+
+  #claude-composed-app[data-sidebar="off"] .sidebar-slot { display: none; }
+
+  /* Sidebar page fallback: keeps the mounted panels in sync with the
+     shell's data-page even when the shell is itself mounted by the
+     loader (scripts stripped, so the post-mount propagation cannot
+     run). The Home sidebar serves every page except code. */
+  #claude-composed-app:not([data-page="code"]) .sidebar-slot .panel-code { display: none; }
+  #claude-composed-app:not([data-page="code"]) .sidebar-slot .panel-chat { display: flex; }
+  #claude-composed-app[data-page="code"] .sidebar-slot .panel-chat { display: none; }
+  #claude-composed-app[data-page="code"] .sidebar-slot .panel-code { display: flex; }
+
+  /* ---- Main column ---- */
+  .shell-main {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fdfdfd;
+  }
+
+  /* Cowork session view keeps the working-canvas graph paper. */
+  #claude-composed-app[data-page="cowork"] .shell-main {
+    background:
+      linear-gradient(rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      #f8f8f6;
+    background-size: 58px 58px;
+  }
+
+  /* ---- Thread topbar (chat/cowork session views only) ---- */
+  .shell-topbar {
+    display: none;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  #claude-composed-app .shell-topbar-thread {
+    height: 52px;
+    gap: 8px;
+    padding: 0 16px 0 24px;
+    border-bottom: 1px solid rgba(11, 11, 11, 0.08);
+  }
+
+  #claude-composed-app[data-page="chat"] .shell-topbar-thread,
+  #claude-composed-app[data-page="cowork"] .shell-topbar-thread { display: flex; }
+
+  /* :where() keeps this at zero specificity so the per-icon size rules
+     below (.code-tool-chev, .code-pr-ico, …) win by source order. */
+  :where(#claude-composed-app .shell-topbar, #claude-composed-app .shell-hero, #claude-composed-app .shell-home, #claude-composed-app .shell-code-main) .backlot-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #claude-composed-app .shell-topbar-icon {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #898781;
+  }
+
+  #claude-composed-app .shell-topbar-spacer { flex: 1; }
+
+  #claude-composed-app .shell-thread-title {
+    color: var(--claude-ink-soft);
+    font-size: 15.5px;
+    font-weight: 550;
+  }
+
+  /* ---- HOME page ---- */
+  .shell-home { display: none; }
+
+  #claude-composed-app:not([data-page="chat"]):not([data-page="cowork"]):not([data-page="code"]) .shell-home {
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 60px 40px;
+  }
+
+  #claude-composed-app .shell-hero {
+    width: min(100%, 680px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  #claude-composed-app .shell-hero .shell-hero-mark {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    color: #d87959;
+  }
+
+  #claude-composed-app .shell-hero h1 {
+    margin: 0;
+    color: #333;
+    font-family: var(--font-claude-serif);
+    font-size: 42px;
+    font-weight: 380;
+    letter-spacing: 0;
+  }
+
+  #claude-composed-app .shell-home-composer {
+    width: min(100%, 680px);
+    flex: 0 0 auto;
+  }
+
+  #claude-composed-app .composer-slot-home {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  /* The tray reads as a card attached beneath the composer. */
+  #claude-composed-app .shell-home-tray {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    height: 52px;
+    margin: -14px 8px 0;
+    padding: 12px 16px 0;
+    border: 1px solid rgba(11, 11, 11, 0.07);
+    border-top: 0;
+    border-radius: 0 0 14px 14px;
+    background: #f9f8f5;
+    color: #52514e;
+    font-size: 13px;
+  }
+
+  #claude-composed-app .tray-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  #claude-composed-app .tray-item .backlot-icon {
+    width: 14px;
+    height: 14px;
+    color: #6b6a66;
+  }
+
+  #claude-composed-app .tray-item .tray-chev {
+    width: 11px;
+    height: 11px;
+    color: #8a8984;
+  }
+
+  #claude-composed-app .tray-spacer { flex: 1; }
+
+  #claude-composed-app .tray-usage {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #7b7974;
+    font-size: 12.5px;
+  }
+
+  #claude-composed-app .tray-usage .backlot-icon {
+    width: 13px;
+    height: 13px;
+    color: #8a8984;
+  }
+
+  /* Ideas for you */
+  #claude-composed-app .shell-ideas {
+    width: min(100%, 680px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  #claude-composed-app .shell-ideas-label {
+    margin: 0 2px 8px;
+    color: var(--claude-text-faint);
+    font-size: 12.5px;
+    font-weight: 480;
+  }
+
+  #claude-composed-app .shell-idea {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 44px;
+    padding: 0 4px;
+    border-radius: 10px;
+    color: #373734;
+    font-size: 14.5px;
+  }
+
+  #claude-composed-app .shell-idea-ico {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    padding: 8px;
+    border-radius: 9px;
+    background: #f0eeed;
+    color: #6b6a66;
+  }
+
+  /* ---- Thread column (chat + cowork) ---- */
+  .thread-slot { display: none; }
+
+  #claude-composed-app[data-page="chat"] .thread-slot,
+  #claude-composed-app[data-page="cowork"] .thread-slot {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  #claude-composed-app .thread-slot .thread-topbar { display: none; }
+
+  #claude-composed-app .thread-slot .thread-core-panel {
+    grid-template-rows: minmax(0, 1fr);
+    background: transparent;
+  }
+
+  #claude-composed-app .thread-slot .thread-scroll { padding: 30px 0 10px; }
+  #claude-composed-app .thread-slot .thread-scroll::after { display: none; }
+
+  #claude-composed-app .thread-slot .thread-width {
+    width: calc(100% - 80px);
+    max-width: none;
+  }
+
+  #claude-composed-app .thread-slot .message-row { margin-bottom: 30px; }
+  #claude-composed-app .thread-slot .sticky-prompt-bubble { max-width: 560px; }
+
+  #claude-composed-app .thread-slot .assistant-copy {
+    max-width: 640px;
+    font-size: 23px;
+  }
+
+  #claude-composed-app .thread-slot .thinking-card,
+  #claude-composed-app .thread-slot .tool-card,
+  #claude-composed-app .thread-slot .command-card {
+    max-width: 640px;
+  }
+
+  /* ---- Thread composer dock (chat + cowork) ---- */
+  .shell-thread-composer { display: none; }
+
+  #claude-composed-app[data-page="chat"] .shell-thread-composer,
+  #claude-composed-app[data-page="cowork"] .shell-thread-composer {
+    display: block;
+    flex: 0 0 auto;
+    padding: 6px 40px 16px;
+  }
+
+  #claude-composed-app .composer-slot-cowork { overflow: visible; }
+
+  /* Each composer instance is pinned to its variant regardless of the
+     shell page (fallback for script-stripped embedding). Double-ID
+     selectors so these always outrank the composer atom's own
+     ID-specificity default (`#claude-composer-surface:not(...) .panel-chat
+     { display: block }`), which otherwise wins and renders a stray chat
+     panel when the mounting page cannot run the propagate script. */
+  #claude-composed-app .composer-slot-cowork #claude-composer-surface .panel-chat,
+  #claude-composed-app .composer-slot-cowork #claude-composer-surface .panel-home { display: none; }
+  #claude-composed-app .composer-slot-cowork #claude-composer-surface .panel-cowork { display: block; }
+  #claude-composed-app .composer-slot-home #claude-composer-surface .panel-chat,
+  #claude-composed-app .composer-slot-home #claude-composer-surface .panel-cowork { display: none; }
+  #claude-composed-app .composer-slot-home #claude-composer-surface .panel-home { display: block; }
+
+  /* ---- Agent rail (cowork only) ---- */
+  #claude-composed-app .rail-slot {
+    display: none;
+    flex: 0 0 auto;
+    width: 344px;
+    padding: 30px 20px 24px;
+    background:
+      linear-gradient(rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(223, 219, 209, 0.34) 1px, transparent 1px),
+      #f8f8f6;
+    background-size: 58px 58px;
+    border-left: 1px solid rgba(11, 11, 11, 0.1);
+  }
+
+  #claude-composed-app[data-page="cowork"]:not([data-rail="off"]) .rail-slot,
+  #claude-composed-app[data-rail="on"] .rail-slot {
+    display: block;
+  }
+
+  /* ---- Window controls when the sidebar (their usual home) is off ---- */
+  .shell-traffic {
+    display: none;
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    z-index: 30;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #claude-composed-app[data-sidebar="off"] .shell-traffic { display: flex; }
+
+  .shell-traffic span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+  }
+
+  .shell-traffic .red { background: #ff5f57; }
+  .shell-traffic .yellow { background: #febc2e; }
+  .shell-traffic .green { background: #28c840; }
+
+  #claude-composed-app[data-sidebar="off"] .shell-topbar-thread { padding-left: 80px; }
+
+  /* ============ CODE page — light Claude Code desktop session ============ */
+  .shell-code-main { display: none; }
+
+  #claude-composed-app[data-page="code"] .shell-code-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .code-head {
+    flex: 0 0 auto;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 14px 0 22px;
+  }
+
+  .code-head-ico {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    color: #6b6a66;
+  }
+
+  .code-head-title {
+    color: var(--claude-ink-soft);
+    font-size: 14.5px;
+    font-weight: 560;
+  }
+
+  .code-head-repo {
+    padding: 3px 9px;
+    border-radius: 7px;
+    background: #efeeec;
+    color: #52514e;
+    font-size: 12px;
+    font-weight: 480;
+  }
+
+  .code-head-glyph {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    padding: 7px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #8a8984;
+  }
+
+  .code-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 18px;
+    width: min(100%, 760px);
+    margin: 0 auto;
+    padding: 10px 24px 18px;
+  }
+
+  .code-toolline {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #888986;
+    font-size: 13.5px;
+  }
+
+  .code-toolline .code-file {
+    font-family: var(--font-terminal);
+    font-size: 12.5px;
+  }
+
+  .code-tool-chev {
+    width: 12px;
+    height: 12px;
+    flex: 0 0 auto;
+    color: #b0afab;
+  }
+
+  .code-plus { color: #1a7f37; }
+  .code-minus { color: #cf222e; }
+
+  .code-prose {
+    margin: 0;
+    color: #333;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .code-prose code {
+    padding: 1px 5px;
+    border-radius: 5px;
+    background: #f0efec;
+    font-family: var(--font-terminal);
+    font-size: 12.5px;
+  }
+
+  .code-user-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .code-user-bubble {
+    max-width: 70%;
+    padding: 9px 14px;
+    border-radius: 14px;
+    background: #efefef;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .code-pr-chip {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 10px;
+    background: #e6e0f4;
+    color: #4c3d78;
+    font-size: 13px;
+  }
+
+  .code-pr-ico { width: 14px; height: 14px; flex: 0 0 auto; }
+  .code-pr-num { font-weight: 560; }
+  .code-pr-repo { color: #6b5f92; }
+  .code-pr-branch { color: #6b5f92; }
+  .code-pr-state { font-weight: 520; }
+  .code-pr-x { width: 12px; height: 12px; flex: 0 0 auto; color: #6b5f92; }
+
+  .code-turnmeta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #9a9994;
+    font-size: 12.5px;
+  }
+
+  .code-turn-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d87959;
+  }
+
+  .code-branchbar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    width: min(100% - 48px, 760px);
+    margin: 0 auto;
+    padding: 0 14px;
+    border: 1px solid rgba(11, 11, 11, 0.07);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    background: #f7f6f3;
+    font-size: 13px;
+  }
+
+  .code-branch-repo { color: #52514e; font-weight: 520; }
+  .code-branch-name { color: #7b7974; }
+
+  .code-diffcount {
+    display: inline-flex;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 520;
+  }
+
+  .code-createpr {
+    height: 28px;
+    padding: 0 12px;
+    border: 1px solid rgba(11, 11, 11, 0.12);
+    border-radius: 8px;
+    background: #fff;
+    color: #52514e;
+    font-size: 12.5px;
+    font-weight: 520;
+  }
+
+  .code-composer {
+    flex: 0 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    width: min(100% - 48px, 760px);
+    margin: 0 auto;
+    padding: 0 16px;
+    border: 1px solid rgba(11, 11, 11, 0.12);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .code-placeholder {
+    color: #9a9994;
+    font-size: 14px;
+  }
+
+  .code-composer-box {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+    color: #b0afab;
+  }
+
+  .code-undercomposer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 42px;
+    width: min(100% - 48px, 760px);
+    margin: 0 auto;
+    padding: 0 4px;
+  }
+
+  .code-bypass {
+    padding: 4px 10px;
+    border-radius: 7px;
+    background: #f3edd8;
+    color: #8a6d1f;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .code-under-glyph {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #8a8984;
+  }
+
+  .code-under-chev {
+    width: 10px;
+    height: 10px;
+    margin-left: -6px;
+    color: #8a8984;
+  }
+
+  .code-model,
+  .code-effort {
+    color: #7b7974;
+    font-size: 13px;
+  }
+</style>
+
+<style>
+  /* ============ DARK VARIANT (shell chrome) ============
+     Mirrors the web app's dark neutral ramp for the chrome the shell
+     owns; the mounted atoms carry their own .theme-dark blocks. All
+     four pages are light-native now, so all four flip here. */
+  #claude-composed-app.theme-dark,
+  .theme-dark #claude-composed-app {
+    --claude-ink: #eceae4;
+    --claude-ink-soft: #e8e5da;
+    --claude-text-muted: #b7b2a8;
+    --claude-text-faint: #98948a;
+  }
+
+  #claude-composed-app.theme-dark .claude-shell-window,
+  .theme-dark #claude-composed-app .claude-shell-window {
+    background: #262624;
+    box-shadow:
+      0 40px 120px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  #claude-composed-app.theme-dark .shell-main,
+  .theme-dark #claude-composed-app .shell-main {
+    background: #262624;
+  }
+
+  #claude-composed-app.theme-dark[data-page="cowork"] .shell-main,
+  .theme-dark #claude-composed-app[data-page="cowork"] .shell-main {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      #262624;
+    background-size: 58px 58px;
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar-thread,
+  .theme-dark #claude-composed-app .shell-topbar-thread {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  #claude-composed-app.theme-dark .shell-topbar-icon,
+  .theme-dark #claude-composed-app .shell-topbar-icon {
+    color: #98948a;
+  }
+
+  #claude-composed-app.theme-dark .shell-hero h1,
+  .theme-dark #claude-composed-app .shell-hero h1 {
+    color: #e8e5da;
+  }
+
+  #claude-composed-app.theme-dark .shell-home-tray,
+  .theme-dark #claude-composed-app .shell-home-tray {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: #21201e;
+    color: #b7b2a8;
+  }
+
+  #claude-composed-app.theme-dark .shell-idea,
+  .theme-dark #claude-composed-app .shell-idea {
+    color: #cbc7bd;
+  }
+
+  #claude-composed-app.theme-dark .shell-idea-ico,
+  .theme-dark #claude-composed-app .shell-idea-ico {
+    background: rgba(255, 255, 255, 0.07);
+    color: #98948a;
+  }
+
+  #claude-composed-app.theme-dark .shell-thread-title,
+  .theme-dark #claude-composed-app .shell-thread-title {
+    color: var(--claude-ink);
+  }
+
+  #claude-composed-app.theme-dark .rail-slot,
+  .theme-dark #claude-composed-app .rail-slot {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      #262624;
+    background-size: 58px 58px;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Code page dark */
+  #claude-composed-app.theme-dark .code-head-repo,
+  .theme-dark #claude-composed-app .code-head-repo {
+    background: rgba(255, 255, 255, 0.08);
+    color: #b7b2a8;
+  }
+
+  #claude-composed-app.theme-dark .code-prose,
+  .theme-dark #claude-composed-app .code-prose { color: #dcd9d0; }
+
+  #claude-composed-app.theme-dark .code-prose code,
+  .theme-dark #claude-composed-app .code-prose code { background: rgba(255, 255, 255, 0.08); }
+
+  #claude-composed-app.theme-dark .code-user-bubble,
+  .theme-dark #claude-composed-app .code-user-bubble {
+    background: rgba(255, 255, 255, 0.09);
+    color: #dcd9d0;
+  }
+
+  #claude-composed-app.theme-dark .code-pr-chip,
+  .theme-dark #claude-composed-app .code-pr-chip {
+    background: #3a3355;
+    color: #cfc4f4;
+  }
+
+  #claude-composed-app.theme-dark .code-pr-repo,
+  #claude-composed-app.theme-dark .code-pr-branch,
+  #claude-composed-app.theme-dark .code-pr-x,
+  .theme-dark #claude-composed-app .code-pr-repo,
+  .theme-dark #claude-composed-app .code-pr-branch,
+  .theme-dark #claude-composed-app .code-pr-x { color: #a99ed4; }
+
+  #claude-composed-app.theme-dark .code-branchbar,
+  .theme-dark #claude-composed-app .code-branchbar {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: #21201e;
+  }
+
+  #claude-composed-app.theme-dark .code-composer,
+  .theme-dark #claude-composed-app .code-composer {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: #2e2d2a;
+    box-shadow: none;
+  }
+
+  #claude-composed-app.theme-dark .code-createpr,
+  .theme-dark #claude-composed-app .code-createpr {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #b7b2a8;
+  }
+
+  #claude-composed-app.theme-dark .code-bypass,
+  .theme-dark #claude-composed-app .code-bypass {
+    background: rgba(214, 178, 80, 0.16);
+    color: #d6b250;
+  }
+</style>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="runtime/backlot-component-loader.js"></script>
+<script>
+  (() => {
+    const root = document.getElementById("claude-composed-app");
+    const params = new URLSearchParams(window.location.search);
+
+    // Capture-time convenience params (same pattern as the atoms' ?page=).
+    const page = params.get("page");
+    if (page === "home" || page === "chat" || page === "cowork" || page === "code") {
+      root.setAttribute("data-page", page);
+    }
+    for (const key of ["sidebar", "rail"]) {
+      const value = params.get(key);
+      if (value === "on" || value === "off") {
+        root.setAttribute(`data-${key}`, value);
+      }
+    }
+
+    // Propagate the shell page into the mounted atoms' own data-page
+    // attributes once mounting settles (the sidebar shows its Code tab
+    // only for page=code; everything else gets the Home tab).
+    const propagatePage = () => {
+      const currentPage = root.getAttribute("data-page") || "home";
+      const sidebar = root.querySelector(".sidebar-slot #claude-sidebar-surface");
+      if (sidebar) sidebar.setAttribute("data-page", currentPage === "code" ? "code" : "chat");
+      const homeComposer = root.querySelector(".composer-slot-home #claude-composer-surface");
+      if (homeComposer) homeComposer.setAttribute("data-page", "home");
+      const coworkComposer = root.querySelector(".composer-slot-cowork #claude-composer-surface");
+      if (coworkComposer) coworkComposer.setAttribute("data-page", "cowork");
+    };
+    if (window.__backlotComponentsReady) {
+      window.__backlotComponentsReady.then(propagatePage).catch(() => {});
+    } else {
+      propagatePage();
+    }
+  })();
+
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+  tl.from(".claude-shell-window", { opacity: 0, y: 22, filter: "blur(7px)", duration: 0.58, ease: "power3.out" }, 0.12);
+  tl.from(".sidebar-slot", { opacity: 0, x: -18, duration: 0.36, ease: "sine.out" }, 0.36);
+  tl.from(".shell-main", { opacity: 0, y: 14, duration: 0.42, ease: "power2.out" }, 0.5);
+  tl.from(".rail-slot", { opacity: 0, x: 16, duration: 0.36, ease: "sine.out" }, 0.66);
+  window.__timelines["claude-composed-app"] = tl;
+
+  const captureMode = new URLSearchParams(window.location.search).get("capture");
+  if (captureMode === "hero") {
+    // Fully settled entrance state (all tweens complete by ~1.02s).
+    tl.seek(1.45).pause();
+  }
+</script>

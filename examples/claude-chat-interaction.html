@@ -6,41 +6,12 @@
   </head>
   <body>
     <div id="claude-chat-interaction" data-composition-id="claude-chat-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12">
-      <section class="chat-stage" data-primitive="claude-chat-interaction" aria-label="Claude chat with scripted typing and a streamed reply">
-        <div class="chat-window">
-          <div class="chat-titlebar">
-            <span class="tl-dots"><i></i><i></i><i></i></span>
-            <span class="tl-title">Claude</span>
-          </div>
-
-          <div class="convo">
-            <div class="thread" data-role="thread"></div>
-            <div class="msg ai" data-role="ai-msg">
-              <span class="ai-mark">✳</span>
-              <div class="ai-body">
-                <div class="thinking" data-role="thinking"><i></i><i></i><i></i></div>
-                <div class="ai-response" data-role="ai-response"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="composer">
-            <div class="composer-field">
-              <span class="composer-placeholder" data-role="placeholder">Reply to Claude…</span>
-              <span class="composer-input" data-role="input"><span class="type-reveal" data-role="reveal"></span></span><span class="type-caret" data-role="caret"></span>
-            </div>
-            <div class="composer-actions">
-              <button class="attach" aria-label="Attach">+</button>
-              <span class="model">Opus 4.8</span>
-              <span class="model-spinner" data-role="spinner" aria-hidden="true"></span>
-              <button class="send-button" data-role="send" data-state="idle" aria-label="Send">
-                <svg class="icon-arrow" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
-                <svg class="icon-stop" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3" /></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
+      <section class="chat-stage" data-primitive="claude-chat-interaction" aria-label="The real Claude app: type on the home page, send, and the conversation opens with a streaming reply">
+        <div class="chat-backdrop" aria-hidden="true"></div>
+        <div class="chat-frame component-frame"
+             data-primitive="claude-app-window"
+             data-backlot-mount-src="../compositions/claude-composed-app.html"
+             data-backlot-mount-selector="#claude-composed-app"></div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
       </section>
@@ -48,158 +19,195 @@
 
     <style>
       @import url("../styles/backlot-foundation.css");
-      html, body { width: 100%; min-height: 100%; margin: 0; display: grid; place-items: center; overflow: hidden; background: #d9d4c8; }
-      #claude-chat-interaction { width: 1280px; height: 800px; overflow: hidden; font-family: -apple-system, "SF Pro Text", Inter, sans-serif; color: #0b0b0b; }
-      #claude-chat-interaction * { box-sizing: border-box; }
+      html, body { width:100%; min-height:100%; margin:0; display:grid; place-items:center; overflow:hidden; background:#161310; }
+      #claude-chat-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; }
+      #claude-chat-interaction * { box-sizing:border-box; }
+      .chat-stage { position:relative; width:1280px; height:800px; overflow:hidden; }
+      .chat-backdrop { position:absolute; inset:0; background:
+        radial-gradient(120% 90% at 20% 0%, #f4f1ea 0%, #ece7dc 60%, #e4ddcd 100%); }
+      .component-frame { position:absolute; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; }
+      /* claude-composed-app is a fixed 1440x900; 8/9 fills the 1280x800 stage
+         edge-to-edge — the REAL app, not a mock chat card. */
+      .chat-frame { left:0; top:0; width:1280px; height:800px; }
+      .chat-frame > [data-backlot-mounted-component] { transform: scale(0.888889); }
+      .demo-cursor { position:absolute; left:1060px; top:640px; z-index:90; width:24px; height:24px;
+        background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+      .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(217,119,87,0.7); border-radius:50%; opacity:0; }
 
-      .chat-stage {
-        position: relative; width: 1280px; height: 800px; overflow: hidden;
-        background: radial-gradient(120% 90% at 20% 0%, #f4f1ea 0%, #ece7dc 60%, #e4ddcd 100%);
-        display: grid; place-items: center;
-      }
-      .chat-window {
-        position: relative; width: 860px; height: 700px; background: #f8f8f6;
-        border-radius: 16px; border: 1px solid rgba(11,11,11,0.09);
-        box-shadow: 0 40px 100px rgba(52,39,29,0.22); overflow: hidden;
-        display: grid; grid-template-rows: 44px 1fr auto;
-      }
-      .chat-titlebar { display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid rgba(11,11,11,0.07); gap: 12px; }
-      .tl-dots { display: flex; gap: 8px; }
-      .tl-dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
-      .tl-dots i:nth-child(1) { background: #ec6a5e; } .tl-dots i:nth-child(2) { background: #f4bf4f; } .tl-dots i:nth-child(3) { background: #61c554; }
-      .tl-title { font-family: var(--font-claude-serif); font-weight: 500; font-size: 15.5px; letter-spacing: -0.01em; color: #1a1a1a; }
-
-      .convo { padding: 30px 40px; overflow: hidden; display: flex; flex-direction: column; gap: 20px; }
-      .thread { display: flex; flex-direction: column; gap: 20px; }
-      .bl-bubble { max-width: 78%; font-size: 16px; line-height: 1.55; }
-      .bl-bubble.user { align-self: flex-end; background: #ece7dc; border: 1px solid rgba(11,11,11,0.06); padding: 12px 16px; border-radius: 16px; color: #23201c; }
-      .msg.ai { display: flex; gap: 13px; align-items: flex-start; }
-      /* Mark shares the first reply line's box (16.5px * 1.62 = 26.7px) so the
-         star sits centred on the first line, not floating above it. */
-      .ai-mark { color: #d97757; font-size: 18.5px; line-height: 26.7px; height: 26.7px; flex: none; width: 22px; text-align: center; position: relative; top: 3px; }
-      .ai-body { min-width: 0; }
-      .ai-response { font-size: 16.5px; line-height: 1.62; color: #141414; white-space: pre-wrap; }
-      .ai-response .bl-word { display: inline-block; }
-
-      .thinking { display: inline-flex; gap: 5px; padding: 4px 0 2px; }
-      .thinking i { width: 7px; height: 7px; border-radius: 50%; background: #b8b2a6; display: block; }
-
-      .composer { padding: 14px 18px 18px; }
-      .composer-field { position: relative; min-height: 54px; background: #ffffff; border: 1px solid rgba(11,11,11,0.12); border-radius: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 16px 18px 34px; font-size: 16px; }
-      .composer-placeholder { position: absolute; left: 18px; top: 16px; color: #8a877f; pointer-events: none; }
-      .composer-input { font-size: 16px; color: #141414; white-space: nowrap; }
-      /* Text reveals by clipping width (overflow hidden), so the caret sibling
-         after it rides the leading edge — a real typewriter, seek-safe. */
-      .type-reveal { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; }
-      .type-caret { display: inline-block; width: 2px; height: 1.15em; margin-left: 1px; background: #1a1a1a; border-radius: 1px; vertical-align: -0.2em; opacity: 0; }
-      .composer-actions { position: absolute; right: 26px; bottom: 26px; display: flex; align-items: center; gap: 12px; }
-      .composer .attach { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(11,11,11,0.12); background: #fff; color: #52514e; font-size: 18px; line-height: 1; }
-      .composer .model { font-size: 13.5px; color: #52514e; }
-      .model-spinner {
-        width: 12px; height: 12px; border-radius: 50%; display: inline-block; opacity: 0;
-        border: 1.6px solid rgba(82,81,78,0.28); border-top-color: #4a90d9; border-right-color: #4a90d9;
-      }
-      .send-button { width: 34px; height: 34px; border-radius: 10px; border: none; background: #d97757; color: #fff; display: grid; place-items: center; }
-      .send-button svg { grid-area: 1 / 1; }
-      .send-button .icon-stop { opacity: 0; }
-      .send-button[data-state="stop"] { background: #211f1c; }
-      .send-button[data-state="stop"] .icon-arrow { opacity: 0; }
-      .send-button[data-state="stop"] .icon-stop { opacity: 1; }
-
-      .demo-cursor {
-        position: absolute; left: 660px; top: 640px; z-index: 90; width: 26px; height: 26px;
-        background: url("../assets/cursors/normal-select.svg") top left / contain no-repeat;
-        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
-      }
-      .demo-click-ring { position: absolute; left: 0; top: 0; z-index: 89; width: 44px; height: 44px; border: 2.5px solid rgba(217,119,87,0.7); border-radius: 50%; opacity: 0; }
+      /* ---- interaction-only additions (runtime DOM built after mount) ---- */
+      .demo-typedrow { min-width:0; font-size:15.5px; color:var(--claude-ink,#141414); white-space:nowrap; overflow:hidden; }
+      .demo-caret { display:inline-block; width:1.5px; height:1.05em; margin-left:1px; vertical-align:text-bottom; background:#141414; opacity:0; }
+      .demo-send { width:30px; height:30px; border:0; border-radius:9px; background:#d97757; color:#fff; display:grid; place-items:center; }
+      .demo-send svg { width:15px; height:15px; display:block; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <script src="../runtime/backlot-component-loader.js"></script>
+    <script>
+      // Same nested-mount <base> scoping as cowork-interaction /
+      // mac-multi-app-demo (claude-composed-app mounts its atoms with
+      // ./-relative srcs authored for compositions/).
+      const backlotLoaderSrc = new URL("../runtime/backlot-component-loader.js", document.baseURI).href;
+      const backlotMountBase = document.createElement("base");
+      backlotMountBase.href = "../compositions/";
+      document.head.appendChild(backlotMountBase);
+      const backlotLoaderScript = document.createElement("script");
+      backlotLoaderScript.src = backlotLoaderSrc;
+      window.__backlotLoaderReady = new Promise((resolve) => {
+        backlotLoaderScript.onload = () => {
+          (window.__backlotComponentsReady || Promise.resolve())
+            .then(() => { backlotMountBase.remove(); resolve(); })
+            .catch(() => { backlotMountBase.remove(); resolve(); });
+        };
+        backlotLoaderScript.onerror = () => { backlotMountBase.remove(); resolve(); };
+      });
+      document.head.appendChild(backlotLoaderScript);
+    </script>
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".chat-stage");
-      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      // AI bubble + thinking hidden to start.
-      gsap.set('[data-role="ai-msg"]', { opacity: 0 });
-      gsap.set('[data-role="thinking"]', { opacity: 0 });
-      // Click-ring parks off-canvas at rest so it never reads as a stray glitch
-      // near the origin before its first use.
-      gsap.set('.demo-click-ring', { opacity: 0, left: -100, top: -100 });
-
-      const PROMPT = "Summarize the Q2 launch deck in three bullet points.";
-      const REPLY =
-        "Here's the gist of the Q2 launch deck:\n\n" +
-        "•  Revenue is tracking 16% above target, driven by the new self-serve tier.\n" +
-        "•  Adoption climbed to 42% of accounts, up from 31% last quarter.\n" +
-        "•  Two slides still need the corrected Q2 figures before the deck ships.";
-
-      // 1) cursor to composer, click, type the prompt with a live caret.
-      ix.click('[data-role="input"]', { at: 0.9, moveDur: 0.7 });
-      ix.hide('[data-role="placeholder"]', { at: 1.3, dur: 0.15 });
-
-      // Width-clip reveal: the reveal box grows from 0 to full width so the
-      // text wipes in left-to-right and the caret (inline right after it) rides
-      // the leading edge — a real typewriter, and fully seek-deterministic.
-      const reveal = stage.querySelector('[data-role="reveal"]');
-      const caret = stage.querySelector('[data-role="caret"]');
-      const typeStart = 1.5, typeCps = 23;
-      reveal.textContent = PROMPT;
-      const fullW = reveal.getBoundingClientRect().width;
-      const typeDur = PROMPT.length / typeCps;
-      gsap.set(reveal, { width: 0 });
-      gsap.set(caret, { opacity: 0 });
-      tl.to(reveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
-      tl.to(caret, { opacity: 1, duration: 0.1 }, 1.0);                 // caret shows on focus
-      tl.to(caret, { opacity: 0, duration: 0.53, repeat: 3, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.04); // idle blink
-
-      // 2) cursor to send, click, lift the text into a user bubble.
-      const sendAt = typeStart + typeDur + 0.55;   // just after typing finishes
-      ix.click('[data-role="send"]', { at: sendAt, moveDur: 0.6 });
-      tl.to(caret, { opacity: 0, duration: 0.12 }, sendAt);
-      ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
-
-      // The composer field is empty after send, but the reveal box was never
-      // collapsed and the idle-blink yoyo (still running) keeps overriding the
-      // caret's opacity:0 above — leaving a caret blinking mid-air over an
-      // invisible prompt. Collapse the reveal box and force the caret off with
-      // an overwriting tween, then restore the placeholder so the empty
-      // composer reads real.
-      tl.set(reveal, { width: 0 }, sendAt + 0.05);
-      tl.to(caret, { opacity: 0, duration: 0.01, overwrite: true }, sendAt + 0.05);
-      tl.set('[data-role="placeholder"]', { opacity: 1 }, sendAt + 0.05);
-
-      // Composer reacts to being in a generating state: the send arrow swaps
-      // to a stop square and a spinner appears by the model name, for the
-      // whole thinking + streaming stretch. Both flips are attr-driven
-      // tl.set() calls so they render correctly on seek.
-      const sendBtn = stage.querySelector('[data-role="send"]');
-      const spinner = stage.querySelector('[data-role="spinner"]');
-      gsap.set(spinner, { opacity: 0, rotation: 0 });
-      const streamEndAt = 11.6;
-      tl.set(sendBtn, { attr: { "data-state": "stop" } }, sendAt + 0.05);
-      tl.set(spinner, { opacity: 1 }, sendAt + 0.05);
-      tl.to(spinner, { rotation: "+=360", duration: 0.8, ease: "none", repeat: 10 }, sendAt + 0.05);
-      tl.set(sendBtn, { attr: { "data-state": "idle" } }, streamEndAt);
-      tl.set(spinner, { opacity: 0 }, streamEndAt);
-
-      // Cursor drifts off the send button while the reply streams, rather
-      // than staying glued on top of it for the whole generation.
-      tl.to(".demo-cursor", { left: 660, top: 460, duration: 0.6, ease: "power2.out" }, sendAt + 0.4);
-
-      // 3) AI turn: bubble appears, thinks, then streams the reply word-by-word
-      //    with a gentle rise + soft fade — reads like a real streamed reply.
-      ix.show('[data-role="ai-msg"]', { at: sendAt + 0.5, dur: 0.3, from: { opacity: 0, y: 8 } });
-      ix.think('[data-role="thinking"]', { at: sendAt + 0.6, dur: 1.0 });
-      ix.stream('[data-role="ai-response"]', REPLY, { at: sendAt + 1.7, cps: 46, unit: "word", rise: 3, fade: 0.26 });
-
+      // Synchronous registration with a full-duration hold (async mount).
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.to(stage, { opacity: 1, duration: 12 }, 0);
       window.__timelines["claude-chat-interaction"] = tl;
+      tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
+
+      window.__backlotLoaderReady.then(() => {
+        const app = stage.querySelector("#claude-composed-app");
+        if (!app) return;
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+
+        // ---- Mounted targets ----
+        const card = stage.querySelector(".composer-slot-home .hm-card");
+        const placeholder = stage.querySelector(".composer-slot-home .hm-placeholder");
+        const controls = stage.querySelector(".composer-slot-home .hm-controls");
+        const modeBtns = stage.querySelectorAll(".composer-slot-home .hm-mode button");
+        const mic = stage.querySelector(".composer-slot-home .hm-mic");
+        const bubble = stage.querySelector(".thread-slot .sticky-prompt-bubble");
+        const contextStrip = stage.querySelector(".thread-slot .thread-context-strip");
+        const replyMark = stage.querySelector(".thread-slot .reply-mark");
+        const line1 = stage.querySelector('.thread-slot [data-copy="reply-primary"]');
+        const line2 = stage.querySelector('.thread-slot [data-copy="reply-secondary"]');
+        const thinkingCard = stage.querySelector(".thread-slot .thinking-card");
+        const toolCard = stage.querySelector(".thread-slot .tool-card");
+        const toolRows = Array.from(stage.querySelectorAll(".thread-slot .tool-row"));
+        const commandCard = stage.querySelector(".thread-slot .command-card");
+        const commandPre = commandCard && commandCard.querySelector("pre");
+        const actions = stage.querySelector(".thread-slot .message-actions");
+        if (!card || !placeholder || !controls || !bubble || !line1 || !thinkingCard) return;
+
+        // The prompt typed must be the very message the thread then shows.
+        const PROMPT = bubble.textContent.trim();
+
+        // The context strip + Response card are latent (display:none) in the
+        // atom's defaults — this demo uses them, so enable them statically;
+        // their visibility is animated via autoAlpha. The tool/progress card
+        // is the COWORK demo's beat: removed from layout here so the Response
+        // card and message actions fit above the composer.
+        if (contextStrip) contextStrip.style.display = "flex";
+        if (commandCard) commandCard.style.display = "block";
+        if (toolCard) toolCard.style.display = "none";
+
+        // ---- Home-composer surgery: the placeholder goes absolute, a
+        // dedicated typed row takes its grid cell, and a send button (the
+        // real app shows one once text is present) joins the controls. ----
+        card.style.position = "relative";
+        placeholder.style.position = "absolute";
+        placeholder.style.left = "16px";
+        placeholder.style.top = "18px";
+        const typedRow = document.createElement("div");
+        typedRow.className = "demo-typedrow";
+        const typed = document.createElement("span");
+        const caret = document.createElement("span");
+        caret.className = "demo-caret";
+        typedRow.append(typed, caret);
+        card.insertBefore(typedRow, card.firstChild);
+        const sendBtn = document.createElement("button");
+        sendBtn.type = "button";
+        sendBtn.className = "demo-send";
+        sendBtn.setAttribute("aria-label", "Send");
+        sendBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>';
+        controls.insertBefore(sendBtn, mic || null);
+
+        const typedChars = [];
+        for (const ch of PROMPT) {
+          const s = document.createElement("span");
+          s.className = "bl-char";
+          if (ch === " ") s.style.whiteSpace = "pre";
+          s.textContent = ch;
+          typed.appendChild(s);
+          typedChars.push(s);
+        }
+
+        // ---- Rest-frame pins (t=0): home page, Chat pill active (this is a
+        // chat, not a cowork run), send hidden, thread parts hidden. The
+        // tool/progress card never shows in this demo — that's the cowork
+        // demo's beat. ----
+        tl.set(app, { attr: { "data-page": "home" } }, 0);
+        if (modeBtns.length === 2) {
+          tl.set(modeBtns[0], { attr: { class: "active" } }, 0);
+          tl.set(modeBtns[1], { attr: { class: "" } }, 0);
+        }
+        tl.set(typedChars, { display: "none" }, 0);
+        tl.set(caret, { opacity: 0 }, 0);
+        tl.set(sendBtn, { autoAlpha: 0 }, 0);
+        tl.set([bubble, contextStrip, replyMark, thinkingCard, commandCard, actions], { autoAlpha: 0 }, 0);
+        tl.set([line1, line2], { clipPath: "inset(0 100% 0 0)" }, 0);
+
+        // 1) Click the home composer and type the prompt.
+        const FOCUS_AT = 0.9;
+        ix.click(placeholder, { at: FOCUS_AT, moveDur: 0.7, press: false });
+        ix.hide(placeholder, { at: FOCUS_AT + 0.25, dur: 0.1 });
+        tl.set(caret, { opacity: 1 }, FOCUS_AT + 0.1);
+        const TYPE_AT = 1.3, CPS = 24;
+        for (let i = 0; i < typedChars.length; i++) {
+          tl.set(typedChars[i], { display: "inline" }, TYPE_AT + i / CPS);
+        }
+        tl.to(sendBtn, { autoAlpha: 1, duration: 0.15 }, TYPE_AT + 1 / CPS);
+        const TYPE_END = TYPE_AT + PROMPT.length / CPS;
+        tl.to(caret, { opacity: 0, duration: 0.12, yoyo: true, repeat: 3, ease: "steps(1)" }, TYPE_END + 0.05);
+
+        // 2) Send → the app opens the conversation (page flips to the real
+        //    chat view) with the prompt as the user bubble.
+        const SEND_AT = TYPE_END + 0.55;
+        tl.set(caret, { opacity: 0, overwrite: true }, SEND_AT - 0.02);
+        ix.click(sendBtn, { at: SEND_AT, moveDur: 0.55 });
+        const FLIP_AT = SEND_AT + 0.18;
+        tl.set(app, { attr: { "data-page": "chat" } }, FLIP_AT);
+        tl.to(bubble, { autoAlpha: 1, duration: 0.14 }, FLIP_AT + 0.1);
+        tl.to(contextStrip, { autoAlpha: 1, duration: 0.2 }, FLIP_AT + 0.35);
+
+        // Cursor drifts into the reading column while the reply streams.
+        tl.to(".demo-cursor", { left: 620, top: 420, duration: 0.7, ease: "power2.inOut" }, FLIP_AT + 0.3);
+
+        // 3) The reply streams in: lead lines wipe like live text, the
+        //    Running-command card appears, then the Response output streams.
+        const AI_AT = FLIP_AT + 0.7;
+        tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
+        tl.to(line1, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, AI_AT + 0.05);
+        tl.to(line2, { clipPath: "inset(0 0% 0 0)", duration: 0.95, ease: "none" }, AI_AT + 0.85);
+
+        const THINK_AT = AI_AT + 2.0;
+        tl.fromTo(thinkingCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, THINK_AT);
+
+        const CMD_AT = THINK_AT + 1.0;
+        tl.fromTo(commandCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, CMD_AT);
+        if (commandPre) {
+          tl.set(commandPre, { clipPath: "inset(0 0 100% 0)" }, 0);
+          tl.to(commandPre, { clipPath: "inset(0 0 0% 0)", duration: 1.1, ease: "none" }, CMD_AT + 0.25);
+        }
+
+        // 4) The turn settles.
+        if (actions) tl.to(actions, { autoAlpha: 1, duration: 0.2 }, CMD_AT + 1.6);
+      }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(11.8).pause();
+      if (cap === "hero") {
+        tl.seek(11.6).pause();
+        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(11.6).pause(); }).catch(() => {});
+      }
     </script>
   </body>
 </html>

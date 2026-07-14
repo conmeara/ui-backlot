@@ -40,6 +40,31 @@
       "type": "hyperframes:asset"
     },
     {
+      "path": "compositions/claude-agent-rail.html",
+      "target": "compositions/claude-agent-rail.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-composed-app.html",
+      "target": "compositions/claude-composed-app.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-composer.html",
+      "target": "compositions/claude-composer.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-sidebar.html",
+      "target": "compositions/claude-sidebar.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-thread-core.html",
+      "target": "compositions/claude-thread-core.html",
+      "type": "hyperframes:composition"
+    },
+    {
       "path": "hyperframes.json",
       "target": "hyperframes.json",
       "type": "hyperframes:asset"

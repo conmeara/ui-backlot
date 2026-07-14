@@ -12,12 +12,57 @@
     "width": 1280,
     "height": 800
   },
-  "duration": 12.9,
+  "duration": 11.5,
   "files": [
     {
       "path": "assets/cursors/normal-select.svg",
       "target": "assets/cursors/normal-select.svg",
       "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "compositions/claude-agent-rail.html",
+      "target": "compositions/claude-agent-rail.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-composed-app.html",
+      "target": "compositions/claude-composed-app.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-composer.html",
+      "target": "compositions/claude-composer.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-sidebar.html",
+      "target": "compositions/claude-sidebar.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-thread-core.html",
+      "target": "compositions/claude-thread-core.html",
+      "type": "hyperframes:composition"
     },
     {
       "path": "hyperframes.json",
@@ -38,6 +83,11 @@
       "path": "runtime/backlot-interactions.js",
       "target": "runtime/backlot-interactions.js",
       "type": "hyperframes:asset"
+    },
+    {
+      "path": "styles/backlot-foundation.css",
+      "target": "styles/backlot-foundation.css",
+      "type": "hyperframes:style"
     }
   ]
 }
