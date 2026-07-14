@@ -3,7 +3,7 @@
   "name": "premiere-editor",
   "type": "hyperframes:block",
   "title": "Premiere-style Video Editor",
-  "description": "Code-native video editor shell. Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes.",
+  "description": "Editable Premiere Pro editor graded against real Adobe Video frames (reference/premiere/2026-07-09/yt-frame-*): violet media clips with filmstrip bodies and fx badges, magenta graphics/caption clips, olive/orange audio waveforms, scene-still project thumbnails and soft-footage monitors. Video editing, timeline manipulation, captions, clip trimming, and review workflow scenes.",
   "tags": [
     "premiere",
     "video",

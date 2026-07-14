@@ -1149,7 +1149,7 @@
       "title": "Premiere-style Video Editor",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "code-native video editor shell",
+      "fidelity": "editable Premiere Pro editor graded against real Adobe Video frames (reference/premiere/2026-07-09/yt-frame-*): violet media clips with filmstrip bodies and fx badges, magenta graphics/caption clips, olive/orange audio waveforms, scene-still project thumbnails and soft-footage monitors",
       "dimensions": {
         "width": 1440,
         "height": 900

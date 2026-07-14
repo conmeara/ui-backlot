@@ -642,22 +642,43 @@
           linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
       }
 
-      .video-still.interview {
+      /* Reads as real outdoor interview footage (sky / treeline / ground
+         horizon bands + warm subject mass + lens vignette), not bokeh
+         blobs — the old radial blurs were the #1 "this is fake" tell. */
+      .video-still.interview { background: #8fb0c6; }
+
+      /* Scene on a softly blurred layer (slightly-soft footage, not
+         cartoon-crisp shapes and not bokeh blobs): sky / butte on the
+         horizon / scrub / ground bands + a warm head-and-shoulders
+         subject. Inset overshoots so the blur has no bright fringe. */
+      .video-still.interview::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        z-index: 0;
         background:
-          radial-gradient(120px 90px at 34% 60%, rgba(210, 150, 110, 0.55), transparent 70%),
-          radial-gradient(90px 70px at 68% 40%, rgba(120, 150, 160, 0.4), transparent 70%),
-          linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
+          radial-gradient(22px 20px at 39% 44%, #6e462d 0 88%, transparent 100%),
+          radial-gradient(58px 70px at 39% 92%, #ad6636 0 90%, transparent 100%),
+          radial-gradient(110px 28px at 74% 39%, #8a6a4e 0 88%, transparent 100%),
+          linear-gradient(180deg,
+            #8fb0c6 0%, #a3c0d2 38%,
+            #6d5b46 39%, #7d6a50 46%,
+            #55603f 47%, #465238 60%,
+            #4a3c2b 61%, #33281c 100%);
+        filter: blur(1.6px) saturate(0.92);
       }
 
       .video-still.interview::before {
         content: "";
         position: absolute;
         inset: 0;
+        z-index: 1;
         background:
-          radial-gradient(140px 110px at 30% 66%, rgba(230, 175, 130, 0.4), transparent 72%),
-          radial-gradient(100px 80px at 72% 36%, rgba(140, 168, 178, 0.3), transparent 72%);
-        filter: blur(1px);
+          radial-gradient(120% 100% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.42) 100%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.25), transparent 22% 78%, rgba(0, 0, 0, 0.25));
       }
+
+      .video-still .source-timecode { z-index: 2; }
 
       .source-timecode,
       .program-timecode {
@@ -1087,15 +1108,24 @@
           linear-gradient(90deg, #237acc 1px, transparent 1px) 0 0 / 5px 100% repeat-x;
       }
 
-      .thumb.lake { background: linear-gradient(145deg, #273b45 0 35%, #7fa6bd 36% 64%, #405a31 65%); }
-      .thumb.park { background: linear-gradient(145deg, #799a59, #d9d4b3 45%, #3e663e); }
-      .thumb.wide { background: linear-gradient(145deg, #6285a9 0 45%, #273443 46%, #6d8052); }
-      .thumb.arch { background: linear-gradient(135deg, #7c6c5f 0 30%, #d0b39a 31% 58%, #382f2c 59%); }
-      .thumb.green { background: linear-gradient(145deg, #315c2d, #95aa71 55%, #1f3e28); }
-      .thumb.field { background: linear-gradient(145deg, #687a54, #b2b381 50%, #335239); }
-      .thumb.water { background: linear-gradient(145deg, #79a7c0, #e5c5b0 45%, #6d7e4d); }
-      .thumb.path { background: linear-gradient(145deg, #304f34, #9eb89f 50%, #2b3f31); }
-      .thumb.city { background: linear-gradient(145deg, #9fb9bf, #5b776d 45%, #d4c8a7); }
+      /* Horizontal scene compositions (sky/horizon/ground bands) + the
+         shared vignette below read as footage stills, not gradient chips. */
+      .thumb.lake { background: linear-gradient(180deg, #8fb3c9 0 38%, #43606e 38% 52%, #33556b 52% 70%, #2b3d2b 70%); }
+      .thumb.park { background: radial-gradient(30px 18px at 68% 30%, #e8e3c2 0 55%, transparent 70%), linear-gradient(180deg, #a9c4d4 0 34%, #56774a 34% 62%, #3e5c38 62%); }
+      .thumb.wide { background: linear-gradient(180deg, #6285a9 0 44%, #40566b 44% 58%, #273443 58% 74%, #4c5a3c 74%); }
+      .thumb.arch { background: linear-gradient(180deg, #b98f68 0 30%, #d0b39a 30% 46%, #8a6c50 46% 68%, #382f2c 68%); }
+      .thumb.green { background: linear-gradient(180deg, #7fa3b3 0 28%, #315c2d 28% 66%, #1f3e28 66%); }
+      .thumb.field { background: linear-gradient(180deg, #b9c8cf 0 36%, #8d9a63 36% 60%, #5b7044 60%); }
+      .thumb.water { background: radial-gradient(26px 14px at 30% 28%, #f0dcc4 0 55%, transparent 72%), linear-gradient(180deg, #93b6c9 0 46%, #6d93ad 46% 68%, #55684a 68%); }
+      .thumb.path { background: linear-gradient(180deg, #9eb89f 0 32%, #4f7050 32% 58%, #2b3f31 58%); }
+      .thumb.city { background: linear-gradient(180deg, #aebfc4 0 40%, #5b776d 40% 64%, #d4c8a7 64%); }
+
+      .thumb::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(120% 100% at 50% 42%, transparent 58%, rgba(0, 0, 0, 0.38) 100%);
+      }
 
       .project-footer-tools {
         height: 31px;
@@ -1550,26 +1580,65 @@
         font-style: normal;
       }
 
-      .clip.blue { background: #4a6e96; color: #eef3f9; }
-      .clip.teal { background: #5b84b1; color: #eef3f9; }
-      .clip.amber { background: #a8792d; }
-      .clip.title { background: #a86ad8; }
-      .clip.graphic { background: #9a5fb0; color: #f2eaf6; }
-      .clip.caption { background: #b07a3a; color: #16100a; }
+      /* Real-Premiere clip palette (reference/premiere/2026-07-09/
+         yt-frame-effect-controls-timeline): ALL video media is VIOLET with a
+         name strip over a filmstrip body; graphics/titles are MAGENTA;
+         captions magenta-pink; audio is olive (music) / burnt orange (sfx)
+         with a light waveform — not the old pastel blue/teal/green. */
+      .clip.blue,
+      .clip.teal,
+      .clip.amber {
+        padding: 2px 7px;
+        color: #f0eefc;
+        background: linear-gradient(180deg, #5b4ecf 0, #5b4ecf 13px, #262433 13px);
+      }
+
+      .clip.blue::before,
+      .clip.teal::before,
+      .clip.amber::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 13px;
+        bottom: 0;
+        background:
+          repeating-linear-gradient(90deg,
+            #6b5340 0 14px, #3c4a58 14px 28px, #7a6247 28px 42px,
+            #46372c 42px 56px, #58687a 56px 70px, #6b5340 70px 84px);
+        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.5);
+        opacity: 0.85;
+      }
+
+      .clip.title { background: linear-gradient(180deg, #b62db2 0, #b62db2 13px, #33222f 13px); padding: 2px 7px; }
+      .clip.graphic { background: linear-gradient(180deg, #b62db2 0, #b62db2 13px, #33222f 13px); padding: 2px 7px; color: #f7e9f6; }
+      .clip.caption { background: #b6379d; color: #fdeefb; }
 
       .clip.selected {
         outline: 1px solid var(--yellow);
         outline-offset: 1px;
       }
 
+      /* fx badge sits at the clip's top-left on the name strip, like the
+         real timeline's per-clip fx chips. */
       .clip-fx {
         position: absolute;
-        right: 5px;
-        bottom: 3px;
+        left: 3px;
+        top: 2px;
+        z-index: 1;
+        padding: 0 3px;
+        border-radius: 2px;
+        background: rgba(0, 0, 0, 0.42);
         text-transform: lowercase;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85);
         font-size: 8px;
         font-weight: 700;
+        font-style: italic;
+      }
+
+      .clip .clip-fx + .clip-handle + strong,
+      .clip .clip-fx + strong {
+        padding-left: 16px;
       }
 
       .transition {
@@ -1613,8 +1682,8 @@
       .clip.audio {
         position: absolute;
         display: block;
-        background: #2e8b6f;
-        color: #04140f;
+        background: #b3641f;
+        color: #fdf3e6;
       }
 
       .clip.audio strong {
@@ -1623,10 +1692,12 @@
       }
 
       .clip.audio.music {
-        background: #2f9c8a;
-        color: #041510;
+        background: #6f6f23;
+        color: #f7f7dd;
       }
 
+      /* Waveform: bright yellow-green strokes on the olive/orange body,
+         like the real music/sfx tracks. */
       .clip.audio::after {
         content: "";
         position: absolute;
@@ -1637,14 +1708,24 @@
         transform: translateY(-50%);
         background-image: repeating-linear-gradient(
           90deg,
-          rgba(0, 0, 0, 0.55) 0,
-          rgba(0, 0, 0, 0.55) 1px,
+          rgba(232, 232, 87, 0.85) 0,
+          rgba(232, 232, 87, 0.85) 1px,
           transparent 1px,
           transparent 3px
         );
         -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);
         mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);
         opacity: 0.9;
+      }
+
+      .clip.audio.music::after {
+        background-image: repeating-linear-gradient(
+          90deg,
+          rgba(226, 226, 90, 0.9) 0,
+          rgba(226, 226, 90, 0.9) 1px,
+          transparent 1px,
+          transparent 3px
+        );
       }
 
       .property-stack {
