@@ -345,7 +345,11 @@ body[data-view="home"] #home { display: block; }
 body[data-view="home"] main section.app { display: none; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .card { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-.card img { width: 100%; display: block; border-bottom: 1px solid var(--line); background: #dcdcd8; }
+/* Uniform card stage: every surface thumb — menu-bar sliver, squat Finder,
+   full 16:10 app window — sits in the same 8/5 box, contained, so each app
+   section reads at one consistent card size. Demo GIFs keep natural flow. */
+.card img { width: 100%; aspect-ratio: 8 / 5; object-fit: contain; padding: 10px; box-sizing: border-box; display: block; border-bottom: 1px solid var(--line); background: #dcdcd8; }
+.card.demo img { aspect-ratio: auto; object-fit: fill; padding: 0; }
 .card.demo { outline: 1px solid color-mix(in srgb, var(--fam, var(--accent)) 40%, transparent); outline-offset: -1px; }
 .thumb-empty { display: grid; place-items: center; min-height: 150px; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
 figcaption { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px 14px; font-size: 14px; }
