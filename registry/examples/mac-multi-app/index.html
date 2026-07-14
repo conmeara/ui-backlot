@@ -21,7 +21,7 @@
         <div
           class="component-frame menu-bar-frame"
           data-primitive="mac-menu-bar"
-          data-backlot-mount-src="../compositions/mac-menu-bar.html"
+          data-backlot-mount-src="compositions/mac-menu-bar.html"
           data-backlot-mount-selector="#mac-menu-bar-surface"
         ></div>
 
@@ -67,7 +67,7 @@
         <div class="app-window win-claude" data-primitive="claude-app-window">
           <div
             class="component-frame claude-frame"
-            data-backlot-mount-src="../compositions/claude-composed-app.html"
+            data-backlot-mount-src="compositions/claude-composed-app.html"
             data-backlot-mount-selector="#claude-composed-app"
           ></div>
         </div>
@@ -76,7 +76,7 @@
         <div class="app-window win-excel" data-primitive="excel-app-window">
           <div
             class="component-frame excel-frame"
-            data-backlot-mount-src="../compositions/excel-workbook.html"
+            data-backlot-mount-src="compositions/excel-workbook.html"
             data-backlot-mount-selector="#excel-workbook-surface"
           ></div>
         </div>
@@ -85,7 +85,7 @@
         <div
           class="component-frame dock-frame"
           data-primitive="mac-dock"
-          data-backlot-mount-src="../compositions/mac-dock.html"
+          data-backlot-mount-src="compositions/mac-dock.html"
           data-backlot-mount-selector="#mac-dock-surface"
         ></div>
 
@@ -105,7 +105,7 @@
       /* Provide foundation (.backlot-icon sizing, fonts) for mounted
          components — their own foundation import lives in an outer block that
          does not travel when the loader extracts template content. */
-      @import url("../styles/backlot-foundation.css");
+      @import url("styles/backlot-foundation.css");
 
       html,
       body {
@@ -142,7 +142,7 @@
       .wallpaper {
         position: absolute;
         inset: 0;
-        background: url("../assets/wallpapers/macos/tahoe-light.jpg") center / cover no-repeat;
+        background: url("assets/wallpapers/macos/tahoe-light.jpg") center / cover no-repeat;
       }
 
       .component-frame {
@@ -344,7 +344,7 @@
         height: 27px;
         /* Use the two-tone mac pointer SVG directly (black arrow + white
            outline) — masking it would flatten it to a single colour. */
-        background: url("../assets/cursors/normal-select.svg") top left / contain no-repeat;
+        background: url("assets/cursors/normal-select.svg") top left / contain no-repeat;
         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
       }
       .click-ring {
@@ -400,9 +400,9 @@
       // index.html: scope a <base> to compositions/ while the loader's
       // synchronous mount fetches run, then remove it. The demo's own
       // parent-relative compositions mount srcs resolve identically under it.
-      const backlotLoaderSrc = new URL("../runtime/backlot-component-loader.js", document.baseURI).href;
+      const backlotLoaderSrc = new URL("runtime/backlot-component-loader.js", document.baseURI).href;
       const backlotMountBase = document.createElement("base");
-      backlotMountBase.href = "../compositions/";
+      backlotMountBase.href = "compositions/";
       document.head.appendChild(backlotMountBase);
       const backlotLoaderScript = document.createElement("script");
       backlotLoaderScript.src = backlotLoaderSrc;
@@ -419,7 +419,7 @@
       });
       document.head.appendChild(backlotLoaderScript);
     </script>
-    <script src="../runtime/backlot-liquid-glass.js"></script>
+    <script src="runtime/backlot-liquid-glass.js"></script>
     <script>
       // The loader strips a mounted component's own scripts, so the dock's
       // Liquid Glass is applied here once mounting finishes: init() scans the

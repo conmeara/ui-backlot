@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>macOS Dock</title>
+  </head>
+  <body>
+    <template id="mac-dock-surface-template">
+      <div id="mac-dock-surface" data-composition-id="mac-dock-surface" data-width="760" data-height="104">
+        <div class="mac-dock" data-primitive="mac-dock" aria-label="macOS Dock"
+             data-liquid-glass
+             data-lg-displacement="58" data-lg-aberration="2.4"
+             data-lg-blur="7" data-lg-saturation="1.7" data-lg-brightness="1.05">
+          <div class="dock-tile" data-app="finder"><img class="app-icon" src="assets/app-icons/finder.png" alt="Finder" /></div>
+          <div class="dock-tile" data-app="claude"><img class="app-icon" src="assets/app-icons/claude.svg" alt="Claude" /></div>
+          <div class="dock-tile" data-app="safari"><img class="app-icon" src="assets/app-icons/safari.png" alt="Safari" /></div>
+          <div class="dock-tile" data-app="notes"><img class="app-icon" src="assets/app-icons/notes.png" alt="Notes" /></div>
+          <div class="dock-tile" data-app="word"><img class="app-icon" src="assets/app-icons/word.svg" alt="Microsoft Word" /></div>
+          <div class="dock-tile" data-app="excel"><img class="app-icon" src="assets/app-icons/excel.svg" alt="Microsoft Excel" /></div>
+          <div class="dock-tile" data-app="powerpoint"><img class="app-icon" src="assets/app-icons/powerpoint.svg" alt="Microsoft PowerPoint" /></div>
+          <div class="dock-tile" data-app="figma"><img class="app-icon" src="assets/app-icons/figma.svg" alt="Figma" /></div>
+          <div class="dock-tile" data-app="premiere"><img class="app-icon" src="assets/app-icons/premiere.svg" alt="Adobe Premiere Pro" /></div>
+          <span class="dock-divider" aria-hidden="true"></span>
+          <div class="dock-tile" data-app="terminal"><img class="app-icon" src="assets/app-icons/terminal.png" alt="Terminal" /></div>
+        </div>
+
+        <style>
+          #mac-dock-surface {
+            width: 760px;
+            height: 104px;
+            display: grid;
+            place-items: center;
+            font-family: -apple-system, "SF Pro Text", Inter, sans-serif;
+          }
+          #mac-dock-surface * { box-sizing: border-box; }
+          .mac-dock {
+            display: flex;
+            align-items: flex-end;
+            gap: 9px;
+            padding: 8px 12px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow:
+              0 20px 44px rgba(6, 18, 54, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(28px) saturate(140%);
+            -webkit-backdrop-filter: blur(28px) saturate(140%);
+          }
+          .dock-tile {
+            width: 60px;
+            height: 60px;
+            display: grid;
+            place-items: center;
+          }
+          .app-icon {
+            width: 60px;
+            height: 60px;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.24));
+          }
+          .dock-divider {
+            width: 1px;
+            height: 50px;
+            margin: 0 3px 5px;
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: 1px;
+          }
+        </style>
+      </div>
+    </template>
+    <script>
+      /* Direct-preview bootstrap: clone the template into the body when this
+         file is loaded on its own (capture/preview). When mounted by the
+         backlot loader, the loader extracts the template content instead. */
+      (() => {
+        if (!/\/mac-dock\.html$/.test(window.location.pathname)) return;
+        const template = document.getElementById("mac-dock-surface-template");
+        const mount = () => {
+          if (!template || document.querySelector("#mac-dock-surface")) return;
+          const fragment = template.content.cloneNode(true);
+          fragment.querySelectorAll("script").forEach((s) => s.remove());
+          document.body.appendChild(fragment);
+          /* Load the shared Liquid Glass runtime so the dock refracts the
+             wallpaper behind it (Chromium; our capture/render engine). It
+             auto-applies to [data-liquid-glass]. When mounted by the backlot
+             loader this script is stripped and the parent scene owns runtime
+             loading; the dock's CSS backdrop-filter is the fallback either way. */
+          if (window.BacklotLiquidGlass) {
+            window.BacklotLiquidGlass.init();
+          } else {
+            const s = document.createElement("script");
+            s.src = "runtime/backlot-liquid-glass.js";
+            document.body.appendChild(s);
+          }
+        };
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
+        else mount();
+      })();
+    </script>
+  </body>
+</html>

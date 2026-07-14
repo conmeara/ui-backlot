@@ -1,0 +1,657 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #f8f8f6;
+  }
+</style>
+
+<template id="claude-sidebar-template">
+  <div id="claude-sidebar-surface" data-composition-id="claude-sidebar-surface" data-width="360" data-height="840" data-page="chat">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lucide-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </symbol>
+      <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="lucide-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21 21-4.34-4.34" />
+        <circle cx="11" cy="11" r="8" />
+      </symbol>
+      <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" />
+        <path d="M9 3v18" />
+      </symbol>
+      <symbol id="lucide-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+        <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </symbol>
+      <symbol id="lucide-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m16 18 6-6-6-6" />
+        <path d="m8 6-6 6 6 6" />
+      </symbol>
+      <symbol id="lucide-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+        <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+        <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+      </symbol>
+      <symbol id="lucide-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <circle cx="17.5" cy="17.5" r="3.5" />
+      </symbol>
+      <symbol id="lucide-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </symbol>
+      <symbol id="lucide-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="2" width="8" height="4" rx="1" />
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+      </symbol>
+      <symbol id="lucide-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="5" rx="1" />
+        <path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" />
+        <path d="M10 12h4" />
+      </symbol>
+      <symbol id="lucide-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 5h-7" />
+        <path d="M10 5H3" />
+        <path d="M21 12h-9" />
+        <path d="M8 12H3" />
+        <path d="M21 19h-5" />
+        <path d="M12 19H3" />
+        <circle cx="12" cy="5" r="2" />
+        <circle cx="10" cy="12" r="2" />
+        <circle cx="14" cy="19" r="2" />
+      </symbol>
+      <symbol id="lucide-message-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+      </symbol>
+      <symbol id="lucide-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 5h.01" />
+        <path d="M3 12h.01" />
+        <path d="M3 19h.01" />
+        <path d="M8 5h13" />
+        <path d="M8 12h13" />
+        <path d="M8 19h13" />
+      </symbol>
+      <symbol id="lucide-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+      </symbol>
+      <symbol id="lucide-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="m7 10 5 5 5-5" />
+        <path d="M12 15V3" />
+      </symbol>
+      <symbol id="lucide-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="19" cy="12" r="1" />
+        <circle cx="5" cy="12" r="1" />
+      </symbol>
+    </svg>
+
+    <section class="claude-sidebar-stage" data-primitive="claude-sidebar-stage" aria-label="Editable Claude sidebar component">
+      <!-- ============ HOME SIDEBAR (default) — ground truth:
+           reference/claude/2026-07-13/mac-app-home (owner screenshot of
+           Claude.app). One sidebar for the home/chat/cowork pages: chat and
+           cowork are one page in the real app now (composer pill toggle). -->
+      <aside class="claude-sidebar-panel panel-chat" data-primitive="claude-sidebar" aria-label="Claude app sidebar, Home tab">
+        <div class="hc-top">
+          <div class="hc-traffic" aria-hidden="true"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+          <span class="hc-top-spacer"></span>
+          <button class="hc-top-icon" type="button" aria-label="Toggle sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
+          <button class="hc-top-icon" type="button" aria-label="Search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg></button>
+        </div>
+
+        <div class="hc-switch" aria-label="Home or Code">
+          <button class="active" type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-house"/></svg><span>Home</span></button>
+          <button type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-code"/></svg><span>Code</span></button>
+        </div>
+
+        <button class="hc-nav active" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span><span>New</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-layers"/></svg></span><span>Projects</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-shapes"/></svg></span><span>Artifacts</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-clock"/></svg></span><span>Scheduled</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-clipboard"/></svg></span><span>Dispatch</span><span class="hc-beta">Beta</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-archive"/></svg></span><span>Customize</span></button>
+
+        <div class="hc-label"><span>Recents</span><svg class="backlot-icon hc-label-ico" aria-hidden="true"><use href="#lucide-sliders"/></svg></div>
+        <div class="hc-recents">
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Draft launch announcement</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Trip packing checklist</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Rename the product tiers</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-list"/></svg></span><span>Quarterly budget review</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Vegetarian meal plan</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Cover letter polish</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Migrate the blog to MDX</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-list"/></svg></span><span>Onboarding email rewrite</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Explain options vesting</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Book club discussion prep</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>SQL window functions</span></div>
+          <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Landing page copy pass</span></div>
+          <div class="hc-viewall">View all</div>
+        </div>
+
+        <button class="hc-nav hc-design" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-palette"/></svg></span><span>Design</span></button>
+
+        <div class="hc-foot">
+          <span class="hc-avatar">A</span>
+          <span class="hc-foot-copy"><strong>Avery</strong><em>· Max</em><svg class="backlot-icon hc-foot-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+          <button class="hc-top-icon" type="button" aria-label="Download"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-download"/></svg></button>
+        </div>
+      </aside>
+
+      <!-- ============ CODE SIDEBAR — ground truth:
+           reference/claude/2026-07-13/mac-app-code (owner screenshot).
+           LIGHT theme (the dark dock is gone from the real app); sessions
+           grouped by repo with numbered square chips. -->
+      <aside class="claude-sidebar-panel panel-code" data-primitive="claude-sidebar" aria-label="Claude app sidebar, Code tab">
+        <div class="hc-top">
+          <div class="hc-traffic" aria-hidden="true"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+          <span class="hc-top-spacer"></span>
+          <button class="hc-top-icon" type="button" aria-label="Toggle sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
+          <button class="hc-top-icon" type="button" aria-label="Search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg></button>
+        </div>
+
+        <div class="hc-switch" aria-label="Home or Code">
+          <button type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-house"/></svg><span>Home</span></button>
+          <button class="active" type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-code"/></svg><span>Code</span></button>
+        </div>
+
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span><span>New session</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-shapes"/></svg></span><span>Artifacts</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-archive"/></svg></span><span>Customize</span></button>
+        <button class="hc-nav" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span><span>More</span></button>
+
+        <div class="hc-repo-label"><span>launch-site</span><svg class="backlot-icon hc-repo-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+        <div class="hc-session selected"><span class="hc-session-num">1</span><span>Homepage hero rewrite</span></div>
+        <div class="hc-session"><span class="hc-session-num">2</span><span>Fix pricing table overflow</span></div>
+
+        <div class="hc-repo-label"><span>video-tools</span><svg class="backlot-icon hc-repo-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+        <div class="hc-session"><span class="hc-session-num">3</span><span>Add GIF export pipeline</span></div>
+        <div class="hc-session"><span class="hc-session-num">4</span><span>Refactor capture scripts</span></div>
+        <div class="hc-session"><span class="hc-session-num">5</span><span>Batch rename utility</span></div>
+
+        <div class="hc-repo-label"><span>Ungrouped</span><svg class="backlot-icon hc-repo-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+
+        <div class="hc-foot">
+          <span class="hc-avatar">A</span>
+          <span class="hc-foot-copy"><strong>Avery</strong><em>· Max</em><svg class="backlot-icon hc-foot-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></span>
+          <button class="hc-top-icon" type="button" aria-label="Download"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-download"/></svg></button>
+        </div>
+      </aside>
+    </section>
+
+    <style>
+      /* Canonical Claude sidebar atom.
+         Visual source of truth: reference/claude/2026-07-13/mac-app-home and
+         mac-app-code (real Claude.app captures, 2026-07-13). Two panels:
+         .panel-chat = the Home-tab sidebar (home/chat/cowork pages all use it
+         — chat and cowork are one page in the real app), .panel-code = the
+         Code-tab sidebar (LIGHT; sessions grouped by repo). Page switch is
+         pure CSS via data-page on #claude-sidebar-surface; any value other
+         than "code" shows the Home sidebar. Measured palette:
+         sidebar #fcfcf9, active row #e8e8e8, accent #d87959. */
+      #claude-sidebar-surface {
+        width: 360px;
+        height: 840px;
+        overflow: visible;
+        color: var(--claude-ink);
+        font-family: var(--font-claude-ui);
+      }
+
+      #claude-sidebar-surface * {
+        box-sizing: border-box;
+      }
+
+      #claude-sidebar-surface button {
+        font: inherit;
+        cursor: default;
+      }
+
+      :where(#claude-sidebar-surface) .backlot-icon {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .claude-sidebar-stage {
+        width: 360px;
+        height: 840px;
+        display: grid;
+        place-items: center;
+        background: var(--claude-paper);
+      }
+
+      .claude-sidebar-panel {
+        width: 264px;
+        height: 768px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        user-select: none;
+        padding: 10px 10px 12px;
+        background: #fcfcf9;
+      }
+
+      #claude-sidebar-surface:not([data-page="code"]) .panel-chat,
+      #claude-sidebar-surface[data-page="code"] .panel-code {
+        display: flex;
+      }
+
+      /* Standalone presentation only: rounded card on the stage. */
+      .claude-sidebar-stage .claude-sidebar-panel {
+        border-radius: 12px;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        box-shadow: 0 28px 70px rgba(54, 42, 31, 0.13);
+      }
+
+      /* ---- Top row: traffic lights + window icons ---- */
+      .hc-top {
+        height: 30px;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 2px 0 6px;
+        margin-bottom: 8px;
+      }
+
+      .hc-traffic {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hc-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+      }
+
+      .hc-traffic .red { background: #ff5f57; }
+      .hc-traffic .yellow { background: #febc2e; }
+      .hc-traffic .green { background: #28c840; }
+
+      .hc-top-spacer { flex: 1; }
+
+      .hc-top-icon {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        padding: 6px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: #8a8984;
+      }
+
+      /* ---- Home | Code segmented switch ---- */
+      .hc-switch {
+        flex: 0 0 auto;
+        height: 36px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 3px;
+        margin: 0 2px 12px;
+        border-radius: 9px;
+        background: #ececea;
+      }
+
+      .hc-switch button {
+        min-width: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: #52514e;
+        font-size: 13px;
+        font-weight: 480;
+      }
+
+      .hc-switch button svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+      }
+
+      .hc-switch .active {
+        background: #fff;
+        color: var(--claude-ink);
+        font-weight: 550;
+        box-shadow: 0 0.5px 2px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ---- Nav rows ---- */
+      .hc-nav,
+      .hc-hist {
+        flex: 0 0 auto;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #373734;
+        font-size: 13.5px;
+        font-weight: 460;
+        text-align: left;
+      }
+
+      .hc-nav.active {
+        background: #e8e8e8;
+        color: var(--claude-ink);
+        font-weight: 530;
+      }
+
+      .hc-nav-ico {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+        color: #6b6a66;
+      }
+
+      .hc-beta {
+        margin-left: 2px;
+        padding: 1.5px 6px;
+        border-radius: 5px;
+        background: #ececea;
+        color: #6b6a66;
+        font-size: 10.5px;
+        font-weight: 520;
+      }
+
+      /* ---- Recents ---- */
+      .hc-label {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 14px 8px 4px;
+        color: var(--claude-text-faint);
+        font-size: 11.5px;
+        font-weight: 520;
+      }
+
+      .hc-label-ico {
+        width: 13px;
+        height: 13px;
+        color: var(--claude-text-faint);
+      }
+
+      .hc-recents {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hc-hist {
+        height: 31px;
+        color: #52514e;
+        font-weight: 430;
+      }
+
+      .hc-hist .hc-nav-ico { color: #8a8984; }
+
+      .hc-hist span:last-child,
+      .hc-nav span:nth-child(2),
+      .hc-session span:last-child {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hc-viewall {
+        flex: 0 0 auto;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px 0 34px;
+        color: var(--claude-text-faint);
+        font-size: 13px;
+      }
+
+      .hc-design { margin-top: 2px; }
+
+      /* ---- Code tab: repo groups + numbered sessions ---- */
+      .hc-repo-label {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 14px 8px 4px;
+        color: var(--claude-text-faint);
+        font-size: 12px;
+        font-weight: 520;
+      }
+
+      .hc-repo-chev {
+        width: 12px;
+        height: 12px;
+        color: var(--claude-text-faint);
+      }
+
+      .hc-session {
+        flex: 0 0 auto;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+        padding: 0 8px;
+        border-radius: 8px;
+        color: #52514e;
+        font-size: 13.5px;
+        font-weight: 440;
+      }
+
+      .hc-session.selected {
+        background: #e8e8e8;
+        color: var(--claude-ink);
+      }
+
+      .hc-session-num {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(11, 11, 11, 0.16);
+        border-radius: 5px;
+        color: #6b6a66;
+        font-size: 10.5px;
+        font-weight: 520;
+      }
+
+      /* ---- Footer account row ---- */
+      .hc-foot {
+        flex: 0 0 auto;
+        margin-top: auto;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 4px 0 6px;
+      }
+
+      .hc-avatar {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e05c8a 0%, #b03e6b 100%);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 560;
+      }
+
+      .hc-foot-copy {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .hc-foot-copy strong {
+        color: #34322d;
+        font-size: 13px;
+        font-weight: 540;
+      }
+
+      .hc-foot-copy em {
+        color: var(--claude-text-faint);
+        font-size: 12.5px;
+        font-style: normal;
+      }
+
+      .hc-foot-chev {
+        width: 12px;
+        height: 12px;
+        flex: 0 0 auto;
+        color: var(--claude-text-faint);
+      }
+
+      /* ============ DARK VARIANT ============
+         Token colors flip via the .theme-dark --claude-* block in
+         backlot-foundation.css; explicit values mirror the web app's dark
+         neutral ramp. Both panels share the hc-* classes so one block
+         covers Home and Code tabs. */
+      .theme-dark .claude-sidebar-stage,
+      .claude-sidebar-stage.theme-dark {
+        background: var(--claude-surface);
+      }
+
+      .theme-dark .claude-sidebar-stage .claude-sidebar-panel,
+      .claude-sidebar-stage.theme-dark .claude-sidebar-panel {
+        background: #21201e;
+        border-color: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      }
+
+      .theme-dark .hc-top-icon { color: var(--claude-text-faint); }
+      .theme-dark .hc-switch { background: rgba(255, 255, 255, 0.07); }
+      .theme-dark .hc-switch button { color: var(--claude-text-faint); }
+
+      .theme-dark .hc-switch .active {
+        background: #4a4842;
+        color: var(--claude-ink);
+        box-shadow: 0 0.5px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .theme-dark .hc-nav { color: #cbc7bd; }
+
+      .theme-dark .hc-nav.active {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--claude-ink);
+      }
+
+      .theme-dark .hc-nav-ico { color: var(--claude-text-faint); }
+      .theme-dark .hc-hist { color: var(--claude-text-muted); }
+      .theme-dark .hc-hist .hc-nav-ico { color: var(--claude-text-faint); }
+      .theme-dark .hc-beta { background: rgba(255, 255, 255, 0.08); color: var(--claude-text-faint); }
+      .theme-dark .hc-session { color: var(--claude-text-muted); }
+
+      .theme-dark .hc-session.selected {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--claude-ink);
+      }
+
+      .theme-dark .hc-session-num {
+        border-color: rgba(255, 255, 255, 0.18);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .hc-foot-copy strong { color: var(--claude-ink); }
+    </style>
+
+    <style>
+      /* ============ EMBED VARIANT (composed shells) ============
+         [data-embed="flat"] swaps the standalone rounded-card presentation
+         for the shell's flat full-height column with a hairline
+         border-right, matching the real app (sidebar #fcfcf9 against main
+         #fdfdfd, separated by a hairline). */
+      [data-embed="flat"] #claude-sidebar-surface,
+      [data-embed="flat"] .claude-sidebar-stage {
+        width: 100%;
+        height: 100%;
+      }
+
+      [data-embed="flat"] .claude-sidebar-stage {
+        display: block;
+        padding: 0;
+        background: transparent;
+      }
+
+      [data-embed="flat"] .claude-sidebar-stage .claude-sidebar-panel {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        border-right: 1px solid rgba(11, 11, 11, 0.08);
+      }
+
+      .theme-dark [data-embed="flat"] .claude-sidebar-stage .claude-sidebar-panel {
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".claude-sidebar-panel", { opacity: 0, y: 22, filter: "blur(6px)", duration: 0.58, ease: "expo.out" }, 0.12);
+      tl.from(".hc-traffic span", { opacity: 0, y: -3, stagger: 0.035, duration: 0.22, ease: "sine.out" }, 0.34);
+      tl.from(".hc-top, .hc-switch", { opacity: 0, y: 6, duration: 0.26, ease: "sine.out" }, 0.42);
+      tl.from(".hc-nav", { opacity: 0, x: -8, stagger: 0.05, duration: 0.28, ease: "power2.out" }, 0.56);
+      tl.from(".hc-label, .hc-hist, .hc-viewall, .hc-repo-label, .hc-session", { opacity: 0, x: -8, stagger: 0.022, duration: 0.25, ease: "sine.out" }, 0.74);
+      tl.from(".hc-foot", { opacity: 0, y: 7, duration: 0.25, ease: "sine.out" }, 1.24);
+      window.__timelines["claude-sidebar-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-sidebar\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-sidebar-template");
+      if (!template || document.querySelector("#claude-sidebar-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+      const params = new URLSearchParams(window.location.search);
+      const page = params.get("page");
+      if (page) document.querySelector("#claude-sidebar-surface").setAttribute("data-page", page);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

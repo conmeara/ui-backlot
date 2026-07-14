@@ -64,7 +64,15 @@ function rewriteHtml(html, sourceDirAbs, refs) {
   out = out.replace(/"((?:\.\.\/|\.\/)[^"\n]+)"/g, (w, url) => {
     const resolved = rootRelative(url, sourceDirAbs);
     const filePart = resolved.replace(/[?#].*$/, "");
-    if (!fs.existsSync(path.join(repoRoot, filePart))) return w;
+    const abs = path.join(repoRoot, filePart);
+    if (!fs.existsSync(abs)) return w;
+    // A quoted relative DIRECTORY (e.g. a <base href> path in inline JS)
+    // gets its path rewritten for the installed layout but is not a
+    // vendorable file reference.
+    if (!fs.statSync(abs).isFile()) {
+      const dirSlash = url.endsWith("/") && !resolved.endsWith("/") ? "/" : "";
+      return `"${resolved}${dirSlash}"`;
+    }
     refs.add(filePart);
     return `"${resolved}"`;
   });
