@@ -1,0 +1,59 @@
+{
+  "families": {
+    "claude": {
+      "version": "1.20186.1",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-09"
+    },
+    "codex": {
+      "version": null,
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-13"
+    },
+    "figma": {
+      "version": null,
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-13"
+    },
+    "macos": {
+      "version": "26.5.2",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-06"
+    },
+    "browser": {
+      "version": "150.0.7871.100",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": null
+    },
+    "word": {
+      "version": "16.110.3",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-13"
+    },
+    "excel": {
+      "version": "16.110.3",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-09"
+    },
+    "powerpoint": {
+      "version": "16.110.3",
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-13"
+    },
+    "premiere": {
+      "version": null,
+      "previous": null,
+      "checkedAt": "2026-07-13",
+      "lastCaptureDate": "2026-07-09"
+    }
+  },
+  "lastUpdated": "2026-07-13"
+}

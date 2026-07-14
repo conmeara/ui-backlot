@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-13T19:15:44.764Z",
+  "entries": [
+    {
+      "label": "app-screenshot-dark",
+      "method": "docs-press",
+      "source": "https://developers.openai.com/images/codex/app/app-screenshot-dark.webp (via https://developers.openai.com/codex/app)",
+      "capturedAt": "2026-07-13T19:15:44.797Z",
+      "files": [
+        "screenshot.webp"
+      ],
+      "note": "Drift-watch refresh 2026-07-13: re-pulled primary dark-mode shell screenshot (no-auth rung). Byte size grew (128KB -> 1.2MB) due to higher native resolution served by CDN, not a content change.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "app-screenshot-light",
+      "method": "docs-press",
+      "source": "https://developers.openai.com/images/codex/app/app-screenshot-light.webp (via https://developers.openai.com/codex/app)",
+      "capturedAt": "2026-07-13T19:15:44.764Z",
+      "files": [
+        "screenshot.webp"
+      ],
+      "note": "Drift-watch refresh 2026-07-13: re-pulled primary light-mode shell screenshot (no-auth rung; chatgpt.com/codex requires user session, not available). Content matches 2026-06-18 capture (same UI text/layout: 'Redesign app modern UI' thread, GPT-5.4 selector, 33 previous messages, Review pane diff) — only served at higher native resolution (3600x2026 vs 1920x1081). No visual drift detected.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

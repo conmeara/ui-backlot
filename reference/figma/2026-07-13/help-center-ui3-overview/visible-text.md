@@ -1,0 +1,140 @@
+- header @ 0,0: Discover and learn about what is new from Config 2026! Learn more Figma Learn Get started Product documentation Administration Courses, tutorials, projects Help Sign up
+- fl-announcement-banner @ 0,0: Discover and learn about what is new from Config 2026! Learn more
+- div @ 0,0: Discover and learn about what is new from Config 2026! Learn more
+- p @ 24,12: Discover and learn about what is new from Config 2026!
+- a [link] @ 447.8,12: Learn more
+- div @ 50,46.4: Figma Learn Get started Product documentation Administration Courses, tutorials, projects Help Sign up
+- div @ 244.7,46.4: Get started Product documentation Administration Courses, tutorials, projects Help
+- nav @ 244.7,46.4: Get started Product documentation Administration Courses, tutorials, projects Help
+- a [link] @ 244.7,52.4: Get started
+- button [button] @ 352.6,52.4: Product documentation
+- button [button] @ 566.8,52.4: Administration
+- button [button] @ 716.3,52.4: Courses, tutorials, projects
+- button [button] @ 955.9,52.4: Help
+- div @ 1258.8,68: Sign up
+- span @ 1320.8,68: Sign up
+- a [link] @ 1320.8,68: Sign up
+- div @ 1266.8,68.4: enterto select ↑↓to navigate escto close ⌘ K
+- div @ 1266.8,68.4: enterto select ↑↓to navigate escto close ⌘ K
+- button [button] @ 1266.8,68.4: ⌘ K
+- div @ 1345.8,77: Sign up
+- p @ 1345.8,77: Sign up
+- strong @ 74,77.4: Figma
+- a [link] @ 74,79.4: Figma Learn
+- div @ 74,79.4: Figma Learn
+- span @ 74,79.4: Figma Learn
+- fl-button @ 1320.8,82: Sign up
+- main [main] @ 0,137.4: The page you are looking for can’t be found. Try searching for something else! Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- section @ 228,241.4: The page you are looking for can’t be found. Try searching for something else! Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- section @ 228,241.4: The page you are looking for can’t be found. Try searching for something else!
+- div @ 350,299: The page you are looking for can’t be found. Try searching for something else!
+- h1 @ 350,363: The page you are looking for can’t be found. Try searching for something else!
+- section @ 228,809.4: Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- div @ 228,809.4: Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- section @ 228,809.4: Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- ul @ 228,809.4: Getting started Figma Organization Community Administration Video Tutorials Components Downloads Blog
+- li @ 228,825.4: Getting started
+- a [link] @ 228,825.4: Getting started
+- li @ 766,825.4: Figma Organization
+- a [link] @ 766,825.4: Figma Organization
+- h3 @ 228,1248.4: Getting started
+- h3 @ 766,1248.4: Figma Organization
+- li @ 228,1359.4: Community
+- a [link] @ 228,1359.4: Community
+- li @ 766,1359.4: Administration
+- a [link] @ 766,1359.4: Administration
+- h3 @ 228,1782.4: Community
+- h3 @ 766,1782.4: Administration
+- li @ 228,1893.4: Video Tutorials
+- a [link] @ 228,1893.4: Video Tutorials
+- li @ 766,1893.4: Components
+- a [link] @ 766,1893.4: Components
+- h3 @ 228,2316.4: Video Tutorials
+- h3 @ 766,2316.4: Components
+- li @ 228,2427.4: Downloads
+- a [link] @ 228,2427.4: Downloads
+- li @ 766,2427.4: Blog
+- a [link] @ 766,2427.4: Blog
+- h3 @ 228,2850.4: Downloads
+- h3 @ 766,2850.4: Blog
+- div @ 0,3273.4: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Template
+- footer @ 170,3337.4: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Template
+- div @ 170,3337.4: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- div @ 472,3337.4: USE CASES UI design UX design Prototyping Graphic design Wireframing Brainstorming Templates Remote design
+- div @ 774,3337.4: EXPLORE Design features Prototyping features Design systems features Collaboration features FigJam Pricing Enterprise Students and educators Customers Security Integrations Contact
+- div @ 1076,3337.4: RESOURCES Blog Best practices Support Developers Learn design Downloads What's new Releases Careers About us Agency partners Privacy Status
+- h6 @ 472,3353.4: USE CASES
+- h6 @ 774,3353.4: EXPLORE
+- h6 @ 1076,3353.4: RESOURCES
+- ul @ 170,3398: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- li @ 170,3398: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- ul @ 472,3398.2: UI design UX design Prototyping Graphic design Wireframing Brainstorming Templates Remote design
+- li @ 472,3398.2: UI design
+- a [link] @ 472,3398.2: UI design
+- ul @ 774,3398.2: Design features Prototyping features Design systems features Collaboration features FigJam Pricing Enterprise Students and educators Customers Security Integrations Contact
+- li @ 774,3398.2: Design features
+- a [link] @ 774,3398.2: Design features
+- ul @ 1076,3398.2: Blog Best practices Support Developers Learn design Downloads What's new Releases Careers About us Agency partners Privacy Status
+- li @ 1076,3398.2: Blog
+- a [link] @ 1076,3398.2: Blog
+- select [menu] @ 170,3402.8: English (United States) Deutsch Español (Latinoamérica) Español (España) Français 日本語 한국어 Nederlands (Nederland) Polski (Polska) Português do Brasil
+- li @ 472,3435.7: UX design
+- a [link] @ 472,3435.7: UX design
+- li @ 774,3435.7: Prototyping features
+- a [link] @ 774,3435.7: Prototyping features
+- li @ 1076,3435.7: Best practices
+- a [link] @ 1076,3435.7: Best practices
+- li @ 472,3473.2: Prototyping
+- a [link] @ 472,3473.2: Prototyping
+- li @ 774,3473.2: Design systems features
+- a [link] @ 774,3473.2: Design systems features
+- li @ 1076,3473.2: Support
+- a [link] @ 1076,3473.2: Support
+- li @ 472,3510.7: Graphic design
+- a [link] @ 472,3510.7: Graphic design
+- li @ 774,3510.7: Collaboration features
+- a [link] @ 774,3510.7: Collaboration features
+- li @ 1076,3510.7: Developers
+- a [link] @ 1076,3510.7: Developers
+- li @ 472,3548.2: Wireframing
+- a [link] @ 472,3548.2: Wireframing
+- li @ 774,3548.2: FigJam
+- a [link] @ 774,3548.2: FigJam
+- li @ 1076,3548.2: Learn design
+- a [link] @ 1076,3548.2: Learn design
+- li @ 472,3585.7: Brainstorming
+- a [link] @ 472,3585.7: Brainstorming
+- li @ 774,3585.7: Pricing
+- a [link] @ 774,3585.7: Pricing
+- li @ 1076,3585.7: Downloads
+- a [link] @ 1076,3585.7: Downloads
+- li @ 472,3623.2: Templates
+- a [link] @ 472,3623.2: Templates
+- li @ 774,3623.2: Enterprise
+- a [link] @ 774,3623.2: Enterprise
+- li @ 1076,3623.2: What's new
+- a [link] @ 1076,3623.2: What's new
+- li @ 472,3660.7: Remote design
+- a [link] @ 472,3660.7: Remote design
+- li @ 774,3660.7: Students and educators
+- a [link] @ 774,3660.7: Students and educators
+- li @ 1076,3660.7: Releases
+- a [link] @ 1076,3660.7: Releases
+- li @ 774,3698.2: Customers
+- a [link] @ 774,3698.2: Customers
+- li @ 1076,3698.2: Careers
+- a [link] @ 1076,3698.2: Careers
+- li @ 774,3735.7: Security
+- a [link] @ 774,3735.7: Security
+- li @ 1076,3735.7: About us
+- a [link] @ 1076,3735.7: About us
+- li @ 774,3773.2: Integrations
+- a [link] @ 774,3773.2: Integrations
+- li @ 1076,3773.2: Agency partners
+- a [link] @ 1076,3773.2: Agency partners
+- li @ 774,3810.7: Contact
+- a [link] @ 774,3810.7: Contact
+- li @ 1076,3810.7: Privacy
+- a [link] @ 1076,3810.7: Privacy
+- li @ 1076,3848.2: Status
+- a [link] @ 1076,3848.2: Status

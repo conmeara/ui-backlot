@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-07-13T19:34:10.139Z",
+  "entries": [
+    {
+      "label": "web-app-composer-dark-official",
+      "method": "docs-press",
+      "source": "https://support.claude.com/en/articles/8887527-customizing-your-appearance-settings (Anthropic's own Claude Help Center, 'Color mode' illustration, Light/Match system/Dark side-by-side)",
+      "capturedAt": "2026-07-13T19:35:49.052Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Re-acquisition of the 2026-07-09 web-app-composer-dark-official entry: that manifest declared this file but the image was never actually saved to disk (health-check gap). Official vendor help-center illustration of the composer component in Light vs Dark color mode (Settings > Appearance > Color mode); confirms near-black card background (dark card lighter than page, ~rgb(45,45,43)-ish), hairline borders, unchanged orange send button across themes, and 'Choose style'/model-selector pill styling. Not a full-page capture of web-app-chat or web-app-home (no sidebar/thread) -- small illustrative crop, staged for the help doc, model label reads an older 'Claude 3.5 Sonnet' so treat model-selector text as directional only. See web-app-home-dark (2026-07-13) in this family for a real full-page live-web dark capture that supersedes this for chrome/layout grounding.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "web-app-home-dark",
+      "method": "claude-in-chrome",
+      "source": "https://claude.ai/new (owner's logged-in Chrome session via claude-in-chrome MCP)",
+      "capturedAt": "2026-07-13T19:34:10.139Z",
+      "files": [
+        "screenshot.png",
+        "tokens.json"
+      ],
+      "note": "Live-web full-page dark-mode capture of claude.ai/new (web-app-home), viewport 1450x767 @2x. Theme switched to Dark via Settings > Appearance in the owner's own session, then beacon+crop procedure isolated page content from browser chrome (docs/fidelity-loop-plan-2026-07-05.md). Sidebar shows the owner's real recent-chat titles (private) -- screenshot.png stays local/gitignored per house rule; tokens.json was extracted with {slim:true} (no page text) so it is safe to commit. Fills the 'not captured in any dated set' dark-theme gap for web-app-home.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
