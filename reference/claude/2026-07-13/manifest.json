@@ -2,6 +2,39 @@
   "capturedAt": "2026-07-13T19:34:10.139Z",
   "entries": [
     {
+      "label": "mac-app-code",
+      "method": "manual-inbox",
+      "source": "owner screenshot of Claude.app 2026-07-13",
+      "capturedAt": "2026-07-14T01:10:56.881Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude MAC APP Code page (Claude Code desktop), sidebar expanded: New session/Artifacts/Customize/More nav, sessions grouped by repo with numbered chips. Main: session header w/ laptop icon + title + repo chip, toolbar icons right; transcript: grey tool-line rows w/ chevrons, right-aligned user bubbles, assistant prose, purple PR chip row, branch bar + Create PR, composer w/ Bypass permissions chip, footer 'Fable 5 High'. Private - pixels stay local.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-split",
+      "method": "screencapture",
+      "source": "screencapture of running Claude.app window (retina 3024x1898)",
+      "capturedAt": "2026-07-14T01:10:56.913Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Code page in SPLIT-PANE layout, sidebar collapsed: two side-by-side session panes each w/ own header, transcript, branch bar, composer, model footer. Real retina pixels - use for exact chrome colors/typography metrics. Private - stays local.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home",
+      "method": "manual-inbox",
+      "source": "owner screenshot of Claude.app 2026-07-13",
+      "capturedAt": "2026-07-14T01:10:56.846Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude MAC APP Home page. Sidebar: traffic lights, Home|Code segmented toggle, New/Projects/Artifacts/Scheduled/Dispatch(Beta)/Customize nav, Recents list, Design item, footer account row. Main: serif 'Good evening, <name>' greeting w/ orange asterisk mark, composer card 'How can I help you today?' with + button, Chat|Cowork PILL TOGGLE (chat+cowork are now ONE page), model chip 'Sonnet 4.6 Medium', mic; below-composer row: 'Project or folder' + 'Manual' dropdowns, usage note; 'Ideas for you' list w/ 3 icon rows. Private (owner name visible) - pixels stay local.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
       "label": "web-app-composer-dark-official",
       "method": "docs-press",
       "source": "https://support.claude.com/en/articles/8887527-customizing-your-appearance-settings (Anthropic's own Claude Help Center, 'Color mode' illustration, Light/Match system/Dark side-by-side)",

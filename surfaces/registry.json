@@ -95,8 +95,8 @@
       "id": "claude-agent-rail",
       "title": "Claude Agent Context Rail",
       "kind": "component",
-      "status": "prototype",
-      "fidelity": "high — poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens",
+      "status": "deprecated",
+      "fidelity": "high \u2014 poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 380,
         "height": 860
@@ -132,13 +132,14 @@
         "docs/prototypes/claude-agent-rail-atom-consolidation-pass-105.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
-      "recommendedUse": "Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell."
+      "recommendedUse": "Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-attachment-draft",
       "title": "Claude Attached Folder Draft",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "high against public Claude Cowork layout evidence, pending sanitized live Claude attachment capture",
       "dimensions": {
         "width": 1180,
@@ -173,13 +174,14 @@
         "docs/prototypes/claude-app-cowork-rail-fidelity-pass-044.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, app assets, or private folder contents copied.",
-      "recommendedUse": "Pre-submit scenes where a user has attached a local folder or files before Claude starts working."
+      "recommendedUse": "Pre-submit scenes where a user has attached a local folder or files before Claude starts working.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-chat-pane",
       "title": "Claude Chat Pane",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "no-sidebar chat pane composed from the shared claude-thread-core (cinematic scale) and claude-composer atoms via runtime/backlot-component-loader.js, poured into the Sonnet 4.6 launch-frame rhythm; the pane owns only its topbar chrome",
       "dimensions": {
         "width": 1180,
@@ -218,7 +220,8 @@
         "reference/claude/frame-study/sonnet-4-6/frame-56s.jpg"
       ],
       "assetDecision": "Hand-authored HTML/CSS extracted from the local lean Claude chat shell; no Claude product code, screenshots, video frames, private account data, app bundle assets, or donor code copied into the component.",
-      "recommendedUse": "Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome."
+      "recommendedUse": "Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-cinematic",
@@ -487,8 +490,8 @@
       "id": "claude-composer",
       "title": "Claude Working Composer",
       "kind": "component",
-      "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork\" mirrors the two desktop composer variants, light + .theme-dark via canonical --claude-* tokens",
+      "status": "deprecated",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork\" mirrors the two desktop composer variants, light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 900,
         "height": 220
@@ -525,13 +528,14 @@
         "docs/prototypes/claude-composer-atom-consolidation-pass-104.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, or app assets copied.",
-      "recommendedUse": "Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell."
+      "recommendedUse": "Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-home",
       "title": "Claude New Chat Home",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "high, pending sanitized live Claude capture",
       "dimensions": {
         "width": 980,
@@ -564,13 +568,14 @@
         "docs/prototypes/claude-app-dframe-sidebar-pass-033.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
-      "recommendedUse": "Opening prompt scenes before a working Claude thread exists."
+      "recommendedUse": "Opening prompt scenes before a working Claude thread exists.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-response-mark",
       "title": "Claude Response Mark",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "high against Sonnet 4.6 launch-frame response mark proportions, hand-authored and pending official product capture",
       "dimensions": {
         "width": 128,
@@ -607,14 +612,15 @@
         "docs/prototypes/claude-response-mark-component-pass-092.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS informed by public launch-frame studies; no Claude product code, official icon asset, screenshots, video frames, app bundle assets, donor code, or unclear-license assets copied.",
-      "recommendedUse": "Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry."
+      "recommendedUse": "Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-sidebar",
       "title": "Claude Sidebar",
       "kind": "component",
-      "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens",
+      "status": "deprecated",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 360,
         "height": 840
@@ -652,14 +658,15 @@
         "docs/prototypes/claude-sidebar-atom-consolidation-pass-102.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private account data, or app assets copied.",
-      "recommendedUse": "Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell."
+      "recommendedUse": "Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-thread-core",
       "title": "Claude Working Thread Core",
       "kind": "component",
-      "status": "prototype",
-      "fidelity": "high — poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens",
+      "status": "deprecated",
+      "fidelity": "high \u2014 poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens",
       "dimensions": {
         "width": 980,
         "height": 840
@@ -695,13 +702,14 @@
         "docs/prototypes/claude-thread-core-atom-consolidation-pass-103.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
-      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window."
+      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "claude-tool-result",
       "title": "Claude Completed Tool Result",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "high against public Claude Cowork layout evidence, pending sanitized live Claude tool-result capture",
       "dimensions": {
         "width": 1180,
@@ -737,7 +745,8 @@
         "docs/prototypes/claude-app-context-rail-fidelity-pass-047.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code or app assets copied.",
-      "recommendedUse": "Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary."
+      "recommendedUse": "Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "codex-app",
@@ -1094,7 +1103,7 @@
       "title": "macOS Wallpaper Catalog",
       "kind": "component",
       "status": "prototype",
-      "fidelity": "75-wallpaper desktop-background catalog: the full macOS lineage (Cheetah→Tahoe) plus Mac/iMac colour masters as real bundled images, and an original CSS set of gradients, metallics, solid colours, and patterns",
+      "fidelity": "75-wallpaper desktop-background catalog: the full macOS lineage (Cheetah\u2192Tahoe) plus Mac/iMac colour masters as real bundled images, and an original CSS set of gradients, metallics, solid colours, and patterns",
       "dimensions": {
         "width": 1920,
         "height": 1080
@@ -1628,7 +1637,7 @@
       "id": "claude-thread-core-dark",
       "title": "Claude Working Thread Core (dark)",
       "kind": "component",
-      "status": "prototype",
+      "status": "deprecated",
       "fidelity": "theme-dark class variant of claude-thread-core; same markup, scoped token override block",
       "dimensions": {
         "width": 980,
@@ -1664,7 +1673,8 @@
         "docs/prototypes/claude-app-reference-focus-pass-060.md"
       ],
       "assetDecision": "Hand-authored HTML/CSS; no Claude product code, screenshots, video frames, private project data, or app assets copied.",
-      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window."
+      "recommendedUse": "Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window.",
+      "deprecatedNote": "Folded into claude-composed-app (2026-07-13 consolidation): in reality there are three Claude apps - the Mac app, the web app (same UI), and the CLI. This piece is an internal part of the composed shell, not a standalone app surface. Source file remains and is vendored into the claude-composed-app block."
     },
     {
       "id": "slack-app",

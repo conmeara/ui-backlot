@@ -1,0 +1,25 @@
+{
+  "source": "owner screenshot of Claude.app Code page, 2026-07-13 (2000x1307)",
+  "colors": {
+    "page-bg": "#fdfdfd",
+    "user-bubble-bg": "#efefef",
+    "tool-line-text": "#888986",
+    "pr-chip-bg-lavender": "#e6e0f4",
+    "assistant-text": "#333333"
+  },
+  "structure": {
+    "sidebar": [
+      "Home | Code toggle (Code active, </> icon)",
+      "nav: + New session, Artifacts, Customize, More (chevron)",
+      "sessions grouped by repo: group header = repo name + chevron; items = numbered square chip + title",
+      "footer: avatar + account + chevron"
+    ],
+    "main": [
+      "session header: laptop icon + session title + repo chip (grey rounded); right icons: terminal, panel-toggle, globe, kebab, close",
+      "transcript rows: muted grey tool lines w/ trailing chevron ('Ran 3 commands, used 3 tools >'), '/compact' style slash chips in light blue, right-aligned user bubbles (grey rounded), assistant prose in near-black",
+      "PR chip row: purple-tinted rounded bar: branch icon + #9 + repo + branch name, right 'Merged' label + x",
+      "branch bar above composer: repo + branch left, diff counts (+40 -22 green/red) + 'Create PR' button right",
+      "composer: rounded rect, placeholder 'Type / for commands', right-side checkbox-ish icon; below: 'Bypass permissions' amber chip + plus + mic left, 'Fable 5' + 'High' + spinner right"
+    ]
+  }
+}

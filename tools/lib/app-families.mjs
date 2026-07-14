@@ -49,6 +49,8 @@ export function loadFamilies(repoRoot) {
       match: (s) => /browser/.test(s.id) || tag(s, "browser", "web-app") },
     { key: "calendar", label: "Calendar", color: "#ec5f59", icon: iconify("f7", "calendar"),
       match: (s) => /calendar/.test(s.id) || tag(s, "calendar") },
+    { key: "slack", label: "Slack", color: "#611f69", icon: iconify("simple-icons", "slack"),
+      match: (s) => /^slack/.test(s.id) || tag(s, "slack") },
     { key: "macos", label: "macOS", color: "#8e8e93", icon: iconify("simple-icons", "apple"),
       match: (s) => /^mac-|finder|quickstart|desktop/.test(s.id) || tag(s, "macos", "mac", "finder") },
   ];
@@ -77,6 +79,7 @@ export const DEMO_FAMILY = {
   "figma-interaction": "figma",
   "premiere-interaction": "premiere",
   "calendar-interaction": "calendar",
+  "slack-interaction": "slack",
   "finder-interaction": "macos",
   "mac-multi-app-demo": "macos",
 };
@@ -110,7 +113,7 @@ export const FAMILY_NAV_CSS = `
   /* Same (0,2,2) specificity as the per-family show rules below, which win by
      source order when the family matches. */
   html:not([data-family="all"]) section[data-family] { display: none; }
-  ${["claude", "codex", "excel", "word", "powerpoint", "figma", "premiere", "browser", "calendar", "macos"]
+  ${["claude", "codex", "excel", "word", "powerpoint", "figma", "premiere", "browser", "calendar", "slack", "macos"]
     .map((k) => `html[data-family="${k}"] section[data-family="${k}"] { display: block; }`)
     .join("\n  ")}
   .fam-head { display: flex; align-items: center; gap: 10px; }

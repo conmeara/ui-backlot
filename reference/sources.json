@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). Additional no-auth methods: app-store-api (iTunes lookup screenshotUrls — real current-version UI), yt-dlp+ffmpeg (frame-mining official vendor videos). Recipes + acquisition ladder: docs/reference-and-asset-sourcing.md; loop design: docs/fidelity-loop-plan-2026-07-05.md.",
+  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). Additional no-auth methods: app-store-api (iTunes lookup screenshotUrls \u2014 real current-version UI), yt-dlp+ffmpeg (frame-mining official vendor videos). Recipes + acquisition ladder: docs/reference-and-asset-sourcing.md; loop design: docs/fidelity-loop-plan-2026-07-05.md.",
   "families": [
     {
       "family": "claude",
@@ -13,7 +13,10 @@
           "auth": "user-session",
           "method": "claude-in-chrome",
           "viewport": "1440x900",
-          "themes": ["light", "dark"],
+          "themes": [
+            "light",
+            "dark"
+          ],
           "notes": "Primary ground truth. Desktop app is Electron over the same UI; agents cannot drive the desktop app, so desktop-only chrome (title bar, traffic lights) arrives via manual-inbox."
         },
         {
@@ -22,10 +25,20 @@
           "auth": "user-session",
           "method": "claude-in-chrome",
           "viewport": "1440x900",
-          "themes": ["light", "dark"]
+          "themes": [
+            "light",
+            "dark"
+          ]
+        },
+        {
+          "label": "mac-app",
+          "app": "Claude",
+          "method": "screencapture",
+          "notes": "Validated 2026-07-13: /Applications/Claude.app is installed and signed in. osascript System Events gets front-window {position,size}, then screencapture -x -R<bounds> captures real retina pixels without clicking anything. The desktop app is now the PRIMARY Claude ground truth per owner direction: Home page (chat+cowork merged into one composer with a Chat|Cowork pill toggle) + Code page (Claude Code desktop, sessions grouped by repo) behind a Home|Code sidebar toggle. Owner also drops manual screenshots (manual-inbox). Captures show the owner's real account/sessions - screenshot pixels stay local/gitignored; measured-tokens.json + notes are the shareable ground truth. Codex (good computer-use) can drive the app for additional states/pages in future passes."
         }
       ],
       "fallbacks": [
+        "codex computer-use: delegate app-state navigation + screenshots to Codex when a page can't be captured without UI driving",
         "manual-inbox: user screenshots of the desktop app (chat/cowork/code pages)",
         "reference/claude/frame-study/ launch-video extracts",
         "docs-press: support.claude.com Help Center articles ship official illustration crops of real components (e.g. articles/8887527-customizing-your-appearance-settings 'Color mode' card shows the composer in light/dark) -- no-auth, useful for chrome-color grounding when claude-in-chrome isn't connected, but these are small staged crops, not full-page captures"
@@ -42,11 +55,16 @@
           "auth": "user-session",
           "method": "claude-in-chrome",
           "viewport": "1440x900",
-          "themes": ["light", "dark"],
+          "themes": [
+            "light",
+            "dark"
+          ],
           "notes": "Requires user's OpenAI session. Codex desktop app not driveable; manual-inbox for desktop states."
         }
       ],
-      "fallbacks": ["reference/codex/app-screenshots/ (12 shots, light/dark)"]
+      "fallbacks": [
+        "reference/codex/app-screenshots/ (12 shots, light/dark)"
+      ]
     },
     {
       "family": "figma",
@@ -59,11 +77,16 @@
           "auth": "user-session",
           "method": "claude-in-chrome",
           "viewport": "1500x960",
-          "themes": ["light", "dark"],
+          "themes": [
+            "light",
+            "dark"
+          ],
           "notes": "Open a scratch design file in the user's account; never a client file."
         }
       ],
-      "fallbacks": ["reference/figma/actual-app/source-index.json (Help Center scrape, refreshable via online-only pass)"]
+      "fallbacks": [
+        "reference/figma/actual-app/source-index.json (Help Center scrape, refreshable via online-only pass)"
+      ]
     },
     {
       "family": "macos",
@@ -87,7 +110,9 @@
           "method": "screencapture"
         }
       ],
-      "fallbacks": ["reference/open-source/macos-web donor repo (pinned)"]
+      "fallbacks": [
+        "reference/open-source/macos-web donor repo (pinned)"
+      ]
     },
     {
       "family": "browser",
@@ -112,14 +137,14 @@
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Word",
-          "notes": "curl 'https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us' -> results[0].screenshotUrls (validated 2026-07-09). Edit the mzstatic size suffix upward (800x500bb.jpg -> 2400x1500bb.png) for full res. Real current Word-for-Mac UI; content is lightly staged — trust chrome/geometry/colors, discount document content."
+          "notes": "curl 'https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us' -> results[0].screenshotUrls (validated 2026-07-09). Edit the mzstatic size suffix upward (800x500bb.jpg -> 2400x1500bb.png) for full res. Real current Word-for-Mac UI; content is lightly staged \u2014 trust chrome/geometry/colors, discount document content."
         },
         {
           "label": "web-app",
           "url": "https://www.office.com",
           "auth": "user-session",
           "method": "claude-in-chrome",
-          "notes": "Word for the web is free with a personal Microsoft account. Canvas, typography, comment balloons, dialogs = ground truth; web ribbon and window chrome differ from Mac desktop — record that caveat in the manifest note. Flip tier to live-web once a Microsoft session exists in Chrome."
+          "notes": "Word for the web is free with a personal Microsoft account. Canvas, typography, comment balloons, dialogs = ground truth; web ribbon and window chrome differ from Mac desktop \u2014 record that caveat in the manifest note. Flip tier to live-web once a Microsoft session exists in Chrome."
         },
         {
           "label": "docs-scrape",
@@ -157,7 +182,9 @@
         },
         {
           "label": "docs-scrape",
-          "urls": ["https://support.microsoft.com/en-us/excel"],
+          "urls": [
+            "https://support.microsoft.com/en-us/excel"
+          ],
           "method": "playwright-public"
         }
       ],
@@ -186,7 +213,9 @@
         },
         {
           "label": "docs-scrape",
-          "urls": ["https://support.microsoft.com/en-us/powerpoint"],
+          "urls": [
+            "https://support.microsoft.com/en-us/powerpoint"
+          ],
           "method": "playwright-public"
         }
       ],
@@ -203,9 +232,11 @@
       "targets": [
         {
           "label": "video-frame-mine",
-          "urls": ["https://www.youtube.com/@AdobeVideo"],
+          "urls": [
+            "https://www.youtube.com/@AdobeVideo"
+          ],
           "method": "yt-dlp+ffmpeg",
-          "notes": "Adobe's official video channel: 1080p-4K tutorials showing the real Premiere UI at rest — the best real-pixel source for this family (not on the Mac App Store, app not installed here). Pick frames with no overlays/zooms; file with --source '<video url> @ <timestamp>'. Recipe: docs/reference-and-asset-sourcing.md Part 1.4."
+          "notes": "Adobe's official video channel: 1080p-4K tutorials showing the real Premiere UI at rest \u2014 the best real-pixel source for this family (not on the Mac App Store, app not installed here). Pick frames with no overlays/zooms; file with --source '<video url> @ <timestamp>'. Recipe: docs/reference-and-asset-sourcing.md Part 1.4."
         },
         {
           "label": "docs-scrape",
@@ -219,7 +250,7 @@
       "fallbacks": [
         "press: news.adobe.com press images / Adobe brand kit",
         "manual-inbox: 7-day Premiere trial screenshots if the user opts in",
-        "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) — short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
+        "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) \u2014 short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
       ]
     },
     {

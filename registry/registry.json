@@ -30,47 +30,6 @@
       ]
     },
     {
-      "name": "claude-agent-rail",
-      "type": "hyperframes:block",
-      "title": "Claude Agent Context Rail",
-      "description": "High — poured verbatim from the pass-100 claude-desktop cowork rail (itself built from public layout description; no live cowork-rail capture exists yet), light + .theme-dark via canonical --claude-* tokens. Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.",
-      "tags": [
-        "claude",
-        "agent-status",
-        "task-rail",
-        "context",
-        "artifacts",
-        "cowork"
-      ]
-    },
-    {
-      "name": "claude-attachment-draft",
-      "type": "hyperframes:block",
-      "title": "Claude Attached Folder Draft",
-      "description": "High against public Claude Cowork layout evidence, pending sanitized live Claude attachment capture. Pre-submit scenes where a user has attached a local folder or files before Claude starts working.",
-      "tags": [
-        "claude",
-        "attachment",
-        "folder-context",
-        "composer",
-        "new-chat"
-      ]
-    },
-    {
-      "name": "claude-chat-pane",
-      "type": "hyperframes:block",
-      "title": "Claude Chat Pane",
-      "description": "No-sidebar chat pane composed from the shared claude-thread-core (cinematic scale) and claude-composer atoms via runtime/backlot-component-loader.js, poured into the Sonnet 4.6 launch-frame rhythm; the pane owns only its topbar chrome. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.",
-      "tags": [
-        "claude",
-        "chat",
-        "thread",
-        "composer",
-        "launch-reference",
-        "pane"
-      ]
-    },
-    {
       "name": "claude-cinematic",
       "type": "hyperframes:block",
       "title": "Claude Cinematic Conversation",
@@ -112,89 +71,6 @@
         "cowork",
         "code",
         "dark-mode-ready"
-      ]
-    },
-    {
-      "name": "claude-composer",
-      "type": "hyperframes:block",
-      "title": "Claude Working Composer",
-      "description": "High — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork\" mirrors the two desktop composer variants, light + .theme-dark via canonical --claude-* tokens. Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell.",
-      "tags": [
-        "claude",
-        "composer",
-        "attachment",
-        "folder-context",
-        "running-state",
-        "chat",
-        "cowork"
-      ]
-    },
-    {
-      "name": "claude-home",
-      "type": "hyperframes:block",
-      "title": "Claude New Chat Home",
-      "description": "High, pending sanitized live Claude capture. Opening prompt scenes before a working Claude thread exists.",
-      "tags": [
-        "claude",
-        "home",
-        "composer",
-        "new-chat"
-      ]
-    },
-    {
-      "name": "claude-response-mark",
-      "type": "hyperframes:block",
-      "title": "Claude Response Mark",
-      "description": "High against Sonnet 4.6 launch-frame response mark proportions, hand-authored and pending official product capture. Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry.",
-      "tags": [
-        "claude",
-        "brand-mark",
-        "response",
-        "launch-reference",
-        "editable-css"
-      ]
-    },
-    {
-      "name": "claude-sidebar",
-      "type": "hyperframes:block",
-      "title": "Claude Sidebar",
-      "description": "High — poured from the pass-100 live-app-verified claude-desktop shell; data-page=\"chat|cowork|code\" mirrors the three desktop sidebar pages, light + .theme-dark via canonical --claude-* tokens. Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.",
-      "tags": [
-        "claude",
-        "sidebar",
-        "navigation",
-        "chat",
-        "cowork",
-        "code",
-        "workspace"
-      ]
-    },
-    {
-      "name": "claude-thread-core",
-      "type": "hyperframes:block",
-      "title": "Claude Working Thread Core",
-      "description": "High — poured from the pass-100 live-app-verified claude-desktop shell (cowork working thread); data-scale=\"working|cinematic\" (cinematic ported from claude-chat-pane 48px serif treatment), light + .theme-dark via canonical --claude-* tokens. Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window. Dark theme: add class \"theme-dark\" to the composition root.",
-      "tags": [
-        "claude",
-        "thread",
-        "tool-use",
-        "reasoning",
-        "message-parts",
-        "cinematic",
-        "dark-mode-ready"
-      ]
-    },
-    {
-      "name": "claude-tool-result",
-      "type": "hyperframes:block",
-      "title": "Claude Completed Tool Result",
-      "description": "High against public Claude Cowork layout evidence, pending sanitized live Claude tool-result capture. Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.",
-      "tags": [
-        "claude",
-        "tool-result",
-        "completed-work",
-        "composer",
-        "artifact"
       ]
     },
     {

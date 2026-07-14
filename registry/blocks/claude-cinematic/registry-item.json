@@ -21,11 +21,15 @@
       "path": "claude-cinematic.html",
       "target": "compositions/claude-cinematic.html",
       "type": "hyperframes:composition"
+    },
+    {
+      "path": "compositions/claude-response-mark.html",
+      "target": "compositions/claude-response-mark.html",
+      "type": "hyperframes:composition"
     }
   ],
   "registryDependencies": [
     "backlot-foundation",
-    "backlot-runtime",
-    "claude-response-mark"
+    "backlot-runtime"
   ]
 }

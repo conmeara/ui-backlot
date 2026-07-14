@@ -27,22 +27,12 @@ Dark variants: blocks tagged `dark-mode-ready` support `class="theme-dark"` on t
 Every installable block, its size, its variants, and how to parameterize it.
 Entries marked (part) are internal components that install transitively with their parent block.
 
-### Claude (12 blocks, 3 scripted demos)
+### Claude (3 blocks, 3 scripted demos)
 
-- `claude-agent-rail` — Claude Agent Context Rail, 380×860. Reusable Claude task/status sidecar for demos that need progress, context, artifacts, connectors, or working-file state without the full Claude app shell.
-- `claude-attachment-draft` — Claude Attached Folder Draft, 1180×780. Pre-submit scenes where a user has attached a local folder or files before Claude starts working.
-- `claude-chat-pane` — Claude Chat Pane, 1180×900. Claude chat scenes that need just the active topbar, message field, and composer without sidebar, task rail, browser, Finder, Office, Codex, or desktop chrome.
 - `claude-cinematic` — Claude Cinematic Conversation, 1920×1080. The one zoomed cinematic Claude conversation for close-up video beats: ?beat=prompt (user asks + thinking loader), ?beat=reply (large serif answer + composer), ?beat=complete (done copy). Copy overridable via data-copy slots; add class theme-dark for dark.
   Registry variants: `claude-cinematic` (Default), `claude-cinematic-dark` (Dark), `claude-cinematic-prompt` (Prompt Beat), `claude-cinematic-complete` (Complete Beat).
 - `claude-code-terminal-session` — Claude Code Terminal Session, 660×760. Small Claude Code terminal-session clips that need the light reference-style panel without importing the dark Claude Code desktop shell or the warm Claude chat shell.
 - `claude-composed-app` — Claude Canonical Desktop Shell, 1440×900. Canonical parameterized Claude desktop shell: data-page="chat|cowork|code" (default cowork), data-sidebar/data-rail on|off toggles, .theme-dark for dark; one file replaces the stacked claude-desktop pages while keeping sidebar, thread, composer, and rail independently editable atoms. Capture variants: capture:claude-composed-app{,-chat,-code,-dark,-chat-dark}.
-- `claude-composer` — Claude Working Composer, 900×220. Reusable floating Claude composer beats, especially clips that need attachment chips and running controls without the full Claude app shell.
-- `claude-home` — Claude New Chat Home, 980×760. Opening prompt scenes before a working Claude thread exists.
-- `claude-response-mark` — Claude Response Mark, 128×128. Reusable editable Claude response mark for sparse launch replies, completion states, and Claude thread surfaces that need consistent mark geometry.
-- `claude-sidebar` — Claude Sidebar, 360×840. Reusable Claude left navigation for videos that need workspace/task context without importing the full Claude shell.
-- `claude-thread-core` — Claude Working Thread Core, 980×840. Reusable Claude transcript/tool-use pane for videos that need the active thread without sidebar, composer, task rail, or outer app window.
-  Registry variants: `claude-thread-core` (Default), `claude-thread-core-dark` (dark).
-- `claude-tool-result` — Claude Completed Tool Result, 1180×780. Post-action scenes where Claude has read files, updated a deck or app, and returned a concise completion summary.
   Scripted demos (compositions under `examples/`): `claude-chat-interaction`, `claude-code-interaction`, `cowork-interaction`.
 
 ### Codex (3 blocks, 1 scripted demo)
@@ -92,7 +82,12 @@ Entries marked (part) are internal components that install transitively with the
   Registry variants: `calendar-app` (Default), `calendar-app-dark` (dark).
   Scripted demos (compositions under `examples/`): `calendar-interaction`.
 
-### macOS (5 blocks, 3 scripted demos, 141 wallpapers)
+### Slack (1 block, 1 scripted demo)
+
+- `slack-app` — Slack Workspace App, 1560×980. Slack workspace demos, messaging workflow scenes, collaboration panels, and multi-app compositions that feature team communication.
+  Scripted demos (compositions under `examples/`): `slack-interaction`.
+
+### macOS (4 blocks, 2 scripted demos, 141 wallpapers)
 
 - `finder-window` — Finder Launch Deck Window, 920×436. File/folder handoff scenes that need Finder without a full desktop shell.
   Registry variants: `finder-window` (Default), `finder-window-dark` (dark).
@@ -100,8 +95,7 @@ Entries marked (part) are internal components that install transitively with the
   Registry variants: `mac-menu-bar` (Default), `mac-menu-bar-dark` (dark).
 - `mac-dock` — macOS Dock, 760×104. Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html).
 - `mac-wallpaper` — macOS Wallpaper Catalog, 1920×1080. The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora).
-- `slack-app` — Slack Workspace App, 1560×980. Slack workspace demos, messaging workflow scenes, collaboration panels, and multi-app compositions that feature team communication.
-  Scripted demos (compositions under `examples/`): `finder-interaction`, `mac-multi-app-demo`, `slack-interaction`.
+  Scripted demos (compositions under `examples/`): `finder-interaction`, `mac-multi-app-demo`.
 
 #### Wallpapers (`mac-wallpaper` block — set `data-wallpaper="<id>"`, default `sonoma`)
 - macOS lineage (33): cheetah, jaguar, panther, tiger, leopard, snow-leopard, lion, mountain-lion, mavericks, yosemite, el-capitan, sierra, high-sierra, mojave-day, mojave-night, catalina-day, catalina-night, big-sur-day, big-sur-night, big-sur-color-day, big-sur-color-night, monterey, monterey-dark, ventura, ventura-dark, sonoma, sonoma-dark, sonoma-horizon, sequoia, sequoia-dark, sequoia-sunrise, tahoe-light, tahoe-dark

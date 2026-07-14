@@ -1,0 +1,35 @@
+{
+  "source": "owner screenshot of Claude.app Home page, 2026-07-13 (2000x1307, ~1.32x scale of 1512pt window)",
+  "colors": {
+    "main-bg": "#fdfdfd",
+    "sidebar-bg": "#fcfcf9",
+    "sidebar-active-item-bg": "#e8e8e8",
+    "composer-card-bg": "#ffffff",
+    "greeting-text": "#333333",
+    "accent-asterisk": "#d87959",
+    "chat-pill-active-border": "#3a3a3a",
+    "ideas-icon-tile-bg": "#f0eeed"
+  },
+  "structure": {
+    "sidebar": [
+      "traffic lights row + sidebar-toggle + search icons",
+      "Home | Code segmented toggle (pill slider, Home active shows house icon)",
+      "nav: + New (active grey row), Projects, Artifacts, Scheduled, Dispatch [Beta chip], Customize",
+      "Recents header w/ filter icon; ~20 recent chats w/ speech-bubble or list icons; View all",
+      "Design item w/ palette icon",
+      "footer: avatar + 'Conor · Max' + chevron + download icon"
+    ],
+    "main": [
+      "centered: orange asterisk mark + serif greeting 'Good evening, Conor' (large, ~42px, serif)",
+      "composer card: rounded ~16px, subtle border+shadow; placeholder 'How can I help you today?'",
+      "composer bottom row: + button | Chat/Cowork pill toggle (Cowork active = white pill in grey track) | right: 'Sonnet 4.6' + 'Medium' dropdown + mic icon",
+      "attached tray below card: 'Project or folder' dropdown, 'Manual' dropdown w/ hand icon, right: lightning '2x more usage until August 5'",
+      "'Ideas for you' muted label + 3 rows: icon tile + label (Send me a daily briefing / Organize my inbox / Customize Cowork for me)"
+    ],
+    "keyFacts": [
+      "CHAT AND COWORK ARE ONE PAGE now - a composer toggle, not separate nav destinations",
+      "Code is a sidebar-level TAB alongside Home (Claude Code desktop lives inside the Claude app)",
+      "typography: serif greeting (Copernicus-like), sans UI (Styrene-like)"
+    ]
+  }
+}
