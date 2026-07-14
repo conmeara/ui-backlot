@@ -29,7 +29,19 @@ rung could have produced.
 - **Installed macOS app** (`native-local`): fixed window size, then
   `screencapture -x` (or computer-use screenshot after `request_access`).
   Check `/Applications`, `/System/Applications`, and `mdfind` before assuming
-  an app is absent.
+  an app is absent. No-click recipe (validated 2026-07-13 on Claude.app and
+  Figma.app): `open -a <App>`, `osascript -e 'tell application "System
+  Events" to tell process "<App>" to get {position, size} of front window'`,
+  then `screencapture -x -R<x>,<y>,<w>,<h>` — real retina pixels of whatever
+  page the app is on, zero UI driving.
+- **App-state navigation via Codex** (owner-approved 2026-07-13): when the
+  page you need isn't what the app opens on (a specific tab, panel, or
+  dialog), delegate to Codex (`codex:codex-rescue` agent — strong computer
+  use) with a precise brief: which app, which UI state to reach, where to
+  save the `screencapture`. Same hard rules apply (no logins, no bot checks,
+  captures stay local); prefer this over hand-rolled AppleScript clicking,
+  which has hit stray in-app hyperlinks before (see reference/sources.json
+  slack notes).
 - Hard rules: never log in to anything, never touch bot checks/CAPTCHAs, and
   the owner's logged-in captures stay local (gitignored) — synthetic demo
   content only in surfaces.
