@@ -44,7 +44,7 @@
       <symbol id="codex-icon-review" viewBox="0 0 24 24"><path d="M5 6h13"></path><path d="M5 12h9"></path><path d="M5 18h13"></path><path d="m15 10 3 2-3 2"></path></symbol>
       <symbol id="codex-icon-file-plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 9h5"></path><path d="M10.5 6.5v5"></path><path d="M8 16h5"></path></symbol>
       <symbol id="codex-icon-expand" viewBox="0 0 24 24"><path d="M14 5h5v5"></path><path d="m19 5-6 6"></path><path d="M10 19H5v-5"></path><path d="m5 19 6-6"></path></symbol>
-      <symbol id="codex-icon-diff-color" viewBox="0 0 24 24"><rect x="5" y="6" width="6.5" height="12" fill="#8fd6a6" stroke="none"></rect><rect x="12.5" y="6" width="6.5" height="12" fill="#e79a95" stroke="none"></rect><rect x="4" y="5" width="16" height="14" rx="3" fill="none"></rect></symbol>
+      <symbol id="codex-icon-diff-color" viewBox="0 0 24 24"><rect x="5" y="6" width="6.5" height="12" fill="#e79a95" stroke="none"></rect><rect x="12.5" y="6" width="6.5" height="12" fill="#8fd6a6" stroke="none"></rect><rect x="4" y="5" width="16" height="14" rx="3" fill="none"></rect></symbol>
       <symbol id="codex-icon-undo" viewBox="0 0 24 24"><path d="M9 8H5V4"></path><path d="M5 8c2.2-2.6 5.6-3.7 8.8-2.7a7 7 0 1 1-6 12.5"></path></symbol>
       <symbol id="codex-icon-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></symbol>
       <symbol id="codex-icon-commit-node" viewBox="0 0 24 24"><path d="M3 12h6"></path><circle cx="12" cy="12" r="3.4"></circle><path d="M15.4 12h5.6"></path></symbol>
@@ -150,7 +150,7 @@
 
           <section class="change-card" data-primitive="codex-change-summary">
             <header>
-              <strong>4 files changed <span class="plus-count">+1506</span> <span class="minus-count">-16</span></strong>
+              <span class="change-title">4 files changed <span class="plus-count">+1506</span> <span class="minus-count">-16</span></span>
               <button type="button">Undo <svg class="undo-icon"><use href="#codex-icon-undo"></use></svg></button>
             </header>
             <div class="change-row"><span>index.html</span><em class="plus-count">+324</em><em>-0</em><i></i><b></b></div>
@@ -909,6 +909,14 @@
         background: transparent;
         color: #3d424a;
         font-size: 12.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .change-title {
+        font-weight: 450;
       }
 
       .change-row {
@@ -1680,7 +1688,10 @@
       }
 
       .send-button svg {
-        stroke-width: 2;
+        stroke: #fff;
+        stroke-width: 2.4;
+        width: 17px;
+        height: 17px;
         transform: translateY(-1px);
       }
 

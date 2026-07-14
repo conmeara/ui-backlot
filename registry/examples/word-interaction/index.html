@@ -14,7 +14,7 @@
             <div class="wd-page">
               <h1 class="doc-title" data-role="heading"></h1>
               <p class="doc-body" data-role="body"></p>
-              <p class="doc-body dim" data-role="body2"></p>
+              <p class="doc-body" data-role="body2"></p>
             </div>
           </div>
           <div class="wd-status"><span data-role="status">Page 1 of 1</span><span class="right"><b data-role="words">0</b> words</span></div>
@@ -45,7 +45,6 @@
          trim-at-line-wrap behavior, leaving a visible leading space on
          wrapped lines. Force normal here (single spaces still render fine). */
       .doc-body .bl-char { white-space: normal !important; }
-      .doc-body.dim { color:#6a6a70; }
       .wd-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
       .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(43,87,154,0.7); border-radius:50%; opacity:0; }
@@ -101,7 +100,7 @@
         const stageR = stage.getBoundingClientRect();
         const n = spans.length;
         if (!n) return;
-        const stride = Math.max(1, Math.floor(n / 6));
+        const stride = 1;
         for (let i = 0; i < n; i += stride) {
           const r = spans[i].getBoundingClientRect();
           tl.set(caret, { left: r.right - stageR.left, top: r.top - stageR.top, height: r.height }, atStart + i / cps);

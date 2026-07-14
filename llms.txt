@@ -92,7 +92,7 @@ Entries marked (part) are internal components that install transitively with the
   Registry variants: `calendar-app` (Default), `calendar-app-dark` (dark).
   Scripted demos (compositions under `examples/`): `calendar-interaction`.
 
-### macOS (4 blocks, 2 scripted demos, 141 wallpapers)
+### macOS (5 blocks, 3 scripted demos, 141 wallpapers)
 
 - `finder-window` — Finder Launch Deck Window, 920×436. File/folder handoff scenes that need Finder without a full desktop shell.
   Registry variants: `finder-window` (Default), `finder-window-dark` (dark).
@@ -100,7 +100,8 @@ Entries marked (part) are internal components that install transitively with the
   Registry variants: `mac-menu-bar` (Default), `mac-menu-bar-dark` (dark).
 - `mac-dock` — macOS Dock, 760×104. Desktop scenes that need the Dock as a launch point for app-open beats (used by examples/mac-multi-app-demo.html).
 - `mac-wallpaper` — macOS Wallpaper Catalog, 1920×1080. The desktop background layer behind mac-menu-bar, mac-dock, and app windows. Pick any of 75 wallpapers via data-wallpaper (e.g. sonoma, catalina-day, big-sur-color-day, solid-space-gray, mesh-aurora).
-  Scripted demos (compositions under `examples/`): `finder-interaction`, `mac-multi-app-demo`.
+- `slack-app` — Slack Workspace App, 1560×980. Slack workspace demos, messaging workflow scenes, collaboration panels, and multi-app compositions that feature team communication.
+  Scripted demos (compositions under `examples/`): `finder-interaction`, `mac-multi-app-demo`, `slack-interaction`.
 
 #### Wallpapers (`mac-wallpaper` block — set `data-wallpaper="<id>"`, default `sonoma`)
 - macOS lineage (33): cheetah, jaguar, panther, tiger, leopard, snow-leopard, lion, mountain-lion, mavericks, yosemite, el-capitan, sierra, high-sierra, mojave-day, mojave-night, catalina-day, catalina-night, big-sur-day, big-sur-night, big-sur-color-day, big-sur-color-night, monterey, monterey-dark, ventura, ventura-dark, sonoma, sonoma-dark, sonoma-horizon, sequoia, sequoia-dark, sequoia-sunrise, tahoe-light, tahoe-dark

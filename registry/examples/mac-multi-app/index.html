@@ -90,6 +90,7 @@
         <!-- Running-indicator dots (overlaid at fixed stage coordinates under
              the Claude/Excel dock icons; the dock composition itself has no
              such element, so this stays in the demo's own layer). -->
+        <div class="dock-run-dot dock-run-finder" aria-hidden="true"></div>
         <div class="dock-run-dot dock-run-claude" aria-hidden="true"></div>
         <div class="dock-run-dot dock-run-excel" aria-hidden="true"></div>
 
@@ -381,6 +382,15 @@
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
         opacity: 0;
       }
+      /* Finder is frontmost/running from frame 1 (before any app is
+         launched), so its dot is visible for the whole timeline and never
+         animated — unlike the Claude/Excel dots below, which start at
+         opacity 0 and are faded in by the timeline once each app launches. */
+      .dock-run-finder {
+        left: 643px;
+        top: 1045px;
+        opacity: 1;
+      }
       .dock-run-claude {
         left: 712px;
         top: 1045px;
@@ -430,13 +440,15 @@
       tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out", immediateRender: false }, 1.8);
 
       // Claude app opens up from the dock (grow-in, no rubber-band overshoot).
-      tl.to(".win-claude", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 1.95);
+      // Opens slightly later than the click so the lengthened launch bounce
+      // below reads before the window appears.
+      tl.to(".win-claude", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 2.2);
 
-      // Cursor drifts toward the Claude app (a gentle inward beat, not a full
-      // approach to the composer) — no click here, the composer has no
-      // scripted focus response, so a click on a dead placeholder would be a
-      // worse tell than no click at all.
-      tl.to(".workflow-cursor", { left: 640, top: 640, duration: 1.0, ease: "power2.inOut" }, 3.1);
+      // Cursor drifts toward the Claude composer input and settles there — a
+      // purposeful glance at the prompt field, not a drift into empty space.
+      // No click here — the composer has no scripted focus response, so a
+      // click on a dead placeholder would be a worse tell than no click at all.
+      tl.to(".workflow-cursor", { left: 730, top: 560, duration: 1.0, ease: "power2.inOut" }, 3.1);
 
       // Move to the Excel dock icon and click.
       tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.8);
@@ -444,12 +456,14 @@
       tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out", immediateRender: false }, 5.7);
 
       // Excel opens on top of Claude (grow-in, no rubber-band overshoot).
-      tl.to(".win-excel", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 5.85);
+      // Opens slightly later than the click so the lengthened launch bounce
+      // below reads before the window appears.
+      tl.to(".win-excel", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 6.1);
 
       // The system menu bar swaps to the newly-focused app the instant its
       // window takes focus — crossfade the Excel variant over the mounted
       // (Claude) menu bar on the same beat as the Excel window opening.
-      tl.to(".menu-bar-excel-overlay", { opacity: 1, duration: 0.15 }, 5.9);
+      tl.set(".menu-bar-excel-overlay", { opacity: 1 }, 6.15);
 
       // Cursor moves into Excel and settles into the grid. No click here —
       // the grid's active cell / Name Box are not scripted to move, so an
@@ -478,19 +492,21 @@
         // instead. Crossfade to Claude the instant its window opens.
         if (menuBarLeft) {
           gsap.set(menuBarLeft, { opacity: 0 });
-          tl.to(menuBarLeft, { opacity: 1, duration: 0.15 }, 1.95);
+          tl.set(menuBarLeft, { opacity: 1 }, 2.2);
         }
-        tl.to(".menu-bar-finder-overlay", { opacity: 0, duration: 0.15 }, 1.95);
+        tl.set(".menu-bar-finder-overlay", { opacity: 0 }, 2.2);
 
+        // Cold-launched icon gets a prolonged bounce before the window
+        // appears (mirrors a real from-scratch macOS launch).
         if (claudeIcon) {
-          tl.to(claudeIcon, { y: -20, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, 1.8);
+          tl.to(claudeIcon, { y: -18, duration: 0.32, ease: "power2.out", yoyo: true, repeat: 3 }, 1.8);
         }
-        tl.to(".dock-run-claude", { opacity: 1, duration: 0.2 }, 2.7);
+        tl.to(".dock-run-claude", { opacity: 1, duration: 0.2 }, 2.95);
 
         if (excelIcon) {
-          tl.to(excelIcon, { y: -20, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, 5.7);
+          tl.to(excelIcon, { y: -18, duration: 0.32, ease: "power2.out", yoyo: true, repeat: 3 }, 5.7);
         }
-        tl.to(".dock-run-excel", { opacity: 1, duration: 0.2 }, 6.57);
+        tl.to(".dock-run-excel", { opacity: 1, duration: 0.2 }, 6.85);
 
         // Excel takes focus: the background Claude window's traffic-light
         // controls dim to the inactive-window grey macOS uses for controls
@@ -498,7 +514,7 @@
         // claude-home composition, so it's scripted here (post-mount) like
         // the dock icons above rather than on the synchronously-built tl.
         if (claudeTraffic) {
-          tl.to(claudeTraffic, { filter: "grayscale(1) opacity(0.55)", duration: 0.15 }, 5.85);
+          tl.to(claudeTraffic, { filter: "grayscale(1) opacity(0.55)", duration: 0.15 }, 6.1);
         }
 
         // Crossfade the mounted (Claude) menu-bar cluster out as the Excel
@@ -506,14 +522,14 @@
         // transparent wallpaper backdrop, so this reads as one bar swapping
         // app name + menus rather than a panel appearing over the old text.
         if (menuBarLeft) {
-          tl.to(menuBarLeft, { opacity: 0, duration: 0.15 }, 5.9);
+          tl.set(menuBarLeft, { opacity: 0 }, 6.15);
         }
       }).catch(() => {});
 
       // Static hero frame for still captures.
       const captureMode = new URLSearchParams(window.location.search).get("capture");
       if (captureMode === "hero") {
-        tl.seek(6.6).pause();
+        tl.seek(6.9).pause();
       }
     </script>
   </body>

@@ -43,6 +43,10 @@ the Claude app up from the dock, then opens Excel on top."*</sub>
 <td><b>Premiere</b><br><img src="docs/media/premiere-interaction.gif" alt="Premiere interaction"></td>
 <td><b>Calendar</b><br><img src="docs/media/calendar-interaction.gif" alt="Calendar interaction"></td>
 </tr>
+<tr>
+<td><b>Slack</b><br><img src="docs/media/slack-interaction.gif" alt="Slack interaction"></td>
+<td></td>
+</tr>
 </table>
 
 ## Use the surfaces in your own project

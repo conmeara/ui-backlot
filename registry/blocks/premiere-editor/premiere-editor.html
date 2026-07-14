@@ -69,8 +69,6 @@
           </div>
           <div class="monitor-frame source-frame">
             <div class="video-still interview">
-              <div class="subject"></div>
-              <div class="background-card"></div>
               <div class="source-timecode">00:01:14:09</div>
             </div>
             <div class="source-waveform" aria-hidden="true">
@@ -109,7 +107,7 @@
             <span class="timecode active">00:00:31:12</span>
             <button type="button" class="control safe" aria-label="Safe margins"></button>
             <button type="button" class="control step-back" aria-label="Step back"></button>
-            <button type="button" class="control play active" aria-label="Play"></button>
+            <button type="button" class="control play" aria-label="Play"></button>
             <button type="button" class="control step-forward" aria-label="Step forward"></button>
             <button type="button" class="control export-frame" aria-label="Export frame"></button>
             <span class="monitor-scale">Fit</span>
@@ -203,12 +201,12 @@
           </div>
           <div class="timeline-body">
             <div class="track-headers">
-              <div class="track-header video"><strong>V4</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video targeted"><strong>V3</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video"><strong>V2</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header video targeted"><strong>V1</strong><em class="track-eye"></em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header audio targeted"><strong>A1</strong><em>S</em><em>M</em><em class="track-lock"></em></div>
-              <div class="track-header audio"><strong>A2</strong><em>S</em><em>M</em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V4</strong><em class="track-eye"></em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V3</strong><em class="track-eye"></em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V2</strong><em class="track-eye"></em><em class="track-lock"></em></div>
+              <div class="track-header video targeted"><strong>V1</strong><em class="track-eye"></em><em class="track-lock"></em></div>
+              <div class="track-header audio targeted"><strong>A1</strong><em>M</em><em>S</em><em class="track-lock"></em></div>
+              <div class="track-header audio"><strong>A2</strong><em>M</em><em>S</em><em class="track-lock"></em></div>
             </div>
             <div class="tracks">
               <div class="snap-line one"></div>
@@ -644,39 +642,21 @@
           linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
       }
 
+      .video-still.interview {
+        background:
+          radial-gradient(120px 90px at 34% 60%, rgba(210, 150, 110, 0.55), transparent 70%),
+          radial-gradient(90px 70px at 68% 40%, rgba(120, 150, 160, 0.4), transparent 70%),
+          linear-gradient(145deg, #223237 0%, #11161a 60%, #25212b 100%);
+      }
+
       .video-still.interview::before {
         content: "";
         position: absolute;
-        left: 36px;
-        bottom: -12px;
-        width: 126px;
-        height: 158px;
-        border-radius: 64px 64px 22px 22px;
-        background: linear-gradient(180deg, #caa38a 0 39%, #533f45 40% 100%);
-        box-shadow: 38px 18px 70px rgba(0, 0, 0, 0.45);
-      }
-
-      .subject {
-        position: absolute;
-        left: 78px;
-        top: 54px;
-        width: 58px;
-        height: 58px;
-        border-radius: 50%;
-        background: #d9b79f;
-      }
-
-      .background-card {
-        position: absolute;
-        right: 30px;
-        top: 40px;
-        width: 116px;
-        height: 74px;
-        border-radius: 10px;
+        inset: 0;
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0 30%, transparent 30%),
-          linear-gradient(135deg, #46676d, #9b7c55);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+          radial-gradient(140px 110px at 30% 66%, rgba(230, 175, 130, 0.4), transparent 72%),
+          radial-gradient(100px 80px at 72% 36%, rgba(140, 168, 178, 0.3), transparent 72%);
+        filter: blur(1px);
       }
 
       .source-timecode,
@@ -1401,7 +1381,7 @@
 
       .track-header {
         display: grid;
-        grid-template-columns: 25px minmax(0, 1fr) 16px 16px 16px;
+        grid-template-columns: 25px minmax(0, 1fr) 16px 16px;
         align-items: center;
         gap: 4px;
         padding: 0 6px;
@@ -1411,6 +1391,12 @@
 
       .track-header strong {
         font-weight: 780;
+        background: #3a3a3a;
+        color: #cfcfcf;
+        border-radius: 3px;
+        padding: 1px 4px;
+        text-align: center;
+        min-width: 22px;
       }
 
       .track-header em {
@@ -1426,15 +1412,20 @@
       }
 
       .track-header.targeted {
-        background: rgba(10, 132, 255, 0.12);
+        background: rgba(10, 132, 255, 0.02);
       }
 
       .track-header.targeted strong {
+        background: var(--accent);
         color: #fff;
       }
 
       .track-header.audio strong {
         color: #aee0b7;
+      }
+
+      .track-header.video .track-lock {
+        grid-column: 4;
       }
 
       .track-eye::before {
@@ -1728,7 +1719,7 @@
       }
 
       .prop-line strong {
-        color: #5a8fd6;
+        color: #2d8ceb;
         font-weight: 520;
         text-align: right;
         font-variant-numeric: tabular-nums;

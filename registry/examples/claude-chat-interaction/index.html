@@ -162,6 +162,16 @@
       tl.to(caret, { opacity: 0, duration: 0.12 }, sendAt);
       ix.send({ from: '[data-role="input"]', into: '[data-role="thread"]', bubble: "user", text: PROMPT, at: sendAt + 0.05 });
 
+      // The composer field is empty after send, but the reveal box was never
+      // collapsed and the idle-blink yoyo (still running) keeps overriding the
+      // caret's opacity:0 above — leaving a caret blinking mid-air over an
+      // invisible prompt. Collapse the reveal box and force the caret off with
+      // an overwriting tween, then restore the placeholder so the empty
+      // composer reads real.
+      tl.set(reveal, { width: 0 }, sendAt + 0.05);
+      tl.to(caret, { opacity: 0, duration: 0.01, overwrite: true }, sendAt + 0.05);
+      tl.set('[data-role="placeholder"]', { opacity: 1 }, sendAt + 0.05);
+
       // Composer reacts to being in a generating state: the send arrow swaps
       // to a stop square and a spinner appears by the model name, for the
       // whole thinking + streaming stretch. Both flips are attr-driven

@@ -5,7 +5,7 @@
     <title>Claude Code — Interaction Demo</title>
   </head>
   <body>
-    <div id="claude-code-interaction" data-composition-id="claude-code-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9.6">
+    <div id="claude-code-interaction" data-composition-id="claude-code-interaction" data-width="1280" data-height="800" data-start="0" data-duration="10">
       <section class="cc-stage" data-primitive="claude-code-interaction" aria-label="Claude Code CLI typing a command and streaming output">
         <div class="cc-window">
           <div class="cc-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="cc-title">ui-backlot — claude — 120x34</span></div>
@@ -15,7 +15,7 @@
               <div class="line dim">model: <b>Claude Opus 4.8</b></div>
               <div class="line dim">cwd: ~/Projects/ui-backlot</div>
             </div>
-            <div class="cc-prompt"><span class="caret">&gt;</span> <span class="cmd" data-role="cmd"></span></div>
+            <div class="cc-prompt" data-role="prompt"><span class="caret">&gt;</span> <span class="cmd" data-role="cmd"></span></div>
             <div class="cc-out" data-role="out">
               <div class="cc-tool">
                 <div class="cc-tool-label" data-role="tool1-label"></div>
@@ -35,8 +35,10 @@
               <span class="cc-working" data-role="working"><span class="cc-working-glyph">✳</span> Working… · <span data-role="tokens">2.1k</span> tokens</span>
               <span class="cc-status" data-role="status"></span>
             </div>
+            <div class="cc-prompt cc-prompt-next" data-role="prompt-next"><span class="caret">&gt;</span> </div>
           </div>
         </div>
+        <div class="cc-caret" data-role="cc-caret" aria-hidden="true"></div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
       </section>
@@ -57,6 +59,8 @@
       .cc-prompt { color:#e7ebf1; margin-bottom:14px; } .caret { color:#d97757; }
       .cc-prompt.sent .caret { opacity:0; }
       .cc-prompt.sent .cmd { color:#9aa3b1; }
+      .cc-prompt-next { opacity:0; }
+      .cc-caret { position:absolute; z-index:91; width:9px; background:#d97757; border-radius:1px; opacity:0; }
       .cc-out { color:#c8cdd6; }
       .cc-out .k { color:#d97757; } .cc-out .g { color:#6ad08f; } .cc-out .y { color:#e0b45e; }
       .cc-tool-label, .cc-tool-result, .cc-summary { white-space:pre-wrap; }
@@ -79,6 +83,7 @@
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".cc-stage");
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
+      const caret = stage.querySelector('[data-role="cc-caret"]');
 
       // Click-ring parks off-canvas at rest so it never reads as a stray
       // glitch near the origin before its first use (it defaults to 0,0).
@@ -101,8 +106,38 @@
       ix.click('[data-role="cmd"]', { at: 0.6, moveDur: 0.7 });
       ix.type('[data-role="cmd"]', CMD, { at: 1.0, cps: 20 });
       const cmdEndAt = 1.0 + CMD.length / 20;
-      const submitAt = cmdEndAt + 0.15;
-      tl.set('.cc-prompt', { attr: { class: "cc-prompt sent" } }, submitAt);
+      const submitAt = cmdEndAt + 0.45;
+      tl.set('[data-role="prompt"]', { attr: { class: "cc-prompt sent" } }, submitAt);
+
+      // Terminal block caret: tracks the insertion point through the whole
+      // typing stretch. type() builds every .bl-char span up front (revealed
+      // via opacity, not DOM growth) so each span's final layout rect is
+      // stable and can be read immediately - every waypoint below is a plain
+      // tl.set() on left/top/height, a pure function of timeline time, safe
+      // under seek. Positioned absolute against .cc-stage (not nested inside
+      // .cc-prompt) since the per-character reveal reserves the full command
+      // width from frame one, so a static DOM-order sibling caret would sit
+      // at the end of the whole (mostly invisible) string instead of at the
+      // live insertion point.
+      const cmdSpans = stage.querySelectorAll('[data-role="cmd"] .bl-char');
+      const stageRect = stage.getBoundingClientRect();
+      tl.set(caret, { opacity: 0 }, 0);
+      if (cmdSpans.length) {
+        const first = cmdSpans[0].getBoundingClientRect();
+        // rest position at the empty, freshly-focused prompt (frame 2) -
+        // right after the ">" marker, before the first keystroke.
+        tl.set(caret, { left: first.left - stageRect.left, top: first.top - stageRect.top, height: first.height }, 0.6);
+        for (let i = 0; i < cmdSpans.length; i++) {
+          const r = cmdSpans[i].getBoundingClientRect();
+          tl.set(caret, { left: r.right - stageRect.left, top: r.top - stageRect.top, height: r.height }, 1.0 + i / 20);
+        }
+      }
+      // Visible the moment the line is focused, blinking through typing and
+      // the brief read-back hold, then hard-hidden right as the command
+      // commits (finite steps() cycle, no repeat:-1, so timeline duration
+      // stays exact).
+      tl.fromTo(caret, { opacity: 1 }, { opacity: 0, duration: 0.15, repeat: 19, yoyo: true, ease: "steps(1)" }, 0.6);
+      tl.set(caret, { opacity: 0 }, submitAt);
 
       // 2) working indicator: an animated glyph + token-count line, persistent
       // for the whole tool-use + streaming stretch, cleared when Done lands.
@@ -128,6 +163,11 @@
       ix.hide('[data-role="working"]', { at: doneAt, dur: 0.15 });
       ix.type('[data-role="status"]', "✔ Done · 8.4s", { at: doneAt, cps: 40, fade: 0.05 });
 
+      // 5) session doesn't dead-end on the status line - a fresh empty ">"
+      // prompt returns right after, awaiting the next command, like a real
+      // CLI session.
+      ix.show('[data-role="prompt-next"]', { at: doneAt + 0.2, dur: 0.2 });
+
       // Spin the working glyph continuously across its visible stretch -
       // a plain rotation tween, so it stays a pure function of time on seek.
       tl.to('.cc-working-glyph', { rotation: "+=1800", duration: doneAt - submitAt, ease: "none" }, submitAt);
@@ -148,7 +188,7 @@
 
       window.__timelines["claude-code-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(9.5).pause();
+      if (cap === "hero") tl.seek(9.8).pause();
     </script>
   </body>
 </html>

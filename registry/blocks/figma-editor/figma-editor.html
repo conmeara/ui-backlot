@@ -70,6 +70,12 @@
         <path d="M5 12h14" />
         <path d="M12 5v14" />
         </symbol>
+        <symbol id="lucide-component" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15.536 11.293a1 1 0 0 0 0 1.414l2.376 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z" />
+          <path d="M2.297 11.293a1 1 0 0 0 0 1.414l2.377 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414L6.088 8.916a1 1 0 0 0-1.414 0z" />
+          <path d="M8.916 17.912a1 1 0 0 0 0 1.415l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.415l-2.377-2.376a1 1 0 0 0-1.414 0z" />
+          <path d="M8.916 4.674a1 1 0 0 0 0 1.414l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z" />
+        </symbol>
       </svg>
       <div class="figma-titlebar">
         <div class="traffic" aria-hidden="true">
@@ -108,7 +114,7 @@
           <svg class="backlot-icon panel-search-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
         </div>
         <div class="page-section">
-          <div class="panel-heading" style="display:flex;align-items:center;justify-content:space-between">Pages<svg class="backlot-icon" style="width:14px;height:14px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-plus"/></svg></div>
+          <div class="panel-heading" style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center"><svg class="backlot-icon" style="width:12px;height:12px;color:var(--figma-muted);margin-right:4px" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>Pages</span><svg class="backlot-icon" style="width:14px;height:14px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-plus"/></svg></div>
           <div class="page-row active"><span class="page-dot"></span><span>Landing page</span></div>
           <div class="page-row"><span class="page-dot"></span><span>Components</span></div>
         </div>
@@ -184,12 +190,11 @@
           <button class="zoom-menu" type="button">52%</button>
         </div>
         <div class="selected-layer-card">
-          <span class="layer-icon frame"></span>
           <strong>Frame</strong>
           <span class="layer-caret open" aria-hidden="true"></span>
           <span class="card-spacer"></span>
           <button class="panel-icon-button dev" type="button" aria-label="Dev mode"></button>
-          <button class="panel-icon-button swap" type="button" aria-label="Swap component"></button>
+          <button class="panel-icon-button swap" type="button" aria-label="Swap component"><svg class="backlot-icon" style="width:14px;height:14px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-component"/></svg></button>
           <button class="panel-icon-button dots" type="button" aria-label="More"></button>
         </div>
         <div class="selection-actions">
@@ -299,6 +304,7 @@
         <div class="sidebar-file-header">
           <div class="sidebar-file-header-toprow">
             <svg class="figma-mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#si-figma"/></svg>
+            <svg class="backlot-icon" style="width:12px;height:12px;color:var(--muted)" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
             <span class="file-context-spacer" aria-hidden="true"></span>
             <button class="collapse-ui" type="button" aria-label="Toggle UI"></button>
           </div>
@@ -1426,16 +1432,10 @@
         transform: translateY(-50%) rotate(45deg);
       }
 
-      .panel-icon-button.swap::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 13px;
-        height: 13px;
-        border: 1.5px solid currentColor;
-        border-radius: 3px;
-        transform: translate(-50%, -50%) rotate(45deg);
+      .panel-icon-button.swap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .action-chip {
@@ -1888,7 +1888,7 @@
         height: 18px;
         border-width: 2px;
         border-radius: 4px;
-        box-shadow: inset 9px 0 0 rgba(31, 31, 31, 0.1);
+        background: linear-gradient(#1f1f1f 0 0) 7px 0 / 1.6px 100% no-repeat;
       }
 
       .page-section {
@@ -2685,6 +2685,10 @@
         width: 18px;
         height: 18px;
         color: #fff;
+      }
+
+      .figma-page-onboarding .sidebar-file-header-toprow .figma-mark {
+        color: #1e1e1e;
       }
 
       .figma-page-onboarding .top-left strong {
@@ -3614,7 +3618,7 @@
         inset: 3px;
         border: 2px solid #222;
         border-radius: 4px;
-        box-shadow: inset 10px 0 0 rgba(0, 0, 0, 0.08);
+        background: linear-gradient(#222 0 0) 8px 0 / 1.6px 100% no-repeat;
       }
 
       .figma-page-onboarding .tabs {

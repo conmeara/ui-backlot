@@ -36,6 +36,26 @@
       .demo-cursor { position:absolute; left:640px; top:520px; z-index:90; width:24px; height:24px;
         background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:38px; height:38px; border:2.5px solid rgba(255,255,255,0.85); border-radius:50%; opacity:0; }
+
+      /* Col4 preview pane (macOS column-view "get info" style panel that
+         appears the instant a leaf file becomes the active selection).
+         Scoped to our own class names so nothing here touches the tracked
+         finder-window.html composition; font/color inherit from
+         #finder-window-surface's own cascade. */
+      .fn-preview-body { padding:14px 14px 0; text-align:center; }
+      .fn-preview-icon { position:relative; width:60px; height:76px; margin:6px auto 12px;
+        background:#ffffff; clip-path:polygon(0 0, 66% 0, 100% 22%, 100% 100%, 0 100%);
+        border-radius:0 0 3px 3px; filter:drop-shadow(0 2px 4px rgba(20,20,30,0.16)); }
+      .fn-preview-icon::before { content:""; position:absolute; top:0; right:0; width:34%; height:22%;
+        background:#dcdce0; clip-path:polygon(0 0, 100% 100%, 0 100%); }
+      .fn-preview-icon::after { content:""; position:absolute; left:13px; top:32px; width:32px; height:2px;
+        background:#c7c7cc; box-shadow:0 9px 0 #c7c7cc, 0 18px 0 #c7c7cc, 0 27px 0 #c7c7cc; }
+      .fn-preview-name { font-size:13px; font-weight:600; word-break:break-word; margin-bottom:3px; }
+      .fn-preview-kind { font-size:11.5px; color:#767676; margin-bottom:13px; }
+      .fn-preview-divider { height:1px; background:rgba(0,0,0,0.08); margin:0 0 12px; }
+      .fn-preview-meta { text-align:left; font-size:11.5px; line-height:1.65; color:#3a3a3c; }
+      .fn-preview-meta div { margin-bottom:2px; }
+      .fn-preview-meta div:last-child { margin-bottom:0; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -71,6 +91,8 @@
         // every downstream column stays coherent with what's on screen.
         const col2 = cols[1] || null;                 // "Launch Deck" (active leaf, blue)
         const col3 = cols[2] || null;                 // Launch Deck's children
+        const preview = cols[3] || null;               // preview pane for the active leaf
+        const content = col2 ? col2.parentElement : null; // .finder-content grid host
         const launchDeck = col2 ? col2.querySelector(".file-row") : null;
         const col3Rows = col3 ? Array.from(col3.querySelectorAll(".file-row")) : [];
         const target = col3Rows[0] || null;            // design-feedback.txt
@@ -87,6 +109,35 @@
           // already-active leaf next to a column the app would never leave
           // blank.
           tl.set(launchDeck, { attr: { class: "file-row large" } }, 0);
+          // Preview pane: build it once (hidden) so its reveal at 2.15 is a
+          // pure opacity flip, never per-frame DOM construction. Column-view
+          // Finder always keeps a 4th preview column on screen once a leaf
+          // is selected, so at rest (3 full-width list columns fill nearly
+          // the whole 920px canvas) there is no free width for it — real
+          // Finder solves this by auto-scrolling the column stack left as
+          // the selection drills deeper, sliding the oldest column mostly
+          // out of view. We reproduce that: col1 (the ancestor listing,
+          // no longer the focus once a leaf 2 levels deep is active) is
+          // clipped to a sliver and col4 (`1fr`) absorbs the freed width —
+          // both driven by an inline override of .finder-content's own
+          // grid-template-columns, so col2/col3 stay exactly as wide as
+          // they are today.
+          if (preview) {
+            preview.innerHTML =
+              '<div class="fn-preview-body">' +
+                '<div class="fn-preview-icon" aria-hidden="true"></div>' +
+                '<div class="fn-preview-name">design-feedback.txt</div>' +
+                '<div class="fn-preview-kind">Plain Text Document</div>' +
+                '<div class="fn-preview-divider"></div>' +
+                '<div class="fn-preview-meta">' +
+                  '<div>Kind: Plain Text &middot; Size: 2 KB</div>' +
+                  '<div>Created: Jul 9, 2026 at 3:41 PM</div>' +
+                  '<div>Modified: Jul 12, 2026 at 11:07 AM</div>' +
+                '</div>' +
+              '</div>';
+            tl.set(preview, { opacity: 0 }, 0);
+          }
+          if (content) tl.set(content, { gridTemplateColumns: "245px 245px 245px 1fr" }, 0);
           // 1) advance into column 2: cursor visits Launch Deck and the
           //    click atomically selects it AND populates col3 on the same
           //    beat — real column-view Finder never fades a folder's
@@ -104,6 +155,18 @@
           ix.click(target, { at: 2.1, moveDur: 0.8, press: false });
           tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 2.15);
           tl.set(target, { attr: { class: "file-row selected large" } }, 2.15);
+          // Same beat: auto-scroll col1 down to a sliver (clipped, no fade —
+          // matches the instant class-flip above) so col4 has real width,
+          // then snap the preview in. No tween on either — real Finder's
+          // preview pane and column reflow both appear on the same frame
+          // the selection commits, never eased in.
+          if (content) {
+            tl.set(content, { gridTemplateColumns: "32px 245px 245px 1fr" }, 2.15);
+          }
+          if (preview) {
+            tl.set(cols[0], { overflow: "hidden" }, 2.15);
+            tl.set(preview, { opacity: 1 }, 2.15);
+          }
         }
       }).catch(() => {});
 

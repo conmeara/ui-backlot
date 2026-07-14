@@ -17,7 +17,11 @@
             </div>
             <div class="cx-prompt"><span class="caret">&gt;</span> <span class="cmd-reveal" data-role="cmd-reveal"><span class="cmd" data-role="cmd"></span></span><span class="blk" data-role="blk"></span></div>
             <div class="cx-working" data-role="working">&bull; Working</div>
-            <div class="cx-out" data-role="out"></div>
+            <div class="cx-out">
+              <div data-role="out-tool"></div>
+              <div data-role="out-prose"></div>
+            </div>
+            <div class="cx-prompt cx-composer" data-role="composer"><span class="caret">&gt;</span> <span class="blk" data-role="composer-blk"></span></div>
             <div class="cx-status" data-role="status">⏎ send   ⇧⏎ newline   ^T transcript   ^C quit</div>
           </div>
         </div>
@@ -41,9 +45,12 @@
       .cx-prompt { color:#e7ebf1; margin-bottom:14px; white-space:nowrap; } .caret { color:#6ad08f; }
       .cmd-reveal { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; }
       .blk { display:inline-block; width:8px; height:1.05em; vertical-align:text-bottom; background:#e7ebf1; margin-left:1px; opacity:0; }
-      .cx-out { color:#8fbf8f; white-space:pre-wrap; }
+      .cx-out { color:#8fbf8f; }
       .cx-out .k { color:#7fb2ff; } .cx-out .g { color:#6ad08f; } .cx-out .y { color:#e0b45e; }
+      [data-role="out-tool"] { opacity:0; }
+      [data-role="out-tool"], [data-role="out-prose"] { white-space:pre-wrap; }
       .cx-working { color:#5f6a79; margin-bottom:2px; opacity:0; }
+      .cx-composer { opacity:0; }
       .cx-status { color:#5f6a79; margin-top:12px; }
       .demo-cursor { position:absolute; left:640px; top:560px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(106,208,143,0.7); border-radius:50%; opacity:0; }
@@ -65,11 +72,16 @@
       tl.set(".demo-click-ring", { opacity: 0, left: 640, top: 560 }, 0);
 
       const CMD = "make the launch page match the Q2 deck";
-      const OUT =
+      // Tool-call results ("Explored / Read ...") are real Codex chrome that
+      // pops in as a completed block; only the prose (Plan/Applied) streams
+      // token by token. Kept as two separate strings/targets so each can be
+      // revealed with its own motion (see the out-tool / out-prose block below).
+      const OUT_TOOL =
         "\nExplored\n" +
         "  Read  compositions/launch-page.html\n" +
-        "  Read  reference/deck/q2-deck.pdf\n\n" +
-        "Plan\n" +
+        "  Read  reference/deck/q2-deck.pdf";
+      const OUT_PROSE =
+        "\n\nPlan\n" +
         "  1. Match the hero headline and Q2 revenue figure\n" +
         "  2. Recolor the CTA to the deck accent\n" +
         "  3. Update the metrics row (16% / 42% / +50%)\n\n" +
@@ -91,25 +103,39 @@
 
       ix.click('[data-role="cmd-reveal"]', { at: 0.6, moveDur: 0.7 });
       tl.to(cmdReveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
-      // idle blink once typing settles, resumes trailing the committed command.
-      // Kept short (settles well before the send beat below) so it can never
-      // still be mid-cycle when the caret needs to go away for good.
-      tl.to(blk, { opacity: 0, duration: 0.18, repeat: 3, yoyo: true, ease: "steps(1)" }, typeStart + typeDur + 0.05);
 
       // 2) send beat: the command is now committed transcript text, so the
-      // live block caret goes away (it must not keep blinking while the
-      // agent's output streams below it), a brief "Working" status marks
-      // that the prompt was sent, then the terminal streams its output. The
-      // key-hint footer is real-TUI chrome present from frame one — it is
-      // never typed in, only the transient "Working" line animates.
-      const outAt = 1.0 + CMD.length / 20 + 1.0;
-      tl.to(blk, { opacity: 0, duration: 0.12 }, outAt - 0.1);
-
+      // live block caret goes away BEFORE the agent starts "Working" — it
+      // must never still look live/editable while the model is running.
+      // A brief "Working" status marks that the prompt was sent, then the
+      // terminal streams its output. The key-hint footer is real-TUI chrome
+      // present from frame one — it is never typed in, only the transient
+      // "Working" line animates.
       const workingAt = typeStart + typeDur + 0.3;
+      const outAt = 1.0 + CMD.length / 20 + 1.0;
+      tl.to(blk, { opacity: 0, duration: 0.12 }, workingAt - 0.1);
+
       ix.show('[data-role="working"]', { at: workingAt, dur: 0.2 });
       tl.to('[data-role="working"]', { opacity: 0, duration: 0.15 }, outAt - 0.15);
 
-      ix.stream('[data-role="out"]', OUT, { at: outAt, cps: 55 });
+      // Tool-call results pop in atomically as a completed block (textContent
+      // set instantly at build time, revealed with a plain fade — no
+      // char-by-char typing, which would read as a person typing a path).
+      // Prose (Plan/Applied) is the only part that streams token by token.
+      const outToolEl = stage.querySelector('[data-role="out-tool"]');
+      outToolEl.textContent = OUT_TOOL;
+      gsap.set(outToolEl, { opacity: 0 });
+      ix.show('[data-role="out-tool"]', { at: outAt, dur: 0.25 });
+      ix.stream('[data-role="out-prose"]', OUT_PROSE, { at: outAt + 0.5, cps: 48 });
+
+      // 3) pinned composer: real Codex always keeps an idle "> " input line
+      // with a block caret above the key-hint footer while output streams.
+      // It appears the moment the prompt is sent and blinks at a slow, idle
+      // cadence, settling solid well before the demo ends.
+      const composerBlk = stage.querySelector('[data-role="composer-blk"]');
+      gsap.set(composerBlk, { opacity: 1 });
+      tl.set(".cx-composer", { opacity: 1 }, outAt);
+      tl.to(composerBlk, { opacity: 0, duration: 0.55, repeat: 7, yoyo: true, ease: "steps(1)" }, outAt + 0.5);
 
       tl.set('[data-role="status"]', { opacity: 1 }, 0);
 

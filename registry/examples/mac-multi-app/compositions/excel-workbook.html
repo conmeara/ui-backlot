@@ -63,17 +63,43 @@
         <symbol id="fluent-checkmark-12-filled" viewBox="0 0 12 12">
         <path fill="currentColor" d="M9.765 3.205a.75.75 0 0 1 .03 1.06l-4.25 4.5a.75.75 0 0 1-1.075.015L2.22 6.53a.75.75 0 0 1 1.06-1.06l1.705 1.704l3.72-3.939a.75.75 0 0 1 1.06-.03"/>
         </symbol>
+        <symbol id="si-microsoftexcel" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M23 1.5q.41 0 .7.3q.3.29.3.7v19q0 .41-.3.7q-.29.3-.7.3H7q-.41 0-.7-.3q-.3-.29-.3-.7V18H1q-.41 0-.7-.3q-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7q.29-.3.7-.3zM6 13.28l1.42 2.66h2.14l-2.38-3.87l2.34-3.8H7.46l-1.3 2.4l-.05.08l-.04.09l-.64-1.28l-.66-1.29H2.59l2.27 3.82l-2.48 3.85h2.16zM14.25 21v-3H7.5v3zm0-4.5v-3.75H12v3.75zm0-5.25V7.5H12v3.75zm0-5.25V3H7.5v3zm8.25 15v-3h-6.75v3zm0-4.5v-3.75h-6.75v3.75zm0-5.25V7.5h-6.75v3.75zm0-5.25V3h-6.75v3Z"/>
+        </symbol>
+        <symbol id="fluent-arrow-undo-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M3 2.75a.75.75 0 0 1 1.5 0v3.095l2.673-2.673a4 4 0 0 1 5.657 5.656l-4.95 4.95a.75.75 0 1 1-1.06-1.06l4.95-4.95a2.5 2.5 0 0 0-3.536-3.536L5.966 6.5H8.25a.75.75 0 0 1 0 1.5h-4.4A.85.85 0 0 1 3 7.15z"/>
+        </symbol>
+        <symbol id="fluent-arrow-redo-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M13.002 2.75a.75.75 0 0 0-1.5 0v3.095L8.828 3.172a4 4 0 0 0-5.656 5.656l4.95 4.95a.75.75 0 1 0 1.06-1.06l-4.95-4.95a2.5 2.5 0 0 1 3.536-3.536L10.036 6.5H7.75a.75.75 0 0 0 0 1.5h4.4c.47 0 .85-.38.85-.85z"/>
+        </symbol>
+        <symbol id="fluent-comment-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M3 1a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v1.5a.5.5 0 0 0 .777.416L6.651 9H9a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z"/>
+        </symbol>
+        <symbol id="fluent-subtract-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M2 6a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 2 6"/>
+        </symbol>
+        <symbol id="fluent-add-12-filled" viewBox="0 0 12 12">
+        <path fill="currentColor" d="M6 1.75a.75.75 0 0 1 .75.75v2.75H9.5a.75.75 0 0 1 0 1.5H6.75V9.5a.75.75 0 0 1-1.5 0V6.75H2.5a.75.75 0 0 1 0-1.5h2.75V2.5A.75.75 0 0 1 6 1.75"/>
+        </symbol>
       </svg>
       <header class="excel-titlebar">
         <div class="excel-traffic" aria-hidden="true"></div>
         <div class="autosave"><span></span>AutoSave</div>
-        <div class="workbook-title">Launch Metrics.xlsx <em class="saved-state">· Saved</em></div>
+        <div class="quick-access" aria-hidden="true">
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-undo-16-filled"></use></svg>
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-redo-16-filled"></use></svg>
+        </div>
+        <div class="workbook-title"><svg class="office-icon title-glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-microsoftexcel"></use></svg>Launch Metrics <em class="saved-state">&bull; Saved <svg class="office-icon" viewBox="0 0 12 12"><use href="#fluent-chevron-down-12-filled"></use></svg></em></div>
         <div class="title-search">Search workbook</div>
-        <div class="title-actions"><span class="comments">Comments</span><span class="share">Share</span></div>
       </header>
 
       <nav class="excel-tabs" aria-label="Excel ribbon tabs">
         <span>Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span>Automate</span>
+        <div class="title-actions">
+          <span class="avatar av1"></span><span class="avatar av2"></span><span class="avatar av3"></span>
+          <span class="comments"><svg class="office-icon" viewBox="0 0 12 12"><use href="#fluent-comment-12-filled"></use></svg>Comments</span>
+          <span class="share">Share</span>
+        </div>
       </nav>
 
       <div class="excel-ribbon" aria-label="Excel Home ribbon">
@@ -117,22 +143,29 @@
         <main class="sheet-stage">
           <div class="grid-viewport">
             <div class="corner"></div>
-            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div>
+            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div><div class="col-head c7">G</div><div class="col-head c8">H</div><div class="col-head c9">I</div><div class="col-head c10">J</div><div class="col-head c11">K</div><div class="col-head c12">L</div>
 
-            <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div>
-            <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">128</div><div class="cell e2 num">110</div><div class="cell f2 good">+16%</div>
-            <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42</div><div class="cell e3 num">38</div><div class="cell f3 good">+11%</div>
-            <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+50%</div>
-            <div class="row-head r5">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div>
-            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div>
-            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div>
-            <div class="row-head r8">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div>
+            <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div><div class="cell g1"></div><div class="cell h1"></div><div class="cell i1"></div><div class="cell j1"></div><div class="cell k1"></div><div class="cell l1"></div>
+            <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">128</div><div class="cell e2 num">110</div><div class="cell f2 good">+16%</div><div class="cell g2"></div><div class="cell h2"></div><div class="cell i2"></div><div class="cell j2"></div><div class="cell k2"></div><div class="cell l2"></div>
+            <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42</div><div class="cell e3 num">38</div><div class="cell f3 good">+11%</div><div class="cell g3"></div><div class="cell h3"></div><div class="cell i3"></div><div class="cell j3"></div><div class="cell k3"></div><div class="cell l3"></div>
+            <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+50%</div><div class="cell g4"></div><div class="cell h4"></div><div class="cell i4"></div><div class="cell j4"></div><div class="cell k4"></div><div class="cell l4"></div>
+            <div class="row-head r5">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div><div class="cell g5"></div><div class="cell h5"></div><div class="cell i5"></div><div class="cell j5"></div><div class="cell k5"></div><div class="cell l5"></div>
+            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div><div class="cell g6"></div><div class="cell h6"></div><div class="cell i6"></div><div class="cell j6"></div><div class="cell k6"></div><div class="cell l6"></div>
+            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div><div class="cell g7"></div><div class="cell h7"></div><div class="cell i7"></div><div class="cell j7"></div><div class="cell k7"></div><div class="cell l7"></div>
+            <div class="row-head r8">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div><div class="cell g8"></div><div class="cell h8"></div><div class="cell i8"></div><div class="cell j8"></div><div class="cell k8"></div><div class="cell l8"></div>
+            <div class="row-head r9">9</div><div class="cell a9"></div><div class="cell b9"></div><div class="cell c9"></div><div class="cell d9"></div><div class="cell e9"></div><div class="cell f9"></div><div class="cell g9"></div><div class="cell h9"></div><div class="cell i9"></div><div class="cell j9"></div><div class="cell k9"></div><div class="cell l9"></div>
+            <div class="row-head r10">10</div><div class="cell a10"></div><div class="cell b10"></div><div class="cell c10"></div><div class="cell d10"></div><div class="cell e10"></div><div class="cell f10"></div><div class="cell g10"></div><div class="cell h10"></div><div class="cell i10"></div><div class="cell j10"></div><div class="cell k10"></div><div class="cell l10"></div>
+            <div class="row-head r11">11</div><div class="cell a11"></div><div class="cell b11"></div><div class="cell c11"></div><div class="cell d11"></div><div class="cell e11"></div><div class="cell f11"></div><div class="cell g11"></div><div class="cell h11"></div><div class="cell i11"></div><div class="cell j11"></div><div class="cell k11"></div><div class="cell l11"></div>
+            <div class="row-head r12">12</div><div class="cell a12"></div><div class="cell b12"></div><div class="cell c12"></div><div class="cell d12"></div><div class="cell e12"></div><div class="cell f12"></div><div class="cell g12"></div><div class="cell h12"></div><div class="cell i12"></div><div class="cell j12"></div><div class="cell k12"></div><div class="cell l12"></div>
+            <div class="row-head r13">13</div><div class="cell a13"></div><div class="cell b13"></div><div class="cell c13"></div><div class="cell d13"></div><div class="cell e13"></div><div class="cell f13"></div><div class="cell g13"></div><div class="cell h13"></div><div class="cell i13"></div><div class="cell j13"></div><div class="cell k13"></div><div class="cell l13"></div>
+            <div class="row-head r14">14</div><div class="cell a14"></div><div class="cell b14"></div><div class="cell c14"></div><div class="cell d14"></div><div class="cell e14"></div><div class="cell f14"></div><div class="cell g14"></div><div class="cell h14"></div><div class="cell i14"></div><div class="cell j14"></div><div class="cell k14"></div><div class="cell l14"></div>
+            <div class="row-head r15">15</div><div class="cell a15"></div><div class="cell b15"></div><div class="cell c15"></div><div class="cell d15"></div><div class="cell e15"></div><div class="cell f15"></div><div class="cell g15"></div><div class="cell h15"></div><div class="cell i15"></div><div class="cell j15"></div><div class="cell k15"></div><div class="cell l15"></div>
             <div class="selection-outline" data-layout-ignore></div>
           </div>
         </main>
 
         <aside class="insights-pane">
-          <div class="insights-title">Analyze Data</div>
+          <div class="insights-title">Analyze Data<span class="dismiss"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-dismiss-12-filled"></use></svg></span></div>
           <div class="insight-card active">
             <strong>Revenue is above goal</strong>
             <p>Q2 revenue is tracking 16% above the target used in the launch deck.</p>
@@ -151,8 +184,13 @@
       <footer class="excel-statusbar">
         <div class="sheet-nav"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-left-12-filled"></use></svg><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-right-12-filled"></use></svg></div>
         <div class="sheet-tabs"><span class="active">Launch metrics</span><span>Revenue</span><span>Feedback</span><button type="button">+</button></div>
+        <span>Ready</span><span>Accessibility: Good to go</span>
         <span class="status-spacer"></span>
-        <span>Ready</span><span>Average: 5.5</span><span>Sum: 44</span><span>Count: 8</span><span class="zoom-line"></span><span>100%</span>
+        <span>Average: 5.5</span><span>Sum: 44</span><span>Count: 8</span>
+        <span class="zoom-btn"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-subtract-12-filled"></use></svg></span>
+        <span class="zoom-line"></span>
+        <span class="zoom-btn"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-add-12-filled"></use></svg></span>
+        <span>100%</span>
       </footer>
     </section>
 
@@ -202,7 +240,7 @@
       .excel-titlebar {
         height: 34px;
         display: grid;
-        grid-template-columns: 58px auto 1fr auto auto;
+        grid-template-columns: 58px auto auto 1fr auto;
         align-items: center;
         gap: 9px;
         padding: 0 13px;
@@ -238,19 +276,48 @@
 
       .workbook-title {
         justify-self: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-weight: 650;
         color: #2d3540;
         white-space: nowrap;
       }
 
+      .workbook-title .title-glyph {
+        width: 15px;
+        height: 15px;
+        color: var(--excel);
+      }
+
       .saved-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
         font-style: normal;
         font-weight: 500;
         color: #7c8792;
       }
 
-      .autosave,
-      .title-actions {
+      .saved-state .office-icon {
+        width: 8px;
+        height: 8px;
+        color: #8a939c;
+      }
+
+      .quick-access {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quick-access .office-icon {
+        width: 13px;
+        height: 13px;
+        color: #5b6570;
+      }
+
+      .autosave {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -292,13 +359,38 @@
         font-weight: 500;
       }
 
+      .title-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
+        padding-left: 8px;
+      }
+
+      .title-actions .avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        margin-left: -6px;
+      }
+
+      .title-actions .avatar:first-child {
+        margin-left: 0;
+      }
+
+      .title-actions .avatar.av1 { background: #6f57c2; }
+      .title-actions .avatar.av2 { background: #2f8f5b; }
+      .title-actions .avatar.av3 { background: #c0578a; }
+
       .title-actions span {
         height: 22px;
         display: inline-flex;
         align-items: center;
+        gap: 5px;
         padding: 0 9px;
         border-radius: 7px;
-        background: #eef0f3;
+        background: transparent;
         color: #384450;
         font-size: 11px;
       }
@@ -307,6 +399,12 @@
         background: transparent;
         color: #444d57;
         padding: 0 8px;
+      }
+
+      .title-actions .comments .office-icon {
+        width: 12px;
+        height: 12px;
+        color: #5b6570;
       }
 
       .title-actions .share {
@@ -330,7 +428,7 @@
         align-items: stretch;
         gap: 2px;
         padding: 0 12px;
-        background: #f0eeea;
+        background: #f5f5f5;
         border-bottom: 1px solid rgba(20, 30, 48, 0.1);
       }
 
@@ -358,7 +456,7 @@
         display: flex;
         align-items: stretch;
         padding: 6px 10px 0;
-        background: #fdfcfb;
+        background: #fbfbfb;
         border-bottom: 1px solid rgba(20, 30, 48, 0.1);
       }
 
@@ -670,30 +768,47 @@
         border-left: 1px solid rgba(20, 30, 48, 0.1);
       }
 
-      .pane-title,
-      .insights-title {
+      .pane-title {
         margin-bottom: 13px;
         color: #2d3540;
         font-size: 15px;
         font-weight: 760;
       }
 
+      .insights-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 13px;
+        color: #2d3540;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .insights-title .dismiss {
+        display: inline-flex;
+        color: #8a939c;
+      }
+
+      .insights-title .dismiss .office-icon {
+        width: 12px;
+        height: 12px;
+      }
+
       .sheet-stage {
         position: relative;
         overflow: hidden;
-        padding: 20px 22px;
+        padding: 0;
       }
 
       .grid-viewport {
         position: relative;
         display: grid;
-        grid-template-columns: 42px 168px 126px 146px 116px 116px 116px;
-        grid-template-rows: 28px repeat(8, 34px);
-        width: 830px;
-        margin: 0 auto;
+        grid-template-columns: 42px 168px 126px 146px 116px 116px 116px 90px 90px 90px 90px 90px 90px;
+        grid-template-rows: 28px repeat(15, 34px);
+        width: 100%;
+        height: 100%;
         background: #fff;
-        border: 1px solid rgba(20, 30, 48, 0.14);
-        box-shadow: 0 18px 44px rgba(44, 51, 61, 0.12);
       }
 
       .corner,
@@ -923,9 +1038,23 @@
         flex: 1;
       }
 
+      .zoom-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 11px;
+        height: 11px;
+        color: #8a939c;
+      }
+
+      .zoom-btn .office-icon {
+        width: 9px;
+        height: 9px;
+      }
+
       .zoom-line {
         position: relative;
-        width: 88px;
+        width: 70px;
         height: 4px;
         border-radius: 999px;
         background: #c9d0d8;

@@ -102,9 +102,9 @@
       // 1) click the omnibox, type the URL.
       ix.click('[data-role="omnibox"]', { at: 0.7, moveDur: 0.8 });
       tl.set('.demo-click-ring', { opacity: 0 }, 0);
-      // cursor drifts off the text into the page body right after the click
-      // lands, clearing the typed URL / lock glyph for the rest of the beat.
-      tl.to(cursorEl, { left: 560, top: 320, duration: 0.5, ease: "power2.inOut" }, 1.15);
+      // cursor stays parked just off the omnibox while typing -- the hand is
+      // on the keyboard, so it shouldn't drift down into the page body.
+      tl.to(cursorEl, { left: 720, top: 185, duration: 0.35, ease: "power2.inOut" }, 1.15);
       ix.type('[data-role="omnibox"]', URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
 
       // focus response: the omnibox snaps to a blue focus ring the instant it
@@ -127,9 +127,20 @@
       tl.to('[data-role="loadbar"]', { opacity: 0, duration: 0.2 }, enterAt + 0.85);
       tl.to('[data-role="blank"]', { opacity: 0, duration: 0.25 }, enterAt + 0.85);
       ix.show('[data-role="page"]', { at: enterAt + 0.9, dur: 0.2, from: { opacity: 0 } });
+      // reload glyph flips to a stop icon for the full load, matching desktop
+      // Chrome's most reliable "page is loading" affordance.
+      const reloadEl = stage.querySelectorAll('.nav')[2];
+      tl.set(reloadEl, { textContent: "✕" }, enterAt);
+      tl.set(reloadEl, { textContent: "⟳" }, enterAt + 0.9);
+      // tab favicon becomes a spinning throbber for the same window instead
+      // of sitting dead beside the sweeping load bar. Finite (non-repeating)
+      // rotation tween so the timeline duration stays bounded/seek-safe; it
+      // lands on an exact multiple of 360deg so the reset below is clean.
+      tl.set('.tab .fav', { background: "none", border: "2px solid #c9ccd1", borderTopColor: "#1a73e8", borderRadius: "50%", rotation: 0 }, enterAt);
+      tl.to('.tab .fav', { rotation: 720, duration: 0.88, ease: "none" }, enterAt);
       // tab label + favicon update to the loaded site's identity.
       tl.set(tabLabel, { textContent: "Q2 Launch Dashboard" }, enterAt + 0.9);
-      tl.set('.tab .fav', { background: "linear-gradient(135deg,#2f9e6e,#177a4e)" }, enterAt + 0.9);
+      tl.set('.tab .fav', { background: "linear-gradient(135deg,#2f9e6e,#177a4e)", border: "none", borderRadius: "3px", rotation: 0 }, enterAt + 0.9);
       // lock replaces the search glyph once the secure page has loaded; the
       // omnibox focus ring releases on load too.
       tl.set('.lock', { textContent: "🔒" }, enterAt + 0.9);
