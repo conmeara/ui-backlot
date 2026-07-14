@@ -61,12 +61,14 @@
           <span>Help</span>
         </div>
 
-        <!-- Claude app window (opens first) -->
+        <!-- Claude app window (opens first) — the real Claude MAC APP
+             (claude-composed-app default home page: Home|Code sidebar,
+             merged Chat|Cowork composer). -->
         <div class="app-window win-claude" data-primitive="claude-app-window">
           <div
             class="component-frame claude-frame"
-            data-backlot-mount-src="../compositions/claude-home.html"
-            data-backlot-mount-selector="#claude-home-surface"
+            data-backlot-mount-src="../compositions/claude-composed-app.html"
+            data-backlot-mount-selector="#claude-composed-app"
           ></div>
         </div>
 
@@ -135,24 +137,12 @@
         overflow: hidden;
       }
 
-      /* macOS-ish blue wave wallpaper */
+      /* Real macOS wallpaper from the wallpaper catalog (newest release —
+         same asset mac-wallpaper's data-wallpaper="tahoe-light" uses). */
       .wallpaper {
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(120% 90% at 18% 8%, #eaf0f7 0%, rgba(234, 240, 247, 0) 40%),
-          radial-gradient(90% 70% at 78% 92%, #1f4fbf 0%, rgba(31, 79, 191, 0) 55%),
-          radial-gradient(120% 120% at 50% 60%, #3f7fd6 0%, #2a5bc0 45%, #16307e 100%),
-          linear-gradient(160deg, #6ea6e8 0%, #2f68c8 48%, #17348a 100%);
-      }
-      .wallpaper::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(60% 40% at 30% 78%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 60%),
-          radial-gradient(50% 34% at 72% 30%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 60%);
-        mix-blend-mode: screen;
+        background: url("../assets/wallpapers/macos/tahoe-light.jpg") center / cover no-repeat;
       }
 
       .component-frame {
@@ -302,18 +292,18 @@
       .win-claude {
         left: 150px;
         top: 140px;
-        width: 902px;    /* 980 * 0.92 */
-        height: 699px;   /* 760 * 0.92 */
+        width: 1008px;   /* 1440 * 0.70 */
+        height: 630px;   /* 900 * 0.70 */
         z-index: 14;
       }
       .claude-frame {
         left: 0;
         top: 0;
-        width: 902px;
-        height: 699px;
+        width: 1008px;
+        height: 630px;
       }
       .claude-frame > [data-backlot-mounted-component] {
-        transform: scale(0.92);
+        transform: scale(0.70);
       }
 
       .win-excel {
@@ -402,18 +392,42 @@
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <script src="../runtime/backlot-component-loader.js"></script>
+    <script>
+      // claude-composed-app.html nests its own ./-relative atom mounts
+      // (claude-sidebar.html, claude-composer.html, …), which the loader
+      // resolves against document.baseURI — authored for a page living in
+      // compositions/, they would 404 from examples/. Same fix as the root
+      // index.html: scope a <base> to compositions/ while the loader's
+      // synchronous mount fetches run, then remove it. The demo's own
+      // ../compositions/… mount srcs resolve identically under that base.
+      const backlotLoaderSrc = new URL("../runtime/backlot-component-loader.js", document.baseURI).href;
+      const backlotMountBase = document.createElement("base");
+      backlotMountBase.href = "../compositions/";
+      document.head.appendChild(backlotMountBase);
+      const backlotLoaderScript = document.createElement("script");
+      backlotLoaderScript.src = backlotLoaderSrc;
+      // Later scripts run BEFORE this dynamic loader finishes, so they must
+      // gate post-mount work on this promise (not on
+      // window.__backlotComponentsReady, which does not exist yet).
+      window.__backlotLoaderReady = new Promise((resolve) => {
+        backlotLoaderScript.onload = () => {
+          (window.__backlotComponentsReady || Promise.resolve())
+            .then(() => { backlotMountBase.remove(); resolve(); })
+            .catch(() => { backlotMountBase.remove(); resolve(); });
+        };
+        backlotLoaderScript.onerror = () => { backlotMountBase.remove(); resolve(); };
+      });
+      document.head.appendChild(backlotLoaderScript);
+    </script>
     <script src="../runtime/backlot-liquid-glass.js"></script>
     <script>
       // The loader strips a mounted component's own scripts, so the dock's
       // Liquid Glass is applied here once mounting finishes: init() scans the
       // now-present [data-liquid-glass] dock and refracts the wallpaper behind
       // it. Non-Chromium consumers keep the dock's CSS backdrop-filter fallback.
-      if (window.__backlotComponentsReady) {
-        window.__backlotComponentsReady.then(() => {
-          if (window.BacklotLiquidGlass) window.BacklotLiquidGlass.init();
-        });
-      }
+      (window.__backlotLoaderReady || window.__backlotComponentsReady || Promise.resolve()).then(() => {
+        if (window.BacklotLiquidGlass) window.BacklotLiquidGlass.init();
+      });
     </script>
     <script>
       window.__timelines = window.__timelines || {};
@@ -444,11 +458,11 @@
       // below reads before the window appears.
       tl.to(".win-claude", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 2.2);
 
-      // Cursor drifts toward the Claude composer input and settles there — a
+      // Cursor drifts toward the Claude home composer and settles there — a
       // purposeful glance at the prompt field, not a drift into empty space.
-      // No click here — the composer has no scripted focus response, so a
-      // click on a dead placeholder would be a worse tell than no click at all.
-      tl.to(".workflow-cursor", { left: 730, top: 560, duration: 1.0, ease: "power2.inOut" }, 3.1);
+      // Composer center in the mounted app: x = 150 + (264 + 588)*0.70 ≈ 746,
+      // y = 140 + 355*0.70 ≈ 389.
+      tl.to(".workflow-cursor", { left: 746, top: 389, duration: 1.0, ease: "power2.inOut" }, 3.1);
 
       // Move to the Excel dock icon and click.
       tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.8);
@@ -480,10 +494,10 @@
       // elements inside the mounted mac-dock composition, so it is layered
       // onto the already-registered timeline once mounting completes —
       // mirrors the pattern in examples/finder-interaction.html.
-      (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+      (window.__backlotLoaderReady || window.__backlotComponentsReady || Promise.resolve()).then(() => {
         const claudeIcon = document.querySelector('.dock-frame [data-app="claude"] .app-icon');
         const excelIcon = document.querySelector('.dock-frame [data-app="excel"] .app-icon');
-        const claudeTraffic = document.querySelector(".win-claude .claude-traffic");
+        const claudeTraffic = document.querySelector(".win-claude .hc-traffic");
         const menuBarLeft = document.querySelector(".menu-bar-frame .menu-left");
 
         // Until Claude's window opens, only the desktop is showing, so the
@@ -511,7 +525,7 @@
         // Excel takes focus: the background Claude window's traffic-light
         // controls dim to the inactive-window grey macOS uses for controls
         // belonging to a non-frontmost window. Targets the mounted
-        // claude-home composition, so it's scripted here (post-mount) like
+        // claude-composed-app composition, so it's scripted here (post-mount) like
         // the dock icons above rather than on the synchronously-built tl.
         if (claudeTraffic) {
           tl.to(claudeTraffic, { filter: "grayscale(1) opacity(0.55)", duration: 0.15 }, 6.1);
@@ -526,10 +540,15 @@
         }
       }).catch(() => {});
 
-      // Static hero frame for still captures.
+      // Static hero frame for still captures. Re-seek after the post-mount
+      // tweens land too — tweens added to an already-seeked paused timeline
+      // don't render until the next seek.
       const captureMode = new URLSearchParams(window.location.search).get("capture");
       if (captureMode === "hero") {
         tl.seek(6.9).pause();
+        (window.__backlotLoaderReady || window.__backlotComponentsReady || Promise.resolve()).then(() => {
+          tl.seek(0).seek(6.9).pause();
+        }).catch(() => {});
       }
     </script>
   </body>
