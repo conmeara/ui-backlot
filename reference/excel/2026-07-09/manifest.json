@@ -5,7 +5,7 @@
       "label": "app-store-mac-chart-contextual-ribbon",
       "method": "app-store-api",
       "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[3] 'Data visualization with charts', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
-      "capturedAt": "2026-07-09T19:59:44.895Z",
+      "capturedAt": "2026-07-13T20:23:35.204Z",
       "files": [
         "screenshot.png"
       ],
@@ -16,7 +16,7 @@
       "label": "app-store-mac-grid-formula-bar",
       "method": "app-store-api",
       "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[1] 'Data Analysis made easy', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
-      "capturedAt": "2026-07-09T19:59:22.207Z",
+      "capturedAt": "2026-07-13T20:23:35.149Z",
       "files": [
         "screenshot.png"
       ],
@@ -27,7 +27,7 @@
       "label": "app-store-mac-sheet-tabs-status-bar",
       "method": "app-store-api",
       "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[2] 'Manage complex data tasks', Microsoft Excel v16.110.3, upsized to 2400x1500bb.png",
-      "capturedAt": "2026-07-09T19:59:30.574Z",
+      "capturedAt": "2026-07-13T20:23:35.178Z",
       "files": [
         "screenshot.png"
       ],

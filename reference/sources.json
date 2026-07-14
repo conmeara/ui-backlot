@@ -146,14 +146,14 @@
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Excel",
-          "notes": "Validated 2026-07-09: v16.110.3, 6 screenshotUrls, upsize to 2400x1500bb.png for full res. 3 filed to reference/excel/2026-07-09/ (app-store-mac-grid-formula-bar, app-store-mac-sheet-tabs-status-bar, app-store-mac-chart-contextual-ribbon) covering ribbon, name-box+fx formula bar, grid headers, sheet-tab strip (incl. + control and 2-4 tab widths), status bar, a native Sort/Filter dialog, and the Chart Design contextual ribbon tab. Marketing-staged workbook content/color skin; trust chrome geometry and typography, discount the demo data."
+          "notes": "Re-validated 2026-07-13: still v16.110.3 (currentVersionReleaseDate 2026-07-07), same 6 screenshotUrls, upsize to 2400x1500bb.png for full res. Local pixels restored for all 3 originally-described shots (app-store-mac-grid-formula-bar, app-store-mac-sheet-tabs-status-bar, app-store-mac-chart-contextual-ribbon; reference/excel/2026-07-09/, content unchanged from 2026-07-09 filing) plus a 4th NEW shot filed to reference/excel/2026-07-13/app-store-mac-titlebar-comments-pane (screenshotUrls[4] 'Collaborate in real time') -- the only App Store shot showing the full title bar (traffic lights, AutoSave, editable doc title, Saved indicator, Search box) and the Comments pane + Review-tab comment controls. 2 shots remain unfiled: screenshotUrls[0] 'Get insights on your data' (tilted 3D hero, low value) and screenshotUrls[5] 'Professionally curated templates' (File > New template-gallery picker, moderate value -- candidate for a future pass if that surface state is needed)."
         },
         {
           "label": "web-app",
           "url": "https://www.office.com",
           "auth": "user-session",
           "method": "claude-in-chrome",
-          "notes": "Excel for the web: grid, formula bar, cell styling = ground truth; ribbon/chrome differ from Mac desktop. Still not captured as of 2026-07-09 -- no Chrome browser was connected via claude-in-chrome this session (list_connected_browsers returned empty), so this rung was skipped rather than attempting a login. Retry once a browser is connected; use a free personal Microsoft account, never the owner's other logged-in accounts."
+          "notes": "Excel for the web: grid, formula bar, cell styling = ground truth; ribbon/chrome differ from Mac desktop. Retried 2026-07-13: a Chrome browser IS now connected via claude-in-chrome (list_connected_browsers returned one device), but navigating to excel.office.com redirects straight to login.microsoftonline.com with no existing session (confirmed via screenshot -- blank sign-in form, no account pre-filled). Per hard rule (never log in to anything), this rung stays blocked until a free personal Microsoft account is already signed into the connected browser session; filing that pre-authenticated session is the only way to flip this to live-web without an agent performing a login."
         },
         {
           "label": "docs-scrape",
