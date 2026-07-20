@@ -331,6 +331,7 @@
         height: 32px;
         padding: 2px;
         border-radius: 16px;
+        background: #ececeb;
       }
 
       .hm-mode button {
@@ -345,10 +346,13 @@
       }
 
       .hm-mode .active {
-        border: 1px solid #3a3a3a;
+        border: 0;
         background: #fff;
         color: var(--claude-ink);
         font-weight: 520;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.12),
+          0 0 0 0.5px rgba(31, 31, 30, 0.08);
       }
 
       .hm-controls-spacer { flex: 1; }
@@ -372,7 +376,15 @@
         font-style: normal;
       }
 
-      .hm-model-chev { width: 13px; height: 13px; color: var(--claude-text-faint); }
+      /* ID-qualified so this wins outright over shells' blanket
+         `:where(...) .backlot-icon { width:100%; height:100% }` scoping
+         rules (equal 0,1,0 specificity otherwise, tie broken by whichever
+         style block sits later in the merged document — which is the
+         shell's when this atom is mounted). Without it, the auto-width
+         .hm-model button has no definite sizing context for a 100%-wide
+         child, so the browser's flex shrink-to-fit blows the chevron out
+         to fill the row, dragging it far from its own model text. */
+      #claude-composer-surface .hm-model-chev { width: 13px; height: 13px; color: var(--claude-text-faint); }
 
       .hm-mic {
         width: 30px;
@@ -443,12 +455,16 @@
       .theme-dark .hm-placeholder { color: #8a8578; }
       .theme-dark .hm-plus,
       .theme-dark .hm-mic { color: #98948a; }
+      .theme-dark .hm-mode { background: rgba(255, 255, 255, 0.06); }
       .theme-dark .hm-mode button { color: #b7b2a8; }
 
       .theme-dark .hm-mode .active {
-        border-color: #b7b2a8;
-        background: #3a3935;
+        border: 0;
+        background: #2a2a28;
         color: #eceae4;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.3),
+          0 0 0 0.5px rgba(255, 255, 255, 0.06);
       }
 
       .theme-dark .hm-model { color: #b7b2a8; }

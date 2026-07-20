@@ -51,6 +51,18 @@
       <symbol id="codex-icon-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></symbol>
       <symbol id="codex-icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></symbol>
       <symbol id="codex-icon-folder-git" viewBox="0 0 24 24"><path d="M18 19a5 5 0 0 1-5-5v8"></path><path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"></path><circle cx="13" cy="12" r="2"></circle><circle cx="20" cy="19" r="2"></circle></symbol>
+      <!-- lucide:git-pull-request via @iconify/json -->
+      <symbol id="lucide-git-pull-request" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7M6 9v12"></path></g></symbol>
+      <!-- lucide:layout-dashboard via @iconify/json -->
+      <symbol id="lucide-layout-dashboard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></g></symbol>
+      <!-- f7:at-circle via @iconify/json -->
+      <symbol id="f7-at-circle" viewBox="0 0 56 56"><path fill="currentColor" d="M28 4c13.255 0 24 10.745 24 24S41.255 52 28 52S4 41.255 4 28S14.745 4 28 4m0 4C16.954 8 8 16.954 8 28s8.954 20 20 20s20-8.954 20-20S39.046 8 28 8m.39 7.143c7.444 0 12.772 4.707 12.772 11.737c0 5.073-2.29 8.397-6.076 8.397c-1.86 0-3.403-1.033-3.657-2.608h-.16c-.667 1.606-2.099 2.497-3.96 2.497c-3.308 0-5.534-2.704-5.534-6.743c0-3.865 2.242-6.537 5.47-6.537c1.703 0 3.213.875 3.818 2.243h.175v-1.925h2.688v9.034c0 1.05.556 1.765 1.701 1.765c1.766 0 3.054-2.195 3.054-6.043c0-5.79-4.247-9.622-10.465-9.622c-6.17 0-10.592 4.612-10.592 11.164c0 7.014 4.676 10.958 11.133 10.958c1.972 0 3.992-.27 4.978-.684v2.195c-1.352.445-3.15.7-5.09.7c-7.856 0-13.502-4.835-13.502-13.264c0-7.92 5.439-13.264 13.248-13.264m-.556 9.176c-1.956 0-3.133 1.56-3.133 4.183c0 2.593 1.177 4.183 3.117 4.183c2.004 0 3.292-1.622 3.292-4.183s-1.272-4.183-3.276-4.183"></path></symbol>
+      <!-- lucide:shield-alert via @iconify/json -->
+      <symbol id="lucide-shield-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zm-8-5v4m0 4h.01"></path></symbol>
+      <!-- lucide:download via @iconify/json -->
+      <symbol id="lucide-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16"></path></symbol>
+      <!-- lucide:list via @iconify/json -->
+      <symbol id="lucide-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h.01M3 12h.01M3 19h.01M8 5h13M8 12h13M8 19h13"></path></symbol>
     </svg>
     <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
       <aside class="codex-sidebar" data-primitive="codex-sidebar">
@@ -65,36 +77,18 @@
           <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-arrow-right"></use></svg></button>
         </div>
 
+        <div class="workspace-row">
+          <span class="workspace-title">Codex<span class="chev workspace-chev"></span></span>
+          <button class="workspace-search icon-button" type="button" aria-label="Search"><svg><use href="#codex-icon-search"></use></svg></button>
+        </div>
+
         <nav class="primary-nav" aria-label="Codex navigation">
           <button type="button"><svg class="glyph"><use href="#codex-icon-edit-square"></use></svg>New chat</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-search"></use></svg>Search</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-grid"></use></svg>Plugins</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-clock"></use></svg>Automations</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-git-pull-request"></use></svg>Pull requests</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-layout-dashboard"></use></svg>Sites</button>
+          <button type="button"><svg class="glyph"><use href="#codex-icon-clock"></use></svg>Scheduled</button>
+          <button type="button"><svg class="glyph"><use href="#f7-at-circle"></use></svg>Plugins</button>
         </nav>
-
-        <section class="sidebar-group">
-          <div class="sidebar-label">Pinned</div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Review and triage issues</strong>
-            <time>1w</time>
-          </div>
-          <div class="sidebar-row selected">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Redesign app modern UI</strong>
-            <time>1w</time>
-          </div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Create flow diagram</strong>
-            <time>2w</time>
-          </div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Add icons</strong>
-            <time>1mo</time>
-          </div>
-        </section>
 
         <section class="sidebar-group projects">
           <div class="sidebar-label with-actions">
@@ -102,7 +96,7 @@
             <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
             <svg class="mini-action plus-small"><use href="#codex-icon-plus"></use></svg>
           </div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>burger-restaurant</div>
+          <div class="project-item selected"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>burger-restaurant</div>
           <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>fitness-tracker</div>
           <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codex-voxel</div>
           <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codespottr</div>
@@ -119,24 +113,23 @@
           <div class="empty-chat">No chats</div>
         </section>
 
-        <button class="settings-row" type="button"><svg class="gear"><use href="#codex-icon-settings"></use></svg>Settings</button>
+        <div class="user-row">
+          <span class="user-avatar">co</span>
+          <span class="user-name">Conor O</span>
+          <button class="user-download icon-button" type="button" aria-label="Sync status"><svg><use href="#lucide-download"></use></svg></button>
+        </div>
       </aside>
 
       <div class="codex-workspace">
         <header class="topbar" data-primitive="codex-thread-topbar">
           <div class="title-wrap">
+            <svg class="folder-glyph"><use href="#codex-icon-folder"></use></svg>
             <h1>Redesign app modern UI</h1>
-            <span>burger-restaurant</span>
           </div>
           <button class="more-button icon-button" type="button" aria-label="Thread menu"><svg><use href="#codex-icon-more"></use></svg></button>
           <div class="topbar-spacer"></div>
-          <button class="toolbar-button gear-button icon-button" type="button" aria-label="Settings"><svg><use href="#codex-icon-settings"></use></svg></button>
-          <button class="vscode-pill" type="button" aria-label="Open in VS Code"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
-          <button class="commit-pill" type="button"><svg class="commit-node-icon"><use href="#codex-icon-commit-node"></use></svg>Commit<span class="chev"></span></button>
-          <span class="toolbar-divider"></span>
-          <button class="terminal-button icon-button" type="button" aria-label="Terminal"><svg><use href="#codex-icon-terminal"></use></svg></button>
-          <div class="diff-counter"><span class="plus-count">+938</span><span class="minus-count">-664</span></div>
-          <button class="layout-toggle icon-button" type="button" aria-label="Toggle review"><svg><use href="#codex-icon-layout"></use></svg></button>
+          <button class="vscode-pill" type="button" aria-label="Environment"><span class="vscode-mark"><svg><use href="#codex-icon-spark"></use></svg></span><span class="chev"></span></button>
+          <button class="layout-toggle icon-button" type="button" aria-label="Toggle steps"><svg><use href="#lucide-list"></use></svg></button>
         </header>
 
         <main class="thread-pane" data-primitive="codex-active-thread">
@@ -160,22 +153,16 @@
           </section>
 
           <footer class="composer" data-primitive="codex-composer">
-            <div class="composer-input">Ask for follow-up changes</div>
+            <div class="composer-input">Do anything</div>
             <div class="composer-bottom">
               <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#codex-icon-plus"></use></svg></button>
-              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-hand"></use></svg>Default permissions <span class="chev"></span></button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#lucide-shield-alert"></use></svg>Full access</button>
               <span class="composer-fill"></span>
-              <button class="model-select" type="button"><svg class="spark"><use href="#codex-icon-spark"></use></svg>GPT-5.4 <span class="chev"></span></button>
-              <button class="effort-select" type="button">Extra High <span class="chev"></span></button>
+              <button class="model-select" type="button"><span class="model-spinner"></span>5.6 Sol <span class="model-tier">Ultra</span> <span class="chev"></span></button>
               <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#codex-icon-mic"></use></svg></button>
               <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#codex-icon-arrow-up"></use></svg></button>
             </div>
           </footer>
-
-          <div class="thread-footer-meta">
-            <button type="button"><svg class="work-icon"><use href="#codex-icon-monitor"></use></svg>Work locally <span class="chev"></span></button>
-            <button type="button"><svg class="branch-mini"><use href="#codex-icon-branch"></use></svg>main <span class="chev"></span></button>
-          </div>
         </main>
 
         <aside class="review-pane" data-primitive="codex-review-pane">
@@ -349,6 +336,43 @@
 
       .nav-arrow.disabled {
         opacity: 0.28;
+      }
+
+      .workspace-row {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px 0 8px;
+        margin-bottom: 15px;
+      }
+
+      .workspace-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #1c1f23;
+        font-size: 15.5px;
+        font-weight: 650;
+        letter-spacing: -0.2px;
+      }
+
+      .workspace-chev {
+        margin-left: 1px;
+        opacity: 0.55;
+      }
+
+      .workspace-search {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        background: transparent;
+        color: #7a8491;
+      }
+
+      .workspace-search svg {
+        width: 15px;
+        height: 15px;
       }
 
       .primary-nav {
@@ -535,7 +559,14 @@
         align-items: center;
         gap: 9px;
         padding: 0 8px;
+        border-radius: 8px;
         color: #525b68;
+      }
+
+      .project-item.selected {
+        background: rgba(43, 50, 59, 0.08);
+        color: #262b32;
+        font-weight: 600;
       }
 
       .project-icon::before {
@@ -588,28 +619,53 @@
         color: #a0a9b5;
       }
 
-      .settings-row {
+      .user-row {
+        height: 38px;
         margin-top: auto;
-        padding-left: 8px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 6px 0 8px;
       }
 
-      .gear::before {
-        content: "";
-        position: absolute;
-        inset: 2px;
-        border: 1.5px solid currentColor;
+      .user-avatar {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        display: inline-grid;
+        place-items: center;
         border-radius: 50%;
+        background: #e0b940;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        text-transform: lowercase;
       }
 
-      .gear::after {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 6px;
-        width: 2px;
-        height: 2px;
+      .user-name {
+        flex: 1 1 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #2b2f36;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .user-download {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        border: 0;
         border-radius: 50%;
-        background: currentColor;
+        background: #5b6ef6;
+        color: #fff;
+      }
+
+      .user-download svg {
+        width: 12px;
+        height: 12px;
       }
 
       .codex-workspace {
@@ -624,7 +680,7 @@
         grid-column: 1 / 3;
         min-width: 0;
         display: grid;
-        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 62px 104px 1px 32px auto 30px;
+        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) auto 30px;
         gap: 9px;
         align-items: center;
         padding: 0 18px 0 13px;
@@ -635,8 +691,15 @@
       .title-wrap {
         min-width: 0;
         display: flex;
-        align-items: baseline;
-        gap: 7px;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .folder-glyph {
+        width: 16px;
+        height: 16px;
+        color: #6e7580;
+        flex: 0 0 auto;
       }
 
       .title-wrap h1 {
@@ -654,8 +717,6 @@
       }
 
       .more-button,
-      .toolbar-button,
-      .terminal-button,
       .layout-toggle,
       .review-menu,
       .expand-button,
@@ -682,39 +743,24 @@
         letter-spacing: 1px;
       }
 
-      .toolbar-button,
-      .terminal-button,
       .layout-toggle {
         width: 30px;
         height: 30px;
       }
 
-      .gear-button::before {
-        content: "";
-        position: absolute;
-        inset: 7px;
-        border: 1.5px solid currentColor;
-        border-radius: 50%;
-      }
-
-      .vscode-pill,
-      .commit-pill {
+      .vscode-pill {
         height: 30px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 7px;
+        gap: 6px;
         border: 1px solid var(--line);
-        border-radius: 8px;
+        border-radius: 15px;
         background: #fafafa;
         color: #25282d;
-        padding: 0 9px;
+        padding: 0 10px 0 4px;
         font-size: 13px;
         font-weight: 600;
-      }
-
-      .vscode-pill {
-        padding: 0 8px;
       }
 
       .vscode-mark {
@@ -760,32 +806,6 @@
         bottom: 3px;
       }
 
-      .toolbar-divider {
-        width: 1px;
-        height: 22px;
-        background: var(--line);
-      }
-
-      .terminal-button::before {
-        content: "";
-        position: absolute;
-        inset: 8px 6px;
-        border: 1.4px solid currentColor;
-        border-radius: 3px;
-      }
-
-      .diff-counter {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        height: 26px;
-        padding: 0 8px;
-        background: rgba(0, 0, 0, 0.04);
-        border-radius: 7px;
-        font-size: 12.5px;
-        font-weight: 600;
-      }
-
       .plus-count {
         color: var(--green);
       }
@@ -816,7 +836,7 @@
         position: relative;
         overflow: hidden;
         border-right: 1px solid var(--line);
-        padding: 40px 14px 86px;
+        padding: 40px 14px 60px;
         background: #fff;
       }
 
@@ -886,7 +906,7 @@
         position: absolute;
         left: 14px;
         right: 14px;
-        bottom: 196px;
+        bottom: 172px;
         overflow: hidden;
         border-radius: 13px;
         background: #f5f5f5;
@@ -967,7 +987,7 @@
         position: absolute;
         left: 13px;
         right: 13px;
-        bottom: 42px;
+        bottom: 18px;
         height: 112px;
         display: grid;
         grid-template-rows: 1fr 38px;
@@ -1020,9 +1040,7 @@
       }
 
       .permission-select,
-      .model-select,
-      .effort-select,
-      .thread-footer-meta button {
+      .model-select {
         height: 28px;
         display: inline-flex;
         align-items: center;
@@ -1034,33 +1052,34 @@
         font-weight: 500;
       }
 
-      .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini {
+      .permission-select {
+        color: #d9730d;
+        font-weight: 600;
+      }
+
+      .model-select {
+        color: #3a3f46;
+        font-weight: 600;
+      }
+
+      .model-tier {
+        color: #5b6ef6;
+      }
+
+      .model-spinner {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 1.4px solid rgba(29, 34, 41, 0.16);
+        border-top-color: transparent;
+        flex: 0 0 auto;
+      }
+
+      .hand-icon {
         width: 13px;
         height: 13px;
         display: inline-block;
         position: relative;
-      }
-
-      .hand-icon::before {
-        content: "";
-        position: absolute;
-        inset: 2px 3px;
-        border: 1.4px solid currentColor;
-        border-radius: 5px 5px 4px 4px;
-      }
-
-      .spark::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 0;
-        width: 4px;
-        height: 13px;
-        background: currentColor;
-        clip-path: polygon(50% 0, 100% 42%, 62% 42%, 84% 100%, 0 48%, 39% 48%);
       }
 
       .composer-fill {
@@ -1104,44 +1123,6 @@
         border-left: 2px solid #fff;
         border-top: 2px solid #fff;
         transform: rotate(45deg);
-      }
-
-      .thread-footer-meta {
-        position: absolute;
-        left: 17px;
-        bottom: 9px;
-        display: flex;
-        align-items: center;
-        gap: 28px;
-      }
-
-      .work-icon::before {
-        content: "";
-        position: absolute;
-        inset: 3px 1px;
-        border: 1.3px solid currentColor;
-        border-radius: 2px;
-      }
-
-      .branch-mini::before {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 1px;
-        bottom: 1px;
-        border-left: 1.3px solid currentColor;
-      }
-
-      .branch-mini::after {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 2px;
-        width: 5px;
-        height: 5px;
-        border: 1.3px solid currentColor;
-        border-radius: 50%;
-        box-shadow: 0 7px 0 -1px #fff, 0 7px 0 0 currentColor;
       }
 
       .review-pane {
@@ -1527,11 +1508,8 @@
       .gear,
       .mini-action,
       .slider-icon,
-      .commit-node-icon,
+      .folder-glyph,
       .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini,
       .review-glyph,
       .doc-glyph,
       .undo-icon,
@@ -1629,35 +1607,27 @@
       }
 
       .more-button svg,
-      .terminal-button svg,
       .layout-toggle svg {
         width: 17px;
         height: 17px;
       }
 
-      .gear-button svg {
-        width: 16px;
-        height: 16px;
-      }
-
       .vscode-mark {
+        width: 18px;
+        height: 18px;
         display: inline-grid;
         place-items: center;
+        border-radius: 5px;
+        background: var(--blue);
+        color: #fff;
         overflow: visible;
       }
 
       .vscode-mark svg {
-        width: 14px;
-        height: 14px;
-        fill: none;
+        width: 10px;
+        height: 10px;
+        fill: currentColor;
         stroke: none;
-      }
-
-      .commit-node-icon {
-        width: 14px;
-        height: 14px;
-        color: #3a3f46;
-        stroke-width: 2;
       }
 
       .slider-icon {
@@ -1674,17 +1644,10 @@
         height: 16px;
       }
 
-      .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini {
+      .hand-icon {
         width: 14px;
         height: 14px;
         stroke-width: 1.65;
-      }
-
-      .spark {
-        stroke-width: 1.55;
       }
 
       .send-button svg {
@@ -1762,7 +1725,8 @@
       }
 
       .codex-app-window.theme-dark .primary-nav button,
-      .codex-app-window.theme-dark .settings-row {
+      .codex-app-window.theme-dark .user-name,
+      .codex-app-window.theme-dark .workspace-title {
         color: #d8d5cc;
       }
 
@@ -1788,9 +1752,14 @@
 
       .codex-app-window.theme-dark .pin,
       .codex-app-window.theme-dark .project-icon,
-      .codex-app-window.theme-dark .gear,
-      .codex-app-window.theme-dark .mini-action {
+      .codex-app-window.theme-dark .mini-action,
+      .codex-app-window.theme-dark .workspace-search {
         color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .project-item.selected {
+        background: #2c2b24;
+        color: #ece9dd;
       }
 
       .codex-app-window.theme-dark .project-item {
@@ -1814,13 +1783,11 @@
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .title-wrap span {
+      .codex-app-window.theme-dark .folder-glyph {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .more-button,
-      .codex-app-window.theme-dark .toolbar-button,
-      .codex-app-window.theme-dark .terminal-button,
       .codex-app-window.theme-dark .layout-toggle,
       .codex-app-window.theme-dark .review-menu,
       .codex-app-window.theme-dark .expand-button,
@@ -1828,19 +1795,10 @@
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .vscode-pill,
-      .codex-app-window.theme-dark .commit-pill {
+      .codex-app-window.theme-dark .vscode-pill {
         border-color: var(--line);
         background: #2a2922;
         color: #ece9dd;
-      }
-
-      .codex-app-window.theme-dark .toolbar-divider {
-        background: var(--line);
-      }
-
-      .codex-app-window.theme-dark .diff-counter {
-        background: rgba(255, 255, 255, 0.08);
       }
 
       .codex-app-window.theme-dark .thread-pane {
@@ -1909,19 +1867,25 @@
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .permission-select,
-      .codex-app-window.theme-dark .model-select,
-      .codex-app-window.theme-dark .effort-select,
-      .codex-app-window.theme-dark .thread-footer-meta button {
-        color: #b5b2a6;
+      .codex-app-window.theme-dark .permission-select {
+        color: #e8a25c;
       }
 
       .codex-app-window.theme-dark .model-select {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .effort-select {
-        color: #8a877c;
+      .codex-app-window.theme-dark .model-tier {
+        color: #8ea1ff;
+      }
+
+      .codex-app-window.theme-dark .model-spinner {
+        border-color: rgba(255, 255, 255, 0.2);
+        border-top-color: transparent;
+      }
+
+      .codex-app-window.theme-dark .user-avatar {
+        background: #c9a233;
       }
 
       .codex-app-window.theme-dark .send-button {

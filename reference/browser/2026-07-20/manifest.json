@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-20T15:56:54.262Z",
+  "entries": [
+    {
+      "label": "chrome-google-homepage-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.262Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Chrome window on default Google homepage: search box, shortcut tiles, 'Claude' bookmarks-bar folder. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

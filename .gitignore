@@ -19,6 +19,9 @@ reference/*/20*/**/elements.json
 # (proprietary) — measurements may be distilled into tracked specs, raw
 # captures stay local
 reference/*/hf-capture*/
+# Raw user screenshot drops before filing via tools/import-reference.mjs —
+# unredacted personal pixels, never committable
+inbox/
 .hyperframes/
 .playwright-mcp/
 .thumbnails/
