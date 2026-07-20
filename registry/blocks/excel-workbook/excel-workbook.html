@@ -1,5 +1,6 @@
 <style>
       @import url("styles/backlot-foundation.css");
+      @import url("compositions/office-ribbon.css");
   html,
   body {
     width: 100%;
@@ -81,85 +82,218 @@
         <symbol id="fluent-add-12-filled" viewBox="0 0 12 12">
         <path fill="currentColor" d="M6 1.75a.75.75 0 0 1 .75.75v2.75H9.5a.75.75 0 0 1 0 1.5H6.75V9.5a.75.75 0 0 1-1.5 0V6.75H2.5a.75.75 0 0 1 0-1.5h2.75V2.5A.75.75 0 0 1 6 1.75"/>
         </symbol>
+        <symbol id="fluent-cut-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M10.839 9.531a2.753 2.753 0 0 1 3.162 2.719a2.75 2.75 0 0 1-2.75 2.75a2.75 2.75 0 0 1-2.75-2.75c0-.832.372-1.58.959-2.084L8.001 7.977l-1.459 2.189a2.74 2.74 0 0 1 .959 2.084A2.75 2.75 0 0 1 4.751 15a2.75 2.75 0 0 1-2.75-2.75a2.752 2.752 0 0 1 3.161-2.72l1.937-2.906l-2.973-4.459a.75.75 0 1 1 1.248-.832zM3.5 12.25c0 .689.561 1.25 1.25 1.25v-.001A1.25 1.25 0 1 0 3.5 12.25m6.5 0a1.251 1.251 0 0 0 2.5 0a1.252 1.252 0 0 0-1.681-1.173l-.013.005l-.046.018c-.446.19-.76.634-.76 1.15m1.666-11.124a.75.75 0 0 1 .208 1.04L9.802 5.273L8.901 3.92l1.725-2.587a.75.75 0 0 1 1.04-.208"/>
+        </symbol>
+        <symbol id="fluent-copy-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M5 9a3 3 0 0 0 3 3h2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1zm7-7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
+        </symbol>
+        <symbol id="fluent-paint-brush-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M10 4.5V1H9v2.5a.5.5 0 0 1-1 0V1H3.5a.5.5 0 0 0-.5.5V7h10V1.5a.5.5 0 0 0-.5-.5H11v3.5a.5.5 0 0 1-1 0M13 8H3v1a2 2 0 0 0 2 2h1.5v2.5a1.5 1.5 0 0 0 3 0V11H11a2 2 0 0 0 2-2z"/>
+        </symbol>
+        <symbol id="fluent-table-cells-merge-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M4.5 2a2.5 2.5 0 0 0-2.45 2h11.9a2.5 2.5 0 0 0-2.45-2zM2 11V5h12v6zm4.354-4.854a.5.5 0 0 0-.708 0l-1.5 1.5a.5.5 0 0 0 0 .708l1.5 1.5a.5.5 0 0 0 .708-.708L5.707 8.5h4.586l-.647.646a.5.5 0 1 0 .708.708l1.5-1.5a.5.5 0 0 0 0-.708l-1.5-1.5a.5.5 0 0 0-.708.708l.647.646H5.707l.647-.646a.5.5 0 0 0 0-.708M13.95 12a2.5 2.5 0 0 1-2.45 2h-7a2.5 2.5 0 0 1-2.45-2z"/>
+        </symbol>
+        <symbol id="fluent-text-wrap-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2.75 3a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5zm0 4a.75.75 0 0 0 0 1.5h9.5a1.25 1.25 0 1 1 0 2.5h-1.69l.22-.22a.75.75 0 1 0-1.06-1.06l-1.5 1.5a.75.75 0 0 0 0 1.06l1.5 1.5a.75.75 0 1 0 1.06-1.06l-.22-.22h1.69a2.75 2.75 0 1 0 0-5.5zM2 11.75a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1-.75-.75"/>
+        </symbol>
+        <symbol id="fluent-table-insert-row-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2.5 13a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zm0-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1zM2 9.5A1.5 1.5 0 0 0 3.5 11H5V5H3.5A1.5 1.5 0 0 0 2 6.5zm8 1.5H6V5h4zm1 0V5h1.5A1.5 1.5 0 0 1 14 6.5v3a1.5 1.5 0 0 1-1.5 1.5z"/>
+        </symbol>
+        <symbol id="fluent-table-delete-row-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2 2h3v3h-.5A2.5 2.5 0 0 1 2 2.5zm8 3H6V2h4zm1 0h.5A2.5 2.5 0 0 0 14 2.5V2h-3zm3 8.5a2.5 2.5 0 0 0-2.5-2.5H11v3h3zM10 11v3H6v-3zm-5 3v-3h-.5A2.5 2.5 0 0 0 2 13.5v.5zm4.854-7.854a.5.5 0 0 1 0 .708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707L6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8L6.146 6.854a.5.5 0 1 1 .708-.708L8 7.293l1.146-1.147a.5.5 0 0 1 .708 0M14.5 8a.5.5 0 0 1-.5.5h-3.382l-.068-.071L10.121 8l.44-.44q.03-.03.057-.06H14a.5.5 0 0 1 .5.5m-9.05.428l-.068.072H2a.5.5 0 0 1 0-1h3.382l.057.06l.44.44z"/>
+        </symbol>
+        <symbol id="fluent-settings-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2.267 6.153A6 6 0 0 1 3.53 3.98a.36.36 0 0 1 .382-.095l1.36.484a.71.71 0 0 0 .935-.538l.26-1.416a.35.35 0 0 1 .274-.282a6.1 6.1 0 0 1 2.52 0c.14.03.248.141.274.282l.26 1.416a.708.708 0 0 0 .935.538l1.36-.484a.36.36 0 0 1 .382.095a6 6 0 0 1 1.262 2.173a.35.35 0 0 1-.108.378l-1.102.931a.703.703 0 0 0 0 1.076l1.102.931c.11.093.152.242.108.378a6 6 0 0 1-1.262 2.173a.36.36 0 0 1-.382.095l-1.36-.484a.71.71 0 0 0-.935.538l-.26 1.416a.35.35 0 0 1-.275.282a6.1 6.1 0 0 1-2.519 0a.35.35 0 0 1-.275-.282l-.259-1.416a.708.708 0 0 0-.935-.538l-1.36.484a.36.36 0 0 1-.382-.095a6 6 0 0 1-1.262-2.173a.35.35 0 0 1 .108-.378l1.102-.931a.704.704 0 0 0 0-1.076l-1.102-.931a.35.35 0 0 1-.108-.378M6.25 8a1.75 1.75 0 1 0 3.5 0a1.75 1.75 0 0 0-3.5 0"/>
+        </symbol>
+        <symbol id="fluent-table-lightning-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M4.5 2A2.5 2.5 0 0 0 2 4.5V5h3V2zM6 2v3h4V2zm0 4h2.168l-1.666 4H6zm0 8v-2.499C6 12.293 6.639 13 7.502 13h.469l-.25 1zM5 6H2v4h3zm0 5H2v.5A2.5 2.5 0 0 0 4.5 14H5zm9-6v-.5A2.5 2.5 0 0 0 11.5 2H11v3zm-5.39 7a.5.5 0 0 1 .485.621l-.434 1.738c-.121.483.462.827.826.487l4.873-4.548A.75.75 0 0 0 13.848 9h-.404a.5.5 0 0 1-.474-.658l.561-1.684A.5.5 0 0 0 13.057 6H9.584a.5.5 0 0 0-.462.308l-2.083 5a.5.5 0 0 0 .462.692z"/>
+        </symbol>
+        <symbol id="fluent-table-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M4.5 2A2.5 2.5 0 0 0 2 4.5V5h3V2zM6 2v3h4V2zM5 6H2v4h3zm1 4V6h4v4zm-1 1H2v.5A2.5 2.5 0 0 0 4.5 14H5zm1 3h4v-3H6zm5 0v-3h3v.5a2.5 2.5 0 0 1-2.5 2.5zm3-8v4h-3V6zm0-1v-.5A2.5 2.5 0 0 0 11.5 2H11v3z"/>
+        </symbol>
+        <symbol id="fluent-paint-bucket-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M8 1.5a.5.5 0 0 0-1 0v.838c-.252.064-.49.195-.687.392L1.337 7.706a1.5 1.5 0 0 0-.026 2.096l3.62 3.8a1.5 1.5 0 0 0 2.147.027l5.068-5.068a1.5 1.5 0 0 0 0-2.122L8.434 2.73Q8.237 2.537 8 2.429zM11.293 8H2.457L7 3.457V4.5a.5.5 0 1 0 1 0v-.79l3.439 3.437a.5.5 0 0 1 0 .707zm1.628 2.222a.56.56 0 0 0-.842 0l-1.15 1.315C9.747 12.887 10.705 15 12.5 15s2.753-2.113 1.572-3.463z"/>
+        </symbol>
+        <symbol id="fluent-grid-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M3.5 2A1.5 1.5 0 0 0 2 3.5v2A1.5 1.5 0 0 0 3.5 7h2A1.5 1.5 0 0 0 7 5.5v-2A1.5 1.5 0 0 0 5.5 2zm7 0A1.5 1.5 0 0 0 9 3.5v2A1.5 1.5 0 0 0 10.5 7h2A1.5 1.5 0 0 0 14 5.5v-2A1.5 1.5 0 0 0 12.5 2zm-7 7A1.5 1.5 0 0 0 2 10.5v2A1.5 1.5 0 0 0 3.5 14h2A1.5 1.5 0 0 0 7 12.5v-2A1.5 1.5 0 0 0 5.5 9zm7 0A1.5 1.5 0 0 0 9 10.5v2a1.5 1.5 0 0 0 1.5 1.5h2a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 12.5 9z"/>
+        </symbol>
+        <symbol id="fluent-document-one-page-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M5 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm4.59 3.992L9.5 5h-3a.5.5 0 0 1-.09-.992L6.5 4h3a.5.5 0 0 1 .09.992M10 8a.5.5 0 0 1-.41.492L9.5 8.5h-3a.5.5 0 0 1-.09-.992L6.5 7.5h3a.5.5 0 0 1 .5.5m0 3.492a.5.5 0 0 1-.41.492l-.09.008h-3A.5.5 0 0 1 6.41 11l.09-.008h3a.5.5 0 0 1 .5.5"/>
+        </symbol>
+        <symbol id="fluent-document-page-break-20-filled" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M16 6V2.5c0-.276-.226-.5-.5-.5H4.496A.5.5 0 0 0 4 2.5V6c0 .828.667 1.5 1.488 1.5H14.5c.821 0 1.5-.672 1.5-1.5M3 9.5a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm3.2 0a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm2.7.5a.5.5 0 0 1 .5-.5h1.2a.5.5 0 0 1 0 1H9.4a.5.5 0 0 1-.5-.5m3.7-.5a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm2.7.5a.5.5 0 0 1 .5-.5H17a.5.5 0 0 1 0 1h-1.2a.5.5 0 0 1-.5-.5m.7 7.5V14c0-.828-.679-1.5-1.5-1.5H5.488C4.667 12.5 4 13.172 4 14v3.5c0 .276.222.5.496.5H15.5c.274 0 .5-.224.5-.5"/>
+        </symbol>
+        <symbol id="fluent-decimal-arrow-left-20-filled" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M8.5 3A2.5 2.5 0 0 0 6 5.5v4a2.5 2.5 0 0 0 5 0v-4A2.5 2.5 0 0 0 8.5 3m-1 2.5a1 1 0 0 1 2 0v4a1 1 0 1 1-2 0zM3 12a1 1 0 1 0 0-2a1 1 0 0 0 0 2m12.5-9A2.5 2.5 0 0 0 13 5.5v3.707A5.5 5.5 0 0 1 14.5 9V5.5a1 1 0 1 1 2 0v3.875c.51.2.983.472 1.406.806q.093-.325.094-.681v-4A2.5 2.5 0 0 0 15.5 3m-1 16a4.5 4.5 0 1 1 0-9a4.5 4.5 0 0 1 0 9m-2.353-4.854l-.003.003a.5.5 0 0 0-.144.348v.006a.5.5 0 0 0 .146.35l2 2a.5.5 0 0 0 .708-.707L13.707 15H16.5a.5.5 0 0 0 0-1h-2.793l1.147-1.146a.5.5 0 0 0-.708-.708z"/>
+        </symbol>
+        <symbol id="fluent-decimal-arrow-right-20-filled" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M8.5 3A2.5 2.5 0 0 0 6 5.5v4a2.5 2.5 0 0 0 5 0v-4A2.5 2.5 0 0 0 8.5 3m-1 2.5a1 1 0 0 1 2 0v4a1 1 0 1 1-2 0zM3 12a1 1 0 1 0 0-2a1 1 0 0 0 0 2m12.5-9A2.5 2.5 0 0 0 13 5.5v3.707A5.5 5.5 0 0 1 14.5 9V5.5a1 1 0 1 1 2 0v3.875c.51.2.983.472 1.406.806q.093-.325.094-.681v-4A2.5 2.5 0 0 0 15.5 3m-1 7a4.5 4.5 0 1 1 0 9a4.5 4.5 0 0 1 0-9m2.353 4.854l.003-.003a.5.5 0 0 0 .144-.348v-.006a.5.5 0 0 0-.146-.35l-2-2a.5.5 0 0 0-.708.707L15.293 14H12.5a.5.5 0 0 0 0 1h2.793l-1.147 1.146a.5.5 0 0 0 .708.708z"/>
+        </symbol>
+
+        <symbol id="fluent-home-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M7.313 1.262a1 1 0 0 1 1.374 0l4.844 4.579c.3.283.469.678.469 1.09v5.57a1.5 1.5 0 0 1-1.5 1.5h-2A1.5 1.5 0 0 1 9 12.5V10a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2.5A1.5 1.5 0 0 1 5.5 14h-2A1.5 1.5 0 0 1 2 12.5V6.93c0-.412.17-.807.47-1.09zM8 1.988l-4.844 4.58A.5.5 0 0 0 3 6.93v5.57a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V10a1.5 1.5 0 0 1 1.5-1.5h1A1.5 1.5 0 0 1 10 10v2.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V6.93a.5.5 0 0 0-.156-.363z"/>
+        </symbol>
+        <symbol id="fluent-save-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1V9.5A1.5 1.5 0 0 1 5.5 8h5A1.5 1.5 0 0 1 12 9.5V13a1 1 0 0 0 1-1V5.621a1 1 0 0 0-.293-.707l-1.621-1.621A1 1 0 0 0 10.379 3H10v1.5A1.5 1.5 0 0 1 8.5 6h-2A1.5 1.5 0 0 1 5 4.5V3zm2 0v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3zm5 10V9.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5V13zM2 4a2 2 0 0 1 2-2h6.379a2 2 0 0 1 1.414.586l1.621 1.621A2 2 0 0 1 14 5.621V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </symbol>
+        <symbol id="fluent-save-edit-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M5 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3.004q.01-.171.054-.347L8.221 16H6v-4.5a.5.5 0 0 1 .5-.5h5.444l1-1H6.5A1.5 1.5 0 0 0 5 11.5V16a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h1v2.5A1.5 1.5 0 0 0 7.5 8h4A1.5 1.5 0 0 0 13 6.5V4h.379a1 1 0 0 1 .707.293l1.621 1.621a1 1 0 0 1 .293.707v1.382a2.9 2.9 0 0 1 1 .13V6.622a2 2 0 0 0-.586-1.414l-1.621-1.621A2 2 0 0 0 13.379 3zm2 3.5V4h5v2.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5m7.81 3.048l-4.83 4.83a2.2 2.2 0 0 0-.578 1.02l-.375 1.498a.89.89 0 0 0 1.079 1.078l1.498-.374a2.2 2.2 0 0 0 1.02-.578l4.83-4.83a1.87 1.87 0 0 0-2.645-2.644"/>
+        </symbol>
+        <symbol id="fluent-arrow-clockwise-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M3 8a5 5 0 0 1 9-3h-2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.531a6 6 0 1 0 1.476 4.513a.5.5 0 0 0-.996-.089A5 5 0 0 1 3 8"/>
+        </symbol>
+        <symbol id="fluent-more-horizontal-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M5 8a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2a1 1 0 0 0 0 2"/>
+        </symbol>
+        <symbol id="fluent-search-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M11.02 11.727a5.5 5.5 0 1 1 .707-.707l3.127 3.126a.5.5 0 0 1-.708.708zM12 7.5a4.5 4.5 0 1 0-9 0a4.5 4.5 0 0 0 9 0"/>
+        </symbol>
+        <symbol id="fluent-border-all-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2 4.5A2.5 2.5 0 0 1 4.5 2h7A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5zM4.5 3A1.5 1.5 0 0 0 3 4.5v3h4.5V3zm4 0v4.5H13v-3A1.5 1.5 0 0 0 11.5 3zM13 8.5H8.5V13h3a1.5 1.5 0 0 0 1.5-1.5zM7.5 13V8.5H3v3A1.5 1.5 0 0 0 4.5 13z"/>
+        </symbol>
+        <symbol id="fluent-align-top-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M1.5 2a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1zM2 5.75C2 4.784 2.784 4 3.75 4h1.5C6.216 4 7 4.784 7 5.75v6.5A1.75 1.75 0 0 1 5.25 14h-1.5A1.75 1.75 0 0 1 2 12.25zM3.75 5a.75.75 0 0 0-.75.75v6.5c0 .414.336.75.75.75h1.5a.75.75 0 0 0 .75-.75v-6.5A.75.75 0 0 0 5.25 5zM9 5.75C9 4.784 9.784 4 10.75 4h1.5c.966 0 1.75.784 1.75 1.75v4.5A1.75 1.75 0 0 1 12.25 12h-1.5A1.75 1.75 0 0 1 9 10.25zM10.75 5a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h1.5a.75.75 0 0 0 .75-.75v-4.5a.75.75 0 0 0-.75-.75z"/>
+        </symbol>
+        <symbol id="fluent-textbox-align-middle-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M5 6.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5M5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM2 4.5A2.5 2.5 0 0 1 4.5 2h7A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5zM4.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3z"/>
+        </symbol>
+        <symbol id="fluent-align-bottom-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M1.5 14a.5.5 0 0 1 0-1h13a.5.5 0 0 1 0 1zm.5-3.75c0 .966.784 1.75 1.75 1.75h1.5A1.75 1.75 0 0 0 7 10.25v-6.5A1.75 1.75 0 0 0 5.25 2h-1.5A1.75 1.75 0 0 0 2 3.75zm1.75.75a.75.75 0 0 1-.75-.75v-6.5A.75.75 0 0 1 3.75 3h1.5a.75.75 0 0 1 .75.75v6.5a.75.75 0 0 1-.75.75zM9 10.25c0 .966.784 1.75 1.75 1.75h1.5A1.75 1.75 0 0 0 14 10.25v-4.5A1.75 1.75 0 0 0 12.25 4h-1.5A1.75 1.75 0 0 0 9 5.75zm1.75.75a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75z"/>
+        </symbol>
+        <symbol id="fluent-filter-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m2 4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
+        </symbol>
+        <symbol id="fluent-tag-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M11 6a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-8.413 4.136a1.99 1.99 0 0 1 0-2.822l4.74-4.716a2 2 0 0 1 1.41-.584L11.986 2A2 2 0 0 1 14 4.01l-.024 3.363a2 2 0 0 1-.588 1.396l-4.67 4.647a2.01 2.01 0 0 1-2.835 0zm.709-2.116a.994.994 0 0 0 0 1.41l3.296 3.28c.392.39 1.026.39 1.418 0l4.67-4.647a1 1 0 0 0 .293-.698l.024-3.363a1 1 0 0 0-1.006-1.004l-3.25.013a1 1 0 0 0-.705.292z"/>
+        </symbol>
+        <symbol id="fluent-apps-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M11.81 2.45a1.5 1.5 0 0 0-2.12 0L7.961 4.175A1.5 1.5 0 0 0 6.497 3h-3a1.5 1.5 0 0 0-1.5 1.5v8c0 .51.255.96.644 1.231c.243.17.54.27.859.27h8a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.125-1.452L13.58 6.34a1.5 1.5 0 0 0 0-2.121zM9.578 8h-1.58V6.42zm.818-4.844a.5.5 0 0 1 .707 0l1.771 1.77a.5.5 0 0 1 0 .708l-1.77 1.77a.5.5 0 0 1-.708 0l-1.77-1.77a.5.5 0 0 1 0-.707zM6.997 4.5V8h-4V4.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5M3 12.5V9h3.997v4h-3.5A.497.497 0 0 1 3 12.5M7.997 9H11.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H7.997z"/>
+        </symbol>
+        <symbol id="fluent-text-indent-decrease-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M11.5 3a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1zm3 4a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm-5 4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1zM2.646 5.646a.5.5 0 0 1 .708.708L2.207 7.5l1.147 1.146a.5.5 0 0 1-.708.708l-1.5-1.5a.5.5 0 0 1 0-.708z"/>
+        </symbol>
+        <symbol id="fluent-text-indent-increase-16-regular" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M11.5 3a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1zm3 4a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm-5 4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1zM1.854 5.646a.5.5 0 0 0-.708.708L2.293 7.5L1.146 8.646a.5.5 0 0 0 .708.708l1.5-1.5a.5.5 0 0 0 0-.708z"/>
+        </symbol>
+        <symbol id="fluent-color-fill-accent-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M4.836 12.5H4A1.5 1.5 0 0 0 2.5 14v2A1.5 1.5 0 0 0 4 17.5h12a1.5 1.5 0 0 0 1.5-1.5v-2c0-.295-.085-.57-.232-.802c-.38.969-1.226 1.802-2.518 1.802c-1.597 0-2.512-1.273-2.71-2.5h-1.062l-.95.95a3 3 0 0 1-4.243 0z"/>
+        </symbol>
+        <symbol id="fluent-autosum-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M4.04 3.804A.5.5 0 0 1 4.5 3.5h11a.5.5 0 1 1 0 1H5.675l4.553 4.732a.5.5 0 0 1 .023.667L5.57 15.5h9.93a.5.5 0 1 1 0 1h-11a.5.5 0 0 1-.384-.82l5.08-6.078L4.14 4.347a.5.5 0 0 1-.1-.543"/>
+        </symbol>
+        <symbol id="fluent-orientation-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M3.25 5a.25.25 0 0 0-.25.25v.25a.5.5 0 0 1-1 0v-.25C2 4.56 2.56 4 3.25 4h.25a.5.5 0 0 1 0 1zM5 4.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h.25C9.44 4 10 4.56 10 5.25v.25a.5.5 0 0 1-1 0v-.25A.25.25 0 0 0 8.75 5H8.5a.5.5 0 0 1-.5-.5m6.854 1.354l-.153.152A3.5 3.5 0 0 1 14.5 13a.5.5 0 0 1 0-1a2.5 2.5 0 0 0 .216-4.99l.138.136a.5.5 0 0 1-.708.708l-1-1a.5.5 0 0 1 0-.708l1-1a.5.5 0 0 1 .708.708M2 10.5A1.5 1.5 0 0 1 3.5 9h8a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 2 14.5zm1.5-.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5zm6-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 1 0v1a.5.5 0 0 1-.5.5M3 7.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0z"/>
+        </symbol>
+        <symbol id="fluent-comment-16-filled" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5zM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3z"/>
+        </symbol>
+        <symbol id="fluent-font-increase-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M13.854 4.854a.5.5 0 0 1-.707-.708l2-2a.5.5 0 0 1 .707 0l2 2a.5.5 0 0 1-.707.708L15.5 3.207zM10 4a.5.5 0 0 0-.463.31l-4.5 11a.5.5 0 1 0 .926.38L7.5 11.93V12h5v-.068l1.537 3.757a.5.5 0 1 0 .926-.378l-4.5-11A.5.5 0 0 0 10 4m0 1.82L12.119 11H7.88z"/>
+        </symbol>
+        <symbol id="fluent-font-decrease-20-regular" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M13.147 2.146a.5.5 0 0 1 .707 0L15.5 3.793l1.646-1.647a.5.5 0 1 1 .708.708l-2 2a.5.5 0 0 1-.707 0l-2-2a.5.5 0 0 1 0-.708M10 4a.5.5 0 0 1 .463.31l4.5 11a.5.5 0 1 1-.926.38L12.5 11.931V12h-5v-.069L5.963 15.69a.5.5 0 1 1-.926-.378l4.5-11A.5.5 0 0 1 10 4m-2.119 7h4.238L10 5.82z"/>
+        </symbol>
+        <symbol id="si-claude" viewBox="0 0 24 24">
+        <path fill="currentColor" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+        </symbol>
       </svg>
       <header class="excel-titlebar">
         <div class="excel-traffic" aria-hidden="true"></div>
-        <div class="autosave"><span></span>AutoSave</div>
+        <div class="autosave"><span>AutoSave</span><i class="as-toggle"></i></div>
         <div class="quick-access" aria-hidden="true">
-          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-undo-16-filled"></use></svg>
-          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-redo-16-filled"></use></svg>
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-home-16-regular"></use></svg>
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-save-16-regular"></use></svg>
+          <svg class="office-icon" viewBox="0 0 20 20"><use href="#fluent-save-edit-20-regular"></use></svg>
+          <span class="qa-undo"><svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-undo-16-filled"></use></svg><svg class="office-icon qa-caret" viewBox="0 0 12 12"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-clockwise-16-regular"></use></svg>
+          <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-more-horizontal-16-regular"></use></svg>
         </div>
-        <div class="workbook-title"><svg class="office-icon title-glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-microsoftexcel"></use></svg>Launch Metrics <em class="saved-state">&bull; Saved <svg class="office-icon" viewBox="0 0 12 12"><use href="#fluent-chevron-down-12-filled"></use></svg></em></div>
-        <div class="title-search">Search workbook</div>
+        <div class="workbook-title">Launch Metrics</div>
+        <div class="title-search"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg>Search (Cmd + Ctrl + U)</div>
       </header>
 
       <nav class="excel-tabs" aria-label="Excel ribbon tabs">
-        <span>Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span>Automate</span>
+        <span class="active">Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span>Automate</span>
         <div class="title-actions">
-          <span class="avatar av1"></span><span class="avatar av2"></span><span class="avatar av3"></span>
-          <span class="comments"><svg class="office-icon" viewBox="0 0 12 12"><use href="#fluent-comment-12-filled"></use></svg>Comments</span>
-          <span class="share">Share</span>
+          <span class="comments"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-comment-16-filled"></use></svg>Comments</span>
+          <span class="share">Share<svg class="office-icon share-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
         </div>
       </nav>
 
       <div class="excel-ribbon" aria-label="Excel Home ribbon">
         <div class="ribbon-group clipboard">
           <div class="ribbon-large paste"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-paste-20"></use></svg><em>Paste</em><i></i></div>
-          <div class="ribbon-stack"><span>Cut</span><span>Copy</span><span>Format Painter</span></div>
-          <strong>Clipboard</strong>
+          <div class="ribbon-stack icons-only"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-cut-16-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-copy-16-filled"></use></svg><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-paint-brush-16-filled"></use></svg></span></div>
         </div>
-        <div class="ribbon-group font">
-          <div class="ribbon-row"><span class="field font-name">Aptos</span><span class="field small">12</span></div>
-          <div class="button-row"><span class="toggle active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-bold-20"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-italic-20"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-underline-20"></use></svg></span><span class="toggle swatch fill"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-color-20"></use></svg></span><span class="toggle swatch color"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-fill-color-20"></use></svg></span></div>
-          <strong>Font</strong>
+        <div class="ribbon-group font col">
+          <div class="ribbon-row"><span class="field grow">Aptos Narrow (Body)</span><span class="field small">12</span><span class="mini-btn grow"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-font-increase-20-regular"></use></svg></span><span class="mini-btn shrink"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-font-decrease-20-regular"></use></svg></span></div>
+          <div class="button-row"><span class="toggle active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-bold-20"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-italic-20"></use></svg></span><span class="toggle chev"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-underline-20"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span class="toggle chev"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-border-all-16-regular"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span class="toggle chev swatch color"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-color-fill-accent-20-regular"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span class="toggle chev swatch fill"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-color-20"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
         </div>
-        <div class="ribbon-group alignment">
-          <div class="button-row dense"><span class="align left"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span><span class="align center active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-center-20"></use></svg></span><span class="align right"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span></div>
-          <div class="button-row dense"><span class="merge">Merge &amp; Center</span><span class="wrap">Wrap Text</span></div>
-          <strong>Alignment</strong>
+        <div class="ribbon-group alignment col">
+          <div class="button-row dense"><span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-align-top-16-regular"></use></svg></span><span class="align active"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-textbox-align-middle-16-regular"></use></svg></span><span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-align-bottom-16-regular"></use></svg></span><span class="align chev"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-orientation-20-regular"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span class="align chev"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-text-wrap-16-filled"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
+          <div class="button-row dense"><span class="align left"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span><span class="align center active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-center-20"></use></svg></span><span class="align right"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"></use></svg></span><span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-text-indent-decrease-16-regular"></use></svg></span><span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-text-indent-increase-16-regular"></use></svg></span><span class="align chev"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-cells-merge-16-filled"></use></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
         </div>
-        <div class="ribbon-group number">
-          <div class="ribbon-row"><span class="field number-format">General</span></div>
-          <div class="button-row"><span class="toggle">$</span><span class="toggle">%</span></div>
-          <strong>Number</strong>
+        <div class="ribbon-group number col">
+          <div class="ribbon-row"><span class="field wide">General</span></div>
+          <div class="button-row"><span class="toggle chev">$<svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span class="toggle">%</span><span class="toggle">,</span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-decimal-arrow-left-20-filled"></use></svg></span><span class="toggle"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-decimal-arrow-right-20-filled"></use></svg></span></div>
+        </div>
+        <div class="ribbon-group styles">
+          <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-lightning-16-filled"></use></svg><em class="stack-label">Conditional Formatting</em><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-16-filled"></use></svg><em class="stack-label">Format as Table</em><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-paint-bucket-16-filled"></use></svg><em class="stack-label">Cell Styles</em><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
         </div>
         <div class="ribbon-group cells">
-          <div class="ribbon-stack"><span>Insert</span><span>Delete</span><span>Format</span></div>
-          <strong>Cells</strong>
+          <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-insert-row-16-filled"></use></svg>Insert<svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-delete-row-16-filled"></use></svg>Delete<svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-settings-16-filled"></use></svg>Format<svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
         </div>
         <div class="ribbon-group editing">
-          <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-formula-20"></use></svg>AutoSum</span><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-sort-20"></use></svg>Sort &amp; Filter</span><span>Find &amp; Select</span></div>
-          <strong>Editing</strong>
+          <div class="ribbon-large small-large"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-autosum-20-regular"></use></svg><em>AutoSum</em><i></i></div>
+          <div class="ribbon-large small-large"><svg class="cmd-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-filter-16-regular"></use></svg><em>Sort &amp;<br/>Filter</em><i></i></div>
+          <div class="ribbon-large small-large"><svg class="cmd-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg><em>Find &amp;<br/>Select</em><i></i></div>
+        </div>
+        <div class="ribbon-group large-buttons">
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-tag-16-regular"></use></svg><em>Sensitivity</em></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon addins-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-apps-16-regular"></use></svg><em>Add-ins</em></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon claude-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-claude"></use></svg><em>Claude</em></div>
         </div>
       </div>
 
       <div class="formula-bar">
-        <div class="name-box">D8 <svg class="office-icon nb-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></div>
+        <div class="name-box">D8<span class="nb-stepper"><i></i><i></i></span></div>
         <div class="formula-tools"><svg class="office-icon fb-x" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-dismiss-12-filled"></use></svg><svg class="office-icon fb-ok" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-checkmark-12-filled"></use></svg><span>fx</span></div>
-        <div class="formula-input">=SUM(D5:D7)</div>
+        <div class="formula-input">=SUM(D5:D7)<span class="fi-expand"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
       </div>
 
       <div class="workbook-body">
         <main class="sheet-stage">
           <div class="grid-viewport">
             <div class="corner"></div>
-            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div><div class="col-head c7">G</div><div class="col-head c8">H</div><div class="col-head c9">I</div><div class="col-head c10">J</div><div class="col-head c11">K</div><div class="col-head c12">L</div>
+            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div><div class="col-head c7">G</div><div class="col-head c8">H</div><div class="col-head c9">I</div><div class="col-head c10">J</div><div class="col-head c11">K</div><div class="col-head c12">L</div><div class="col-head c13">M</div>
 
-            <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div><div class="cell g1"></div><div class="cell h1"></div><div class="cell i1"></div><div class="cell j1"></div><div class="cell k1"></div><div class="cell l1"></div>
-            <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">128</div><div class="cell e2 num">110</div><div class="cell f2 good">+16%</div><div class="cell g2"></div><div class="cell h2"></div><div class="cell i2"></div><div class="cell j2"></div><div class="cell k2"></div><div class="cell l2"></div>
-            <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42</div><div class="cell e3 num">38</div><div class="cell f3 good">+11%</div><div class="cell g3"></div><div class="cell h3"></div><div class="cell i3"></div><div class="cell j3"></div><div class="cell k3"></div><div class="cell l3"></div>
-            <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+50%</div><div class="cell g4"></div><div class="cell h4"></div><div class="cell i4"></div><div class="cell j4"></div><div class="cell k4"></div><div class="cell l4"></div>
-            <div class="row-head r5">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div><div class="cell g5"></div><div class="cell h5"></div><div class="cell i5"></div><div class="cell j5"></div><div class="cell k5"></div><div class="cell l5"></div>
-            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div><div class="cell g6"></div><div class="cell h6"></div><div class="cell i6"></div><div class="cell j6"></div><div class="cell k6"></div><div class="cell l6"></div>
-            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div><div class="cell g7"></div><div class="cell h7"></div><div class="cell i7"></div><div class="cell j7"></div><div class="cell k7"></div><div class="cell l7"></div>
-            <div class="row-head r8">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div><div class="cell g8"></div><div class="cell h8"></div><div class="cell i8"></div><div class="cell j8"></div><div class="cell k8"></div><div class="cell l8"></div>
-            <div class="row-head r9">9</div><div class="cell a9"></div><div class="cell b9"></div><div class="cell c9"></div><div class="cell d9"></div><div class="cell e9"></div><div class="cell f9"></div><div class="cell g9"></div><div class="cell h9"></div><div class="cell i9"></div><div class="cell j9"></div><div class="cell k9"></div><div class="cell l9"></div>
-            <div class="row-head r10">10</div><div class="cell a10"></div><div class="cell b10"></div><div class="cell c10"></div><div class="cell d10"></div><div class="cell e10"></div><div class="cell f10"></div><div class="cell g10"></div><div class="cell h10"></div><div class="cell i10"></div><div class="cell j10"></div><div class="cell k10"></div><div class="cell l10"></div>
-            <div class="row-head r11">11</div><div class="cell a11"></div><div class="cell b11"></div><div class="cell c11"></div><div class="cell d11"></div><div class="cell e11"></div><div class="cell f11"></div><div class="cell g11"></div><div class="cell h11"></div><div class="cell i11"></div><div class="cell j11"></div><div class="cell k11"></div><div class="cell l11"></div>
-            <div class="row-head r12">12</div><div class="cell a12"></div><div class="cell b12"></div><div class="cell c12"></div><div class="cell d12"></div><div class="cell e12"></div><div class="cell f12"></div><div class="cell g12"></div><div class="cell h12"></div><div class="cell i12"></div><div class="cell j12"></div><div class="cell k12"></div><div class="cell l12"></div>
-            <div class="row-head r13">13</div><div class="cell a13"></div><div class="cell b13"></div><div class="cell c13"></div><div class="cell d13"></div><div class="cell e13"></div><div class="cell f13"></div><div class="cell g13"></div><div class="cell h13"></div><div class="cell i13"></div><div class="cell j13"></div><div class="cell k13"></div><div class="cell l13"></div>
-            <div class="row-head r14">14</div><div class="cell a14"></div><div class="cell b14"></div><div class="cell c14"></div><div class="cell d14"></div><div class="cell e14"></div><div class="cell f14"></div><div class="cell g14"></div><div class="cell h14"></div><div class="cell i14"></div><div class="cell j14"></div><div class="cell k14"></div><div class="cell l14"></div>
-            <div class="row-head r15">15</div><div class="cell a15"></div><div class="cell b15"></div><div class="cell c15"></div><div class="cell d15"></div><div class="cell e15"></div><div class="cell f15"></div><div class="cell g15"></div><div class="cell h15"></div><div class="cell i15"></div><div class="cell j15"></div><div class="cell k15"></div><div class="cell l15"></div>
+            <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div><div class="cell g1"></div><div class="cell h1"></div><div class="cell i1"></div><div class="cell j1"></div><div class="cell k1"></div><div class="cell l1"></div><div class="cell m1"></div>
+            <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">128</div><div class="cell e2 num">110</div><div class="cell f2 good">+16%</div><div class="cell g2"></div><div class="cell h2"></div><div class="cell i2"></div><div class="cell j2"></div><div class="cell k2"></div><div class="cell l2"></div><div class="cell m2"></div>
+            <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42</div><div class="cell e3 num">38</div><div class="cell f3 good">+11%</div><div class="cell g3"></div><div class="cell h3"></div><div class="cell i3"></div><div class="cell j3"></div><div class="cell k3"></div><div class="cell l3"></div><div class="cell m3"></div>
+            <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+50%</div><div class="cell g4"></div><div class="cell h4"></div><div class="cell i4"></div><div class="cell j4"></div><div class="cell k4"></div><div class="cell l4"></div><div class="cell m4"></div>
+            <div class="row-head r5">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div><div class="cell g5"></div><div class="cell h5"></div><div class="cell i5"></div><div class="cell j5"></div><div class="cell k5"></div><div class="cell l5"></div><div class="cell m5"></div>
+            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div><div class="cell g6"></div><div class="cell h6"></div><div class="cell i6"></div><div class="cell j6"></div><div class="cell k6"></div><div class="cell l6"></div><div class="cell m6"></div>
+            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div><div class="cell g7"></div><div class="cell h7"></div><div class="cell i7"></div><div class="cell j7"></div><div class="cell k7"></div><div class="cell l7"></div><div class="cell m7"></div>
+            <div class="row-head r8">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div><div class="cell g8"></div><div class="cell h8"></div><div class="cell i8"></div><div class="cell j8"></div><div class="cell k8"></div><div class="cell l8"></div><div class="cell m8"></div>
+            <div class="row-head r9">9</div><div class="cell a9"></div><div class="cell b9"></div><div class="cell c9"></div><div class="cell d9"></div><div class="cell e9"></div><div class="cell f9"></div><div class="cell g9"></div><div class="cell h9"></div><div class="cell i9"></div><div class="cell j9"></div><div class="cell k9"></div><div class="cell l9"></div><div class="cell m9"></div>
+            <div class="row-head r10">10</div><div class="cell a10"></div><div class="cell b10"></div><div class="cell c10"></div><div class="cell d10"></div><div class="cell e10"></div><div class="cell f10"></div><div class="cell g10"></div><div class="cell h10"></div><div class="cell i10"></div><div class="cell j10"></div><div class="cell k10"></div><div class="cell l10"></div><div class="cell m10"></div>
+            <div class="row-head r11">11</div><div class="cell a11"></div><div class="cell b11"></div><div class="cell c11"></div><div class="cell d11"></div><div class="cell e11"></div><div class="cell f11"></div><div class="cell g11"></div><div class="cell h11"></div><div class="cell i11"></div><div class="cell j11"></div><div class="cell k11"></div><div class="cell l11"></div><div class="cell m11"></div>
+            <div class="row-head r12">12</div><div class="cell a12"></div><div class="cell b12"></div><div class="cell c12"></div><div class="cell d12"></div><div class="cell e12"></div><div class="cell f12"></div><div class="cell g12"></div><div class="cell h12"></div><div class="cell i12"></div><div class="cell j12"></div><div class="cell k12"></div><div class="cell l12"></div><div class="cell m12"></div>
+            <div class="row-head r13">13</div><div class="cell a13"></div><div class="cell b13"></div><div class="cell c13"></div><div class="cell d13"></div><div class="cell e13"></div><div class="cell f13"></div><div class="cell g13"></div><div class="cell h13"></div><div class="cell i13"></div><div class="cell j13"></div><div class="cell k13"></div><div class="cell l13"></div><div class="cell m13"></div>
+            <div class="row-head r14">14</div><div class="cell a14"></div><div class="cell b14"></div><div class="cell c14"></div><div class="cell d14"></div><div class="cell e14"></div><div class="cell f14"></div><div class="cell g14"></div><div class="cell h14"></div><div class="cell i14"></div><div class="cell j14"></div><div class="cell k14"></div><div class="cell l14"></div><div class="cell m14"></div>
+            <div class="row-head r15">15</div><div class="cell a15"></div><div class="cell b15"></div><div class="cell c15"></div><div class="cell d15"></div><div class="cell e15"></div><div class="cell f15"></div><div class="cell g15"></div><div class="cell h15"></div><div class="cell i15"></div><div class="cell j15"></div><div class="cell k15"></div><div class="cell l15"></div><div class="cell m15"></div>
+            <div class="row-head r16">16</div><div class="cell a16"></div><div class="cell b16"></div><div class="cell c16"></div><div class="cell d16"></div><div class="cell e16"></div><div class="cell f16"></div><div class="cell g16"></div><div class="cell h16"></div><div class="cell i16"></div><div class="cell j16"></div><div class="cell k16"></div><div class="cell l16"></div><div class="cell m16"></div>
+            <div class="row-head r17">17</div><div class="cell a17"></div><div class="cell b17"></div><div class="cell c17"></div><div class="cell d17"></div><div class="cell e17"></div><div class="cell f17"></div><div class="cell g17"></div><div class="cell h17"></div><div class="cell i17"></div><div class="cell j17"></div><div class="cell k17"></div><div class="cell l17"></div><div class="cell m17"></div>
+            <div class="row-head r18">18</div><div class="cell a18"></div><div class="cell b18"></div><div class="cell c18"></div><div class="cell d18"></div><div class="cell e18"></div><div class="cell f18"></div><div class="cell g18"></div><div class="cell h18"></div><div class="cell i18"></div><div class="cell j18"></div><div class="cell k18"></div><div class="cell l18"></div><div class="cell m18"></div>
+            <div class="row-head r19">19</div><div class="cell a19"></div><div class="cell b19"></div><div class="cell c19"></div><div class="cell d19"></div><div class="cell e19"></div><div class="cell f19"></div><div class="cell g19"></div><div class="cell h19"></div><div class="cell i19"></div><div class="cell j19"></div><div class="cell k19"></div><div class="cell l19"></div><div class="cell m19"></div>
+            <div class="row-head r20">20</div><div class="cell a20"></div><div class="cell b20"></div><div class="cell c20"></div><div class="cell d20"></div><div class="cell e20"></div><div class="cell f20"></div><div class="cell g20"></div><div class="cell h20"></div><div class="cell i20"></div><div class="cell j20"></div><div class="cell k20"></div><div class="cell l20"></div><div class="cell m20"></div>
+            <div class="row-head r21">21</div><div class="cell a21"></div><div class="cell b21"></div><div class="cell c21"></div><div class="cell d21"></div><div class="cell e21"></div><div class="cell f21"></div><div class="cell g21"></div><div class="cell h21"></div><div class="cell i21"></div><div class="cell j21"></div><div class="cell k21"></div><div class="cell l21"></div><div class="cell m21"></div>
+            <div class="row-head r22">22</div><div class="cell a22"></div><div class="cell b22"></div><div class="cell c22"></div><div class="cell d22"></div><div class="cell e22"></div><div class="cell f22"></div><div class="cell g22"></div><div class="cell h22"></div><div class="cell i22"></div><div class="cell j22"></div><div class="cell k22"></div><div class="cell l22"></div><div class="cell m22"></div>
+            <div class="row-head r23">23</div><div class="cell a23"></div><div class="cell b23"></div><div class="cell c23"></div><div class="cell d23"></div><div class="cell e23"></div><div class="cell f23"></div><div class="cell g23"></div><div class="cell h23"></div><div class="cell i23"></div><div class="cell j23"></div><div class="cell k23"></div><div class="cell l23"></div><div class="cell m23"></div>
+            <div class="row-head r24">24</div><div class="cell a24"></div><div class="cell b24"></div><div class="cell c24"></div><div class="cell d24"></div><div class="cell e24"></div><div class="cell f24"></div><div class="cell g24"></div><div class="cell h24"></div><div class="cell i24"></div><div class="cell j24"></div><div class="cell k24"></div><div class="cell l24"></div><div class="cell m24"></div>
+            <div class="row-head r25">25</div><div class="cell a25"></div><div class="cell b25"></div><div class="cell c25"></div><div class="cell d25"></div><div class="cell e25"></div><div class="cell f25"></div><div class="cell g25"></div><div class="cell h25"></div><div class="cell i25"></div><div class="cell j25"></div><div class="cell k25"></div><div class="cell l25"></div><div class="cell m25"></div>
+            <div class="row-head r26">26</div><div class="cell a26"></div><div class="cell b26"></div><div class="cell c26"></div><div class="cell d26"></div><div class="cell e26"></div><div class="cell f26"></div><div class="cell g26"></div><div class="cell h26"></div><div class="cell i26"></div><div class="cell j26"></div><div class="cell k26"></div><div class="cell l26"></div><div class="cell m26"></div>
             <div class="selection-outline" data-layout-ignore></div>
           </div>
         </main>
@@ -181,12 +315,19 @@
         </aside>
       </div>
 
-      <footer class="excel-statusbar">
+      <div class="sheet-tab-strip">
         <div class="sheet-nav"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-left-12-filled"></use></svg><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-right-12-filled"></use></svg></div>
         <div class="sheet-tabs"><span class="active">Launch metrics</span><span>Revenue</span><span>Feedback</span><button type="button">+</button></div>
-        <span>Ready</span><span>Accessibility: Good to go</span>
+      </div>
+      <footer class="excel-statusbar">
+        <span class="status-ready">Ready</span><span class="status-a11y"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-tag-16-regular"></use></svg>Accessibility: Good to go</span>
         <span class="status-spacer"></span>
-        <span>Average: 5.5</span><span>Sum: 44</span><span>Count: 8</span>
+        <span>Average: 5.5</span><span>Count: 8</span><span>Sum: 44</span>
+        <span class="view-modes">
+          <span class="view-mode active"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-grid-16-filled"></use></svg></span>
+          <span class="view-mode"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-document-one-page-16-filled"></use></svg></span>
+          <span class="view-mode"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-page-break-20-filled"></use></svg></span>
+        </span>
         <span class="zoom-btn"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-subtract-12-filled"></use></svg></span>
         <span class="zoom-line"></span>
         <span class="zoom-btn"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-add-12-filled"></use></svg></span>
@@ -195,15 +336,29 @@
     </section>
 
     <style>
+      /* Inside the template so hosts that mount this surface get the shared
+         ribbon system — the loader clones only template content, dropping the
+         top-level style block above. Browsers dedupe the duplicate fetch. */
+      @import url("compositions/office-ribbon.css");
+      /* "Aptos Narrow" is an OS-bundled Microsoft font with no downloadable
+         file here — src: local(...) satisfies the renderer's
+         font_family_without_font_face check without needing a .woff2. */
+      @font-face {
+        font-family: "Aptos Narrow";
+        src: local("Aptos Narrow");
+      }
+
       #excel-workbook-surface {
         --excel: #217346;
         --excel-dark: #0f5c33;
         --excel-soft: #e5f3ea;
-        --chrome: #f7f7f7;
-        --line: rgba(20, 30, 48, 0.12);
-        --grid: rgba(20, 30, 48, 0.1);
-        --ink: #16120f;
-        --muted: #67727f;
+        --excel-marquee: #3a714a;
+        --excel-share: #387a47;
+        --chrome: #f5f5f5;
+        --line: #c6c6c6;
+        --grid: #d4d4d4;
+        --ink: #1a1a1a;
+        --muted: #6e6e6e;
         --green: #43b875;
         --amber: #d9a441;
         --blue: #1d86e8;
@@ -212,7 +367,7 @@
         height: 760px;
         overflow: hidden;
         color: var(--ink);
-        font-family: var(--font-office-ui);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
       }
 
       #excel-workbook-surface * {
@@ -225,7 +380,7 @@
         height: 760px;
         overflow: hidden;
         border-radius: 12px;
-        background: #eef1f4;
+        background: #ffffff;
         border: 1px solid rgba(20, 30, 48, 0.14);
         box-shadow: 0 30px 70px rgba(28, 30, 38, 0.28), 0 2px 0 rgba(255, 255, 255, 0.4) inset;
       }
@@ -237,575 +392,203 @@
         overflow: hidden;
       }
 
+      /* ---------- Titlebar ---------- */
+
       .excel-titlebar {
-        height: 34px;
+        height: 40px;
         display: grid;
         grid-template-columns: 58px auto auto 1fr auto;
         align-items: center;
-        gap: 9px;
-        padding: 0 13px;
+        gap: 10px;
+        padding: 0 14px;
         background: var(--chrome);
-        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
-        color: #2d3540;
-        font-size: 12px;
-        font-weight: 650;
-      }
-
-      .excel-traffic {
-        position: relative;
-        width: 52px;
-        height: 12px;
-      }
-
-      .excel-traffic::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #ff5f57;
-        box-shadow:
-          0 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
-          20px 0 0 #febc2e,
-          20px 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
-          40px 0 0 #28c840,
-          40px 0 0 0.5px rgba(0, 0, 0, 0.12) inset;
+        color: #242424;
+        font-size: 13px;
       }
 
       .workbook-title {
         justify-self: center;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-weight: 650;
-        color: #2d3540;
-        white-space: nowrap;
-      }
-
-      .workbook-title .title-glyph {
-        width: 15px;
-        height: 15px;
-        color: var(--excel);
-      }
-
-      .saved-state {
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
-        font-style: normal;
-        font-weight: 500;
-        color: #7c8792;
-      }
-
-      .saved-state .office-icon {
-        width: 8px;
-        height: 8px;
-        color: #8a939c;
-      }
-
-      .quick-access {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .quick-access .office-icon {
-        width: 13px;
-        height: 13px;
-        color: #5b6570;
-      }
-
-      .autosave {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: #68727e;
-        font-size: 10px;
-        white-space: nowrap;
-      }
-
-      .autosave span {
-        width: 26px;
-        height: 14px;
-        border-radius: 999px;
-        background: #d7ecdf;
-        border: 1px solid #98cfad;
-        position: relative;
-      }
-
-      .autosave span::after {
-        content: "";
-        position: absolute;
-        right: 2px;
-        top: 2px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--green);
-      }
-
-      .title-search {
-        width: 210px;
-        height: 22px;
-        display: flex;
-        align-items: center;
-        padding: 0 14px;
-        border-radius: 999px;
-        background: #eef0f3;
-        color: #7c8792;
-        font-size: 11px;
-        font-weight: 500;
-      }
-
-      .title-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-left: auto;
-        padding-left: 8px;
-      }
-
-      .title-actions .avatar {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        margin-left: -6px;
-      }
-
-      .title-actions .avatar:first-child {
-        margin-left: 0;
-      }
-
-      .title-actions .avatar.av1 { background: #6f57c2; }
-      .title-actions .avatar.av2 { background: #2f8f5b; }
-      .title-actions .avatar.av3 { background: #c0578a; }
-
-      .title-actions span {
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 0 9px;
-        border-radius: 7px;
-        background: transparent;
-        color: #384450;
-        font-size: 11px;
-      }
-
-      .title-actions .comments {
-        background: transparent;
-        color: #444d57;
-        padding: 0 8px;
-      }
-
-      .title-actions .comments .office-icon {
-        width: 12px;
-        height: 12px;
-        color: #5b6570;
-      }
-
-      .title-actions .share {
-        background: var(--excel);
-        color: #fff;
         font-weight: 600;
-        padding: 0 12px;
-        border-radius: 6px;
-      }
-
-      .title-actions .share::after {
-        content: "\2304";
-        margin-left: 6px;
-        font-size: 9px;
-        opacity: 0.9;
-      }
-
-      .excel-tabs {
-        height: 32px;
-        display: flex;
-        align-items: stretch;
-        gap: 2px;
-        padding: 0 12px;
-        background: #f5f5f5;
-        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
-      }
-
-      .excel-tabs span {
-        height: 32px;
-        display: flex;
-        align-items: center;
-        padding: 0 12px;
-        border-radius: 0;
-        color: #3d3a36;
-        font-size: 12.5px;
-        font-weight: 400;
-      }
-
-      .excel-tabs span:first-child {
-        background: transparent;
-        border: 0;
-        color: #1e1e1e;
-        box-shadow: inset 0 -2px 0 #217346;
-        font-weight: 600;
-      }
-
-      .excel-ribbon {
-        height: 84px;
-        display: flex;
-        align-items: stretch;
-        padding: 6px 10px 0;
-        background: #fbfbfb;
-        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
-      }
-
-      .ribbon-group {
-        position: relative;
-        display: flex;
-        align-items: flex-start;
-        gap: 7px;
-        min-width: 86px;
-        padding: 4px 12px 16px;
-        border-left: 1px solid rgba(20, 30, 48, 0.1);
-      }
-
-      .ribbon-group:first-child {
-        border-left: 0;
-      }
-
-      .ribbon-group strong {
-        position: absolute;
-        bottom: 2px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        font-size: 10px;
-        font-weight: 400;
-        color: #7b8894;
-      }
-
-      .ribbon-large {
-        width: 56px;
-        min-height: 62px;
-        display: grid;
-        grid-template-rows: 32px auto;
-        justify-items: center;
-        gap: 3px;
-        padding: 3px;
-        border: 1px solid transparent;
-        border-radius: 6px;
-        position: relative;
-        color: #283441;
-        font-size: 11px;
-      }
-
-      .ribbon-large:hover {
-        background: rgba(20, 30, 48, 0.055);
-      }
-
-      .ribbon-large em {
-        font-style: normal;
-      }
-
-      .ribbon-large i {
-        position: absolute;
-        right: 6px;
-        bottom: 8px;
-        width: 5px;
-        height: 5px;
-        border-right: 1.4px solid #606a74;
-        border-bottom: 1.4px solid #606a74;
-        transform: rotate(45deg);
-      }
-
-      .cmd-icon {
-        width: 24px;
-        height: 24px;
-        border-radius: 0;
-        background: transparent;
-        border: 0;
-        position: relative;
-      }
-
-      .office-icon {
-        display: inline-block;
-        color: #424242;
-        fill: currentColor;
-      }
-
-      .ribbon-large .office-icon {
-        color: var(--excel-dark);
-      }
-
-      .stack-icon {
-        width: 15px;
-        height: 15px;
-        color: var(--excel-dark);
-      }
-
-      .ribbon-stack {
-        display: grid;
-        gap: 1px;
-      }
-
-      .ribbon-stack span,
-      .field,
-      .toggle,
-      .merge,
-      .wrap {
-        height: 24px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: #34414f;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .ribbon-stack span {
-        height: 19px;
-      }
-
-      .ribbon-stack span:hover,
-      .field:hover,
-      .toggle:hover,
-      .merge:hover,
-      .wrap:hover,
-      .align:hover {
-        background: rgba(20, 30, 48, 0.055);
-      }
-
-      .ribbon-stack span {
-        justify-content: flex-start;
-        gap: 6px;
-        min-width: 100px;
-        padding: 0 8px;
+        font-size: 13px;
+        color: #1a1a1a;
         white-space: nowrap;
       }
 
-      .ribbon-row,
-      .button-row {
-        display: flex;
-        gap: 4px;
-      }
+      /* Title bar toggle, quick-access, search, tab strip, title-actions,
+         and the whole ribbon system (groups/buttons/stacks/fields/toggles)
+         live in office-ribbon.css, shared with word-editor and
+         presentation-editor. */
 
-      .button-row {
-        margin-top: 5px;
-      }
-
-      .button-row.dense {
-        margin-top: 0;
-      }
-
-      .field {
-        padding: 0 8px;
-        border-color: rgba(20, 30, 48, 0.14);
-        background: #fff;
-      }
-
-      .font-name {
-        width: 96px;
-        justify-content: flex-start;
-        font-size: 11px;
-      }
-
-      .field.small {
-        width: 36px;
-      }
-
-      .field.number-format {
-        width: 82px;
-        justify-content: flex-start;
-      }
-
-      .toggle {
-        width: 25px;
-        height: 24px;
-        font-size: 12px;
-        position: relative;
-      }
-
-      .toggle.active {
-        border-color: rgba(20, 30, 48, 0.18);
-        background: rgba(20, 30, 48, 0.09);
-        color: #424242;
-      }
-
-      .toggle.swatch {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .toggle.swatch::after {
-        content: "";
-        width: 14px;
-        height: 3px;
-        border-radius: 1px;
-        margin-top: -2px;
-      }
-
-      .toggle.fill::after {
-        background: #e0342b;
-      }
-
-      .toggle.color::after {
-        background: #107c41;
-      }
-
-      .align {
-        width: 25px;
-        height: 24px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid transparent;
-        border-radius: 6px;
-        background: transparent;
-        position: relative;
-      }
-
-      .align.right .office-icon {
-        transform: scaleX(-1);
-      }
-
-      .align.active {
-        border-color: rgba(20, 30, 48, 0.18);
-        background: rgba(20, 30, 48, 0.09);
-      }
-
-      .align.active .office-icon {
-        color: #424242;
-      }
-
-      .merge {
-        min-width: 96px;
-        padding: 0 7px;
-      }
-
-      .wrap {
-        min-width: 72px;
-        padding: 0 7px;
-      }
-
-      .wrap.active {
-        border-color: #9ccfb1;
-        background: var(--excel-soft);
-        color: var(--excel-dark);
-      }
+      /* ---------- Formula bar ---------- */
 
       .formula-bar {
-        height: 35px;
+        position: relative;
+        height: 27px;
         display: grid;
-        grid-template-columns: 78px 58px 1fr;
+        grid-template-columns: 84px 46px 1fr;
         align-items: center;
-        gap: 4px;
-        padding: 5px 11px;
-        background: #f7f7f7;
-        border-bottom: 1px solid rgba(20, 30, 48, 0.1);
+        gap: 6px;
+        padding: 0 10px;
+        background: var(--chrome);
+        border-bottom: 1px solid #a0a0a0;
       }
 
-      .name-box,
-      .formula-tools,
-      .formula-input {
-        height: 24px;
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        border: 1px solid rgba(20, 30, 48, 0.14);
-        background: #fff;
-        color: #33404c;
-        font-size: 12px;
+      .formula-bar::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        height: 3px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.07), transparent);
+        pointer-events: none;
       }
 
       .name-box {
-        padding: 0 9px;
-        gap: 4px;
-        font-weight: 650;
+        height: 21px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+        border-radius: 3px;
+        border: 1px solid #b9b9b9;
+        background: #fff;
+        color: #1a1a1a;
+        font-size: 12px;
+        font-weight: 600;
       }
 
-      .nb-caret {
+      .nb-stepper {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 1px;
         width: 8px;
-        height: 8px;
-        color: #8a939c;
+      }
+
+      .nb-stepper i {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+      }
+
+      .nb-stepper i:first-child {
+        border-bottom: 4px solid #6e6e6e;
+      }
+
+      .nb-stepper i:last-child {
+        border-top: 4px solid #6e6e6e;
       }
 
       .formula-tools {
+        height: 21px;
+        display: flex;
+        align-items: center;
         justify-content: center;
         gap: 8px;
-        background: transparent;
-        border: 0;
-        color: #4a5560;
+        color: #6e6e6e;
         font-weight: 600;
+      }
+
+      .formula-tools span {
+        font-size: 12px;
         font-style: italic;
+        color: #6e6e6e;
       }
 
       .fb-x,
       .fb-ok {
         width: 11px;
         height: 11px;
-        color: #b7bec6;
+        color: #8a8a8a;
       }
 
       .formula-input {
-        padding: 0 11px;
-        font-family: var(--font-office-ui);
-      }
-
-      .workbook-body {
-        height: calc(100% - 34px - 30px - 100px - 35px - 28px);
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        background: #e9edf1;
-      }
-
-      .insights-pane {
-        padding: 17px 15px;
-        background: #f8f9fb;
-        border-left: 1px solid rgba(20, 30, 48, 0.1);
-      }
-
-      .pane-title {
-        margin-bottom: 13px;
-        color: #2d3540;
-        font-size: 15px;
-        font-weight: 760;
-      }
-
-      .insights-title {
+        height: 21px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 13px;
-        color: #2d3540;
-        font-size: 13px;
+        padding: 0 8px;
+        border-radius: 3px;
+        border: 1px solid #c9c9c9;
+        background: #fff;
+        color: #1a1a1a;
+        font-size: 12px;
+        font-family: "Aptos Narrow", var(--font-office-document);
+      }
+
+      .fi-expand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #c6c6c6;
+        border-radius: 3px;
+        background: #fff;
+        margin-left: 6px;
+        flex: none;
+      }
+
+      .fi-expand .office-icon {
+        width: 9px;
+        height: 9px;
+        color: #6e6e6e;
+      }
+
+      /* ---------- Grid + insights pane ---------- */
+
+      .workbook-body {
+        height: calc(100% - 212px);
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        background: #fff;
+      }
+
+      .insights-pane {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-left: 1px solid var(--grid);
+      }
+
+      .insights-title {
+        height: 40px;
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid #e5e5e5;
+        color: #242424;
+        font-size: 15px;
         font-weight: 600;
       }
 
       .insights-title .dismiss {
         display: inline-flex;
-        color: #8a939c;
+        color: #6e6e6e;
       }
 
       .insights-title .dismiss .office-icon {
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
       }
 
       .sheet-stage {
         position: relative;
         overflow: hidden;
         padding: 0;
+        background: #fff;
       }
 
       .grid-viewport {
         position: relative;
         display: grid;
-        grid-template-columns: 42px 168px 126px 146px 116px 116px 116px 90px 90px 90px 90px 90px 90px;
-        grid-template-rows: 28px repeat(15, 34px);
+        grid-template-columns: 22px 120px 78px 104px repeat(10, 65px);
+        grid-template-rows: 21px repeat(26, 21px);
         width: 100%;
         height: 100%;
         background: #fff;
@@ -817,49 +600,46 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f7f7f7;
-        border-right: 1px solid rgba(20, 30, 48, 0.12);
-        border-bottom: 1px solid rgba(20, 30, 48, 0.12);
-        color: #60707c;
-        font-size: 12px;
-        font-weight: 650;
-      }
-
-      .row-head {
-        border-right: 1px solid rgba(20, 30, 48, 0.12);
+        background: #fafafa;
+        border-right: 1px solid var(--grid);
+        border-bottom: 1px solid var(--grid);
+        color: #6e6e6e;
+        font-size: 11px;
+        font-weight: 400;
       }
 
       .cell {
         display: flex;
         align-items: center;
         min-width: 0;
-        padding: 0 10px;
+        padding: 0 4px;
         border-right: 1px solid var(--grid);
         border-bottom: 1px solid var(--grid);
-        color: #26313b;
+        color: #1a1a1a;
         font-size: 12px;
         overflow: hidden;
         white-space: nowrap;
+        font-family: "Aptos Narrow", var(--font-office-document);
       }
 
       .title-cell {
-        font-weight: 780;
+        font-weight: 700;
         color: var(--excel-dark);
       }
 
       .muted-cell,
       .metric-head {
         color: #5d6974;
-        font-weight: 700;
+        font-weight: 600;
         background: #f8fbf9;
       }
 
       .label-cell {
-        font-weight: 650;
+        font-weight: 600;
       }
 
       .section-cell {
-        font-weight: 760;
+        font-weight: 700;
         background: #eef8f2;
         color: var(--excel-dark);
       }
@@ -871,11 +651,11 @@
 
       .good {
         color: var(--excel-dark);
-        font-weight: 700;
+        font-weight: 600;
       }
 
       .selected {
-        background: rgba(16, 124, 65, 0.08);
+        background: rgba(58, 113, 74, 0.08);
       }
 
       .active-cell {
@@ -884,11 +664,11 @@
 
       .selection-outline {
         position: absolute;
-        left: 482px;
-        top: 164px;
-        width: 348px;
-        height: 136px;
-        border: 2px solid var(--excel);
+        left: 324px;
+        top: 105px;
+        width: 195px;
+        height: 84px;
+        border: 2px solid var(--excel-marquee);
         pointer-events: none;
       }
 
@@ -899,20 +679,15 @@
         bottom: -4px;
         width: 7px;
         height: 7px;
-        background: var(--excel);
+        background: var(--excel-marquee);
       }
 
       .insight-card {
-        padding: 13px;
-        margin-bottom: 14px;
-        border-radius: 11px;
+        padding: 12px;
+        margin: 14px 16px 0;
+        border-radius: 4px;
         background: #fff;
-        border: 1px solid rgba(20, 30, 48, 0.1);
-        box-shadow: 0 8px 22px rgba(44, 51, 61, 0.06);
-      }
-
-      .insight-card.active {
-        border-color: #9ccfb1;
+        border: 1px solid #e1e1e1;
       }
 
       .insight-card strong {
@@ -924,39 +699,39 @@
 
       .insight-card p {
         margin: 0;
-        color: #4c5661;
+        color: #424242;
         font-size: 12px;
         line-height: 1.42;
       }
 
       .mini-chart {
-        height: 150px;
+        height: 140px;
         display: flex;
         align-items: end;
         gap: 10px;
-        padding: 18px 20px;
-        margin-bottom: 16px;
-        border-radius: 12px;
+        padding: 16px 18px;
+        margin: 14px 16px 0;
+        border-radius: 4px;
         background: #fff;
-        border: 1px solid rgba(20, 30, 48, 0.1);
-        border-bottom: 1px solid rgba(20, 30, 48, 0.12);
+        border: 1px solid #e1e1e1;
       }
 
       .bar {
-        width: 32px;
+        width: 30px;
         border-radius: 0;
         background: var(--excel);
       }
 
-      .bar.b1 { height: 58px; }
-      .bar.b2 { height: 74px; }
-      .bar.b3 { height: 96px; }
-      .bar.b4 { height: 112px; }
+      .bar.b1 { height: 54px; }
+      .bar.b2 { height: 68px; }
+      .bar.b3 { height: 88px; }
+      .bar.b4 { height: 104px; }
 
       .insight-list {
         display: grid;
         gap: 10px;
-        color: #4c5661;
+        padding: 14px 16px 16px;
+        color: #424242;
         font-size: 12px;
       }
 
@@ -976,30 +751,32 @@
       .dot.warn { background: var(--amber); }
       .dot.blue { background: var(--blue); }
 
-      .excel-statusbar {
-        height: 28px;
+      /* ---------- Footer: sheet tabs + status bar ---------- */
+
+      .sheet-tab-strip {
+        height: 25px;
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 0 11px;
-        background: #f7f7f7;
-        border-top: 1px solid rgba(20, 30, 48, 0.1);
-        color: #5e6974;
-        font-size: 11px;
+        gap: 6px;
+        padding: 0 8px;
+        background: #e8e8e8;
+        border-top: 1px solid #cfcfcf;
+        color: #444;
+        font-size: 12px;
       }
 
       .sheet-nav {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-right: 8px;
-        color: #8a939c;
+        gap: 6px;
+        margin-right: 2px;
+        color: #7a7a7a;
       }
 
       .sheet-nav .office-icon {
-        width: 8px;
-        height: 8px;
-        color: #8a939c;
+        width: 10px;
+        height: 10px;
+        color: #7a7a7a;
       }
 
       .sheet-tabs {
@@ -1010,32 +787,90 @@
 
       .sheet-tabs span,
       .sheet-tabs button {
-        height: 22px;
+        height: 20px;
         display: inline-flex;
         align-items: center;
         padding: 0 10px;
-        border: 1px solid transparent;
-        border-radius: 5px;
+        border: 0;
+        border-radius: 4px 4px 0 0;
         background: transparent;
-        color: #57626c;
-        font-size: 11px;
+        color: #444;
+        font-size: 12px;
         font-family: inherit;
       }
 
-      .sheet-tabs span:hover {
-        background: rgba(20, 30, 48, 0.05);
+      .sheet-tabs span:hover:not(.active) {
+        background: rgba(0, 0, 0, 0.05);
       }
 
       .sheet-tabs span.active {
-        border-color: rgba(20, 30, 48, 0.12);
         background: #fff;
-        color: var(--excel-dark);
+        color: var(--excel);
         font-weight: 700;
-        box-shadow: 0 1px 2px rgba(24, 24, 24, 0.06);
+      }
+
+      .sheet-tabs button {
+        font-size: 14px;
+        padding: 0 8px;
+        color: #444;
+      }
+
+      .excel-statusbar {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 12px;
+        background: var(--chrome);
+        border-top: 1px solid #c1c1c1;
+        color: #6e6e6e;
+        font-size: 12px;
+      }
+
+      .status-ready {
+        color: #9c9c9c;
+      }
+
+      .status-a11y {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #6e6e6e;
+      }
+
+      .status-a11y .office-icon {
+        width: 13px;
+        height: 13px;
+        color: #6e6e6e;
       }
 
       .status-spacer {
         flex: 1;
+      }
+
+      .view-modes {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-right: 10px;
+      }
+
+      .view-mode {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        color: #9aa4ad;
+      }
+
+      .view-mode .office-icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .view-mode.active {
+        color: #4a545e;
       }
 
       .zoom-btn {
@@ -1044,7 +879,7 @@
         justify-content: center;
         width: 11px;
         height: 11px;
-        color: #8a939c;
+        color: #6e6e6e;
       }
 
       .zoom-btn .office-icon {
@@ -1054,7 +889,7 @@
 
       .zoom-line {
         position: relative;
-        width: 70px;
+        width: 96px;
         height: 4px;
         border-radius: 999px;
         background: #c9d0d8;
@@ -1063,15 +898,16 @@
       .zoom-line::after {
         content: "";
         position: absolute;
-        left: 62%;
+        left: 35%;
         top: 50%;
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         background: #fff;
-        border: 1px solid rgba(20, 30, 48, 0.25);
+        border: 1px solid #b0b0b0;
         transform: translate(-50%, -50%);
       }
+
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>

@@ -16,7 +16,7 @@
 </style>
 
 <template id="codex-app-surface-template">
-  <div id="codex-app-surface" data-composition-id="codex-app-surface" data-width="1280" data-height="820">
+  <div id="codex-app-surface" data-composition-id="codex-app-surface" data-width="1280" data-height="820" data-pane="default">
     <svg class="icon-sprite" aria-hidden="true">
       <symbol id="codex-icon-sidebar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"></rect><path d="M10 5v14"></path></symbol>
       <symbol id="codex-icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"></path></symbol>
@@ -51,6 +51,96 @@
       <symbol id="codex-icon-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></symbol>
       <symbol id="codex-icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></symbol>
       <symbol id="codex-icon-folder-git" viewBox="0 0 24 24"><path d="M18 19a5 5 0 0 1-5-5v8"></path><path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"></path><circle cx="13" cy="12" r="2"></circle><circle cx="20" cy="19" r="2"></circle></symbol>
+      <!-- lucide:git-pull-request via @iconify/json -->
+      <symbol id="lucide-git-pull-request" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7M6 9v12"></path></g></symbol>
+      <!-- lucide:layout-dashboard via @iconify/json -->
+      <symbol id="lucide-layout-dashboard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></g></symbol>
+      <!-- f7:at-circle via @iconify/json -->
+      <symbol id="f7-at-circle" viewBox="0 0 56 56"><path fill="currentColor" d="M28 4c13.255 0 24 10.745 24 24S41.255 52 28 52S4 41.255 4 28S14.745 4 28 4m0 4C16.954 8 8 16.954 8 28s8.954 20 20 20s20-8.954 20-20S39.046 8 28 8m.39 7.143c7.444 0 12.772 4.707 12.772 11.737c0 5.073-2.29 8.397-6.076 8.397c-1.86 0-3.403-1.033-3.657-2.608h-.16c-.667 1.606-2.099 2.497-3.96 2.497c-3.308 0-5.534-2.704-5.534-6.743c0-3.865 2.242-6.537 5.47-6.537c1.703 0 3.213.875 3.818 2.243h.175v-1.925h2.688v9.034c0 1.05.556 1.765 1.701 1.765c1.766 0 3.054-2.195 3.054-6.043c0-5.79-4.247-9.622-10.465-9.622c-6.17 0-10.592 4.612-10.592 11.164c0 7.014 4.676 10.958 11.133 10.958c1.972 0 3.992-.27 4.978-.684v2.195c-1.352.445-3.15.7-5.09.7c-7.856 0-13.502-4.835-13.502-13.264c0-7.92 5.439-13.264 13.248-13.264m-.556 9.176c-1.956 0-3.133 1.56-3.133 4.183c0 2.593 1.177 4.183 3.117 4.183c2.004 0 3.292-1.622 3.292-4.183s-1.272-4.183-3.276-4.183"></path></symbol>
+      <!-- lucide:shield-alert via @iconify/json -->
+      <symbol id="lucide-shield-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zm-8-5v4m0 4h.01"></path></symbol>
+      <!-- lucide:download via @iconify/json -->
+      <symbol id="lucide-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16"></path></symbol>
+      <!-- lucide:list via @iconify/json -->
+      <symbol id="lucide-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h.01M3 12h.01M3 19h.01M8 5h13M8 12h13M8 19h13"></path></symbol>
+      <!-- lucide:copy via @iconify/json -->
+      <symbol id="lucide-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></g></symbol>
+      <!-- lucide:pencil via @iconify/json -->
+      <symbol id="lucide-pencil" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4"></path></symbol>
+      <!-- lucide:thumbs-up via @iconify/json -->
+      <symbol id="lucide-thumbs-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5.88L14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88M7 10v12"></path></symbol>
+      <!-- lucide:thumbs-down via @iconify/json -->
+      <symbol id="lucide-thumbs-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18.12L10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88M17 14V2"></path></symbol>
+      <!-- lucide:share-2 via @iconify/json -->
+      <symbol id="lucide-share-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.59 13.51l6.83 3.98m-.01-10.98l-6.82 3.98"></path></g></symbol>
+      <!-- lucide:circle-alert via @iconify/json -->
+      <symbol id="lucide-circle-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4m0 4h.01"></path></g></symbol>
+      <!-- lucide:git-branch via @iconify/json -->
+      <symbol id="lucide-git-branch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15 6a9 9 0 0 0-9 9V3"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle></g></symbol>
+      <!-- lucide:arrow-up-right via @iconify/json -->
+      <symbol id="lucide-arrow-up-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10v10M7 17L17 7"></path></symbol>
+      <!-- lucide:minimize-2 via @iconify/json -->
+      <symbol id="lucide-minimize-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14 10l7-7m-1 7h-6V4M3 21l7-7m-6 0h6v6"></path></symbol>
+      <!-- lucide:maximize-2 via @iconify/json -->
+      <symbol id="lucide-maximize-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m0-6l-7 7M3 21l7-7m-1 7H3v-6"></path></symbol>
+      <!-- lucide:square-minus via @iconify/json -->
+      <symbol id="lucide-square-minus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 12h8"></path></g></symbol>
+      <!-- lucide:panel-right via @iconify/json -->
+      <symbol id="lucide-panel-right" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></g></symbol>
+      <!-- lucide:file via @iconify/json -->
+      <symbol id="lucide-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path></g></symbol>
+      <!-- lucide:x via @iconify/json -->
+      <symbol id="lucide-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"></path></symbol>
+      <!-- lucide:image via @iconify/json -->
+      <symbol id="lucide-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></g></symbol>
+      <!-- lucide:link via @iconify/json -->
+      <symbol id="lucide-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></g></symbol>
+      <!-- lucide:asterisk via @iconify/json -->
+      <symbol id="lucide-asterisk" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m5.196-9L6.804 15m0-6l10.392 6"></path></symbol>
+      <!-- lucide:chevron-right via @iconify/json -->
+      <symbol id="lucide-chevron-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18l6-6l-6-6"></path></symbol>
+      <!-- lucide:plus via @iconify/json -->
+      <symbol id="lucide-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5v14"></path></symbol>
+      <!-- simple-icons:openai via @iconify/json (real Codex/OpenAI mark, never hand-drawn) -->
+      <symbol id="si-openai" viewBox="0 0 24 24"><path fill="currentColor" d="M22.282 9.821a6 6 0 0 0-.516-4.91a6.05 6.05 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a6 6 0 0 0-3.998 2.9a6.05 6.05 0 0 0 .743 7.097a5.98 5.98 0 0 0 .51 4.911a6.05 6.05 0 0 0 6.515 2.9A6 6 0 0 0 13.26 24a6.06 6.06 0 0 0 5.772-4.206a6 6 0 0 0 3.997-2.9a6.06 6.06 0 0 0-.747-7.073M13.26 22.43a4.48 4.48 0 0 1-2.876-1.04l.141-.081l4.779-2.758a.8.8 0 0 0 .392-.681v-6.737l2.02 1.168a.07.07 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494M3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085l4.783 2.759a.77.77 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646M2.34 7.896a4.5 4.5 0 0 1 2.366-1.973V11.6a.77.77 0 0 0 .388.677l5.815 3.354l-2.02 1.168a.08.08 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.08.08 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667m2.01-3.023l-.141-.085l-4.774-2.782a.78.78 0 0 0-.785 0L9.409 9.23V6.897a.07.07 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.8.8 0 0 0-.393.681zm1.097-2.365l2.602-1.5l2.607 1.5v2.999l-2.597 1.5l-2.607-1.5Z"></path></symbol>
+      <!-- simple-icons:github via @iconify/json -->
+      <symbol id="si-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></symbol>
+      <!-- lucide:laptop via @iconify/json -->
+      <symbol id="lucide-laptop" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2zm2.054 10.987H3.946"></path></symbol>
+      <!-- lucide:file-diff via @iconify/json -->
+      <symbol id="lucide-file-diff" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2zm3-12h6m-3 3V7M9 17h6"></path></symbol>
+      <!-- lucide:git-commit-horizontal via @iconify/json -->
+      <symbol id="lucide-git-commit-horizontal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M3 12h6m6 0h6"></path></g></symbol>
+      <!-- lucide:flower-2 via @iconify/json -->
+      <symbol id="lucide-flower-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"></path><circle cx="12" cy="8" r="2"></circle><path d="M12 10v12m0 0c4.2 0 7-1.667 7-5c-4.2 0-7 1.667-7 5m0 0c-4.2 0-7-1.667-7-5c4.2 0 7 1.667 7 5"></path></g></symbol>
+      <!-- lucide:loader-pinwheel via @iconify/json -->
+      <symbol id="lucide-loader-pinwheel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M22 12a1 1 0 0 1-10 0a1 1 0 0 0-10 0"></path><path d="M7 20.7a1 1 0 1 1 5-8.7a1 1 0 1 0 5-8.6"></path><path d="M7 3.3a1 1 0 1 1 5 8.6a1 1 0 1 0 5 8.6"></path><circle cx="12" cy="12" r="10"></circle></g></symbol>
+      <!-- lucide:panel-left via @iconify/json (real sidebar-toggle glyph, replaces hand-drawn version) -->
+      <symbol id="lucide-panel-left" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></g></symbol>
+      <!-- lucide:arrow-left via @iconify/json -->
+      <symbol id="lucide-arrow-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 19-7-7 7-7m7 7H5"></path></symbol>
+      <!-- lucide:arrow-right via @iconify/json -->
+      <symbol id="lucide-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7 7 7-7 7"></path></symbol>
+      <!-- lucide:search via @iconify/json -->
+      <symbol id="lucide-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></g></symbol>
+      <!-- lucide:square-pen via @iconify/json (real "New chat" glyph) -->
+      <symbol id="lucide-square-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></g></symbol>
+      <!-- lucide:clock via @iconify/json -->
+      <symbol id="lucide-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></g></symbol>
+      <!-- lucide:folder via @iconify/json -->
+      <symbol id="lucide-folder" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></symbol>
+      <!-- lucide:folder-open via @iconify/json (real "Open" badge glyph, replaces mis-cast OpenAI mark) -->
+      <symbol id="lucide-folder-open" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path></symbol>
+      <!-- lucide:mic via @iconify/json -->
+      <symbol id="lucide-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 19v3m7-12v2a7 7 0 0 1-14 0v-2"></path><rect width="6" height="13" x="9" y="2" rx="3"></rect></g></symbol>
+      <!-- lucide:arrow-up via @iconify/json -->
+      <symbol id="lucide-arrow-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12 7-7 7 7m-7 7V5"></path></symbol>
+      <!-- lucide:undo-2 via @iconify/json (real "Undo" glyph) -->
+      <symbol id="lucide-undo-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"></path></g></symbol>
+      <!-- lucide:diff via @iconify/json (real "Edited files" summary glyph) -->
+      <symbol id="lucide-diff" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v14m-7-7h14M5 21h14"></path></symbol>
+      <!-- lucide:ellipsis via @iconify/json (real thread-menu "..." glyph) -->
+      <symbol id="lucide-ellipsis" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></g></symbol>
     </svg>
     <section class="codex-app-window" data-primitive="codex-app-window" aria-label="Editable Codex desktop app surface">
       <aside class="codex-sidebar" data-primitive="codex-sidebar">
@@ -60,166 +150,201 @@
             <span class="yellow"></span>
             <span class="green"></span>
           </div>
-          <button class="sidebar-icon ghost icon-button" type="button" aria-label="Toggle sidebar"><svg><use href="#codex-icon-sidebar"></use></svg></button>
-          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#codex-icon-arrow-left"></use></svg></button>
-          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#codex-icon-arrow-right"></use></svg></button>
+          <button class="sidebar-icon ghost icon-button" type="button" aria-label="Toggle sidebar"><svg><use href="#lucide-panel-left"></use></svg></button>
+          <button class="nav-arrow left icon-button" type="button" aria-label="Back"><svg><use href="#lucide-arrow-left"></use></svg></button>
+          <button class="nav-arrow right disabled icon-button" type="button" aria-label="Forward"><svg><use href="#lucide-arrow-right"></use></svg></button>
+        </div>
+
+        <div class="workspace-row">
+          <span class="workspace-title">Codex<span class="chev workspace-chev"></span></span>
+          <button class="workspace-search icon-button" type="button" aria-label="Search"><svg><use href="#lucide-search"></use></svg></button>
         </div>
 
         <nav class="primary-nav" aria-label="Codex navigation">
-          <button type="button"><svg class="glyph"><use href="#codex-icon-edit-square"></use></svg>New chat</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-search"></use></svg>Search</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-grid"></use></svg>Plugins</button>
-          <button type="button"><svg class="glyph"><use href="#codex-icon-clock"></use></svg>Automations</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-square-pen"></use></svg>New chat</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-git-pull-request"></use></svg>Pull requests</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-layout-dashboard"></use></svg>Sites</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-clock"></use></svg>Scheduled</button>
+          <button type="button"><svg class="glyph"><use href="#f7-at-circle"></use></svg>Plugins</button>
         </nav>
 
-        <section class="sidebar-group">
-          <div class="sidebar-label">Pinned</div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Review and triage issues</strong>
-            <time>1w</time>
-          </div>
-          <div class="sidebar-row selected">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Redesign app modern UI</strong>
-            <time>1w</time>
-          </div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Create flow diagram</strong>
-            <time>2w</time>
-          </div>
-          <div class="sidebar-row">
-            <svg class="pin"><use href="#codex-icon-pin"></use></svg>
-            <strong>Add icons</strong>
-            <time>1mo</time>
-          </div>
-        </section>
-
         <section class="sidebar-group projects">
-          <div class="sidebar-label with-actions">
+          <div class="sidebar-label">
             <span>Projects</span>
-            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
-            <svg class="mini-action plus-small"><use href="#codex-icon-plus"></use></svg>
           </div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>burger-restaurant</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>fitness-tracker</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codex-voxel</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>codespottr</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>voxel-snake</div>
-          <div class="project-item"><svg class="project-icon"><use href="#codex-icon-folder-git"></use></svg>jump-and-run</div>
+          <div class="project-item selected"><svg class="project-icon"><use href="#lucide-folder"></use></svg>burger-restaurant</div>
+          <div class="sidebar-row child selected">Draft launch checklist</div>
+          <div class="project-item"><svg class="project-icon"><use href="#lucide-folder"></use></svg>fitness-tracker</div>
+          <div class="project-item"><svg class="project-icon"><use href="#lucide-folder"></use></svg>codex-voxel</div>
+          <div class="project-item"><svg class="project-icon"><use href="#lucide-folder"></use></svg>codespottr</div>
+          <div class="project-item"><svg class="project-icon"><use href="#lucide-folder"></use></svg>voxel-snake</div>
+          <div class="project-item"><svg class="project-icon"><use href="#lucide-folder"></use></svg>jump-and-run</div>
+          <button class="sidebar-show-less" type="button">Show less</button>
         </section>
 
         <section class="sidebar-group chats">
-          <div class="sidebar-label with-actions">
-            <span>Chats</span>
-            <svg class="mini-action"><use href="#codex-icon-list-filter"></use></svg>
-            <svg class="mini-action compose-small"><use href="#codex-icon-edit-square"></use></svg>
-          </div>
-          <div class="empty-chat">No chats</div>
+          <button class="chats-collapsed" type="button">Chats <svg><use href="#lucide-chevron-right"></use></svg></button>
         </section>
 
-        <button class="settings-row" type="button"><svg class="gear"><use href="#codex-icon-settings"></use></svg>Settings</button>
+        <div class="user-row">
+          <span class="user-avatar">co</span>
+          <span class="user-name">Conor O</span>
+          <button class="user-download icon-button" type="button" aria-label="Sync status"><svg><use href="#lucide-download"></use></svg></button>
+        </div>
       </aside>
 
       <div class="codex-workspace">
         <header class="topbar" data-primitive="codex-thread-topbar">
           <div class="title-wrap">
+            <svg class="folder-glyph"><use href="#lucide-folder"></use></svg>
             <h1>Redesign app modern UI</h1>
-            <span>burger-restaurant</span>
           </div>
           <button class="more-button icon-button" type="button" aria-label="Thread menu"><svg><use href="#codex-icon-more"></use></svg></button>
           <div class="topbar-spacer"></div>
-          <button class="toolbar-button gear-button icon-button" type="button" aria-label="Settings"><svg><use href="#codex-icon-settings"></use></svg></button>
-          <button class="vscode-pill" type="button" aria-label="Open in VS Code"><span class="vscode-mark"><svg><use href="#codex-icon-vscode"></use></svg></span><span class="chev"></span></button>
-          <button class="commit-pill" type="button"><svg class="commit-node-icon"><use href="#codex-icon-commit-node"></use></svg>Commit<span class="chev"></span></button>
-          <span class="toolbar-divider"></span>
-          <button class="terminal-button icon-button" type="button" aria-label="Terminal"><svg><use href="#codex-icon-terminal"></use></svg></button>
-          <div class="diff-counter"><span class="plus-count">+938</span><span class="minus-count">-664</span></div>
-          <button class="layout-toggle icon-button" type="button" aria-label="Toggle review"><svg><use href="#codex-icon-layout"></use></svg></button>
+          <button class="vscode-pill" type="button" aria-label="Environment"><span class="vscode-mark"><svg><use href="#lucide-folder-open"></use></svg></span><span class="chev"></span></button>
+          <button class="layout-toggle icon-button" type="button" aria-label="Toggle steps"><svg><use href="#lucide-list"></use></svg></button>
         </header>
 
         <main class="thread-pane" data-primitive="codex-active-thread">
+          <aside class="env-panel" data-primitive="codex-environment-panel">
+            <div class="env-row env-header"><strong>Environment</strong><button class="env-plus icon-button" type="button" aria-label="Add"><svg><use href="#lucide-plus"></use></svg></button></div>
+            <div class="env-row"><svg class="env-icon"><use href="#lucide-file-diff"></use></svg><span>Changes</span><span class="env-fill"></span><em class="plus-count">+0</em> <em class="minus-count">-0</em></div>
+            <div class="env-row"><svg class="env-icon"><use href="#lucide-laptop"></use></svg><span>Local</span><span class="env-fill"></span><span class="chev"></span></div>
+            <div class="env-row"><svg class="env-icon"><use href="#lucide-git-branch"></use></svg><span>main</span><span class="env-fill"></span><span class="chev"></span></div>
+            <div class="env-hairline"></div>
+            <div class="env-row env-disabled"><svg class="env-icon"><use href="#lucide-git-commit-horizontal"></use></svg><span>Commit or push</span></div>
+            <div class="env-row"><svg class="env-icon"><use href="#si-github"></use></svg><span>Compare branch</span><span class="env-fill"></span><svg class="env-arrow"><use href="#lucide-arrow-up-right"></use></svg></div>
+            <div class="env-hairline"></div>
+            <div class="env-row env-label-row"><span class="env-section-label">Subagents</span></div>
+            <div class="env-row env-subagents">
+              <svg class="env-asterisk blue"><use href="#lucide-loader-pinwheel"></use></svg>
+              <svg class="env-asterisk teal"><use href="#lucide-loader-pinwheel"></use></svg>
+              <svg class="env-asterisk green"><use href="#lucide-flower-2"></use></svg>
+              <svg class="env-asterisk pink"><use href="#lucide-flower-2"></use></svg>
+              <span class="env-fill"></span>
+              <span class="env-done">10 done</span>
+            </div>
+            <div class="env-hairline"></div>
+            <div class="env-row env-header"><span class="env-section-label">Sources</span><button class="env-plus icon-button" type="button" aria-label="Add"><svg><use href="#lucide-plus"></use></svg></button></div>
+            <div class="env-row"><svg class="env-icon"><use href="#lucide-image"></use></svg><span>capture-2026-07-20.png</span></div>
+            <div class="env-row"><svg class="env-icon"><use href="#lucide-image"></use></svg><span>prism_qa_loop.svg</span></div>
+            <div class="env-row env-viewall"><svg class="env-icon"><use href="#lucide-link"></use></svg><span>View all</span></div>
+          </aside>
+
           <div class="prompt-bubble">Redesign the app to be more modern</div>
+          <div class="bubble-meta">
+            <span class="bubble-time">8:39 AM</span>
+            <svg><use href="#lucide-copy"></use></svg>
+            <svg><use href="#lucide-pencil"></use></svg>
+          </div>
           <button class="previous-link" type="button">33 previous messages <span></span></button>
 
+          <button class="worked-row" type="button">Worked for 1m 14s <svg><use href="#lucide-chevron-right"></use></svg></button>
+          <div class="thread-hairline"></div>
+
           <article class="assistant-response">
-            <p>Redesigned the site around a more image-led, editorial direction. The new layout gives Chuck's a stronger first impression with a photo-driven hero, sharper typography, cleaner menu grouping, better section rhythm, and a more polished final visit CTA in <a>index.html (line 38)</a>. The new visual system, responsive behavior, and motion styling live in <a>src/style.css (line 1)</a>, and the reveal behavior is now handled with an <code>IntersectionObserver</code> plus a subtle hero tilt interaction in <a>src/main.js (line 1)</a>.</p>
-            <p><code>npm run build</code> passes, and I spot-checked the live page with Playwright after the update. There's also an existing untracked <code>public/</code> directory in the repo that I left untouched.</p>
+            <p>Refreshed the README to lead with the more modern, image-led direction — sharper framing up top, a cleaner feature rundown, and an updated menu-grouping note — in <a>README.md (line 1)</a>. I also simplified <a>docs/assets/ripple-timeline-sheet-anatomy.svg (line 1)</a>, trimming the unused legacy markers so the diagram matches the current timeline-sheet layout.</p>
+            <p>Doc-only change, so there's nothing to rebuild — I diffed the rendered README against the previous version and confirmed the SVG still opens cleanly. There's also an existing untracked <code>public/</code> directory in the repo that I left untouched.</p>
           </article>
 
           <section class="change-card" data-primitive="codex-change-summary">
             <header>
-              <span class="change-title">4 files changed <span class="plus-count">+1506</span> <span class="minus-count">-16</span></span>
-              <button type="button">Undo <svg class="undo-icon"><use href="#codex-icon-undo"></use></svg></button>
+              <span class="change-icon"><svg><use href="#lucide-diff"></use></svg></span>
+              <span class="change-title-stack">
+                <span class="change-title">Edited 2 files</span>
+                <span class="change-counts"><em class="plus-count">+7</em> <em class="minus-count">-38</em></span>
+              </span>
+              <span class="change-actions">
+                <button type="button" class="change-undo">Undo <svg class="undo-icon"><use href="#lucide-undo-2"></use></svg></button>
+                <button type="button" class="change-review">Review</button>
+              </span>
             </header>
-            <div class="change-row"><span>index.html</span><em class="plus-count">+324</em><em>-0</em><i></i><b></b></div>
-            <div class="change-row"><span>src/main.js</span><em class="plus-count">+51</em><em>-0</em><i></i><b></b></div>
-            <div class="change-row"><span>src/style.css</span><em class="plus-count">+1,108</em><em>-0</em><i></i><b></b></div>
-            <div class="change-row"><span>src/style.css</span><em class="plus-count">+23</em><em class="minus-count">-16</em><i></i><b></b></div>
+            <div class="change-row"><span><em class="path">README.md</em></span><em class="plus-count">+7</em><em class="minus-count">-5</em></div>
+            <div class="change-row"><span><em class="path">docs/assets/</em>ripple-timeline-sheet-anatomy.svg</span><em class="minus-count">-33</em></div>
           </section>
+
+          <div class="feedback-row">
+            <svg><use href="#lucide-copy"></use></svg>
+            <svg><use href="#lucide-thumbs-up"></use></svg>
+            <svg><use href="#lucide-thumbs-down"></use></svg>
+            <svg><use href="#lucide-share-2"></use></svg>
+          </div>
 
           <footer class="composer" data-primitive="codex-composer">
-            <div class="composer-input">Ask for follow-up changes</div>
+            <div class="composer-input">Do anything</div>
             <div class="composer-bottom">
-              <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#codex-icon-plus"></use></svg></button>
-              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#codex-icon-hand"></use></svg>Default permissions <span class="chev"></span></button>
+              <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#lucide-plus"></use></svg></button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#lucide-circle-alert"></use></svg>Full access</button>
               <span class="composer-fill"></span>
-              <button class="model-select" type="button"><svg class="spark"><use href="#codex-icon-spark"></use></svg>GPT-5.4 <span class="chev"></span></button>
-              <button class="effort-select" type="button">Extra High <span class="chev"></span></button>
-              <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#codex-icon-mic"></use></svg></button>
-              <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#codex-icon-arrow-up"></use></svg></button>
+              <button class="model-select" type="button"><span class="model-spinner"></span>5.6 Sol <span class="model-tier">Ultra</span> <span class="chev"></span></button>
+              <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#lucide-mic"></use></svg></button>
+              <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#lucide-arrow-up"></use></svg></button>
             </div>
           </footer>
-
-          <div class="thread-footer-meta">
-            <button type="button"><svg class="work-icon"><use href="#codex-icon-monitor"></use></svg>Work locally <span class="chev"></span></button>
-            <button type="button"><svg class="branch-mini"><use href="#codex-icon-branch"></use></svg>main <span class="chev"></span></button>
-          </div>
         </main>
 
-        <aside class="review-pane" data-primitive="codex-review-pane">
-          <header class="review-top">
-            <div class="review-title">
-              <svg class="review-glyph"><use href="#codex-icon-review"></use></svg>
-              <svg class="doc-glyph"><use href="#codex-icon-file-plus"></use></svg>
-              <strong>Review</strong>
-              <button type="button" class="add-review icon-button"><svg><use href="#codex-icon-plus"></use></svg></button>
-            </div>
-            <button class="expand-button icon-button" type="button" aria-label="Expand"><svg><use href="#codex-icon-expand"></use></svg></button>
-          </header>
-
-          <div class="review-scope">
-            <button type="button">Unstaged <span>4</span><i></i></button>
-            <button class="review-menu icon-button" type="button" aria-label="Review menu"><svg><use href="#codex-icon-more"></use></svg></button>
-            <button class="review-color icon-button" type="button" aria-label="Diff display"><svg><use href="#codex-icon-diff-color"></use></svg></button>
+        <aside class="viewer-pane" data-primitive="codex-viewer-pane">
+          <div class="viewer-tabs">
+            <div class="viewer-tab"><svg class="tab-doc"><use href="#lucide-file"></use></svg><span>OVERVIEW.next.md</span></div>
+            <div class="viewer-tab active"><svg class="tab-doc"><use href="#lucide-file"></use></svg><em>README.md</em><svg class="tab-close"><use href="#lucide-x"></use></svg></div>
+            <button class="tab-add icon-button" type="button" aria-label="New tab"><svg><use href="#lucide-plus"></use></svg></button>
+            <span class="viewer-tabs-fill"></span>
+            <button class="tab-icon icon-button" type="button" aria-label="Expand"><svg><use href="#lucide-maximize-2"></use></svg></button>
+            <button class="tab-icon icon-button" type="button" aria-label="Minimize"><svg><use href="#lucide-square-minus"></use></svg></button>
+            <button class="tab-icon icon-button active" type="button" aria-label="Toggle side panel"><svg><use href="#lucide-panel-right"></use></svg></button>
           </div>
 
-          <section class="diff-file">
-            <header>
-              <strong>index.html</strong>
-              <span class="plus-count">+230</span>
-              <span class="minus-count">-150</span>
-              <button class="icon-button" type="button"><svg><use href="#codex-icon-chevron-up"></use></svg></button>
-            </header>
-            <div class="fold-row"><span></span>2 unmodified lines</div>
-            <div class="code-row context"><em>3</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span></code></div>
-            <div class="code-row remove"><em>6</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span>Chuck's Burgers | San Francisco Smash Counter<span class="tk-punc">&lt;/</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span></code></div>
-            <div class="code-row add"><em>6</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span>Chuck's Burgers | Late-Night Smash Counter in San Francisco<span class="tk-punc">&lt;/</span><span class="tk-tag">title</span><span class="tk-punc">&gt;</span></code></div>
-            <div class="code-row context"><em>8</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">meta</span></code></div>
-            <div class="code-row remove"><em>9</em><code><span class="tk-attr">content</span><span class="tk-punc">=</span><span class="tk-str">"Chuck's Burgers is a San Francisco smash counter"</span></code></div>
-            <div class="code-row add"><em>9</em><code><span class="tk-attr">content</span><span class="tk-punc">=</span><span class="tk-str">"Chuck's Burgers is a modern San Francisco smash counter"</span></code></div>
-            <div class="code-row context"><em>11</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">link</span> <span class="tk-attr">rel</span><span class="tk-punc">=</span><span class="tk-str">"preconnect"</span> <span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"https://fonts.googleapis.com"</span> <span class="tk-punc">/&gt;</span></code></div>
-            <div class="code-row add"><em>13</em><code><span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"https://fonts.googleapis.com/css2?family=Bebas+Neue"</span></code></div>
-            <div class="code-row context"><em>16</em><code><span class="tk-punc">&lt;/</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span></code></div>
-            <div class="fold-row"><span></span>3 unmodified lines</div>
-            <div class="code-row add"><em>23</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">span</span><span class="tk-punc">&gt;</span>Chuck's <span class="tk-punc">&lt;</span><span class="tk-tag">strong</span><span class="tk-punc">&gt;</span>Burgers<span class="tk-punc">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punc">&gt;</span><span class="tk-punc">&lt;/</span><span class="tk-tag">span</span><span class="tk-punc">&gt;</span></code></div>
-            <div class="code-row add"><em>31</em><code><span class="tk-punc">&lt;</span><span class="tk-tag">a</span> <span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">"#story"</span><span class="tk-punc">&gt;</span>About<span class="tk-punc">&lt;/</span><span class="tk-tag">a</span><span class="tk-punc">&gt;</span></code></div>
-          </section>
+          <div class="viewer-crumbs">
+            <div class="crumb-path"><span>prism</span><svg class="crumb-chev"><use href="#lucide-chevron-right"></use></svg><span class="crumb-file">README.md</span></div>
+            <div class="crumb-actions">
+              <span class="view-source">View source</span>
+              <svg class="crumb-copy"><use href="#lucide-copy"></use></svg>
+              <button class="crumb-open" type="button"><span class="crumb-open-mark"><svg><use href="#lucide-folder-open"></use></svg></span>Open<span class="chev"></span></button>
+            </div>
+          </div>
 
-          <div class="review-actions">
-            <button type="button"><svg class="undo-icon"><use href="#codex-icon-undo"></use></svg>Revert all</button>
-            <button type="button"><svg class="plus-mini"><use href="#codex-icon-plus"></use></svg>Stage all</button>
+          <div class="viewer-hairline"></div>
+
+          <div class="viewer-code">
+            <div class="v-line"><em>1</em><code><span class="tk-h"># Prism</span></code></div>
+            <div class="v-line"><em>2</em><code></code></div>
+            <div class="v-line"><em>3</em><code><span class="tk-b">**Turn footage into a finished cut, automatically.**</span></code></div>
+            <div class="v-line"><em>4</em><code></code></div>
+            <div class="v-line"><em>5</em><code>Prism is an open-source editing toolkit for coding agents. It plans,</code></div>
+            <div class="v-line"><em>6</em><code>trims, grades, and exports video from a brief, a transcript, or both.</code></div>
+            <div class="v-line"><em>7</em><code></code></div>
+            <div class="v-line"><em>8</em><code>Agents cannot watch a timeline directly. Prism turns raw footage into</code></div>
+            <div class="v-line"><em>9</em><code>evidence they can reason over: shot boundaries, word-aligned captions,</code></div>
+            <div class="v-line"><em>10</em><code>loudness curves, and an explicit edit decision list.</code></div>
+            <div class="v-line"><em>11</em><code></code></div>
+            <div class="v-line"><em>12</em><code><span class="tk-quote">&gt; <span class="tk-b">Start here:</span> <span class="tk-link">[Install Prism](#install)</span>, then tell your agent: <span class="tk-code">`Cut</span></span></code></div>
+            <div class="v-line"><em>13</em><code><span class="tk-quote">&gt; a 45-second trailer from these clips and keep every punch-in.`</span></code></div>
+            <div class="v-line"><em>14</em><code></code></div>
+            <div class="v-line"><em>15</em><code><span class="tk-h">## Why Prism?</span></code></div>
+            <div class="v-line"><em>16</em><code></code></div>
+            <div class="v-line"><em>17</em><code>A terminal gives an agent access to ffmpeg, but not editorial judgment.</code></div>
+            <div class="v-line"><em>18</em><code>It still needs to know whether a take was clean, a cut landed on the</code></div>
+            <div class="v-line add"><em>19</em><code>beat, or an export kept its color and loudness. Prism puts shots,</code></div>
+            <div class="v-line add"><em>20</em><code>audio, and cut points on one shared timeline, then records the edit as</code></div>
+            <div class="v-line add"><em>21</em><code>inspectable project state.</code></div>
+            <div class="v-line"><em>22</em><code></code></div>
+            <div class="v-line"><em>23</em><code><span class="tk-h">## What's included</span></code></div>
+            <div class="v-line"><em>24</em><code></code></div>
+            <div class="v-line"><em>25</em><code>| Layer | Included | Role |</code></div>
+            <div class="v-line"><em>26</em><code>|---|---|---|</code></div>
+            <div class="v-line"><em>27</em><code>| <span class="tk-b">Tools</span> | The <span class="tk-code">`prism`</span> CLI | Trim, grade, and render clips |</code></div>
+            <div class="v-line"><em>28</em><code>| <span class="tk-b">Skill</span> | An opinionated workflow | Turns a brief into a cut list |</code></div>
+            <div class="v-line"><em>29</em><code>| <span class="tk-b">Ledger</span> | <span class="tk-code">`EDIT.md`</span> | Preserves reviewer notes and taste |</code></div>
+            <div class="v-line"><em>30</em><code></code></div>
+            <div class="v-line"><em>31</em><code>![A Prism edit ledger aligns source clips, <span class="tk-link">audio, silence, and</span></code></div>
+            <div class="v-line"><em>32</em><code></code></div>
+            <div class="v-line"><em>33</em><code><span class="tk-h">## Getting started</span></code></div>
+            <div class="v-line"><em>34</em><code></code></div>
+            <div class="v-line"><em>35</em><code>Clone the repo, run <span class="tk-code">`prism init`</span>, then point your agent at a folder of</code></div>
+            <div class="v-line"><em>36</em><code>clips. It will propose cut points, ask before anything destructive, and</code></div>
+            <div class="v-line"><em>37</em><code>leave a readable trail of what changed and why.</code></div>
+            <div class="v-line"><em>38</em><code></code></div>
+            <div class="v-line"><em>39</em><code>See <span class="tk-link">[CONTRIBUTING.md](CONTRIBUTING.md)</span> for local setup.</code></div>
           </div>
         </aside>
       </div>
@@ -227,19 +352,23 @@
 
     <style>
       #codex-app-surface {
-        --window: #ffffff;
-        --sidebar: #fbfbfc;
-        --sidebar-deeper: #f0f1f3;
-        --ink: #1c1f23;
-        --muted: #6e7580;
-        --faint: #9aa2ad;
-        --line: rgba(29, 34, 41, 0.08);
-        --line-strong: rgba(29, 34, 41, 0.15);
-        --soft: #f6f7f9;
-        --soft-blue: #eef4fc;
-        --green: #28a562;
-        --red: #c65d58;
-        --blue: #4178d4;
+        --window: #fafafa;
+        --sidebar: #f2f2f4;
+        --sidebar-deeper: #e7e8ea;
+        --ink: #393a42;
+        --muted: #7c7d82;
+        --faint: #9a9a9e;
+        --line: #ebebec;
+        --line-strong: rgba(57, 58, 66, 0.18);
+        --soft: #f1f1f1;
+        --soft-blue: #f1f9f0;
+        --green: #63b860;
+        --red: #d46050;
+        --blue: #4e77ea;
+        --accent: #3478f7;
+        --orange: #d25f28;
+        --bubble: #e7e7e7;
+        --code-chip: #e7e7e8;
         width: 1280px;
         height: 820px;
         color: var(--ink);
@@ -260,7 +389,7 @@
         height: 820px;
         overflow: hidden;
         display: grid;
-        grid-template-columns: 240px minmax(0, 1fr);
+        grid-template-columns: 251px minmax(0, 1fr);
         border-radius: 15px;
         background: var(--window);
         box-shadow: 0 32px 95px rgba(30, 57, 99, 0.28), 0 0 0 1px rgba(31, 38, 48, 0.11);
@@ -274,7 +403,7 @@
         padding: 13px 10px 10px;
         background: var(--sidebar);
         border-right: 1px solid var(--line);
-        color: #343941;
+        color: var(--ink);
       }
 
       .sidebar-top {
@@ -282,7 +411,7 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        margin-bottom: 18px;
+        margin-bottom: 8px;
       }
 
       .window-traffic {
@@ -351,6 +480,43 @@
         opacity: 0.28;
       }
 
+      .workspace-row {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px 0 8px;
+        margin-bottom: 7px;
+      }
+
+      .workspace-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--ink);
+        font-size: 15.5px;
+        font-weight: 650;
+        letter-spacing: -0.2px;
+      }
+
+      .workspace-chev {
+        margin-left: 1px;
+        opacity: 0.55;
+      }
+
+      .workspace-search {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        background: transparent;
+        color: #7a8491;
+      }
+
+      .workspace-search svg {
+        width: 15px;
+        height: 15px;
+      }
+
       .primary-nav {
         display: grid;
         gap: 2px;
@@ -366,7 +532,7 @@
         border: 0;
         border-radius: 8px;
         background: transparent;
-        color: #333943;
+        color: var(--ink);
         padding: 0 8px;
         text-align: left;
         font-size: 13px;
@@ -483,11 +649,51 @@
         gap: 7px;
         padding: 0 8px;
         border-radius: 8px;
-        color: #343941;
+        color: var(--ink);
       }
 
       .sidebar-row.selected {
-        background: rgba(43, 50, 59, 0.08);
+        background: var(--sidebar-deeper);
+      }
+
+      .sidebar-row.child {
+        grid-template-columns: minmax(0, 1fr);
+        padding-left: 34px;
+        font-size: 13px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .sidebar-show-less {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: left;
+      }
+
+      .chats-collapsed {
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 8px;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .chats-collapsed svg {
+        width: 12px;
+        height: 12px;
       }
 
       .sidebar-row strong,
@@ -535,30 +741,19 @@
         align-items: center;
         gap: 9px;
         padding: 0 8px;
-        color: #525b68;
+        border-radius: 8px;
+        color: var(--muted);
       }
 
-      .project-icon::before {
-        content: "";
-        position: absolute;
-        left: 1px;
-        top: 3px;
-        width: 12px;
-        height: 9px;
-        border: 1.35px solid currentColor;
-        border-radius: 2px;
+      .project-item.selected {
+        background: var(--sidebar-deeper);
+        color: var(--ink);
+        font-weight: 600;
       }
 
+      .project-icon::before,
       .project-icon::after {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        width: 5px;
-        height: 3px;
-        border: 1.35px solid currentColor;
-        border-bottom: 0;
-        border-radius: 2px 2px 0 0;
+        content: none;
       }
 
       .mini-action::before {
@@ -588,60 +783,94 @@
         color: #a0a9b5;
       }
 
-      .settings-row {
+      .user-row {
+        height: 38px;
         margin-top: auto;
-        padding-left: 8px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 6px 0 8px;
       }
 
-      .gear::before {
-        content: "";
-        position: absolute;
-        inset: 2px;
-        border: 1.5px solid currentColor;
+      .user-avatar {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        display: inline-grid;
+        place-items: center;
         border-radius: 50%;
+        background: #e0b940;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        text-transform: lowercase;
       }
 
-      .gear::after {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 6px;
-        width: 2px;
-        height: 2px;
+      .user-name {
+        flex: 1 1 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .user-download {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        border: 0;
         border-radius: 50%;
-        background: currentColor;
+        background: #5b6ef6;
+        color: #fff;
+      }
+
+      .user-download svg {
+        width: 12px;
+        height: 12px;
       }
 
       .codex-workspace {
         min-width: 0;
+        height: 820px;
+        overflow: hidden;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 422px;
-        grid-template-rows: 55px minmax(0, 1fr);
-        background: #fff;
+        grid-template-columns: minmax(0, 1fr) 552px;
+        grid-template-rows: 72px minmax(0, 1fr);
+        background: var(--window);
       }
 
       .topbar {
         grid-column: 1 / 3;
         min-width: 0;
         display: grid;
-        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) 32px 62px 104px 1px 32px auto 30px;
+        grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) auto 30px;
         gap: 9px;
         align-items: center;
         padding: 0 18px 0 13px;
         border-bottom: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(250, 250, 250, 0.96);
       }
 
       .title-wrap {
         min-width: 0;
         display: flex;
-        align-items: baseline;
-        gap: 7px;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .folder-glyph {
+        width: 16px;
+        height: 16px;
+        color: #6e7580;
+        flex: 0 0 auto;
       }
 
       .title-wrap h1 {
         margin: 0;
-        color: #202225;
+        color: var(--ink);
         font-size: 14.5px;
         line-height: 1;
         font-weight: 650;
@@ -654,8 +883,6 @@
       }
 
       .more-button,
-      .toolbar-button,
-      .terminal-button,
       .layout-toggle,
       .review-menu,
       .expand-button,
@@ -682,39 +909,24 @@
         letter-spacing: 1px;
       }
 
-      .toolbar-button,
-      .terminal-button,
       .layout-toggle {
         width: 30px;
         height: 30px;
       }
 
-      .gear-button::before {
-        content: "";
-        position: absolute;
-        inset: 7px;
-        border: 1.5px solid currentColor;
-        border-radius: 50%;
-      }
-
-      .vscode-pill,
-      .commit-pill {
-        height: 30px;
+      .vscode-pill {
+        height: 28px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 7px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fafafa;
-        color: #25282d;
-        padding: 0 9px;
+        gap: 6px;
+        border: 1px solid #e5e5e6;
+        border-radius: 14px;
+        background: #ffffff;
+        color: var(--faint);
+        padding: 0 9px 0 4px;
         font-size: 13px;
         font-weight: 600;
-      }
-
-      .vscode-pill {
-        padding: 0 8px;
       }
 
       .vscode-mark {
@@ -731,7 +943,7 @@
         border-right: 1.4px solid currentColor;
         border-bottom: 1.4px solid currentColor;
         transform: rotate(45deg) translateY(-2px);
-        opacity: 0.65;
+        opacity: 0.85;
       }
 
       .slider-icon {
@@ -758,32 +970,6 @@
 
       .slider-icon::after {
         bottom: 3px;
-      }
-
-      .toolbar-divider {
-        width: 1px;
-        height: 22px;
-        background: var(--line);
-      }
-
-      .terminal-button::before {
-        content: "";
-        position: absolute;
-        inset: 8px 6px;
-        border: 1.4px solid currentColor;
-        border-radius: 3px;
-      }
-
-      .diff-counter {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        height: 26px;
-        padding: 0 8px;
-        background: rgba(0, 0, 0, 0.04);
-        border-radius: 7px;
-        font-size: 12.5px;
-        font-weight: 600;
       }
 
       .plus-count {
@@ -816,21 +1002,38 @@
         position: relative;
         overflow: hidden;
         border-right: 1px solid var(--line);
-        padding: 40px 14px 86px;
-        background: #fff;
+        padding: 40px 14px 60px;
+        background: var(--window);
       }
 
       .prompt-bubble {
         width: fit-content;
         max-width: 360px;
-        margin: 0 0 59px auto;
+        margin: 0 0 6px auto;
         padding: 11px 18px;
         border-radius: 14px;
-        background: #f4f4f4;
-        color: #303236;
+        background: var(--bubble);
+        color: var(--ink);
         font-size: 14px;
         line-height: 1.25;
         font-weight: 450;
+      }
+
+      .bubble-meta {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        margin: 0 0 53px;
+        color: var(--faint);
+        font-size: 12px;
+      }
+
+      .bubble-meta svg {
+        width: 15px;
+        height: 15px;
+        color: var(--faint);
+        stroke-width: 1.7;
       }
 
       .previous-link {
@@ -840,7 +1043,7 @@
         gap: 8px;
         border: 0;
         background: transparent;
-        color: #7f858e;
+        color: var(--muted);
         padding: 0 0 0 0;
         margin: 0 0 18px;
         font-size: 13px;
@@ -854,15 +1057,40 @@
         transform: rotate(-45deg);
       }
 
+      .worked-row {
+        height: 24px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        padding: 0;
+        margin: 0 0 14px;
+        font-size: 13px;
+      }
+
+      .worked-row svg {
+        width: 13px;
+        height: 13px;
+        color: var(--muted);
+        stroke-width: 1.8;
+      }
+
+      .thread-hairline {
+        height: 1px;
+        margin: 0 0 18px;
+        background: var(--line);
+      }
+
       .assistant-response {
-        padding-top: 18px;
-        border-top: 1px solid rgba(29, 34, 41, 0.07);
+        padding-top: 0;
       }
 
       .assistant-response p {
         max-width: 705px;
         margin: 0 6px 12px 0;
-        color: #24272c;
+        color: var(--ink);
         font-size: 14.2px;
         line-height: 1.54;
         font-weight: 450;
@@ -876,90 +1104,141 @@
       code {
         padding: 1px 4px;
         border-radius: 4px;
-        background: #f2f2f2;
-        color: #262a30;
+        background: var(--code-chip);
+        color: var(--ink);
         font-family: var(--font-terminal);
         font-size: 12.4px;
+      }
+
+      .feedback-row {
+        position: absolute;
+        left: 14px;
+        bottom: 141px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0;
+      }
+
+      .feedback-row svg {
+        width: 16px;
+        height: 16px;
+        color: var(--faint);
+        stroke-width: 1.7;
       }
 
       .change-card {
         position: absolute;
         left: 14px;
         right: 14px;
-        bottom: 196px;
+        bottom: 172px;
         overflow: hidden;
-        border-radius: 13px;
-        background: #f5f5f5;
-        box-shadow: inset 0 0 0 1px rgba(29, 34, 41, 0.06);
+        border-radius: 12px;
+        background: var(--window);
+        border: 1px solid #e5e5e6;
       }
 
       .change-card header {
-        height: 39px;
+        min-height: 64px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 14px;
-        border-bottom: 1px solid rgba(29, 34, 41, 0.06);
-        color: #292c31;
+        gap: 12px;
+        padding: 12px 14px;
+        color: var(--ink);
         font-size: 13px;
       }
 
-      .change-card header button {
+      .change-icon {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 auto;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid #e5e5e6;
+        border-radius: 8px;
+        background: var(--window);
+      }
+
+      .change-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .change-title-stack {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: grid;
+        gap: 3px;
+      }
+
+      .change-title {
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 590;
+      }
+
+      .change-counts {
+        font-size: 13px;
+      }
+
+      .change-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .change-undo {
         border: 0;
         background: transparent;
-        color: #3d424a;
-        font-size: 12.5px;
+        color: var(--ink);
+        font-size: 13px;
         display: inline-flex;
         align-items: center;
         gap: 5px;
         white-space: nowrap;
       }
 
-      .change-title {
-        font-weight: 450;
+      .change-review {
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ebebeb;
+        border-radius: 8px;
+        background: #fbfbfb;
+        color: var(--ink);
+        padding: 0 14px;
+        font-size: 13px;
+        white-space: nowrap;
       }
 
       .change-row {
-        height: 34px;
+        height: 44px;
         display: grid;
-        grid-template-columns: max-content max-content max-content max-content 1fr;
-        gap: 5px;
+        grid-template-columns: minmax(0, 1fr) max-content max-content;
+        gap: 6px;
         align-items: center;
-        padding: 0 12px 0 14px;
-        border-bottom: 1px solid rgba(29, 34, 41, 0.05);
-        color: #343941;
+        padding: 0 14px;
+        border-top: 1px solid var(--line);
+        color: var(--ink);
         font-size: 13px;
-      }
-
-      .change-row:last-child {
-        border-bottom: 0;
       }
 
       .change-row span {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-weight: 600;
+        font-weight: 450;
+      }
+
+      .change-row .path {
+        font-style: normal;
+        font-weight: 450;
+        color: var(--muted);
       }
 
       .change-row em {
         font-style: normal;
-        font-weight: 600;
-      }
-
-      .change-row i {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: var(--blue);
-      }
-
-      .change-row b {
-        width: 8px;
-        height: 8px;
-        border-right: 1.6px solid #6d7480;
-        border-bottom: 1.6px solid #6d7480;
-        transform: rotate(45deg);
+        font-weight: 450;
         justify-self: end;
       }
 
@@ -967,7 +1246,7 @@
         position: absolute;
         left: 13px;
         right: 13px;
-        bottom: 42px;
+        bottom: 18px;
         height: 112px;
         display: grid;
         grid-template-rows: 1fr 38px;
@@ -1020,9 +1299,7 @@
       }
 
       .permission-select,
-      .model-select,
-      .effort-select,
-      .thread-footer-meta button {
+      .model-select {
         height: 28px;
         display: inline-flex;
         align-items: center;
@@ -1034,33 +1311,34 @@
         font-weight: 500;
       }
 
-      .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini {
+      .permission-select {
+        color: var(--orange);
+        font-weight: 600;
+      }
+
+      .model-select {
+        color: #3a3f46;
+        font-weight: 600;
+      }
+
+      .model-tier {
+        color: #5b6ef6;
+      }
+
+      .model-spinner {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 1.4px solid rgba(29, 34, 41, 0.16);
+        border-top-color: transparent;
+        flex: 0 0 auto;
+      }
+
+      .hand-icon {
         width: 13px;
         height: 13px;
         display: inline-block;
         position: relative;
-      }
-
-      .hand-icon::before {
-        content: "";
-        position: absolute;
-        inset: 2px 3px;
-        border: 1.4px solid currentColor;
-        border-radius: 5px 5px 4px 4px;
-      }
-
-      .spark::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 0;
-        width: 4px;
-        height: 13px;
-        background: currentColor;
-        clip-path: polygon(50% 0, 100% 42%, 62% 42%, 84% 100%, 0 48%, 39% 48%);
       }
 
       .composer-fill {
@@ -1090,7 +1368,7 @@
       }
 
       .send-button {
-        background: #999999;
+        background: #9b9b9f;
         color: #fff;
       }
 
@@ -1106,361 +1384,403 @@
         transform: rotate(45deg);
       }
 
-      .thread-footer-meta {
-        position: absolute;
-        left: 17px;
-        bottom: 9px;
-        display: flex;
-        align-items: center;
-        gap: 28px;
-      }
-
-      .work-icon::before {
-        content: "";
-        position: absolute;
-        inset: 3px 1px;
-        border: 1.3px solid currentColor;
-        border-radius: 2px;
-      }
-
-      .branch-mini::before {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 1px;
-        bottom: 1px;
-        border-left: 1.3px solid currentColor;
-      }
-
-      .branch-mini::after {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 2px;
-        width: 5px;
-        height: 5px;
-        border: 1.3px solid currentColor;
-        border-radius: 50%;
-        box-shadow: 0 7px 0 -1px #fff, 0 7px 0 0 currentColor;
-      }
-
-      .review-pane {
+      .viewer-pane {
         min-width: 0;
         overflow: hidden;
-        position: relative;
-        padding: 0 12px 54px;
-        background: #fff;
-      }
-
-      .review-top {
-        height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .review-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #2a2d32;
-      }
-
-      .review-title strong {
-        font-size: 13px;
-        font-weight: 590;
-        color: #1c1f23;
-      }
-
-      .review-glyph,
-      .doc-glyph {
-        width: 14px;
-        height: 14px;
-        position: relative;
-        color: #6f7782;
-      }
-
-      .review-glyph::before {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: 3px;
-        width: 10px;
-        height: 1.4px;
-        background: currentColor;
-        box-shadow: 0 4px 0 currentColor;
-      }
-
-      .review-glyph::after {
-        content: "";
-        position: absolute;
-        left: 1px;
-        top: 7px;
-        width: 5px;
-        height: 5px;
-        border-left: 1.4px solid currentColor;
-        border-bottom: 1.4px solid currentColor;
-        transform: rotate(-45deg);
-      }
-
-      .doc-glyph::before {
-        content: "";
-        position: absolute;
-        inset: 1px 2px;
-        border: 1.4px solid currentColor;
-        border-radius: 3px;
-      }
-
-      .doc-glyph::after {
-        content: "+";
-        position: absolute;
-        left: 4px;
-        top: -1px;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      .add-review {
-        width: 22px;
-        height: 22px;
-      }
-
-      .add-review::before,
-      .add-review::after {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 10px;
-        width: 12px;
-        height: 1.3px;
-        background: #6f7782;
-      }
-
-      .add-review::after {
-        transform: rotate(90deg);
-      }
-
-      .expand-button {
-        width: 24px;
-        height: 24px;
-      }
-
-      .expand-button::before,
-      .expand-button::after {
-        content: "";
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-color: currentColor;
-      }
-
-      .expand-button::before {
-        right: 4px;
-        top: 4px;
-        border-top: 1.4px solid;
-        border-right: 1.4px solid;
-      }
-
-      .expand-button::after {
-        left: 4px;
-        bottom: 4px;
-        border-left: 1.4px solid;
-        border-bottom: 1.4px solid;
-      }
-
-      .review-scope {
-        height: 32px;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 26px 26px;
+        grid-template-rows: 34px 30px 1px minmax(0, 1fr);
+        background: var(--window);
+        border-left: 1px solid var(--line);
+      }
+
+      .viewer-tabs {
+        min-width: 0;
+        display: flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
+        gap: 3px;
+        padding: 0 8px;
+        background: var(--window);
       }
 
-      .review-scope button {
-        border: 0;
-        background: transparent;
-        color: #25282d;
-        font-size: 13px;
-        font-weight: 500;
-        text-align: left;
-        position: relative;
-      }
-
-      .review-scope span {
+      .viewer-tab {
+        height: 26px;
+        max-width: 168px;
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        min-width: 22px;
-        height: 22px;
-        margin-left: 5px;
-        border-radius: 999px;
-        background: #f0f0f0;
-        color: #777f8a;
-        font-size: 12px;
-      }
-
-      .review-scope i {
-        display: inline-block;
-        width: 7px;
-        height: 7px;
-        margin-left: 7px;
-        border-right: 1.3px solid #6f7782;
-        border-bottom: 1.3px solid #6f7782;
-        transform: rotate(45deg) translateY(-2px);
-      }
-
-      .review-color::before {
-        content: "";
-        position: absolute;
-        inset: 7px 5px;
-        border: 1px solid #aab2bd;
-        border-radius: 4px;
-        background: linear-gradient(90deg, #e88888 0 33%, #8ac69a 33% 66%, #b6bce6 66%);
-      }
-
-      .diff-file {
-        overflow: hidden;
-        border-radius: 8px;
-      }
-
-      .diff-file header {
-        height: 36px;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        color: #25282d;
+        gap: 6px;
+        padding: 0 8px;
+        border-radius: 6px;
+        color: var(--faint);
         font-size: 13px;
       }
 
-      .diff-file header strong {
-        font-weight: 500;
-      }
-
-      .diff-file header button {
-        margin-left: auto;
-        width: 22px;
-        height: 22px;
-        border: 0;
-        background: transparent;
-        position: relative;
-      }
-
-      .diff-file header button::before {
-        content: "";
-        position: absolute;
-        left: 7px;
-        top: 9px;
-        width: 7px;
-        height: 7px;
-        border-left: 1.4px solid #6f7782;
-        border-top: 1.4px solid #6f7782;
-        transform: rotate(45deg);
-      }
-
-      .fold-row {
-        height: 32px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border-radius: 6px;
-        background: var(--soft-blue);
-        color: #6d7480;
-        padding: 0 12px;
-        font-family: var(--font-terminal);
-        font-size: 12px;
-      }
-
-      .fold-row span {
-        width: 9px;
-        height: 9px;
-        border-left: 1.5px solid #6d7480;
-        border-top: 1.5px solid #6d7480;
-        transform: rotate(45deg);
-      }
-
-      .code-row {
-        min-height: 27px;
-        display: grid;
-        grid-template-columns: 42px minmax(0, 1fr);
-        align-items: center;
-        font-family: var(--font-terminal);
-        font-size: 12px;
-        line-height: 1.25;
-      }
-
-      .code-row em {
-        color: #6b7480;
-        text-align: center;
-        font-style: normal;
-      }
-
-      .code-row.remove em {
-        color: #a15550;
-      }
-
-      .code-row.add em {
-        color: #4e8c5c;
-      }
-
-      .code-row code {
+      .viewer-tab span,
+      .viewer-tab em {
         overflow: hidden;
-        display: block;
-        background: transparent;
-        color: #1f2328;
-        text-overflow: clip;
+        text-overflow: ellipsis;
         white-space: nowrap;
       }
 
-      .code-row .tk-tag {
-        color: #a14a45;
+      .viewer-tab.active {
+        background: var(--soft);
+        color: var(--ink);
       }
 
-      .code-row .tk-attr {
-        color: #3d6aa8;
+      .viewer-tab.active em {
+        font-style: italic;
+        font-weight: 500;
       }
 
-      .code-row .tk-punc {
-        color: #6e7781;
+      .tab-doc {
+        width: 13px;
+        height: 13px;
+        flex: 0 0 auto;
+        color: currentColor;
       }
 
-      .code-row .tk-str {
-        color: #4b7a3d;
+      .tab-close {
+        width: 12px;
+        height: 12px;
+        flex: 0 0 auto;
+        color: var(--faint);
       }
 
-      .code-row.remove {
-        background: #f9e9e9;
-        box-shadow: inset 3px 0 0 #d98a86;
+      .tab-add {
+        width: 22px;
+        height: 22px;
+        border: 0;
+        background: transparent;
+        color: var(--faint);
       }
 
-      .code-row.add {
-        background: #e4f4e7;
-        box-shadow: inset 3px 0 0 #4caf72;
+      .tab-add svg {
+        width: 13px;
+        height: 13px;
       }
 
-      .review-actions {
-        position: absolute;
-        right: 10px;
-        bottom: 12px;
+      .viewer-tabs-fill {
+        flex: 1 1 auto;
+      }
+
+      .tab-icon {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--faint);
+      }
+
+      .tab-icon svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .tab-icon.active {
+        background: var(--sidebar-deeper);
+        color: var(--ink);
+      }
+
+      .viewer-crumbs {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 14px;
+      }
+
+      .crumb-path {
+        min-width: 0;
         display: flex;
         align-items: center;
         gap: 5px;
-        padding: 7px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 7px 20px rgba(24, 31, 42, 0.12), 0 0 0 1px rgba(29, 34, 41, 0.08);
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
       }
 
-      .review-actions button {
+      .crumb-path .crumb-file {
+        color: var(--muted);
+      }
+
+      .crumb-chev {
+        width: 11px;
+        height: 11px;
+        flex: 0 0 auto;
+        color: var(--faint);
+      }
+
+      .crumb-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 0 0 auto;
+      }
+
+      .view-source {
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .crumb-copy {
+        width: 15px;
+        height: 15px;
+        color: var(--faint);
+      }
+
+      .crumb-open {
         height: 26px;
         display: inline-flex;
         align-items: center;
         gap: 6px;
+        border: 1px solid #e5e5e6;
+        border-radius: 6px;
+        background: #ffffff;
+        color: var(--ink);
+        padding: 0 9px 0 5px;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .crumb-open-mark {
+        width: 16px;
+        height: 16px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 4px;
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .crumb-open-mark svg {
+        width: 10px;
+        height: 10px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .viewer-hairline {
+        height: 1px;
+        background: var(--line);
+      }
+
+      .viewer-code {
+        min-height: 0;
+        overflow: hidden;
+        padding: 12px 0 0;
+        background: var(--window);
+      }
+
+      .v-line {
+        min-height: 19px;
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr);
+        font-family: var(--font-terminal);
+        font-size: 11.5px;
+        line-height: 19px;
+      }
+
+      .v-line em {
+        color: var(--faint);
+        text-align: right;
+        padding-right: 12px;
+        font-style: normal;
+      }
+
+      .v-line code {
+        overflow: hidden;
+        display: block;
+        background: transparent;
+        color: var(--ink);
+        text-overflow: clip;
+        white-space: nowrap;
+        padding: 0;
+        border-radius: 0;
+      }
+
+      .v-line.add {
+        background: #e8f3e7;
+        box-shadow: inset 4px 0 0 var(--green);
+      }
+
+      .v-line.add em {
+        background: #f1f9f0;
+        color: var(--green);
+      }
+
+      .v-line .tk-h {
+        color: var(--red);
+      }
+
+      .v-line .tk-b {
+        color: #916a22;
+        font-weight: 700;
+      }
+
+      .v-line .tk-link {
+        color: var(--blue);
+        font-style: italic;
+      }
+
+      .v-line .tk-quote,
+      .v-line .tk-code {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .tab-doc,
+      .tab-close,
+      .crumb-chev,
+      .crumb-copy {
+        display: block;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        overflow: visible;
+      }
+
+      .env-panel {
+        display: none;
+      }
+
+      #codex-app-surface[data-pane="environment"] .viewer-pane {
+        display: none;
+      }
+
+      #codex-app-surface[data-pane="environment"] .codex-workspace {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      #codex-app-surface[data-pane="environment"] .prompt-bubble,
+      #codex-app-surface[data-pane="environment"] .bubble-meta {
+        margin-right: 330px;
+      }
+
+      #codex-app-surface[data-pane="environment"] .env-panel {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 300px;
+        z-index: 3;
+        display: grid;
+        gap: 0;
+        padding: 12px;
+        border-radius: 12px;
+        background: #fbfbfb;
+        border: 1px solid #ececee;
+        box-shadow: 0 18px 44px rgba(30, 34, 41, 0.14);
+      }
+
+      .env-row {
+        min-height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 4px;
+        color: var(--ink);
+        font-size: 13.5px;
+      }
+
+      .env-header {
+        justify-content: space-between;
+        padding: 0 4px 2px;
+      }
+
+      .env-header strong {
+        color: var(--ink);
+        font-weight: 590;
+        font-size: 13.5px;
+      }
+
+      .env-plus {
+        width: 20px;
+        height: 20px;
         border: 0;
         background: transparent;
-        color: #777f8a;
-        padding: 0 8px;
-        font-size: 12px;
+        color: var(--faint);
+      }
+
+      .env-plus svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .env-icon {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        color: var(--muted);
+      }
+
+      .env-fill {
+        flex: 1 1 auto;
+      }
+
+      .env-arrow {
+        width: 13px;
+        height: 13px;
+        color: var(--faint);
+      }
+
+      .env-disabled {
+        color: #b9babd;
+      }
+
+      .env-disabled .env-icon {
+        color: #b9babd;
+      }
+
+      .env-hairline {
+        height: 1px;
+        margin: 4px 0;
+        background: var(--line);
+      }
+
+      .env-label-row {
+        padding: 4px 4px 0;
+      }
+
+      .env-section-label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .env-subagents {
+        gap: 6px;
+      }
+
+      .env-asterisk {
+        width: 15px;
+        height: 15px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+      }
+
+      .env-asterisk.blue { color: #4e77ea; }
+      .env-asterisk.teal { color: #3fb6ac; }
+      .env-asterisk.green { color: #63b860; }
+      .env-asterisk.pink { color: #e07bb0; }
+
+      .env-done {
+        color: var(--ink);
+        font-size: 13px;
+      }
+
+      .env-viewall .env-icon {
+        color: var(--muted);
+      }
+
+      .env-viewall span:last-child {
+        color: var(--muted);
       }
 
       .undo-icon,
@@ -1527,11 +1847,8 @@
       .gear,
       .mini-action,
       .slider-icon,
-      .commit-node-icon,
+      .folder-glyph,
       .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini,
       .review-glyph,
       .doc-glyph,
       .undo-icon,
@@ -1629,35 +1946,30 @@
       }
 
       .more-button svg,
-      .terminal-button svg,
       .layout-toggle svg {
         width: 17px;
         height: 17px;
       }
 
-      .gear-button svg {
-        width: 16px;
-        height: 16px;
-      }
-
       .vscode-mark {
+        width: 18px;
+        height: 18px;
         display: inline-grid;
         place-items: center;
+        border-radius: 5px;
+        background: var(--accent);
+        color: #fff;
         overflow: visible;
       }
 
       .vscode-mark svg {
-        width: 14px;
-        height: 14px;
+        width: 11px;
+        height: 11px;
         fill: none;
-        stroke: none;
-      }
-
-      .commit-node-icon {
-        width: 14px;
-        height: 14px;
-        color: #3a3f46;
+        stroke: currentColor;
         stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .slider-icon {
@@ -1674,17 +1986,10 @@
         height: 16px;
       }
 
-      .hand-icon,
-      .spark,
-      .work-icon,
-      .branch-mini {
+      .hand-icon {
         width: 14px;
         height: 14px;
         stroke-width: 1.65;
-      }
-
-      .spark {
-        stroke-width: 1.55;
       }
 
       .send-button svg {
@@ -1762,7 +2067,8 @@
       }
 
       .codex-app-window.theme-dark .primary-nav button,
-      .codex-app-window.theme-dark .settings-row {
+      .codex-app-window.theme-dark .user-name,
+      .codex-app-window.theme-dark .workspace-title {
         color: #d8d5cc;
       }
 
@@ -1788,9 +2094,14 @@
 
       .codex-app-window.theme-dark .pin,
       .codex-app-window.theme-dark .project-icon,
-      .codex-app-window.theme-dark .gear,
-      .codex-app-window.theme-dark .mini-action {
+      .codex-app-window.theme-dark .mini-action,
+      .codex-app-window.theme-dark .workspace-search {
         color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .project-item.selected {
+        background: #2c2b24;
+        color: #ece9dd;
       }
 
       .codex-app-window.theme-dark .project-item {
@@ -1814,13 +2125,11 @@
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .title-wrap span {
+      .codex-app-window.theme-dark .folder-glyph {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .more-button,
-      .codex-app-window.theme-dark .toolbar-button,
-      .codex-app-window.theme-dark .terminal-button,
       .codex-app-window.theme-dark .layout-toggle,
       .codex-app-window.theme-dark .review-menu,
       .codex-app-window.theme-dark .expand-button,
@@ -1828,19 +2137,10 @@
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .vscode-pill,
-      .codex-app-window.theme-dark .commit-pill {
+      .codex-app-window.theme-dark .vscode-pill {
         border-color: var(--line);
         background: #2a2922;
         color: #ece9dd;
-      }
-
-      .codex-app-window.theme-dark .toolbar-divider {
-        background: var(--line);
-      }
-
-      .codex-app-window.theme-dark .diff-counter {
-        background: rgba(255, 255, 255, 0.08);
       }
 
       .codex-app-window.theme-dark .thread-pane {
@@ -1872,26 +2172,50 @@
 
       .codex-app-window.theme-dark .change-card {
         background: #2a2922;
-        box-shadow: inset 0 0 0 1px var(--line);
+        border-color: rgba(255, 255, 255, 0.12);
       }
 
       .codex-app-window.theme-dark .change-card header {
-        border-bottom-color: var(--line);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-card header button {
+      .codex-app-window.theme-dark .change-icon {
+        background: #2a2922;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .codex-app-window.theme-dark .change-title {
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .change-undo {
         color: #d8d5cc;
+      }
+
+      .codex-app-window.theme-dark .change-review {
+        background: #322f26;
+        border-color: rgba(255, 255, 255, 0.12);
+        color: #ece9dd;
       }
 
       .codex-app-window.theme-dark .change-row {
-        border-bottom-color: rgba(255, 255, 255, 0.05);
+        border-top-color: rgba(255, 255, 255, 0.08);
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .change-row b {
-        border-right-color: #8a877c;
-        border-bottom-color: #8a877c;
+      .codex-app-window.theme-dark .change-row .path {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .bubble-time,
+      .codex-app-window.theme-dark .bubble-meta,
+      .codex-app-window.theme-dark .worked-row,
+      .codex-app-window.theme-dark .feedback-row svg {
+        color: #8a877c;
+      }
+
+      .codex-app-window.theme-dark .thread-hairline {
+        background: var(--line);
       }
 
       .codex-app-window.theme-dark .composer {
@@ -1909,19 +2233,25 @@
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .permission-select,
-      .codex-app-window.theme-dark .model-select,
-      .codex-app-window.theme-dark .effort-select,
-      .codex-app-window.theme-dark .thread-footer-meta button {
-        color: #b5b2a6;
+      .codex-app-window.theme-dark .permission-select {
+        color: #e8a25c;
       }
 
       .codex-app-window.theme-dark .model-select {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .effort-select {
-        color: #8a877c;
+      .codex-app-window.theme-dark .model-tier {
+        color: #8ea1ff;
+      }
+
+      .codex-app-window.theme-dark .model-spinner {
+        border-color: rgba(255, 255, 255, 0.2);
+        border-top-color: transparent;
+      }
+
+      .codex-app-window.theme-dark .user-avatar {
+        background: #c9a233;
       }
 
       .codex-app-window.theme-dark .send-button {
@@ -1934,101 +2264,47 @@
         border-top-color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .review-pane {
+      .codex-app-window.theme-dark .viewer-pane {
+        background: var(--window);
+        border-left-color: var(--line);
+      }
+
+      .codex-app-window.theme-dark .viewer-tab.active {
+        background: var(--soft);
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .tab-icon.active {
+        background: #2c2b24;
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .crumb-open {
+        background: #2a2922;
+        border-color: rgba(255, 255, 255, 0.12);
+        color: #ece9dd;
+      }
+
+      .codex-app-window.theme-dark .viewer-code {
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .review-title {
-        color: #ece9dd;
-      }
-
-      .codex-app-window.theme-dark .review-glyph,
-      .codex-app-window.theme-dark .doc-glyph {
-        color: #b5b2a6;
-      }
-
-      .codex-app-window.theme-dark .review-scope button {
-        color: #ece9dd;
-      }
-
-      .codex-app-window.theme-dark .review-scope span {
-        background: #2c2b24;
-        color: #b5b2a6;
-      }
-
-      .codex-app-window.theme-dark .review-scope i {
-        border-right-color: #b5b2a6;
-        border-bottom-color: #b5b2a6;
-      }
-
-      .codex-app-window.theme-dark .diff-file header {
-        color: #ece9dd;
-      }
-
-      .codex-app-window.theme-dark .diff-file header button::before {
-        border-left-color: #b5b2a6;
-        border-top-color: #b5b2a6;
-      }
-
-      .codex-app-window.theme-dark .fold-row {
-        background: #2c2b24;
-        color: #8a877c;
-      }
-
-      .codex-app-window.theme-dark .fold-row span {
-        border-left-color: #8a877c;
-        border-top-color: #8a877c;
-      }
-
-      .codex-app-window.theme-dark .code-row em {
-        color: #8a877c;
-      }
-
-      .codex-app-window.theme-dark .code-row.remove em {
-        color: #d99a98;
-      }
-
-      .codex-app-window.theme-dark .code-row.add em {
-        color: #8fcf9c;
-      }
-
-      .codex-app-window.theme-dark .code-row code {
+      .codex-app-window.theme-dark .v-line code {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .code-row .tk-tag {
-        color: #d99a98;
+      .codex-app-window.theme-dark .v-line .tk-b {
+        color: #d0a24c;
       }
 
-      .codex-app-window.theme-dark .code-row .tk-attr {
-        color: #a3cee0;
-      }
-
-      .codex-app-window.theme-dark .code-row .tk-punc {
-        color: #9099a6;
-      }
-
-      .codex-app-window.theme-dark .code-row .tk-str {
-        color: #a8cf9e;
-      }
-
-      .codex-app-window.theme-dark .code-row.remove {
-        background: rgba(217, 138, 134, 0.16);
-        box-shadow: inset 3px 0 0 #d98a86;
-      }
-
-      .codex-app-window.theme-dark .code-row.add {
+      .codex-app-window.theme-dark .v-line.add {
         background: rgba(111, 191, 142, 0.16);
-        box-shadow: inset 3px 0 0 #6fbf8e;
+        box-shadow: inset 4px 0 0 #6fbf8e;
       }
 
-      .codex-app-window.theme-dark .review-actions {
-        background: rgba(42, 41, 34, 0.92);
-        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--line);
-      }
-
-      .codex-app-window.theme-dark .review-actions button {
-        color: #b5b2a6;
+      .codex-app-window.theme-dark .v-line.add em {
+        background: rgba(111, 191, 142, 0.1);
+        color: #8fcf9c;
       }
     </style>
 
@@ -2042,9 +2318,9 @@
       tl.from(".prompt-bubble", { opacity: 0, y: 10, duration: 0.32, ease: "sine.out" }, 0.52);
       tl.from(".assistant-response", { opacity: 0, y: 12, duration: 0.38, ease: "power2.out" }, 0.82);
       tl.from(".change-card", { opacity: 0, y: 12, duration: 0.34, ease: "power2.out" }, 1.16);
-      tl.from(".review-pane > *", { opacity: 0, x: 12, stagger: 0.045, duration: 0.28, ease: "sine.out" }, 1.32);
+      tl.from(".viewer-pane > *", { opacity: 0, x: 12, stagger: 0.045, duration: 0.28, ease: "sine.out" }, 1.32);
       tl.from(".composer", { opacity: 0, y: 16, duration: 0.34, ease: "power2.out" }, 1.72);
-      tl.from(".review-actions", { opacity: 0, y: 8, duration: 0.28, ease: "sine.out" }, 2.08);
+      tl.from(".feedback-row", { opacity: 0, y: 8, duration: 0.28, ease: "sine.out" }, 2.08);
       window.__timelines["codex-app-surface"] = tl;
     </script>
   </div>
@@ -2060,6 +2336,11 @@
       const fragment = template.content.cloneNode(true);
       fragment.querySelectorAll("script").forEach((script) => script.remove());
       document.body.appendChild(fragment);
+      const pane = new URLSearchParams(window.location.search).get("pane");
+      if (pane) {
+        const root = document.getElementById("codex-app-surface");
+        if (root) root.setAttribute("data-pane", pane);
+      }
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", mount, { once: true });

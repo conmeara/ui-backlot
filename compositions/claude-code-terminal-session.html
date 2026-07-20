@@ -21,16 +21,13 @@
           <span class="green"></span>
         </div>
         <div class="terminal-title">
-          <img class="cc-folder-icon" src="../assets/app-icons/folder-generic.png" alt="" aria-hidden="true" />
+          <img class="cc-folder-icon" src="../assets/app-icons/folder-home.png" alt="" aria-hidden="true" />
           <span>✳ Claude Code</span>
         </div>
-        <div class="terminal-title-spacer" aria-hidden="true"></div>
       </header>
 
       <main class="terminal-paper" data-primitive="claude-code-terminal-paper">
         <section class="shell-preamble" data-primitive="claude-code-shell-preamble">
-          <p data-copy="login-line">Last login: Mon Jul 20 08:47:16 on ttys004</p>
-          <p data-copy="zshrc-warning">/Users/demo/.zshrc:15: no such file or directory: /opt/homebrew/anaconda3/bin/conda</p>
           <p data-copy="shell-prompt">demo@Demo-MacBook-Pro ~ % claude</p>
         </section>
 
@@ -38,11 +35,11 @@
 
         <section class="terminal-identity" data-primitive="claude-code-session-identity">
           <div class="pixel-mark" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
           <div>
             <p class="identity-line" data-copy="cc-version"><strong>Claude Code</strong> <span>v2.1.215</span></p>
@@ -87,17 +84,31 @@
         <footer class="terminal-input" data-primitive="claude-code-terminal-input">
           <div class="input-row"><span class="glyph">❯</span><span class="terminal-cursor" aria-hidden="true"></span></div>
           <div class="status-row">
-            <div class="status-left">
-              <span data-copy="context-pct">(3.7%)</span>
-              <span class="dim"><span class="glyph">⏸</span> manual mode on · <span class="glyph">⇥</span> for agents</span>
-            </div>
-            <div class="status-right dim"><span class="glyph">●</span> high · /effort</div>
+            <p class="status-line" data-copy="context-pct">
+              <span>(3.7%)</span>
+              <span class="status-right dim"><span class="glyph">●</span> high · /effort</span>
+            </p>
+            <p class="dim" data-copy="mode-line"><span class="glyph">⏸</span> manual mode on · <span class="glyph">←</span> for agents</p>
           </div>
         </footer>
       </main>
     </section>
 
     <style>
+      /* "sfmono-regular" and "ui-monospace" are OS-bundled system fonts with
+         no downloadable file — src: local(...) satisfies the renderer's
+         font_family_without_font_face check without needing a .woff2.
+         "SF Mono" itself is already auto-resolved to a bundled render-time
+         substitute (see system_font_will_alias), so it needs no @font-face. */
+      @font-face {
+        font-family: "SFMono-Regular";
+        src: local("SFMono-Regular");
+      }
+      @font-face {
+        font-family: "ui-monospace";
+        src: local("SF Mono");
+      }
+
       #claude-code-terminal-session-surface {
         --term-bg: #292c33;
         --term-ink: #ffffff;
@@ -111,7 +122,7 @@
         height: 1038px;
         overflow: visible;
         color: var(--term-ink);
-        font-family: "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+        font-family: "SF Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
       }
 
       #claude-code-terminal-session-surface * {
@@ -127,11 +138,15 @@
         box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
       }
 
+      /* Measured 2026-07-20 (cli-terminal-startup-dark, full-width titlebar
+         crop): the title sits LEFT-aligned right after the traffic lights,
+         not centered in the window — this differs from stock macOS Terminal
+         chrome, so match the reference rather than the OS default. */
       .terminal-titlebar {
         height: 40px;
-        display: grid;
-        grid-template-columns: 90px 1fr 90px;
+        display: flex;
         align-items: center;
+        gap: 16px;
         padding: 0 18px;
         background: var(--term-bg);
       }
@@ -156,7 +171,6 @@
       .terminal-title {
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 6px;
         /* Measured 2026-07-20 Mac reference (cli-terminal-startup-dark):
            the focused titlebar label renders as a dimmed rgb(165,168,175),
@@ -165,7 +179,7 @@
            "Claude Code v2.1.215" body line, which IS 255/255/255). */
         color: #a5a8af;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         font-family: -apple-system, "SF Pro Text", var(--font-sans, sans-serif);
       }
 
@@ -174,10 +188,6 @@
         height: auto;
         display: block;
         flex: 0 0 auto;
-      }
-
-      .terminal-title-spacer {
-        width: 90px;
       }
 
       .terminal-paper {
@@ -211,12 +221,18 @@
         align-items: start;
       }
 
+      /* Re-derived 2026-07-20 by sampling the mascot mark pixel-for-pixel out
+         of reference/claude/2026-07-20/cli-terminal-startup-dark/screenshot.png
+         (bbox ~124,250 to 251,330 @2x, an 8-column x 5-row pixel grid). The
+         previous 6x5 layout put the ear/flange row FIRST (reading as an
+         antenna), but the reference's flange is the full-width MIDDLE row,
+         with an inset head on top and an inset body below it — fixed here. */
       .pixel-mark {
         width: 24px;
-        height: 20px;
+        height: 15px;
         margin-top: 1px;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(5, 1fr);
       }
 
@@ -229,39 +245,45 @@
          from cli-terminal-startup-dark), not the terminal's dark-navy
          background (#292c33) that would otherwise show through the
          transparent gap — give them their own opaque fill. */
-      .pixel-mark span:nth-child(14),
-      .pixel-mark span:nth-child(17) {
+      .pixel-mark span:nth-child(11),
+      .pixel-mark span:nth-child(14) {
         background: #000000;
         opacity: 1;
       }
 
-      /* row0: ear tips */
-      .pixel-mark span:nth-child(1),
+      /* row0: head top, inset (cols 1-6 of 8) */
+      .pixel-mark span:nth-child(2),
+      .pixel-mark span:nth-child(3),
+      .pixel-mark span:nth-child(4),
+      .pixel-mark span:nth-child(5),
       .pixel-mark span:nth-child(6),
-      /* row1: head top */
       .pixel-mark span:nth-child(7),
-      .pixel-mark span:nth-child(8),
-      .pixel-mark span:nth-child(9),
+      /* row1: eyes, inset (cols 1,3,4,6 filled; eyes at 2,5; 0,7 empty) */
       .pixel-mark span:nth-child(10),
-      .pixel-mark span:nth-child(11),
       .pixel-mark span:nth-child(12),
-      /* row2: eye notches (cols 0,2,3,5 filled; 1,4 empty) */
       .pixel-mark span:nth-child(13),
       .pixel-mark span:nth-child(15),
-      .pixel-mark span:nth-child(16),
+      /* row2: ear/flange, FULL width (all 8 cols) */
+      .pixel-mark span:nth-child(17),
       .pixel-mark span:nth-child(18),
-      /* row3: body */
       .pixel-mark span:nth-child(19),
       .pixel-mark span:nth-child(20),
       .pixel-mark span:nth-child(21),
       .pixel-mark span:nth-child(22),
       .pixel-mark span:nth-child(23),
       .pixel-mark span:nth-child(24),
-      /* row4: four legs (cols 0,2,3,5 filled; 1,4 empty) */
-      .pixel-mark span:nth-child(25),
+      /* row3: body, inset (cols 1-6 of 8) */
+      .pixel-mark span:nth-child(26),
       .pixel-mark span:nth-child(27),
       .pixel-mark span:nth-child(28),
-      .pixel-mark span:nth-child(30) {
+      .pixel-mark span:nth-child(29),
+      .pixel-mark span:nth-child(30),
+      .pixel-mark span:nth-child(31),
+      /* row4: four legs, two inset pairs with a center gap */
+      .pixel-mark span:nth-child(34),
+      .pixel-mark span:nth-child(35),
+      .pixel-mark span:nth-child(38),
+      .pixel-mark span:nth-child(39) {
         opacity: 1;
       }
 
@@ -377,16 +399,18 @@
         background: var(--term-ink);
       }
 
+      /* Reference (cli-terminal-startup-dark / cli-terminal-chat-dark) stacks
+         the context-pct and "manual mode" lines vertically, with the
+         "high · /effort" status right-aligned only against the TOP line —
+         not centered against the whole two-line block. */
       .status-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         padding-top: 8px;
       }
 
-      .status-left {
+      .status-line {
         display: flex;
-        gap: 14px;
+        align-items: baseline;
+        justify-content: space-between;
         color: var(--term-dim);
       }
 

@@ -11,17 +11,17 @@
              data-liquid-glass
              data-lg-displacement="58" data-lg-aberration="2.4"
              data-lg-blur="7" data-lg-saturation="1.7" data-lg-brightness="1.05">
-          <div class="dock-tile" data-app="finder"><img class="app-icon" src="../assets/app-icons/finder.png" alt="Finder" /></div>
-          <div class="dock-tile" data-app="claude"><img class="app-icon" src="../assets/app-icons/claude.svg" alt="Claude" /></div>
-          <div class="dock-tile" data-app="safari"><img class="app-icon" src="../assets/app-icons/safari.png" alt="Safari" /></div>
-          <div class="dock-tile" data-app="notes"><img class="app-icon" src="../assets/app-icons/notes.png" alt="Notes" /></div>
-          <div class="dock-tile" data-app="word"><img class="app-icon" src="../assets/app-icons/word.svg" alt="Microsoft Word" /></div>
-          <div class="dock-tile" data-app="excel"><img class="app-icon" src="../assets/app-icons/excel.svg" alt="Microsoft Excel" /></div>
-          <div class="dock-tile" data-app="powerpoint"><img class="app-icon" src="../assets/app-icons/powerpoint.svg" alt="Microsoft PowerPoint" /></div>
-          <div class="dock-tile" data-app="figma"><img class="app-icon" src="../assets/app-icons/figma.svg" alt="Figma" /></div>
-          <div class="dock-tile" data-app="premiere"><img class="app-icon" src="../assets/app-icons/premiere.svg" alt="Adobe Premiere Pro" /></div>
+          <div class="dock-tile" data-app="finder"><img class="app-icon app-icon--glyph" src="../assets/app-icons/finder.png" alt="Finder" /></div>
+          <div class="dock-tile" data-app="claude"><img class="app-icon app-icon--tile" src="../assets/app-icons/claude.svg" alt="Claude" /></div>
+          <div class="dock-tile" data-app="safari"><img class="app-icon app-icon--glyph" src="../assets/app-icons/safari.png" alt="Safari" /></div>
+          <div class="dock-tile" data-app="notes"><img class="app-icon app-icon--glyph" src="../assets/app-icons/notes.png" alt="Notes" /></div>
+          <div class="dock-tile" data-app="word"><img class="app-icon app-icon--tile" src="../assets/app-icons/word.svg" alt="Microsoft Word" /></div>
+          <div class="dock-tile" data-app="excel"><img class="app-icon app-icon--tile" src="../assets/app-icons/excel.svg" alt="Microsoft Excel" /></div>
+          <div class="dock-tile" data-app="powerpoint"><img class="app-icon app-icon--tile" src="../assets/app-icons/powerpoint.svg" alt="Microsoft PowerPoint" /></div>
+          <div class="dock-tile" data-app="figma"><img class="app-icon app-icon--tile" src="../assets/app-icons/figma.svg" alt="Figma" /></div>
+          <div class="dock-tile" data-app="premiere"><img class="app-icon app-icon--tile" src="../assets/app-icons/premiere.svg" alt="Adobe Premiere Pro" /></div>
           <span class="dock-divider" aria-hidden="true"></span>
-          <div class="dock-tile" data-app="terminal"><img class="app-icon" src="../assets/app-icons/terminal.png" alt="Terminal" /></div>
+          <div class="dock-tile" data-app="terminal"><img class="app-icon app-icon--glyph" src="../assets/app-icons/terminal.png" alt="Terminal" /></div>
         </div>
 
         <style>
@@ -55,11 +55,26 @@
             place-items: center;
           }
           .app-icon {
-            width: 60px;
-            height: 60px;
             display: block;
             object-fit: contain;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.24));
+          }
+          /* Shaped icons (Finder, Safari, Notes, Terminal) already bake macOS's
+             transparent canvas margin into the source PNG, so they render at
+             the full tile box. */
+          .app-icon--glyph {
+            width: 60px;
+            height: 60px;
+          }
+          /* Full-bleed rounded-rect tiles (Claude, Word, Excel, PowerPoint,
+             Figma, Premiere) have no margin baked into the SVG artwork, so on
+             a real macOS dock grid they sit at ~824/1024 of the 1024 canvas
+             (~80.5%) with transparent padding around them. Scale the whole
+             image down by that ratio so the rounded-rect + its corner radius
+             shrink together, matching the shaped icons' visual footprint. */
+          .app-icon--tile {
+            width: 48px;
+            height: 48px;
           }
           .dock-divider {
             width: 1px;

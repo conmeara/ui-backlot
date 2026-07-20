@@ -19,6 +19,11 @@
   "duration": 10,
   "files": [
     {
+      "path": "assets/app-icons/folder-home.png",
+      "target": "assets/app-icons/folder-home.png",
+      "type": "hyperframes:asset"
+    },
+    {
       "path": "claude-code-terminal-session.html",
       "target": "compositions/claude-code-terminal-session.html",
       "type": "hyperframes:composition"

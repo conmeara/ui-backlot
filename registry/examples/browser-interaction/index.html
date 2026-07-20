@@ -5,41 +5,15 @@
     <title>Browser — Interaction Demo</title>
   </head>
   <body>
-    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.2">
+    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.6">
       <section class="br-stage" data-primitive="browser-interaction" aria-label="Browser typing a URL and loading a page">
-        <div class="br-window">
-          <div class="br-tabs">
-            <div class="tab active"><span class="fav"></span><span>New Tab</span><span class="x">×</span></div>
-            <div class="plus">+</div>
-          </div>
-          <div class="br-toolbar">
-            <span class="nav">‹</span><span class="nav dim">›</span><span class="nav">⟳</span>
-            <div class="omnibox">
-              <span class="lock">🔍</span><span class="url" data-role="omnibox"></span>
-              <div class="br-suggest" data-role="suggest">
-                <span class="br-suggest-ic">🔍</span>
-                <span class="br-suggest-txt" data-role="suggest-txt"></span>
-                <span class="br-suggest-suf">— visit site</span>
-              </div>
-            </div>
-            <span class="avatar">CB</span>
-          </div>
-          <div class="br-loadbar" data-role="loadbar"></div>
-          <div class="br-page">
-            <div class="page-blank" data-role="blank"></div>
-            <div class="page-content" data-role="page">
-              <div class="site-head">
-                <div class="site-logo">LM</div>
-                <div class="site-nav"><span>Overview</span><span>Metrics</span><span>Reports</span></div>
-              </div>
-              <h1 class="site-h1">Q2 Launch Dashboard</h1>
-              <div class="cards">
-                <div class="card"><div class="k">Revenue</div><div class="v">+16%</div></div>
-                <div class="card"><div class="k">Adoption</div><div class="v">42%</div></div>
-                <div class="card"><div class="k">Deck status</div><div class="v">2 slides left</div></div>
-              </div>
-            </div>
-          </div>
+        <div class="br-app-window">
+          <div
+            class="component-frame br-frame"
+            data-primitive="browser-app-window"
+            data-backlot-mount-src="compositions/browser-app.html"
+            data-backlot-mount-selector="#browser-app-surface"
+          ></div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
@@ -51,33 +25,16 @@
       #browser-interaction { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,"SF Pro Text",Inter,sans-serif; color:#16120f; }
       #browser-interaction * { box-sizing:border-box; }
       .br-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#eceef1,#dfe2e7); display:grid; place-items:center; }
-      .br-window { position:relative; width:1040px; height:660px; background:#fff; border-radius:12px; border:1px solid rgba(20,30,48,0.12); box-shadow:0 34px 90px rgba(28,30,38,0.24); overflow:hidden; display:grid; grid-template-rows:40px 48px 3px 1fr; }
-      .br-tabs { display:flex; align-items:flex-end; gap:6px; padding:6px 10px 0; background:#dee1e6; }
-      .tab { display:flex; align-items:center; gap:8px; padding:8px 12px; background:#f6f7f9; border-radius:9px 9px 0 0; font-size:12.5px; color:#3c4043; min-width:180px; }
-      .tab .fav { width:14px; height:14px; border-radius:3px; background:#c9ccd1; } .tab .x { margin-left:auto; color:#80868b; }
-      .plus { color:#5f6368; padding:6px 10px; font-size:16px; }
-      .br-toolbar { display:flex; align-items:center; gap:10px; padding:0 14px; background:#f6f7f9; }
-      .nav { color:#5f6368; font-size:18px; width:26px; text-align:center; } .nav.dim { color:#bdc1c6; }
-      .omnibox { position:relative; flex:1; display:flex; align-items:center; gap:8px; height:32px; background:#fff; border:1px solid #dfe1e5; border-radius:16px; padding:0 14px; font-size:13.5px; color:#202124; z-index:1; }
-      .lock { font-size:11px; filter:grayscale(1); opacity:.7; }
-      .url { font-family:-apple-system,sans-serif; }
-      .br-suggest { position:absolute; left:-1px; right:-1px; top:calc(100% + 6px); z-index:40; display:flex; align-items:center; gap:9px; height:34px; padding:0 14px; background:#fff; border:1px solid #e2e5e9; border-radius:10px; box-shadow:0 8px 20px rgba(28,30,38,0.16); opacity:0; }
-      .br-suggest-ic { font-size:11px; filter:grayscale(1); opacity:.6; }
-      .br-suggest-txt { font-size:13px; color:#202124; }
-      .br-suggest-suf { font-size:12.5px; color:#80868b; }
-      .avatar { width:26px; height:26px; border-radius:50%; background:#c96442; color:#fff; font-size:11px; display:grid; place-items:center; }
-      .br-loadbar { height:3px; background:#1a73e8; width:0%; }
-      .br-page { position:relative; background:#fff; overflow:hidden; }
-      .page-blank { position:absolute; inset:0; background:#fff; }
-      .page-content { padding:34px 44px; }
-      .site-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:30px; }
-      .site-logo { width:38px; height:38px; border-radius:9px; background:linear-gradient(135deg,#2f9e6e,#177a4e); color:#fff; font-weight:800; display:grid; place-items:center; }
-      .site-nav { display:flex; gap:22px; font-size:14px; color:#5f6368; }
-      .site-h1 { font-size:30px; font-weight:700; margin:0 0 26px; color:#202124; }
-      .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-      .card { border:1px solid #e7e9ec; border-radius:12px; padding:20px; }
-      .card .k { font-size:13px; color:#5f6368; margin-bottom:10px; }
-      .card .v { font-size:26px; font-weight:700; color:#177a4e; }
+
+      /* browser-app is mounted at its native 1516x864 and scaled down to fit
+         the stage; the outer box supplies the window radius/shadow (the
+         inner mounted window's own shadow would be clipped by the frame's
+         overflow:hidden, since the frame crops exactly to the window box —
+         same double-wrapper idiom as mac-multi-app-demo's app windows). */
+      .br-app-window { position:relative; width:1107px; height:631px; border-radius:14px; overflow:hidden; box-shadow:0 34px 90px rgba(28,30,38,0.24); background:#fff; }
+      .component-frame { position:absolute; inset:0; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; transform:scale(0.73); }
+
       .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(26,115,232,0.75); border-radius:50%; opacity:0; }
     </style>
@@ -87,68 +44,123 @@
     <script src="runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
+      const DURATION = 4.6;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".br-stage");
-      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      const URLTXT = "launch-metrics.internal/q2-dashboard";
-      const TYPE_AT = 1.1;
-      const TYPE_CPS = 22;
-      const tabLabel = stage.querySelector(".tab span:nth-child(2)");
-      const cursorEl = stage.querySelector(".demo-cursor");
-      const suggestTxt = stage.querySelector('[data-role="suggest-txt"]');
-      gsap.set('[data-role="page"]', { opacity: 0 });
+      // Registered synchronously with a full-duration hold (the mount below
+      // is async; the renderer must never probe a zero-duration composition).
+      tl.to(stage, { opacity: 1, duration: DURATION }, 0);
+      // Plain gsap.set (not tl.set at position 0) — a zero-duration timeline
+      // tween sitting exactly at the timeline start is ambiguous about
+      // whether it has "started" when the playhead sits exactly at 0, so it
+      // can fail to render on that exact frame. Setting the rest state
+      // directly on the DOM before any seek avoids that edge case.
+      gsap.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 });
 
-      // 1) click the omnibox, type the URL.
-      ix.click('[data-role="omnibox"]', { at: 0.7, moveDur: 0.8 });
-      tl.set('.demo-click-ring', { opacity: 0 }, 0);
-      // cursor stays parked just off the omnibox while typing -- the hand is
-      // on the keyboard, so it shouldn't drift down into the page body.
-      tl.to(cursorEl, { left: 720, top: 185, duration: 0.35, ease: "power2.inOut" }, 1.15);
-      ix.type('[data-role="omnibox"]', URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
+      window.__backlotComponentsReady.then(() => {
+        const mount = stage.querySelector(".br-frame");
+        const win = mount && mount.querySelector("#browser-app-surface");
+        if (!win) return;
 
-      // focus response: the omnibox snaps to a blue focus ring the instant it
-      // takes focus, and holds it while typing.
-      tl.to('.omnibox', { borderColor: "#1a73e8", boxShadow: "0 1px 6px rgba(26,115,232,0.28)", duration: 0.15 }, 0.85);
+        // browser-app's own hero-capture decorations (a static cursor glyph
+        // and an "edit badge" pill) aren't part of this demo's story — this
+        // demo drives its own cursor/click-ring and never selects a grid row.
+        const staticCursor = win.querySelector(":scope > .cursor");
+        const editBadge = win.querySelector(":scope > .edit-badge");
+        if (staticCursor) staticCursor.style.display = "none";
+        if (editBadge) editBadge.style.display = "none";
 
-      // autocomplete suggestion panel: fades in with focus, echoes the typed
-      // value as it's revealed, and hides again once the load starts.
-      const typeDur = URLTXT.length / TYPE_CPS;
-      ix.show('[data-role="suggest"]', { at: 0.85, dur: 0.12, from: { opacity: 0 } });
-      tl.set(suggestTxt, { textContent: "launch-me" }, TYPE_AT + 0.05 * typeDur);
-      tl.set(suggestTxt, { textContent: "launch-metrics.int" }, TYPE_AT + 0.15 * typeDur);
-      tl.set(suggestTxt, { textContent: URLTXT }, TYPE_AT + 0.35 * typeDur);
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      // 2) "enter" -> loading bar sweeps, blank page hides, content fades in.
-      const enterAt = TYPE_AT + URLTXT.length / TYPE_CPS + 0.35;
-      ix.hide('[data-role="suggest"]', { at: enterAt, dur: 0.1 });
-      tl.fromTo('[data-role="loadbar"]', { width: "0%" }, { width: "70%", duration: 0.5, ease: "power1.out" }, enterAt);
-      tl.to('[data-role="loadbar"]', { width: "100%", duration: 0.35, ease: "power1.in" }, enterAt + 0.5);
-      tl.to('[data-role="loadbar"]', { opacity: 0, duration: 0.2 }, enterAt + 0.85);
-      tl.to('[data-role="blank"]', { opacity: 0, duration: 0.25 }, enterAt + 0.85);
-      ix.show('[data-role="page"]', { at: enterAt + 0.9, dur: 0.2, from: { opacity: 0 } });
-      // reload glyph flips to a stop icon for the full load, matching desktop
-      // Chrome's most reliable "page is loading" affordance.
-      const reloadEl = stage.querySelectorAll('.nav')[2];
-      tl.set(reloadEl, { textContent: "✕" }, enterAt);
-      tl.set(reloadEl, { textContent: "⟳" }, enterAt + 0.9);
-      // tab favicon becomes a spinning throbber for the same window instead
-      // of sitting dead beside the sweeping load bar. Finite (non-repeating)
-      // rotation tween so the timeline duration stays bounded/seek-safe; it
-      // lands on an exact multiple of 360deg so the reset below is clean.
-      tl.set('.tab .fav', { background: "none", border: "2px solid #c9ccd1", borderTopColor: "#1a73e8", borderRadius: "50%", rotation: 0 }, enterAt);
-      tl.to('.tab .fav', { rotation: 720, duration: 0.88, ease: "none" }, enterAt);
-      // tab label + favicon update to the loaded site's identity.
-      tl.set(tabLabel, { textContent: "Q2 Launch Dashboard" }, enterAt + 0.9);
-      tl.set('.tab .fav', { background: "linear-gradient(135deg,#2f9e6e,#177a4e)", border: "none", borderRadius: "3px", rotation: 0 }, enterAt + 0.9);
-      // lock replaces the search glyph once the secure page has loaded; the
-      // omnibox focus ring releases on load too.
-      tl.set('.lock', { textContent: "🔒" }, enterAt + 0.9);
-      tl.to('.omnibox', { borderColor: "#dfe1e5", boxShadow: "none", duration: 0.2 }, enterAt);
+        // ---- Mounted targets (all inside the real browser-app chrome) ----
+        const urlBar = win.querySelector(".url-bar");
+        const urlText = win.querySelector(".url-text");
+        const lockUse = win.querySelector(".lock use");
+        const suggest = win.querySelector('[data-role="suggest"]');
+        const suggestText = win.querySelector('[data-role="suggest-text"]');
+        const loadBar = win.querySelector('[data-role="loadbar"]');
+        const appShell = win.querySelector(".app-shell");
+        const reloadUse = win.querySelector(".nav-button.reload use");
+        const activeTab = win.querySelector(".tab.active");
+        const tabTitle = activeTab && activeTab.querySelector(".tab-title");
+        const tabFaviconSvg = activeTab && activeTab.querySelector(".tab-favicon");
+        const tabFaviconUse = tabFaviconSvg && tabFaviconSvg.querySelector("use");
+        const bookmarkChip = win.querySelector(".bookmark-group");
+        if (!urlBar || !urlText || !loadBar || !appShell || !activeTab) return;
+
+        // The URL typed is the very address already baked into browser-app's
+        // omnibox/tab — typing it "loads" the same Content-production page
+        // the surface already ships, so no invented destination content is
+        // needed.
+        const URLTXT = urlText.textContent.trim();
+        const finalTabTitle = tabTitle ? tabTitle.textContent : "";
+
+        // ---- Rest-frame pins (t=0): a fresh, not-yet-navigated tab. ----
+        gsap.set(appShell, { opacity: 0 });
+        gsap.set(urlText, { textContent: "" });
+        if (tabTitle) gsap.set(tabTitle, { textContent: "New Tab" });
+        if (tabFaviconUse) gsap.set(tabFaviconUse, { opacity: 0 });
+
+        // 1) Click the omnibox, type the URL.
+        const TYPE_AT = 1.0;
+        const TYPE_CPS = 30;
+        ix.click(urlBar, { at: 0.7, moveDur: 0.5 });
+        tl.to(urlBar, { borderColor: "#1a73e8", backgroundColor: "#ffffff", boxShadow: "0 1px 6px rgba(26,115,232,0.28)", duration: 0.15 }, TYPE_AT - 0.15);
+        // cursor parks near the bookmarks row while typing — hands are on
+        // the keyboard, so it shouldn't sit on top of the address bar text.
+        if (bookmarkChip) ix.moveTo(bookmarkChip, { at: TYPE_AT + 0.15, dur: 0.35 });
+        ix.type(urlText, URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
+
+        // Autocomplete suggestion panel: fades in with focus, echoes the
+        // typed value as it's revealed, and hides again once load starts.
+        const typeDur = URLTXT.length / TYPE_CPS;
+        if (suggest && suggestText) {
+          ix.show(suggest, { at: TYPE_AT - 0.1, dur: 0.12, from: { opacity: 0 } });
+          tl.set(suggestText, { textContent: URLTXT.slice(0, 10) }, TYPE_AT + 0.05 * typeDur);
+          tl.set(suggestText, { textContent: URLTXT.slice(0, 24) }, TYPE_AT + 0.2 * typeDur);
+          tl.set(suggestText, { textContent: URLTXT }, TYPE_AT + 0.45 * typeDur);
+        }
+
+        // 2) "Enter" — loading bar sweeps, the page fades in.
+        const enterAt = TYPE_AT + typeDur + 0.35;
+        if (suggest) ix.hide(suggest, { at: enterAt, dur: 0.1 });
+        tl.to(urlBar, { borderColor: "transparent", backgroundColor: "#eef2f9", boxShadow: "none", duration: 0.2 }, enterAt);
+        tl.fromTo(loadBar, { scaleX: 0 }, { scaleX: 0.7, duration: 0.5, ease: "power1.out" }, enterAt);
+        tl.to(loadBar, { scaleX: 1, duration: 0.35, ease: "power1.in" }, enterAt + 0.5);
+        tl.to(loadBar, { opacity: 0, duration: 0.2 }, enterAt + 0.85);
+        ix.show(appShell, { at: enterAt + 0.9, dur: 0.25, from: { opacity: 0 } });
+        if (activeTab) ix.moveTo(activeTab, { at: enterAt + 0.05, dur: 0.5 });
+
+        // Reload glyph flips to a stop icon for the full load, matching
+        // desktop Chrome's most reliable "page is loading" affordance.
+        if (reloadUse) {
+          tl.set(reloadUse, { attr: { href: "#lucide-tab-close" } }, enterAt);
+          tl.set(reloadUse, { attr: { href: "#lucide-reload" } }, enterAt + 0.9);
+        }
+
+        // Tab favicon becomes a spinning throbber for the load, then
+        // resolves back to the doc icon. Finite (non-repeating) rotation
+        // tween so the timeline duration stays bounded/seek-safe, landing on
+        // an exact multiple of 360deg so the reset below is clean.
+        if (tabFaviconSvg && tabFaviconUse) {
+          tl.set(tabFaviconSvg, { background: "none", border: "2px solid rgba(95,99,104,0.35)", borderTopColor: "#1a73e8", borderRadius: "50%", rotation: 0 }, enterAt);
+          tl.to(tabFaviconSvg, { rotation: 720, duration: 0.88, ease: "none" }, enterAt);
+          tl.set(tabFaviconSvg, { border: "none", rotation: 0 }, enterAt + 0.9);
+          tl.set(tabFaviconUse, { opacity: 1 }, enterAt + 0.9);
+        }
+        // Tab title resolves to the loaded page's identity.
+        if (tabTitle) tl.set(tabTitle, { textContent: finalTabTitle }, enterAt + 0.9);
+        // Lock replaces the info glyph once the secure page has loaded.
+        if (lockUse) tl.set(lockUse, { attr: { href: "#lucide-shield" } }, enterAt + 0.9);
+      }).catch(() => {});
 
       window.__timelines["browser-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(4.7).pause();
+      if (cap === "hero") {
+        tl.seek(4.4).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(4.4).pause(); }).catch(() => {});
+      }
     </script>
   </body>
 </html>
