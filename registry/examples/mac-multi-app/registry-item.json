@@ -135,6 +135,11 @@
       "type": "hyperframes:composition"
     },
     {
+      "path": "compositions/office-ribbon.css",
+      "target": "compositions/office-ribbon.css",
+      "type": "hyperframes:style"
+    },
+    {
       "path": "hyperframes.json",
       "target": "hyperframes.json",
       "type": "hyperframes:asset"

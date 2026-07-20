@@ -1,5 +1,6 @@
 <style>
   @import url("../styles/backlot-foundation.css");
+  @import url("office-ribbon.css");
   html,
   body {
     width: 100%;
@@ -90,73 +91,76 @@
         <symbol id="fluent-text-align-left-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M1 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/></symbol>
         <!-- fluent:pen-16-regular via @iconify/json -->
         <symbol id="fluent-pen-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M13.44 2.56a1.914 1.914 0 0 0-2.707 0L3.338 9.956a1.65 1.65 0 0 0-.398.644l-.914 2.743a.5.5 0 0 0 .632.633l2.743-.915c.243-.08.463-.217.644-.398L12 6.708l.263.262a.75.75 0 0 1 0 1.06l-1.117 1.117a.5.5 0 1 0 .708.707l1.116-1.116a1.75 1.75 0 0 0 0-2.475L12.707 6l.733-.733a1.914 1.914 0 0 0 0-2.707m-1.778 3.072l-.03.03l-6.294 6.293a.65.65 0 0 1-.253.157l-1.794.598l.598-1.794a.65.65 0 0 1 .156-.254l7.395-7.394a.914.914 0 1 1 1.293 1.293z"/></symbol>
+        <symbol id="fluent-chevron-down-12-filled" viewBox="0 0 12 12"><path fill="currentColor" d="M2.22 4.47a.75.75 0 0 1 1.06 0L6 7.19l2.72-2.72a.75.75 0 0 1 1.06 1.06L6.53 8.78a.75.75 0 0 1-1.06 0L2.22 5.53a.75.75 0 0 1 0-1.06"/></symbol>
+        <symbol id="fluent-search-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M11.02 11.727a5.5 5.5 0 1 1 .707-.707l3.127 3.126a.5.5 0 0 1-.708.708zM12 7.5a4.5 4.5 0 1 0-9 0a4.5 4.5 0 0 0 9 0"/></symbol>
       </svg>
       <header class="word-titlebar">
         <div class="word-traffic" aria-hidden="true"></div>
-        <div class="autosave">AutoSave<span></span></div>
+        <div class="autosave"><span>AutoSave</span><i class="as-toggle on"></i></div>
         <div class="quick-access">
-          <span class="qa home"><svg class="qa-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-house"></use></svg></span>
-          <span class="qa save"><svg class="qa-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-save-16-regular"></use></svg></span>
-          <span class="qa undo"><svg class="qa-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-arrow-uturn-left"></use></svg><i class="qa-chevron"></i></span>
-          <span class="qa redo"><svg class="qa-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-arrow-uturn-right"></use></svg></span>
-          <span class="qa print"><svg class="qa-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-printer"></use></svg></span>
-          <span class="qa more"><svg class="qa-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-ellipsis"></use></svg></span>
+          <svg class="office-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-house"></use></svg>
+          <svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-save-16-regular"></use></svg>
+          <span class="qa-undo"><svg class="office-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-arrow-uturn-left"></use></svg><svg class="office-icon qa-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
+          <svg class="office-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-arrow-uturn-right"></use></svg>
+          <svg class="office-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-printer"></use></svg>
+          <svg class="office-icon" viewBox="0 0 56 56" aria-hidden="true"><use href="#f7-ellipsis"></use></svg>
         </div>
         <div class="word-title-center">
           <span class="word-title">Launch Brief</span>
         </div>
-        <div class="title-search"><span></span>Search (Cmd + Ctrl + U)</div>
+        <div class="title-search"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg>Search (Cmd + Ctrl + U)</div>
       </header>
 
       <nav class="word-tabs" aria-label="Word ribbon tabs">
         <span>Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Layout</span><span>References</span><span>Mailings</span><span class="active">Review</span><span>View</span>
         <div class="title-actions">
           <span class="avatar-stack"><span class="avatar-chip">CM</span><span class="avatar-chip second">AL</span></span>
-          <span class="comments-action"><svg class="title-action-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-20"></use></svg>Comments</span>
-          <span class="editing-action"><svg class="title-action-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-edit-16-regular"></use></svg>Editing<i class="chev"></i></span>
-          <span class="share-action"><svg class="title-action-icon share-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-share-16-regular"></use></svg>Share<i class="chev"></i></span>
+          <span class="comments"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-20"></use></svg>Comments</span>
+          <span class="editing"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-edit-16-regular"></use></svg>Editing<svg class="office-icon chev" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
+          <span class="share"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-share-16-regular"></use></svg>Share<svg class="office-icon chev" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
         </div>
       </nav>
 
-      <div class="word-ribbon review-ribbon" aria-label="Word Review ribbon">
+      <div class="word-ribbon" aria-label="Word Review ribbon">
         <div class="ribbon-group proofing">
-          <div class="ribbon-large editor"><svg class="cmd-icon office-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#fluent-calligraphy-pen-24-filled"></use></svg><em>Editor</em></div>
-          <div class="ribbon-stack compact">
+          <div class="ribbon-large"><svg class="cmd-icon office-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#fluent-calligraphy-pen-24-filled"></use></svg><em>Editor</em></div>
+          <div class="ribbon-stack">
             <span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-grammar-checkmark-20-regular"></use></svg>Spelling &amp; Grammar</span>
             <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-book-16-regular"></use></svg>Thesaurus</span>
             <span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-word-count-20-regular"></use></svg>Word Count</span>
           </div>
         </div>
         <div class="ribbon-group comments">
-          <div class="ribbon-large new-comment"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-add-20"></use></svg><em>New Comment</em></div>
-          <div class="ribbon-stack compact">
+          <div class="ribbon-large"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-add-20"></use></svg><em>New Comment</em></div>
+          <div class="ribbon-stack">
             <span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-dismiss-20-regular"></use></svg>Delete</span>
             <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-comment-arrow-left-16-regular"></use></svg>Previous</span>
             <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-comment-arrow-right-16-regular"></use></svg>Next</span>
           </div>
         </div>
-        <div class="ribbon-group tracking">
-          <div class="tracking-stack">
-            <div class="ribbon-row">
-              <span class="track-command"><svg class="cmd-icon office-icon track" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-edit-20"></use></svg>Track Changes</span>
-              <span class="field review-select">All Markup</span>
-            </div>
-            <div class="track-menu"><span>Off</span><span>For Everyone</span><span class="selected">Just Mine</span></div>
-            <div class="button-row">
-              <span class="review-chip">Markup Options</span><span class="review-chip pane-chip"><svg class="mini-pane office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-panel-right-16"></use></svg>Reviewing Pane</span>
+        <div class="ribbon-group tracking col">
+          <div class="ribbon-row">
+            <span class="track-command"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-edit-20"></use></svg>Track Changes</span>
+            <span class="field markup">All Markup<svg class="field-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
+          </div>
+          <div class="track-menu"><span>Off</span><span>For Everyone</span><span class="selected">Just Mine</span></div>
+          <div class="button-row">
+            <div class="ribbon-stack">
+              <span>Markup Options<svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span>
+              <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-panel-right-16"></use></svg>Reviewing Pane</span>
             </div>
           </div>
         </div>
         <div class="ribbon-group changes">
           <div class="ribbon-large accept"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-checkmark-20"></use></svg><em>Accept</em><i></i></div>
           <div class="ribbon-large reject"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-dismiss-20"></use></svg><em>Reject</em><i></i></div>
-          <div class="ribbon-stack narrow"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-previous-16"></use></svg>Previous</span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-next-16"></use></svg>Next</span></div>
+          <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-previous-16"></use></svg>Previous</span><span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-next-16"></use></svg>Next</span></div>
         </div>
         <div class="ribbon-group compare">
-          <div class="ribbon-stack compact"><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-split-hint-20-regular"></use></svg>Compare</span></div>
+          <div class="ribbon-stack"><span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-split-hint-20-regular"></use></svg>Compare</span></div>
         </div>
         <div class="ribbon-group protect">
-          <div class="ribbon-stack compact">
+          <div class="ribbon-stack">
             <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-shield-16-regular"></use></svg>Protect</span>
             <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-document-lock-16-regular"></use></svg>Restrict Editing</span>
           </div>
@@ -226,11 +230,26 @@
     </section>
 
     <style>
+      /* "Aptos Display" and "Aptos" are OS-bundled Microsoft fonts with no
+         downloadable file here — src: local(...) satisfies the renderer's
+         font_family_without_font_face check without needing a .woff2. */
+      @font-face {
+        font-family: "Aptos Display";
+        src: local("Aptos Display");
+      }
+      @font-face {
+        font-family: "Aptos";
+        src: local("Aptos");
+      }
+
       #word-editor-surface {
         --word-blue: #185abd;
         --word-blue-2: #2b7cd3;
+        --accent: var(--word-blue);
+        --accent-dark: var(--word-blue);
+        --share: var(--word-blue);
         --panel: #f6f7f8;
-        --chrome: #f9f9f9;
+        --chrome: #f5f5f5;
         --line: #d9dde4;
         --ink: #16120f;
         --muted: #65707c;
@@ -266,341 +285,6 @@
         width: 0;
         height: 0;
         overflow: hidden;
-      }
-
-      .word-titlebar {
-        height: 38px;
-        display: grid;
-        grid-template-columns: 58px auto minmax(118px, auto) auto auto 1fr auto;
-        align-items: center;
-        gap: 9px;
-        padding: 0 13px;
-        background: var(--chrome);
-        border-bottom: 1px solid #d6dae0;
-        color: #2d3540;
-        font-size: 12px;
-        font-weight: 650;
-      }
-
-      .word-traffic {
-        position: relative;
-        width: 50px;
-        height: 14px;
-      }
-
-      .word-traffic::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 1px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #ff5f57;
-        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
-      }
-
-      .quick-access {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding-right: 3px;
-      }
-
-      .qa {
-        width: 17px;
-        height: 17px;
-        position: relative;
-        color: #66717d;
-      }
-
-      .word-title {
-        min-width: 132px;
-      }
-
-      .autosave,
-      .title-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: #68727e;
-        font-size: 10px;
-        white-space: nowrap;
-      }
-
-      .autosave span {
-        width: 26px;
-        height: 14px;
-        border-radius: 999px;
-        background: #d7ecdf;
-        border: 1px solid #98cfad;
-        position: relative;
-      }
-
-      .autosave span::after {
-        content: "";
-        position: absolute;
-        right: 2px;
-        top: 2px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--green);
-      }
-
-      .title-search {
-        justify-self: center;
-        width: 292px;
-        height: 22px;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        padding: 0 14px;
-        border-radius: 999px;
-        background: #eef0f3;
-        color: #7c8792;
-        font-size: 11px;
-        font-weight: 500;
-      }
-
-      .title-search span {
-        width: 10px;
-        height: 10px;
-        border: 1.5px solid #7c8792;
-        border-radius: 50%;
-        position: relative;
-      }
-
-      .title-search span::after {
-        content: "";
-        position: absolute;
-        right: -4px;
-        bottom: -3px;
-        width: 5px;
-        height: 1.5px;
-        border-radius: 2px;
-        background: #7c8792;
-        transform: rotate(45deg);
-      }
-
-      .title-actions span {
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 9px;
-        border-radius: 7px;
-        background: #eef0f3;
-        color: #384450;
-        font-size: 11px;
-      }
-
-      .title-actions .share-action {
-        background: var(--word-blue);
-        color: #fff;
-      }
-
-      .word-tabs {
-        height: 30px;
-        display: flex;
-        align-items: end;
-        gap: 3px;
-        padding: 0 12px;
-        background: #f3f4f6;
-        border-bottom: 1px solid #d7dbe1;
-      }
-
-      .word-tabs span {
-        height: 25px;
-        display: flex;
-        align-items: center;
-        padding: 0 13px;
-        border-radius: 7px 7px 0 0;
-        color: #33404c;
-        font-size: 12px;
-        font-weight: 620;
-      }
-
-      .word-tabs .active {
-        background: #fff;
-        border: 1px solid #d7dbe1;
-        border-bottom-color: #fff;
-        color: var(--word-blue);
-      }
-
-      .word-tabs .contextual {
-        color: #8f4f2d;
-        background: rgba(198, 91, 71, 0.08);
-      }
-
-      .word-ribbon {
-        height: 100px;
-        display: flex;
-        align-items: stretch;
-        gap: 0;
-        padding: 5px 8px 0;
-        background: #fff;
-        border-bottom: 1px solid #d4d9e0;
-      }
-
-      .review-ribbon {
-        padding-left: 10px;
-      }
-
-      .ribbon-group {
-        position: relative;
-        display: flex;
-        align-items: flex-start;
-        gap: 7px;
-        min-width: 98px;
-        padding: 3px 9px 25px;
-        border-left: 1px solid #e3e6eb;
-      }
-
-      .ribbon-group.tracking {
-        min-width: 278px;
-      }
-
-      .ribbon-group.changes {
-        min-width: 190px;
-      }
-
-      .ribbon-group.compare {
-        min-width: 90px;
-      }
-
-      .ribbon-group.protect {
-        min-width: 140px;
-      }
-
-      .ribbon-group.proofing {
-        min-width: 188px;
-      }
-
-      .ribbon-group:first-child {
-        border-left: 0;
-      }
-
-      .ribbon-large {
-        width: 64px;
-        min-height: 63px;
-        display: grid;
-        grid-template-rows: 34px auto;
-        justify-items: center;
-        gap: 4px;
-        padding: 4px;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        position: relative;
-        color: #283441;
-        font-size: 11px;
-        font-style: normal;
-      }
-
-      .ribbon-large em {
-        font-style: normal;
-      }
-
-      .ribbon-large i {
-        position: absolute;
-        right: 6px;
-        bottom: 8px;
-        width: 5px;
-        height: 5px;
-        border-right: 1.4px solid #606a74;
-        border-bottom: 1.4px solid #606a74;
-        transform: rotate(45deg);
-      }
-
-      .cmd-icon {
-        width: 29px;
-        height: 30px;
-        border-radius: 7px;
-        background: #e7eefb;
-        border: 1px solid #c8d8f0;
-        position: relative;
-      }
-
-      .office-icon {
-        display: inline-block;
-        color: #424242;
-        fill: currentColor;
-      }
-
-      .ribbon-stack {
-        display: grid;
-        gap: 4px;
-      }
-
-      .ribbon-stack span,
-      .field,
-      .review-chip {
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-        border: 1px solid #d8dce2;
-        background: #fbfcfd;
-        color: #34414f;
-        font-size: 11px;
-        font-weight: 580;
-      }
-
-      .ribbon-stack span {
-        justify-content: flex-start;
-        min-width: 86px;
-        padding: 0 8px;
-      }
-
-      .ribbon-stack.narrow span {
-        min-width: 70px;
-      }
-
-      .ribbon-row {
-        display: flex;
-        gap: 4px;
-      }
-
-      .field {
-        padding: 0 8px;
-      }
-
-      .review-select {
-        width: 106px;
-        justify-content: space-between;
-      }
-
-      .review-select::after {
-        content: "";
-        width: 5px;
-        height: 5px;
-        margin-left: 8px;
-        border-right: 1.3px solid #56616d;
-        border-bottom: 1.3px solid #56616d;
-        transform: rotate(45deg) translateY(-2px);
-      }
-
-      .review-chip {
-        padding: 0 9px;
-      }
-
-      .font-name {
-        width: 82px;
-        justify-content: flex-start;
-      }
-
-      .field.small {
-        width: 36px;
-      }
-
-      .button-row {
-        display: flex;
-        gap: 3px;
-        margin-top: 5px;
-      }
-
-      .button-row.dense {
-        margin-top: 0;
       }
 
       .document-workspace {
@@ -1117,551 +801,100 @@
       }
 
       .word-titlebar {
-        position: relative;
-        height: 32px;
-        grid-template-columns: 66px auto auto 1fr;
+        height: 40px;
+        display: grid;
+        grid-template-columns: 58px auto auto 1fr auto;
+        align-items: center;
         gap: 10px;
-        padding: 0 12px;
-        background: var(--mac-chrome);
-        border-bottom: 0;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .word-traffic {
-        position: relative;
-        width: 52px;
-        height: 12px;
-      }
-
-      .word-traffic::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #ff5f57;
-        box-shadow:
-          0 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
-          20px 0 0 #febc2e,
-          20px 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
-          40px 0 0 #28c840,
-          40px 0 0 0.5px rgba(0, 0, 0, 0.12) inset;
-      }
-
-      .app-launcher {
-        display: none;
-      }
-
-      .quick-access {
-        display: inline-flex;
-        align-items: center;
-        gap: 14px;
-        padding: 0;
-      }
-
-      .qa {
-        width: 18px;
-        height: 18px;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #3e3e3e;
-      }
-
-      .qa-icon {
-        width: 100%;
-        height: 100%;
-        color: currentColor;
-        fill: currentColor;
-      }
-
-      .qa.undo {
-        width: auto;
-        gap: 3px;
-        padding-right: 2px;
-        color: #b0b0b0;
-      }
-
-      .qa.undo .qa-icon {
-        width: 18px;
-        height: 18px;
-        flex: 0 0 auto;
-      }
-
-      .qa-chevron {
-        width: 5px;
-        height: 5px;
-        border-right: 1.3px solid #605e5c;
-        border-bottom: 1.3px solid #605e5c;
-        transform: rotate(45deg);
-        margin-top: -3px;
+        padding: 0 14px;
+        background: var(--chrome);
+        color: #242424;
+        font-size: 13px;
       }
 
       .word-title-center {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #242424;
-        white-space: nowrap;
-        pointer-events: none;
+        justify-self: center;
       }
 
       .word-title {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        min-width: 0;
-        color: #242424;
-        font-size: 13px;
         font-weight: 600;
-        line-height: 1;
+        font-size: 13px;
+        color: #1a1a1a;
         white-space: nowrap;
       }
 
-      .autosave {
+      .title-actions .avatar-stack {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        color: var(--mac-muted);
-        font-size: 11px;
-        font-weight: 400;
-        white-space: nowrap;
+        margin-right: 2px;
       }
 
-      .autosave span {
-        width: 28px;
-        height: 15px;
-        border-radius: 999px;
-        background: #8a8a8a;
-        border: 0;
-        position: relative;
-      }
-
-      .autosave span::after {
-        content: "";
-        position: absolute;
-        left: 1px;
-        top: 1px;
-        width: 13px;
-        height: 13px;
+      .avatar-chip {
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
-        background: #fff;
-      }
-
-      .title-search {
-        grid-column: 4;
-        width: auto;
-        height: 24px;
-        justify-self: end;
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 0 4px;
-        border-radius: 0;
-        background: transparent;
-        color: #605e5c;
-        font-size: 13px;
-        font-weight: 400;
-        box-shadow: none;
-        white-space: nowrap;
-      }
-
-      .title-search span {
-        width: 10px;
-        height: 10px;
-        border: 1.4px solid #605e5c;
-        border-radius: 50%;
-        position: relative;
-        flex: 0 0 auto;
-      }
-
-      .title-search span::after {
-        content: "";
-        position: absolute;
-        right: -4px;
-        bottom: -3px;
-        width: 5px;
-        height: 1.4px;
-        border-radius: 2px;
-        background: #605e5c;
-        transform: rotate(45deg);
-      }
-
-      .title-actions {
-        gap: 8px;
-      }
-
-      .title-actions span {
-        height: 24px;
-        border-radius: 6px;
-        border: 0;
-        background: transparent;
-        color: #323130;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .title-actions .comments-action {
-        gap: 6px;
-        padding: 0 8px;
-      }
-
-      .title-actions .comments-action::before {
-        content: none;
-      }
-
-      .title-action-icon {
-        width: 15px;
-        height: 15px;
-        color: currentColor;
-      }
-
-      .title-actions .editing-action {
-        gap: 5px;
-        padding: 0 10px;
-        border: 1px solid var(--mac-hairline);
-      }
-
-      .title-actions .share-action {
-        gap: 4px;
-        padding: 0 13px;
-        background: var(--word-blue);
-        border-color: var(--word-blue);
-        color: #fff;
-        font-weight: 590;
-      }
-
-      .chev {
-        width: 6px;
-        height: 6px;
-        border-right: 1.3px solid currentColor;
-        border-bottom: 1.3px solid currentColor;
-        transform: rotate(45deg);
-        margin-left: 1px;
-        margin-top: -3px;
-        opacity: 0.85;
-      }
-
-      .avatar-stack {
-        padding: 0 !important;
-        gap: 0 !important;
-      }
-
-      .avatar-stack .avatar-chip {
-        width: 24px;
-        height: 24px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: #d13438;
-        color: #fff;
+        justify-content: center;
         font-size: 10px;
-        font-weight: 600;
-        border: 1.5px solid var(--mac-chrome);
-        padding: 0;
+        font-weight: 700;
+        color: #fff;
+        background: #d13438;
+        border: 1.5px solid var(--chrome);
       }
 
-      .avatar-stack .avatar-chip.second {
-        margin-left: -3px;
+      .avatar-chip.second {
+        margin-left: -6px;
         background: #5b5fc7;
       }
 
-      .word-tabs {
-        height: 26px;
-        align-items: stretch;
-        gap: 2px;
-        padding: 0 10px;
-        background: var(--mac-tab);
-        border-bottom: 0;
+      .title-actions .chev {
+        width: 9px;
+        height: 9px;
       }
 
-      .word-tabs span {
-        height: 26px;
-        padding: 0 12px;
-        border-radius: 0;
-        border: 0;
-        color: #242424;
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .word-tabs .active {
-        background: transparent;
-        border: 0;
-        color: #242424;
-        box-shadow: none;
-        position: relative;
-        font-weight: 600;
-      }
-
-      .word-tabs .active::after {
-        content: "";
-        position: absolute;
-        left: 12px;
-        right: 12px;
-        bottom: 3px;
-        height: 3px;
-        border-radius: 2px;
-        background: #365695;
-      }
-
-      .word-tabs .contextual {
-        background: transparent;
-      }
-
-      .word-tabs .title-actions {
-        margin-left: auto;
-        padding-left: 8px;
-        flex: 0 0 auto;
-      }
-
-      .word-tabs .title-actions .comments-action,
-      .word-tabs .title-actions .editing-action {
-        height: 22px;
-        padding: 0 9px;
-        border-radius: 6px;
-        border: 1px solid #d9d9d9;
-        background: #ffffff;
-        color: #242424;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .word-tabs .title-actions .share-action {
-        height: 22px;
-        padding: 0 9px;
-        border-radius: 6px;
-        border: 0;
-        color: #fff;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .word-tabs .title-actions .comments-action {
-        gap: 6px;
-        padding: 0 8px;
-      }
-
-      .word-tabs .title-actions .editing-action {
-        gap: 5px;
-        padding: 0 10px;
-      }
-
-      .word-tabs .title-actions .share-action {
-        gap: 4px;
-        padding: 0 13px;
-        background: var(--word-blue);
-        border-color: var(--word-blue);
-        color: #fff;
-        font-weight: 590;
-      }
-
-      .word-tabs .title-actions .share-icon {
-        width: 14px;
-        height: 14px;
-      }
-
-      .word-ribbon {
-        height: 78px;
-        align-items: stretch;
-        padding: 8px 10px 10px;
-        background: var(--mac-chrome);
-        border-bottom: 1px solid #cccccc;
-      }
-
-      .review-ribbon {
-        padding-left: 10px;
-      }
-
-      .ribbon-group {
-        flex: 0 0 auto;
-        gap: 6px;
-        min-width: 82px;
-        padding: 4px 10px 6px;
-        border-left: 0;
-      }
-
-      .ribbon-group::before {
-        content: "";
-        width: 1px;
-        height: 48px;
-        align-self: center;
-        flex: 0 0 auto;
-        background: #d6d6d6;
-      }
-
-      .ribbon-group:first-child::before {
-        content: none;
-      }
-
-      .ribbon-group.comments { min-width: 148px; }
-      .ribbon-group.tracking {
-        min-width: 220px;
-        align-items: center;
-      }
-      .tracking-stack {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
-      .ribbon-group.tracking .button-row {
-        margin-top: 0;
-      }
-      .ribbon-group.changes { min-width: 182px; }
-      .ribbon-group.compare { min-width: 88px; }
-      .ribbon-group.protect { min-width: 138px; }
-      .ribbon-group.proofing { min-width: 120px; }
-
-      .ribbon-large {
-        width: 56px;
-        min-height: 56px;
-        grid-template-rows: 28px auto;
-        gap: 3px;
-        padding: 3px;
-        border-radius: 6px;
-        color: #323130;
-        font-size: 12px;
-        line-height: 1.1;
-      }
-
-      .ribbon-large:hover,
-      .field:hover,
-      .review-chip:hover,
-      .ribbon-stack span:hover,
-      .track-command:hover {
-        background: rgba(20, 30, 48, 0.055);
-      }
-
-      .cmd-icon {
-        display: block;
-        width: 28px;
-        height: 28px;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-      }
-
-      .office-icon {
-        color: #3e3e3e;
-      }
-
-      .office-icon::before,
-      .office-icon::after {
-        content: none !important;
-      }
-
-      .ribbon-large.editor .office-icon {
-        color: #2c62c9;
-      }
-
-      .ribbon-large.accept .office-icon {
-        color: #107c10;
-      }
-
-      .ribbon-large.reject .office-icon {
-        color: #c4314b;
-      }
-
-      .track-command .office-icon {
-        color: #2b579a;
-      }
-
-      .ribbon-stack {
-        gap: 2px;
-      }
-
-      .ribbon-stack span,
-      .field,
-      .review-chip,
+      /* Review-tab track-changes widget: word-only, styled like the shared .field */
       .track-command {
-        border-radius: 6px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: #242424;
-        font-weight: 400;
-        white-space: nowrap;
-      }
-
-      .field,
-      .review-chip,
-      .track-command {
-        height: 22px;
-        font-size: 12px;
-      }
-
-      .ribbon-stack span {
-        height: 18px;
-        gap: 5px;
-        min-width: 74px;
-        padding: 0 7px;
-        font-size: 10.5px;
-      }
-
-      .stack-icon {
-        width: 13px;
-        height: 13px;
-        flex: 0 0 auto;
-      }
-
-      .ribbon-stack.compact span {
-        min-width: 74px;
-      }
-
-      .ribbon-row {
-        gap: 4px;
-      }
-
-      .track-command {
-        position: relative;
-        z-index: 4;
+        height: 21px;
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 0 18px 0 5px;
-        min-width: 108px;
-        justify-content: flex-start;
+        padding: 0 8px;
+        border: 1px solid #b9b9b9;
+        border-radius: 5px;
+        background: #fff;
+        color: #1a1a1a;
+        font-size: 12px;
         white-space: nowrap;
-        background: rgba(20, 30, 48, 0.055);
       }
 
-      .track-command .cmd-icon {
-        flex: 0 0 24px;
+      .track-command .office-icon {
+        width: 14px;
+        height: 14px;
+        color: var(--word-blue);
       }
 
-      .track-command::after {
-        content: "";
-        position: absolute;
-        right: 7px;
-        top: 8px;
-        width: 6px;
-        height: 6px;
-        border-right: 1.4px solid var(--mac-muted);
-        border-bottom: 1.4px solid var(--mac-muted);
-        transform: rotate(45deg);
+      .field.markup {
+        width: 108px;
+        justify-content: space-between;
+      }
+
+      .field.markup .field-caret {
+        width: 8px;
+        height: 8px;
       }
 
       .track-menu {
         position: absolute;
         left: 8px;
-        top: 31px;
+        top: 66px;
         z-index: 8;
         width: 140px;
         display: none;
         padding: 4px;
         background: #fbfaf9;
         border-radius: 8px;
-        border: 1px solid var(--mac-border);
+        border: 1px solid #d9dde4;
         box-shadow: 0 12px 28px rgba(24, 24, 24, 0.22);
       }
 
@@ -1671,68 +904,30 @@
         align-items: center;
         padding: 0 8px;
         border-radius: 5px;
-        color: #323130;
-        font-size: 12.5px;
+        font-size: 12px;
+        color: #333;
       }
 
       .track-menu span.selected {
-        background: var(--word-blue);
-        color: #fff;
+        background: rgba(24, 90, 189, 0.12);
+        color: var(--word-blue);
+        font-weight: 600;
       }
 
-      .review-select {
-        width: 90px;
-        justify-content: space-between;
-        border-color: var(--mac-border);
-        background: #fff;
-      }
-
-      .button-row {
-        gap: 3px;
+      .ribbon-group.tracking .button-row {
         margin-top: 3px;
-        padding-left: 0;
       }
 
-      .tracking .button-row {
-        padding-left: 0;
+      .ribbon-large.accept .cmd-icon {
+        color: #107c10;
       }
 
-      .review-chip {
-        padding: 0 7px;
-        white-space: nowrap;
-        font-size: 10.5px;
-      }
-
-      .review-chip::after {
-        content: "";
-        width: 5px;
-        height: 5px;
-        margin-left: 6px;
-        border-right: 1.3px solid #56616d;
-        border-bottom: 1.3px solid #56616d;
-        transform: rotate(45deg) translateY(-1px);
-      }
-
-      .pane-chip {
-        gap: 5px;
-      }
-
-      .mini-pane {
-        width: 14px;
-        height: 14px;
-        border: 0;
-        color: #4a4a4a;
-      }
-
-      .font-name {
-        width: 80px;
-      }
-
-      .field.small {
-        width: 44px;
+      .ribbon-large.reject .cmd-icon {
+        color: #c4314b;
       }
 
       .document-workspace {
+        border-top: 1px solid #cccccc;
         flex: 1;
         min-height: 0;
         grid-template-columns: 188px 1fr 246px;

@@ -121,10 +121,17 @@
             <span class="nav-button forward disabled"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-forward"/></svg></span>
             <span class="nav-button reload"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-reload"/></svg></span>
           </div>
-          <div class="url-bar">
-            <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-page-info"/></svg></span>
-            <span class="url-text"><span class="url-host">review.local</span><span class="url-path">/launch-deck/board?view=grid&agent=claude</span></span>
-            <span class="star-icon" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-star"/></svg></span>
+          <div class="omnibox-wrap">
+            <div class="url-bar">
+              <span class="lock"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-page-info"/></svg></span>
+              <span class="url-text"><span class="url-host">review.local</span><span class="url-path">/launch-deck/board?view=grid&agent=claude</span></span>
+              <span class="star-icon" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-star"/></svg></span>
+            </div>
+            <div class="omnibox-suggest" data-role="suggest" aria-hidden="true">
+              <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
+              <span class="suggest-text" data-role="suggest-text"></span>
+              <span class="suggest-suffix">— visit site</span>
+            </div>
           </div>
           <div class="toolbar-actions">
             <span class="toolbar-button extensions"><svg class="backlot-icon" aria-hidden="true"><use href="#material-symbols-extension-outline"/></svg></span>
@@ -139,6 +146,7 @@
           <span class="bookmark-chip"><svg class="backlot-icon bookmark-icon github" aria-hidden="true"><use href="#si-github"/></svg>Claude outputs</span>
           <span class="bookmark-chip"><svg class="backlot-icon bookmark-icon figma" aria-hidden="true"><use href="#si-figma"/></svg>Approved claims</span>
         </div>
+        <div class="load-bar" data-role="loadbar" aria-hidden="true"></div>
 
         <div class="app-shell">
           <header class="base-topbar">
@@ -366,6 +374,23 @@
         box-sizing: border-box;
       }
 
+      /* Self-contained fallback so icons stay correctly sized wherever this
+         surface is mounted, even when the host page doesn't itself import
+         styles/backlot-foundation.css (the top-level @import above this
+         template only applies to a direct, top-level preview of this file —
+         data-backlot-mount-src consumers clone only the <template> content).
+         Mirrors backlot-foundation.css's .backlot-icon rule; more specific
+         per-icon rules below (.tab-favicon, .nav-button .backlot-icon, etc.)
+         still win on the cascade. */
+      .backlot-icon {
+        display: inline-block;
+        flex: 0 0 auto;
+        width: 1em;
+        height: 1em;
+        color: currentColor;
+        fill: currentColor;
+      }
+
       #browser-app-surface {
         position: relative;
         width: var(--stage-w);
@@ -553,15 +578,15 @@
       .traffic {
         position: absolute;
         left: 14px;
-        top: 14px;
+        top: 16px;
         display: flex;
         gap: 8px;
         z-index: 3;
       }
 
       .traffic span {
-        width: 13px;
-        height: 13px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.13);
       }
@@ -571,19 +596,19 @@
       .traffic .green { background: #28c840; }
 
       .browser-tabs {
-        height: 40px;
+        height: 46px;
         display: flex;
         align-items: stretch;
         gap: 0;
-        padding: 6px 14px 0 92px;
+        padding: 0 14px 0 86px;
         background: #d6e3fb;
         border-bottom: none;
         overflow: hidden;
       }
 
       .tab-search {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         margin: 0 6px 0 0;
         border: 0;
         border-radius: 8px;
@@ -605,7 +630,7 @@
         position: relative;
         z-index: 1;
         align-self: flex-end;
-        height: 34px;
+        height: 36px;
         width: 240px;
         max-width: 240px;
         display: flex;
@@ -613,7 +638,7 @@
         gap: 9px;
         margin-left: -8px;
         padding: 0 30px 0 14px;
-        border-radius: 10px 10px 0 0;
+        border-radius: 12px 12px 0 0;
         color: #5f6368;
         font-size: 12px;
         background: var(--tab-bg);
@@ -642,19 +667,19 @@
         content: "";
         position: absolute;
         bottom: 0;
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         background: #fff;
       }
 
       .tab.active::before {
-        left: -10px;
-        clip-path: path("M10 10H0C5.5 10 10 5.5 10 0Z");
+        left: -12px;
+        clip-path: path("M12 12H0C6.6 12 12 6.6 12 0Z");
       }
 
       .tab.active::after {
-        right: -10px;
-        clip-path: path("M0 10H10C4.5 10 0 5.5 0 0Z");
+        right: -12px;
+        clip-path: path("M0 12H12C5.4 12 0 6.6 0 0Z");
       }
 
       .tab:not(.active)::after {
@@ -720,8 +745,8 @@
       }
 
       .tab-add {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         margin: 0 0 0 8px;
         border: 0;
         border-radius: 50%;
@@ -743,9 +768,9 @@
       }
 
       .browser-toolbar {
-        height: 48px;
+        height: 54px;
         display: grid;
-        grid-template-columns: 104px 1fr 214px;
+        grid-template-columns: 110px 1fr 124px;
         align-items: center;
         gap: 13px;
         padding: 0 14px;
@@ -762,8 +787,8 @@
 
       .nav-button,
       .toolbar-button {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         border-radius: 8px;
         background: transparent;
         border: 1px solid transparent;
@@ -782,21 +807,72 @@
       .nav-button .backlot-icon,
       .toolbar-button.capture .backlot-icon,
       .toolbar-button.more .backlot-icon {
-        width: 16px;
-        height: 16px;
+        width: 17px;
+        height: 17px;
+      }
+
+      .omnibox-wrap {
+        position: relative;
       }
 
       .url-bar {
-        height: 34px;
+        width: 100%;
+        height: 40px;
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 0 8px 0 12px;
+        padding: 0 10px 0 14px;
         border-radius: 999px;
         color: #59616b;
         font-size: 14px;
         background: #eef2f9;
         border: 1px solid transparent;
+      }
+
+      .omnibox-suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 8px);
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 10px;
+        background: #fff;
+        border: 1px solid rgba(16, 18, 22, 0.08);
+        box-shadow: 0 14px 34px rgba(20, 24, 30, 0.16);
+        color: #202124;
+        font-size: 13px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .omnibox-suggest .backlot-icon {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+        color: #9aa1ab;
+      }
+
+      .suggest-suffix {
+        margin-left: auto;
+        color: #80868b;
+        font-size: 12px;
+      }
+
+      .load-bar {
+        position: absolute;
+        left: 0;
+        top: 137px;
+        z-index: 6;
+        width: 100%;
+        height: 3px;
+        background: var(--blue);
+        transform-origin: left center;
+        transform: scaleX(0);
       }
 
       .lock {
@@ -838,7 +914,7 @@
         color: #fff;
         background: #c65b47;
         border-color: transparent;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 760;
       }
 
@@ -866,7 +942,7 @@
       }
 
       .bookmarks-bar {
-        height: 32px;
+        height: 37px;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -911,7 +987,7 @@
       .bookmark-icon.figma { color: #f24e1e; }
 
       .app-shell {
-        height: calc(100% - 120px);
+        height: calc(100% - 137px);
         display: grid;
         grid-template-columns: 232px 1fr 334px;
         grid-template-rows: 52px 1fr;

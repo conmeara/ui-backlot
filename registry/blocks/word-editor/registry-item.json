@@ -18,6 +18,11 @@
   "duration": 10,
   "files": [
     {
+      "path": "compositions/office-ribbon.css",
+      "target": "compositions/office-ribbon.css",
+      "type": "hyperframes:style"
+    },
+    {
       "path": "word-editor.html",
       "target": "compositions/word-editor.html",
       "type": "hyperframes:composition"

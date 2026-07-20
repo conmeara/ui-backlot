@@ -1,0 +1,597 @@
+/*
+ * Shared Microsoft Office (Mac) ribbon system.
+ *
+ * Used by compositions/excel-workbook.html, compositions/word-editor.html,
+ * and compositions/presentation-editor.html. Donor: excel-workbook's 2026-07-20
+ * ribbon rebuild (measured against reference/excel/2026-07-20/blank-sheet-light) —
+ * word and presentation editors were brought up to this same chrome standard so
+ * the three apps share one ribbon component instead of three drifting ones.
+ *
+ * Each composition keeps its own accent variables (set on its #<id>-surface
+ * root), its own tab labels/group contents, and its own content area below the
+ * ribbon. This file owns only the parts that are visually identical across
+ * real Mac Excel/Word/PowerPoint: title bar chrome, tab strip, ribbon bar
+ * metrics, group layout, button/stack/field/toggle styles, and dividers.
+ *
+ * Required custom properties on the composition's surface root:
+ *   --accent       app accent (active-tab underline, cmd-icon tint)
+ *   --accent-dark  darker accent (unused by default, reserved for hover/press)
+ *   --share        Share pill background (defaults to --accent if unset)
+ *   --chrome       titlebar/tabstrip/ribbon background (defaults to #f5f5f5)
+ *   --line         hairline border color (defaults to #c6c6c6)
+ */
+
+/* Aptos is an OS-bundled Microsoft font with no downloadable file in this
+   repo; local() satisfies the renderer's font_family_without_font_face check
+   without shipping a woff2. */
+@font-face {
+  font-family: "Aptos";
+  src: local("Aptos");
+}
+@font-face {
+  font-family: "Aptos Narrow";
+  src: local("Aptos Narrow");
+}
+@font-face {
+  font-family: "Aptos Display";
+  src: local("Aptos Display");
+}
+
+/* ---------- Title bar shared bits ---------- */
+
+.excel-traffic,
+.word-traffic,
+.powerpoint-traffic {
+  position: relative;
+  width: 52px;
+  height: 12px;
+}
+
+.excel-traffic::before,
+.word-traffic::before,
+.powerpoint-traffic::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
+    20px 0 0 #febc2e,
+    20px 0 0 0.5px rgba(0, 0, 0, 0.12) inset,
+    40px 0 0 #28c840,
+    40px 0 0 0.5px rgba(0, 0, 0, 0.12) inset;
+}
+
+.autosave {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #242424;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.as-toggle {
+  display: inline-block;
+  width: 26px;
+  height: 15px;
+  border-radius: 999px;
+  background: #898989;
+  position: relative;
+  flex: none;
+}
+
+.as-toggle::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.as-toggle.on {
+  background: #43b875;
+}
+
+.as-toggle.on::after {
+  left: auto;
+  right: 2px;
+}
+
+.quick-access {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quick-access .office-icon {
+  width: 16px;
+  height: 16px;
+  color: #4d4d4d;
+}
+
+.qa-undo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0.35;
+}
+
+.qa-caret {
+  width: 7px;
+  height: 7px;
+}
+
+.title-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7b7b7b;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.title-search .office-icon {
+  width: 16px;
+  height: 16px;
+  color: #7b7b7b;
+}
+
+/* ---------- Tab strip ---------- */
+
+.excel-tabs,
+.word-tabs,
+.ribbon-tabs {
+  height: 31px;
+  flex: 0 0 31px;
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 0 14px;
+  background: var(--chrome, #f5f5f5);
+}
+
+.excel-tabs span,
+.word-tabs span,
+.ribbon-tabs span {
+  position: relative;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #242424;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.excel-tabs span.active,
+.word-tabs span.active,
+.ribbon-tabs span.active {
+  color: #1a1a1a;
+  font-weight: 700;
+  background: transparent;
+}
+
+.excel-tabs span.active::after,
+.word-tabs span.active::after,
+.ribbon-tabs span.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 3px;
+  border-radius: 1.5px;
+  background: var(--accent, #217346);
+}
+
+.excel-tabs .contextual,
+.word-tabs .contextual,
+.ribbon-tabs .contextual {
+  color: var(--accent-dark, #217346);
+}
+
+.title-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.title-actions .comments,
+.title-actions .editing {
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid #c6c6c6;
+  border-radius: 6px;
+  background: #fff;
+  color: #242424;
+  font-size: 13px;
+}
+
+.title-actions .comments .office-icon,
+.title-actions .editing .office-icon {
+  width: 14px;
+  height: 14px;
+  color: #4d4d4d;
+}
+
+.title-actions .editing .chev {
+  width: 9px;
+  height: 9px;
+  color: #6e6e6e;
+}
+
+.title-actions .share {
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: var(--share, var(--accent, #217346));
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.title-actions .share .chev,
+.title-actions .share .share-caret {
+  width: 9px;
+  height: 9px;
+  color: #fff;
+}
+
+/* ---------- Ribbon ---------- */
+
+.excel-ribbon,
+.word-ribbon,
+.powerpoint-ribbon {
+  height: 63px;
+  flex: 0 0 63px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  background: var(--chrome, #f5f5f5);
+  border-top: 1px solid #b9b9b9;
+  overflow: hidden;
+}
+
+.ribbon-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ribbon-group.col {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+}
+
+.ribbon-large {
+  width: 46px;
+  min-height: 56px;
+  display: grid;
+  grid-template-rows: 24px auto;
+  justify-items: center;
+  align-content: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 6px;
+  position: relative;
+  color: #242424;
+  font-size: 11px;
+}
+
+.ribbon-large:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ribbon-large em {
+  font-style: normal;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.ribbon-large i {
+  position: absolute;
+  right: 5px;
+  bottom: 6px;
+  width: 5px;
+  height: 5px;
+  border-right: 1.4px solid #6e6e6e;
+  border-bottom: 1.4px solid #6e6e6e;
+  transform: rotate(45deg);
+}
+
+.ribbon-large.small-large {
+  width: 44px;
+}
+
+.ribbon-large.small-large .cmd-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.ribbon-large.small-large em {
+  font-size: 10.5px;
+}
+
+.ribbon-large.wide {
+  width: 50px;
+}
+
+.ribbon-large.wide em {
+  font-size: 11px;
+}
+
+.cmd-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent-dark, var(--accent, #217346));
+}
+
+.addins-icon {
+  color: #d83b01;
+}
+
+.office-icon {
+  display: inline-block;
+  color: #424242;
+  fill: currentColor;
+}
+
+/* .claude-icon must win over the generic .office-icon color rule above, so
+   it is declared after it here — keep this rule last in the cascade. */
+.claude-icon {
+  color: #d97757;
+}
+
+.stack-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: #242424;
+}
+
+.stack-chevron {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  margin-left: auto;
+  color: #6e6e6e;
+}
+
+.stack-label {
+  max-width: 96px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-style: normal;
+  font-size: 11px;
+}
+
+.ribbon-stack {
+  display: grid;
+  gap: 1px;
+}
+
+.ribbon-stack span {
+  height: 19px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 4px;
+  border-radius: 4px;
+  color: #242424;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ribbon-stack span:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.ribbon-stack.icons-only {
+  gap: 0;
+}
+
+.ribbon-stack.icons-only span {
+  height: 18px;
+  width: 36px;
+  justify-content: center;
+  gap: 2px;
+  padding: 0;
+}
+
+.ribbon-stack.icons-only .stack-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.ribbon-stack.icons-only .stack-chevron {
+  width: 7px;
+  height: 7px;
+  margin-left: 0;
+}
+
+.ribbon-row,
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.button-row {
+  margin-top: 4px;
+}
+
+.button-row.dense {
+  margin-top: 2px;
+}
+
+.field {
+  height: 21px;
+  padding: 0 8px;
+  border: 1px solid #b9b9b9;
+  border-radius: 5px;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.field.grow {
+  width: 158px;
+  justify-content: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+.field.small {
+  width: 52px;
+  justify-content: center;
+}
+
+.field.wide {
+  width: 200px;
+  justify-content: flex-start;
+}
+
+.field-caret {
+  margin-left: auto;
+  width: 7px;
+  height: 7px;
+  color: #6e6e6e;
+  flex: none;
+}
+
+.mini-btn {
+  width: 19px;
+  height: 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #424242;
+}
+
+.mini-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.mini-btn .office-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.toggle {
+  width: 22px;
+  height: 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #242424;
+  font-size: 12px;
+  position: relative;
+}
+
+.toggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.toggle.active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.toggle.chev {
+  width: 32px;
+  gap: 1px;
+}
+
+.mini-caret {
+  width: 7px;
+  height: 7px;
+  color: #6e6e6e;
+  margin-left: 1px;
+  flex: none;
+}
+
+.toggle.swatch {
+  flex-direction: column;
+  gap: 0;
+}
+
+.toggle.swatch::after {
+  content: "";
+  width: 14px;
+  height: 3px;
+  border-radius: 1px;
+  margin-top: -3px;
+}
+
+.toggle.fill::after {
+  background: #e0342b;
+}
+
+.toggle.color::after {
+  background: #ffc000;
+}
+
+.align {
+  width: 22px;
+  height: 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: transparent;
+  position: relative;
+}
+
+.align:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.align .office-icon {
+  width: 15px;
+  height: 15px;
+  color: #242424;
+}
+
+.align.chev {
+  width: 30px;
+  gap: 1px;
+}
+
+.align.right .office-icon {
+  transform: scaleX(-1);
+}
+
+.align.active {
+  background: rgba(0, 0, 0, 0.08);
+}

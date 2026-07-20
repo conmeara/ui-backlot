@@ -1,5 +1,6 @@
 <style>
   @import url("../styles/backlot-foundation.css");
+  @import url("office-ribbon.css");
 </style>
 
 <template id="presentation-editor-surface-template">
@@ -83,100 +84,89 @@
         <symbol id="fluent-grid-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M7.5 11A1.5 1.5 0 0 1 9 12.5v4A1.5 1.5 0 0 1 7.5 18h-4A1.5 1.5 0 0 1 2 16.5v-4A1.5 1.5 0 0 1 3.5 11zm9 0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5v-4a1.5 1.5 0 0 1 1.5-1.5zm-9 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m9 0h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m-9-10A1.5 1.5 0 0 1 9 3.5v4A1.5 1.5 0 0 1 7.5 9h-4A1.5 1.5 0 0 1 2 7.5v-4A1.5 1.5 0 0 1 3.5 2zm9 0A1.5 1.5 0 0 1 18 3.5v4A1.5 1.5 0 0 1 16.5 9h-4A1.5 1.5 0 0 1 11 7.5v-4A1.5 1.5 0 0 1 12.5 2zm-9 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m9 0h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5"/></symbol>
         <symbol id="fluent-board-split-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M3 6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm1 4v4a2 2 0 0 0 2 2h5v-6zm7-1V4H6a2 2 0 0 0-2 2v3zm1 7h2a2 2 0 0 0 2-2v-1h-4zm4-9V6a2 2 0 0 0-2-2h-2v3zm0 1h-4v4h4z"/></symbol>
         <symbol id="fluent-presenter-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M9.999 6a2 2 0 1 0 0-4a2 2 0 0 0 0 4m0-1a1 1 0 1 1 0-2a1 1 0 0 1 0 2m-1.5 3a.5.5 0 0 0-.5.5V9h-1v-.5a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5V9h-1v-.5a.5.5 0 0 0-.5-.5zm-1.5 6.784V16.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-1.716a.5.5 0 0 1 .153-.36l3.703-3.564a.5.5 0 0 0-.347-.86H3.49a.5.5 0 0 0-.346.86l3.702 3.564a.5.5 0 0 1 .154.36M8 16.5v-1.716a1.5 1.5 0 0 0-.46-1.08L4.729 11h10.539l-2.81 2.703a1.5 1.5 0 0 0-.46 1.081V16.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5"/></symbol>
+        <symbol id="fluent-more-horizontal-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M5 8a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2a1 1 0 0 0 0 2"/></symbol>
         <symbol id="si-claude" viewBox="0 0 24 24">
     <title>Claude</title><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
 </symbol>
       </svg>
       <div class="powerpoint-titlebar">
-        <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
-        <span class="autosave-toggle">AutoSave<span></span></span>
+        <div class="powerpoint-traffic" aria-hidden="true"></div>
+        <div class="autosave"><span>AutoSave</span><i class="as-toggle"></i></div>
         <div class="quick-access" aria-label="Quick access toolbar">
-          <span class="qa-home"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-home-16-regular"/></svg></span>
-          <span class="qa-save"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-save-16-regular"/></svg></span>
-          <span class="qa-undo"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-undo-16-regular"/></svg><i class="qa-caret"></i></span>
-          <span class="qa-redo"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-redo-16-regular"/></svg></span>
-          <span class="qa-more">···</span>
+          <svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-home-16-regular"/></svg>
+          <svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-save-16-regular"/></svg>
+          <span class="qa-undo"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-undo-16-regular"/></svg><svg class="office-icon qa-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+          <svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-arrow-redo-16-regular"/></svg>
+          <svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-more-horizontal-16-regular"/></svg>
         </div>
         <div class="titlebar-name-group">
           <span class="presentation-name">Launch Deck.pptx</span>
         </div>
-        <div class="titlebar-search"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-search-20"/></svg>Search (Cmd + Ctrl + U)</div>
+        <div class="title-search"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-search-20"/></svg>Search (Cmd + Ctrl + U)</div>
       </div>
       <div class="ribbon-tabs">
         <span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Record</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
-        <div class="ribbon-collab-cluster">
-          <button class="ribbon-comments-btn"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-comment-20-regular"/></svg>Comments</button>
-          <button class="ribbon-share-btn">Share<i class="share-caret" aria-hidden="true"></i></button>
+        <div class="title-actions">
+          <span class="comments"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-comment-20-regular"/></svg>Comments</span>
+          <span class="share">Share<svg class="office-icon share-caret" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
         </div>
       </div>
       <div class="powerpoint-ribbon">
         <div class="ribbon-group clipboard">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-paste-20"/></svg><em>Paste</em></div>
-          <div class="ribbon-stack">
-            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-cut-16-regular"/></svg></span>
-            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-copy-16-regular"/></svg></span>
-            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-paint-brush-16-regular"/></svg></span>
+          <div class="ribbon-large paste"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-paste-20"/></svg><em>Paste</em><i></i></div>
+          <div class="ribbon-stack icons-only">
+            <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-cut-16-regular"/></svg></span>
+            <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-copy-16-regular"/></svg><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+            <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-paint-brush-16-regular"/></svg></span>
           </div>
         </div>
         <div class="ribbon-group slides">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-slide-add-20"/></svg><em>New Slide</em></div>
+          <div class="ribbon-large xwide"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-slide-add-20"/></svg><em>New Slide</em><i></i></div>
         </div>
         <div class="ribbon-group copilot">
-          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-sparkle-20-regular"/></svg><em>New Slide<br>with Copilot</em></div>
+          <div class="ribbon-large xwide"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-sparkle-20-regular"/></svg><em>New Slide<br>with Copilot</em></div>
         </div>
-        <div class="ribbon-group font">
+        <div class="ribbon-group font col">
           <div class="ribbon-row">
-            <span class="ribbon-field combo" data-font-name>Aptos Display (Headings)<i class="field-caret"></i></span>
-            <span class="ribbon-field small combo" data-font-size>60<i class="field-caret"></i></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-font-increase-20-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-font-decrease-20-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-clear-formatting-16-regular"/></svg></span>
+            <span class="field grow" data-font-name>Aptos Display (Headings)<svg class="field-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+            <span class="field small" data-font-size>60<svg class="field-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+            <span class="mini-btn"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-font-increase-20-regular"/></svg></span>
+            <span class="mini-btn"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-font-decrease-20-regular"/></svg></span>
           </div>
-          <div class="button-group">
-            <span class="tool-toggle active">B</span><span class="tool-toggle italic">I</span><span class="tool-toggle underline">U</span><span class="tool-toggle strike">ab</span><span class="tool-toggle super">x²</span><span class="tool-toggle sub">x₂</span>
-            <span class="tool-icon combo-mini">AV<i class="field-caret"></i></span>
-            <span class="tool-icon combo-mini">Aa<i class="field-caret"></i></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-highlight-20"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-color-20"/></svg></span>
+          <div class="button-row">
+            <span class="toggle active">B</span><span class="toggle">I</span><span class="toggle">U</span><span class="toggle chev"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-highlight-20"/></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span><span class="toggle chev swatch fill"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-color-20"/></svg><svg class="mini-caret office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
           </div>
         </div>
-        <div class="ribbon-group paragraph">
+        <div class="ribbon-group paragraph col">
           <div class="ribbon-row">
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-bullet-list-20"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-number-list-20"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-indent-decrease-16-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-indent-increase-16-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-line-horizontal-3-16-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-column-16-regular"/></svg></span>
-            <span class="ribbon-large smartart"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Convert to<br>SmartArt</em></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-bullet-list-20"/></svg></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-number-list-20"/></svg></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-text-indent-decrease-16-regular"/></svg></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-text-indent-increase-16-regular"/></svg></span>
           </div>
-          <div class="button-group">
-            <span class="tool-icon active"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-left-20"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-center-20"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-right-20-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-align-justify-20-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-sort-16-regular"/></svg></span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-direction-20-regular"/></svg></span>
+          <div class="button-row">
+            <span class="align left active"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-left-20"/></svg></span>
+            <span class="align center"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-center-20"/></svg></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-align-right-20-regular"/></svg></span>
+            <span class="align"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-text-align-justify-20-regular"/></svg></span>
           </div>
+        </div>
+        <div class="ribbon-group large-buttons">
+          <div class="ribbon-large xwide"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Convert to<br>SmartArt</em></div>
         </div>
         <div class="ribbon-group picture">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-image-20-regular"/></svg><em>Picture</em></div>
-          <div class="ribbon-stack">
-            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-shapes-20"/></svg></span>
-            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-textbox-16-regular"/></svg></span>
+          <div class="ribbon-large"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-image-20-regular"/></svg><em>Picture</em><i></i></div>
+          <div class="ribbon-stack icons-only">
+            <span><svg class="stack-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-shapes-20"/></svg><svg class="stack-chevron office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+            <span><svg class="stack-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-textbox-16-regular"/></svg></span>
           </div>
         </div>
-        <div class="ribbon-group drawing">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-paint-brush-20-regular"/></svg><em>Drawing</em></div>
-        </div>
-        <div class="ribbon-group sensitivity">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-shield-20-regular"/></svg><em>Sensitivity</em></div>
-        </div>
-        <div class="ribbon-group addins">
-          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-apps-add-in-20-regular"/></svg><em>Add-ins</em></div>
-        </div>
-        <div class="ribbon-group design-suggestions">
-          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Design<br>Suggestions</em></div>
+        <div class="ribbon-group large-buttons">
+          <div class="ribbon-large"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-paint-brush-20-regular"/></svg><em>Drawing</em><i></i></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-shield-20-regular"/></svg><em>Sensitivity</em></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon addins-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-apps-add-in-20-regular"/></svg><em>Add-ins</em></div>
+          <div class="ribbon-large xwide"><svg class="cmd-icon office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Design<br>Suggestions</em></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon claude-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-claude"/></svg><em>Claude</em></div>
         </div>
       </div>
       <div class="powerpoint-body">
@@ -254,6 +244,18 @@
       </div>
     </div>
     <style>
+      /* "Aptos Display" and "Aptos" are OS-bundled Microsoft fonts with no
+         downloadable file here — src: local(...) satisfies the renderer's
+         font_family_without_font_face check without needing a .woff2. */
+      @font-face {
+        font-family: "Aptos Display";
+        src: local("Aptos Display");
+      }
+      @font-face {
+        font-family: "Aptos";
+        src: local("Aptos");
+      }
+
       #presentation-editor-surface {
         --claude: #c65b47;
         --coral: #cd6e57;
@@ -282,489 +284,26 @@
       }
 
       .powerpoint-titlebar {
-        height: 36px;
+        height: 40px;
         display: grid;
-        grid-template-columns: 58px 24px 62px minmax(118px, auto) auto auto 1fr auto auto;
+        grid-template-columns: 58px auto auto 1fr auto;
         align-items: center;
-        gap: 6px;
-        padding: 0 12px;
-        color: #3d4248;
-        font-size: 12px;
-        font-weight: 650;
-        border-bottom: 1px solid #d8dce1;
-        background: #f8f8f8;
+        gap: 10px;
+        padding: 0 14px;
+        background: var(--chrome);
+        color: #242424;
+        font-size: 13px;
       }
 
-      .powerpoint-traffic-spacer {
-        position: relative;
-        width: 50px;
-        height: 14px;
-      }
-
-      .powerpoint-traffic-spacer::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 1px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #ff5f57;
-        box-shadow: 19px 0 0 #febc2e, 38px 0 0 #28c840;
+      .titlebar-name-group {
+        justify-self: center;
       }
 
       .presentation-name {
-        min-width: 118px;
-        color: #282e35;
-      }
-
-      .quick-access {
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        padding: 0 5px;
-        border-radius: 6px;
-        background: rgba(238, 241, 244, 0.72);
-        border: 1px solid rgba(214, 219, 225, 0.86);
-      }
-
-      .quick-access span {
-        width: 14px;
-        height: 14px;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #65707b;
-      }
-
-      .quick-access .backlot-icon {
-        width: 14px;
-        height: 14px;
-      }
-
-      .autosave-toggle {
-        height: 20px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: #5d6570;
-        font-size: 10px;
-        font-weight: 560;
-      }
-
-      .autosave-toggle span {
-        width: 28px;
-        height: 14px;
-        border-radius: 999px;
-        background: #dfe3e8;
-        position: relative;
-      }
-
-      .autosave-toggle span::before {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #fff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-      }
-
-      .titlebar-search {
-        justify-self: center;
-        width: 154px;
-        height: 21px;
-        display: flex;
-        align-items: center;
-        padding: 0 10px;
-        border-radius: 999px;
-        color: #858d97;
-        background: #eceff2;
-        border: 1px solid #dde1e6;
-        font-size: 10px;
-        font-weight: 520;
-      }
-
-      .titlebar-actions {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-
-      .titlebar-actions span {
-        height: 21px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 8px;
-        border-radius: 999px;
-        color: #424a53;
-        background: #ffffff;
-        border: 1px solid #d9dde2;
-        font-size: 10px;
-      }
-
-      .ribbon-tabs {
-        height: 28px;
-        display: flex;
-        align-items: end;
-        gap: 1px;
-        padding-left: 12px;
-        color: #464d55;
-        font-size: 10px;
-        font-weight: 620;
-        background: #fff;
-        border-bottom: 1px solid #d9dde2;
-      }
-
-      .ribbon-tabs span {
-        display: flex;
-        align-items: center;
-        height: 26px;
-        padding: 0 8px;
-        border-radius: 6px 6px 0 0;
-        position: relative;
-      }
-
-      .ribbon-tabs .active {
-        color: #fff;
-        background: #c65b47;
-      }
-
-      .ribbon-tabs .file-tab {
-        color: #8a3b2b;
-        font-weight: 780;
-      }
-
-      .ribbon-tabs .contextual {
-        color: #9a4c3c;
-      }
-
-      .powerpoint-ribbon {
-        height: 72px;
-        display: flex;
-        align-items: stretch;
-        gap: 0;
-        padding: 5px 6px 6px;
-        border-bottom: 1px solid #cfd4da;
-        background: #fbfbfc;
-      }
-
-      .ribbon-group {
-        height: 60px;
-        display: flex;
-        align-items: flex-start;
-        gap: 4px;
-        padding: 0 5px 16px;
-        border-right: 1px solid #e0e3e7;
-        color: #56606b;
-        position: relative;
-      }
-
-      .ribbon-group.clipboard { width: 70px; }
-      .ribbon-group.slides { width: 92px; }
-      .ribbon-group.font { width: 138px; flex-direction: column; }
-      .ribbon-group.paragraph { width: 108px; flex-direction: column; }
-      .ribbon-group.drawing { width: 128px; }
-      .ribbon-group.ink { width: 88px; flex-direction: column; }
-      .ribbon-group.arrange { width: 104px; flex-direction: column; }
-      .ribbon-group.editing { width: 82px; }
-
-      .ribbon-group strong {
-        position: absolute;
-        left: 0;
-        bottom: -1px;
-        width: 100%;
-        color: #7b838d;
-        font-size: 9px;
-        line-height: 1.1;
-        font-weight: 700;
-        text-align: center;
-        border-top: 1px solid #eceff2;
-        padding-top: 2px;
-      }
-
-      .ribbon-large {
-        width: 40px;
-        min-height: 48px;
-        display: grid;
-        justify-items: center;
-        gap: 2px;
-        padding: 3px 4px 2px;
-        border: 1px solid transparent;
-        border-radius: 5px;
-        color: #424a53;
-        background: #fff;
-        position: relative;
-      }
-
-      .ribbon-large.split::after,
-      .split-mini::after {
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 4px solid currentColor;
-      }
-
-      .ribbon-large.split::after {
-        position: absolute;
-        right: 5px;
-        bottom: 5px;
-      }
-
-      .split-mini.no-caret::after {
-        display: none;
-      }
-
-      .cmd-icon {
-        width: 28px;
-        height: 25px;
-        border-radius: 4px;
-        background: #fff7f0;
-        border: 1px solid rgba(198, 91, 71, 0.28);
-        position: relative;
-      }
-
-      .cmd-icon.slide::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 6px;
-        width: 16px;
-        height: 11px;
-        border-radius: 2px;
-        background: #e9edf2;
-        box-shadow: 4px 4px 0 #d8dde3;
-      }
-
-      .cmd-icon.paste::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 5px;
-        width: 13px;
-        height: 15px;
-        border-radius: 2px;
-        background: #f8dfcf;
-        border: 1px solid rgba(198, 91, 71, 0.42);
-        box-shadow: 0 -4px 0 -1px #d89b78;
-      }
-
-      .ribbon-large em {
-        align-self: start;
-        color: #424a53;
-        font-size: 9px;
-        font-style: normal;
-        font-weight: 650;
-        text-align: center;
-      }
-
-      .ribbon-row,
-      .button-group {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
-
-      .ribbon-stack {
-        display: grid;
-        align-content: start;
-        gap: 3px;
-      }
-
-      .ribbon-mini,
-      .split-mini {
-        height: 20px;
-        min-width: 38px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        padding: 0 6px;
-        border-radius: 4px;
-        background: #fff;
-        border: 1px solid #d7dce2;
-        color: #4c545d;
-        font-size: 9px;
-        font-weight: 620;
-      }
-
-      .ribbon-group .ribbon-field {
-        width: 70px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        padding-left: 5px;
-        color: #3d444c;
-        font-size: 10px;
-        background: #fff;
-        border: 1px solid #d7dce2;
-        border-radius: 4px;
-      }
-
-      .ribbon-group .ribbon-field.small { width: 34px; }
-
-      .tool-toggle,
-      .button-group.dense > span,
-      .arrange-icon {
-        width: 20px;
-        height: 20px;
-        display: grid;
-        place-items: center;
-        border-radius: 4px;
-        background: #fff;
-        border: 1px solid #d7dce2;
-        color: #59616b;
-        font-size: 9px;
-        font-weight: 800;
-        position: relative;
-      }
-
-      .tool-toggle.active {
-        color: #9a4c3c;
-        background: #fff1ea;
-        border-color: #c65b47;
-      }
-
-      .tool-toggle.color::before {
-        content: "";
-        width: 12px;
-        height: 3px;
-        background: #c65b47;
-        position: absolute;
-        bottom: 4px;
-      }
-
-      .para-lines::before,
-      .para-lines.center::before,
-      .para-lines.right::before {
-        content: "";
-        width: 12px;
-        height: 2px;
-        background: #6c7480;
-        box-shadow: 0 4px 0 #6c7480, 0 8px 0 #6c7480;
-      }
-
-      .para-lines.center::before { width: 10px; }
-      .para-lines.right::before { width: 8px; }
-
-      .para-bullets::before {
-        content: "";
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: #6c7480;
-        box-shadow: 0 5px 0 #6c7480, 0 10px 0 #6c7480, 6px 0 0 #6c7480, 6px 5px 0 #6c7480, 6px 10px 0 #6c7480;
-      }
-
-      .para-indent::before {
-        content: "";
-        width: 12px;
-        height: 10px;
-        background:
-          linear-gradient(90deg, #6c7480 0 4px, transparent 4px),
-          linear-gradient(#6c7480 0 2px, transparent 2px 4px, #6c7480 4px 6px, transparent 6px 8px, #6c7480 8px 10px);
-      }
-
-      .line-spacing::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border-left: 2px solid #6c7480;
-        background:
-          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
-      }
-
-      .shape-gallery {
-        width: 58px;
-        display: grid;
-        grid-template-columns: repeat(2, 24px);
-        gap: 4px;
-      }
-
-      .shape-gallery span,
-      .shape-swatch {
-        width: 24px;
-        height: 20px;
-        border-radius: 4px;
-        background: #fff;
-        border: 1px solid #d7dce2;
-      }
-
-      .shape-gallery span:nth-child(1) { border-radius: 3px; background: #fff8f3; }
-      .shape-gallery span:nth-child(2) { border-radius: 50%; background: #eef3f0; }
-      .shape-gallery span:nth-child(3) { transform: skew(-12deg); background: #f5f1ea; }
-      .shape-gallery span:nth-child(4) { border-radius: 10px; background: #f7efe9; }
-
-      .split-mini.fill::before,
-      .split-mini.outline::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border-radius: 3px;
-        background: #cd6e57;
-      }
-
-      .split-mini.outline::before {
-        background: transparent;
-        border: 2px solid #cd6e57;
-      }
-
-      .arrange-icon.layer::before {
-        content: "";
-        width: 11px;
-        height: 8px;
-        border: 1.5px solid #6c7480;
-        box-shadow: 3px 3px 0 -1px #fff, 3px 3px 0 0 #6c7480;
-      }
-
-      .arrange-icon.align::before {
-        content: "";
-        width: 13px;
-        height: 12px;
-        background:
-          linear-gradient(#6c7480 0 2px, transparent 2px 5px, #6c7480 5px 7px, transparent 7px 10px, #6c7480 10px 12px);
-      }
-
-      .arrange-icon.rotate::before {
-        content: "";
-        width: 11px;
-        height: 11px;
-        border: 2px solid #6c7480;
-        border-left-color: transparent;
-        border-radius: 50%;
-      }
-
-      .shape-swatch { background: #f7efe9; }
-      .shape-swatch.coral { background: #cd6e57; }
-      .shape-swatch.sage { background: #bdd4c7; }
-
-      .ink-tools span::before {
-        content: "";
-        width: 4px;
-        height: 14px;
-        border-radius: 4px;
-        background: #3b4652;
-        transform: rotate(34deg);
-        box-shadow: 0 9px 0 -2px currentColor;
-      }
-
-      .ink-pen { color: #c65b47; }
-      .ink-highlighter { color: #e0bc57; }
-      .ink-eraser { color: #7c858f; }
-
-      .ink-color::before {
-        content: "";
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background: #c65b47;
+        font-weight: 600;
+        font-size: 13px;
+        color: #1a1a1a;
+        white-space: nowrap;
       }
 
       .powerpoint-body {
@@ -1456,6 +995,10 @@
       #presentation-editor-surface {
         --powerpoint: #b3482a;
         --powerpoint-share: #b5482a;
+        --accent: var(--powerpoint);
+        --accent-dark: var(--powerpoint);
+        --share: var(--powerpoint-share);
+        --chrome: #f5f5f5;
         --office-line: #cccccc;
         --office-text: #1d1d1f;
         --office-muted: #616161;
@@ -1476,403 +1019,17 @@
         box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.13);
       }
 
-      /* ---- Titlebar (28px) ---- */
-      .powerpoint-titlebar {
-        flex: 0 0 28px;
-        height: 28px;
-        display: grid;
-        grid-template-columns: 52px auto auto 1fr auto;
-        gap: 10px;
-        padding: 0 10px;
-        border-bottom: 1px solid #cbcbcb;
-        background: #f5f5f5;
-        color: #242424;
-        font-size: 11px;
-        font-weight: 500;
-      }
-
-      .powerpoint-traffic-spacer {
-        position: relative;
-        width: 52px;
-        height: 12px;
-      }
-
-      .powerpoint-traffic-spacer::before {
-        top: 8px;
-        width: 12px;
-        height: 12px;
-        box-shadow: 20px 0 0 #febc2e, 40px 0 0 #28c840;
-      }
-
-      .quick-access {
-        height: 18px;
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        padding: 0 2px;
-        border-radius: 0;
-        background: none;
-        border: 0;
-      }
-
-      .quick-access span {
-        width: auto;
-        height: 14px;
-        color: #444;
-      }
-
-      .quick-access .backlot-icon {
-        width: 14px;
-        height: 14px;
-      }
-
-      .qa-home, .qa-save, .qa-undo, .qa-redo {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1px;
-      }
-
-      .qa-more {
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: -1px;
-        color: #444;
-      }
-
-      .qa-caret {
-        width: 0;
-        height: 0;
-        margin-left: 1px;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 3px solid #767676;
-      }
-
-      .presentation-name {
-        min-width: 0;
-        color: #1d1d1f;
-        font-size: 13px;
-        font-weight: 500;
-      }
-
-      .titlebar-name-group {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        justify-self: center;
-        margin: 0 auto;
-      }
-
-      .autosave-toggle {
-        height: 18px;
-        gap: 6px;
-        color: #5f6368;
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .autosave-toggle span {
-        width: 24px;
-        height: 13px;
-        background: #d8dce0;
-      }
-
-      .autosave-toggle span::before {
-        width: 9px;
-        height: 9px;
-      }
-
-      .titlebar-search {
-        justify-self: end;
-        width: auto;
-        height: 18px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 0;
-        border-radius: 0;
-        background: transparent;
-        border: none;
-        color: #666;
-        font-size: 13px;
-        font-weight: 400;
-      }
-
-      .titlebar-search .backlot-icon {
-        width: 14px;
-        height: 14px;
-        color: #767676;
-      }
-
-      .titlebar-actions { display: none; }
-
-      /* ---- Ribbon tab row (27px) ---- */
-      .ribbon-tabs {
-        flex: 0 0 27px;
-        height: 27px;
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        padding-left: 12px;
-        background: #f5f5f5;
-        border-bottom: 1px solid #cbcbcb;
-        color: #1f1f1f;
-        font-size: 13px;
-        font-weight: 500;
-      }
-
-      .ribbon-tabs span {
-        height: 27px;
-        padding: 0 9px;
-        border-radius: 0;
-        white-space: nowrap;
-        flex: 0 0 auto;
-      }
-
-      .ribbon-tabs .active {
-        color: #111;
-        background: transparent;
-        box-shadow: inset 0 -3px 0 var(--powerpoint);
-      }
-
       .ribbon-tabs .file-tab {
         color: #222;
         font-weight: 500;
       }
 
-      .ribbon-tabs .contextual {
-        color: var(--powerpoint);
+      /* Two-word ribbon-large labels ("New Slide", "Convert to SmartArt")
+         need more room than the shared .wide modifier to stay on one line
+         per phrase instead of wrapping into 3-4 lines and clipping. */
+      .ribbon-large.xwide {
+        width: 68px;
       }
-
-      .ribbon-collab-cluster {
-        margin-left: auto;
-        gap: 8px;
-        padding-right: 10px;
-      }
-
-      .ribbon-comments-btn {
-        height: 22px;
-        gap: 4px;
-        padding: 0 9px;
-        border-color: #d5d9de;
-        font-size: 12px;
-      }
-
-      .ribbon-comments-btn .backlot-icon {
-        width: 13px;
-        height: 13px;
-      }
-
-      .ribbon-share-btn {
-        height: 24px;
-        gap: 4px;
-        padding: 0 10px;
-        border-radius: 6px;
-        background: var(--powerpoint-share);
-        font-size: 13px;
-      }
-
-      /* ---- Ribbon (80px, bottom hairline at y=135) ---- */
-      .powerpoint-ribbon {
-        flex: 0 0 80px;
-        height: 80px;
-        padding: 4px 10px;
-        background: #f5f5f5;
-        border-bottom: 1px solid #cccccc;
-        box-shadow: none;
-        overflow: hidden;
-      }
-
-      .ribbon-group {
-        height: 66px;
-        gap: 4px;
-        padding: 0 7px;
-        align-items: center;
-        border-right-color: #d8d8d8;
-        color: #2d2d2d;
-        flex: 0 0 auto;
-      }
-
-      .ribbon-group.clipboard,
-      .ribbon-group.slides,
-      .ribbon-group.copilot,
-      .ribbon-group.font,
-      .ribbon-group.paragraph,
-      .ribbon-group.picture,
-      .ribbon-group.drawing,
-      .ribbon-group.sensitivity,
-      .ribbon-group.addins,
-      .ribbon-group.design-suggestions,
-      .ribbon-group.claude-addin {
-        width: auto;
-      }
-
-      .ribbon-group.font,
-      .ribbon-group.paragraph {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 3px;
-      }
-
-      .ribbon-group.design-suggestions {
-        border-right: 0;
-      }
-
-      .ribbon-group strong {
-        display: none;
-      }
-
-      .ribbon-large {
-        width: auto;
-        min-width: 42px;
-        min-height: 56px;
-        padding: 2px 4px 0;
-        border: 0;
-        border-radius: 5px;
-        background: transparent;
-        color: #2d2d2d;
-      }
-
-      .ribbon-large.smartart {
-        min-width: 56px;
-        align-self: stretch;
-        margin-left: 3px;
-      }
-
-      .ribbon-glyph {
-        width: 20px;
-        height: 20px;
-        color: #3d3d3d;
-      }
-
-      .ribbon-large.claude .claude-mark {
-        color: var(--powerpoint);
-      }
-
-      .ribbon-large em {
-        align-self: center;
-        color: #262626;
-        font-size: 10.5px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1.15;
-        text-align: center;
-        white-space: nowrap;
-      }
-
-      .ribbon-stack {
-        align-content: center;
-        gap: 3px;
-      }
-
-      .tool-icon {
-        width: 24px;
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 4px;
-        color: #3d3d3d;
-      }
-
-      .tool-icon .backlot-icon {
-        width: 16px;
-        height: 16px;
-      }
-
-      .tool-icon.active {
-        background: #e4e4e4;
-        color: #3d3d3d;
-        border: none;
-      }
-
-      .tool-icon.combo-mini {
-        width: auto;
-        min-width: 22px;
-        padding: 0 2px;
-        gap: 1px;
-        font-size: 10px;
-        font-weight: 500;
-        color: #262626;
-      }
-
-      .split-mini {
-        height: 20px;
-        min-width: 20px;
-        padding: 0 3px;
-        border-radius: 3px;
-        border-color: transparent;
-        background: transparent;
-        color: #3d3d3d;
-      }
-
-      .split-mini .mini-glyph {
-        width: 15px;
-        height: 15px;
-        margin-right: 0;
-        color: #3d3d3d;
-      }
-
-      .ribbon-large.split::after,
-      .split-mini::after {
-        border-top-color: #767676;
-      }
-
-      .split-mini::after {
-        margin-left: 3px;
-      }
-
-      .ribbon-group .ribbon-field {
-        height: 22px;
-        gap: 3px;
-        padding: 0 6px;
-        color: #262626;
-        font-size: 12px;
-        background: #fff;
-        border: 1px solid #c9c9c9;
-        border-radius: 3px;
-        width: 195px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        justify-content: space-between;
-      }
-
-      .ribbon-group .ribbon-field.small {
-        width: 62px;
-      }
-
-      .field-caret {
-        width: 0;
-        height: 0;
-        margin-left: 4px;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 3.5px solid #767676;
-        flex: 0 0 auto;
-      }
-
-      .tool-toggle {
-        width: 20px;
-        font-size: 12px;
-      }
-
-      .tool-toggle.italic { font-style: italic; }
-      .tool-toggle.underline { text-decoration: underline; }
-      .tool-toggle.strike { text-decoration: line-through; font-size: 10px; }
-      .tool-toggle.super, .tool-toggle.sub { font-size: 9px; }
-
-      .tool-toggle.active {
-        color: #262626;
-        background: #e4e4e4;
-        border-color: transparent;
-        box-shadow: none;
-        font-weight: 700;
-      }
-
-      .shape-gallery { display: none; }
 
       /* ---- Body: rail | (stage-row + notes) ---- */
       .powerpoint-body {

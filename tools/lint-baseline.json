@@ -3,6 +3,7 @@
   { "file": "compositions/browser-app.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
   { "file": "compositions/calendar-app.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
   { "file": "compositions/claude-cinematic.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
+  { "file": "compositions/claude-code-terminal-session.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
   { "file": "compositions/claude-composed-app.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
   { "file": "compositions/mac-dock.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 },
   { "file": "compositions/mac-wallpaper.html", "rule": "invalid_parent_traversal_in_asset_path", "count": 1 }

@@ -132,10 +132,13 @@
     <main class="shell-main" data-primitive="claude-shell-main">
       <!-- Thread topbar (chat + cowork session views) -->
       <header class="shell-topbar shell-topbar-thread" data-primitive="claude-thread-topbar">
-        <div class="shell-thread-title">Update Launch Deck opening slides</div>
+        <div class="shell-thread-title-row">
+          <span class="shell-thread-title">Update Launch Deck opening slides</span>
+          <svg class="backlot-icon shell-title-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
+        </div>
         <span class="shell-topbar-spacer"></span>
+        <button class="shell-topbar-icon" type="button" aria-label="View artifact"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-text"/></svg></button>
         <button class="shell-topbar-icon" type="button" aria-label="Share"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-share"/></svg></button>
-        <button class="shell-topbar-icon" type="button" aria-label="More"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-more"/></svg></button>
       </header>
 
       <!-- ============ HOME (default) — chat + cowork are ONE page now.
@@ -383,7 +386,6 @@
     height: 52px;
     gap: 8px;
     padding: 0 16px 0 24px;
-    border-bottom: 1px solid rgba(11, 11, 11, 0.08);
   }
 
   #claude-composed-app[data-page="chat"] .shell-topbar-thread,
@@ -409,10 +411,27 @@
 
   #claude-composed-app .shell-topbar-spacer { flex: 1; }
 
+  #claude-composed-app .shell-thread-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
   #claude-composed-app .shell-thread-title {
+    overflow: hidden;
     color: var(--claude-ink-soft);
     font-size: 15.5px;
     font-weight: 550;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #claude-composed-app .shell-title-chev {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+    color: #7b7974;
   }
 
   /* ---- HOME page ---- */
@@ -552,7 +571,8 @@
     place-items: center;
     padding: 8px;
     border-radius: 9px;
-    background: #f0eeed;
+    background: #fff;
+    border: 1px solid rgba(31, 31, 30, 0.12);
     color: #6b6a66;
   }
 
@@ -960,9 +980,9 @@
     background-size: 58px 58px;
   }
 
-  #claude-composed-app.theme-dark .shell-topbar-thread,
-  .theme-dark #claude-composed-app .shell-topbar-thread {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  #claude-composed-app.theme-dark .shell-title-chev,
+  .theme-dark #claude-composed-app .shell-title-chev {
+    color: #98948a;
   }
 
   #claude-composed-app.theme-dark .shell-topbar-icon,
@@ -989,7 +1009,8 @@
 
   #claude-composed-app.theme-dark .shell-idea-ico,
   .theme-dark #claude-composed-app .shell-idea-ico {
-    background: rgba(255, 255, 255, 0.07);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #98948a;
   }
 
