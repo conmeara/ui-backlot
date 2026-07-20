@@ -532,7 +532,7 @@
       .new-chat-row .row-icon {
         width: 16px;
         height: 16px;
-        color: #6b6a66;
+        color: #121212;
       }
 
       .row-icon {
@@ -545,8 +545,8 @@
       .nav-beta {
         margin-left: 2px;
         padding: 1.5px 6px;
-        border-radius: 5px;
-        background: #ececea;
+        border-radius: 6px;
+        background: #f5f4f3;
         color: #6b6a66;
         font-size: 10.5px;
         font-weight: 520;
@@ -596,7 +596,7 @@
         display: grid;
         place-items: center;
         border: 0;
-        border-radius: 5px;
+        border-radius: 6px;
         background: transparent;
         color: var(--text-400);
       }
@@ -835,15 +835,15 @@
         gap: 2px;
         height: 32px;
         padding: 2px;
-        border-radius: 16px;
-        background: #ececeb;
+        border-radius: 9px;
+        background: #f3f3f3;
       }
 
       .mode-toggle button {
         height: 28px;
         padding: 0 12px;
         border: 0;
-        border-radius: 14px;
+        border-radius: 7px;
         background: transparent;
         color: var(--text-300);
         font-size: 13.5px;
@@ -915,12 +915,24 @@
         height: 52px;
         margin: -14px 8px 0;
         padding: 12px 16px 0;
-        border: 1px solid rgba(11, 11, 11, 0.07);
-        border-top: 0;
-        border-radius: 0 0 14px 14px;
-        background: #f9f8f5;
         color: #52514e;
         font-size: 13px;
+      }
+
+      /* Chrome (border/fill/corner) lives on a pseudo-element rather than
+         .home-tray itself: the tray is visually flush under the composer
+         card (square top, rounded bottom only), and a decorative ::before
+         keeps that asymmetric shape off the real DOM node without changing
+         a single rendered pixel. */
+      .home-tray::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border: 1px solid rgba(11, 11, 11, 0.07);
+        border-top: 0;
+        border-radius: 0 0 20px 20px;
+        background: #f9f8f5;
       }
 
       .home-tray .tray-item {
@@ -980,7 +992,7 @@
         gap: 14px;
         height: 44px;
         padding: 0 4px;
-        border-radius: 10px;
+        border-radius: 9px;
         color: var(--text-200);
         font-size: 14.5px;
       }
