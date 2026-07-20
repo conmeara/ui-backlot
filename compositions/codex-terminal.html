@@ -25,7 +25,7 @@
         </div>
         <div class="terminal-title">
           <span class="folder-icon" aria-hidden="true"></span>
-          <span>ui-backlot — codex — 126x38</span>
+          <span>ui-backlot — codex — 126×38</span>
         </div>
       </header>
 
@@ -54,25 +54,25 @@
 
         <section class="transcript" data-primitive="codex-transcript">
           <article class="thought-row">
-            <span class="bullet"></span>
+            <span class="bullet">•</span>
             <p>I need to replace the dashboard-style mock with the real Codex TUI rhythm: a bordered splash header, full-width prompt bands, bullet transcript, cyan links, and the bottom composer chrome.</p>
           </article>
 
           <article class="plan-row">
-            <span class="bullet"></span>
+            <span class="bullet">•</span>
             <div>
               <h2>Updated Plan</h2>
               <ul>
-                <li><span class="box"></span>Compare against official Codex CLI splash and current generated capture</li>
-                <li><span class="box"></span><strong>Remove side-pane dashboard</strong>, restore full terminal transcript</li>
-                <li><span class="box"></span>Model approval, diff, and checks as inline TUI rows</li>
-                <li><span class="box"></span>Refresh capture and registry gates</li>
+                <li><span class="box">□</span>Compare against official Codex CLI splash and current generated capture</li>
+                <li><span class="box">□</span><strong>Remove side-pane dashboard</strong>, restore full terminal transcript</li>
+                <li><span class="box">□</span>Model approval, diff, and checks as inline TUI rows</li>
+                <li><span class="box">□</span>Refresh capture and registry gates</li>
               </ul>
             </div>
           </article>
 
           <article class="explore-row">
-            <span class="bullet"></span>
+            <span class="bullet">•</span>
             <div>
               <h2>Explored</h2>
               <div class="tool-tree">
@@ -87,16 +87,20 @@
           </article>
 
           <article class="approval-row" data-primitive="codex-approval-row">
-            <span class="bullet amber"></span>
+            <span class="bullet amber">•</span>
             <div>
               <h2>Approve command?</h2>
               <p><code>npm run capture:codex-terminal</code> writes generated capture files in this workspace.</p>
-              <div class="approval-options"><span>y approve once</span><span>n reject</span><span>a always for session</span></div>
+              <div class="approval-options">
+                <p class="approval-option selected"><span class="approval-marker">›</span> 1. Yes (y)</p>
+                <p class="approval-option">&nbsp;&nbsp;2. Yes, for the rest of this session (a)</p>
+                <p class="approval-option">&nbsp;&nbsp;3. No, and tell Codex what to do differently (esc)</p>
+              </div>
             </div>
           </article>
 
           <article class="diff-row" data-primitive="codex-diff-row">
-            <span class="bullet cyan"></span>
+            <span class="bullet cyan">•</span>
             <div>
               <h2>Diff</h2>
               <p><span class="diff-add">+ full-screen Codex TUI transcript</span></p>
@@ -105,20 +109,20 @@
           </article>
 
           <article class="running-row">
-            <span class="bullet spinner"></span>
+            <span class="bullet spinner">◐</span>
             <p>Checking terminal capture fidelity (12s • Esc to interrupt)</p>
           </article>
         </section>
 
         <footer class="composer" data-primitive="codex-composer">
-          <div class="composer-input"><span class="cursor"></span><span>Refine approval copy and prompt spacing</span></div>
+          <div class="composer-input"><span class="input-bar"></span><span class="input-text">Awesome! Let's implement the pl</span><span class="cursor"></span></div>
           <div class="shortcut-row">
             <span>⏎ send</span>
-            <span>⌃J newline</span>
+            <span>⇧⏎ newline</span>
             <span>⌃T transcript</span>
             <span>⌃C quit</span>
             <span class="tokens">42.1K tokens used</span>
-            <span>98% context</span>
+            <span>98% context left</span>
           </div>
         </footer>
       </main>
@@ -306,7 +310,7 @@
 
       .transcript {
         display: grid;
-        gap: 15px;
+        gap: 19px;
         max-width: 1048px;
         color: var(--terminal-muted);
         font-size: 14px;
@@ -326,27 +330,22 @@
       }
 
       .bullet {
-        width: 7px;
-        height: 7px;
-        margin-top: 6px;
-        border-radius: 50%;
-        background: var(--terminal-muted);
+        display: inline-block;
+        color: var(--terminal-muted);
+        font-size: 14px;
+        line-height: 1.38;
       }
 
       .bullet.amber {
-        background: var(--terminal-amber);
+        color: var(--terminal-amber);
       }
 
       .bullet.cyan {
-        background: var(--terminal-cyan);
+        color: var(--terminal-cyan);
       }
 
       .bullet.spinner {
-        width: 9px;
-        height: 9px;
-        border: 2px solid var(--terminal-red);
-        border-top-color: transparent;
-        background: transparent;
+        color: var(--terminal-red);
       }
 
       h2 {
@@ -365,11 +364,9 @@
       }
 
       .box {
-        width: 8px;
-        height: 8px;
         display: inline-block;
-        margin-right: 7px;
-        border: 1px solid var(--terminal-muted);
+        margin-right: 6px;
+        color: var(--terminal-muted);
       }
 
       .tool-tree {
@@ -382,9 +379,7 @@
 
       .approval-row,
       .diff-row {
-        padding: 9px 0 8px;
-        border-top: 1px solid rgba(117, 116, 129, 0.22);
-        border-bottom: 1px solid rgba(117, 116, 129, 0.18);
+        padding: 0;
       }
 
       .approval-row code {
@@ -393,11 +388,21 @@
       }
 
       .approval-options {
-        display: flex;
-        gap: 14px;
+        display: grid;
+        gap: 2px;
         margin-top: 7px;
-        color: var(--terminal-cyan);
+        color: var(--terminal-muted);
         font-size: 13px;
+      }
+
+      .approval-option.selected {
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
+      .approval-marker {
+        color: var(--terminal-cyan);
+        font-weight: 400;
       }
 
       .diff-add {
@@ -420,23 +425,32 @@
       }
 
       .composer-input {
-        min-height: 34px;
+        min-height: 19px;
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 0 12px;
-        border: 1px solid rgba(117, 116, 129, 0.55);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.02);
-        color: var(--terminal-muted);
+        padding: 0;
+        color: var(--terminal-text);
         font-size: 14px;
       }
 
+      .input-bar {
+        width: 4px;
+        height: 1.2em;
+        flex: 0 0 auto;
+        background: #8fb8d8;
+      }
+
+      .input-text {
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
       .cursor {
-        width: 7px;
-        height: 18px;
+        width: 0.6em;
+        height: 1.2em;
         display: inline-block;
-        background: var(--terminal-cyan);
+        background: rgba(238, 238, 238, 0.85);
       }
 
       .shortcut-row {
@@ -468,7 +482,18 @@
       tl.from(".user-prompt", { opacity: 0, y: 8, duration: 0.28, ease: "power2.out" }, 1.0);
       tl.from(".transcript article", { opacity: 0, y: 8, stagger: 0.16, duration: 0.26, ease: "power2.out" }, 1.34);
       tl.from(".composer", { opacity: 0, y: 10, duration: 0.3, ease: "power2.out" }, 2.6);
-      tl.to(".bullet.spinner", { rotation: 360, duration: 0.9, repeat: spinnerRepeat, ease: "none" }, 2.46);
+      const spinnerFrames = ["◐", "◓", "◑", "◒"];
+      tl.to({}, {
+        duration: 0.9,
+        repeat: spinnerRepeat,
+        ease: "none",
+        onUpdate() {
+          const el = document.querySelector(".bullet.spinner");
+          if (!el) return;
+          const idx = Math.floor(this.progress() * spinnerFrames.length) % spinnerFrames.length;
+          el.textContent = spinnerFrames[idx];
+        }
+      }, 2.46);
       tl.to(".cursor", { opacity: 0.12, duration: 0.28, repeat: cursorBlinkRepeat, yoyo: true, ease: "steps(1)" }, 2.9);
 
       window.__timelines["codex-terminal-surface"] = tl;

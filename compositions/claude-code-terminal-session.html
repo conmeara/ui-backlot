@@ -2,20 +2,17 @@
       @import url("../styles/backlot-foundation.css");
   html,
   body {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
     min-height: 100%;
     margin: 0;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 24%),
-      linear-gradient(145deg, #f5f3ed 0%, #fbfaf6 56%, #e7eee9 100%);
+    padding: 0;
+    background: #1c1e23;
   }
 </style>
 
 <template id="claude-code-terminal-session-surface-template">
-  <div id="claude-code-terminal-session-surface" data-composition-id="claude-code-terminal-session-surface" data-width="660" data-height="760">
+  <div id="claude-code-terminal-session-surface" data-composition-id="claude-code-terminal-session-surface" data-width="1372" data-height="1038">
     <section class="claude-code-terminal-session-window" data-primitive="claude-code-terminal-session-window" aria-label="Editable Claude Code terminal session surface">
       <header class="terminal-titlebar" data-primitive="mac-window-titlebar">
         <div class="traffic" aria-hidden="true">
@@ -23,98 +20,98 @@
           <span class="yellow"></span>
           <span class="green"></span>
         </div>
-        <div class="terminal-title">claude — ui-backlot — 92x32</div>
-        <div class="terminal-mode">plan</div>
+        <div class="terminal-title">
+          <img class="cc-folder-icon" src="../assets/app-icons/folder-generic.png" alt="" aria-hidden="true" />
+          <span>✳ Claude Code</span>
+        </div>
+        <div class="terminal-title-spacer" aria-hidden="true"></div>
       </header>
 
       <main class="terminal-paper" data-primitive="claude-code-terminal-paper">
+        <section class="shell-preamble" data-primitive="claude-code-shell-preamble">
+          <p data-copy="login-line">Last login: Mon Jul 20 08:47:16 on ttys004</p>
+          <p data-copy="zshrc-warning">/Users/demo/.zshrc:15: no such file or directory: /opt/homebrew/anaconda3/bin/conda</p>
+          <p data-copy="shell-prompt">demo@Demo-MacBook-Pro ~ % claude</p>
+        </section>
+
+        <div class="beat-gap" aria-hidden="true"></div>
+
         <section class="terminal-identity" data-primitive="claude-code-session-identity">
           <div class="pixel-mark" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
           <div>
-            <h1>Claude Code <span>2.1.117</span></h1>
-            <p>Sonnet 4.6 - permission-mode plan</p>
-            <p>/Users/conmeara/Projects/ui-backlot</p>
+            <p class="identity-line" data-copy="cc-version"><strong>Claude Code</strong> <span>v2.1.215</span></p>
+            <p class="identity-line dim" data-copy="cc-model">Sonnet 4.6 with high effort · Claude Max</p>
+            <p class="identity-line dim" data-copy="cc-cwd">/Users/demo/Projects/launch-deck</p>
           </div>
         </section>
 
-        <div class="prompt-line active" data-primitive="claude-code-user-prompt">
-          <span>&gt;</span>
-          <strong>tighten the terminal demo: approvals, diffs, streaming output, status panes</strong>
-        </div>
+        <div class="beat-gap" aria-hidden="true"></div>
 
-        <section class="terminal-events" data-primitive="claude-code-event-log">
-          <article class="event-row">
-            <span class="event-dot done"></span>
-            <div>
-              <p><strong>Read</strong><em>(compositions/codex-terminal.html)</em></p>
-              <small>| 693 lines</small>
-            </div>
-          </article>
-          <article class="event-row">
-            <span class="event-dot done"></span>
-            <div>
-              <p><strong>Bash</strong><em>(claude --version)</em></p>
-              <small>| 2.1.117 (Claude Code)</small>
-            </div>
-          </article>
-          <article class="event-row approval">
-            <span class="event-dot ask"></span>
-            <div>
-              <p><strong>Approve Bash?</strong><em>(npm run capture:claude-code-terminal-session)</em></p>
-              <small>| writes generated capture files</small>
-            </div>
-          </article>
-          <article class="event-row">
-            <span class="event-dot done"></span>
-            <div>
-              <p><strong>Edit</strong><em>(compositions/claude-code-terminal-session.html)</em></p>
-              <small>| titlebar, prompt, diff, status rows</small>
-            </div>
-          </article>
-          <article class="event-row diff-row">
-            <span class="event-dot edit"></span>
-            <div>
-              <p><strong>Diff</strong><em>@@ terminal-events @@</em></p>
-              <small><span class="add">+ approval row</span><span class="remove">- stale Figma-only transcript</span></small>
-            </div>
-          </article>
-          <article class="event-row active">
-            <span class="event-star">*</span>
-            <div>
-              <p><strong>Running checks...</strong><em>(esc to interrupt)</em></p>
-            </div>
-          </article>
+        <p class="mcp-warning" data-copy="mcp-warning"><span class="warn-glyph">⚠</span> 3 MCP servers need authentication <span class="dim">· run /mcp</span></p>
+
+        <div class="beat-gap" aria-hidden="true"></div>
+
+        <section class="promo-block" data-primitive="claude-code-promo">
+          <p class="promo-title" data-copy="promo-title">Sonnet 4.6 is now the default for Claude Max</p>
+          <p class="promo-body" data-copy="promo-body">You can use up to 50% of your weekly usage limit on Sonnet 4.6. Run <a href="#">/model</a> and select Sonnet 4.6 to use it. Learn more:</p>
+          <p class="promo-link" data-copy="promo-link"><a href="#">https://support.claude.com/en/articles/15424964-claude-sonnet-4-6-promotional-access</a></p>
+          <p class="promo-more dim" data-copy="promo-more">+1 more · /status</p>
+        </section>
+
+        <div class="beat-gap" aria-hidden="true"></div>
+
+        <section class="terminal-transcript" data-primitive="claude-code-transcript">
+          <div class="turn-user"><span class="glyph">❯</span><span data-copy="turn-1-user">hi</span></div>
+
+          <div class="beat-gap" aria-hidden="true"></div>
+
+          <p class="turn-reply"><span class="glyph">●</span><span data-copy="turn-1-reply">Hey! What can I help you with today?</span></p>
+          <p class="turn-timing dim" data-copy="turn-1-timing"><span class="glyph">✻</span> Churned for 1s</p>
+
+          <div class="beat-gap" aria-hidden="true"></div>
+
+          <div class="turn-user"><span class="glyph">❯</span><span data-copy="turn-2-user">outline the launch deck plan</span></div>
+
+          <div class="beat-gap" aria-hidden="true"></div>
+
+          <p class="turn-reply"><span class="glyph">●</span><span data-copy="turn-2-reply">On it — I'll draft the outline, then wire the slide components before touching copy.</span></p>
+          <p class="turn-timing dim" data-copy="turn-2-timing"><span class="glyph">✻</span> Worked for 3s</p>
         </section>
 
         <footer class="terminal-input" data-primitive="claude-code-terminal-input">
-          <div class="input-row"><span>&gt;</span><span>npm run registry:check<span class="terminal-cursor"></span></span></div>
-          <div class="help-row"><span>?</span><span>shift+enter newline · ctrl+c interrupt · /config settings</span></div>
+          <div class="input-row"><span class="glyph">❯</span><span class="terminal-cursor" aria-hidden="true"></span></div>
+          <div class="status-row">
+            <div class="status-left">
+              <span data-copy="context-pct">(3.7%)</span>
+              <span class="dim"><span class="glyph">⏸</span> manual mode on · <span class="glyph">⇥</span> for agents</span>
+            </div>
+            <div class="status-right dim"><span class="glyph">●</span> high · /effort</div>
+          </div>
         </footer>
       </main>
     </section>
 
     <style>
       #claude-code-terminal-session-surface {
-        --paper: #f8f7f2;
-        --paper-soft: #f0eee8;
-        --ink: #25211d;
-        --muted: #8e8881;
-        --rule: #cfc9be;
-        --active: #e3dfd6;
-        --green: #4f9f69;
-        --amber: #b68122;
-        --red: #bf544a;
-        --titlebar: #eceae5;
-        width: 660px;
-        height: 760px;
+        --term-bg: #292c33;
+        --term-ink: #ffffff;
+        --term-dim: #999999;
+        --term-accent: #ca7c5e;
+        --term-warn: #f5c344;
+        --term-link: #83a5d6;
+        --term-bar: #373737;
+        --term-hairline: #888888;
+        width: 1372px;
+        height: 1038px;
         overflow: visible;
-        color: var(--ink);
-        font-family: var(--font-terminal);
+        color: var(--term-ink);
+        font-family: "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
       }
 
       #claude-code-terminal-session-surface * {
@@ -122,25 +119,21 @@
       }
 
       .claude-code-terminal-session-window {
-        width: 660px;
-        height: 760px;
+        width: 1372px;
+        height: 1038px;
         overflow: hidden;
-        border-radius: 16px;
-        background: var(--paper);
-        border: 1px solid rgba(54, 49, 42, 0.24);
-        box-shadow:
-          0 34px 104px rgba(40, 38, 33, 0.24),
-          0 0 0 1px rgba(255, 255, 255, 0.78) inset;
+        border-radius: 12px;
+        background: var(--term-bg);
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
       }
 
       .terminal-titlebar {
-        height: 52px;
+        height: 40px;
         display: grid;
-        grid-template-columns: 92px 1fr 58px;
+        grid-template-columns: 90px 1fr 90px;
         align-items: center;
-        padding: 0 17px;
-        background: linear-gradient(#efede9, var(--titlebar));
-        border-bottom: 1px solid rgba(74, 68, 58, 0.22);
+        padding: 0 18px;
+        background: var(--term-bg);
       }
 
       .traffic {
@@ -153,7 +146,7 @@
         height: 12px;
         display: block;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
       }
 
       .traffic .red { background: #ff5f57; }
@@ -161,230 +154,252 @@
       .traffic .green { background: #28c840; }
 
       .terminal-title {
-        color: #6f6960;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        /* Measured 2026-07-20 Mac reference (cli-terminal-startup-dark):
+           the focused titlebar label renders as a dimmed rgb(165,168,175),
+           not pure white — macOS titlebar text sits well below the near-
+           white body text (confirmed against the same capture's bold
+           "Claude Code v2.1.215" body line, which IS 255/255/255). */
+        color: #a5a8af;
         font-size: 13px;
         font-weight: 600;
+        font-family: -apple-system, "SF Pro Text", var(--font-sans, sans-serif);
       }
 
-      .terminal-mode {
-        justify-self: end;
-        padding: 3px 7px;
-        border-radius: 6px;
-        background: rgba(191, 84, 74, 0.1);
-        color: var(--red);
-        font-size: 12px;
-        font-weight: 650;
+      .cc-folder-icon {
+        width: 14px;
+        height: auto;
+        display: block;
+        flex: 0 0 auto;
+      }
+
+      .terminal-title-spacer {
+        width: 90px;
       }
 
       .terminal-paper {
-        height: calc(100% - 52px);
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        background:
-          linear-gradient(90deg, rgba(188, 83, 74, 0.05) 0 1px, transparent 1px 76px),
-          var(--paper);
+        height: calc(100% - 40px);
+        padding: 14px 28px 18px;
+        overflow: hidden;
+        font-size: 13px;
+        line-height: 17px;
+      }
+
+      .terminal-paper p {
+        margin: 0;
+      }
+
+      .beat-gap {
+        height: 17px;
+      }
+
+      .shell-preamble p {
+        color: var(--term-dim);
+      }
+
+      .shell-preamble p:last-child {
+        color: var(--term-ink);
       }
 
       .terminal-identity {
         display: grid;
-        grid-template-columns: 62px 1fr;
-        gap: 12px;
-        padding: 10px 18px 11px;
-        min-height: 92px;
+        grid-template-columns: 24px 1fr;
+        gap: 10px;
         align-items: start;
       }
 
       .pixel-mark {
-        width: 54px;
-        height: 52px;
+        width: 24px;
+        height: 20px;
+        margin-top: 1px;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        gap: 0;
-        margin-top: 4px;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(5, 1fr);
       }
 
       .pixel-mark span {
-        background: var(--red);
+        background: var(--term-accent);
         opacity: 0;
       }
 
-      .pixel-mark span:nth-child(2),
-      .pixel-mark span:nth-child(3),
-      .pixel-mark span:nth-child(5),
+      /* Eye notches read as solid black in the reference (sampled rgb(0,0,0)
+         from cli-terminal-startup-dark), not the terminal's dark-navy
+         background (#292c33) that would otherwise show through the
+         transparent gap — give them their own opaque fill. */
+      .pixel-mark span:nth-child(14),
+      .pixel-mark span:nth-child(17) {
+        background: #000000;
+        opacity: 1;
+      }
+
+      /* row0: ear tips */
+      .pixel-mark span:nth-child(1),
       .pixel-mark span:nth-child(6),
+      /* row1: head top */
       .pixel-mark span:nth-child(7),
       .pixel-mark span:nth-child(8),
       .pixel-mark span:nth-child(9),
       .pixel-mark span:nth-child(10),
       .pixel-mark span:nth-child(11),
       .pixel-mark span:nth-child(12),
-      .pixel-mark span:nth-child(14),
-      .pixel-mark span:nth-child(15) {
+      /* row2: eye notches (cols 0,2,3,5 filled; 1,4 empty) */
+      .pixel-mark span:nth-child(13),
+      .pixel-mark span:nth-child(15),
+      .pixel-mark span:nth-child(16),
+      .pixel-mark span:nth-child(18),
+      /* row3: body */
+      .pixel-mark span:nth-child(19),
+      .pixel-mark span:nth-child(20),
+      .pixel-mark span:nth-child(21),
+      .pixel-mark span:nth-child(22),
+      .pixel-mark span:nth-child(23),
+      .pixel-mark span:nth-child(24),
+      /* row4: four legs (cols 0,2,3,5 filled; 1,4 empty) */
+      .pixel-mark span:nth-child(25),
+      .pixel-mark span:nth-child(27),
+      .pixel-mark span:nth-child(28),
+      .pixel-mark span:nth-child(30) {
         opacity: 1;
       }
 
-      .terminal-identity h1,
-      .terminal-identity p {
-        margin: 0;
+      .identity-line {
+        color: var(--term-ink);
       }
 
-      .terminal-identity h1 {
-        padding-top: 7px;
-        font-size: 19px;
-        line-height: 1.18;
-        font-weight: 500;
+      .identity-line strong {
+        font-weight: 700;
       }
 
-      .terminal-identity h1 span {
-        color: var(--muted);
-        font-size: 18px;
-        font-weight: 430;
+      .identity-line span {
+        color: var(--term-dim);
       }
 
-      .terminal-identity p {
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.34;
+      .identity-line.dim {
+        color: var(--term-dim);
       }
 
-      .prompt-line {
-        display: grid;
-        grid-template-columns: 20px 1fr;
-        gap: 0;
-        margin: 0 9px 12px;
-        padding: 8px 10px 9px;
-        font-size: 16px;
-        line-height: 1.35;
+      .mcp-warning {
+        color: var(--term-warn);
       }
 
-      .prompt-line.active {
-        background: var(--active);
+      .mcp-warning .warn-glyph {
+        margin-right: 2px;
       }
 
-      .prompt-line span {
-        color: #767068;
+      .mcp-warning .dim {
+        color: var(--term-dim);
       }
 
-      .prompt-line strong {
-        font-weight: 520;
+      .promo-block {
+        border-left: 3px solid var(--term-accent);
+        padding-left: 12px;
       }
 
-      .terminal-events {
-        padding: 0 13px 8px;
+      .promo-title {
+        color: var(--term-accent);
       }
 
-      .event-row {
-        display: grid;
-        grid-template-columns: 20px 1fr;
-        gap: 4px;
-        min-height: 60px;
-        color: var(--ink);
-        font-size: 16px;
-        line-height: 1.28;
+      .promo-body {
+        color: var(--term-ink);
       }
 
-      .event-row p,
-      .event-row small {
-        margin: 0;
+      .promo-body a,
+      .promo-link a {
+        color: var(--term-link);
+        text-decoration: none;
       }
 
-      .event-dot {
-        width: 5px;
-        height: 5px;
-        margin: 10px 0 0 2px;
-        border-radius: 50%;
-        background: var(--red);
+      .promo-more {
+        color: var(--term-dim);
       }
 
-      .event-dot.done {
-        background: var(--green);
-      }
-
-      .event-dot.ask {
-        width: 8px;
-        height: 8px;
-        margin-top: 8px;
-        background: var(--amber);
-      }
-
-      .event-dot.edit {
-        background: #7f80d8;
-      }
-
-      .event-star {
-        color: var(--red);
-        padding-top: 1px;
-        font-size: 19px;
-      }
-
-      .event-row strong {
-        font-weight: 520;
-      }
-
-      .event-row em {
-        padding-left: 2px;
-        color: var(--muted);
-        font-style: normal;
-      }
-
-      .event-row small {
-        display: block;
-        padding-left: 2px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .event-row.active {
-        min-height: 36px;
-        color: var(--red);
-      }
-
-      .event-row.approval {
-        color: #6a4b13;
-      }
-
-      .diff-row small {
+      .turn-user {
+        background: var(--term-bar);
+        margin: 0 -28px;
+        padding: 3.5px 28px;
+        min-height: 24px;
         display: flex;
-        gap: 10px;
+        align-items: center;
       }
 
-      .diff-row .add {
-        color: var(--green);
+      .turn-user .glyph {
+        color: var(--term-dim);
+        margin-right: 8px;
       }
 
-      .diff-row .remove {
-        color: var(--red);
+      .turn-user span:last-child {
+        color: var(--term-ink);
+      }
+
+      .turn-reply {
+        color: var(--term-ink);
+        display: flex;
+        gap: 8px;
+      }
+
+      .turn-reply .glyph {
+        color: var(--term-ink);
+      }
+
+      .turn-timing {
+        color: var(--term-dim);
+      }
+
+      .turn-timing .glyph {
+        margin-right: 2px;
       }
 
       .terminal-input {
-        border-top: 2px solid rgba(71, 67, 59, 0.46);
-        background: rgba(250, 249, 245, 0.88);
-        font-size: 16px;
-        color: var(--muted);
+        margin-top: 17px;
       }
 
-      .input-row,
-      .help-row {
-        min-height: 41px;
-        display: grid;
-        grid-template-columns: 32px 1fr;
+      .input-row {
+        border-top: 1px solid var(--term-hairline);
+        border-bottom: 1px solid var(--term-hairline);
+        padding: 8px 0;
+        display: flex;
         align-items: center;
-        padding: 0 18px;
+        min-height: 33px;
       }
 
-      .help-row {
-        border-top: 1px solid rgba(71, 67, 59, 0.38);
+      .input-row .glyph {
+        color: var(--term-ink);
+        margin-right: 10px;
       }
 
       .terminal-cursor {
         display: inline-block;
         width: 8px;
-        height: 18px;
-        margin-left: 6px;
-        transform: translateY(3px);
-        background: var(--red);
+        height: 17px;
+        background: var(--term-ink);
+      }
+
+      .status-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 8px;
+      }
+
+      .status-left {
+        display: flex;
+        gap: 14px;
+        color: var(--term-dim);
+      }
+
+      .status-right {
+        color: var(--term-dim);
+      }
+
+      .dim {
+        color: var(--term-dim);
+      }
+
+      .glyph {
+        color: var(--term-dim);
       }
     </style>
   </div>
