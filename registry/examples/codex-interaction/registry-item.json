@@ -12,12 +12,37 @@
     "width": 1280,
     "height": 800
   },
-  "duration": 10.5,
+  "duration": 9.5,
   "files": [
     {
       "path": "assets/cursors/normal-select.svg",
       "target": "assets/cursors/normal-select.svg",
       "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSans-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Italics-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "target": "assets/fonts/AnthropicSerif-Romans-Variable-25x258.ttf",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "compositions/codex-terminal.html",
+      "target": "compositions/codex-terminal.html",
+      "type": "hyperframes:composition"
     },
     {
       "path": "hyperframes.json",
@@ -38,6 +63,11 @@
       "path": "runtime/backlot-interactions.js",
       "target": "runtime/backlot-interactions.js",
       "type": "hyperframes:asset"
+    },
+    {
+      "path": "styles/backlot-foundation.css",
+      "target": "styles/backlot-foundation.css",
+      "type": "hyperframes:style"
     }
   ]
 }

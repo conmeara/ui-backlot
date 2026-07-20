@@ -112,10 +112,48 @@
             <span class="bullet spinner">◐</span>
             <p>Checking terminal capture fidelity (12s • Esc to interrupt)</p>
           </article>
+
+          <!-- Interaction-demo hook: the session's next turn, latent by
+               default (.live-turn is display:none — the standalone capture
+               stays the single settled session above) so an interaction demo
+               can finish typing the pinned composer message, send it, and
+               reveal this turn's tool activity + applied summary. -->
+          <article class="explore-row live-turn" data-role="live-explore">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Explored</h2>
+              <div class="tool-tree">
+                <span data-role="live-tool-1-kind">Read</span>
+                <a data-role="live-tool-1-path">compositions/launch-page.html</a>
+                <span data-role="live-tool-2-kind">Read</span>
+                <a data-role="live-tool-2-path">reference/deck/q2-deck.pdf</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="plan-row live-turn" data-role="live-plan">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Plan</h2>
+              <ul>
+                <li><span class="box">□</span><span data-role="live-plan-1">Match the hero headline and Q2 revenue figure</span></li>
+                <li><span class="box">□</span><span data-role="live-plan-2">Recolor the CTA to the deck accent</span></li>
+                <li><span class="box">□</span><span data-role="live-plan-3">Update the metrics row (16% / 42% / +50%)</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="diff-row live-turn" data-role="live-applied">
+            <span class="bullet cyan">•</span>
+            <div>
+              <h2>Applied</h2>
+              <p data-role="live-applied-text">Applied 3 edits to launch-page.html — 42 insertions, 11 deletions.</p>
+            </div>
+          </article>
         </section>
 
         <footer class="composer" data-primitive="codex-composer">
-          <div class="composer-input"><span class="input-bar"></span><span class="input-text">Awesome! Let's implement the pl</span><span class="cursor"></span></div>
+          <div class="composer-input"><span class="input-bar"></span><span class="input-text">Awesome! Let's implement the pl</span><span class="typed-tail" data-role="cx-typed-tail"></span><span class="cursor" data-role="cx-cursor"></span></div>
           <div class="shortcut-row">
             <span>⏎ send</span>
             <span>⇧⏎ newline</span>
@@ -444,6 +482,24 @@
       .input-text {
         color: var(--terminal-text);
         font-weight: 700;
+      }
+
+      /* display:none at rest (not just empty text) — composer-input is a
+         flex row with `gap`, so an empty-but-present span would still eat a
+         gap slot and nudge the cursor right of the pinned reference text.
+         The interaction demo flips this to inline right as typing starts. */
+      .typed-tail {
+        display: none;
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
+      /* Latent by default — see the .live-turn hook above the composer.
+         Tied against ".transcript article" (also 0,1,1 specificity) with an
+         element+class selector, placed after it in source order, so it wins
+         the cascade instead of losing to the plain class rule above. */
+      article.live-turn {
+        display: none;
       }
 
       .cursor {

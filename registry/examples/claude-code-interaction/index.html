@@ -6,44 +6,15 @@
   </head>
   <body>
     <div id="claude-code-interaction" data-composition-id="claude-code-interaction" data-width="1280" data-height="800" data-start="0" data-duration="10">
-      <svg style="display:none" aria-hidden="true">
-        <symbol id="si-claude" viewBox="0 0 24 24">
-          <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
-        </symbol>
-      </svg>
-      <section class="cc-stage" data-primitive="claude-code-interaction" aria-label="Claude Code CLI typing a command and streaming output">
+      <section class="cc-stage" data-primitive="claude-code-interaction" aria-label="Claude Code CLI typing a command and streaming a reply">
         <div class="cc-window">
-          <div class="cc-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="cc-title">ui-backlot — claude — 120x34</span></div>
-          <div class="cc-screen">
-            <div class="cc-splash">
-              <div class="line dim"><svg class="cc-mark" aria-hidden="true"><use href="#si-claude"/></svg> <b>Welcome to Claude Code</b></div>
-              <div class="line dim">model: <b>Claude Opus 4.8</b></div>
-              <div class="line dim">cwd: ~/Projects/ui-backlot</div>
-            </div>
-            <div class="cc-prompt" data-role="prompt"><span class="caret">&gt;</span> <span class="cmd" data-role="cmd"></span></div>
-            <div class="cc-out" data-role="out">
-              <div class="cc-tool">
-                <div class="cc-tool-label" data-role="tool1-label"></div>
-                <div class="cc-tool-result" data-role="tool1-result"></div>
-              </div>
-              <div class="cc-tool">
-                <div class="cc-tool-label" data-role="tool2-label"></div>
-                <div class="cc-tool-result" data-role="tool2-result"></div>
-              </div>
-              <div class="cc-tool cc-tool-last">
-                <div class="cc-tool-label" data-role="tool3-label"></div>
-                <div class="cc-tool-result" data-role="tool3-result"></div>
-              </div>
-              <div class="cc-summary" data-role="summary"></div>
-            </div>
-            <div class="cc-status-row">
-              <span class="cc-working" data-role="working"><span class="cc-working-glyph"><svg class="cc-mark" aria-hidden="true"><use href="#si-claude"/></svg></span> Working… · <span data-role="tokens">2.1k</span> tokens</span>
-              <span class="cc-status" data-role="status"></span>
-            </div>
-            <div class="cc-prompt cc-prompt-next" data-role="prompt-next"><span class="caret">&gt;</span> </div>
-          </div>
+          <div
+            class="component-frame cc-frame"
+            data-primitive="claude-code-terminal-window"
+            data-backlot-mount-src="compositions/claude-code-terminal-session.html"
+            data-backlot-mount-selector="#claude-code-terminal-session-surface"
+          ></div>
         </div>
-        <div class="cc-caret" data-role="cc-caret" aria-hidden="true"></div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
       </section>
@@ -54,33 +25,17 @@
       #claude-code-interaction { width:1280px; height:800px; overflow:hidden; font-family:"SF Mono",ui-monospace,Menlo,monospace; color:#d6dbe2; }
       #claude-code-interaction * { box-sizing:border-box; }
       .cc-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#14181f,#0c0f14); display:grid; place-items:center; }
-      .cc-window { position:relative; width:940px; height:620px; background:#0e1116; border-radius:12px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 34px 90px rgba(0,0,0,0.5); overflow:hidden; display:grid; grid-template-rows:38px 1fr; }
-      .cc-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#171b22; border-bottom:1px solid rgba(255,255,255,0.06); }
-      .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
-      .cc-title { font-size:12px; color:#8b93a1; }
-      .cc-screen { padding:20px 22px; font-size:14px; line-height:1.65; overflow:hidden; }
-      .cc-splash { border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px 14px; margin-bottom:18px; width:max-content; }
-      .line.dim { color:#9aa3b1; } .line b { color:#e7ebf1; font-weight:600; } .mut { color:#5f6a79; }
-      /* The exact Claude sunburst (#si-claude), sized to the type — the CLI
-         demo renders in HTML, so it carries the real mark, not a unicode ✳. */
-      .cc-mark { width:14px; height:14px; display:inline-block; vertical-align:-2px; fill:#d97757; color:#d97757; }
-      .cc-working-glyph { display:inline-block; width:14px; height:14px; vertical-align:-2px; }
-      .cc-working-glyph .cc-mark { vertical-align:0; display:block; }
-      .cc-prompt { color:#e7ebf1; margin-bottom:14px; } .caret { color:#d97757; }
-      .cc-prompt.sent .caret { opacity:0; }
-      .cc-prompt.sent .cmd { color:#9aa3b1; }
-      .cc-prompt-next { opacity:0; }
-      .cc-caret { position:absolute; z-index:91; width:9px; background:#d97757; border-radius:1px; opacity:0; }
-      .cc-out { color:#c8cdd6; }
-      .cc-out .k { color:#d97757; } .cc-out .g { color:#6ad08f; } .cc-out .y { color:#e0b45e; }
-      .cc-tool-label, .cc-tool-result, .cc-summary { white-space:pre-wrap; }
-      .cc-tool { margin-bottom:10px; }
-      .cc-tool-last { margin-bottom:16px; }
-      .cc-status-row { position:relative; height:20px; margin-top:12px; white-space:nowrap; }
-      .cc-working, .cc-status { position:absolute; left:0; top:0; }
-      .cc-working { color:#5f6a79; }
-      .cc-working-glyph { display:inline-block; color:#d97757; }
-      .cc-status { color:#5f6a79; }
+
+      /* claude-code-terminal-session mounts at its native 1372x1038 and is
+         scaled down to fit the stage; the outer box supplies the window
+         radius/shadow (the inner mounted window's own shadow would be
+         clipped by the frame's overflow:hidden, since the frame crops
+         exactly to the window box) — same double-wrapper idiom as
+         browser-interaction / mac-multi-app-demo's app windows. */
+      .cc-window { position:relative; width:940px; height:711px; border-radius:12px; overflow:hidden; box-shadow:0 34px 90px rgba(0,0,0,0.5); background:#1c1e23; }
+      .component-frame { position:absolute; inset:0; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; transform:scale(0.68513); }
+
       .demo-cursor { position:absolute; left:640px; top:560px; z-index:90; width:26px; height:26px; background:url("assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(217,119,87,0.7); border-radius:50%; opacity:0; }
     </style>
@@ -90,115 +45,122 @@
     <script src="runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
+      const DURATION = 10;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".cc-stage");
-      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
-      const caret = stage.querySelector('[data-role="cc-caret"]');
 
-      // Click-ring parks off-canvas at rest so it never reads as a stray
-      // glitch near the origin before its first use (it defaults to 0,0).
-      gsap.set('.demo-click-ring', { autoAlpha: 0, left: -100, top: -100 });
-      // Working indicator hidden to start.
-      gsap.set('[data-role="working"]', { opacity: 0 });
+      // Registered synchronously with a full-duration hold (the mount below
+      // is async; the renderer must never probe a zero-duration composition).
+      tl.to(stage, { opacity: 1, duration: DURATION }, 0);
+      // Plain gsap.set (not tl.set at position 0) for the click-ring's rest
+      // pose — see browser-interaction for why this avoids a t=0 ambiguity.
+      gsap.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 });
 
-      const CMD = "update the launch page to match the Q2 deck";
-      const TOOL1_LABEL = "⏺ Read(compositions/launch-page.html)";
-      const TOOL1_RESULT = "  ⎿ 148 lines";
-      const TOOL2_LABEL = "⏺ Read(reference/deck/q2-deck.pdf)";
-      const TOOL2_RESULT = "  ⎿ 12 pages";
-      const TOOL3_LABEL = "⏺ Update(launch-page.html)";
-      const TOOL3_RESULT = "  ⎿ Updated launch-page.html with 3 additions and 1 removal";
-      const SUMMARY =
-        "Matched the hero headline and Q2 revenue figure to the deck, recolored\n" +
-        "the CTA to the deck accent, and refreshed the metrics row.";
+      window.__backlotComponentsReady.then(() => {
+        const mount = stage.querySelector(".cc-frame");
+        const win = mount && mount.querySelector("#claude-code-terminal-session-surface");
+        if (!win) return;
 
-      // 1) type the command, then commit it into a sent-prompt treatment.
-      ix.click('[data-role="cmd"]', { at: 0.6, moveDur: 0.7 });
-      ix.type('[data-role="cmd"]', CMD, { at: 1.0, cps: 20 });
-      const cmdEndAt = 1.0 + CMD.length / 20;
-      const submitAt = cmdEndAt + 0.45;
-      tl.set('[data-role="prompt"]', { attr: { class: "cc-prompt sent" } }, submitAt);
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      // Terminal block caret: tracks the insertion point through the whole
-      // typing stretch. type() builds every .bl-char span up front (revealed
-      // via opacity, not DOM growth) so each span's final layout rect is
-      // stable and can be read immediately - every waypoint below is a plain
-      // tl.set() on left/top/height, a pure function of timeline time, safe
-      // under seek. Positioned absolute against .cc-stage (not nested inside
-      // .cc-prompt) since the per-character reveal reserves the full command
-      // width from frame one, so a static DOM-order sibling caret would sit
-      // at the end of the whole (mostly invisible) string instead of at the
-      // live insertion point.
-      const cmdSpans = stage.querySelectorAll('[data-role="cmd"] .bl-char');
-      const stageRect = stage.getBoundingClientRect();
-      tl.set(caret, { opacity: 0 }, 0);
-      if (cmdSpans.length) {
-        const first = cmdSpans[0].getBoundingClientRect();
-        // rest position at the empty, freshly-focused prompt (frame 2) -
-        // right after the ">" marker, before the first keystroke.
-        tl.set(caret, { left: first.left - stageRect.left, top: first.top - stageRect.top, height: first.height }, 0.6);
-        for (let i = 0; i < cmdSpans.length; i++) {
-          const r = cmdSpans[i].getBoundingClientRect();
-          tl.set(caret, { left: r.right - stageRect.left, top: r.top - stageRect.top, height: r.height }, 1.0 + i / 20);
+        // ---- Mounted targets (all inside the real terminal-session chrome) ----
+        const inputRow = win.querySelector('[data-role="cc-input-row"]');
+        const typedEl = win.querySelector('[data-role="cc-typed"]');
+        const cursorEl = win.querySelector('[data-role="cc-cursor"]');
+        const workingEl = win.querySelector('[data-role="cc-working"]');
+        const liveTurn = win.querySelector('[data-role="live-turn"]');
+        const liveUser = win.querySelector('[data-role="live-user"]');
+        const liveUserText = win.querySelector('[data-role="live-user-text"]');
+        const toolRows = Array.from(win.querySelectorAll('[data-role="live-tools"] .tool-row'));
+        const liveReply = win.querySelector('[data-role="live-reply"]');
+        const liveReplyText = win.querySelector('[data-role="live-reply-text"]');
+        const liveTiming = win.querySelector('[data-role="live-timing"]');
+        if (!inputRow || !typedEl || !cursorEl || !liveTurn || !liveUserText || !liveReplyText) return;
+
+        // The command typed is the very command the mounted turn already
+        // shows (baked into the composition's own scripted session) — no
+        // invented copy, same idiom as browser-interaction's URLTXT read.
+        const CMD = liveUserText.textContent.trim();
+        const REPLY = liveReplyText.textContent.trim();
+
+        // ---- Rest-frame pins (t=0): idle footer prompt, no live turn yet.
+        // gsap.set (not tl.set at 0) — see house convention above. ----
+        gsap.set(liveTurn, { display: "none" });
+        gsap.set([liveUser, ...toolRows, liveReply, liveTiming], { autoAlpha: 0 });
+        gsap.set(workingEl, { opacity: 0 });
+
+        // Typing target starts EMPTY; per-char spans flip display so the
+        // real terminal cursor (a flex sibling right after the typed text)
+        // rides the leading edge as the width grows — no absolute-position
+        // caret tracking needed, unlike a caret nested inside static-width
+        // text.
+        const typedChars = [];
+        for (const ch of CMD) {
+          const s = document.createElement("span");
+          s.className = "bl-char";
+          if (ch === " ") s.style.whiteSpace = "pre";
+          s.textContent = ch;
+          typedEl.appendChild(s);
+          typedChars.push(s);
         }
-      }
-      // Visible the moment the line is focused, blinking through typing and
-      // the brief read-back hold, then hard-hidden right as the command
-      // commits (finite steps() cycle, no repeat:-1, so timeline duration
-      // stays exact).
-      tl.fromTo(caret, { opacity: 1 }, { opacity: 0, duration: 0.15, repeat: 19, yoyo: true, ease: "steps(1)" }, 0.6);
-      tl.set(caret, { opacity: 0 }, submitAt);
+        gsap.set(typedChars, { display: "none" });
 
-      // 2) working indicator: an animated glyph + token-count line, persistent
-      // for the whole tool-use + streaming stretch, cleared when Done lands.
-      const toolsStart = submitAt + 0.35;
-      ix.show('[data-role="working"]', { at: submitAt, dur: 0.2 });
+        // 1) Click the input row, type the command.
+        const CLICK_AT = 0.6;
+        const TYPE_AT = 1.0;
+        const CPS = 22;
+        ix.click(inputRow, { at: CLICK_AT, moveDur: 0.6 });
+        for (let i = 0; i < typedChars.length; i++) {
+          tl.set(typedChars[i], { display: "inline" }, TYPE_AT + i / CPS);
+        }
+        const cmdEndAt = TYPE_AT + CMD.length / CPS;
 
-      // 3) tool blocks snap in whole (label, then its result ~0.35s later,
-      // as an execution beat), staggered ~0.4s tool-to-tool - reads as the
-      // agent invoking, running, and getting a result back, not typing.
-      ix.type('[data-role="tool1-label"]', TOOL1_LABEL, { at: toolsStart, cps: 400 });
-      ix.type('[data-role="tool1-result"]', TOOL1_RESULT, { at: toolsStart + 0.35, cps: 400 });
-      ix.type('[data-role="tool2-label"]', TOOL2_LABEL, { at: toolsStart + 0.4, cps: 400 });
-      ix.type('[data-role="tool2-result"]', TOOL2_RESULT, { at: toolsStart + 0.75, cps: 400 });
-      ix.type('[data-role="tool3-label"]', TOOL3_LABEL, { at: toolsStart + 0.8, cps: 400 });
-      ix.type('[data-role="tool3-result"]', TOOL3_RESULT, { at: toolsStart + 1.15, cps: 400 });
+        // 2) Submit: the typed line clears (sent), the terminal cursor goes
+        // quiet, and the same command reappears as the transcript's next
+        // turn — echoing exactly what was typed, in place.
+        const submitAt = cmdEndAt + 0.45;
+        tl.to([typedEl, cursorEl], { opacity: 0, duration: 0.12 }, submitAt);
+        tl.set(typedEl, { textContent: "" }, submitAt + 0.12);
+        tl.set(liveTurn, { display: "block" }, submitAt + 0.05);
+        tl.to(liveUser, { autoAlpha: 1, duration: 0.14 }, submitAt + 0.1);
+        // working-status is display:none at rest (see composition CSS) so
+        // the standalone capture stays untouched — flip it to block before
+        // fading it in, and back to none once its fade-out finishes so it
+        // stops contributing footer height.
+        tl.set(workingEl, { display: "block" }, submitAt);
+        ix.show(workingEl, { at: submitAt, dur: 0.2 });
 
-      // 4) the prose summary streams like AI output (slower, softer) once the
-      // last tool result is back.
-      const summaryAt = toolsStart + 1.15 + 0.3;
-      ix.stream('[data-role="summary"]', SUMMARY, { at: summaryAt, cps: 45 });
+        // 3) Tool calls snap in one by one — label then its result ~0.35s
+        // later, staggered ~0.4s tool-to-tool, reading as the agent
+        // invoking / running / getting a result back, not typing.
+        const toolsStart = submitAt + 0.5;
+        const toolOffsets = [0, 0.35, 0.4, 0.75, 0.8, 1.15];
+        toolRows.forEach((row, i) => {
+          tl.to(row, { autoAlpha: 1, duration: 0.16 }, toolsStart + (toolOffsets[i] || i * 0.4));
+        });
 
-      const doneAt = summaryAt + SUMMARY.length / 45 + 0.3;
-      ix.hide('[data-role="working"]', { at: doneAt, dur: 0.15 });
-      ix.type('[data-role="status"]', "✔ Done · 8.4s", { at: doneAt, cps: 40, fade: 0.05 });
+        // 4) The reply streams in like AI output once the last tool result
+        // is back — the bullet line reveals a beat before the text streams.
+        const summaryAt = toolsStart + 1.15 + 0.3;
+        tl.to(liveReply, { autoAlpha: 1, duration: 0.1 }, summaryAt - 0.1);
+        ix.stream(liveReplyText, REPLY, { at: summaryAt, cps: 45 });
 
-      // 5) session doesn't dead-end on the status line - a fresh empty ">"
-      // prompt returns right after, awaiting the next command, like a real
-      // CLI session.
-      ix.show('[data-role="prompt-next"]', { at: doneAt + 0.2, dur: 0.2 });
-
-      // Spin the working glyph continuously across its visible stretch -
-      // a plain rotation tween, so it stays a pure function of time on seek.
-      tl.to('.cc-working-glyph', { rotation: "+=1800", duration: doneAt - submitAt, ease: "none" }, submitAt);
-
-      // Token counter ticks live across the same stretch (2.1k -> 8.4k),
-      // landing consistent with the "Done · 8.4s" beat - a plain numeric
-      // tween driven by onUpdate, still a pure function of timeline time.
-      const tokenCounter = { v: 2.1 };
-      tl.to(tokenCounter, {
-        v: 8.4,
-        duration: doneAt - submitAt,
-        ease: "none",
-        onUpdate: () => {
-          const el = stage.querySelector('[data-role="tokens"]');
-          if (el) el.textContent = tokenCounter.v.toFixed(1) + "k";
-        },
-      }, submitAt);
+        // 5) Done: working indicator clears, the turn's timing line lands,
+        // and the terminal cursor returns — a fresh idle prompt, awaiting
+        // the next command, like a real CLI session.
+        const doneAt = summaryAt + REPLY.length / 45 + 0.3;
+        ix.hide(workingEl, { at: doneAt - 0.15, dur: 0.15 });
+        tl.set(workingEl, { display: "none" }, doneAt);
+        tl.to(liveTiming, { autoAlpha: 1, duration: 0.14 }, doneAt);
+        tl.to(cursorEl, { opacity: 1, duration: 0.2 }, doneAt + 0.25);
+      }).catch(() => {});
 
       window.__timelines["claude-code-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(9.8).pause();
+      if (cap === "hero") {
+        tl.seek(9.8).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(9.8).pause(); }).catch(() => {});
+      }
     </script>
   </body>
 </html>
