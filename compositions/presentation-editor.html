@@ -3,7 +3,7 @@
 </style>
 
 <template id="presentation-editor-surface-template">
-  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="836" data-height="438">
+  <div id="presentation-editor-surface" data-composition-id="presentation-editor-surface" data-width="1280" data-height="760">
     <div class="presentation-editor-surface" data-primitive="presentation-editor" aria-label="PowerPoint-like presentation editor">
       <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <!-- Fluent UI System Icons (MIT) via assets/icons/sprite-manifest.json -->
@@ -54,21 +54,53 @@
         <symbol id="fluent-arrow-undo-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3 2.5a.5.5 0 0 1 1 0v3.843l3.171-3.171a4 4 0 0 1 5.657 5.656l-5.025 5.026a.5.5 0 0 1-.707-.708l5.025-5.025A3 3 0 1 0 7.878 3.88L4.757 7H8.5a.5.5 0 0 1 0 1H3.6a.6.6 0 0 1-.6-.6z"/></symbol>
         <symbol id="fluent-arrow-redo-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M13 2.5a.5.5 0 0 0-1 0v3.843L8.827 3.172a4 4 0 0 0-5.656 5.656l5.025 5.026a.5.5 0 0 0 .707-.708L3.879 8.121A3 3 0 0 1 8.12 3.88L11.243 7H7.499a.5.5 0 0 0 0 1h4.9a.6.6 0 0 0 .6-.6z"/></symbol>
         <symbol id="fluent-chevron-down-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3.146 5.646a.5.5 0 0 1 .708 0L8 9.793l4.146-4.147a.5.5 0 0 1 .708.708l-4.5 4.5a.5.5 0 0 1-.708 0l-4.5-4.5a.5.5 0 0 1 0-.708"/></symbol>
+        <symbol id="fluent-cut-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M11.78 1.08c.23.16.29.47.14.7L9.21 5.85l-.61-.91l2.48-3.72c.16-.23.47-.29.7-.14m-.951 9.012q.322-.09.671-.092v.001c1.379 0 2.5 1.122 2.5 2.5s-1.121 2.5-2.5 2.5a2.497 2.497 0 0 1-1.566-4.447l-1.933-2.9l-1.932 2.902c.567.458.931 1.159.931 1.944C7 13.878 5.879 15 4.5 15A2.503 2.503 0 0 1 2 12.5a2.503 2.503 0 0 1 3.166-2.409l2.229-3.348l-3.311-4.966a.5.5 0 0 1 .832-.554zM3 12.5c0 .827.673 1.5 1.5 1.5S6 13.327 6 12.5S5.327 11 4.5 11S3 11.673 3 12.5m7 0c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5"/></symbol>
+        <symbol id="fluent-copy-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M5 6H4a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1h1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1zm7-4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM8 3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1z"/></symbol>
+        <symbol id="fluent-paint-brush-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3.5 1a.5.5 0 0 0-.5.5V9a2 2 0 0 0 2 2h1v2a2 2 0 1 0 4 0v-2h1a2 2 0 0 0 2-2V1.5a.5.5 0 0 0-.5-.5zM4 7V2h4v1.5a.5.5 0 0 0 1 0V2h1v2.5a.5.5 0 0 0 1 0V2h1v5zm0 1h8v1a1 1 0 0 1-1 1H9.5a.5.5 0 0 0-.5.5V13a1 1 0 1 1-2 0v-2.5a.5.5 0 0 0-.5-.5H5a1 1 0 0 1-1-1z"/></symbol>
+        <symbol id="fluent-paint-brush-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M5.5 1.999a.5.5 0 0 0-.5.5v8.504a2 2 0 0 0 2 2h1.004v2.998a2 2 0 1 0 4 0v-2.998H13a2 2 0 0 0 2-2V2.5a.5.5 0 0 0-.5-.5zm.5 8.004h8v1a1 1 0 0 1-1 1h-1.496a.5.5 0 0 0-.5.5v3.498a1 1 0 1 1-2 0v-3.498a.5.5 0 0 0-.5-.5H7a1 1 0 0 1-1-1zm8-1H6V3h4v1.5a.5.5 0 0 0 1 0V3h1v2.502a.5.5 0 0 0 1 0V3h1z"/></symbol>
+        <symbol id="fluent-sparkle-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M7.398 12.809a1.04 1.04 0 0 0 1.204-.003c.178-.13.313-.31.387-.518l.447-1.373a2.34 2.34 0 0 1 1.477-1.479l1.391-.45a1.045 1.045 0 0 0-.044-1.98l-1.375-.448a2.34 2.34 0 0 1-1.48-1.477l-.452-1.388a1.044 1.044 0 0 0-1.973.017l-.457 1.4a2.34 2.34 0 0 1-1.44 1.45l-1.39.447a1.045 1.045 0 0 0 .016 1.974l1.374.445a2.33 2.33 0 0 1 1.481 1.488l.452 1.391c.072.204.206.38.382.504m.085-7.415l.527-1.377l.44 1.377a3.33 3.33 0 0 0 2.117 2.114l1.406.53l-1.382.447a3.34 3.34 0 0 0-2.115 2.117l-.523 1.378l-.449-1.379a3.34 3.34 0 0 0-.8-1.31a3.4 3.4 0 0 0-1.312-.812l-1.378-.522l1.386-.45a3.36 3.36 0 0 0 1.29-.813a3.4 3.4 0 0 0 .793-1.3m6.052 11.457a.806.806 0 0 0 1.226-.398l.248-.762a1.1 1.1 0 0 1 .26-.42c.118-.12.262-.208.42-.26l.772-.252a.8.8 0 0 0-.023-1.52l-.764-.25a1.08 1.08 0 0 1-.68-.678l-.252-.773a.8.8 0 0 0-1.518.01l-.247.762a1.07 1.07 0 0 1-.665.679l-.773.252a.8.8 0 0 0 .008 1.518l.763.247c.16.054.304.143.422.261c.119.119.207.263.258.422l.253.774a.8.8 0 0 0 .292.388m-.913-2.793L12.443 14l.184-.064a2.11 2.11 0 0 0 1.3-1.317l.058-.178l.06.181a2.08 2.08 0 0 0 1.316 1.316l.195.063l-.18.06a2.08 2.08 0 0 0-1.317 1.32l-.059.181l-.058-.18a2.08 2.08 0 0 0-1.32-1.323"/></symbol>
+        <symbol id="fluent-slide-layout-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M5.5 14A1.5 1.5 0 0 1 4 12.5v-5A1.5 1.5 0 0 1 5.5 6h9A1.5 1.5 0 0 1 16 7.5v5a1.5 1.5 0 0 1-1.5 1.5zm0-7a.5.5 0 0 0-.5.5V9h10V7.5a.5.5 0 0 0-.5-.5zM7 10H5v2.5a.5.5 0 0 0 .5.5H7zm1 3h6.5a.5.5 0 0 0 .5-.5V10H8zM2 6.5A2.5 2.5 0 0 1 4.5 4h11A2.5 2.5 0 0 1 18 6.5v7a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 2 13.5zM4.5 5A1.5 1.5 0 0 0 3 6.5v7A1.5 1.5 0 0 0 4.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 15.5 5z"/></symbol>
+        <symbol id="fluent-slide-size-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M2 6.75A2.75 2.75 0 0 1 4.75 4h10.5A2.75 2.75 0 0 1 18 6.75v6.5A2.75 2.75 0 0 1 15.25 16H4.75A2.75 2.75 0 0 1 2 13.25zM4.75 5A1.75 1.75 0 0 0 3 6.75v6.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0 0 17 13.25v-6.5A1.75 1.75 0 0 0 15.25 5zM11 6.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-.793l-1.646 1.647a.5.5 0 0 1-.708-.708L12.293 7H11.5a.5.5 0 0 1-.5-.5m-2.354 4.146a.5.5 0 0 1 .708.708L7.707 13H8.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 1 0v.793z"/></symbol>
+        <symbol id="fluent-text-indent-decrease-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M11.5 3a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1zm3 4a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm-5 4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1zM2.646 5.646a.5.5 0 0 1 .708.708L2.207 7.5l1.147 1.146a.5.5 0 0 1-.708.708l-1.5-1.5a.5.5 0 0 1 0-.708z"/></symbol>
+        <symbol id="fluent-text-indent-increase-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M11.5 3a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1zm3 4a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm-5 4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1zM1.854 5.646a.5.5 0 0 0-.708.708L2.293 7.5L1.146 8.646a.5.5 0 0 0 .708.708l1.5-1.5a.5.5 0 0 0 0-.708z"/></symbol>
+        <symbol id="fluent-line-horizontal-3-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/></symbol>
+        <symbol id="fluent-column-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3.25 2C4.216 2 5 2.784 5 3.75v8.5A1.75 1.75 0 0 1 3.25 14H2.5a.5.5 0 0 1 0-1h.75a.75.75 0 0 0 .75-.75v-8.5A.75.75 0 0 0 3.25 3H2.5a.5.5 0 0 1 0-1zM8.5 2A1.5 1.5 0 0 1 10 3.5v9A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-9A1.5 1.5 0 0 1 7.5 2zm5 0a.5.5 0 0 1 0 1h-.75a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h.75a.5.5 0 0 1 0 1h-.75A1.75 1.75 0 0 1 11 12.25v-8.5c0-.966.784-1.75 1.75-1.75zm-6 1a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/></symbol>
+        <symbol id="fluent-design-ideas-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M4.704 2.71a.5.5 0 0 0-.731-.626l-.002.001l-.003.002l-.009.006l-.03.02l-.102.075a6 6 0 0 0-.33.269c-.252.22-.577.547-.808.937a4.7 4.7 0 0 0-.482 1.032C2.087 4.785 2 5.174 2 5.5c0 .853.316 1.58.809 2.026l-.064.074c-.28.344-.443.79-.545 1.23c-.2.87-.2 1.916-.2 2.645v.025c0 2.787.379 4.368.796 5.272c.21.455.433.745.626.927c.097.092.185.155.258.198a1 1 0 0 0 .133.067S3.926 18 4 18s.187-.036.187-.036a1 1 0 0 0 .133-.067a1.5 1.5 0 0 0 .258-.198c.193-.183.416-.472.626-.927c.417-.904.796-2.485.796-5.272v-.025c0-.73 0-1.775-.2-2.645c-.102-.44-.265-.886-.545-1.23l-.064-.074C5.684 7.08 6 6.353 6 5.5c0-.697-.141-1.176-.396-1.559a2.8 2.8 0 0 0-.39-.453l-.17-.16c-.061-.057-.117-.109-.19-.182c-.15-.15-.167-.27-.167-.333a.3.3 0 0 1 .017-.103M5 5.5c0 1.07-.614 1.499-.998 1.5H4c-.385 0-1-.428-1-1.5c0-.173.052-.447.156-.757a3.7 3.7 0 0 1 .389-.833c.087-.147.2-.29.322-.421q.102.184.28.365c.073.073.168.161.249.237l.124.116c.105.102.186.191.251.29c.12.179.229.45.229 1.003M3.175 9.055c.086-.374.204-.65.345-.823A.57.57 0 0 1 3.998 8H4c.21 0 .354.078.48.232c.141.173.26.449.345.823c.173.748.175 1.688.175 2.445c0 2.713-.371 4.132-.704 4.853c-.11.237-.213.395-.296.5a2.4 2.4 0 0 1-.296-.5C3.371 15.632 3 14.213 3 11.5c0-.757.002-1.697.175-2.445M9 13c-.715 0-1.396-.15-2.01-.42q.02-.534.02-1.11A4 4 0 0 0 9 12v-2a2 2 0 0 1 2-2h2a4 4 0 0 0-6.082-3.416a3.3 3.3 0 0 0-.338-.96A5 5 0 0 1 14 8h2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2zm4.9-4a5.01 5.01 0 0 1-3.9 3.9V15a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1zm-1.026 0H11a1 1 0 0 0-1 1v1.874A4.01 4.01 0 0 0 12.874 9"/></symbol>
+        <symbol id="fluent-clear-formatting-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M2.75 2a.5.5 0 0 0-.485.379l-.25 1a.5.5 0 1 0 .97.242L3.14 3h2.723l-1.4 8h-.736a.5.5 0 0 0 0 1h2.295a5.6 5.6 0 0 1 0-1h-.544l1.4-8H9.86l-.095.379a.5.5 0 1 0 .97.242l.25-1A.5.5 0 0 0 10.5 2zM1.5 13h4.707q.149.524.393 1H1.5a.5.5 0 0 1 0-1M16 11.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-2.646-1.146a.5.5 0 0 0-.708-.708L11.5 10.793l-1.146-1.147a.5.5 0 0 0-.708.708l1.147 1.146l-1.147 1.146a.5.5 0 0 0 .708.708l1.146-1.147l1.146 1.147a.5.5 0 0 0 .708-.708L12.207 11.5z"/></symbol>
+        <symbol id="fluent-font-increase-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M13.854 4.854a.5.5 0 0 1-.707-.708l2-2a.5.5 0 0 1 .707 0l2 2a.5.5 0 0 1-.707.708L15.5 3.207zM10 4a.5.5 0 0 0-.463.31l-4.5 11a.5.5 0 1 0 .926.38L7.5 11.93V12h5v-.068l1.537 3.757a.5.5 0 1 0 .926-.378l-4.5-11A.5.5 0 0 0 10 4m0 1.82L12.119 11H7.88z"/></symbol>
+        <symbol id="fluent-font-decrease-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M13.147 2.146a.5.5 0 0 1 .707 0L15.5 3.793l1.646-1.647a.5.5 0 1 1 .708.708l-2 2a.5.5 0 0 1-.707 0l-2-2a.5.5 0 0 1 0-.708M10 4a.5.5 0 0 1 .463.31l4.5 11a.5.5 0 1 1-.926.38L12.5 11.931V12h-5v-.069L5.963 15.69a.5.5 0 1 1-.926-.378l4.5-11A.5.5 0 0 1 10 4m-2.119 7h4.238L10 5.82z"/></symbol>
+        <symbol id="fluent-align-right-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M16.5 2a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0v-15a.5.5 0 0 1 .5-.5M13 11a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2zm1 2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1zm1-7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zm-2-1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></symbol>
+        <symbol id="fluent-text-align-justify-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M2 4.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1h-15a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1h-15a.5.5 0 0 1-.5-.5m.5 4.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z"/></symbol>
+        <symbol id="fluent-arrow-sort-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M4.854 2.146a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L4 3.707V13.5a.5.5 0 0 0 1 0V3.707l2.146 2.147a.5.5 0 1 0 .708-.708zm6.299 11.714a.5.5 0 0 0 .694 0l3-2.9a.5.5 0 1 0-.694-.72L12 12.321v-9.82a.5.5 0 0 0-1 0v9.82l-2.152-2.08a.5.5 0 1 0-.696.718z"/></symbol>
+        <symbol id="fluent-text-direction-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M11.5 3a4 4 0 1 0 0 8H13v6.5a.5.5 0 0 0 1 0V4h1v13.5a.5.5 0 0 0 1 0V4h.5a.5.5 0 0 0 0-1zM13 4v6h-1.5a3 3 0 0 1 0-6zM3.146 5.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.793 8L3.146 6.354a.5.5 0 0 1 0-.708m2.708 6a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L4.207 14l1.647-1.646a.5.5 0 0 0 0-.708"/></symbol>
+        <symbol id="fluent-image-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M14 7.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0a.5.5 0 0 0 1 0M3 6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm3-2a2 2 0 0 0-2 2v8c0 .373.102.722.28 1.02l4.669-4.588a1.5 1.5 0 0 1 2.102 0l4.67 4.588A2 2 0 0 0 16 14V6a2 2 0 0 0-2-2zm0 12h8c.37 0 .715-.1 1.012-.274l-4.662-4.58a.5.5 0 0 0-.7 0l-4.662 4.58A2 2 0 0 0 6 16"/></symbol>
+        <symbol id="fluent-textbox-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2zM3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5z"/></symbol>
+        <symbol id="fluent-shield-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M9.723 2.084a.5.5 0 0 1 .554 0a15.05 15.05 0 0 0 6.294 2.421A.5.5 0 0 1 17 5v4.5c0 3.891-2.307 6.73-6.82 8.467a.5.5 0 0 1-.36 0C5.308 16.23 3 13.39 3 9.5V5a.5.5 0 0 1 .43-.495a15.05 15.05 0 0 0 6.293-2.421m-.124 1.262A16 16 0 0 1 4 5.428V9.5c0 3.392 1.968 5.863 6 7.463c4.032-1.6 6-4.071 6-7.463V5.428a16 16 0 0 1-5.6-2.082l-.4-.249z"/></symbol>
+        <symbol id="fluent-apps-add-in-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M14.5 2.5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0V6h-2a.5.5 0 0 1 0-1h2V3a.5.5 0 0 1 .5-.5M3 5a2 2 0 0 1 2-2h3.5a2 2 0 0 1 2 2v4.5H15a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6.5 4.5V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v4.5zm-5.5 1V15a1 1 0 0 0 1 1h4.5v-5.5zm6.5 5.5H15a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1h-4.5z"/></symbol>
+        <symbol id="fluent-home-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M7.313 1.262a1 1 0 0 1 1.374 0l4.844 4.579c.3.283.469.678.469 1.09v5.57a1.5 1.5 0 0 1-1.5 1.5h-2A1.5 1.5 0 0 1 9 12.5V10a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2.5A1.5 1.5 0 0 1 5.5 14h-2A1.5 1.5 0 0 1 2 12.5V6.93c0-.412.17-.807.47-1.09zM8 1.988l-4.844 4.58A.5.5 0 0 0 3 6.93v5.57a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V10a1.5 1.5 0 0 1 1.5-1.5h1A1.5 1.5 0 0 1 10 10v2.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V6.93a.5.5 0 0 0-.156-.363z"/></symbol>
+        <symbol id="fluent-arrow-rotate-clockwise-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M8 3a5 5 0 0 0-5 5a.5.5 0 0 1-1 0a6 6 0 1 1 9.969 4.5H13a.5.5 0 0 1 0 1h-2.5a.5.5 0 0 1-.5-.5v-2.5a.5.5 0 0 1 1 0V12a5 5 0 0 0-3-9M6 8a2 2 0 1 1 4 0a2 2 0 0 1-4 0m2-1a1 1 0 1 0 0 2a1 1 0 0 0 0-2"/></symbol>
+        <symbol id="fluent-panel-left-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M2 6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm6.5-2v11H15a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-1 0H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2.5z"/></symbol>
+        <symbol id="fluent-grid-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M7.5 11A1.5 1.5 0 0 1 9 12.5v4A1.5 1.5 0 0 1 7.5 18h-4A1.5 1.5 0 0 1 2 16.5v-4A1.5 1.5 0 0 1 3.5 11zm9 0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5v-4a1.5 1.5 0 0 1 1.5-1.5zm-9 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m9 0h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m-9-10A1.5 1.5 0 0 1 9 3.5v4A1.5 1.5 0 0 1 7.5 9h-4A1.5 1.5 0 0 1 2 7.5v-4A1.5 1.5 0 0 1 3.5 2zm9 0A1.5 1.5 0 0 1 18 3.5v4A1.5 1.5 0 0 1 16.5 9h-4A1.5 1.5 0 0 1 11 7.5v-4A1.5 1.5 0 0 1 12.5 2zm-9 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5m9 0h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5"/></symbol>
+        <symbol id="fluent-board-split-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M3 6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm1 4v4a2 2 0 0 0 2 2h5v-6zm7-1V4H6a2 2 0 0 0-2 2v3zm1 7h2a2 2 0 0 0 2-2v-1h-4zm4-9V6a2 2 0 0 0-2-2h-2v3zm0 1h-4v4h4z"/></symbol>
+        <symbol id="fluent-presenter-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M9.999 6a2 2 0 1 0 0-4a2 2 0 0 0 0 4m0-1a1 1 0 1 1 0-2a1 1 0 0 1 0 2m-1.5 3a.5.5 0 0 0-.5.5V9h-1v-.5a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5V9h-1v-.5a.5.5 0 0 0-.5-.5zm-1.5 6.784V16.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-1.716a.5.5 0 0 1 .153-.36l3.703-3.564a.5.5 0 0 0-.347-.86H3.49a.5.5 0 0 0-.346.86l3.702 3.564a.5.5 0 0 1 .154.36M8 16.5v-1.716a1.5 1.5 0 0 0-.46-1.08L4.729 11h10.539l-2.81 2.703a1.5 1.5 0 0 0-.46 1.081V16.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5"/></symbol>
+        <symbol id="si-claude" viewBox="0 0 24 24">
+    <title>Claude</title><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+</symbol>
       </svg>
       <div class="powerpoint-titlebar">
         <div class="powerpoint-traffic-spacer" aria-hidden="true"></div>
         <span class="autosave-toggle">AutoSave<span></span></span>
         <div class="quick-access" aria-label="Quick access toolbar">
+          <span class="qa-home"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-home-16-regular"/></svg></span>
           <span class="qa-save"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-save-16-regular"/></svg></span>
-          <span class="qa-undo"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-undo-16-regular"/></svg></span>
+          <span class="qa-undo"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-undo-16-regular"/></svg><i class="qa-caret"></i></span>
           <span class="qa-redo"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-redo-16-regular"/></svg></span>
-          <span class="qa-more"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-chevron-down-16-regular"/></svg></span>
+          <span class="qa-more">···</span>
         </div>
         <div class="titlebar-name-group">
           <span class="presentation-name">Launch Deck.pptx</span>
-          <span class="save-state">• Saved <i class="save-state-caret"></i></span>
         </div>
-        <div class="titlebar-search"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-search-20"/></svg>Search</div>
+        <div class="titlebar-search"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-search-20"/></svg>Search (Cmd + Ctrl + U)</div>
       </div>
       <div class="ribbon-tabs">
         <span class="active">Home</span><span>Insert</span><span>Draw</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Record</span><span>Review</span><span>View</span><span class="contextual">Shape Format</span>
@@ -80,45 +112,75 @@
       <div class="powerpoint-ribbon">
         <div class="ribbon-group clipboard">
           <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-paste-20"/></svg><em>Paste</em></div>
+          <div class="ribbon-stack">
+            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-cut-16-regular"/></svg></span>
+            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-copy-16-regular"/></svg></span>
+            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-paint-brush-16-regular"/></svg></span>
+          </div>
         </div>
         <div class="ribbon-group slides">
           <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-slide-add-20"/></svg><em>New Slide</em></div>
         </div>
+        <div class="ribbon-group copilot">
+          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-sparkle-20-regular"/></svg><em>New Slide<br>with Copilot</em></div>
+        </div>
         <div class="ribbon-group font">
-          <div class="ribbon-row"><span class="ribbon-field">Aptos</span><span class="ribbon-field small">44</span></div>
+          <div class="ribbon-row">
+            <span class="ribbon-field combo" data-font-name>Aptos Display (Headings)<i class="field-caret"></i></span>
+            <span class="ribbon-field small combo" data-font-size>60<i class="field-caret"></i></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-font-increase-20-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-font-decrease-20-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-clear-formatting-16-regular"/></svg></span>
+          </div>
           <div class="button-group">
-            <span class="tool-toggle active">B</span><span class="tool-toggle italic">I</span><span class="tool-toggle underline">U</span>
-            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-color-20"/></svg></span>
+            <span class="tool-toggle active">B</span><span class="tool-toggle italic">I</span><span class="tool-toggle underline">U</span><span class="tool-toggle strike">ab</span><span class="tool-toggle super">x²</span><span class="tool-toggle sub">x₂</span>
+            <span class="tool-icon combo-mini">AV<i class="field-caret"></i></span>
+            <span class="tool-icon combo-mini">Aa<i class="field-caret"></i></span>
             <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-highlight-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-color-20"/></svg></span>
           </div>
         </div>
         <div class="ribbon-group paragraph">
-          <div class="button-group">
+          <div class="ribbon-row">
             <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-bullet-list-20"/></svg></span>
             <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-number-list-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-indent-decrease-16-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-indent-increase-16-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-line-horizontal-3-16-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-column-16-regular"/></svg></span>
+            <span class="ribbon-large smartart"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Convert to<br>SmartArt</em></span>
           </div>
           <div class="button-group">
             <span class="tool-icon active"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-left-20"/></svg></span>
             <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-center-20"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-align-right-20-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-align-justify-20-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-sort-16-regular"/></svg></span>
+            <span class="tool-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-text-direction-20-regular"/></svg></span>
+          </div>
+        </div>
+        <div class="ribbon-group picture">
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-image-20-regular"/></svg><em>Picture</em></div>
+          <div class="ribbon-stack">
+            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-shapes-20"/></svg></span>
+            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-textbox-16-regular"/></svg></span>
           </div>
         </div>
         <div class="ribbon-group drawing">
-          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-shapes-20"/></svg><em>Shapes</em></div>
-          <div class="ribbon-stack">
-            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-fill-color-20"/></svg>Shape Fill</span>
-            <span class="split-mini"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-color-20"/></svg>Outline</span>
-          </div>
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-paint-brush-20-regular"/></svg><em>Drawing</em></div>
         </div>
-        <div class="ribbon-group editing">
-          <div class="ribbon-stack">
-            <span class="split-mini no-caret"><svg class="backlot-icon mini-glyph" aria-hidden="true"><use href="#fluent-search-20"/></svg>Find</span>
-            <span class="split-mini">Select</span>
-          </div>
+        <div class="ribbon-group sensitivity">
+          <div class="ribbon-large split"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-shield-20-regular"/></svg><em>Sensitivity</em></div>
+        </div>
+        <div class="ribbon-group addins">
+          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-apps-add-in-20-regular"/></svg><em>Add-ins</em></div>
+        </div>
+        <div class="ribbon-group design-suggestions">
+          <div class="ribbon-large"><svg class="backlot-icon ribbon-glyph" aria-hidden="true"><use href="#fluent-design-ideas-20-regular"/></svg><em>Design<br>Suggestions</em></div>
         </div>
       </div>
       <div class="powerpoint-body">
         <div class="slide-rail">
-          <div class="section-chip">Launch Readout</div>
           <div class="thumb-label">1</div>
           <div class="slide-thumb active">
             <div class="mini dark">
@@ -148,51 +210,47 @@
             </div>
           </div>
         </div>
-        <div class="slide-stage">
-          <div class="slide-canvas">
-            <div class="slide-ruler horizontal" data-layout-ignore></div>
-            <div class="slide-ruler vertical" data-layout-ignore></div>
-            <div class="slide-section-band"></div>
-            <div class="selection-box" data-layout-ignore>
-              <span class="rotate-handle"></span>
-              <span class="handle nw"></span><span class="handle n"></span><span class="handle ne"></span>
-              <span class="handle e"></span><span class="handle se"></span><span class="handle s"></span>
-              <span class="handle sw"></span><span class="handle w"></span>
+        <div class="body-right">
+          <div class="stage-row">
+            <div class="slide-stage">
+              <div class="slide-canvas">
+                <div class="slide-ruler horizontal" data-layout-ignore></div>
+                <div class="slide-ruler vertical" data-layout-ignore></div>
+                <div class="slide-section-band"></div>
+                <div class="selection-box" data-layout-ignore>
+                  <span class="rotate-handle"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-arrow-rotate-clockwise-16-regular"/></svg></span>
+                  <span class="handle nw"></span><span class="handle n"></span><span class="handle ne"></span>
+                  <span class="handle e"></span><span class="handle se"></span><span class="handle s"></span>
+                  <span class="handle sw"></span><span class="handle w"></span>
+                </div>
+                <div class="slide-comment-pin" data-layout-ignore></div>
+                <div class="slide-title"><span class="before-title">Q1 Budget Review</span><span class="after-title">Q1 Budget Analysis</span></div>
+                <div class="slide-subtitle">Review and analysis by region for Q1 2024</div>
+              </div>
             </div>
-            <div class="slide-comment-pin" data-layout-ignore></div>
-            <div class="slide-title"><span class="before-title">Q1 Budget Review</span><span class="after-title">Q1 Budget Analysis</span></div>
-            <div class="slide-subtitle">Review and analysis by region for Q1 2024</div>
           </div>
           <div class="speaker-notes"><span>Thank everyone for last year's numbers. Introduce the regional forecast changes.</span></div>
-          <div class="slide-status">
-            <span>Slide 1 of 4</span>
-            <span>English (United States)</span>
-            <span class="status-chip good"><svg class="backlot-icon a11y-glyph" aria-hidden="true"><use href="#fluent-accessibility-16-regular"/></svg>Accessibility: Good to go</span>
-            <span class="status-btn"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-note-16-regular"/></svg>Notes</span>
-            <span class="status-btn"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-comment-16-regular"/></svg>Comments</span>
-            <span class="view-buttons"><i></i><i></i><i></i></span>
-            <span class="zoom-controls">
-              <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-subtract-16-regular"/></svg>
-              <span class="zoom-track"></span>
-              <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-add-16-regular"/></svg>
-            </span>
-            <span class="zoom-percent">100%</span>
-            <svg class="backlot-icon fit-glyph" aria-hidden="true"><use href="#fluent-arrow-maximize-16-regular"/></svg>
-          </div>
         </div>
-        <aside class="inspector comments-pane">
-          <div class="pane-title"><strong>Comments</strong><button>New</button><i class="pane-close"></i></div>
-          <div class="comments-card active-thread">
-            <span class="comment-dot">C</span>
-            <p><b>Claude</b><small>Just now</small>Renaming the opening title to Q1 Budget Analysis and tightening the subtitle — take a look.<em>Resolve</em></p>
-          </div>
-          <div class="comments-card">
-            <span class="comment-dot user">A</span>
-            <p><b>Avery</b><small>2m ago</small>Can we keep the regional forecast in the speaker notes?</p>
-          </div>
-          <div class="reply-field">Mention or reply...</div>
-          <div class="comments-footer">2 comments on this slide</div>
-        </aside>
+      </div>
+      <div class="slide-status">
+        <span>Slide 1 of 4</span>
+        <span>English (United States)</span>
+        <span class="status-chip good"><svg class="backlot-icon a11y-glyph" aria-hidden="true"><use href="#fluent-accessibility-16-regular"/></svg>Accessibility: Good to go</span>
+        <span class="status-btn"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-note-16-regular"/></svg>Notes</span>
+        <span class="status-btn"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-comment-16-regular"/></svg>Comments</span>
+        <span class="view-buttons">
+          <i class="active"><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-panel-left-20-regular"/></svg></i>
+          <i><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-grid-20-regular"/></svg></i>
+          <i><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-board-split-20-regular"/></svg></i>
+          <i><svg class="backlot-icon" aria-hidden="true"><use href="#fluent-presenter-20-regular"/></svg></i>
+        </span>
+        <span class="zoom-controls">
+          <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-subtract-16-regular"/></svg>
+          <span class="zoom-track"></span>
+          <svg class="backlot-icon zoom-glyph" aria-hidden="true"><use href="#fluent-add-16-regular"/></svg>
+        </span>
+        <span class="zoom-percent">120%</span>
+        <svg class="backlot-icon fit-glyph" aria-hidden="true"><use href="#fluent-arrow-maximize-16-regular"/></svg>
       </div>
     </div>
     <style>
@@ -1390,39 +1448,51 @@
         background: linear-gradient(90deg, #c65b47 0 58%, #d7dce1 58%);
       }
 
-      /* Source-grounded PowerPoint pass: rebuild the visible surface from
-         Microsoft Support reference screenshots while keeping editable HTML. */
+      /* Structural overhaul pass (2026-07-20): real Mac PowerPoint window
+         geometry (1280x760, chrome at real logical px), rebuilt Home ribbon,
+         full-width status bar, and a color system resampled from
+         reference/powerpoint/2026-07-20 captures. Only the slide stage
+         flexes; everything above/around it is fixed height. */
       #presentation-editor-surface {
-        --powerpoint: #c6421f;
-        --office-line: #d7d7d7;
-        --office-text: #202020;
+        --powerpoint: #b3482a;
+        --powerpoint-share: #b5482a;
+        --office-line: #cccccc;
+        --office-text: #1d1d1f;
         --office-muted: #616161;
         --office-blue: #2b78d4;
+        width: 1280px;
+        height: 760px;
         border-radius: 8px;
-        background: #efefef;
+        background: #f5f5f5;
         color: var(--office-text);
         font-family: var(--font-office-ui);
       }
 
       .presentation-editor-surface {
+        display: flex;
+        flex-direction: column;
         border-radius: 8px;
-        background: #f2f2f2;
+        background: #f5f5f5;
         box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.13);
       }
 
+      /* ---- Titlebar (28px) ---- */
       .powerpoint-titlebar {
+        flex: 0 0 28px;
         height: 28px;
-        grid-template-columns: 56px auto auto 1fr auto;
-        gap: 5px;
-        padding: 0 8px;
-        border-bottom-color: #d0d0d0;
-        background: #f7f7f7;
+        display: grid;
+        grid-template-columns: 52px auto auto 1fr auto;
+        gap: 10px;
+        padding: 0 10px;
+        border-bottom: 1px solid #cbcbcb;
+        background: #f5f5f5;
         color: #242424;
         font-size: 11px;
         font-weight: 500;
       }
 
       .powerpoint-traffic-spacer {
+        position: relative;
         width: 52px;
         height: 12px;
       }
@@ -1436,140 +1506,125 @@
 
       .quick-access {
         height: 18px;
-        gap: 5px;
-        padding: 0 4px;
-        border-radius: 5px;
-        background: transparent;
-        border-color: transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 2px;
+        border-radius: 0;
+        background: none;
+        border: 0;
       }
 
       .quick-access span {
-        width: 12px;
-        height: 12px;
-        color: #5a5f66;
+        width: auto;
+        height: 14px;
+        color: #444;
       }
 
-      .qa-save,
-      .qa-undo,
-      .qa-redo,
-      .qa-more {
+      .quick-access .backlot-icon {
+        width: 14px;
+        height: 14px;
+      }
+
+      .qa-home, .qa-save, .qa-undo, .qa-redo {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 1px;
       }
 
-      .qa-save .backlot-icon,
-      .qa-undo .backlot-icon,
-      .qa-redo .backlot-icon,
-      .qa-more .backlot-icon {
-        width: 12px;
-        height: 12px;
+      .qa-more {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #444;
+      }
+
+      .qa-caret {
+        width: 0;
+        height: 0;
+        margin-left: 1px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 3px solid #767676;
       }
 
       .presentation-name {
         min-width: 0;
-        color: #202020;
-        font-size: 11px;
-        font-weight: 600;
+        color: #1d1d1f;
+        font-size: 13px;
+        font-weight: 500;
       }
 
       .titlebar-name-group {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         gap: 6px;
         justify-self: center;
         margin: 0 auto;
       }
 
-      .save-state {
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
-        color: #6a6a6a;
+      .autosave-toggle {
+        height: 18px;
+        gap: 6px;
+        color: #5f6368;
         font-size: 12px;
         font-weight: 400;
       }
 
-      .save-state-caret {
-        width: 0;
-        height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 4px solid #6a6a6a;
-      }
-
-      .autosave-toggle {
-        height: 18px;
-        gap: 4px;
-        color: #5f6368;
-        font-size: 9px;
-        font-weight: 500;
-      }
-
       .autosave-toggle span {
-        width: 22px;
-        height: 11px;
+        width: 24px;
+        height: 13px;
         background: #d8dce0;
       }
 
       .autosave-toggle span::before {
-        width: 7px;
-        height: 7px;
+        width: 9px;
+        height: 9px;
       }
 
       .titlebar-search {
         justify-self: end;
         width: auto;
         height: 18px;
-        gap: 5px;
-        padding: 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0;
         border-radius: 0;
         background: transparent;
         border: none;
-        color: #767676;
-        font-size: 9px;
-        font-weight: 500;
+        color: #666;
+        font-size: 13px;
+        font-weight: 400;
       }
 
       .titlebar-search .backlot-icon {
-        width: 11px;
-        height: 11px;
+        width: 14px;
+        height: 14px;
+        color: #767676;
       }
 
-      .titlebar-actions {
-        gap: 4px;
-      }
+      .titlebar-actions { display: none; }
 
-      .titlebar-actions span {
-        height: 18px;
-        padding: 0 7px;
-        border-radius: 5px;
-        color: #222;
-        border-color: #d0d0d0;
-        font-size: 9px;
-        font-weight: 600;
-      }
-
-      .titlebar-actions span:first-child {
-        color: #fff;
-        background: var(--powerpoint);
-        border-color: var(--powerpoint);
-      }
-
+      /* ---- Ribbon tab row (27px) ---- */
       .ribbon-tabs {
-        height: 24px;
-        align-items: end;
-        padding-left: 4px;
-        background: #f7f7f7;
-        border-bottom-color: #d3d3d3;
+        flex: 0 0 27px;
+        height: 27px;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding-left: 12px;
+        background: #f5f5f5;
+        border-bottom: 1px solid #cbcbcb;
         color: #1f1f1f;
-        font-size: 9.5px;
+        font-size: 13px;
         font-weight: 500;
       }
 
       .ribbon-tabs span {
-        height: 22px;
-        padding: 0 3px;
+        height: 27px;
+        padding: 0 9px;
         border-radius: 0;
         white-space: nowrap;
         flex: 0 0 auto;
@@ -1578,7 +1633,7 @@
       .ribbon-tabs .active {
         color: #111;
         background: transparent;
-        box-shadow: inset 0 -2px 0 var(--powerpoint);
+        box-shadow: inset 0 -3px 0 var(--powerpoint);
       }
 
       .ribbon-tabs .file-tab {
@@ -1587,102 +1642,83 @@
       }
 
       .ribbon-tabs .contextual {
-        color: #8f2f1f;
+        color: var(--powerpoint);
       }
 
       .ribbon-collab-cluster {
         margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        align-self: center;
-        flex: 0 0 auto;
-        padding-right: 6px;
+        gap: 8px;
+        padding-right: 10px;
       }
 
       .ribbon-comments-btn {
-        height: 20px;
-        display: inline-flex;
-        align-items: center;
+        height: 22px;
         gap: 4px;
-        padding: 0 8px;
-        border: 1px solid #d5d9de;
-        border-radius: 5px;
-        background: transparent;
-        color: #2b2b2b;
-        font-family: inherit;
-        font-size: 10px;
-        font-weight: 500;
-        cursor: default;
-        white-space: nowrap;
-        flex: 0 0 auto;
+        padding: 0 9px;
+        border-color: #d5d9de;
+        font-size: 12px;
       }
 
       .ribbon-comments-btn .backlot-icon {
-        width: 11px;
-        height: 11px;
+        width: 13px;
+        height: 13px;
       }
 
       .ribbon-share-btn {
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
+        height: 24px;
         gap: 4px;
-        padding: 0 8px;
-        border: 0;
-        border-radius: 999px;
-        background: #c9472b;
-        color: #fff;
-        font-family: inherit;
-        font-size: 10px;
-        font-weight: 500;
-        cursor: default;
-        white-space: nowrap;
-        flex: 0 0 auto;
+        padding: 0 10px;
+        border-radius: 6px;
+        background: var(--powerpoint-share);
+        font-size: 13px;
       }
 
-      .share-caret {
-        width: 0;
-        height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 4px solid #fff;
-      }
-
+      /* ---- Ribbon (80px, bottom hairline at y=135) ---- */
       .powerpoint-ribbon {
-        height: 62px;
-        padding: 4px 8px;
-        background: #ffffff;
-        border-bottom-color: rgba(0, 0, 0, 0.12);
+        flex: 0 0 80px;
+        height: 80px;
+        padding: 4px 10px;
+        background: #f5f5f5;
+        border-bottom: 1px solid #cccccc;
         box-shadow: none;
+        overflow: hidden;
       }
 
       .ribbon-group {
-        height: 54px;
-        gap: 5px;
-        padding: 0 8px;
+        height: 66px;
+        gap: 4px;
+        padding: 0 7px;
         align-items: center;
-        border-right-color: rgba(0, 0, 0, 0.08);
+        border-right-color: #d8d8d8;
         color: #2d2d2d;
+        flex: 0 0 auto;
       }
 
-      .ribbon-group.clipboard { width: 62px; }
-      .ribbon-group.slides { width: 86px; }
-      .ribbon-group.font { width: 128px; }
-      .ribbon-group.paragraph { width: 102px; }
-      .ribbon-group.drawing { width: 132px; }
-
-      .ribbon-group.drawing .split-mini {
-        min-width: 66px;
-        white-space: nowrap;
+      .ribbon-group.clipboard,
+      .ribbon-group.slides,
+      .ribbon-group.copilot,
+      .ribbon-group.font,
+      .ribbon-group.paragraph,
+      .ribbon-group.picture,
+      .ribbon-group.drawing,
+      .ribbon-group.sensitivity,
+      .ribbon-group.addins,
+      .ribbon-group.design-suggestions,
+      .ribbon-group.claude-addin {
+        width: auto;
       }
 
-      .ribbon-group.drawing .ribbon-large.split {
-        flex-shrink: 0;
+      .ribbon-group.font,
+      .ribbon-group.paragraph {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 3px;
       }
-      .ribbon-group.ink { width: 80px; }
-      .ribbon-group.arrange { width: 100px; }
-      .ribbon-group.editing { width: 74px; }
+
+      .ribbon-group.design-suggestions {
+        border-right: 0;
+      }
 
       .ribbon-group strong {
         display: none;
@@ -1690,12 +1726,19 @@
 
       .ribbon-large {
         width: auto;
-        min-width: 40px;
-        min-height: 46px;
+        min-width: 42px;
+        min-height: 56px;
         padding: 2px 4px 0;
         border: 0;
         border-radius: 5px;
         background: transparent;
+        color: #2d2d2d;
+      }
+
+      .ribbon-large.smartart {
+        min-width: 56px;
+        align-self: stretch;
+        margin-left: 3px;
       }
 
       .ribbon-glyph {
@@ -1704,9 +1747,29 @@
         color: #3d3d3d;
       }
 
+      .ribbon-large.claude .claude-mark {
+        color: var(--powerpoint);
+      }
+
+      .ribbon-large em {
+        align-self: center;
+        color: #262626;
+        font-size: 10.5px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.15;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .ribbon-stack {
+        align-content: center;
+        gap: 3px;
+      }
+
       .tool-icon {
-        width: 26px;
-        height: 24px;
+        width: 24px;
+        height: 22px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -1720,163 +1783,140 @@
       }
 
       .tool-icon.active {
-        background: #e6e6e6;
+        background: #e4e4e4;
         color: #3d3d3d;
         border: none;
       }
 
-      .split-mini .mini-glyph {
-        width: 13px;
-        height: 13px;
-        margin-right: 4px;
+      .tool-icon.combo-mini {
+        width: auto;
+        min-width: 22px;
+        padding: 0 2px;
+        gap: 1px;
+        font-size: 10px;
+        font-weight: 500;
+        color: #262626;
+      }
+
+      .split-mini {
+        height: 20px;
+        min-width: 20px;
+        padding: 0 3px;
+        border-radius: 3px;
+        border-color: transparent;
+        background: transparent;
         color: #3d3d3d;
       }
 
-      .ribbon-large.split::after {
-        position: static;
-        margin: 1px auto 0;
-        justify-self: center;
+      .split-mini .mini-glyph {
+        width: 15px;
+        height: 15px;
+        margin-right: 0;
+        color: #3d3d3d;
       }
 
-      .ribbon-large em,
-      .ribbon-mini,
-      .split-mini,
-      .ribbon-field,
-      .tool-toggle {
-        color: #262626;
-        font-size: 10px;
-        font-weight: 400;
+      .ribbon-large.split::after,
+      .split-mini::after {
+        border-top-color: #767676;
       }
 
-      .cmd-icon {
-        width: 24px;
-        height: 22px;
-        border-radius: 1px;
-        background: transparent;
-        border: 0;
-      }
-
-      .cmd-icon.paste::before {
-        left: 5px;
-        top: 3px;
-        width: 14px;
-        height: 16px;
-        border-radius: 1px;
-        background: #f6d89e;
-        border: 1px solid #7c6a44;
-        box-shadow: 0 -4px 0 -1px #e3b85e, 6px 4px 0 -4px #fff;
-      }
-
-      .cmd-icon.slide::before {
-        left: 4px;
-        top: 4px;
-        width: 16px;
-        height: 11px;
-        border-radius: 1px;
-        background: #eef3f8;
-        border: 1px solid #7f8b97;
-        box-shadow: 4px 4px 0 #d7dfe6;
-      }
-
-      .ribbon-mini,
-      .split-mini,
-      .ribbon-group .ribbon-field,
-      .tool-toggle,
-      .button-group.dense > span,
-      .arrange-icon {
-        height: 17px;
-        border-radius: 2px;
-        border-color: #cfd4d9;
-        background: #fff;
-      }
-
-      .tool-toggle {
-        border: 0;
-        background: transparent;
-      }
-
-      .ribbon-mini,
-      .split-mini {
-        min-width: 34px;
-        padding: 0 4px;
+      .split-mini::after {
+        margin-left: 3px;
       }
 
       .ribbon-group .ribbon-field {
-        width: 62px;
-        height: 18px;
-        padding-left: 5px;
-        font-size: 9px;
+        height: 22px;
+        gap: 3px;
+        padding: 0 6px;
+        color: #262626;
+        font-size: 12px;
+        background: #fff;
+        border: 1px solid #c9c9c9;
+        border-radius: 3px;
+        width: 195px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        justify-content: space-between;
       }
 
       .ribbon-group .ribbon-field.small {
-        width: 30px;
+        width: 62px;
       }
 
-      .tool-toggle,
-      .button-group.dense > span,
-      .arrange-icon {
-        width: 18px;
-        font-size: 9px;
+      .field-caret {
+        width: 0;
+        height: 0;
+        margin-left: 4px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 3.5px solid #767676;
+        flex: 0 0 auto;
       }
+
+      .tool-toggle {
+        width: 20px;
+        font-size: 12px;
+      }
+
+      .tool-toggle.italic { font-style: italic; }
+      .tool-toggle.underline { text-decoration: underline; }
+      .tool-toggle.strike { text-decoration: line-through; font-size: 10px; }
+      .tool-toggle.super, .tool-toggle.sub { font-size: 9px; }
 
       .tool-toggle.active {
-        color: #3d3d3d;
-        background: #e6e6e6;
-        border-color: #cfcfcf;
+        color: #262626;
+        background: #e4e4e4;
+        border-color: transparent;
         box-shadow: none;
+        font-weight: 700;
       }
 
-      .shape-gallery {
-        width: 48px;
-        grid-template-columns: repeat(2, 21px);
-        gap: 3px;
-      }
+      .shape-gallery { display: none; }
 
-      .shape-gallery span {
-        width: 21px;
-        height: 18px;
-        border-radius: 2px;
-      }
-
+      /* ---- Body: rail | (stage-row + notes) ---- */
       .powerpoint-body {
-        height: 310px;
-        grid-template-columns: 126px 1fr 158px;
-        background: #e9e9e9;
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        align-items: stretch;
+        background: #e3e5e8;
       }
 
       .slide-rail {
-        grid-template-columns: 18px 1fr;
-        row-gap: 6px;
-        column-gap: 5px;
-        padding: 6px 9px;
-        background: #f2f2f2;
-        border-right-color: #d1d1d1;
+        flex: 0 0 200px;
+        width: 200px;
+        grid-template-columns: 16px 1fr;
+        row-gap: 8px;
+        column-gap: 6px;
+        padding: 10px 9px;
+        background: #e3e5e8;
+        border-right-color: #cbcbcb;
+        overflow: hidden;
       }
 
-      .section-chip {
-        display: none;
-      }
+      .section-chip { display: none; }
 
       .thumb-label {
         color: #404040;
-        font-size: 10px;
-        line-height: 12px;
+        font-size: 11px;
+        line-height: 14px;
         padding-top: 2px;
         font-weight: 400;
       }
 
       .slide-thumb {
-        height: 52px;
+        height: 90px;
         border-radius: 3px;
         background: #fff;
-        border: 1px solid #cfcfcf;
+        border: 1px solid #c9c9c9;
         box-shadow: none;
         overflow: hidden;
       }
 
       .slide-thumb.active {
-        border-color: var(--powerpoint);
-        box-shadow: 0 0 0 2px var(--powerpoint);
+        border: 2px solid var(--powerpoint);
+        box-shadow: none;
       }
 
       .slide-thumb .mini {
@@ -1886,20 +1926,17 @@
       }
 
       .slide-thumb .mini.dark {
-        background:
-          linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
-          radial-gradient(circle at 53% 44%, rgba(255, 255, 255, 0.42) 0 13%, transparent 14%),
-          linear-gradient(145deg, #313131 0%, #d4d4d4 50%, #505050 100%);
+        background: #fff;
       }
 
       .m-title {
         position: absolute;
         left: 0;
         right: 0;
-        top: 15px;
-        color: #fff;
-        font-family: var(--font-office-ui);
-        font-size: 6px;
+        top: 26px;
+        color: #1d1d1f;
+        font-family: "Aptos Display", var(--font-office-ui);
+        font-size: 10px;
         font-style: normal;
         font-weight: 400;
         text-align: center;
@@ -1910,10 +1947,10 @@
         position: absolute;
         left: 4%;
         right: 4%;
-        top: 25px;
-        color: rgba(255, 255, 255, 0.65);
+        top: 43px;
+        color: rgba(29, 29, 31, 0.55);
         font-family: var(--font-office-ui);
-        font-size: 3px;
+        font-size: 5px;
         font-style: normal;
         font-weight: 400;
         text-align: center;
@@ -1924,12 +1961,12 @@
 
       .m-head {
         position: absolute;
-        left: 8px;
-        top: 6px;
-        max-width: 92px;
+        left: 14px;
+        top: 10px;
+        max-width: 155px;
         overflow: hidden;
         color: #333;
-        font-size: 5.5px;
+        font-size: 9.5px;
         font-style: normal;
         font-weight: 600;
         white-space: nowrap;
@@ -1937,170 +1974,107 @@
 
       .m-bars {
         position: absolute;
-        left: 10px;
-        bottom: 7px;
+        left: 17px;
+        bottom: 12px;
         display: flex;
         align-items: flex-end;
-        gap: 3px;
-        height: 22px;
+        gap: 5px;
+        height: 38px;
       }
 
       .m-bars u {
-        width: 6px;
+        width: 10px;
         text-decoration: none;
         background: #4f6a7c;
       }
 
-      .m-bars.ghost { left: 16px; height: 15px; opacity: 0.55; }
-      .m-bars.ghost u:nth-child(1) { height: 8px; }
-      .m-bars.ghost u:nth-child(2) { height: 11px; }
-      .m-bars.ghost u:nth-child(3) { height: 7px; }
-      .m-bars.ghost u:nth-child(4) { height: 15px; background: #404040; }
-
       .m-bars.accent u { background: #1d86e8; }
-      .m-bars.accent u:nth-child(1) { height: 9px; }
-      .m-bars.accent u:nth-child(2) { height: 13px; }
-      .m-bars.accent u:nth-child(3) { height: 11px; }
-      .m-bars.accent u:nth-child(4) { height: 17px; }
-      .m-bars.accent u:nth-child(5) { height: 20px; }
+      .m-bars.accent u:nth-child(1) { height: 16px; }
+      .m-bars.accent u:nth-child(2) { height: 22px; }
+      .m-bars.accent u:nth-child(3) { height: 19px; }
+      .m-bars.accent u:nth-child(4) { height: 29px; }
+      .m-bars.accent u:nth-child(5) { height: 35px; }
 
       .m-rows,
       .m-bullets {
         position: absolute;
-        left: 8px;
-        right: 8px;
-        top: 18px;
+        left: 14px;
+        right: 14px;
+        top: 31px;
         display: grid;
-        gap: 4px;
+        gap: 7px;
       }
 
       .m-rows u {
-        height: 6px;
+        height: 10px;
         border-radius: 1px;
         background: #eef2f6;
-        border-left: 16px solid #d3dde8;
+        border-left: 28px solid #d3dde8;
       }
 
       .m-bullets u {
         position: relative;
         width: 72%;
-        height: 3px;
+        height: 5px;
         border-radius: 1px;
-        margin-left: 8px;
+        margin-left: 14px;
         background: #d9d9d9;
       }
 
       .m-bullets u::before {
-        content: "";
-        position: absolute;
-        left: -8px;
-        top: 0;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: #9a9a9a;
+        left: -14px;
+        width: 5px;
+        height: 5px;
       }
 
-      .m-bullets u:nth-child(2),
-      .m-bullets u:nth-child(4) { width: 55%; }
+      .body-right {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stage-row {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+      }
 
       .slide-stage {
-        height: 310px;
-        padding-top: 8px;
-        background: #ededed;
+        flex: 1 1 auto;
+        min-width: 0;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0;
+        background: #ececec;
         background-image: none;
       }
 
       .slide-canvas {
-        width: 438px;
-        height: 246px;
+        position: relative;
+        width: 966px;
+        height: 543px;
         border-radius: 1px;
         background: #fff;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+        overflow: hidden;
       }
 
-      .slide-ruler {
-        display: none;
-      }
+      .slide-ruler { display: none; }
 
-      .slide-section-band {
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background:
-          linear-gradient(125deg, transparent 0 40%, rgba(255, 255, 255, 0.1) 40% 43%, transparent 43%),
-          linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
-          radial-gradient(circle at 53% 44%, rgba(255, 255, 255, 0.42) 0 13%, transparent 14%),
-          linear-gradient(16deg, transparent 0 28%, rgba(30, 30, 30, 0.35) 28% 30%, transparent 30%),
-          linear-gradient(105deg, transparent 0 56%, rgba(160, 160, 160, 0.42) 56% 59%, transparent 59%),
-          linear-gradient(145deg, #313131 0%, #d4d4d4 50%, #505050 100%);
-      }
-
-      .slide-title {
-        left: 145px;
-        top: 68px;
-        width: 210px;
-        height: 31px;
-        color: #fff;
-        font-family: var(--font-office-ui);
-        font-size: 20px;
-        line-height: 1.12;
-        font-weight: 400;
-      }
-
-      .slide-title span {
-        width: 210px;
-      }
-
-      .slide-subtitle {
-        left: 152px;
-        top: 186px;
-        width: 230px;
-        color: #fff;
-        font-size: 8px;
-        line-height: 1.2;
-        font-weight: 400;
-      }
-
-      .slide-chart {
-        left: 86px;
-        bottom: 38px;
-        width: 250px;
-        height: 58px;
-        gap: 0;
-        opacity: 0.45;
-      }
-
-      .bar {
-        width: 18px;
-        margin-right: 8px;
-        border-radius: 0;
-        background: #4f6a7c;
-      }
-
-      .bar:nth-child(4) {
-        background: #404040;
-      }
-
-      .chart-labels,
-      .slide-axis {
-        opacity: 0.42;
-      }
-
-      .alignment-guide {
-        background: #55a5ff;
-        opacity: 0.55;
-      }
+      .slide-section-band { display: none; }
 
       .selection-box {
-        left: 137px;
-        top: 60px;
-        width: 226px;
-        height: 47px;
-        border: 1px solid #c4c4c4;
+        left: 121px;
+        top: 87px;
+        width: 725px;
+        height: 174px;
+        border: 1px solid #7f7f7f;
+        border-radius: 0;
         box-shadow: none;
-        opacity: 0.92;
+        opacity: 1;
       }
 
       .selection-box .handle {
@@ -2108,315 +2082,233 @@
         height: 7px;
         border-radius: 0;
         background: #fff;
-        border: 1px solid #767676;
-        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.18);
-      }
-
-      .selection-box .rotate-handle {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #fff;
-        border: 1px solid #767676;
-        box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.18);
-        left: calc(50% - 4px);
-        top: -18px;
-      }
-
-      .selection-box .rotate-handle::after {
-        left: 3px;
-        top: 8px;
-        height: 9px;
-        background: #8f8f8f;
-      }
-
-      .selection-box .nw { left: -4px; top: -4px; }
-      .selection-box .n { left: calc(50% - 3px); top: -4px; }
-      .selection-box .ne { right: -4px; top: -4px; }
-      .selection-box .e { right: -4px; top: calc(50% - 3px); }
-      .selection-box .se { right: -4px; bottom: -4px; }
-      .selection-box .s { left: calc(50% - 3px); bottom: -4px; }
-      .selection-box .sw { left: -4px; bottom: -4px; }
-      .selection-box .w { left: -4px; top: calc(50% - 3px); }
-
-      .slide-comment-pin {
-        right: 31px;
-        top: 49px;
-        width: 15px;
-        height: 15px;
-        background: #fff;
-        border: 1px solid #b4b4b4;
-        border-radius: 2px;
+        border: 1px solid #7f7f7f;
         box-shadow: none;
       }
 
-      .slide-comment-pin::before {
-        left: 3px;
-        top: 3px;
+      .selection-box .rotate-handle {
+        width: 13px;
+        height: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #7f7f7f;
+        left: calc(50% - 6.5px);
+        top: -31px;
+        color: #7f7f7f;
+      }
+
+      .selection-box .rotate-handle .backlot-icon {
         width: 8px;
-        height: 5px;
+        height: 8px;
+      }
+
+      .selection-box .rotate-handle::after { content: none; }
+
+      .selection-box .nw { left: -4px; top: -4px; }
+      .selection-box .n { left: calc(50% - 3.5px); top: -4px; }
+      .selection-box .ne { right: -4px; top: -4px; }
+      .selection-box .e { right: -4px; top: calc(50% - 3.5px); }
+      .selection-box .se { right: -4px; bottom: -4px; }
+      .selection-box .s { left: calc(50% - 3.5px); bottom: -4px; }
+      .selection-box .sw { left: -4px; bottom: -4px; }
+      .selection-box .w { left: -4px; top: calc(50% - 3.5px); }
+
+      .slide-comment-pin {
+        right: 68px;
+        top: 108px;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        border: 1px solid #b4b4b4;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+      }
+
+      .slide-comment-pin::before {
+        left: 5px;
+        top: 5px;
+        width: 14px;
+        height: 9px;
         background: #8b3aa6;
       }
 
       .slide-comment-pin::after {
-        left: 7px;
-        top: 8px;
-        width: 4px;
-        height: 4px;
+        left: 12px;
+        top: 14px;
+        width: 7px;
+        height: 7px;
         background: #8b3aa6;
       }
 
+      .slide-title {
+        left: 121px;
+        top: 87px;
+        width: 725px;
+        height: 174px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        font-family: "Aptos Display", "Aptos", var(--font-office-ui);
+        font-size: 61px;
+        line-height: 1.05;
+        font-weight: 400;
+      }
+
+      .slide-title span {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+      }
+
+      .slide-subtitle {
+        left: 121px;
+        top: 265px;
+        width: 725px;
+        color: #000;
+        font-family: "Aptos", var(--font-office-ui);
+        font-size: 24px;
+        line-height: 1.3;
+        font-weight: 400;
+        text-align: center;
+      }
+
       .speaker-notes {
-        left: 0;
-        right: 0;
-        bottom: 22px;
-        height: 42px;
+        position: static;
+        flex: 0 0 44px;
+        height: 44px;
+        width: auto;
         align-items: flex-start;
-        padding: 8px 12px;
+        padding: 10px 0 0 8px;
         border: 0;
-        border-top: 1px solid #d2d2d2;
+        border-top: 1px solid #cbcbcb;
         border-radius: 0;
-        background: #f7f7f7;
-        color: #444;
-        font-size: 11px;
+        background: #ececec;
+        color: #1d1d1f;
+        font-size: 13px;
       }
 
-      .speaker-notes strong {
-        margin-right: 8px;
-        color: #2b2b2b;
-        font-size: 10px;
-        font-weight: 500;
-        text-transform: none;
-      }
+      .speaker-notes strong { display: none; }
 
+      /* ---- Status bar (27px, full window width) ---- */
       .slide-status {
-        height: 22px;
-        grid-template-columns: auto auto 1fr auto auto auto auto auto 16px;
-        gap: 5px;
-        padding: 0 8px;
-        background: #f7f7f7;
+        position: static;
+        flex: 0 0 27px;
+        height: 27px;
+        width: auto;
+        grid-template-columns: auto auto 1fr auto auto auto auto auto 100px;
+        gap: 12px;
+        padding: 0 14px;
+        background: #f5f5f5;
         color: #313131;
-        border-top-color: #d1d1d1;
-        font-size: 8px;
-      }
-
-      .slide-status > span {
-        white-space: nowrap;
+        border-top: 1px solid #c1c1c1;
+        font-size: 12px;
       }
 
       .status-chip {
         color: #222;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       .status-chip.good {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
         color: #222;
-        white-space: nowrap;
       }
 
       .status-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
+        gap: 4px;
         color: #444;
-        font-weight: 600;
-        white-space: nowrap;
+        font-weight: 500;
       }
 
-      .status-btn .backlot-icon {
-        width: 10px;
-        height: 10px;
-      }
+      .status-btn .backlot-icon { width: 13px; height: 13px; }
 
       .a11y-glyph {
-        width: 11px;
-        height: 11px;
+        width: 13px;
+        height: 13px;
         color: #444;
+      }
+
+      .view-buttons {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .view-buttons i {
+        width: 22px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background: none;
+        color: #555;
+      }
+
+      .view-buttons i .backlot-icon {
+        width: 14px;
+        height: 14px;
+      }
+
+      .view-buttons i.active {
+        background: #3d3d3d;
+        color: #fff;
       }
 
       .zoom-controls {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
       }
 
       .zoom-glyph {
-        width: 9px;
-        height: 9px;
+        width: 11px;
+        height: 11px;
         color: #555;
+        flex: none;
       }
 
       .fit-glyph {
-        width: 11px;
-        height: 11px;
+        width: 13px;
+        height: 13px;
         color: #555;
         justify-self: end;
       }
 
-      .view-buttons i {
-        width: 12px;
-        height: 10px;
-        background:
-          linear-gradient(90deg, #595959 0 2px, transparent 2px),
-          linear-gradient(#595959 0 1px, transparent 1px 4px, #595959 4px 5px, transparent 5px 8px, #595959 8px 9px);
-      }
-
-      .view-buttons i:nth-child(2) {
-        background:
-          linear-gradient(#595959 0 5px, transparent 5px 7px, #595959 7px 12px),
-          linear-gradient(90deg, #595959 0 5px, transparent 5px 7px, #595959 7px 12px);
-        background-size: 12px 12px;
-      }
-
-      .view-buttons i:nth-child(3) {
-        background: linear-gradient(#595959 0 8px, transparent 8px 9px, #595959 9px 10px);
-      }
-
       .zoom-percent {
-        min-width: 22px;
+        min-width: 30px;
         font-weight: 400;
       }
 
       .zoom-track {
         position: relative;
-        width: 46px;
-        height: 2px;
-        border-radius: 0;
-        background: #c4c4c4;
+        display: inline-block;
+        flex: none;
+        width: 70px;
+        height: 4px;
+        border-radius: 999px;
+        background: #c9c9c9;
       }
 
       .zoom-track::after {
         content: "";
         position: absolute;
-        left: 52%;
-        top: -3px;
-        width: 8px;
-        height: 8px;
+        left: 68%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        background: #f7f7f7;
+        background: #fff;
         border: 1px solid #8f8f8f;
         box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.2);
-      }
-
-      .inspector.comments-pane {
-        padding: 7px 8px;
-        border-left-color: #d1d1d1;
-        background: #f7f7f7;
-        color: #262626;
-        font-size: 9px;
-      }
-
-      .pane-title {
-        height: 20px;
-        align-items: center;
-      }
-
-      .inspector strong {
-        font-size: 12px;
-        font-weight: 500;
-      }
-
-      .pane-title button {
-        height: 18px;
-        min-width: 34px;
-        border-radius: 2px;
-        color: #222;
-        background: #fff;
-        font-size: 8px;
-        font-weight: 500;
-      }
-
-      .pane-close {
-        width: 11px;
-        height: 11px;
-        margin-left: 6px;
-        position: relative;
-        opacity: 0.5;
-      }
-
-      .pane-close::before,
-      .pane-close::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 5px;
-        width: 11px;
-        height: 1px;
-        background: #333;
-      }
-
-      .pane-close::before {
-        transform: rotate(45deg);
-      }
-
-      .pane-close::after {
-        transform: rotate(-45deg);
-      }
-
-      .comments-card {
-        margin-top: 7px;
-        min-height: 48px;
-        grid-template-columns: 16px 1fr;
-        gap: 6px;
-        padding: 7px;
-        border-radius: 2px;
-        border-color: #d0d0d0;
-        color: #333;
-        font-size: 8px;
-        line-height: 1.28;
-      }
-
-      .comments-card.active-thread {
-        border-color: #b056b5;
-        box-shadow: inset 2px 0 0 #b056b5;
-      }
-
-      .comments-card b {
-        display: block;
-        color: #222;
-        font-weight: 600;
-      }
-
-      .comments-card small {
-        display: block;
-        margin-bottom: 2px;
-        color: #777;
-        font-size: 7px;
-        font-weight: 400;
-      }
-
-      .comments-card p em {
-        color: #6b2a7a;
-        font-weight: 600;
-      }
-
-      .comment-dot {
-        width: 16px;
-        height: 16px;
-        background: #b056b5;
-        font-size: 7px;
-      }
-
-      .comment-dot.user {
-        background: #3f7cae;
-      }
-
-      .reply-field {
-        height: 22px;
-        margin-top: 7px;
-        border-radius: 2px;
-        color: #777;
-        font-size: 8px;
-        font-weight: 400;
-      }
-
-      .comments-footer {
-        margin-top: 7px;
-        color: #666;
-        font-size: 8px;
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>

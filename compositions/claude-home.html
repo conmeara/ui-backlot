@@ -189,77 +189,13 @@
       </symbol>
     </svg>
     <section class="claude-home-window dframe-root" data-primitive="claude-home-window" aria-label="Editable Claude home prompt surface">
-      <aside class="home-sidebar" data-primitive="claude-sidebar-home">
-        <div class="sidebar-top">
-          <div class="claude-traffic" aria-hidden="true">
-            <span class="red"></span>
-            <span class="yellow"></span>
-            <span class="green"></span>
-          </div>
-          <span class="sidebar-top-spacer"></span>
-          <button class="sidebar-collapse" type="button" aria-label="Toggle sidebar"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sidebar-toggle"/></svg></button>
-          <button class="sidebar-search" type="button" aria-label="Search"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-search"/></svg></button>
-        </div>
-
-        <div class="home-switch" aria-label="Home or Code">
-          <button class="active" type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-house"/></svg><span>Home</span></button>
-          <button type="button"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-code"/></svg><span>Code</span></button>
-        </div>
-
-        <button class="new-chat-row active" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-plus"/></svg></span>
-          <span>New</span>
-        </button>
-        <button class="new-chat-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-layers"/></svg></span>
-          <span>Projects</span>
-        </button>
-        <button class="new-chat-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-shapes"/></svg></span>
-          <span>Artifacts</span>
-        </button>
-        <button class="new-chat-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-clock"/></svg></span>
-          <span>Scheduled</span>
-        </button>
-        <button class="new-chat-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-clipboard"/></svg></span>
-          <span>Dispatch</span>
-          <span class="nav-beta">Beta</span>
-        </button>
-        <button class="new-chat-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-archive"/></svg></span>
-          <span>Customize</span>
-        </button>
-
-        <div class="recents-section">
-          <div class="sidebar-label recents-label"><span>Recents</span><button class="recents-filter" type="button" aria-label="Filter recents"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sliders"/></svg></button></div>
-          <ul class="recents-list">
-            <li class="history-row selected"><span>Building demo workflows for the la…</span></li>
-            <li class="history-row"><span>Rewriting the PowerPoint intro sect…</span></li>
-            <li class="history-row"><span>Launch deck structure and story arc</span></li>
-            <li class="history-row"><span>Narrator notes for the cowork demo</span></li>
-            <li class="history-row"><span>Cleaning up Figma copy for handoff</span></li>
-            <li class="history-row"><span>Q2 revenue chart formatting</span></li>
-            <li class="history-row"><span>Untitled</span></li>
-            <li class="history-row"><span>Renaming exported artifact files</span></li>
-            <li class="history-row"><span>Publishing checklist review</span></li>
-            <li class="history-row"><span>Team digest summary for November</span></li>
-          </ul>
-        </div>
-
-        <button class="new-chat-row design-row" type="button">
-          <span class="row-icon"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-palette"/></svg></span>
-          <span>Design</span>
-        </button>
-
-        <div class="sidebar-footer">
-          <span class="profile-dot">C</span>
-          <span><strong>Conor</strong><em>Max plan</em></span>
-          <button class="desktop-download" type="button" aria-label="Get the desktop app"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-download"/></svg></button>
-          <button class="kebab" type="button" aria-label="Expand workspace menu"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-chevrons-up-down"/></svg></button>
-        </div>
-      </aside>
+      <div
+        class="home-sidebar component-slot"
+        data-primitive="claude-sidebar-home"
+        data-embed="flat"
+        data-backlot-mount-src="./claude-sidebar.html"
+        data-backlot-mount-selector="#claude-sidebar-surface"
+      ></div>
 
       <main class="home-main" data-primitive="claude-new-chat-pane">
         <header class="home-topbar">
@@ -269,7 +205,7 @@
         <section class="welcome-stack" data-primitive="claude-home-welcome">
           <div class="home-logo">
             <svg class="backlot-icon claude-mark-icon hero-mark" aria-hidden="true"><use href="#si-claude"/></svg>
-            <h1>Back at it, Conor</h1>
+            <h1>Back at it, Avery</h1>
           </div>
           <div class="home-composer-wrap">
             <div class="home-prompt-card conway-glass-frame" data-primitive="claude-home-composer">
@@ -305,7 +241,7 @@
     <style>
       #claude-home-surface {
         --bg-000: #ffffff;
-        --bg-100: #f8f8f6;
+        --bg-100: #fdfdfc;
         --bg-200: #f4efe8;
         --bg-300: #ece4d8;
         --text-100: #0b0b0b;
@@ -318,7 +254,7 @@
         --brand-000: #c75f48;
         --brand-100: #d8755f;
         --brand-dark: #a84535;
-        --sidebar-width: 280px;
+        --sidebar-width: 264px;
         --df-header-h: 48px;
         --df-row-h: 26px;
         --df-radius-pill: 6px;
@@ -361,6 +297,10 @@
           0 0 0 1px rgba(55, 42, 31, 0.08);
       }
 
+      /* The sidebar is mounted from the canonical compositions/claude-sidebar.html
+         atom (data-embed="flat") so home stops drifting from the shared
+         source of truth; this box only supplies position + size, the atom
+         brings its own background and hairline border-right. */
       .home-sidebar {
         position: absolute;
         left: 0;
@@ -369,14 +309,11 @@
         z-index: 2;
         width: var(--sidebar-width);
         min-width: 0;
-        display: flex;
-        flex-direction: column;
-        padding: 9px 8px 10px;
-        border-radius: 0;
-        background: #f8f8f6;
-        border-right: 1px solid rgba(11, 11, 11, 0.1);
-        box-shadow: none;
         user-select: none;
+      }
+
+      .home-sidebar > [data-backlot-mounted-component] {
+        display: block;
       }
 
       .claude-traffic {
@@ -785,12 +722,10 @@
         z-index: 2;
         width: 100%;
         padding: 15px 16px 13px;
-        border: 0;
+        border: 1px solid #dadada;
         border-radius: 20px;
-        background: rgba(255, 254, 251, 0.98);
-        box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.075),
-          0 0 0 0.5px rgba(31, 31, 30, 0.3);
+        background: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.075);
       }
 
       .prompt-copy {
@@ -932,7 +867,7 @@
         border: 1px solid rgba(11, 11, 11, 0.07);
         border-top: 0;
         border-radius: 0 0 20px 20px;
-        background: #f9f8f5;
+        background: #fbfbfa;
       }
 
       .home-tray .tray-item {
@@ -1038,6 +973,13 @@
       const fragment = template.content.cloneNode(true);
       fragment.querySelectorAll("script").forEach((script) => script.remove());
       document.body.appendChild(fragment);
+      // The sidebar atom is a data-backlot-mount-src target; the loader
+      // script self-invokes at parse time, so it must not load until the
+      // mount div above actually exists in the document (it lives inside
+      // the just-cloned template fragment, not the static markup).
+      const loader = document.createElement("script");
+      loader.src = "../runtime/backlot-component-loader.js";
+      document.body.appendChild(loader);
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", mount, { once: true });
