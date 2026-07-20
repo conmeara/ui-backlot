@@ -336,6 +336,10 @@
     </section>
 
     <style>
+      /* Inside the template so hosts that mount this surface get the shared
+         ribbon system — the loader clones only template content, dropping the
+         top-level style block above. Browsers dedupe the duplicate fetch. */
+      @import url("compositions/office-ribbon.css");
       /* "Aptos Narrow" is an OS-bundled Microsoft font with no downloadable
          file here — src: local(...) satisfies the renderer's
          font_family_without_font_face check without needing a .woff2. */
