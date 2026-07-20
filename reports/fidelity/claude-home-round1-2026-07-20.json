@@ -1,0 +1,390 @@
+{
+  "label": "claude-home-round1",
+  "comparedAt": "2026-07-20T16:20:06.770Z",
+  "ours": "captures/surface-claude-home/capture.json",
+  "theirs": "reference/claude/2026-07-05/web-app-home-light/tokens.json",
+  "scores": {
+    "colors": 0.8967381407971737,
+    "typography": 0.980847210081585,
+    "radii": 0.9462719298245614,
+    "spacing": null,
+    "shadows": 0.39999999999999997,
+    "tokenOverall": 0.8767251702791904,
+    "elementOverall": 0.5339683293338564
+  },
+  "elements": {
+    "counts": {
+      "ours": 88,
+      "theirs": 418,
+      "matched": 54
+    },
+    "subscores": {
+      "match": 0.14821905196414312,
+      "position": 0.4333527829854742,
+      "size": 0.6799925792244876,
+      "color": 0.7880766673118921,
+      "typography": 0.877695035460993,
+      "text": 0.6723084959281618
+    },
+    "elementOverall": 0.5339683293338564,
+    "typedRepairs": [
+      {
+        "type": "move",
+        "target": ".mic-button",
+        "severity": 1,
+        "confidence": 0.72,
+        "detail": ".mic-button (\"\") sits at (950,340); real counterpart center offset 15.7% of frame"
+      },
+      {
+        "type": "add",
+        "target": "#root",
+        "severity": 1,
+        "detail": "real app has <div> \"   New chat ⇧⌘O  Chats  Projects  \" at (0,0 1440x757) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": "#main-content",
+        "severity": 1,
+        "detail": "real app has <div> \"Back at it, Conor How can I help you tod\" at (288,0 1152x757) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".flex-1",
+        "severity": 1,
+        "detail": "real app has <div> \"Recents   Building an AI coworker with\" at (0,363 288x1065) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".flex",
+        "severity": 1,
+        "detail": "real app has <ul> \"Building an AI coworker with continuous \" at (8,407 272x989) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".flex",
+        "severity": 1,
+        "detail": "real app has <div> \" New chat ⇧⌘O  Chats  Projects  Arti\" at (0,48 288x709) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".flex",
+        "severity": 1,
+        "detail": "real app has <div> \" Chats  Projects  Artifacts  Customi\" at (0,89 288x604) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": "div",
+        "severity": 1,
+        "detail": "real app has <div> \"How can I help you today?  Opus 4.8 Max\" at (528,303 672x173) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".mx-auto",
+        "severity": 1,
+        "detail": "real app has <div> \"Back at it, Conor\" at (697,151 334x120) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".flex",
+        "severity": 1,
+        "detail": "real app has <div> \"Products   Code   Cowork  Design Ne\" at (0,237 288x126) with no counterpart in ours"
+      },
+      {
+        "type": "add",
+        "target": ".relative",
+        "severity": 1,
+        "detail": "real app has <div> \"Write Learn Code Life stuff Claude’s cho\" at (528,428 672x48) with no counterpart in ours"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".recents-list",
+        "severity": 1,
+        "detail": "ours has .recents-list <ul> \"Building demo workflows for the la… Rewr\" at (68,370) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      },
+      {
+        "type": "add",
+        "target": ".-mx-1.5",
+        "severity": 0.9587254859779584,
+        "detail": "real app has <ul> \" Code   Cowork  Design New \" at (2,265 284x98) with no counterpart in ours"
+      },
+      {
+        "type": "recolor",
+        "target": ".prompt-copy",
+        "severity": 0.8955461781960132,
+        "confidence": 0.84,
+        "detail": ".prompt-copy text #7b7974 → real #0b0b0b (ΔE00 35.8)"
+      },
+      {
+        "type": "recolor",
+        "target": ".home-prompt-card",
+        "severity": 0.8955461781960132,
+        "confidence": 0.7,
+        "detail": ".home-prompt-card text #0b0b0b → real #7b7974 (ΔE00 35.8)"
+      },
+      {
+        "type": "add",
+        "target": ".relative",
+        "severity": 0.8236914685747972,
+        "detail": "real app has <div> \" Opus 4.8 Max   \" at (543,381 642x32) with no counterpart in ours"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".home-tray",
+        "severity": 0.8132099476177133,
+        "detail": "ours has .home-tray <div> \"Project or folder Manual 2× more usage u\" at (394,369) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      },
+      {
+        "type": "move",
+        "target": ".sidebar-label",
+        "severity": 0.7691687879567723,
+        "confidence": 0.74,
+        "detail": ".sidebar-label (\"Recents\") sits at (75,345); real counterpart center offset 11.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".history-row",
+        "severity": 0.7627158207535426,
+        "confidence": 0.79,
+        "detail": ".history-row (\"Untitled\") sits at (68,568); real counterpart center offset 11.4% of frame"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".home-idea",
+        "severity": 0.7580856663669485,
+        "detail": "ours has .home-idea <div> \"Send me a daily briefing\" at (386,479) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".home-idea",
+        "severity": 0.7580856663669485,
+        "detail": "ours has .home-idea <div> \"Organize my inbox\" at (386,527) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".home-idea",
+        "severity": 0.7580856663669485,
+        "detail": "ours has .home-idea <div> \"Customize Cowork for me\" at (386,575) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      },
+      {
+        "type": "recolor",
+        "target": ".home-idea-ico",
+        "severity": 0.7557810007174303,
+        "confidence": 0.64,
+        "detail": ".home-idea-ico text #6b6a66 → real #0b0b0b (ΔE00 30.2)"
+      },
+      {
+        "type": "move",
+        "target": ".history-row",
+        "severity": 0.7415955264449338,
+        "confidence": 0.62,
+        "detail": ".history-row (\"Building demo workflows for th\") sits at (68,370); real counterpart center offset 11.1% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 0.6980383593608099,
+        "confidence": 0.92,
+        "detail": "span (\"Untitled\") sits at (75,575.5); real counterpart center offset 10.5% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".prompt-copy",
+        "severity": 0.6896019447516056,
+        "confidence": 0.84,
+        "detail": ".prompt-copy (\"How can I help you today?\") sits at (402,295); real counterpart center offset 10.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 0.6846792480109408,
+        "confidence": 1,
+        "detail": "span (\"Recents\") sits at (75,347.5); real counterpart center offset 10.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".new-chat-row",
+        "severity": 0.6668153737893489,
+        "confidence": 0.74,
+        "detail": ".new-chat-row (\"Customize\") sits at (68,300); real counterpart center offset 10.0% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 0.6352498245553605,
+        "confidence": 0.95,
+        "detail": "span (\"Customize\") sits at (103,306.5); real counterpart center offset 9.5% of frame"
+      },
+      {
+        "type": "remove-or-verify",
+        "target": ".prompt-footer",
+        "severity": 0.6292545843306837,
+        "detail": "ours has .prompt-footer <div> \"Chat Cowork Sonnet 4.6 Medium\" at (402,338) unmatched in the real app (invented control, or matcher miss — verify visually)"
+      }
+    ],
+    "uncertainRepairs": [
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": "span (\"Code\") sits at (252.9,95); real counterpart center offset 33.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": "span (\"Design\") sits at (103,727.5); real counterpart center offset 46.0% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": "span (\"New\") sits at (103,141.5); real counterpart center offset 31.2% of frame"
+      },
+      {
+        "type": "recolor",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": "span text #0b0b0b → real #ffffff (ΔE00 96.3)"
+      },
+      {
+        "type": "move",
+        "target": "button",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": "button (\"Code\") sits at (199.5,90); real counterpart center offset 30.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".home-idea-ico",
+        "severity": 1,
+        "confidence": 0.56,
+        "detail": ".home-idea-ico (\"\") sits at (390,532); real counterpart center offset 16.7% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".active",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": ".active (\"Cowork\") sits at (502.9,340); real counterpart center offset 38.9% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".home-idea-ico",
+        "severity": 1,
+        "confidence": 0.48,
+        "detail": ".home-idea-ico (\"\") sits at (390,580); real counterpart center offset 24.9% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".home-switch",
+        "severity": 1,
+        "confidence": 0.5,
+        "detail": ".home-switch (\"Home Code\") sits at (70,87); real counterpart center offset 28.9% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.58,
+        "detail": "span (\"Q2 revenue chart formatting\") sits at (75,542.5); real counterpart center offset 19.2% of frame"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 1,
+        "confidence": 0.52,
+        "detail": "span (\"Dispatch\") sits at (103,273.5); real counterpart center offset 18.3% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".mode-toggle",
+        "severity": 1,
+        "confidence": 0.55,
+        "detail": ".mode-toggle (\"Chat Cowork\") sits at (438,338); real counterpart center offset 18.0% of frame"
+      },
+      {
+        "type": "retype",
+        "target": ".mode-toggle",
+        "severity": 1,
+        "confidence": 0.55,
+        "detail": ".mode-toggle is 16px/400; real is 40px/330"
+      },
+      {
+        "type": "move",
+        "target": ".history-row",
+        "severity": 1,
+        "confidence": 0.47,
+        "detail": ".history-row (\"Q2 revenue chart formatting\") sits at (68,535); real counterpart center offset 19.6% of frame"
+      },
+      {
+        "type": "move",
+        "target": ".home-ideas",
+        "severity": 0.9597966023824493,
+        "confidence": 0.45,
+        "detail": ".home-ideas (\"Ideas for you Send me a daily \") sits at (386,452); real counterpart center offset 14.4% of frame"
+      },
+      {
+        "type": "recolor",
+        "target": ".home-idea-ico",
+        "severity": 0.7557810007174303,
+        "confidence": 0.56,
+        "detail": ".home-idea-ico text #6b6a66 → real #0b0b0b (ΔE00 30.2)"
+      },
+      {
+        "type": "recolor",
+        "target": ".home-idea-ico",
+        "severity": 0.7557810007174303,
+        "confidence": 0.48,
+        "detail": ".home-idea-ico text #6b6a66 → real #0b0b0b (ΔE00 30.2)"
+      },
+      {
+        "type": "move",
+        "target": "span",
+        "severity": 0.7455249343202238,
+        "confidence": 0.59,
+        "detail": "span (\"Building demo workflows for th\") sits at (75,377.5); real counterpart center offset 11.2% of frame"
+      },
+      {
+        "type": "retype",
+        "target": "span",
+        "severity": 0.625,
+        "confidence": 0.5,
+        "detail": "span is 16px/400; real is 11px/550"
+      },
+      {
+        "type": "move",
+        "target": ".recents-section",
+        "severity": 0.6075078129364148,
+        "confidence": 0.54,
+        "detail": ".recents-section (\"Recents Building demo workflow\") sits at (68,333); real counterpart center offset 9.1% of frame"
+      }
+    ]
+  },
+  "pixel": null,
+  "deltas": [
+    {
+      "kind": "typography",
+      "severity": 0.4621666666666667,
+      "detail": "real-but-missing-in-ours: \"anthropicons-variable\" 20px/433.25 (×10) best counterpart \"anthropic sans\" 16px/430"
+    },
+    {
+      "kind": "typography",
+      "severity": 0.38883333333333336,
+      "detail": "real-but-missing-in-ours: \"anthropicons-variable\" 16px/533.25 (×3) best counterpart \"anthropic sans\" 16px/430"
+    },
+    {
+      "kind": "color:text",
+      "severity": 0.1573607642694615,
+      "detail": "real-but-missing-in-ours: text #121212 (×22) nearest counterpart #0b0b0b (Δ12.1)"
+    },
+    {
+      "kind": "color:background",
+      "severity": 0.09618988160479112,
+      "detail": "ours-but-not-in-real: background #ececea (×3) nearest counterpart #f8f8f6 (Δ20.8)"
+    }
+  ]
+}

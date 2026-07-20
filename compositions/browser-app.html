@@ -119,6 +119,8 @@
             <span class="star-icon" aria-hidden="true"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-star"/></svg></span>
           </div>
           <div class="toolbar-actions">
+            <span class="toolbar-button extensions"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-extensions"/></svg></span>
+            <span class="toolbar-divider" aria-hidden="true"></span>
             <span class="toolbar-button profile">CB</span>
             <span class="toolbar-button more"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-kebab"/></svg></span>
           </div>
@@ -740,11 +742,11 @@
       .browser-toolbar {
         height: 46px;
         display: grid;
-        grid-template-columns: 104px 1fr 186px;
+        grid-template-columns: 104px 1fr 214px;
         align-items: center;
         gap: 13px;
         padding: 0 14px;
-        background: #eef2f9;
+        background: #ffffff;
         border-bottom: 1px solid rgba(16, 18, 22, 0.08);
       }
 
@@ -790,7 +792,7 @@
         border-radius: 999px;
         color: #59616b;
         font-size: 12px;
-        background: #e7ecf6;
+        background: #eef2f9;
         border: 1px solid transparent;
       }
 
@@ -841,6 +843,23 @@
       .toolbar-button.more {
         color: #5f6368;
         font-size: 18px;
+      }
+
+      .toolbar-button.extensions {
+        color: #5f6368;
+      }
+
+      .toolbar-button.extensions .backlot-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .toolbar-divider {
+        width: 1px;
+        height: 16px;
+        background: #c9ced9;
+        margin: 0 3px;
+        flex: 0 0 auto;
       }
 
       .bookmarks-bar {

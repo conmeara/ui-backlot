@@ -1,0 +1,71 @@
+{
+  "capturedAt": "2026-07-20T15:56:53.220Z",
+  "entries": [
+    {
+      "label": "blank-title-slide-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.220Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "PowerPoint macOS, new blank title slide with placeholders, Home ribbon active. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "blank-title-slide-selected-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.246Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Same blank slide, title placeholder selected, Shape Format contextual ribbon tab active. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-command-sent-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.311Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "PowerPoint + Claude panel with sent /competitive-analysis slash command and thinking spinner. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-question-options-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.373Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "PowerPoint + Claude panel with expanded clarifying-question card: three selectable options plus Skip. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-reasoning-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.341Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "PowerPoint + Claude panel showing in-progress assistant reasoning with a collapsed 'Ask User Question' step. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-skills-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.279Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "PowerPoint with Claude add-in side panel open: empty conversation, 'Get started with these skills' slash-command list, model picker set to Sonnet 5. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

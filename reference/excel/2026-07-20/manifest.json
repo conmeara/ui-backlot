@@ -1,0 +1,38 @@
+{
+  "capturedAt": "2026-07-20T15:56:53.433Z",
+  "entries": [
+    {
+      "label": "blank-sheet-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.433Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Excel macOS blank Book2, A1 selected, Home ribbon active. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-skills-fullscreen-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.463Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Full desktop: menu bar + dock, Chrome behind, Excel in front with Claude add-in panel showing skills list. Theme: light, framing: full-screen. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "claude-panel-skills-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.498Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Excel app window with Claude add-in panel open showing skills list and reply box. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

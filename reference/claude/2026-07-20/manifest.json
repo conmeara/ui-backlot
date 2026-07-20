@@ -1,0 +1,214 @@
+{
+  "capturedAt": "2026-07-20T15:56:53.589Z",
+  "entries": [
+    {
+      "label": "cli-terminal-chat-dark",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.206Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Same CLI session titled 'Read something': short hi / read-something exchange with Claude's question. Theme: dark, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "cli-terminal-startup-dark",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.171Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Code CLI in dark terminal just after launch: version banner, MCP auth warning, Fable 5 promo note, empty prompt. Theme: dark, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-artifacts-grid-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.843Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Artifacts page: grid of Code-type artifact cards with descriptions, edit timestamps, view counts. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-chat-artifact-cards-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.616Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home/Chat thread with assistant text and three downloadable image file cards + 'Download all' button. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-artifact-panel-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.106Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Code chat session with linked Artifact preview pane open alongside (catalog gallery page). Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-chat-crop-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.138Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Same Code chat session cropped to just the conversation: user request, step-by-step tool-call summary, final reply, follow-up suggestion chip. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-home-sessions-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.991Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Code tab Home view: 'Welcome back' greeting, Sessions list with one active session, sidebar grouped by repo. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-project-switcher-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.038Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Code Home with project-picker dropdown open over composer listing recent local folders. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-session-review-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.589Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude desktop Code tab: session with numbered findings table, closing summary, composer with 'Bypass permissions' toggle on. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-code-usage-stats-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:54.071Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Code Home usage-stats card, Overview tab: sessions/messages/tokens/active-days counters, streaks, peak hour, favorite model, activity heatmap. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home-account-menu-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.905Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home with account/profile dropdown open over sidebar: Settings, Language, plan, log-out rows. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home-effort-submenu-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.751Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home with nested Effort submenu open (Low/Medium/High default/Extra/Max) alongside model list. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home-empty-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.684Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home empty composer: 'How can I help you today?', Chat/Cowork pill, Project/Manual selectors, usage note, 'Ideas for you' list. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home-model-dropdown-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.718Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home with model dropdown open: Fable 5, Opus 4.8, Sonnet 5, Haiku 4.5 with descriptions, Effort and More models rows. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-home-pasted-prompt-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.649Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Home ('Coffee and Claude time?') with pasted-text card in composer plus typed prompt; Chat/Cowork pill + model selector visible. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-projects-create-modal-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.812Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Projects page with 'Create a project' modal: name + goal fields, Add folder / Cancel / Create controls. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-projects-grid-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.781Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Projects page: grid of project cards with descriptions and last-updated dates, plus built-in example project. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-scheduled-tasks-empty-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.873Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Scheduled tasks empty state: awake-note + 'Keep awake' toggle, stopwatch illustration, Daily brief / Weekly review quick-starts. Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "mac-app-settings-general-profile-light",
+      "method": "manual-inbox",
+      "source": "owner CleanShot drop 2026-07-20 (raw original kept in inbox/, pixels local-only)",
+      "capturedAt": "2026-07-20T15:56:53.942Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Claude Settings modal, General tab: Avatar, Full name, call-you field, Instructions, Preferences (Appearance, Chat font). Theme: light, framing: app-window. Contains personal content; see inbox/triage-2026-07-20.json for redaction worklist.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
