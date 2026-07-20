@@ -5,25 +5,15 @@
     <title>Codex — Interaction Demo</title>
   </head>
   <body>
-    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="10.5">
-      <section class="cx-stage" data-primitive="codex-interaction" aria-label="Codex CLI typing a command and streaming output">
+    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9.5">
+      <section class="cx-stage" data-primitive="codex-interaction" aria-label="Codex CLI finishing a command, running tools, and applying an edit">
         <div class="cx-window">
-          <div class="cx-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="cx-title">ui-backlot — codex — 120x34</span></div>
-          <div class="cx-screen">
-            <div class="cx-splash">
-              <div class="line dim">&gt;_ <b>OpenAI Codex</b> <span class="mut">(v0.140.0)</span></div>
-              <div class="line dim">model: <b>gpt-5.2-codex</b> <span class="mut">/model to change</span></div>
-              <div class="line dim">directory: ~/Projects/ui-backlot</div>
-            </div>
-            <div class="cx-prompt"><span class="caret">&gt;</span> <span class="cmd-reveal" data-role="cmd-reveal"><span class="cmd" data-role="cmd"></span></span><span class="blk" data-role="blk"></span></div>
-            <div class="cx-working" data-role="working">&bull; Working</div>
-            <div class="cx-out">
-              <div data-role="out-tool"></div>
-              <div data-role="out-prose"></div>
-            </div>
-            <div class="cx-prompt cx-composer" data-role="composer"><span class="caret">&gt;</span> <span class="blk" data-role="composer-blk"></span></div>
-            <div class="cx-status" data-role="status">⏎ send   ⇧⏎ newline   ^T transcript   ^C quit</div>
-          </div>
+          <div
+            class="component-frame cx-frame"
+            data-primitive="codex-terminal-window"
+            data-backlot-mount-src="../compositions/codex-terminal.html"
+            data-backlot-mount-selector="#codex-terminal-surface"
+          ></div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
@@ -35,23 +25,16 @@
       #codex-interaction { width:1280px; height:800px; overflow:hidden; font-family:"SF Mono",ui-monospace,Menlo,monospace; color:#d6dbe2; }
       #codex-interaction * { box-sizing:border-box; }
       .cx-stage { position:relative; width:1280px; height:800px; overflow:hidden; background:linear-gradient(160deg,#14181f,#0c0f14); display:grid; place-items:center; }
-      .cx-window { position:relative; width:940px; height:620px; background:#0e1116; border-radius:12px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 34px 90px rgba(0,0,0,0.5); overflow:hidden; display:grid; grid-template-rows:38px 1fr; }
-      .cx-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#171b22; border-bottom:1px solid rgba(255,255,255,0.06); }
-      .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
-      .cx-title { font-size:12px; color:#8b93a1; }
-      .cx-screen { padding:20px 22px; font-size:14px; line-height:1.65; overflow:hidden; }
-      .cx-splash { border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px 14px; margin-bottom:18px; width:max-content; }
-      .line.dim { color:#9aa3b1; } .line b { color:#e7ebf1; font-weight:600; } .mut { color:#5f6a79; }
-      .cx-prompt { color:#e7ebf1; margin-bottom:14px; white-space:nowrap; } .caret { color:#6ad08f; }
-      .cmd-reveal { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; }
-      .blk { display:inline-block; width:8px; height:1.05em; vertical-align:text-bottom; background:#e7ebf1; margin-left:1px; opacity:0; }
-      .cx-out { color:#8fbf8f; }
-      .cx-out .k { color:#7fb2ff; } .cx-out .g { color:#6ad08f; } .cx-out .y { color:#e0b45e; }
-      [data-role="out-tool"] { opacity:0; }
-      [data-role="out-tool"], [data-role="out-prose"] { white-space:pre-wrap; }
-      .cx-working { color:#5f6a79; margin-bottom:2px; opacity:0; }
-      .cx-composer { opacity:0; }
-      .cx-status { color:#5f6a79; margin-top:12px; }
+
+      /* codex-terminal mounts at its native 1120x840 and is scaled down to
+         fit the stage; the outer box supplies the window radius/shadow
+         (the inner mounted window's own shadow would be clipped by the
+         frame's overflow:hidden) — same double-wrapper idiom as
+         claude-code-interaction / browser-interaction. */
+      .cx-window { position:relative; width:940px; height:705px; border-radius:12px; overflow:hidden; box-shadow:0 34px 90px rgba(0,0,0,0.5); background:#080910; }
+      .component-frame { position:absolute; inset:0; overflow:hidden; }
+      .component-frame > [data-backlot-mounted-component] { position:absolute; left:0; top:0; display:block; pointer-events:none; transform-origin:top left; transform:scale(0.83929); }
+
       .demo-cursor { position:absolute; left:640px; top:560px; z-index:90; width:26px; height:26px; background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(106,208,143,0.7); border-radius:50%; opacity:0; }
     </style>
@@ -61,87 +44,123 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
+      const DURATION = 9.5;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".cx-stage");
-      const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      // Click-ring starts hidden and parked at the cursor's resting spot.
-      // Bound to the timeline at position 0 (not a bare gsap.set) so it wins
-      // deterministically over the click tween's fromTo() "from" state for
-      // any time before the first real click, regardless of source order.
-      tl.set(".demo-click-ring", { opacity: 0, left: 640, top: 560 }, 0);
+      // Registered synchronously with a full-duration hold (the mount below
+      // is async; the renderer must never probe a zero-duration composition).
+      tl.to(stage, { opacity: 1, duration: DURATION }, 0);
+      gsap.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 });
 
-      const CMD = "make the launch page match the Q2 deck";
-      // Tool-call results ("Explored / Read ...") are real Codex chrome that
-      // pops in as a completed block; only the prose (Plan/Applied) streams
-      // token by token. Kept as two separate strings/targets so each can be
-      // revealed with its own motion (see the out-tool / out-prose block below).
-      const OUT_TOOL =
-        "\nExplored\n" +
-        "  Read  compositions/launch-page.html\n" +
-        "  Read  reference/deck/q2-deck.pdf";
-      const OUT_PROSE =
-        "\n\nPlan\n" +
-        "  1. Match the hero headline and Q2 revenue figure\n" +
-        "  2. Recolor the CTA to the deck accent\n" +
-        "  3. Update the metrics row (16% / 42% / +50%)\n\n" +
-        "Applied 3 edits to launch-page.html — 42 insertions, 11 deletions.";
+      window.__backlotComponentsReady.then(() => {
+        const mount = stage.querySelector(".cx-frame");
+        const win = mount && mount.querySelector("#codex-terminal-surface");
+        if (!win) return;
 
-      // 1) type the command. The command text sits inside a width-clipped
-      // reveal box (0 -> full width), so the trailing block cursor rides the
-      // leading edge exactly like a real terminal caret — fully seek-safe,
-      // no CSS transitions/keyframes involved.
-      const cmdReveal = stage.querySelector('[data-role="cmd-reveal"]');
-      const cmdEl = stage.querySelector('[data-role="cmd"]');
-      const blk = stage.querySelector('[data-role="blk"]');
-      const typeStart = 1.0, typeCps = 20;
-      cmdEl.textContent = CMD;
-      const fullW = cmdReveal.getBoundingClientRect().width;
-      const typeDur = CMD.length / typeCps;
-      gsap.set(cmdReveal, { width: 0 });
-      gsap.set(blk, { opacity: 1 }); // caret visible at rest, over the empty input
+        const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
 
-      ix.click('[data-role="cmd-reveal"]', { at: 0.6, moveDur: 0.7 });
-      tl.to(cmdReveal, { width: fullW, duration: typeDur, ease: "none" }, typeStart);
+        // ---- Mounted targets (all inside the real Codex terminal chrome) ----
+        const composerInput = win.querySelector(".composer-input");
+        const inputTextEl = win.querySelector(".input-text");
+        const typedTail = win.querySelector('[data-role="cx-typed-tail"]');
+        const cursorEl = win.querySelector('[data-role="cx-cursor"]');
+        const liveExplore = win.querySelector('[data-role="live-explore"]');
+        const livePlan = win.querySelector('[data-role="live-plan"]');
+        const liveApplied = win.querySelector('[data-role="live-applied"]');
+        const liveAppliedText = win.querySelector('[data-role="live-applied-text"]');
+        // The pinned session's transcript already fills the terminal's
+        // fixed-height screen down to the composer (that's the reference
+        // capture's own long-session framing) — there is zero slack left
+        // for a new turn. Fold the least-load-bearing established rows
+        // (internal monologue, the approval prompt, the earlier diff, and
+        // the now-finished spinner) once the live turn starts, the same way
+        // a real terminal's older lines scroll away, so the new turn has
+        // room.
+        const collapseRows = Array.from(win.querySelectorAll(".thought-row, .approval-row, .running-row"))
+          .concat(Array.from(win.querySelectorAll(".diff-row")).filter((el) => el !== liveApplied));
+        if (!composerInput || !inputTextEl || !typedTail || !liveExplore || !livePlan || !liveApplied || !liveAppliedText) return;
 
-      // 2) send beat: the command is now committed transcript text, so the
-      // live block caret goes away BEFORE the agent starts "Working" — it
-      // must never still look live/editable while the model is running.
-      // A brief "Working" status marks that the prompt was sent, then the
-      // terminal streams its output. The key-hint footer is real-TUI chrome
-      // present from frame one — it is never typed in, only the transient
-      // "Working" line animates.
-      const workingAt = typeStart + typeDur + 0.3;
-      const outAt = 1.0 + CMD.length / 20 + 1.0;
-      tl.to(blk, { opacity: 0, duration: 0.12 }, workingAt - 0.1);
+        // The pinned composer already carries a mid-typed sentence (the
+        // reference capture's own state) — this demo finishes it rather
+        // than inventing a new one, same idiom as browser-interaction
+        // reading its URL out of the mount.
+        const TAIL = "an.";
+        const APPLIED = liveAppliedText.textContent.trim();
 
-      ix.show('[data-role="working"]', { at: workingAt, dur: 0.2 });
-      tl.to('[data-role="working"]', { opacity: 0, duration: 0.15 }, outAt - 0.15);
+        // ---- Rest-frame pins (t=0): pinned composer text as captured,
+        // live turn not yet run. gsap.set (not tl.set at 0). ----
+        gsap.set([liveExplore, livePlan, liveApplied], { opacity: 0 });
 
-      // Tool-call results pop in atomically as a completed block (textContent
-      // set instantly at build time, revealed with a plain fade — no
-      // char-by-char typing, which would read as a person typing a path).
-      // Prose (Plan/Applied) is the only part that streams token by token.
-      const outToolEl = stage.querySelector('[data-role="out-tool"]');
-      outToolEl.textContent = OUT_TOOL;
-      gsap.set(outToolEl, { opacity: 0 });
-      ix.show('[data-role="out-tool"]', { at: outAt, dur: 0.25 });
-      ix.stream('[data-role="out-prose"]', OUT_PROSE, { at: outAt + 0.5, cps: 48 });
+        // Typing target starts EMPTY (display:none, not just empty text —
+        // composer-input is a flex row with `gap`, so an empty-but-present
+        // span would still eat a gap slot and nudge the pinned text/cursor).
+        // Per-char spans flip display so the block cursor (a flex sibling
+        // right after the typed text) rides the leading edge.
+        const tailChars = [];
+        for (const ch of TAIL) {
+          const s = document.createElement("span");
+          s.textContent = ch;
+          typedTail.appendChild(s);
+          tailChars.push(s);
+        }
+        gsap.set(tailChars, { display: "none" });
 
-      // 3) pinned composer: real Codex always keeps an idle "> " input line
-      // with a block caret above the key-hint footer while output streams.
-      // It appears the moment the prompt is sent and blinks at a slow, idle
-      // cadence, settling solid well before the demo ends.
-      const composerBlk = stage.querySelector('[data-role="composer-blk"]');
-      gsap.set(composerBlk, { opacity: 1 });
-      tl.set(".cx-composer", { opacity: 1 }, outAt);
-      tl.to(composerBlk, { opacity: 0, duration: 0.55, repeat: 7, yoyo: true, ease: "steps(1)" }, outAt + 0.5);
+        // 1) Click the composer, finish typing the pinned sentence.
+        const CLICK_AT = 0.7;
+        const TYPE_AT = 1.15;
+        const CPS = 10;
+        ix.click(composerInput, { at: CLICK_AT, moveDur: 0.6 });
+        tl.set(typedTail, { display: "inline" }, TYPE_AT);
+        for (let i = 0; i < tailChars.length; i++) {
+          tl.set(tailChars[i], { display: "inline" }, TYPE_AT + i / CPS);
+        }
+        const tailEndAt = TYPE_AT + TAIL.length / CPS;
 
-      tl.set('[data-role="status"]', { opacity: 1 }, 0);
+        // 2) Send: the composer clears (message sent) while the terminal
+        // moves on to running the turn.
+        const submitAt = tailEndAt + 0.45;
+        tl.to(composerInput, { opacity: 0, duration: 0.15 }, submitAt);
+
+        // 2b) The finished spinner + older reasoning scroll away, making
+        // room for the new turn's transcript (see collapseRows comment
+        // above) — a discrete display:none step once the fade completes,
+        // like every other latent-content toggle in this repo's demos.
+        const collapseAt = submitAt + 0.25;
+        tl.to(collapseRows, { opacity: 0, duration: 0.3 }, collapseAt);
+        tl.set(collapseRows, { display: "none" }, collapseAt + 0.3);
+
+        // 3) Tool-call results ("Explored") pop in as a completed block —
+        // real Codex chrome, not typed character by character.
+        const exploreAt = collapseAt + 0.3 + 0.35;
+        tl.set(liveExplore, { display: "grid" }, exploreAt);
+        tl.to(liveExplore, { opacity: 1, duration: 0.25 }, exploreAt);
+
+        // 4) Plan checklist pops in the same way, a beat later.
+        const planAt = exploreAt + 0.9;
+        tl.set(livePlan, { display: "grid" }, planAt);
+        tl.to(livePlan, { opacity: 1, duration: 0.25 }, planAt);
+
+        // 5) The applied summary is the only part that streams token by
+        // token, like AI prose.
+        const appliedAt = planAt + 0.9;
+        tl.set(liveApplied, { display: "grid" }, appliedAt);
+        tl.to(liveApplied, { opacity: 1, duration: 0.2 }, appliedAt);
+        ix.stream(liveAppliedText, APPLIED, { at: appliedAt + 0.2, cps: 32, unit: "word" });
+
+        // 6) Composer resets to idle, ready for the next command.
+        const doneAt = appliedAt + 0.2 + APPLIED.length / 32 + 0.3;
+        tl.set(inputTextEl, { textContent: "" }, doneAt);
+        tl.set(typedTail, { textContent: "", display: "none" }, doneAt);
+        tl.to(composerInput, { opacity: 1, duration: 0.25 }, doneAt);
+      }).catch(() => {});
 
       window.__timelines["codex-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(9.5).pause();
+      if (cap === "hero") {
+        tl.seek(9.2).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(9.2).pause(); }).catch(() => {});
+      }
     </script>
   </body>
 </html>

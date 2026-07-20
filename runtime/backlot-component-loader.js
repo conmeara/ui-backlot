@@ -60,6 +60,25 @@
       });
     };
 
+    // Cloned <style> blocks lose their source document's URL, so relative
+    // @import specifiers would re-resolve against the HOST page's base at
+    // parse time (a race with the <base> scoping trick some hosts use, and a
+    // guaranteed 404 for root-served hosts). Pin them to the fetched
+    // composition's URL before the clone leaves this function.
+    const absolutizeStyleImports = (root) => {
+      if (!root.querySelectorAll) return;
+      const componentBase = new URL(src, document.baseURI);
+      root.querySelectorAll("style").forEach((style) => {
+        style.textContent = style.textContent.replace(
+          /@import\s+(?:url\(\s*)?["']([^"')]+)["']\s*\)?/g,
+          (match, specifier) => {
+            if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(specifier)) return match;
+            return `@import url("${new URL(specifier, componentBase).href}")`;
+          }
+        );
+      });
+    };
+
     const template = doc.querySelector("template");
     let sourceRoot;
 
@@ -80,6 +99,7 @@
 
     const component = sourceRoot.cloneNode(true);
     sanitizeCompositionMetadata(component);
+    absolutizeStyleImports(component);
     return component;
   };
 

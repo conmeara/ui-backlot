@@ -1,0 +1,578 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 18%),
+      linear-gradient(140deg, #f7f5ef 0%, #ece6dc 52%, #dbe8e1 100%);
+  }
+</style>
+
+<template id="codex-terminal-surface-template">
+  <div id="codex-terminal-surface" data-composition-id="codex-terminal-surface" data-width="1120" data-height="840">
+    <section class="terminal-window" data-primitive="codex-terminal-window" aria-label="Editable Codex terminal surface">
+      <header class="terminal-titlebar">
+        <div class="terminal-traffic" aria-hidden="true">
+          <span class="red"></span>
+          <span class="yellow"></span>
+          <span class="green"></span>
+        </div>
+        <div class="terminal-title">
+          <span class="folder-icon" aria-hidden="true"></span>
+          <span>ui-backlot — codex — 126×38</span>
+        </div>
+      </header>
+
+      <main class="terminal-screen">
+        <section class="codex-splash" data-primitive="codex-session-header">
+          <div class="splash-row">
+            <span class="prompt-glyph">&gt;_</span>
+            <strong>OpenAI Codex</strong>
+            <span class="version">(v0.139.0)</span>
+          </div>
+          <div class="meta-grid">
+            <span>model:</span>
+            <strong>5.6-sol-ultra</strong>
+            <em>/model to change</em>
+            <span>directory:</span>
+            <strong>~/Projects/ui-backlot</strong>
+          </div>
+        </section>
+
+        <p class="tip-line"><strong>Tip:</strong> Use <span>/feedback</span> to send logs to the maintainers when something looks off.</p>
+
+        <div class="user-prompt" data-primitive="codex-user-prompt">
+          <span>&gt;</span>
+          <strong>Make the Codex terminal surface match actual public CLI screenshots</strong>
+        </div>
+
+        <section class="transcript" data-primitive="codex-transcript">
+          <article class="thought-row">
+            <span class="bullet">•</span>
+            <p>I need to replace the dashboard-style mock with the real Codex TUI rhythm: a bordered splash header, full-width prompt bands, bullet transcript, cyan links, and the bottom composer chrome.</p>
+          </article>
+
+          <article class="plan-row">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Updated Plan</h2>
+              <ul>
+                <li><span class="box">□</span>Compare against official Codex CLI splash and current generated capture</li>
+                <li><span class="box">□</span><strong>Remove side-pane dashboard</strong>, restore full terminal transcript</li>
+                <li><span class="box">□</span>Model approval, diff, and checks as inline TUI rows</li>
+                <li><span class="box">□</span>Refresh capture and registry gates</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="explore-row">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Explored</h2>
+              <div class="tool-tree">
+                <span>Read</span>
+                <a>compositions/codex-terminal.html</a>
+                <span>Web</span>
+                <a>openai/codex README screenshot</a>
+                <span>Run</span>
+                <a>codex --help</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="approval-row" data-primitive="codex-approval-row">
+            <span class="bullet amber">•</span>
+            <div>
+              <h2>Approve command?</h2>
+              <p><code>npm run capture:codex-terminal</code> writes generated capture files in this workspace.</p>
+              <div class="approval-options">
+                <p class="approval-option selected"><span class="approval-marker">›</span> 1. Yes (y)</p>
+                <p class="approval-option">&nbsp;&nbsp;2. Yes, for the rest of this session (a)</p>
+                <p class="approval-option">&nbsp;&nbsp;3. No, and tell Codex what to do differently (esc)</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="diff-row" data-primitive="codex-diff-row">
+            <span class="bullet cyan">•</span>
+            <div>
+              <h2>Diff</h2>
+              <p><span class="diff-add">+ full-screen Codex TUI transcript</span></p>
+              <p><span class="diff-remove">- right-side dashboard pane</span></p>
+            </div>
+          </article>
+
+          <article class="running-row">
+            <span class="bullet spinner">◐</span>
+            <p>Checking terminal capture fidelity (12s • Esc to interrupt)</p>
+          </article>
+
+          <!-- Interaction-demo hook: the session's next turn, latent by
+               default (.live-turn is display:none — the standalone capture
+               stays the single settled session above) so an interaction demo
+               can finish typing the pinned composer message, send it, and
+               reveal this turn's tool activity + applied summary. -->
+          <article class="explore-row live-turn" data-role="live-explore">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Explored</h2>
+              <div class="tool-tree">
+                <span data-role="live-tool-1-kind">Read</span>
+                <a data-role="live-tool-1-path">compositions/launch-page.html</a>
+                <span data-role="live-tool-2-kind">Read</span>
+                <a data-role="live-tool-2-path">reference/deck/q2-deck.pdf</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="plan-row live-turn" data-role="live-plan">
+            <span class="bullet">•</span>
+            <div>
+              <h2>Plan</h2>
+              <ul>
+                <li><span class="box">□</span><span data-role="live-plan-1">Match the hero headline and Q2 revenue figure</span></li>
+                <li><span class="box">□</span><span data-role="live-plan-2">Recolor the CTA to the deck accent</span></li>
+                <li><span class="box">□</span><span data-role="live-plan-3">Update the metrics row (16% / 42% / +50%)</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="diff-row live-turn" data-role="live-applied">
+            <span class="bullet cyan">•</span>
+            <div>
+              <h2>Applied</h2>
+              <p data-role="live-applied-text">Applied 3 edits to launch-page.html — 42 insertions, 11 deletions.</p>
+            </div>
+          </article>
+        </section>
+
+        <footer class="composer" data-primitive="codex-composer">
+          <div class="composer-input"><span class="input-bar"></span><span class="input-text">Awesome! Let's implement the pl</span><span class="typed-tail" data-role="cx-typed-tail"></span><span class="cursor" data-role="cx-cursor"></span></div>
+          <div class="shortcut-row">
+            <span>⏎ send</span>
+            <span>⇧⏎ newline</span>
+            <span>⌃T transcript</span>
+            <span>⌃C quit</span>
+            <span class="tokens">42.1K tokens used</span>
+            <span>98% context left</span>
+          </div>
+        </footer>
+      </main>
+    </section>
+
+    <style>
+      #codex-terminal-surface {
+        --terminal-bg: #080910;
+        --terminal-panel: #282832;
+        --terminal-border: #757481;
+        --terminal-text: #eeeeee;
+        --terminal-muted: #92919b;
+        --terminal-faint: #5f5f6b;
+        --terminal-cyan: #48d6e8;
+        --terminal-green: #55c879;
+        --terminal-amber: #e6bf62;
+        --terminal-red: #d97866;
+        --titlebar: #dad9e4;
+        --titlebar-border: #b9b8c5;
+        width: 1120px;
+        height: 840px;
+        overflow: visible;
+        color: var(--terminal-text);
+        font-family: var(--font-terminal);
+        font-variant-ligatures: none;
+      }
+
+      #codex-terminal-surface * {
+        box-sizing: border-box;
+      }
+
+      .terminal-window {
+        width: 1120px;
+        height: 840px;
+        overflow: hidden;
+        border-radius: 12px;
+        background: var(--terminal-bg);
+        border: 1px solid rgba(19, 19, 26, 0.54);
+        box-shadow: 0 30px 92px rgba(20, 17, 14, 0.28);
+      }
+
+      .terminal-titlebar {
+        height: 36px;
+        display: grid;
+        grid-template-columns: 78px 1fr 78px;
+        align-items: center;
+        padding: 0 14px;
+        background: linear-gradient(#e7e6ee, var(--titlebar));
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .terminal-traffic {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .terminal-traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+      }
+
+      .terminal-traffic .red { background: #ff5f57; }
+      .terminal-traffic .yellow { background: #febc2e; }
+      .terminal-traffic .green { background: #28c840; }
+
+      .terminal-title {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        color: #2f3038;
+        font-family: var(--font-macos);
+        font-size: 13px;
+        font-weight: 590;
+      }
+
+      .folder-icon {
+        width: 17px;
+        height: 12px;
+        border-radius: 3px;
+        background: #82bce8;
+        position: relative;
+        box-shadow: inset 0 -1px rgba(0, 0, 0, 0.14);
+      }
+
+      .folder-icon::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: -4px;
+        width: 9px;
+        height: 5px;
+        border-radius: 3px 3px 0 0;
+        background: #9bcbed;
+      }
+
+      .terminal-screen {
+        position: relative;
+        height: calc(100% - 36px);
+        padding: 16px 20px 70px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0) 22%),
+          var(--terminal-bg);
+      }
+
+      .codex-splash {
+        width: 1048px;
+        max-width: 100%;
+        min-height: 104px;
+        padding: 13px 15px 12px;
+        border: 1px solid rgba(117, 116, 129, 0.45);
+        border-radius: 6px;
+      }
+
+      .splash-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 17px;
+        font-size: 14px;
+      }
+
+      .prompt-glyph {
+        color: var(--terminal-muted);
+      }
+
+      .version {
+        color: var(--terminal-muted);
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 78px max-content 1fr;
+        column-gap: 8px;
+        row-gap: 6px;
+        align-items: baseline;
+        color: var(--terminal-muted);
+        font-size: 14px;
+      }
+
+      .meta-grid strong {
+        color: var(--terminal-text);
+      }
+
+      .meta-grid strong:last-child {
+        grid-column: 2 / 4;
+        white-space: nowrap;
+      }
+
+      .meta-grid em {
+        color: var(--terminal-cyan);
+        font-style: normal;
+      }
+
+      .tip-line {
+        margin: 28px 0 18px 14px;
+        color: var(--terminal-text);
+        font-size: 14px;
+      }
+
+      .tip-line span,
+      .tool-tree a,
+      .plan-row strong {
+        color: var(--terminal-cyan);
+      }
+
+      .user-prompt {
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 22px;
+        padding: 0;
+        color: var(--terminal-text);
+        font-size: 15px;
+      }
+
+      .user-prompt span {
+        color: var(--terminal-muted);
+      }
+
+      .transcript {
+        display: grid;
+        gap: 19px;
+        max-width: 1048px;
+        color: var(--terminal-muted);
+        font-size: 14px;
+        line-height: 1.38;
+      }
+
+      .transcript article {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 9px;
+      }
+
+      .transcript p,
+      .transcript h2,
+      .transcript ul {
+        margin: 0;
+      }
+
+      .bullet {
+        display: inline-block;
+        color: var(--terminal-muted);
+        font-size: 14px;
+        line-height: 1.38;
+      }
+
+      .bullet.amber {
+        color: var(--terminal-amber);
+      }
+
+      .bullet.cyan {
+        color: var(--terminal-cyan);
+      }
+
+      .bullet.spinner {
+        color: var(--terminal-red);
+      }
+
+      h2 {
+        color: var(--terminal-text);
+        font-size: 14px;
+        line-height: 1.3;
+      }
+
+      .plan-row ul {
+        list-style: none;
+        padding: 2px 0 0 14px;
+      }
+
+      .plan-row li {
+        min-height: 21px;
+      }
+
+      .box {
+        display: inline-block;
+        margin-right: 6px;
+        color: var(--terminal-muted);
+      }
+
+      .tool-tree {
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        column-gap: 8px;
+        row-gap: 3px;
+        padding-top: 2px;
+      }
+
+      .approval-row,
+      .diff-row {
+        padding: 0;
+      }
+
+      .approval-row code {
+        color: var(--terminal-text);
+        font-family: inherit;
+      }
+
+      .approval-options {
+        display: grid;
+        gap: 2px;
+        margin-top: 7px;
+        color: var(--terminal-muted);
+        font-size: 13px;
+      }
+
+      .approval-option.selected {
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
+      .approval-marker {
+        color: var(--terminal-cyan);
+        font-weight: 400;
+      }
+
+      .diff-add {
+        color: var(--terminal-green);
+      }
+
+      .diff-remove {
+        color: var(--terminal-red);
+      }
+
+      .running-row {
+        color: var(--terminal-muted);
+      }
+
+      .composer {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 16px;
+      }
+
+      .composer-input {
+        min-height: 19px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+        color: var(--terminal-text);
+        font-size: 14px;
+      }
+
+      .input-bar {
+        width: 4px;
+        height: 1.2em;
+        flex: 0 0 auto;
+        background: #8fb8d8;
+      }
+
+      .input-text {
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
+      /* display:none at rest (not just empty text) — composer-input is a
+         flex row with `gap`, so an empty-but-present span would still eat a
+         gap slot and nudge the cursor right of the pinned reference text.
+         The interaction demo flips this to inline right as typing starts. */
+      .typed-tail {
+        display: none;
+        color: var(--terminal-text);
+        font-weight: 700;
+      }
+
+      /* Latent by default — see the .live-turn hook above the composer.
+         Tied against ".transcript article" (also 0,1,1 specificity) with an
+         element+class selector, placed after it in source order, so it wins
+         the cascade instead of losing to the plain class rule above. */
+      article.live-turn {
+        display: none;
+      }
+
+      .cursor {
+        width: 0.6em;
+        height: 1.2em;
+        display: inline-block;
+        background: rgba(238, 238, 238, 0.85);
+      }
+
+      .shortcut-row {
+        min-height: 28px;
+        display: flex;
+        align-items: end;
+        gap: 28px;
+        color: var(--terminal-faint);
+        font-size: 13px;
+      }
+
+      .shortcut-row .tokens {
+        margin-left: auto;
+        color: var(--terminal-muted);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const terminalDuration = 12;
+      const spinnerRepeat = Math.max(0, Math.floor((terminalDuration - 6.4) / 0.9) - 1);
+      const cursorBlinkRepeat = Math.max(0, Math.floor((terminalDuration - 7.2) / 0.56) - 1);
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(".terminal-window", { opacity: 0, y: 22, scale: 0.985, duration: 0.42, ease: "power2.out" }, 0.12);
+      tl.from(".codex-splash", { opacity: 0, y: 10, duration: 0.34, ease: "power2.out" }, 0.44);
+      tl.from(".tip-line", { opacity: 0, y: 8, duration: 0.28, ease: "power2.out" }, 0.74);
+      tl.from(".user-prompt", { opacity: 0, y: 8, duration: 0.28, ease: "power2.out" }, 1.0);
+      tl.from(".transcript article", { opacity: 0, y: 8, stagger: 0.16, duration: 0.26, ease: "power2.out" }, 1.34);
+      tl.from(".composer", { opacity: 0, y: 10, duration: 0.3, ease: "power2.out" }, 2.6);
+      const spinnerFrames = ["◐", "◓", "◑", "◒"];
+      tl.to({}, {
+        duration: 0.9,
+        repeat: spinnerRepeat,
+        ease: "none",
+        onUpdate() {
+          const el = document.querySelector(".bullet.spinner");
+          if (!el) return;
+          const idx = Math.floor(this.progress() * spinnerFrames.length) % spinnerFrames.length;
+          el.textContent = spinnerFrames[idx];
+        }
+      }, 2.46);
+      tl.to(".cursor", { opacity: 0.12, duration: 0.28, repeat: cursorBlinkRepeat, yoyo: true, ease: "steps(1)" }, 2.9);
+
+      window.__timelines["codex-terminal-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = decodeURIComponent(window.location.pathname).endsWith("/codex-terminal.html");
+    if (!isDirectPreview) return;
+
+    const mount = () => {
+      if (document.getElementById("codex-terminal-surface")) return;
+      const template = document.getElementById("codex-terminal-surface-template");
+      if (!template || !document.body) return;
+
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

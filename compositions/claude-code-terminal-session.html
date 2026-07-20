@@ -79,10 +79,39 @@
 
           <p class="turn-reply"><span class="glyph">●</span><span data-copy="turn-2-reply">On it — I'll draft the outline, then wire the slide components before touching copy.</span></p>
           <p class="turn-timing dim" data-copy="turn-2-timing"><span class="glyph">✻</span> Worked for 3s</p>
+
+          <!-- Interaction-demo hook: a third scripted turn, latent by default
+               (.live-turn is display:none — the standalone capture stays the
+               two-turn session above) so an interaction demo can type a
+               command into the footer input, then reveal this turn's tool
+               calls and streamed reply, matching the real CLI's transcript
+               rhythm instead of an invented widget. -->
+          <div class="live-turn" data-role="live-turn">
+            <div class="beat-gap" aria-hidden="true"></div>
+
+            <div class="turn-user" data-role="live-user"><span class="glyph">❯</span><span data-role="live-user-text">update the launch page to match the Q2 deck</span></div>
+
+            <div class="beat-gap" aria-hidden="true"></div>
+
+            <div class="tool-activity" data-role="live-tools">
+              <p class="tool-row" data-role="live-tool-1"><span class="glyph">⏺</span><span data-role="live-tool-1-label">Read(compositions/launch-page.html)</span></p>
+              <p class="tool-row result" data-role="live-tool-1-result"><span class="glyph">⎿</span><span data-role="live-tool-1-result-text">148 lines</span></p>
+              <p class="tool-row" data-role="live-tool-2"><span class="glyph">⏺</span><span data-role="live-tool-2-label">Read(reference/deck/q2-deck.pdf)</span></p>
+              <p class="tool-row result" data-role="live-tool-2-result"><span class="glyph">⎿</span><span data-role="live-tool-2-result-text">12 pages</span></p>
+              <p class="tool-row" data-role="live-tool-3"><span class="glyph">⏺</span><span data-role="live-tool-3-label">Update(launch-page.html)</span></p>
+              <p class="tool-row result" data-role="live-tool-3-result"><span class="glyph">⎿</span><span data-role="live-tool-3-result-text">Updated launch-page.html with 3 additions and 1 removal</span></p>
+            </div>
+
+            <div class="beat-gap" aria-hidden="true"></div>
+
+            <p class="turn-reply" data-role="live-reply"><span class="glyph">●</span><span data-role="live-reply-text">Matched the hero headline and Q2 revenue figure to the deck, recolored the CTA to the deck accent, and refreshed the metrics row.</span></p>
+            <p class="turn-timing dim" data-role="live-timing"><span class="glyph">✻</span> Worked for 8s</p>
+          </div>
         </section>
 
         <footer class="terminal-input" data-primitive="claude-code-terminal-input">
-          <div class="input-row"><span class="glyph">❯</span><span class="terminal-cursor" aria-hidden="true"></span></div>
+          <p class="working-status dim" data-role="cc-working"><span class="glyph">✻</span> <span data-role="cc-working-label">Working…</span></p>
+          <div class="input-row" data-role="cc-input-row"><span class="glyph">❯</span><span class="typed-text" data-role="cc-typed"></span><span class="terminal-cursor" data-role="cc-cursor" aria-hidden="true"></span></div>
           <div class="status-row">
             <p class="status-line" data-copy="context-pct">
               <span>(3.7%)</span>
@@ -423,6 +452,49 @@
       }
 
       .glyph {
+        color: var(--term-dim);
+      }
+
+      .typed-text {
+        color: var(--term-ink);
+      }
+
+      .working-status {
+        display: none;
+        margin: 0 0 8px;
+      }
+
+      .working-status .glyph {
+        color: var(--term-accent);
+      }
+
+      /* Latent by default — see the .live-turn hook above the footer. */
+      .live-turn {
+        display: none;
+      }
+
+      .tool-activity {
+        display: grid;
+        gap: 3px;
+        margin: 2px 0;
+      }
+
+      .tool-row {
+        margin: 0;
+        display: flex;
+        gap: 8px;
+        color: var(--term-ink);
+      }
+
+      .tool-row .glyph {
+        color: var(--term-accent);
+      }
+
+      .tool-row.result {
+        color: var(--term-dim);
+      }
+
+      .tool-row.result .glyph {
         color: var(--term-dim);
       }
     </style>
