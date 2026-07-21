@@ -352,7 +352,7 @@
         max-width: 1048px;
         color: var(--terminal-muted);
         font-size: 14px;
-        line-height: 1.38;
+        line-height: 1.3;
       }
 
       .transcript article {
@@ -371,7 +371,7 @@
         display: inline-block;
         color: var(--terminal-muted);
         font-size: 14px;
-        line-height: 1.38;
+        line-height: 1.3;
       }
 
       .bullet.amber {
@@ -466,7 +466,7 @@
         min-height: 19px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0;
         padding: 0;
         color: var(--terminal-text);
         font-size: 14px;
@@ -476,6 +476,7 @@
         width: 4px;
         height: 1.2em;
         flex: 0 0 auto;
+        margin-right: 8px;
         background: #8fb8d8;
       }
 
@@ -484,10 +485,10 @@
         font-weight: 700;
       }
 
-      /* display:none at rest (not just empty text) — composer-input is a
-         flex row with `gap`, so an empty-but-present span would still eat a
-         gap slot and nudge the cursor right of the pinned reference text.
-         The interaction demo flips this to inline right as typing starts. */
+      /* display:none at rest — kept out of flow so the block cursor abuts
+         the pinned reference text (ref f-035: cursor occupies the very next
+         character cell after the last glyph, no extra gap). The interaction
+         demo flips this to inline right as typing starts. */
       .typed-tail {
         display: none;
         color: var(--terminal-text);
@@ -513,13 +514,25 @@
         min-height: 28px;
         display: flex;
         align-items: end;
-        gap: 28px;
+        gap: 0;
         color: var(--terminal-faint);
         font-size: 13px;
       }
 
+      /* Ref f-035 footer: everything runs inline-left — hint items sit
+         ~6.3 character cells apart (36px at the ref's 5.75px cell → 51px at
+         our 8.125px cell); the token/context stats follow "⌃C quit" with a
+         narrower ~3.5-cell gap (20px ref → 28px ours), nothing flush-right. */
+      .shortcut-row span + span {
+        margin-left: 51px;
+      }
+
+      .shortcut-row .tokens,
+      .shortcut-row .tokens + span {
+        margin-left: 28px;
+      }
+
       .shortcut-row .tokens {
-        margin-left: auto;
         color: var(--terminal-muted);
       }
     </style>
