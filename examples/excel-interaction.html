@@ -140,7 +140,7 @@
       // 1) Drag-select the range C5:C7 — cursor presses at C5 and drags down to
       //    C7 while the selection rectangle grows under it (property-only height
       //    tween, so it scrubs).
-      ix.moveTo('[data-cell="C5"]', { at: 0.5, dur: 0.85 });
+      ix.moveTo('[data-cell="C5"]', { at: 0.15, dur: 0.55 }); // tightened: reaches C5 by 0.7s (was 0.5+0.85=1.35s); all downstream beats stay absolute, so this just shortens the idle drift and leaves a brief natural pause before the 1.4s mouse-down
       tl.set('[data-role="namebox"]', { textContent: "C5" }, 1.35);
       tl.set(act, { left: c5.left, top: c5.top, width: c5.w, height: c5.h }, 1.4); // mouse-down: active-cell outline jumps off A1 onto the C5 anchor (stays visible throughout, never re-faded)
       ix.click('[data-cell="C5"]', { at: 1.4, move: false, press: false }); // press ring
@@ -267,6 +267,18 @@
       tl.set(c8ValueEl, { opacity: 1 }, commitAt);
       tl.set(resultEl, { attr: { class: "cell num result" } }, commitAt); // back to right-aligned result styling
       tl.fromTo(act, { scale: 1 }, { scale: 1.05, yoyo: true, repeat: 1, duration: 0.13, transformOrigin: "50% 50%" }, commitAt);
+
+      // 4) Enter advances the selection: real Excel snaps the active cell down
+      //    one row after a commit. Reuses the same active-outline + name-box
+      //    reposition idiom as the C5 -> C8 move above (a plain tl.set jump,
+      //    no tween — Excel's post-Enter advance is instant, not a glide),
+      //    timed just after the commit flash settles. The result value 12
+      //    stays put in C8 (resultEl/c8ValueEl are untouched here).
+      const rowH = c8.top - c7.top; // uniform grid-auto-rows height
+      const c9 = { left: c8.left, top: c8.top + rowH, w: c8.w, h: c8.h };
+      const advanceAt = commitAt + 0.3;
+      tl.set(act, { left: c9.left, top: c9.top, width: c9.w, height: c9.h }, advanceAt);
+      tl.set('[data-role="namebox"]', { textContent: "C9" }, advanceAt);
 
       // The click-ring's fromTo tweens above (via the ix.click/ix.moveTo
       // helpers) render their "from" state (opacity 0.9) for any timeline

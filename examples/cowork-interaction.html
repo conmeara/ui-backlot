@@ -115,6 +115,16 @@
         const commandPre = commandCard && commandCard.querySelector("pre");
         const actions = stage.querySelector(".thread-slot .message-actions");
         const railStepper = stage.querySelector(".rail-slot .rail-stepper");
+        const railSteps = railStepper ? Array.from(railStepper.querySelectorAll(".rail-step")) : [];
+        // The rail-stepper mounts with steps 1-2 pre-baked "done" (a checkmark
+        // svg each) and step 3 hollow — the progress panel reads as already
+        // 2/3-complete before the task has even started. Only the first two
+        // steps carry a check icon to hide/reveal below (step 3 has none).
+        const railCheckIcons = railSteps.slice(0, 2).map((step) => step.querySelector("svg")).filter(Boolean);
+        // The generated-file card ("Title-slide-cover.svg" / "Download and
+        // open") that sits at the foot of the assistant turn, right above
+        // the fixed composer — visible at rest (pre-baked mount state).
+        const attachmentCard = stage.querySelector(".thread-slot .artifact-file-list .file-card");
         if (!input || !sendBtn || !bubble || !line1 || !thinkingCard || !toolCard || !commandCard) return;
 
         // The prompt typed must be the very message the mounted thread shows.
@@ -227,6 +237,9 @@
         // unless min-height is cleared too.
         tl.set(toolRows, { autoAlpha: 0, height: 0, minHeight: 0, overflow: "hidden" }, 0);
         tl.set(line1, { clipPath: "inset(0 100% 0 0)" }, 0);
+        // All three progress dots start hollow — the pre-baked 2-of-3-done
+        // state is a mount artifact, not the true rest state for this demo.
+        if (railCheckIcons.length) tl.set(railCheckIcons, { autoAlpha: 0 }, 0);
 
         // 1) Focus the real reply composer and type the prompt.
         const FOCUS_AT = 0.9;
@@ -254,6 +267,10 @@
         tl.set(placeholder, { opacity: 1, visibility: "inherit" }, SEND_AT + 0.24);
         tl.to(bubble, { autoAlpha: 1, duration: 0.14 }, SEND_AT + 0.12);
         tl.to(contextStrip, { autoAlpha: 1, duration: 0.2 }, SEND_AT + 0.4);
+        // The attachment card clears as the send consumes it — the composer
+        // area clears together with the bubble flying up, instead of the
+        // stale generated-file card lingering above the composer forever.
+        if (attachmentCard) tl.to(attachmentCard, { autoAlpha: 0, duration: 0.2 }, SEND_AT);
 
         // Cursor drifts off into the reading column while the task runs.
         tl.to(".demo-cursor", { left: 620, top: 430, duration: 0.7, ease: "power2.inOut" }, SEND_AT + 0.5);
@@ -269,6 +286,13 @@
           tl.to(sendArrowIcon, { autoAlpha: 0, scale: 0.7, duration: SEND_CROSSFADE }, GEN_AT);
           tl.to(sendStopIcon, { autoAlpha: 1, scale: 1, duration: SEND_CROSSFADE }, GEN_AT);
         }
+
+        // Progress dots 1 and 2 fill in during the streaming/tool phase
+        // (dot 3 fills separately at SETTLE_AT, once the whole card
+        // resolves — see step 4 below), so the rail's own progressive
+        // reveal tracks the task actually unfolding.
+        if (railCheckIcons[0]) tl.to(railCheckIcons[0], { autoAlpha: 1, duration: 0.15 }, GEN_AT + 1.0);
+        if (railCheckIcons[1]) tl.to(railCheckIcons[1], { autoAlpha: 1, duration: 0.15 }, GEN_AT + 2.0);
 
         // 3) Assistant turn: line1 wipes in as a single-line clip reveal;
         //    line2 wraps to two visual lines, so it streams char-by-char in
