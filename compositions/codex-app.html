@@ -1334,7 +1334,6 @@
         border-radius: 50%;
         border: 1.5px solid #d9d9dc;
         border-top-color: transparent;
-        border-right-color: transparent;
         flex: 0 0 auto;
       }
 
@@ -2050,7 +2049,8 @@
     </style>
 
     <style>
-      .codex-app-window.theme-dark {
+      .codex-app-window.theme-dark,
+      .theme-dark .codex-app-window {
         --window: #212019;
         --sidebar: #212019;
         --sidebar-deeper: #2c2b24;
@@ -2068,255 +2068,321 @@
         box-shadow: 0 32px 95px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
       }
 
-      .codex-app-window.theme-dark .codex-sidebar {
+      .codex-app-window.theme-dark .codex-sidebar,
+      .theme-dark .codex-app-window .codex-sidebar {
         background: var(--sidebar);
         border-right-color: var(--line);
         color: #d8d5cc;
       }
 
       .codex-app-window.theme-dark .sidebar-icon,
-      .codex-app-window.theme-dark .nav-arrow {
+      .theme-dark .codex-app-window .sidebar-icon,
+      .codex-app-window.theme-dark .nav-arrow,
+      .theme-dark .codex-app-window .nav-arrow {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .primary-nav button,
+      .theme-dark .codex-app-window .primary-nav button,
       .codex-app-window.theme-dark .user-name,
-      .codex-app-window.theme-dark .workspace-title {
+      .theme-dark .codex-app-window .user-name,
+      .codex-app-window.theme-dark .workspace-title,
+      .theme-dark .codex-app-window .workspace-title {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .glyph {
+      .codex-app-window.theme-dark .glyph,
+      .theme-dark .codex-app-window .glyph {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .sidebar-label {
+      .codex-app-window.theme-dark .sidebar-label,
+      .theme-dark .codex-app-window .sidebar-label {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .sidebar-row {
+      .codex-app-window.theme-dark .sidebar-row,
+      .theme-dark .codex-app-window .sidebar-row {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .sidebar-row.selected {
+      .codex-app-window.theme-dark .sidebar-row.selected,
+      .theme-dark .codex-app-window .sidebar-row.selected {
         background: #2c2b24;
       }
 
-      .codex-app-window.theme-dark .sidebar-row time {
+      .codex-app-window.theme-dark .sidebar-row time,
+      .theme-dark .codex-app-window .sidebar-row time {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .pin,
+      .theme-dark .codex-app-window .pin,
       .codex-app-window.theme-dark .project-icon,
+      .theme-dark .codex-app-window .project-icon,
       .codex-app-window.theme-dark .mini-action,
-      .codex-app-window.theme-dark .workspace-search {
+      .theme-dark .codex-app-window .mini-action,
+      .codex-app-window.theme-dark .workspace-search,
+      .theme-dark .codex-app-window .workspace-search {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .project-item.selected {
+      .codex-app-window.theme-dark .project-item.selected,
+      .theme-dark .codex-app-window .project-item.selected {
         background: #2c2b24;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .project-item {
+      .codex-app-window.theme-dark .project-item,
+      .theme-dark .codex-app-window .project-item {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .empty-chat {
+      .codex-app-window.theme-dark .empty-chat,
+      .theme-dark .codex-app-window .empty-chat {
         color: #6f6c61;
       }
 
-      .codex-app-window.theme-dark .codex-workspace {
+      .codex-app-window.theme-dark .codex-workspace,
+      .theme-dark .codex-app-window .codex-workspace {
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .topbar {
+      .codex-app-window.theme-dark .topbar,
+      .theme-dark .codex-app-window .topbar {
         border-bottom-color: var(--line);
         background: rgba(33, 32, 25, 0.96);
       }
 
-      .codex-app-window.theme-dark .title-wrap h1 {
+      .codex-app-window.theme-dark .title-wrap h1,
+      .theme-dark .codex-app-window .title-wrap h1 {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .folder-glyph {
+      .codex-app-window.theme-dark .folder-glyph,
+      .theme-dark .codex-app-window .folder-glyph {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .more-button,
+      .theme-dark .codex-app-window .more-button,
       .codex-app-window.theme-dark .layout-toggle,
+      .theme-dark .codex-app-window .layout-toggle,
       .codex-app-window.theme-dark .review-menu,
+      .theme-dark .codex-app-window .review-menu,
       .codex-app-window.theme-dark .expand-button,
-      .codex-app-window.theme-dark .add-review {
+      .theme-dark .codex-app-window .expand-button,
+      .codex-app-window.theme-dark .add-review,
+      .theme-dark .codex-app-window .add-review {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .vscode-pill {
+      .codex-app-window.theme-dark .vscode-pill,
+      .theme-dark .codex-app-window .vscode-pill {
         border-color: var(--line);
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .thread-pane {
+      .codex-app-window.theme-dark .thread-pane,
+      .theme-dark .codex-app-window .thread-pane {
         border-right-color: var(--line);
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .prompt-bubble {
+      .codex-app-window.theme-dark .prompt-bubble,
+      .theme-dark .codex-app-window .prompt-bubble {
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .previous-link {
+      .codex-app-window.theme-dark .previous-link,
+      .theme-dark .codex-app-window .previous-link {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .assistant-response {
+      .codex-app-window.theme-dark .assistant-response,
+      .theme-dark .codex-app-window .assistant-response {
         border-top-color: var(--line);
       }
 
-      .codex-app-window.theme-dark .assistant-response p {
+      .codex-app-window.theme-dark .assistant-response p,
+      .theme-dark .codex-app-window .assistant-response p {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark code {
+      .codex-app-window.theme-dark code,
+      .theme-dark .codex-app-window code {
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-card {
+      .codex-app-window.theme-dark .change-card,
+      .theme-dark .codex-app-window .change-card {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
       }
 
-      .codex-app-window.theme-dark .change-card header {
+      .codex-app-window.theme-dark .change-card header,
+      .theme-dark .codex-app-window .change-card header {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-icon {
+      .codex-app-window.theme-dark .change-icon,
+      .theme-dark .codex-app-window .change-icon {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
       }
 
-      .codex-app-window.theme-dark .change-title {
+      .codex-app-window.theme-dark .change-title,
+      .theme-dark .codex-app-window .change-title {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-undo {
+      .codex-app-window.theme-dark .change-undo,
+      .theme-dark .codex-app-window .change-undo {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .change-review {
+      .codex-app-window.theme-dark .change-review,
+      .theme-dark .codex-app-window .change-review {
         background: #322f26;
         border-color: rgba(255, 255, 255, 0.12);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-row {
+      .codex-app-window.theme-dark .change-row,
+      .theme-dark .codex-app-window .change-row {
         border-top-color: rgba(255, 255, 255, 0.08);
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .change-row .path {
+      .codex-app-window.theme-dark .change-row .path,
+      .theme-dark .codex-app-window .change-row .path {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .bubble-time,
+      .theme-dark .codex-app-window .bubble-time,
       .codex-app-window.theme-dark .bubble-meta,
+      .theme-dark .codex-app-window .bubble-meta,
       .codex-app-window.theme-dark .worked-row,
-      .codex-app-window.theme-dark .feedback-row svg {
+      .theme-dark .codex-app-window .worked-row,
+      .codex-app-window.theme-dark .feedback-row svg,
+      .theme-dark .codex-app-window .feedback-row svg {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .thread-hairline {
+      .codex-app-window.theme-dark .thread-hairline,
+      .theme-dark .codex-app-window .thread-hairline {
         background: var(--line);
       }
 
-      .codex-app-window.theme-dark .composer {
+      .codex-app-window.theme-dark .composer,
+      .theme-dark .codex-app-window .composer {
         border-color: var(--line-strong);
         background: #2a2922;
         box-shadow: 0 9px 26px rgba(0, 0, 0, 0.35);
       }
 
-      .codex-app-window.theme-dark .composer-input {
+      .codex-app-window.theme-dark .composer-input,
+      .theme-dark .codex-app-window .composer-input {
         color: #6f6c61;
       }
 
       .codex-app-window.theme-dark .plus-button,
-      .codex-app-window.theme-dark .mic-button {
+      .theme-dark .codex-app-window .plus-button,
+      .codex-app-window.theme-dark .mic-button,
+      .theme-dark .codex-app-window .mic-button {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .permission-select {
+      .codex-app-window.theme-dark .permission-select,
+      .theme-dark .codex-app-window .permission-select {
         color: #e8a25c;
       }
 
-      .codex-app-window.theme-dark .model-select {
+      .codex-app-window.theme-dark .model-select,
+      .theme-dark .codex-app-window .model-select {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .model-tier {
+      .codex-app-window.theme-dark .model-tier,
+      .theme-dark .codex-app-window .model-tier {
         color: #8ea1ff;
       }
 
-      .codex-app-window.theme-dark .model-spinner {
+      .codex-app-window.theme-dark .model-spinner,
+      .theme-dark .codex-app-window .model-spinner {
         border-color: rgba(255, 255, 255, 0.2);
         border-top-color: transparent;
-        border-right-color: transparent;
       }
 
-      .codex-app-window.theme-dark .user-avatar {
+      .codex-app-window.theme-dark .user-avatar,
+      .theme-dark .codex-app-window .user-avatar {
         background: #c9a233;
       }
 
-      .codex-app-window.theme-dark .send-button {
+      .codex-app-window.theme-dark .send-button,
+      .theme-dark .codex-app-window .send-button {
         background: #3a3830;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .send-button::before {
+      .codex-app-window.theme-dark .send-button::before,
+      .theme-dark .codex-app-window .send-button::before {
         border-left-color: #ece9dd;
         border-top-color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .viewer-pane {
+      .codex-app-window.theme-dark .viewer-pane,
+      .theme-dark .codex-app-window .viewer-pane {
         background: var(--window);
         border-left-color: var(--line);
       }
 
-      .codex-app-window.theme-dark .viewer-tab.active {
+      .codex-app-window.theme-dark .viewer-tab.active,
+      .theme-dark .codex-app-window .viewer-tab.active {
         background: var(--soft);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .tab-icon.active {
+      .codex-app-window.theme-dark .tab-icon.active,
+      .theme-dark .codex-app-window .tab-icon.active {
         background: #2c2b24;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .crumb-open {
+      .codex-app-window.theme-dark .crumb-open,
+      .theme-dark .codex-app-window .crumb-open {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .viewer-code {
+      .codex-app-window.theme-dark .viewer-code,
+      .theme-dark .codex-app-window .viewer-code {
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .v-line code {
+      .codex-app-window.theme-dark .v-line code,
+      .theme-dark .codex-app-window .v-line code {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .v-line .tk-b {
+      .codex-app-window.theme-dark .v-line .tk-b,
+      .theme-dark .codex-app-window .v-line .tk-b {
         color: #d0a24c;
       }
 
-      .codex-app-window.theme-dark .v-line.add {
+      .codex-app-window.theme-dark .v-line.add,
+      .theme-dark .codex-app-window .v-line.add {
         background: rgba(111, 191, 142, 0.16);
         box-shadow: inset 4px 0 0 #6fbf8e;
       }
 
-      .codex-app-window.theme-dark .v-line.add em {
+      .codex-app-window.theme-dark .v-line.add em,
+      .theme-dark .codex-app-window .v-line.add em {
         background: rgba(111, 191, 142, 0.1);
         color: #8fcf9c;
         box-shadow: inset 3px 0 0 #6fbf8e;

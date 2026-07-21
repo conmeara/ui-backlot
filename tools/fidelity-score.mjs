@@ -376,6 +376,24 @@ function diceBigrams(a, b) {
   return (2 * overlap) / (total + totalB);
 }
 
+/* Elements captured entirely outside the target frame (scrolled-off chat
+ * history above y=0, virtualized list content below the fold, etc.) can
+ * never have a counterpart in a single static capture and would only
+ * penalize matchScore's coverage denominator for content nobody — human
+ * judge or matcher — could see in the compared screenshot. A small margin
+ * tolerates float rounding at the frame edge. */
+const FRAME_OVERLAP_MARGIN = 0.02;
+
+function overlapsFrame(cx, cy, w, h) {
+  const top = cy - h / 2, bottom = cy + h / 2, left = cx - w / 2, right = cx + w / 2;
+  return (
+    bottom > -FRAME_OVERLAP_MARGIN &&
+    top < 1 + FRAME_OVERLAP_MARGIN &&
+    right > -FRAME_OVERLAP_MARGIN &&
+    left < 1 + FRAME_OVERLAP_MARGIN
+  );
+}
+
 function normalizeElements(payload) {
   const base = payload.targetRect || { x: 0, y: 0, width: payload.viewport?.width || 1, height: payload.viewport?.height || 1 };
   const pageBg = parseColor(payload.pageBackground) || { r: 255, g: 255, b: 255, a: 1 };
@@ -400,7 +418,8 @@ function normalizeElements(payload) {
       bg: comp(parseColor(el.style.backgroundColor)),
       fontSize: Number.parseFloat(el.style.fontSize) || null,
       fontWeight: Number.parseFloat(el.style.fontWeight) || null
-    }));
+    }))
+    .filter((el) => overlapsFrame(el.cx, el.cy, el.w, el.h));
 }
 
 /* Ancestry hint: for each element, record the text of its smallest enclosing
@@ -421,6 +440,51 @@ function attachContext(els) {
     }
     el.ctx = best ? best.text : "";
   }
+}
+
+/* Wrapper-chain collapse: real captured DOMs — especially surfaces mounted
+ * through runtime/backlot-component-loader.js — carry many nested layout-only
+ * divs (row/grid/flex wrappers) that share the same bounding box as their one
+ * meaningful descendant. Left in, these near-duplicate-geometry nodes flood
+ * the pairing pool: dozens of near-identical-cost candidates compete for the
+ * same handful of counterparts, and the greedy assignment below commits early
+ * to whichever wrapper happens to have negligibly lower cost — "spending" a
+ * real element on a content-free wrapper while its true counterpart goes
+ * unmatched. Measured on the claude-composed-app pair: 70% of the reference's
+ * 600 elements sit in duplicate-rect groups (largest group size 6) vs 9% of
+ * ours — a direct artifact of DOM depth differing between a hand-authored
+ * surface and a live app's component tree, not a content difference.
+ * Collapsing each same-rect cluster to its single most-specific member (the
+ * one carrying text or paint, deepest in document order among those) removes
+ * the ambiguity before matching ever runs, on both sides symmetrically. Runs
+ * after attachContext so ancestor-text hints still see the full tree. */
+function collapseWrapperChains(elements) {
+  const groups = new Map();
+  const order = [];
+  elements.forEach((el, idx) => {
+    const key = `${el.px.x.toFixed(1)},${el.px.y.toFixed(1)},${el.px.width.toFixed(1)},${el.px.height.toFixed(1)}`;
+    if (!groups.has(key)) {
+      groups.set(key, []);
+      order.push(key);
+    }
+    groups.get(key).push({ el, idx });
+  });
+  const keep = new Set();
+  for (const key of order) {
+    const members = groups.get(key);
+    if (members.length === 1) {
+      keep.add(members[0].idx);
+      continue;
+    }
+    // Prefer members that actually carry a signal (own text or a painted
+    // background); among those, keep the last in document order — wrapper
+    // chains list ancestor before descendant, so the tail is the deepest,
+    // most specific node. Falls back to the full group if none qualify.
+    const informative = members.filter((m) => m.el.textNorm || m.el.bg);
+    const pool = informative.length ? informative : members;
+    keep.add(pool[pool.length - 1].idx);
+  }
+  return elements.filter((_, idx) => keep.has(idx));
 }
 
 /* Truncation-tolerant text equality: capture tools clip text at different
@@ -488,9 +552,10 @@ function pairCost(a, b) {
   return centerDist * 1.6 + sizeDiff * 0.9 + textCost + tagCost + roleCost + ctxCost + styleCost;
 }
 
+/* Expects already-context-tagged, wrapper-collapsed element lists (see
+ * prepareElements) — the caller owns that pipeline so it can reuse the same
+ * collapsed lists for weighting/counts consistently with what was matched. */
 function matchElements(ours, theirs) {
-  attachContext(ours);
-  attachContext(theirs);
   const pairs = [];
   // Best/second-best cost per element on each side — a small margin between
   // them means the match was ambiguous (duplicate wrappers), so downgrade
@@ -556,10 +621,22 @@ function matchConfidence(a, b, margin) {
   return Math.round(conf * 100) / 100;
 }
 
+/* normalizeElements -> attachContext (needs the full tree, ancestors
+ * included) -> collapseWrapperChains (needs ctx already attached). The
+ * collapsed list is what both matching and counts/weights should see —
+ * otherwise duplicate wrapper geometry would silently re-inflate the "how
+ * much of the real app did we cover" denominator even after collapsing fixed
+ * the pairing itself. */
+function prepareElements(payload) {
+  const els = normalizeElements(payload);
+  attachContext(els);
+  return collapseWrapperChains(els);
+}
+
 function scoreElements(oursPayload, theirsPayload) {
   if (!oursPayload.elements?.length || !theirsPayload.elements?.length) return null;
-  const ours = normalizeElements(oursPayload);
-  const theirs = normalizeElements(theirsPayload);
+  const ours = prepareElements(oursPayload);
+  const theirs = prepareElements(theirsPayload);
   const { matched, unmatchedOurs, unmatchedTheirs } = matchElements(ours, theirs);
 
   const weight = (el) => Math.sqrt(Math.max(el.w * el.h, 1e-6));
@@ -870,7 +947,15 @@ async function main() {
   console.log(outPath);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// Guarded so this module can be imported by debug/test scripts (e.g.
+// workspace/scratch/*) without re-running the CLI's main().
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+// Exported for tooling/debug scripts only (workspace/scratch/*) — does not
+// change CLI behavior or the on-disk report schema.
+export { normalizeElements, prepareElements, collapseWrapperChains, matchElements, pairCost, matchConfidence, scoreElements, main };
