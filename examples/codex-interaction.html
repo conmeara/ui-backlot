@@ -5,7 +5,7 @@
     <title>Codex — Interaction Demo</title>
   </head>
   <body>
-    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="9.5">
+    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="7.2">
       <section class="cx-stage" data-primitive="codex-interaction" aria-label="Codex CLI finishing a command, running tools, and applying an edit">
         <div class="cx-window">
           <div
@@ -44,7 +44,7 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const DURATION = 9.5;
+      const DURATION = 7.2;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".cx-stage");
 
@@ -62,35 +62,90 @@
 
         // ---- Mounted targets (all inside the real Codex terminal chrome) ----
         const composerInput = win.querySelector(".composer-input");
+        const inputBar = win.querySelector(".composer-input .input-bar");
         const inputTextEl = win.querySelector(".input-text");
         const typedTail = win.querySelector('[data-role="cx-typed-tail"]');
-        const cursorEl = win.querySelector('[data-role="cx-cursor"]');
+        const transcript = win.querySelector(".transcript");
         const liveExplore = win.querySelector('[data-role="live-explore"]');
         const livePlan = win.querySelector('[data-role="live-plan"]');
         const liveApplied = win.querySelector('[data-role="live-applied"]');
         const liveAppliedText = win.querySelector('[data-role="live-applied-text"]');
-        // The pinned session's transcript already fills the terminal's
-        // fixed-height screen down to the composer (that's the reference
-        // capture's own long-session framing) — there is zero slack left
-        // for a new turn. Fold the least-load-bearing established rows
-        // (internal monologue, the approval prompt, the earlier diff, and
-        // the now-finished spinner) once the live turn starts, the same way
-        // a real terminal's older lines scroll away, so the new turn has
-        // room.
-        const collapseRows = Array.from(win.querySelectorAll(".thought-row, .approval-row, .running-row"))
-          .concat(Array.from(win.querySelectorAll(".diff-row")).filter((el) => el !== liveApplied));
-        if (!composerInput || !inputTextEl || !typedTail || !liveExplore || !livePlan || !liveApplied || !liveAppliedText) return;
+        const liveTool1Kind = win.querySelector('[data-role="live-tool-1-kind"]');
+        const liveTool1Path = win.querySelector('[data-role="live-tool-1-path"]');
+        const liveTool2Kind = win.querySelector('[data-role="live-tool-2-kind"]');
+        const liveTool2Path = win.querySelector('[data-role="live-tool-2-path"]');
+        const livePlan1 = win.querySelector('[data-role="live-plan-1"]');
+        const livePlan2 = win.querySelector('[data-role="live-plan-2"]');
+        const livePlan3 = win.querySelector('[data-role="live-plan-3"]');
+        // Real Codex appends a new turn BELOW existing scrollback in-session
+        // — it only full-repaints on discrete overlay transitions (startup,
+        // resume picker), never on a plain follow-up submit. collapseRows
+        // names the prior turn's rows; the timeline keeps the newest tail of
+        // them on screen and only instantly drops the oldest (see the
+        // collapseAt block below — the mounted terminal has no scroll
+        // container, so full old + full new can't both fit).
+        const collapseRows = Array.from(win.querySelectorAll(".transcript > article")).filter(
+          (el) => !el.classList.contains("live-turn")
+        );
+        if (
+          !composerInput || !inputTextEl || !typedTail || !transcript ||
+          !liveExplore || !livePlan || !liveApplied || !liveAppliedText ||
+          !liveTool1Path || !liveTool2Path || !livePlan1 || !livePlan2 || !livePlan3 ||
+          collapseRows.length === 0
+        ) return;
 
         // The pinned composer already carries a mid-typed sentence (the
-        // reference capture's own state) — this demo finishes it rather
-        // than inventing a new one, same idiom as browser-interaction
-        // reading its URL out of the mount.
-        const TAIL = "an.";
-        const APPLIED = liveAppliedText.textContent.trim();
+        // reference capture's own state); this demo finishes it rather than
+        // inventing a new one, same idiom as browser-interaction reading its
+        // URL out of the mount. Trimmed back a few extra characters from the
+        // pinned prefix (still the same final sentence) so the typing beat
+        // has enough characters to read as a person typing.
+        gsap.set(inputTextEl, { textContent: "Awesome! Let's implement the" });
+        const TAIL = " plan.";
+
+        // Rewrite the live turn's content so the streamed response coheres
+        // with the session prompt above it ("Make the Codex terminal
+        // surface match actual public CLI screenshots") instead of the
+        // mounted composition's own unrelated marketing-page placeholder.
+        if (liveTool1Kind) gsap.set(liveTool1Kind, { textContent: "Read" });
+        gsap.set(liveTool1Path, { textContent: "compositions/codex-terminal.html" });
+        if (liveTool2Kind) gsap.set(liveTool2Kind, { textContent: "Read" });
+        gsap.set(liveTool2Path, { textContent: "reference/codex/app-screenshots/app-screenshot-light.webp" });
+        gsap.set(livePlan1, { textContent: "Recheck the splash header spacing against the CLI reference" });
+        gsap.set(livePlan2, { textContent: "Verify the prompt band and transcript bullet rhythm" });
+        gsap.set(livePlan3, { textContent: "Tighten the composer chrome and shortcut row" });
+        const APPLIED = "Applied 3 edits to codex-terminal.html — 14 insertions, 5 deletions.";
+
+        // The sent message needs a visible "> ..." prompt row of its own —
+        // real Codex echoes every submitted turn as a new prompt line above
+        // its response, otherwise the streamed Explored/Plan/Applied blocks
+        // read as attached to the OLD prompt still pinned above the
+        // transcript. Built the same bullet+content grid shape as every
+        // other .transcript article (18px bullet column, 1fr content) so it
+        // sits in the rhythm; text color matches the real .user-prompt band
+        // (bright text, muted glyph) rather than the dimmer transcript
+        // commentary color. Marked "live-turn" so article.live-turn's own
+        // display:none rule (see codex-terminal.html) hides it by default
+        // and collapseRows' ":not(.live-turn)" filter leaves it untouched.
+        const livePromptRow = document.createElement("article");
+        livePromptRow.className = "live-turn";
+        livePromptRow.setAttribute("data-role", "live-prompt-row");
+        const livePromptBullet = document.createElement("span");
+        livePromptBullet.className = "bullet";
+        livePromptBullet.textContent = ">";
+        const livePromptText = document.createElement("p");
+        livePromptText.style.color = "var(--terminal-text)";
+        livePromptText.style.fontSize = "15px";
+        const livePromptStrong = document.createElement("strong");
+        livePromptStrong.textContent = "Awesome! Let's implement the plan.";
+        livePromptText.appendChild(livePromptStrong);
+        livePromptRow.appendChild(livePromptBullet);
+        livePromptRow.appendChild(livePromptText);
+        transcript.insertBefore(livePromptRow, liveExplore);
 
         // ---- Rest-frame pins (t=0): pinned composer text as captured,
         // live turn not yet run. gsap.set (not tl.set at 0). ----
-        gsap.set([liveExplore, livePlan, liveApplied], { opacity: 0 });
+        gsap.set([livePromptRow, liveExplore, livePlan, liveApplied], { opacity: 0 });
 
         // Typing target starts EMPTY (display:none, not just empty text —
         // composer-input is a flex row with `gap`, so an empty-but-present
@@ -109,7 +164,7 @@
         // 1) Click the composer, finish typing the pinned sentence.
         const CLICK_AT = 0.7;
         const TYPE_AT = 1.15;
-        const CPS = 10;
+        const CPS = 17;
         ix.click(composerInput, { at: CLICK_AT, moveDur: 0.6 });
         tl.set(typedTail, { display: "inline" }, TYPE_AT);
         for (let i = 0; i < tailChars.length; i++) {
@@ -117,49 +172,94 @@
         }
         const tailEndAt = TYPE_AT + TAIL.length / CPS;
 
+        // The old turn's in-flight check ticks and then completes while the
+        // user is still typing — an "Esc to interrupt" spinner can't outlive
+        // its own turn into the next prompt's response (mount strips the
+        // composition's script, so the spinner is otherwise frozen).
+        const runningRowEl = win.querySelector(".running-row");
+        const runningBullet = runningRowEl && runningRowEl.querySelector(".bullet");
+        const runningTextEl = runningRowEl && runningRowEl.querySelector("p");
+        if (runningBullet && runningTextEl) {
+          ["◓", "◑", "◒"].forEach((frame, i) => {
+            tl.set(runningBullet, { textContent: frame }, 0.45 + i * 0.45);
+          });
+          const checkDoneAt = TYPE_AT + 0.25;
+          tl.set(runningBullet, { textContent: "•", attr: { class: "bullet" } }, checkDoneAt);
+          tl.set(runningTextEl, { textContent: "Checked terminal capture fidelity (12s)" }, checkDoneAt);
+        }
+
         // 2) Send: the composer clears (message sent) while the terminal
         // moves on to running the turn.
-        const submitAt = tailEndAt + 0.45;
+        const submitAt = tailEndAt + 0.4;
         tl.to(composerInput, { opacity: 0, duration: 0.15 }, submitAt);
 
-        // 2b) The finished spinner + older reasoning scroll away, making
-        // room for the new turn's transcript (see collapseRows comment
-        // above) — a discrete display:none step once the fade completes,
-        // like every other latent-content toggle in this repo's demos.
-        const collapseAt = submitAt + 0.25;
-        tl.to(collapseRows, { opacity: 0, duration: 0.3 }, collapseAt);
-        tl.set(collapseRows, { display: "none" }, collapseAt + 0.3);
+        // 2b) The mounted terminal-screen has a hard fixed-height clip with
+        // zero slack even for the OLD turn alone — the full new turn cannot
+        // fit below the full old one. A terminal never deletes interior
+        // scrollback while keeping both ends pinned, so this is modeled as a
+        // real scroll: the ENTIRE buffer (splash header, tip line, old
+        // prompt band, transcript) translates up until the newest tail of
+        // the old turn (Diff + checks row) sits at the top of the clip, the
+        // oldest content sliding off-screen intact. offsetTop is used for
+        // the distance (layout px, unaffected by the mount's outer scale).
+        const screenEl = win.querySelector(".terminal-screen");
+        const splashEl = win.querySelector(".codex-splash");
+        const tipEl = win.querySelector(".tip-line");
+        const promptBandEl = win.querySelector(".user-prompt");
+        const diffRowEl = win.querySelector(".diff-row");
+        if (screenEl) gsap.set(screenEl, { overflow: "hidden" });
+        const scrollEls = [splashEl, tipEl, promptBandEl, transcript].filter(Boolean);
+        const scrollDelta = diffRowEl && splashEl
+          ? Math.max(0, Math.round(
+              (diffRowEl.getBoundingClientRect().top - splashEl.getBoundingClientRect().top) /
+              (win.getBoundingClientRect().width / win.offsetWidth || 1)
+            ))
+          : 0;
+        const collapseAt = submitAt + 0.2;
+        const collapseFadeDur = 0.35;
+        if (scrollDelta > 0) {
+          tl.to(scrollEls, { y: -scrollDelta, duration: collapseFadeDur, ease: "power1.inOut" }, collapseAt);
+        }
+
+        // 2c) The sent turn's own "> ..." prompt line appears right as the
+        // old turn's activity settles — the visible cause for the response
+        // that follows. ratatui repaints instantly (it never alpha-composites
+        // monospace glyphs), so this is a snap-in `tl.set`, not a fade.
+        const promptAt = collapseAt + collapseFadeDur + 0.05;
+        tl.set(livePromptRow, { display: "grid", opacity: 1 }, promptAt);
 
         // 3) Tool-call results ("Explored") pop in as a completed block —
-        // real Codex chrome, not typed character by character.
-        const exploreAt = collapseAt + 0.3 + 0.35;
-        tl.set(liveExplore, { display: "grid" }, exploreAt);
-        tl.to(liveExplore, { opacity: 1, duration: 0.25 }, exploreAt);
+        // real Codex chrome, snapped in as a repaint, not typed or faded.
+        const exploreAt = promptAt + 0.3;
+        tl.set(liveExplore, { display: "grid", opacity: 1 }, exploreAt);
 
         // 4) Plan checklist pops in the same way, a beat later.
-        const planAt = exploreAt + 0.9;
-        tl.set(livePlan, { display: "grid" }, planAt);
-        tl.to(livePlan, { opacity: 1, duration: 0.25 }, planAt);
+        const planAt = exploreAt + 0.75;
+        tl.set(livePlan, { display: "grid", opacity: 1 }, planAt);
 
-        // 5) The applied summary is the only part that streams token by
-        // token, like AI prose.
-        const appliedAt = planAt + 0.9;
-        tl.set(liveApplied, { display: "grid" }, appliedAt);
-        tl.to(liveApplied, { opacity: 1, duration: 0.2 }, appliedAt);
-        ix.stream(liveAppliedText, APPLIED, { at: appliedAt + 0.2, cps: 32, unit: "word" });
+        // 5) The applied summary block also snaps in; only its text streams
+        // token by token, like AI prose.
+        const appliedAt = planAt + 0.7;
+        tl.set(liveApplied, { display: "grid", opacity: 1 }, appliedAt);
+        ix.stream(liveAppliedText, APPLIED, { at: appliedAt + 0.2, cps: 45, unit: "word" });
 
-        // 6) Composer resets to idle, ready for the next command.
-        const doneAt = appliedAt + 0.2 + APPLIED.length / 32 + 0.3;
+        // 6) Composer resets to idle, ready for the next command. Hiding
+        // input-bar alongside the text clear leaves exactly one caret
+        // (cx-cursor) in the idle composer — with the pinned/typed text
+        // gone, input-bar and cx-cursor would otherwise sit right next to
+        // each other across only the flex gap, reading as a doubled cursor.
+        const doneAt = appliedAt + 0.2 + APPLIED.length / 45 + 0.3;
         tl.set(inputTextEl, { textContent: "" }, doneAt);
         tl.set(typedTail, { textContent: "", display: "none" }, doneAt);
+        if (inputBar) tl.set(inputBar, { display: "none" }, doneAt);
         tl.to(composerInput, { opacity: 1, duration: 0.25 }, doneAt);
       }).catch(() => {});
 
       window.__timelines["codex-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(9.2).pause();
-        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(9.2).pause(); }).catch(() => {});
+        tl.seek(7.05).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(7.05).pause(); }).catch(() => {});
       }
     </script>
   </body>

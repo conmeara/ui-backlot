@@ -5,7 +5,7 @@
     <title>Claude Cowork — Interaction Demo</title>
   </head>
   <body>
-    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="11.5">
+    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12.5">
       <section class="cw-stage" data-primitive="cowork-interaction" aria-label="The real Claude app (cowork session): type a prompt, send, and watch the task run with the agent rail">
         <div class="cw-backdrop" aria-hidden="true"></div>
         <div class="cw-frame component-frame"
@@ -39,6 +39,21 @@
       /* ---- interaction-only additions (runtime DOM built after mount) ---- */
       .demo-placeholder { position:absolute; pointer-events:none; color:var(--claude-text-faint,#7b7974); }
       .demo-caret { display:inline-block; width:1.5px; height:1.05em; margin-left:1px; vertical-align:text-bottom; background:#141414; opacity:0; }
+      /* reply-secondary streams via ix.stream(), which (like ix.type()) gives
+         each space its own inline white-space:pre span so a space is never
+         eaten mid-reveal — but that also removes the browser's normal wrap
+         opportunity at every space, so the whole line refuses to break at
+         all (same quirk word-interaction.html documents/fixes for .doc-body).
+         Force normal + a definite width so the two-line wrap is deterministic. */
+      .thread-slot [data-copy="reply-secondary"] { display: block; width: 640px; max-width: 100%; }
+      .thread-slot [data-copy="reply-secondary"] .bl-char { white-space: normal !important; }
+      /* The typed reply-composer prompt hits the exact same per-char
+         white-space:pre-blocks-wrap quirk (see above) — headless capture
+         refuses to break the line at all, letting a full-length prompt run
+         past the composer's right edge (clipped) and, once wide enough,
+         crowd out the send button that sits in the control row beneath it.
+         Same fix: force normal wrap on the typed chars. */
+      .composer-slot-cowork .cw-prompt-input .bl-char { white-space: normal !important; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -71,7 +86,7 @@
       // Registered SYNCHRONOUSLY with a full-duration hold (the mount is
       // async; the renderer must never probe a zero-duration composition).
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 11.5 }, 0);
+      tl.to(stage, { opacity: 1, duration: 12.5 }, 0);
       window.__timelines["cowork-interaction"] = tl;
       tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
 
@@ -93,20 +108,31 @@
         const line2 = stage.querySelector('.thread-slot [data-copy="reply-secondary"]');
         const thinkingCard = stage.querySelector(".thread-slot .thinking-card");
         const toolCard = stage.querySelector(".thread-slot .tool-card");
+        const toolMeta = toolCard ? toolCard.querySelector('[data-copy="tool-meta"]') : null;
         const toolRows = Array.from(stage.querySelectorAll(".thread-slot .tool-row"));
         const commandCard = stage.querySelector(".thread-slot .command-card");
         const commandPre = commandCard && commandCard.querySelector("pre");
         const actions = stage.querySelector(".thread-slot .message-actions");
+        const railStepper = stage.querySelector(".rail-slot .rail-stepper");
         if (!input || !sendBtn || !bubble || !line1 || !thinkingCard || !toolCard || !commandCard) return;
 
         // The prompt typed must be the very message the mounted thread shows.
         const PROMPT = bubble.textContent.trim();
+        // reply-secondary wraps to two visual lines — captured now (before the
+        // stream() rebuild below clears it) so it can be revealed char-by-char
+        // in reading order instead of a rectangular clip wipe.
+        const LINE2_TEXT = line2 ? line2.textContent.trim() : "";
+        // Natural (un-collapsed) row heights, measured before the tool-card
+        // rows are pinned to height:0 below, so each row can grow into place
+        // as it lands instead of the card fading in pre-sized with an empty body.
+        const toolRowHeights = toolRows.map((row) => row.getBoundingClientRect().height);
 
         // The context strip is latent (display:none) in the atom's defaults —
         // enable it statically; visibility is animated via autoAlpha. The
         // Response card + message actions are the CHAT demo's closing beat:
         // removed from layout here so the full progress card fits above the
-        // composer, and this session ends honestly mid-work.
+        // composer; this session instead ends on the progress card's last
+        // row settling to done (see step 4 below).
         if (contextStrip) contextStrip.style.display = "flex";
         if (commandCard) commandCard.style.display = "none";
         if (actions) actions.style.display = "none";
@@ -145,8 +171,12 @@
         tl.set(typedChars, { display: "none" }, 0);
         tl.set(caret, { opacity: 0 }, 0);
         tl.set([bubble, contextStrip, replyMark, thinkingCard, toolCard], { autoAlpha: 0 }, 0);
-        tl.set(toolRows, { autoAlpha: 0 }, 0);
-        tl.set([line1, line2], { clipPath: "inset(0 100% 0 0)" }, 0);
+        // Rows start collapsed (not just invisible) so the tool card's body
+        // grows with them landing rather than fading in already full height.
+        // .tool-row has CSS min-height:38px, which floors a height:0 tween
+        // unless min-height is cleared too.
+        tl.set(toolRows, { autoAlpha: 0, height: 0, minHeight: 0, overflow: "hidden" }, 0);
+        tl.set(line1, { clipPath: "inset(0 100% 0 0)" }, 0);
 
         // 1) Focus the real reply composer and type the prompt.
         const FOCUS_AT = 0.9;
@@ -163,7 +193,11 @@
 
         // 2) Send: click the real coral send button; the composer clears and
         //    the prompt appears as the thread's user bubble, in place.
-        const SEND_AT = TYPE_END + 0.55;
+        // +0.9s (not +0.55s): leaves at least one rendered frame showing the
+        // finished prompt resting in the composer before the send click,
+        // instead of compressing the last few typed characters and the send
+        // into the same sampled frame.
+        const SEND_AT = TYPE_END + 0.9;
         tl.set(caret, { opacity: 0, overwrite: true }, SEND_AT - 0.02);
         ix.click(sendBtn, { at: SEND_AT, moveDur: 0.55 });
         ix.hide(typed, { at: SEND_AT + 0.08, dur: 0.14 });
@@ -174,31 +208,78 @@
         // Cursor drifts off into the reading column while the task runs.
         tl.to(".demo-cursor", { left: 620, top: 430, duration: 0.7, ease: "power2.inOut" }, SEND_AT + 0.5);
 
-        // 3) Assistant turn: the two lead lines wipe in like streamed text,
-        //    then the Running-command card, then the progress card's rows
-        //    land one by one, then the Response card streams its output.
+        // 3) Assistant turn: line1 wipes in as a single-line clip reveal;
+        //    line2 wraps to two visual lines, so it streams char-by-char in
+        //    reading order instead (a rectangular wipe would show the second
+        //    wrapped line's start before the first wrapped line finishes).
+        //    Then the Running-command card, then the progress card's rows
+        //    land one by one, then the last row settles to done.
         const AI_AT = SEND_AT + 0.8;
         tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
         tl.to(line1, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, AI_AT + 0.05);
-        tl.to(line2, { clipPath: "inset(0 0% 0 0)", duration: 0.95, ease: "none" }, AI_AT + 0.85);
+        const LINE2_CPS = 48;
+        const LINE2_AT = AI_AT + 0.85;
+        const LINE2_DUR = LINE2_TEXT.length / LINE2_CPS;
+        if (line2 && LINE2_TEXT) ix.stream(line2, LINE2_TEXT, { at: LINE2_AT, cps: LINE2_CPS });
 
-        const THINK_AT = AI_AT + 2.0;
+        const THINK_AT = LINE2_AT + LINE2_DUR + 0.2;
         tl.fromTo(thinkingCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, THINK_AT);
 
         const TOOL_AT = THINK_AT + 0.85;
         tl.fromTo(toolCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, TOOL_AT);
         toolRows.forEach((row, i) => {
-          tl.to(row, { autoAlpha: 1, duration: 0.18 }, TOOL_AT + 0.3 + i * 0.5);
+          tl.to(row, { autoAlpha: 1, height: toolRowHeights[i], duration: 0.22 }, TOOL_AT + 0.3 + i * 0.5);
         });
 
-        // 4) The session ends honestly mid-work: the last progress row sits
-        //    in its "working" state with the agent rail alongside.
+        // 4) Settle: the last progress row flips from its active/"working"
+        //    spinner state to a resolved checkmark row (same state-flip
+        //    pattern as the done rows above it) so the demo ends on a still,
+        //    completed frame instead of holding on live motion.
+        const LAST_ROW_AT = TOOL_AT + 0.3 + (toolRows.length - 1) * 0.5;
+        const SETTLE_AT = LAST_ROW_AT + 0.4;
+
+        // The tool timer ("00:07" as-mounted) ticks up while the card is
+        // visibly still running, instead of sitting frozen for the whole
+        // card lifetime — a real Claude tool clock counts up one second per
+        // second of run time. Ticks are spaced across TOOL_AT..SETTLE_AT
+        // (the window the rows are actively landing in) and the last value
+        // is re-pinned at SETTLE_AT so the final held frame is still.
+        if (toolMeta) {
+          const tickSpan = SETTLE_AT - TOOL_AT;
+          const tickTimes = [TOOL_AT + tickSpan * 0.25, TOOL_AT + tickSpan * 0.55, TOOL_AT + tickSpan * 0.85];
+          const tickLabels = ["00:08", "00:09", "00:10"];
+          tickTimes.forEach((t, i) => tl.set(toolMeta, { textContent: tickLabels[i] }, t));
+          tl.set(toolMeta, { textContent: tickLabels[tickLabels.length - 1] }, SETTLE_AT);
+        }
+        const lastRow = toolRows[toolRows.length - 1];
+        if (lastRow) {
+          const lastLabel = lastRow.querySelector('[data-copy^="tool-row-"]');
+          const lastStatus = lastRow.querySelector(".tool-status");
+          tl.set(lastRow, { attr: { class: "tool-row done" } }, SETTLE_AT);
+          if (lastLabel) tl.set(lastLabel, { textContent: "Updated opening slides" }, SETTLE_AT);
+          if (lastStatus) tl.set(lastStatus, { textContent: "ready" }, SETTLE_AT);
+        }
+
+        // The rail's Progress stepper (top-right) mirrors the same
+        // completion: promote its still-empty third dot to "done" (with the
+        // same check glyph the first two dots use) at SETTLE_AT, so the
+        // stepper's own progressive reveal matches the caption's promise
+        // instead of sitting static at 2-of-3 for the whole run.
+        if (railStepper) {
+          const railSteps = railStepper.querySelectorAll(".rail-step");
+          const doneStep = railSteps[0];
+          const lastStep = railSteps[2];
+          if (lastStep && doneStep) {
+            tl.set(lastStep, { attr: { class: "rail-step done" } }, SETTLE_AT);
+            tl.set(lastStep, { innerHTML: doneStep.innerHTML }, SETTLE_AT);
+          }
+        }
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(11.2).pause();
-        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(11.2).pause(); }).catch(() => {});
+        tl.seek(12.2).pause();
+        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(12.2).pause(); }).catch(() => {});
       }
     </script>
   </body>

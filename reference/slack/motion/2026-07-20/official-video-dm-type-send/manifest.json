@@ -1,0 +1,12 @@
+{
+  "source": {
+    "type": "yt-dlp+ffmpeg",
+    "url": "https://www.youtube.com/watch?v=Yp3KG5DBsvw",
+    "title": "How to send a direct message in Slack",
+    "channel": "Slack (official)",
+    "clippedFrom": "37s-45s of a 59.9s source video",
+    "downloadedAt": "2026-07-20"
+  },
+  "interaction": "Select a DM recipient (Jagvir Brar) in the sidebar, type a short reply into the message composer ('Hey @Jagvir Brar can we reschedule our meeting?'), press the send arrow -- the message posts into the thread with the sender name (Steven Pelham) and a 2:31 PM timestamp under a 'Today' divider.",
+  "note": "Acquired via the yt-dlp+ffmpeg fallback (ladder step 3) after two higher-priority ladder steps were unavailable this session: (1) native-local Slack.app is installed and already signed in per reference/sources.json, but the computer-use request_access call for Slack was denied by the user this session, so no interaction could be driven/recorded on the desktop app; (2) the web client (app.slack.com/client) has no active browser session (workspace-signin screen appeared) and logging in is a hard no per task rules. This official Slack YouTube tutorial shows the same story class (select conversation -> type -> send -> message commits with avatar/name/timestamp) so it calibrates composer-to-post timing/easing even though it's a DM rather than a channel. Clip/frames are gitignored (local-only); this manifest is the tracked record."
+}

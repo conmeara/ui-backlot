@@ -5,7 +5,7 @@
     <title>Browser — Interaction Demo</title>
   </head>
   <body>
-    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.6">
+    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.4">
       <section class="br-stage" data-primitive="browser-interaction" aria-label="Browser typing a URL and loading a page">
         <div class="br-app-window">
           <div
@@ -44,7 +44,7 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const DURATION = 4.6;
+      const DURATION = 5.4;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".br-stage");
 
@@ -86,7 +86,6 @@
         const tabTitle = activeTab && activeTab.querySelector(".tab-title");
         const tabFaviconSvg = activeTab && activeTab.querySelector(".tab-favicon");
         const tabFaviconUse = tabFaviconSvg && tabFaviconSvg.querySelector("use");
-        const bookmarkChip = win.querySelector(".bookmark-group");
         if (!urlBar || !urlText || !loadBar || !appShell || !activeTab) return;
 
         // The URL typed is the very address already baked into browser-app's
@@ -104,12 +103,12 @@
 
         // 1) Click the omnibox, type the URL.
         const TYPE_AT = 1.0;
-        const TYPE_CPS = 30;
+        const TYPE_CPS = 20;
         ix.click(urlBar, { at: 0.7, moveDur: 0.5 });
         tl.to(urlBar, { borderColor: "#1a73e8", backgroundColor: "#ffffff", boxShadow: "0 1px 6px rgba(26,115,232,0.28)", duration: 0.15 }, TYPE_AT - 0.15);
-        // cursor parks near the bookmarks row while typing — hands are on
-        // the keyboard, so it shouldn't sit on top of the address bar text.
-        if (bookmarkChip) ix.moveTo(bookmarkChip, { at: TYPE_AT + 0.15, dur: 0.35 });
+        // The cursor stays exactly where it clicked (on the omnibox) for the
+        // entire type+commit — a real hand-typed entry never chases the
+        // mouse to a nearby control mid-keystroke.
         ix.type(urlText, URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
 
         // Autocomplete suggestion panel: fades in with focus, echoes the
@@ -130,7 +129,8 @@
         tl.to(loadBar, { scaleX: 1, duration: 0.35, ease: "power1.in" }, enterAt + 0.5);
         tl.to(loadBar, { opacity: 0, duration: 0.2 }, enterAt + 0.85);
         ix.show(appShell, { at: enterAt + 0.9, dur: 0.25, from: { opacity: 0 } });
-        if (activeTab) ix.moveTo(activeTab, { at: enterAt + 0.05, dur: 0.5 });
+        // Cursor stays parked at the omnibox through the entire load — no
+        // unmotivated drift to the tab strip while the page loads.
 
         // Reload glyph flips to a stop icon for the full load, matching
         // desktop Chrome's most reliable "page is loading" affordance.
@@ -158,8 +158,8 @@
       window.__timelines["browser-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(4.4).pause();
-        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(4.4).pause(); }).catch(() => {});
+        tl.seek(5.2).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(5.2).pause(); }).catch(() => {});
       }
     </script>
   </body>

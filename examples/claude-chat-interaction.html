@@ -5,7 +5,7 @@
     <title>Claude Chat — Interaction Demo</title>
   </head>
   <body>
-    <div id="claude-chat-interaction" data-composition-id="claude-chat-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12">
+    <div id="claude-chat-interaction" data-composition-id="claude-chat-interaction" data-width="1280" data-height="800" data-start="0" data-duration="13">
       <section class="chat-stage" data-primitive="claude-chat-interaction" aria-label="The real Claude app: type on the home page, send, and the conversation opens with a streaming reply">
         <div class="chat-backdrop" aria-hidden="true"></div>
         <div class="chat-frame component-frame"
@@ -40,6 +40,11 @@
       .demo-caret { display:inline-block; width:1.5px; height:1.05em; margin-left:1px; vertical-align:text-bottom; background:#141414; opacity:0; }
       .demo-send { width:30px; height:30px; border:0; border-radius:9px; background:#d97757; color:#fff; display:grid; place-items:center; }
       .demo-send svg { width:15px; height:15px; display:block; }
+      /* Working spinner beside the chat-view composer's model name — ground
+         truth: reference/claude/motion/2026-07-09/code-desktop-tool-progress
+         (model name + rotating ring while a turn runs). */
+      .cw-model-spinner { display:inline-flex; width:13px; height:13px; flex:0 0 auto; }
+      .cw-model-spinner svg { display:block; width:100%; height:100%; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -70,7 +75,7 @@
 
       // Synchronous registration with a full-duration hold (async mount).
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 12 }, 0);
+      tl.to(stage, { opacity: 1, duration: 13 }, 0);
       window.__timelines["claude-chat-interaction"] = tl;
       tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
 
@@ -95,7 +100,19 @@
         const toolRows = Array.from(stage.querySelectorAll(".thread-slot .tool-row"));
         const commandCard = stage.querySelector(".thread-slot .command-card");
         const commandPre = commandCard && commandCard.querySelector("pre");
+        // The "streaming" badge is the command-card-head's last span — the
+        // same selector the atom's own stylesheet uses to color it
+        // (compositions/claude-thread-core.html:648), so it's a stable hook
+        // without editing the composition.
+        const responseStatus = commandCard && commandCard.querySelector(".command-card-head span:last-child");
         const actions = stage.querySelector(".thread-slot .message-actions");
+        const fileList = stage.querySelector(".thread-slot .artifact-file-list");
+        const downloadAll = stage.querySelector(".thread-slot .download-all");
+        // The chat/cowork pages share one composer atom (composer-slot-cowork
+        // renders its panel-cowork face for both) — its model button is the
+        // "Opus 4.8" the reply streams beside.
+        const cwModelBtn = stage.querySelector(".composer-slot-cowork .cw-prompt-model");
+        const cwSendBtn = stage.querySelector(".composer-slot-cowork .cw-prompt-send");
         if (!card || !placeholder || !controls || !bubble || !line1 || !thinkingCard) return;
 
         // The prompt typed must be the very message the thread then shows.
@@ -131,6 +148,57 @@
         sendBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>';
         controls.insertBefore(sendBtn, mic || null);
 
+        // ---- Chat-view composer touch-ups: wrap the model button's leading
+        // text node in its own span (a flex-item sibling of the chevron icon,
+        // so the existing `gap` spacing keeps working) so it can be
+        // retargeted on flip without disturbing the chevron, and give it a
+        // spinner slot for the "working" state. ----
+        let cwModelLabel = null;
+        let cwModelSpinner = null;
+        if (cwModelBtn) {
+          const chev = cwModelBtn.querySelector(".cw-sel-chev");
+          const leadingText = Array.from(cwModelBtn.childNodes).find((n) => n.nodeType === Node.TEXT_NODE);
+          cwModelLabel = document.createElement("span");
+          cwModelLabel.className = "cw-model-label";
+          cwModelLabel.textContent = (leadingText ? leadingText.textContent : "Opus 4.8").trim();
+          if (leadingText) cwModelBtn.replaceChild(cwModelLabel, leadingText);
+          else cwModelBtn.insertBefore(cwModelLabel, cwModelBtn.firstChild);
+          cwModelSpinner = document.createElement("span");
+          cwModelSpinner.className = "cw-model-spinner";
+          cwModelSpinner.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#4a90f2" stroke-width="3" stroke-linecap="round" stroke-dasharray="42 15"/></svg>';
+          cwModelBtn.insertBefore(cwModelSpinner, chev || null);
+        }
+
+        // The Reply box's submit button swaps to a stop-square affordance
+        // while a turn is generating and reverts to the send arrow once it
+        // settles — ground truth: reference/claude/motion/2026-07-09/
+        // code-desktop-tool-progress f-003, a hollow rounded-square control
+        // in the composer's submit slot during an active run (same
+        // lucide "square" glyph as the shell's own icon idiom).
+        let cwSendArrow = null;
+        let cwSendStop = null;
+        if (cwSendBtn) {
+          cwSendArrow = cwSendBtn.querySelector("svg");
+          cwSendStop = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          cwSendStop.setAttribute("class", "backlot-icon cw-send-stop");
+          cwSendStop.setAttribute("viewBox", "0 0 24 24");
+          cwSendStop.setAttribute("fill", "none");
+          cwSendStop.setAttribute("stroke", "currentColor");
+          cwSendStop.setAttribute("stroke-width", "2");
+          cwSendStop.setAttribute("stroke-linecap", "round");
+          cwSendStop.setAttribute("stroke-linejoin", "round");
+          cwSendStop.setAttribute("aria-hidden", "true");
+          cwSendStop.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2"/>';
+          // Absolutely stacked on the arrow rather than left to the button's
+          // own grid auto-placement, so the swap can never shift the two
+          // icons apart inside the fixed 38x38 control.
+          cwSendBtn.style.position = "relative";
+          cwSendStop.style.position = "absolute";
+          cwSendStop.style.inset = "0";
+          cwSendStop.style.margin = "auto";
+          cwSendBtn.appendChild(cwSendStop);
+        }
+
         const typedChars = [];
         for (const ch of PROMPT) {
           const s = document.createElement("span");
@@ -153,8 +221,14 @@
         tl.set(typedChars, { display: "none" }, 0);
         tl.set(caret, { opacity: 0 }, 0);
         tl.set(sendBtn, { autoAlpha: 0 }, 0);
-        tl.set([bubble, contextStrip, replyMark, thinkingCard, commandCard, actions], { autoAlpha: 0 }, 0);
-        tl.set([line1, line2], { clipPath: "inset(0 100% 0 0)" }, 0);
+        tl.set([bubble, contextStrip, replyMark, thinkingCard, commandCard, actions, fileList, downloadAll], { autoAlpha: 0 }, 0);
+        // line2 wraps to two visual rows in this composer width; it is
+        // revealed word-by-word later (not via clipPath — see below), so it
+        // is left at its default (fully visible) clip and hidden instead by
+        // ix.stream()'s own per-word opacity spans.
+        tl.set(line1, { clipPath: "inset(0 100% 0 0)" }, 0);
+        if (cwModelSpinner) tl.set(cwModelSpinner, { autoAlpha: 0 }, 0);
+        if (cwSendStop) tl.set(cwSendStop, { autoAlpha: 0 }, 0);
 
         // 1) Click the home composer and type the prompt.
         const FOCUS_AT = 0.9;
@@ -174,7 +248,11 @@
         const SEND_AT = TYPE_END + 0.55;
         tl.set(caret, { opacity: 0, overwrite: true }, SEND_AT - 0.02);
         ix.click(sendBtn, { at: SEND_AT, moveDur: 0.55 });
-        const FLIP_AT = SEND_AT + 0.18;
+        // ix.click()'s ring pulse runs a fixed 0.45s fade (runtime/, not
+        // ours to edit) — hold the flip until just past that so the ring
+        // has fully resolved at the send button instead of pulsing in the
+        // empty center of the conversation view that replaces it.
+        const FLIP_AT = SEND_AT + 0.5;
         tl.set(app, { attr: { "data-page": "chat" } }, FLIP_AT);
         tl.to(bubble, { autoAlpha: 1, duration: 0.14 }, FLIP_AT + 0.1);
         tl.to(contextStrip, { autoAlpha: 1, duration: 0.2 }, FLIP_AT + 0.35);
@@ -182,14 +260,43 @@
         // Cursor drifts into the reading column while the reply streams.
         tl.to(".demo-cursor", { left: 620, top: 420, duration: 0.7, ease: "power2.inOut" }, FLIP_AT + 0.3);
 
-        // 3) The reply streams in: lead lines wipe like live text, the
-        //    Running-command card appears, then the Response output streams.
+        // 3) The reply streams in: line1 wipes like live text (single row,
+        //    a horizontal clip reads fine); the Running-command card
+        //    appears, then the Response output streams.
         const AI_AT = FLIP_AT + 0.7;
         tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
         tl.to(line1, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, AI_AT + 0.05);
-        tl.to(line2, { clipPath: "inset(0 0% 0 0)", duration: 0.95, ease: "none" }, AI_AT + 0.85);
 
-        const THINK_AT = AI_AT + 2.0;
+        // line2 wraps to two visual rows — reveal it word-by-word (like real
+        // token streaming) instead of a single vertical clipPath wipe, so
+        // row 2 never shows text before row 1 above it has completed. Built
+        // by hand (not ix.stream's word mode) so the spaces between words
+        // stay real text nodes — ordinary wrap points every render engine
+        // agrees on, rather than the library's white-space:pre space-spans,
+        // which render correctly in an interactive tab but do not wrap at
+        // all under the headless capture engine (verified against a direct
+        // hyperframes render: line2 spilled to one ~820px unbroken row past
+        // the 569px column instead of its normal two lines).
+        const LINE2_TEXT = line2.textContent.trim();
+        const LINE2_WORDS = LINE2_TEXT.split(" ");
+        line2.textContent = "";
+        const line2Words = [];
+        LINE2_WORDS.forEach((word, i) => {
+          const s = document.createElement("span");
+          s.className = "bl-word";
+          s.textContent = word;
+          line2.appendChild(s);
+          line2Words.push(s);
+          if (i < LINE2_WORDS.length - 1) line2.appendChild(document.createTextNode(" "));
+        });
+        gsap.set(line2Words, { opacity: 0 });
+        const LINE2_AT = AI_AT + 0.85;
+        const LINE2_CPS = 50;
+        const LINE2_EACH = (LINE2_TEXT.length / LINE2_CPS) / line2Words.length;
+        tl.to(line2Words, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: LINE2_EACH } }, LINE2_AT);
+        const LINE2_END = LINE2_AT + LINE2_TEXT.length / LINE2_CPS + 0.15;
+
+        const THINK_AT = LINE2_END + 0.2;
         tl.fromTo(thinkingCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, THINK_AT);
 
         const CMD_AT = THINK_AT + 1.0;
@@ -199,14 +306,48 @@
           tl.to(commandPre, { clipPath: "inset(0 0 0% 0)", duration: 1.1, ease: "none" }, CMD_AT + 0.25);
         }
 
+        // The output-file card (and its download-all action) follow the
+        // Response settling instead of pre-existing at flip — an artifact
+        // can't be on screen before Claude has produced anything.
+        const SETTLE_AT = CMD_AT + 1.6;
+        if (fileList) tl.fromTo(fileList, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, CMD_AT + 1.4);
+        if (downloadAll) tl.fromTo(downloadAll, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, CMD_AT + 1.4);
+
         // 4) The turn settles.
-        if (actions) tl.to(actions, { autoAlpha: 1, duration: 0.2 }, CMD_AT + 1.6);
+        if (actions) tl.to(actions, { autoAlpha: 1, duration: 0.2 }, SETTLE_AT);
+
+        // Chat-view composer: pin the model to the home selection right at
+        // flip (the real app never swaps the user's selected model on
+        // send), and run a small working spinner beside it for as long as
+        // the reply/tool cards are streaming.
+        if (cwModelLabel) tl.set(cwModelLabel, { textContent: "Sonnet 5" }, FLIP_AT);
+        const spinStart = FLIP_AT + 0.1;
+        if (cwModelSpinner) {
+          tl.to(cwModelSpinner, { autoAlpha: 1, duration: 0.15 }, spinStart);
+          const spinDur = Math.max(0.3, SETTLE_AT - spinStart);
+          const spinTurns = Math.max(1, Math.round(spinDur / 0.85));
+          tl.to(cwModelSpinner, { rotation: 360 * spinTurns, duration: spinDur, ease: "none" }, spinStart);
+          tl.to(cwModelSpinner, { autoAlpha: 0, duration: 0.15 }, SETTLE_AT);
+        }
+        // Submit control follows the same generating→settled window as the
+        // model spinner: stop-square while the turn runs, send-arrow once
+        // the Response card flips to "done" and the spinner clears.
+        if (cwSendArrow && cwSendStop) {
+          tl.set(cwSendArrow, { autoAlpha: 0 }, spinStart);
+          tl.set(cwSendStop, { autoAlpha: 1 }, spinStart);
+          tl.set(cwSendArrow, { autoAlpha: 1 }, SETTLE_AT);
+          tl.set(cwSendStop, { autoAlpha: 0 }, SETTLE_AT);
+        }
+        // The Response tool-card's "streaming" badge must settle in lockstep
+        // with the composer spinner fade — an idle composer beside a still-
+        // streaming card is a contradictory rest state.
+        if (responseStatus) tl.set(responseStatus, { textContent: "done" }, SETTLE_AT);
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(11.6).pause();
-        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(11.6).pause(); }).catch(() => {});
+        tl.seek(12.6).pause();
+        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(12.6).pause(); }).catch(() => {});
       }
     </script>
   </body>
