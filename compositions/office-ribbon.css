@@ -258,6 +258,12 @@
   color: #fff;
 }
 
+.title-actions .share .share-glyph {
+  width: 14px;
+  height: 14px;
+  color: #fff;
+}
+
 /* ---------- Ribbon ---------- */
 
 .excel-ribbon,
@@ -267,7 +273,7 @@
   flex: 0 0 63px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   padding: 0 8px;
   background: var(--chrome, #f5f5f5);
   border-top: 1px solid #b9b9b9;
@@ -278,6 +284,24 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Vertical rule between ribbon groups (real Office shows a ~65px tall
+   1px #d4d4d4 divider between every group). */
+.ribbon-group + .ribbon-group {
+  position: relative;
+  padding-left: 5px;
+}
+
+.ribbon-group + .ribbon-group::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 54px;
+  background: #d4d4d4;
 }
 
 .ribbon-group.col {
@@ -324,7 +348,7 @@
 }
 
 .ribbon-large.small-large {
-  width: 44px;
+  width: 42px;
 }
 
 .ribbon-large.small-large .cmd-icon {
@@ -337,7 +361,7 @@
 }
 
 .ribbon-large.wide {
-  width: 50px;
+  width: 48px;
 }
 
 .ribbon-large.wide em {
@@ -377,12 +401,11 @@
   width: 7px;
   height: 7px;
   flex: none;
-  margin-left: auto;
   color: #6e6e6e;
 }
 
 .stack-label {
-  max-width: 96px;
+  max-width: 124px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
