@@ -15,15 +15,15 @@
             <span class="formula-input" data-role="formula"></span>
           </div>
           <div class="xl-grid" data-role="grid">
-            <div class="ch"></div><div class="ch">A</div><div class="ch">B</div><div class="ch">C</div><div class="ch">D</div>
-            <div class="rh">1</div><div class="cell head">Launch metrics</div><div class="cell head">Owner</div><div class="cell head">Q2</div><div class="cell head">Goal</div>
+            <div class="ch"></div><div class="ch" data-col="A">A</div><div class="ch">B</div><div class="ch" data-col="C">C</div><div class="ch">D</div>
+            <div class="rh" data-row="1">1</div><div class="cell head" data-cell="A1">Launch metrics</div><div class="cell head">Owner</div><div class="cell head">Q2</div><div class="cell head">Goal</div>
             <div class="rh">2</div><div class="cell">Revenue story</div><div class="cell">Claude</div><div class="cell num">128</div><div class="cell num">110</div>
             <div class="rh">3</div><div class="cell">Adoption rate</div><div class="cell">Growth</div><div class="cell num">42</div><div class="cell num">38</div>
             <div class="rh">4</div><div class="cell">Customer quote</div><div class="cell">Review</div><div class="cell num">18</div><div class="cell num">12</div>
-            <div class="rh">5</div><div class="cell">Speaker notes</div><div class="cell">Ready</div><div class="cell num" data-cell="C5">2</div><div class="cell num">2</div>
-            <div class="rh">6</div><div class="cell">Opening slide</div><div class="cell">Ready</div><div class="cell num" data-cell="C6">4</div><div class="cell num">4</div>
-            <div class="rh">7</div><div class="cell">Chart update</div><div class="cell">Working</div><div class="cell num" data-cell="C7">6</div><div class="cell num">5</div>
-            <div class="rh">8</div><div class="cell strong">Deck total</div><div class="cell"></div><div class="cell num result" data-cell="C8" data-role="result"><span class="c8-echo" data-role="c8-echo"></span><span class="c8-value" data-role="c8-value">12</span></div><div class="cell num">9</div>
+            <div class="rh" data-row="5">5</div><div class="cell">Speaker notes</div><div class="cell">Ready</div><div class="cell num" data-cell="C5">2</div><div class="cell num">2</div>
+            <div class="rh" data-row="6">6</div><div class="cell">Opening slide</div><div class="cell">Ready</div><div class="cell num" data-cell="C6">4</div><div class="cell num">4</div>
+            <div class="rh" data-row="7">7</div><div class="cell">Chart update</div><div class="cell">Working</div><div class="cell num" data-cell="C7">6</div><div class="cell num">5</div>
+            <div class="rh" data-row="8">8</div><div class="cell strong">Deck total</div><div class="cell"></div><div class="cell num result" data-cell="C8" data-role="result"><span class="c8-echo" data-role="c8-echo"></span><span class="c8-value" data-role="c8-value">12</span></div><div class="cell num">9</div>
           </div>
           <div class="xl-status"><span data-role="status">Ready</span><span class="right">Average: <b data-role="avg">0</b>&nbsp;&nbsp;&nbsp;Count: <b data-role="cnt">0</b>&nbsp;&nbsp;&nbsp;Sum: <b data-role="sum">0</b></span></div>
         </div>
@@ -47,6 +47,7 @@
       .formula-input { font-size:14px; color:#16120f; font-family:"SF Mono",ui-monospace,monospace; }
       .xl-grid { position:relative; display:grid; grid-template-columns:44px repeat(4,1fr); grid-auto-rows:36px; font-size:14px; background:#fff; }
       .ch,.rh { background:#f4f6f8; color:#67727f; font-size:12px; display:grid; place-items:center; border-right:1px solid rgba(20,30,48,0.08); border-bottom:1px solid rgba(20,30,48,0.08); }
+      .ch.active,.rh.active { background:rgba(33,115,70,0.14); color:#175c39; font-weight:600; }
       .cell { display:flex; align-items:center; padding:0 12px; border-right:1px solid rgba(20,30,48,0.07); border-bottom:1px solid rgba(20,30,48,0.07); position:relative; }
       .cell.num { justify-content:flex-end; font-variant-numeric:tabular-nums; }
       .cell.head { font-weight:700; } .cell.strong { font-weight:700; }
@@ -56,7 +57,7 @@
       .cell-caret { display:inline-block; width:1px; height:1.1em; margin-left:1px; background:#16120f; opacity:0; }
       .sel-range { position:absolute; border:1.5px solid rgba(33,163,102,0.5); background:rgba(33,163,102,0.08); pointer-events:none; z-index:5; }
       .active-outline { position:absolute; border:2px solid #217346; pointer-events:none; z-index:6; }
-      .ref-range { position:absolute; border:1.5px dashed #2f6fed; background-color:rgba(47,111,237,0.10); pointer-events:none; z-index:5; }
+      .ref-range { position:absolute; background-color:#e8effa; border:1.5px solid #2f6fed; pointer-events:none; z-index:5; }
       .fn-tip { position:absolute; z-index:7; pointer-events:none; background:#fff; border:1px solid rgba(20,30,48,0.12); border-radius:4px; box-shadow:0 10px 24px rgba(20,30,48,0.22); padding:5px 9px; font-size:12px; font-family:"SF Mono",ui-monospace,monospace; color:#3b4653; white-space:nowrap; }
       .fn-tip b { font-weight:700; color:#16120f; }
       .xl-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
@@ -79,16 +80,19 @@
       // Build selection + active-cell outlines positioned over the target cells.
       const grid = stage.querySelector('[data-role="grid"]');
       function rectOf(sel) { const el = stage.querySelector(sel); const g = grid.getBoundingClientRect(); const r = el.getBoundingClientRect(); return { left:r.left-g.left, top:r.top-g.top, w:r.width, h:r.height, cx:r.left-stage.getBoundingClientRect().left+r.width/2, cy:r.top-stage.getBoundingClientRect().top+r.height/2 }; }
-      const c5 = rectOf('[data-cell="C5"]'), c7 = rectOf('[data-cell="C7"]'), c8 = rectOf('[data-cell="C8"]');
+      const a1 = rectOf('[data-cell="A1"]');
+      const c5 = rectOf('[data-cell="C5"]'), c6 = rectOf('[data-cell="C6"]'), c7 = rectOf('[data-cell="C7"]'), c8 = rectOf('[data-cell="C8"]');
       const rangeH = c7.top - c5.top + c7.h;   // full C5:C7 height
+      const extH = c7.top - c6.top + c7.h;     // extended rows (C6:C7) height, grown below the C5 anchor
       const sel = document.createElement("div"); sel.className = "sel-range";
-      sel.style.cssText += `left:${c5.left}px;top:${c5.top}px;width:${c5.w}px;height:${c5.h}px;`;
+      sel.style.cssText += `left:${c5.left}px;top:${c6.top}px;width:${c5.w}px;height:0px;`; // covers only the extended rows below the C5 anchor
       grid.appendChild(sel);
       const act = document.createElement("div"); act.className = "active-outline";
-      act.style.cssText += `left:${c8.left}px;top:${c8.top}px;width:${c8.w}px;height:${c8.h}px;`;
+      act.style.cssText += `left:${a1.left}px;top:${a1.top}px;width:${a1.w}px;height:${a1.h}px;`; // starts over A1 — Excel always shows an active-cell outline, even at rest
       grid.appendChild(act);
-      // Reference-range box: the dashed "marching ants" highlight Excel draws
-      // over a range cited inside a formula while it's being typed.
+      // Reference-range box: the highlight Excel draws over a range cited
+      // inside a formula while it's being typed — solid color-coded border
+      // (matching the blue reference text) with a light-blue tint fill.
       const refRange = document.createElement("div"); refRange.className = "ref-range";
       refRange.style.cssText = `left:${c5.left}px;top:${c5.top}px;width:${c5.w}px;height:${rangeH}px;`;
       grid.appendChild(refRange);
@@ -98,7 +102,8 @@
       fnTip.innerHTML = 'SUM(<b>number1</b>, [number2], &hellip;)';
       fnTip.style.cssText = `left:${c8.left}px;top:${c8.top + c8.h + 6}px;`;
       grid.appendChild(fnTip);
-      gsap.set([sel, act], { opacity: 0 });
+      gsap.set(sel, { opacity: 0 });
+      gsap.set(act, { opacity: 1 }); // active-cell outline is always visible, starting on A1 at rest
       const statusRight = stage.querySelector(".xl-status .right");
       gsap.set(statusRight, { opacity: 0 });
       // Pinned in the timeline itself (see the click-ring note near the end
@@ -137,10 +142,11 @@
       //    tween, so it scrubs).
       ix.moveTo('[data-cell="C5"]', { at: 0.5, dur: 0.85 });
       tl.set('[data-role="namebox"]', { textContent: "C5" }, 1.35);
-      tl.set(sel, { opacity: 1 }, 1.4);                                  // mouse-down: 1-cell selection
+      tl.set(act, { left: c5.left, top: c5.top, width: c5.w, height: c5.h }, 1.4); // mouse-down: active-cell outline jumps off A1 onto the C5 anchor (stays visible throughout, never re-faded)
       ix.click('[data-cell="C5"]', { at: 1.4, move: false, press: false }); // press ring
       ix.moveTo('[data-cell="C7"]', { at: 1.52, dur: 0.95, ease: "power2.inOut" });
-      tl.to(sel, { height: rangeH, duration: 0.95, ease: "power2.inOut" }, 1.52); // drag grows selection
+      tl.set(sel, { opacity: 1 }, 1.52);                                  // drag begins extending past the anchor
+      tl.to(sel, { height: extH, duration: 0.95, ease: "power2.inOut" }, 1.52); // extended rows (C6:C7) grow under the drag; anchor stays on `act`
       tl.set('[data-role="namebox"]', { textContent: "3R x 1C" }, 1.75);
       tl.set('[data-role="namebox"]', { textContent: "C5" }, 2.5);
       // status bar shows the selection aggregate atomically (Excel computes
@@ -151,14 +157,43 @@
       tl.set('[data-role="cnt"]', { textContent: "3" }, 2.05);
       tl.set('[data-role="sum"]', { textContent: "12" }, 2.05);
 
+      // Header highlight: Excel tints the active column/row headers with its
+      // green selection tint (darker text) while a range or cell is selected.
+      // A1 is the active cell from frame 1 (motion-judge round 2), so its own
+      // headers (column A, row 1) start tinted and hand off to column C / row
+      // 5 the instant the anchor cell moves.
+      const chA = stage.querySelector('[data-col="A"]');
+      const rh1 = stage.querySelector('[data-row="1"]');
+      const chC = stage.querySelector('[data-col="C"]');
+      const rh5 = stage.querySelector('[data-row="5"]'), rh6 = stage.querySelector('[data-row="6"]'), rh7 = stage.querySelector('[data-row="7"]'), rh8 = stage.querySelector('[data-row="8"]');
+      tl.set(chA, { attr: { class: "ch active" } }, 0);
+      tl.set(rh1, { attr: { class: "rh active" } }, 0);
+      tl.set(chC, { attr: { class: "ch" } }, 0);
+      tl.set([rh5, rh6, rh7, rh8], { attr: { class: "rh" } }, 0);
+      tl.set(chA, { attr: { class: "ch" } }, 1.4); // A1's header tint hands off the moment the active cell moves to C5
+      tl.set(rh1, { attr: { class: "rh" } }, 1.4);
+      tl.set(chC, { attr: { class: "ch active" } }, 1.4); // column C stays tinted for the rest of the clip (both selections live in it)
+      tl.set([rh5, rh6, rh7], { attr: { class: "rh active" } }, 1.4);
+
+      // Active-cell outline is a permanent fixture (Excel always renders one),
+      // so pin its start opacity/position inside the timeline itself — a bare
+      // gsap.set() only applies once at build time and gets overwritten by
+      // out-of-order seeking during static-frame verification, same reasoning
+      // as the click-ring/refRange/fnTip pins elsewhere in this file.
+      tl.set(act, { opacity: 1, left: a1.left, top: a1.top, width: a1.w, height: a1.h }, 0);
+
       // 2) select the total cell C8, then type =SUM(C5:C7). Mirrored into the
       //    cell itself (Excel always echoes the live formula in-cell, with a
       //    blinking caret; the formula bar is a secondary mirror), with the
       //    referenced range picked out in blue in both places.
       ix.click('[data-cell="C8"]', { at: 3.25, moveDur: 0.85 });
       tl.to(sel, { opacity: 0, duration: 0.2 }, 3.25); // clicking C8 clears the C5:C7 drag-selection
+      tl.to(act, { opacity: 0, duration: 0.05 }, 3.25); // and clears the C5 anchor's active outline (finishes exactly at 3.3, before the reposition below)
       tl.to(statusRight, { opacity: 0, duration: 0.2 }, 3.25); // and Excel drops the status-bar aggregate when selection collapses to one cell
-      ix.show(act, { at: 3.3, dur: 0.18, from: { opacity: 0, scale: 0.92 } });
+      tl.set([rh5, rh6, rh7], { attr: { class: "rh" } }, 3.25); // and clears the C5:C7 row-header tint
+      tl.set(act, { left: c8.left, top: c8.top, width: c8.w, height: c8.h }, 3.3); // move the active outline over the new active cell...
+      ix.show(act, { at: 3.3, dur: 0.18, from: { opacity: 0, scale: 0.92 } });      // ...then reveal it there
+      tl.set(rh8, { attr: { class: "rh active" } }, 3.3); // row 8's header picks up the tint
       tl.set('[data-role="namebox"]', { textContent: "C8" }, 3.3);
       // Cursor stays settled on C8 (its resting spot since the 3.25 click) —
       // the formula, caret, and SUM() tooltip all render in-cell, so the
@@ -170,6 +205,10 @@
       const c8ValueEl = stage.querySelector('[data-role="c8-value"]');
 
       tl.set(resultEl, { attr: { class: "cell num result editing" } }, EDIT_AT); // left-align + plain formula styling while live
+      // Status-bar mode indicator: Excel flips "Ready" -> "Enter" the instant
+      // a cell enters edit mode, and back to "Ready" only on commit.
+      tl.set('[data-role="status"]', { textContent: "Enter" }, EDIT_AT);
+      tl.set('[data-role="status"]', { textContent: "Ready" }, commitAt);
       ix.type('[data-role="formula"]', FORMULA, { at: EDIT_AT, cps: TYPE_CPS });
       colorRef('[data-role="formula"]', FORMULA, "C5:C7", "#2f6fed");
       // In-cell echo: same char-stagger technique as the formula bar above,
@@ -202,9 +241,9 @@
       // visible alongside the committed result (motion-judge round 2).
       ix.show(fnTip, { at: tipAt, dur: 0.2, from: { opacity: 0, y: 4 } });
       ix.hide(fnTip, { at: commitAt, dur: 0 });
-      // Reference-range box over C5:C7 (solid light-blue fill + dashed
-      // border, per Excel's own formula-reference idiom), live for as long
-      // as the range is cited in the formula.
+      // Reference-range box over C5:C7 (solid light-blue fill + solid
+      // color-coded border, per Excel's own formula-reference idiom), live
+      // for as long as the range is cited in the formula.
       tl.to(refRange, { opacity: 1, duration: 0.15 }, rangeRevealAt);
       // Hard cut, not a fade: the box must vanish on the exact frame the
       // cell value commits, same as the SUM() tooltip above.

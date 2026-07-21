@@ -222,11 +222,10 @@
         tl.set(caret, { opacity: 0 }, 0);
         tl.set(sendBtn, { autoAlpha: 0 }, 0);
         tl.set([bubble, contextStrip, replyMark, thinkingCard, commandCard, actions, fileList, downloadAll], { autoAlpha: 0 }, 0);
-        // line2 wraps to two visual rows in this composer width; it is
-        // revealed word-by-word later (not via clipPath — see below), so it
-        // is left at its default (fully visible) clip and hidden instead by
-        // ix.stream()'s own per-word opacity spans.
-        tl.set(line1, { clipPath: "inset(0 100% 0 0)" }, 0);
+        // Both reply lines are revealed word-by-word later (built by hand
+        // just before they stream in, not clipPath) — left at their default
+        // (fully visible) text at rest and hidden instead by the per-word
+        // opacity spans built at streaming time.
         if (cwModelSpinner) tl.set(cwModelSpinner, { autoAlpha: 0 }, 0);
         if (cwSendStop) tl.set(cwSendStop, { autoAlpha: 0 }, 0);
 
@@ -260,12 +259,47 @@
         // Cursor drifts into the reading column while the reply streams.
         tl.to(".demo-cursor", { left: 620, top: 420, duration: 0.7, ease: "power2.inOut" }, FLIP_AT + 0.3);
 
-        // 3) The reply streams in: line1 wipes like live text (single row,
-        //    a horizontal clip reads fine); the Running-command card
-        //    appears, then the Response output streams.
-        const AI_AT = FLIP_AT + 0.7;
+        // 3) The reply streams in: both lines reveal word-by-word like real
+        //    token streaming; the Running-command card appears, then the
+        //    Response output streams.
+        // Thinking hold: reference/claude/motion/2026-07-09/
+        // code-desktop-tool-progress shows a visible working beat (the
+        // composer's spinner + "Running"-state tasks) held for a couple of
+        // seconds before settled content lands — a bare 0.7s gap after flip
+        // read as an instant cut. Hold 1.2s (low end of the measured 1.2-2s
+        // band — trimmed from the previous 1.5s to absorb line1's move to a
+        // per-word stream below, which runs longer than the old clipPath
+        // wipe, while keeping the settle-to-13s hold intact) between the
+        // page flip and the first visible reply chunk so the composer
+        // spinner (spinStart below, already ticking from just after flip)
+        // reads as a real pondering beat, not a blink.
+        const AI_AT = FLIP_AT + 1.2;
         tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
-        tl.to(line1, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, AI_AT + 0.05);
+
+        // line1 streams in as per-word opacity — the same idiom line2 uses
+        // just below. It previously wiped in via a horizontal clipPath,
+        // which sliced the text at a sub-glyph boundary (mid-word) and,
+        // back to back with line2's word stagger, read as two different
+        // streaming idioms (a swipe-in then a type-in) instead of one
+        // continuous token stream.
+        const LINE1_TEXT = line1.textContent.trim();
+        const LINE1_WORDS = LINE1_TEXT.split(" ");
+        line1.textContent = "";
+        const line1Words = [];
+        LINE1_WORDS.forEach((word, i) => {
+          const s = document.createElement("span");
+          s.className = "bl-word";
+          s.textContent = word;
+          line1.appendChild(s);
+          line1Words.push(s);
+          if (i < LINE1_WORDS.length - 1) line1.appendChild(document.createTextNode(" "));
+        });
+        gsap.set(line1Words, { opacity: 0 });
+        const LINE1_AT = AI_AT + 0.05;
+        const LINE1_CPS = 50;
+        const LINE1_EACH = (LINE1_TEXT.length / LINE1_CPS) / line1Words.length;
+        tl.to(line1Words, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: LINE1_EACH, ease: "power1.in" } }, LINE1_AT);
+        const LINE1_END = LINE1_AT + LINE1_TEXT.length / LINE1_CPS;
 
         // line2 wraps to two visual rows — reveal it word-by-word (like real
         // token streaming) instead of a single vertical clipPath wipe, so
@@ -290,12 +324,28 @@
           if (i < LINE2_WORDS.length - 1) line2.appendChild(document.createTextNode(" "));
         });
         gsap.set(line2Words, { opacity: 0 });
-        const LINE2_AT = AI_AT + 0.85;
+        // Starts just after line1's own stream completes (LINE1_END), not a
+        // fixed offset from AI_AT, so row 2 never shows text before row 1
+        // above it has finished streaming in.
+        const LINE2_AT = LINE1_END + 0.1;
         const LINE2_CPS = 50;
         const LINE2_EACH = (LINE2_TEXT.length / LINE2_CPS) / line2Words.length;
-        tl.to(line2Words, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: LINE2_EACH } }, LINE2_AT);
+        // Per-word cadence: an equal-each stagger reads as metronomic/linear.
+        // Distributing the same total span with a "power1.in" stagger ease
+        // keeps the first couple of words a beat slower and lets the rest
+        // catch up — organic without touching the overall LINE2_END budget
+        // (an ease redistributes offsets inside the span, it doesn't change
+        // the last word's landing time).
+        tl.to(line2Words, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: LINE2_EACH, ease: "power1.in" } }, LINE2_AT);
         const LINE2_END = LINE2_AT + LINE2_TEXT.length / LINE2_CPS + 0.15;
 
+        // Tool/artifact-card enter motion: already the real-app idiom
+        // (small fade+rise, y:8, 0.3s, timeline's default power2.out ease —
+        // matches claude-thread-core.html's own reference-calibrated
+        // self-demo timeline, which uses the same 0.3-0.34s/y:9-10 fade+rise
+        // for .thinking-card/.tool-card/.command-card). Verified against a
+        // render (workspace/scratch/claude-chat-polish frames) — no pop-in,
+        // left unchanged.
         const THINK_AT = LINE2_END + 0.2;
         tl.fromTo(thinkingCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, THINK_AT);
 
