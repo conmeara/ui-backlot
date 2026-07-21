@@ -451,7 +451,7 @@
       // Move to the Claude dock icon and click.
       tl.to(".workflow-cursor", { left: 715, top: 1010, duration: 0.9, ease: "power2.inOut" }, 0.9);
       tl.set(".click-ring", { left: 693, top: 988 }, 1.78);
-      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out", immediateRender: false }, 1.8);
+      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.65, ease: "power1.out", immediateRender: false }, 1.8);
 
       // Claude app opens up from the dock (grow-in, no rubber-band overshoot).
       // Opens slightly later than the click so the lengthened launch bounce
@@ -467,7 +467,7 @@
       // Move to the Excel dock icon and click.
       tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.8);
       tl.set(".click-ring", { left: 969, top: 988 }, 5.68);
-      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "sine.out", immediateRender: false }, 5.7);
+      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.65, ease: "power1.out", immediateRender: false }, 5.7);
 
       // Excel opens on top of Claude (grow-in, no rubber-band overshoot).
       // Opens slightly later than the click so the lengthened launch bounce
@@ -485,8 +485,9 @@
       // just settling the cursor.
       tl.to(".workflow-cursor", { left: 1120, top: 560, duration: 1.0, ease: "power2.inOut" }, 7.1);
 
-      // Hold to the end.
-      tl.to(".workflow-cursor", { duration: 1.2 }, 8.6);
+      // Hold to the end — a tiny idle drift keeps the final frames alive
+      // instead of reading as a paused still.
+      tl.to(".workflow-cursor", { left: 1126, top: 554, duration: 0.9, ease: "sine.inOut" }, 8.6);
 
       window.__timelines["mac-multi-app-demo"] = tl;
 

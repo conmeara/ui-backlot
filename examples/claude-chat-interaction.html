@@ -276,6 +276,36 @@
         const AI_AT = FLIP_AT + 1.2;
         tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
 
+        // Thinking shimmer: the reply column previously sat empty for the
+        // whole 1.2s hold above (only the composer spinner read as "alive").
+        // .reply-mark only has layout/position rules under
+        // data-scale="cinematic" (unset here) — forcing it visible in this
+        // non-cinematic thread view would float at an undefined size with no
+        // reserved space, so a small dot-cluster is built instead, absolutely
+        // positioned over assistant-copy's already-reserved (opacity:0) line1
+        // slot inside assistant-stack (position:relative). It fades in
+        // partway through the hold, pulses a FINITE number of times (never
+        // repeat:-1, per house rules) timed to land back at full opacity
+        // exactly at AI_AT, then clears out of the way as the first real
+        // token lands — deterministic/seek-safe across the whole hold.
+        const assistantStack = stage.querySelector(".thread-slot .assistant-stack");
+        let thinkDots = null;
+        if (assistantStack) {
+          thinkDots = document.createElement("div");
+          thinkDots.className = "bl-think-dots";
+          thinkDots.style.cssText = "position:absolute;left:0;top:16px;display:flex;gap:5px;z-index:1;";
+          for (let i = 0; i < 3; i++) {
+            const dot = document.createElement("span");
+            dot.style.cssText = "width:7px;height:7px;border-radius:50%;background:#d97757;display:inline-block;";
+            thinkDots.appendChild(dot);
+          }
+          assistantStack.appendChild(thinkDots);
+          gsap.set(thinkDots, { autoAlpha: 0 });
+          tl.to(thinkDots, { autoAlpha: 1, duration: 0.2 }, FLIP_AT + 0.4);
+          tl.to(thinkDots, { opacity: 0.35, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, FLIP_AT + 0.6);
+          tl.to(thinkDots, { autoAlpha: 0, duration: 0.12 }, AI_AT);
+        }
+
         // line1 streams in as per-word opacity — the same idiom line2 uses
         // just below. It previously wiped in via a horizontal clipPath,
         // which sliced the text at a sub-glyph boundary (mid-word) and,
@@ -298,7 +328,7 @@
         const LINE1_AT = AI_AT + 0.05;
         const LINE1_CPS = 50;
         const LINE1_EACH = (LINE1_TEXT.length / LINE1_CPS) / line1Words.length;
-        tl.to(line1Words, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: LINE1_EACH, ease: "power1.in" } }, LINE1_AT);
+        tl.to(line1Words, { opacity: 1, duration: 0.05, ease: "none", stagger: { each: LINE1_EACH, ease: "power1.in" } }, LINE1_AT);
         const LINE1_END = LINE1_AT + LINE1_TEXT.length / LINE1_CPS;
 
         // line2 wraps to two visual rows — reveal it word-by-word (like real
