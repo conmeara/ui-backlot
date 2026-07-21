@@ -48,7 +48,7 @@
       .wd-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
       .demo-cursor { position:absolute; left:640px; top:600px; z-index:90; width:26px; height:26px; background:url("../assets/cursors/normal-select.svg") top left / contain no-repeat; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
       .demo-click-ring { position:absolute; left:0; top:0; z-index:89; width:40px; height:40px; border:2.5px solid rgba(43,87,154,0.7); border-radius:50%; opacity:0; }
-      .wd-caret { position:absolute; z-index:91; width:2px; background:#2b579a; border-radius:1px; opacity:0; }
+      .wd-caret { position:absolute; z-index:91; width:2px; background:#1a1a1a; border-radius:1px; opacity:0; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -60,27 +60,53 @@
       const stage = document.querySelector(".wd-stage");
       const ix = BacklotInteractions.create(tl, { root: stage, cursor: ".demo-cursor", ring: ".demo-click-ring" });
       const ring = stage.querySelector(".demo-click-ring");
+      const cursorEl = stage.querySelector(".demo-cursor");
       const caret = stage.querySelector('[data-role="caret"]');
       const wordsEl = stage.querySelector('[data-role="words"]');
       const saveEl = stage.querySelector(".save");
-
-      function centerOf(el) {
-        const r = el.getBoundingClientRect();
-        const base = stage.getBoundingClientRect();
-        return { x: r.left - base.left + r.width / 2, y: r.top - base.top + r.height / 2 };
-      }
 
       const TITLE = "Q2 Launch Brief";
       const BODY = "Claude pulled the strongest signals from the launch deck into one page the team can reuse across the deck, video script, and launch memo.";
       const BODY2 = "Next: confirm the revenue table matches the final chart before the deck ships.";
 
       // click into the page, type the title, then the body.
-      ix.click('[data-role="heading"]', { at: 0.8, moveDur: 0.8 });
-      ix.type('[data-role="heading"]', TITLE, { at: 1.2, cps: 18 });
+      // Land the click near the text origin (left margin) rather than the
+      // heading's horizontal center, so the parked cursor sits where the
+      // caret and first glyph actually appear -- ix.click always targets an
+      // element's center, so this uses the documented timeline escape hatch
+      // to place cursor/ring/press at a custom point instead.
+      const headingEl = stage.querySelector('[data-role="heading"]');
+      const headingR = headingEl.getBoundingClientRect();
+      const stageR0 = stage.getBoundingClientRect();
+      const clickPt = { x: headingR.left - stageR0.left + 26, y: headingR.top - stageR0.top + headingR.height / 2 };
+      const clickAt = 0.8;
+      const clickMoveDur = 0.8;
+      tl.to(cursorEl, { left: clickPt.x, top: clickPt.y, duration: clickMoveDur, ease: "power2.inOut" }, Math.max(0, clickAt - clickMoveDur));
+      {
+        const rr = ring.getBoundingClientRect();
+        const half = (rr.width || 44) / 2;
+        tl.set(ring, { left: clickPt.x - half, top: clickPt.y - half }, clickAt);
+        tl.fromTo(ring, { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.45, ease: "sine.out" }, clickAt);
+      }
+      tl.to(headingEl, { scale: 0.94, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 50%" }, clickAt);
+      ix.type('[data-role="heading"]', TITLE, { at: 1.2, cps: 18, fade: 0 });
+
+      // Once the caret is placed and the title starts typing, glide the
+      // cursor off the heading into the gray margin left of the page and
+      // leave it there for the rest of the clip -- a real typist's mouse
+      // rests away from the text it isn't touching, it doesn't hover glued
+      // to the glyphs being typed. Computed from the window/page rects
+      // (not a hardcoded point) so it tracks this layout's actual margin.
+      const windowEl = stage.querySelector(".wd-window");
+      const windowR = windowEl.getBoundingClientRect();
+      const pageEl = stage.querySelector(".wd-page");
+      const pageR = pageEl.getBoundingClientRect();
+      const marginPt = { x: (windowR.left + pageR.left) / 2 - stageR0.left, y: clickPt.y + 220 };
+      tl.to(cursorEl, { left: marginPt.x, top: marginPt.y, duration: 0.4, ease: "power2.out" }, 1.2);
       const bodyAt = 1.2 + TITLE.length / 18 + 0.4;
-      ix.type('[data-role="body"]', BODY, { at: bodyAt, cps: 40 });
+      ix.type('[data-role="body"]', BODY, { at: bodyAt, cps: 40, fade: 0 });
       const body2At = bodyAt + BODY.length / 40 + 0.5;
-      ix.type('[data-role="body2"]', BODY2, { at: body2At, cps: 40 });
+      ix.type('[data-role="body2"]', BODY2, { at: body2At, cps: 40, fade: 0 });
       const typingSettleAt = body2At + BODY2.length / 40;
 
       // Save-state badge reacts to editing: flips to "Editing..." on the
@@ -111,7 +137,8 @@
       trackCaret('[data-role="heading"]', 1.2, 18);
       trackCaret('[data-role="body"]', bodyAt, 40);
       trackCaret('[data-role="body2"]', body2At, 40);
-      tl.fromTo(caret, { opacity: 1 }, { opacity: 0, duration: 0.5, repeat: 14, yoyo: true, ease: "steps(1)" }, 1.2);
+      tl.set(caret, { opacity: 1 }, 1.2);
+      tl.fromTo(caret, { opacity: 1 }, { opacity: 0, duration: 0.5, repeat: 14, yoyo: true, ease: "steps(1)" }, typingSettleAt);
       tl.to(caret, { opacity: 0, duration: 0.12 }, typingSettleAt);
 
       // Word count ticks up in sync with the streamed text rather than
@@ -125,8 +152,15 @@
         return offs;
       }
       const titleWords = TITLE.trim().split(/\s+/).length;
+      // The first non-empty leading token counts as 1 word the instant its
+      // first character lands (real Word counts a live partial token), not
+      // only once the whole token + its trailing boundary has been typed.
+      tl.set(wordsEl, { textContent: "1" }, 1.2);
+      wordEndOffsets(TITLE).forEach((offset) => {
+        const c = TITLE.slice(0, offset).trim().split(/\s+/).length;
+        tl.set(wordsEl, { textContent: String(c) }, 1.2 + offset / 18);
+      });
       let wordCount = titleWords;
-      tl.set(wordsEl, { textContent: String(titleWords) }, 1.2 + TITLE.length / 18);
       wordEndOffsets(BODY).forEach((offset) => {
         wordCount = Math.min(40, wordCount + 1);
         tl.set(wordsEl, { textContent: String(wordCount) }, bodyAt + offset / 40);
@@ -144,9 +178,8 @@
       // so the opening at-rest frames render clean. Also park the ring on the
       // first click target so it isn't a stray circle at the CSS left:0/top:0
       // origin for the instant before it's told otherwise.
-      const headingC = centerOf(stage.querySelector('[data-role="heading"]'));
       const ringHalf = (ring.getBoundingClientRect().width || 40) / 2;
-      tl.set(ring, { opacity: 0, left: headingC.x - ringHalf, top: headingC.y - ringHalf }, 0);
+      tl.set(ring, { opacity: 0, left: clickPt.x - ringHalf, top: clickPt.y - ringHalf }, 0);
       tl.set(caret, { opacity: 0 }, 0);
 
       window.__timelines["word-interaction"] = tl;

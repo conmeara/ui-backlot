@@ -83,6 +83,19 @@
         const CMD = liveUserText.textContent.trim();
         const REPLY = liveReplyText.textContent.trim();
 
+        // The mounted composition bakes a static "Worked for 8s" into the
+        // turn-footer timing line, which doesn't match the elapsed spinner
+        // this demo actually plays (submit ~3.4s, done ~8.5s — a ~5s working
+        // phase). Correct the copy once at setup, before any seek, so the
+        // frozen completion value agrees with the counter the viewer just
+        // watched tick up.
+        if (liveTiming) {
+          const timingTextNode = Array.from(liveTiming.childNodes).find(
+            (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim()
+          );
+          if (timingTextNode) timingTextNode.textContent = timingTextNode.textContent.replace(/\d+/, "5");
+        }
+
         // ---- Rest-frame pins (t=0): idle footer prompt, no live turn yet.
         // gsap.set (not tl.set at 0) — see house convention above. ----
         gsap.set(liveTurn, { display: "none" });
@@ -153,6 +166,21 @@
         tl.set(workingEl, { display: "none" }, doneAt);
         tl.to(liveTiming, { autoAlpha: 1, duration: 0.14 }, doneAt);
         tl.to(cursorEl, { opacity: 1, duration: 0.2 }, doneAt + 0.25);
+
+        // 3b) The working indicator is on screen the whole time the tools
+        // run and the reply streams (submitAt through doneAt) — the real
+        // CLI never lets it sit static: the ✻ glyph cycles every ~120ms and
+        // the label ticks an elapsed-seconds counter the whole time.
+        const glyph = workingEl.querySelector(".glyph");
+        const label = win.querySelector('[data-role="cc-working-label"]');
+        const SPIN = ["✻", "✽", "✻", "✢", "·", "✢"];
+        let spinFrame = 0;
+        for (let t = submitAt; t < doneAt; t += 0.12) {
+          tl.set(glyph, { textContent: SPIN[spinFrame++ % SPIN.length] }, t);
+        }
+        for (let s = 0; submitAt + s < doneAt; s++) {
+          tl.set(label, { textContent: `Working… (${s}s · esc to interrupt)` }, submitAt + s);
+        }
       }).catch(() => {});
 
       window.__timelines["claude-code-interaction"] = tl;

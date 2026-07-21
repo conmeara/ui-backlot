@@ -50,13 +50,13 @@
       .cell { display:flex; align-items:center; padding:0 12px; border-right:1px solid rgba(20,30,48,0.07); border-bottom:1px solid rgba(20,30,48,0.07); position:relative; }
       .cell.num { justify-content:flex-end; font-variant-numeric:tabular-nums; }
       .cell.head { font-weight:700; } .cell.strong { font-weight:700; }
-      .cell.result { color:#0b6631; font-weight:700; }
+      .cell.result { color:#16120f; font-weight:700; }
       .cell.num.editing { justify-content:flex-start; }
       .cell.result.editing { color:#16120f; font-weight:400; font-family:"SF Mono",ui-monospace,monospace; }
       .cell-caret { display:inline-block; width:1px; height:1.1em; margin-left:1px; background:#16120f; opacity:0; }
       .sel-range { position:absolute; border:1.5px solid rgba(33,163,102,0.5); background:rgba(33,163,102,0.08); pointer-events:none; z-index:5; }
       .active-outline { position:absolute; border:2px solid #217346; pointer-events:none; z-index:6; }
-      .ref-range { position:absolute; border:1.5px dashed #2f6fed; background-color:rgba(47,111,237,0.08); background-image:repeating-linear-gradient(-45deg, rgba(47,111,237,0.35) 0 3px, rgba(47,111,237,0) 3px 8px); background-size:12px 12px; pointer-events:none; z-index:5; }
+      .ref-range { position:absolute; border:1.5px dashed #2f6fed; background-color:rgba(47,111,237,0.10); pointer-events:none; z-index:5; }
       .fn-tip { position:absolute; z-index:7; pointer-events:none; background:#fff; border:1px solid rgba(20,30,48,0.12); border-radius:4px; box-shadow:0 10px 24px rgba(20,30,48,0.22); padding:5px 9px; font-size:12px; font-family:"SF Mono",ui-monospace,monospace; color:#3b4653; white-space:nowrap; }
       .fn-tip b { font-weight:700; color:#16120f; }
       .xl-status { display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:12px; color:#52514e; background:#f7f7f7; border-top:1px solid rgba(20,30,48,0.08); }
@@ -141,7 +141,7 @@
       ix.click('[data-cell="C5"]', { at: 1.4, move: false, press: false }); // press ring
       ix.moveTo('[data-cell="C7"]', { at: 1.52, dur: 0.95, ease: "power2.inOut" });
       tl.to(sel, { height: rangeH, duration: 0.95, ease: "power2.inOut" }, 1.52); // drag grows selection
-      tl.set('[data-role="namebox"]', { textContent: "3R x 1C" }, 2.2);
+      tl.set('[data-role="namebox"]', { textContent: "3R x 1C" }, 1.75);
       tl.set('[data-role="namebox"]', { textContent: "C5" }, 2.5);
       // status bar shows the selection aggregate atomically (Excel computes
       // it, it isn't typed) as the .right container fades in — live while the
@@ -202,11 +202,11 @@
       // visible alongside the committed result (motion-judge round 2).
       ix.show(fnTip, { at: tipAt, dur: 0.2, from: { opacity: 0, y: 4 } });
       ix.hide(fnTip, { at: commitAt, dur: 0 });
-      // Marching-ants reference-range box over C5:C7, live for as long as the
-      // range is cited in the formula.
+      // Reference-range box over C5:C7 (solid light-blue fill + dashed
+      // border, per Excel's own formula-reference idiom), live for as long
+      // as the range is cited in the formula.
       tl.to(refRange, { opacity: 1, duration: 0.15 }, rangeRevealAt);
-      tl.fromTo(refRange, { backgroundPosition: "0px 0px" }, { backgroundPosition: "16px 0px", duration: Math.max(0.2, commitAt - rangeRevealAt), ease: "none" }, rangeRevealAt);
-      // Hard cut, not a fade: the ants must vanish on the exact frame the
+      // Hard cut, not a fade: the box must vanish on the exact frame the
       // cell value commits, same as the SUM() tooltip above.
       tl.set(refRange, { opacity: 0 }, commitAt);
 

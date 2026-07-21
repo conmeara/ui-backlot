@@ -116,14 +116,14 @@
         channelB.innerHTML = `
           <div class="date-divider"><span>Today<svg><use href="#slack-icon-chevron-down"></use></svg></span></div>
           <div class="msg-group">
-            <span class="msg-avatar" data-tone="b">SK</span>
+            <span class="msg-avatar"><svg style="color:#c4954b"><use href="#slack-avatar-default"></use></svg></span>
             <div class="msg-body-col">
               <div class="msg-meta"><strong>Sam Kim</strong><time>9:02 AM</time></div>
               <p class="msg-text">Pushed the new roadmap doc, Q3 milestones are up.</p>
             </div>
           </div>
           <div class="msg-group">
-            <span class="msg-avatar" data-tone="a">AR</span>
+            <span class="msg-avatar"><svg style="color:#5c8fd6"><use href="#slack-avatar-default"></use></svg></span>
             <div class="msg-body-col">
               <div class="msg-meta"><strong>Alex Rivera</strong><time>9:14 AM</time></div>
               <p class="msg-text">Nice, I'll flag the ones that slipped.</p>
@@ -133,7 +133,7 @@
         const sentGroup = document.createElement("div");
         sentGroup.className = "msg-group";
         sentGroup.innerHTML = `
-          <span class="msg-avatar" style="background:#8f4cd6">JL</span>
+          <span class="msg-avatar"><svg style="color:#8f4cd6"><use href="#slack-avatar-default"></use></svg></span>
           <div class="msg-body-col">
             <div class="msg-meta"><strong>Jamie Lin</strong><time>9:18 AM</time></div>
             <p class="msg-text"></p>
