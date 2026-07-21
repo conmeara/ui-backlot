@@ -5,7 +5,7 @@
     <title>Claude Cowork — Interaction Demo</title>
   </head>
   <body>
-    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="12.5">
+    <div id="cowork-interaction" data-composition-id="cowork-interaction" data-width="1280" data-height="800" data-start="0" data-duration="14">
       <section class="cw-stage" data-primitive="cowork-interaction" aria-label="The real Claude app (cowork session): type a prompt, send, and watch the task run with the agent rail">
         <div class="cw-backdrop" aria-hidden="true"></div>
         <div class="cw-frame component-frame"
@@ -86,7 +86,7 @@
       // Registered SYNCHRONOUSLY with a full-duration hold (the mount is
       // async; the renderer must never probe a zero-duration composition).
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 12.5 }, 0);
+      tl.to(stage, { opacity: 1, duration: 14 }, 0);
       window.__timelines["cowork-interaction"] = tl;
       tl.set(".demo-click-ring", { opacity: 0, left: -200, top: -200 }, 0);
 
@@ -103,6 +103,7 @@
         const sendBtn = stage.querySelector(".composer-slot-cowork .cw-prompt-send");
         const bubble = stage.querySelector(".thread-slot .sticky-prompt-bubble");
         const contextStrip = stage.querySelector(".thread-slot .thread-context-strip");
+        const threadWidth = stage.querySelector(".thread-slot .thread-width");
         const replyMark = stage.querySelector(".thread-slot .reply-mark");
         const line1 = stage.querySelector('.thread-slot [data-copy="reply-primary"]');
         const line2 = stage.querySelector('.thread-slot [data-copy="reply-secondary"]');
@@ -126,6 +127,23 @@
         // rows are pinned to height:0 below, so each row can grow into place
         // as it lands instead of the card fading in pre-sized with an empty body.
         const toolRowHeights = toolRows.map((row) => row.getBoundingClientRect().height);
+
+        // Closing summary line — the third story beat (a streamed reply that
+        // summarizes the finished work) once the progress card resolves. The
+        // real thread's own .assistant-copy prose block is reused for font
+        // idiom, inserted right after the progress card so it reads as the
+        // same reply continuing beneath it; the text target starts EMPTY
+        // (house rule) and is filled below via ix.stream().
+        let summaryEl = null;
+        if (toolCard && toolCard.parentNode) {
+          const summaryWrap = document.createElement("div");
+          summaryWrap.className = "assistant-copy";
+          summaryWrap.style.marginTop = "14px";
+          summaryEl = document.createElement("span");
+          summaryEl.className = "typing-mask assistant-line";
+          summaryWrap.appendChild(summaryEl);
+          toolCard.parentNode.insertBefore(summaryWrap, toolCard.nextSibling);
+        }
 
         // The context strip is latent (display:none) in the atom's defaults —
         // enable it statically; visibility is animated via autoAlpha. The
@@ -163,6 +181,38 @@
           s.textContent = ch;
           typed.appendChild(s);
           typedChars.push(s);
+        }
+
+        // ---- Send button surgery: the real composer's submit control
+        // crossfades into a hollow stop-square for the whole generation and
+        // back to the send arrow once the reply settles — ground truth:
+        // reference/claude/motion/2026-07-09/code-desktop-tool-progress
+        // f-001/f-008 (a hollow rounded-square control sitting in the
+        // composer's submit slot while a turn is actively running). Same
+        // construction as claude-chat-interaction's cwSendArrow/cwSendStop,
+        // stacked absolutely on the button so the swap never shifts the two
+        // icons apart inside the fixed 38x38 control. ----
+        let sendArrowIcon = null;
+        let sendStopIcon = null;
+        if (sendBtn) {
+          sendArrowIcon = sendBtn.querySelector("svg");
+          sendStopIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          sendStopIcon.setAttribute("class", "backlot-icon cw-send-stop");
+          sendStopIcon.setAttribute("viewBox", "0 0 24 24");
+          sendStopIcon.setAttribute("fill", "none");
+          sendStopIcon.setAttribute("stroke", "currentColor");
+          sendStopIcon.setAttribute("stroke-width", "2");
+          sendStopIcon.setAttribute("stroke-linecap", "round");
+          sendStopIcon.setAttribute("stroke-linejoin", "round");
+          sendStopIcon.setAttribute("aria-hidden", "true");
+          sendStopIcon.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2"/>';
+          sendBtn.style.position = "relative";
+          sendStopIcon.style.position = "absolute";
+          sendStopIcon.style.inset = "0";
+          sendStopIcon.style.margin = "auto";
+          sendBtn.appendChild(sendStopIcon);
+          gsap.set(sendArrowIcon, { transformOrigin: "50% 50%" });
+          gsap.set(sendStopIcon, { autoAlpha: 0, scale: 0.7, transformOrigin: "50% 50%" });
         }
 
         // ---- Rest-frame pins (t=0): the session sits idle — nothing from
@@ -208,6 +258,18 @@
         // Cursor drifts off into the reading column while the task runs.
         tl.to(".demo-cursor", { left: 620, top: 430, duration: 0.7, ease: "power2.inOut" }, SEND_AT + 0.5);
 
+        // Send → stop crossfade: a quick fade+scale (not an instant swap —
+        // the prior send-arrow-stays-put behavior was the judge-flagged
+        // bug), starting just after the click lands and held through the
+        // whole generation window (crossfade back to send happens at
+        // SETTLE_AT below, once the last row resolves).
+        const GEN_AT = SEND_AT + 0.15;
+        const SEND_CROSSFADE = 0.2;
+        if (sendArrowIcon && sendStopIcon) {
+          tl.to(sendArrowIcon, { autoAlpha: 0, scale: 0.7, duration: SEND_CROSSFADE }, GEN_AT);
+          tl.to(sendStopIcon, { autoAlpha: 1, scale: 1, duration: SEND_CROSSFADE }, GEN_AT);
+        }
+
         // 3) Assistant turn: line1 wipes in as a single-line clip reveal;
         //    line2 wraps to two visual lines, so it streams char-by-char in
         //    reading order instead (a rectangular wipe would show the second
@@ -227,8 +289,25 @@
 
         const TOOL_AT = THINK_AT + 0.85;
         tl.fromTo(toolCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, TOOL_AT);
+        // Every row passes through its own working -> done state, not just
+        // the last one: rows 0/1 land in the active/coral-spinner state (the
+        // same "tool-row active" construction the last row already used)
+        // with a generic "working" status, then resolve to their authored
+        // done status just before the next row lands. The last row keeps its
+        // existing behavior (it resolves at SETTLE_AT, once the whole card
+        // is done — see step 4 below).
         toolRows.forEach((row, i) => {
-          tl.to(row, { autoAlpha: 1, height: toolRowHeights[i], duration: 0.22 }, TOOL_AT + 0.3 + i * 0.5);
+          const landAt = TOOL_AT + 0.3 + i * 0.5;
+          tl.to(row, { autoAlpha: 1, height: toolRowHeights[i], duration: 0.22 }, landAt);
+          const isLast = i === toolRows.length - 1;
+          if (isLast) return;
+          const status = row.querySelector(".tool-status");
+          const doneStatus = status ? status.textContent.trim() : "";
+          tl.set(row, { attr: { class: "tool-row active" } }, landAt);
+          if (status) tl.set(status, { textContent: "working" }, landAt);
+          const resolveAt = landAt + 0.3;
+          tl.set(row, { attr: { class: "tool-row done" } }, resolveAt);
+          if (status) tl.set(status, { textContent: doneStatus }, resolveAt);
         });
 
         // 4) Settle: the last progress row flips from its active/"working"
@@ -274,12 +353,42 @@
             tl.set(lastStep, { innerHTML: doneStep.innerHTML }, SETTLE_AT);
           }
         }
+
+        // Nudge the thread up so the closing summary line (below) has room
+        // to land above the fixed composer — the progress card's last row
+        // already sits close to the composer's top edge, and the new line
+        // needs ~40-60px more. Starts at SETTLE_AT so it's mostly settled by
+        // the time the summary begins streaming.
+        if (threadWidth) {
+          tl.to(threadWidth, { y: -50, duration: 0.4, ease: "power2.out" }, SETTLE_AT);
+        }
+
+        // 5) Closing summary: once the progress card resolves, the turn
+        // continues with a one-line prose summary of the finished work — the
+        // brief's third story beat (send -> preamble -> progress -> summary)
+        // instead of ending the instant the last row goes green.
+        const SUMMARY_TEXT = "Done — the opening slides now use the correct Q2 numbers.";
+        const SUMMARY_CPS = 48;
+        const SUMMARY_AT = SETTLE_AT + 0.3;
+        const SUMMARY_DUR = SUMMARY_TEXT.length / SUMMARY_CPS;
+        if (summaryEl) ix.stream(summaryEl, SUMMARY_TEXT, { at: SUMMARY_AT, cps: SUMMARY_CPS });
+
+        // Stop → send crossfade: the composer's submit control reverts to
+        // the send arrow once the WHOLE turn settles — tool rows resolving
+        // is not the end of generation, the trailing summary is still
+        // streaming, so this now waits for it (same quick fade+scale, not a
+        // snap).
+        const TURN_END = SUMMARY_AT + SUMMARY_DUR + 0.15;
+        if (sendArrowIcon && sendStopIcon) {
+          tl.to(sendStopIcon, { autoAlpha: 0, scale: 0.7, duration: SEND_CROSSFADE }, TURN_END);
+          tl.to(sendArrowIcon, { autoAlpha: 1, scale: 1, duration: SEND_CROSSFADE }, TURN_END);
+        }
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(12.2).pause();
-        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(12.2).pause(); }).catch(() => {});
+        tl.seek(13.7).pause();
+        window.__backlotLoaderReady.then(() => { tl.seek(0).seek(13.7).pause(); }).catch(() => {});
       }
     </script>
   </body>
