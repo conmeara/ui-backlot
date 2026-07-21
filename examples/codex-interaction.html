@@ -172,29 +172,54 @@
         }
         const tailEndAt = TYPE_AT + TAIL.length / CPS;
 
+        // The old turn's in-flight check ticks and then completes while the
+        // user is still typing — an "Esc to interrupt" spinner can't outlive
+        // its own turn into the next prompt's response (mount strips the
+        // composition's script, so the spinner is otherwise frozen).
+        const runningRowEl = win.querySelector(".running-row");
+        const runningBullet = runningRowEl && runningRowEl.querySelector(".bullet");
+        const runningTextEl = runningRowEl && runningRowEl.querySelector("p");
+        if (runningBullet && runningTextEl) {
+          ["◓", "◑", "◒"].forEach((frame, i) => {
+            tl.set(runningBullet, { textContent: frame }, 0.45 + i * 0.45);
+          });
+          const checkDoneAt = TYPE_AT + 0.25;
+          tl.set(runningBullet, { textContent: "•", attr: { class: "bullet" } }, checkDoneAt);
+          tl.set(runningTextEl, { textContent: "Checked terminal capture fidelity (12s)" }, checkDoneAt);
+        }
+
         // 2) Send: the composer clears (message sent) while the terminal
         // moves on to running the turn.
         const submitAt = tailEndAt + 0.4;
         tl.to(composerInput, { opacity: 0, duration: 0.15 }, submitAt);
 
-        // 2b) The mounted terminal-screen has a hard fixed-height clip (no
-        // scroll container) with zero slack even for the OLD turn alone —
-        // appending the full new turn below the full old one overflows past
-        // the visible window (verified by render: Explored/Plan/Applied land
-        // entirely below the clip and never become visible). Real terminal
-        // scrollback drops from the OLDEST line first as new output no
-        // longer fits, not as an all-or-nothing wipe of the whole turn, so
-        // only the oldest rows (thought/plan/explore/approve) are cut —
-        // instantly, no fade, matching a ratatui repaint — while the
-        // newest tail of the old turn (Diff + the "Checking…" row) stays
-        // on screen right above the new turn that lands beneath it. This
-        // keeps continuity (the prior turn never fully vanishes) while
-        // leaving enough room for the new turn to actually render.
-        const dropRowCount = Math.max(0, collapseRows.length - 2);
-        const dropRows = collapseRows.slice(0, dropRowCount);
+        // 2b) The mounted terminal-screen has a hard fixed-height clip with
+        // zero slack even for the OLD turn alone — the full new turn cannot
+        // fit below the full old one. A terminal never deletes interior
+        // scrollback while keeping both ends pinned, so this is modeled as a
+        // real scroll: the ENTIRE buffer (splash header, tip line, old
+        // prompt band, transcript) translates up until the newest tail of
+        // the old turn (Diff + checks row) sits at the top of the clip, the
+        // oldest content sliding off-screen intact. offsetTop is used for
+        // the distance (layout px, unaffected by the mount's outer scale).
+        const screenEl = win.querySelector(".terminal-screen");
+        const splashEl = win.querySelector(".codex-splash");
+        const tipEl = win.querySelector(".tip-line");
+        const promptBandEl = win.querySelector(".user-prompt");
+        const diffRowEl = win.querySelector(".diff-row");
+        if (screenEl) gsap.set(screenEl, { overflow: "hidden" });
+        const scrollEls = [splashEl, tipEl, promptBandEl, transcript].filter(Boolean);
+        const scrollDelta = diffRowEl && splashEl
+          ? Math.max(0, Math.round(
+              (diffRowEl.getBoundingClientRect().top - splashEl.getBoundingClientRect().top) /
+              (win.getBoundingClientRect().width / win.offsetWidth || 1)
+            ))
+          : 0;
         const collapseAt = submitAt + 0.2;
         const collapseFadeDur = 0.35;
-        if (dropRows.length) tl.set(dropRows, { display: "none" }, collapseAt);
+        if (scrollDelta > 0) {
+          tl.to(scrollEls, { y: -scrollDelta, duration: collapseFadeDur, ease: "power1.inOut" }, collapseAt);
+        }
 
         // 2c) The sent turn's own "> ..." prompt line appears right as the
         // old turn's activity settles — the visible cause for the response
