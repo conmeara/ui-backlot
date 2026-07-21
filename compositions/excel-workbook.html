@@ -121,6 +121,9 @@
         <symbol id="fluent-document-one-page-16-filled" viewBox="0 0 16 16">
         <path fill="currentColor" d="M5 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm4.59 3.992L9.5 5h-3a.5.5 0 0 1-.09-.992L6.5 4h3a.5.5 0 0 1 .09.992M10 8a.5.5 0 0 1-.41.492L9.5 8.5h-3a.5.5 0 0 1-.09-.992L6.5 7.5h3a.5.5 0 0 1 .5.5m0 3.492a.5.5 0 0 1-.41.492l-.09.008h-3A.5.5 0 0 1 6.41 11l.09-.008h3a.5.5 0 0 1 .5.5"/>
         </symbol>
+        <symbol id="fluent-document-margins-20-filled" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M6 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2v-3.5a.5.5 0 0 1 1 0V18h6v-3.5a.5.5 0 0 1 1 0V18a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2v3.5a.5.5 0 0 1-1 0V2H7v3.5a.5.5 0 0 1-1 0zm.5 11a.5.5 0 0 1-.5-.5v-5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-.5.5m7 0a.5.5 0 0 1-.5-.5v-5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-.5.5"/>
+        </symbol>
         <symbol id="fluent-document-page-break-20-filled" viewBox="0 0 20 20">
         <path fill="currentColor" d="M16 6V2.5c0-.276-.226-.5-.5-.5H4.496A.5.5 0 0 0 4 2.5V6c0 .828.667 1.5 1.488 1.5H14.5c.821 0 1.5-.672 1.5-1.5M3 9.5a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm3.2 0a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm2.7.5a.5.5 0 0 1 .5-.5h1.2a.5.5 0 0 1 0 1H9.4a.5.5 0 0 1-.5-.5m3.7-.5a.5.5 0 0 0 0 1h1.2a.5.5 0 0 0 0-1zm2.7.5a.5.5 0 0 1 .5-.5H17a.5.5 0 0 1 0 1h-1.2a.5.5 0 0 1-.5-.5m.7 7.5V14c0-.828-.679-1.5-1.5-1.5H5.488C4.667 12.5 4 13.172 4 14v3.5c0 .276.222.5.496.5H15.5c.274 0 .5-.224.5-.5"/>
         </symbol>
@@ -250,8 +253,8 @@
           <div class="ribbon-large small-large"><svg class="cmd-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg><em>Find &amp;<br/>Select</em><i></i></div>
         </div>
         <div class="ribbon-group large-buttons">
-          <div class="ribbon-large wide"><svg class="cmd-icon office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-tag-16-regular"></use></svg><em>Sensitivity</em></div>
-          <div class="ribbon-large wide"><svg class="cmd-icon office-icon addins-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-apps-16-regular"></use></svg><em>Add-ins</em></div>
+          <div class="ribbon-large wide"><span class="sensitivity-glyph"><svg class="cmd-icon office-icon sensitivity-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-document-one-page-16-filled"></use></svg><svg class="office-icon sensitivity-chev" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span><em>Sensitivity</em></div>
+          <div class="ribbon-large wide"><svg class="cmd-icon office-icon addins-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-grid-16-filled"></use></svg><em>Add-ins</em></div>
           <div class="ribbon-large wide"><svg class="cmd-icon office-icon claude-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-claude"></use></svg><em>Claude</em></div>
         </div>
       </div>
@@ -266,16 +269,16 @@
         <main class="sheet-stage">
           <div class="grid-viewport">
             <div class="corner"></div>
-            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4">D</div><div class="col-head c5">E</div><div class="col-head c6">F</div><div class="col-head c7">G</div><div class="col-head c8">H</div><div class="col-head c9">I</div><div class="col-head c10">J</div><div class="col-head c11">K</div><div class="col-head c12">L</div><div class="col-head c13">M</div>
+            <div class="col-head c1">A</div><div class="col-head c2">B</div><div class="col-head c3">C</div><div class="col-head c4 sel">D</div><div class="col-head c5 sel">E</div><div class="col-head c6 sel">F</div><div class="col-head c7">G</div><div class="col-head c8">H</div><div class="col-head c9">I</div><div class="col-head c10">J</div><div class="col-head c11">K</div><div class="col-head c12">L</div><div class="col-head c13">M</div>
 
             <div class="row-head r1">1</div><div class="cell a1 title-cell">Launch metrics</div><div class="cell b1 muted-cell">Owner</div><div class="cell c1 muted-cell">Source</div><div class="cell d1 metric-head">Q2</div><div class="cell e1 metric-head">Goal</div><div class="cell f1 metric-head">Delta</div><div class="cell g1"></div><div class="cell h1"></div><div class="cell i1"></div><div class="cell j1"></div><div class="cell k1"></div><div class="cell l1"></div><div class="cell m1"></div>
             <div class="row-head r2">2</div><div class="cell a2 label-cell">Revenue story</div><div class="cell b2">Claude</div><div class="cell c2">Q2 revenue.csv</div><div class="cell d2 num">128</div><div class="cell e2 num">110</div><div class="cell f2 good">+16%</div><div class="cell g2"></div><div class="cell h2"></div><div class="cell i2"></div><div class="cell j2"></div><div class="cell k2"></div><div class="cell l2"></div><div class="cell m2"></div>
             <div class="row-head r3">3</div><div class="cell a3 label-cell">Adoption rate</div><div class="cell b3">Growth</div><div class="cell c3">events.csv</div><div class="cell d3 num">42</div><div class="cell e3 num">38</div><div class="cell f3 good">+11%</div><div class="cell g3"></div><div class="cell h3"></div><div class="cell i3"></div><div class="cell j3"></div><div class="cell k3"></div><div class="cell l3"></div><div class="cell m3"></div>
             <div class="row-head r4">4</div><div class="cell a4 label-cell">Customer quote</div><div class="cell b4">Review</div><div class="cell c4">feedback.txt</div><div class="cell d4 num">18</div><div class="cell e4 num">12</div><div class="cell f4 good">+50%</div><div class="cell g4"></div><div class="cell h4"></div><div class="cell i4"></div><div class="cell j4"></div><div class="cell k4"></div><div class="cell l4"></div><div class="cell m4"></div>
-            <div class="row-head r5">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div><div class="cell g5"></div><div class="cell h5"></div><div class="cell i5"></div><div class="cell j5"></div><div class="cell k5"></div><div class="cell l5"></div><div class="cell m5"></div>
-            <div class="row-head r6">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div><div class="cell g6"></div><div class="cell h6"></div><div class="cell i6"></div><div class="cell j6"></div><div class="cell k6"></div><div class="cell l6"></div><div class="cell m6"></div>
-            <div class="row-head r7">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div><div class="cell g7"></div><div class="cell h7"></div><div class="cell i7"></div><div class="cell j7"></div><div class="cell k7"></div><div class="cell l7"></div><div class="cell m7"></div>
-            <div class="row-head r8">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div><div class="cell g8"></div><div class="cell h8"></div><div class="cell i8"></div><div class="cell j8"></div><div class="cell k8"></div><div class="cell l8"></div><div class="cell m8"></div>
+            <div class="row-head r5 sel">5</div><div class="cell a5 label-cell">Speaker notes</div><div class="cell b5">Ready</div><div class="cell c5">Slide 2</div><div class="cell d5 selected num">2</div><div class="cell e5 selected num">2</div><div class="cell f5 selected good">0%</div><div class="cell g5"></div><div class="cell h5"></div><div class="cell i5"></div><div class="cell j5"></div><div class="cell k5"></div><div class="cell l5"></div><div class="cell m5"></div>
+            <div class="row-head r6 sel">6</div><div class="cell a6">Opening slide</div><div class="cell b6">Ready</div><div class="cell c6">Slide 1</div><div class="cell d6 selected num">4</div><div class="cell e6 selected num">4</div><div class="cell f6 selected good">0%</div><div class="cell g6"></div><div class="cell h6"></div><div class="cell i6"></div><div class="cell j6"></div><div class="cell k6"></div><div class="cell l6"></div><div class="cell m6"></div>
+            <div class="row-head r7 sel">7</div><div class="cell a7">Chart update</div><div class="cell b7">Working</div><div class="cell c7">Slide 1</div><div class="cell d7 selected num">6</div><div class="cell e7 selected num">5</div><div class="cell f7 selected good">+20%</div><div class="cell g7"></div><div class="cell h7"></div><div class="cell i7"></div><div class="cell j7"></div><div class="cell k7"></div><div class="cell l7"></div><div class="cell m7"></div>
+            <div class="row-head r8 sel">8</div><div class="cell a8 section-cell">Deck total</div><div class="cell b8"></div><div class="cell c8"></div><div class="cell d8 active-cell num">12</div><div class="cell e8 selected num">9</div><div class="cell f8 selected good">+33%</div><div class="cell g8"></div><div class="cell h8"></div><div class="cell i8"></div><div class="cell j8"></div><div class="cell k8"></div><div class="cell l8"></div><div class="cell m8"></div>
             <div class="row-head r9">9</div><div class="cell a9"></div><div class="cell b9"></div><div class="cell c9"></div><div class="cell d9"></div><div class="cell e9"></div><div class="cell f9"></div><div class="cell g9"></div><div class="cell h9"></div><div class="cell i9"></div><div class="cell j9"></div><div class="cell k9"></div><div class="cell l9"></div><div class="cell m9"></div>
             <div class="row-head r10">10</div><div class="cell a10"></div><div class="cell b10"></div><div class="cell c10"></div><div class="cell d10"></div><div class="cell e10"></div><div class="cell f10"></div><div class="cell g10"></div><div class="cell h10"></div><div class="cell i10"></div><div class="cell j10"></div><div class="cell k10"></div><div class="cell l10"></div><div class="cell m10"></div>
             <div class="row-head r11">11</div><div class="cell a11"></div><div class="cell b11"></div><div class="cell c11"></div><div class="cell d11"></div><div class="cell e11"></div><div class="cell f11"></div><div class="cell g11"></div><div class="cell h11"></div><div class="cell i11"></div><div class="cell j11"></div><div class="cell k11"></div><div class="cell l11"></div><div class="cell m11"></div>
@@ -324,8 +327,8 @@
         <span class="status-spacer"></span>
         <span>Average: 5.5</span><span>Count: 8</span><span>Sum: 44</span>
         <span class="view-modes">
-          <span class="view-mode active"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-grid-16-filled"></use></svg></span>
-          <span class="view-mode"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-document-one-page-16-filled"></use></svg></span>
+          <span class="view-mode active"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-table-16-filled"></use></svg></span>
+          <span class="view-mode"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-margins-20-filled"></use></svg></span>
           <span class="view-mode"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-document-page-break-20-filled"></use></svg></span>
         </span>
         <span class="zoom-btn"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-subtract-12-filled"></use></svg></span>
@@ -390,6 +393,31 @@
         width: 0;
         height: 0;
         overflow: hidden;
+      }
+
+      /* ---------- Ribbon: Sensitivity / Add-ins colored glyphs ----------
+         Declared after the office-ribbon.css @import above so these win
+         over its generic .cmd-icon / .addins-icon color rules. */
+      .sensitivity-glyph {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+      }
+
+      .sensitivity-icon {
+        color: #0f6cbd;
+      }
+
+      .sensitivity-chev {
+        width: 8px;
+        height: 8px;
+        flex: none;
+        color: #424242;
+      }
+
+      .addins-icon {
+        color: #c15125;
       }
 
       /* ---------- Titlebar ---------- */
@@ -606,6 +634,21 @@
         color: #6e6e6e;
         font-size: 11px;
         font-weight: 400;
+      }
+
+      .col-head.sel,
+      .row-head.sel {
+        background: var(--excel-soft);
+        color: var(--excel);
+        font-weight: 600;
+      }
+
+      .col-head.sel {
+        border-bottom: 2px solid var(--excel);
+      }
+
+      .row-head.sel {
+        border-right: 2px solid var(--excel);
       }
 
       .cell {
@@ -871,6 +914,11 @@
 
       .view-mode.active {
         color: #4a545e;
+        width: 20px;
+        height: 20px;
+        padding: 2px;
+        border-radius: 4px;
+        background: #e2e2e2;
       }
 
       .zoom-btn {

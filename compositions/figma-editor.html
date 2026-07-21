@@ -76,6 +76,9 @@
           <path d="M8.916 17.912a1 1 0 0 0 0 1.415l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.415l-2.377-2.376a1 1 0 0 0-1.414 0z" />
           <path d="M8.916 4.674a1 1 0 0 0 0 1.414l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z" />
         </symbol>
+        <symbol id="lucide-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+        </symbol>
       </svg>
       <!-- Desktop-app tab strip — the Mac window chrome. Ground truth:
            reference/figma/2026-07-13/desktop-app-editor (real Figma.app
@@ -117,12 +120,7 @@
             <button class="panel-icon-button collapse" type="button" aria-label="Toggle UI"></button>
           </div>
           <strong>Playground Page<svg class="backlot-icon" style="width:12px;height:12px;color:var(--figma-muted);margin-left:2px;vertical-align:middle" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></strong>
-          <span>UI Backlot</span>
-        </div>
-        <div class="panel-tabs">
-          <button class="panel-tab active" type="button">File</button>
-          <button class="panel-tab" type="button">Assets</button>
-          <svg class="backlot-icon panel-search-icon" aria-hidden="true"><use href="#lucide-search"/></svg>
+          <span>Drafts <a style="color:var(--figma-blue);text-decoration:none">Free</a></span>
         </div>
         <div class="page-section">
           <div class="panel-heading" style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center"><svg class="backlot-icon" style="width:12px;height:12px;color:var(--figma-muted);margin-right:4px" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>Pages</span><svg class="backlot-icon" style="width:14px;height:14px;color:var(--figma-muted)" aria-hidden="true"><use href="#lucide-plus"/></svg></div>
@@ -285,11 +283,14 @@
           <button class="tool" type="button" aria-label="Shape"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-shape"/></svg></button>
           <svg class="tool-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
         </div>
-        <button class="tool" type="button" aria-label="Pen"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-pen-tool"/></svg></button>
+        <div class="tool-group">
+          <button class="tool" type="button" aria-label="Pen"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-pen-tool"/></svg></button>
+          <svg class="tool-chevron" aria-hidden="true"><use href="#lucide-chevron-down"/></svg>
+        </div>
         <button class="tool" type="button" aria-label="Text"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-type-tool"/></svg></button>
         <button class="tool" type="button" aria-label="Comment"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-comment"/></svg></button>
         <span class="tool-separator" aria-hidden="true"></span>
-        <button class="tool" type="button" aria-label="Actions"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-wand"/></svg></button>
+        <button class="tool" type="button" aria-label="Actions"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sparkle"/></svg></button>
       </nav>
       <div class="dev-mode-pill" aria-label="Dev mode">
         <svg class="backlot-icon" aria-hidden="true"><use href="#lucide-code"/></svg>
