@@ -16,7 +16,6 @@ This is the public, agent-readable catalog of editable UI surfaces in UI Backlot
 | id | kind | title | source | capture | tags |
 | --- | --- | --- | --- | --- | --- |
 | `claude-composed-app` | component | Claude App (Mac desktop) | [compositions/claude-composed-app.html](../compositions/claude-composed-app.html) | `capture:claude-composed-app` | `claude` `desktop-app` `canonical-shell` `component-loader` `composed-shell` `chat` `cowork` `code` |
-| `claude-chat-pane` | component | Claude Chat Pane | [compositions/claude-chat-pane.html](../compositions/claude-chat-pane.html) | `capture:claude-chat-pane` | `claude` `chat` `thread` `composer` `launch-reference` `pane` |
 | `claude-cinematic` | component | Claude Cinematic Conversation | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
 | `claude-code-terminal-session` | component | Claude Code Terminal Session | [compositions/claude-code-terminal-session.html](../compositions/claude-code-terminal-session.html) | `capture:claude-code-terminal-session` | `claude` `claude-code` `terminal` `light-ui` `figma-workflow` `component` |
 | `codex-app` | component | Codex Desktop Workbench | [compositions/codex-app.html](../compositions/codex-app.html) | `capture:codex-app` | `codex` `desktop` `app` `agent-status` `patch-preview` `developer-workflow` |
@@ -32,22 +31,22 @@ Claude components can be paired with any app surface when a demo needs an assist
 
 | id | kind | title | source | capture | tags |
 | --- | --- | --- | --- | --- | --- |
-| `claude-agent-rail` | component | Claude Agent Context Rail | [compositions/claude-agent-rail.html](../compositions/claude-agent-rail.html) | `capture:claude-agent-rail` | `claude` `agent-status` `task-rail` `context` `artifacts` `cowork` |
-| `claude-attachment-draft` | component | Claude Attached Folder Draft | [compositions/claude-attachment-draft.html](../compositions/claude-attachment-draft.html) | `capture:claude-attachment-draft` | `claude` `attachment` `folder-context` `composer` `new-chat` |
-| `claude-chat-pane` | component | Claude Chat Pane | [compositions/claude-chat-pane.html](../compositions/claude-chat-pane.html) | `capture:claude-chat-pane` | `claude` `chat` `thread` `composer` `launch-reference` `pane` |
+| `claude-agent-rail` | component | Claude Agent Context Rail _(deprecated)_ | [compositions/claude-agent-rail.html](../compositions/claude-agent-rail.html) | `capture:claude-agent-rail` | `claude` `agent-status` `task-rail` `context` `artifacts` `cowork` |
+| `claude-attachment-draft` | component | Claude Attached Folder Draft _(deprecated)_ | [compositions/claude-attachment-draft.html](../compositions/claude-attachment-draft.html) | `capture:claude-attachment-draft` | `claude` `attachment` `folder-context` `composer` `new-chat` |
+| `claude-chat-pane` | component | Claude Chat Pane _(deprecated — use `claude-composed-app`)_ | [compositions/claude-chat-pane.html](../compositions/claude-chat-pane.html) | `capture:claude-chat-pane` | `claude` `chat` `thread` `composer` `launch-reference` `pane` |
 | `claude-cinematic` | component | Claude Cinematic Conversation | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
 | `claude-cinematic-prompt` | component | Claude Cinematic Conversation (Prompt Beat) | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic-prompt` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
 | `claude-cinematic-complete` | component | Claude Cinematic Conversation (Complete Beat) | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic-complete` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
 | `claude-cinematic-dark` | component | Claude Cinematic Conversation (Dark) | [compositions/claude-cinematic.html](../compositions/claude-cinematic.html) | `capture:claude-cinematic-dark` | `claude` `cinematic` `zoomed` `dark-mode-ready` |
 | `claude-code-terminal-session` | component | Claude Code Terminal Session | [compositions/claude-code-terminal-session.html](../compositions/claude-code-terminal-session.html) | `capture:claude-code-terminal-session` | `claude` `claude-code` `terminal` `light-ui` `figma-workflow` `component` |
 | `claude-composed-app` | component | Claude App (Mac desktop) | [compositions/claude-composed-app.html](../compositions/claude-composed-app.html) | `capture:claude-composed-app` | `claude` `desktop-app` `canonical-shell` `component-loader` `composed-shell` `chat` `cowork` `code` |
-| `claude-composer` | component | Claude Working Composer | [compositions/claude-composer.html](../compositions/claude-composer.html) | `capture:claude-composer` | `claude` `composer` `attachment` `folder-context` `running-state` `chat` `cowork` |
-| `claude-home` | component | Claude New Chat Home | [compositions/claude-home.html](../compositions/claude-home.html) | `capture:claude-home` | `claude` `home` `composer` `new-chat` |
-| `claude-response-mark` | component | Claude Response Mark | [compositions/claude-response-mark.html](../compositions/claude-response-mark.html) | `capture:claude-response-mark` | `claude` `brand-mark` `response` `launch-reference` `editable-css` |
-| `claude-sidebar` | component | Claude Sidebar | [compositions/claude-sidebar.html](../compositions/claude-sidebar.html) | `capture:claude-sidebar` | `claude` `sidebar` `navigation` `chat` `cowork` `code` `workspace` |
-| `claude-thread-core` | component | Claude Working Thread Core | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core` | `claude` `thread` `tool-use` `reasoning` `message-parts` `cinematic` |
-| `claude-tool-result` | component | Claude Completed Tool Result | [compositions/claude-tool-result.html](../compositions/claude-tool-result.html) | `capture:claude-tool-result` | `claude` `tool-result` `completed-work` `composer` `artifact` |
-| `claude-thread-core-dark` | component | Claude Working Thread Core (dark) | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core-dark` | `claude` `thread` `tool-use` `reasoning` `message-parts` |
+| `claude-composer` | component | Claude Working Composer _(deprecated)_ | [compositions/claude-composer.html](../compositions/claude-composer.html) | `capture:claude-composer` | `claude` `composer` `attachment` `folder-context` `running-state` `chat` `cowork` |
+| `claude-home` | component | Claude New Chat Home _(deprecated)_ | [compositions/claude-home.html](../compositions/claude-home.html) | `capture:claude-home` | `claude` `home` `composer` `new-chat` |
+| `claude-response-mark` | component | Claude Response Mark _(deprecated)_ | [compositions/claude-response-mark.html](../compositions/claude-response-mark.html) | `capture:claude-response-mark` | `claude` `brand-mark` `response` `launch-reference` `editable-css` |
+| `claude-sidebar` | component | Claude Sidebar _(deprecated)_ | [compositions/claude-sidebar.html](../compositions/claude-sidebar.html) | `capture:claude-sidebar` | `claude` `sidebar` `navigation` `chat` `cowork` `code` `workspace` |
+| `claude-thread-core` | component | Claude Working Thread Core _(deprecated)_ | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core` | `claude` `thread` `tool-use` `reasoning` `message-parts` `cinematic` |
+| `claude-tool-result` | component | Claude Completed Tool Result _(deprecated)_ | [compositions/claude-tool-result.html](../compositions/claude-tool-result.html) | `capture:claude-tool-result` | `claude` `tool-result` `completed-work` `composer` `artifact` |
+| `claude-thread-core-dark` | component | Claude Working Thread Core (dark) _(deprecated)_ | [compositions/claude-thread-core.html](../compositions/claude-thread-core.html) | `capture:claude-thread-core-dark` | `claude` `thread` `tool-use` `reasoning` `message-parts` |
 
 ## Desktop And Browser
 

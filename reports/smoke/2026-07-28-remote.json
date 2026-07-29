@@ -1,0 +1,51 @@
+{
+  "mode": "remote registry (raw.githubusercontent.com)",
+  "generatedAt": "2026-07-28T00:00:00Z",
+  "journey": {
+    "installed": [
+      "mac-menu-bar",
+      "excel-workbook",
+      "claude-composed-app",
+      "claude-cinematic"
+    ],
+    "composed": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/index.html",
+    "rendered": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+    "friction": [
+      {
+        "step": "npx hyperframes add claude-chat-pane (the exact command in README.md's 'Use the surfaces in your own project' example, also named as a recommended block in docs/catalog.md and docs/guides/build-hyperframes-demo.md)",
+        "kind": "docs-wrong",
+        "detail": "Fails immediately: 'Item \"claude-chat-pane\" not found in registry.' The published registry (https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry) does not contain claude-chat-pane at all — it was only discoverable as deprecated after I peeked at surfaces/registry.json (status: \"deprecated\", replaced by claude-composed-app with a data-sidebar=\"off\" attribute that is never mentioned in any of the three allowed docs). A stranger following the README's own copy-pasted example command hits a hard error on the very first block it names.",
+        "suggestedFix": "Remove claude-chat-pane from README.md's example `npx hyperframes add` block and from docs/catalog.md's 'Claude And Chat' table (or keep it there but mark it deprecated the way surfaces/registry.json already does), and replace the README example with the block that actually ships in the registry today (claude-composed-app) plus the attribute needed to get the sidebar-less pane variant."
+      },
+      {
+        "step": "Rendering compositions/claude-composed-app.html (docs/catalog.md's #1 'Recommended Starter', installed cleanly via `npx hyperframes add claude-composed-app`) through `npm run check` and `npx hyperframes render --composition index.html ...`, referencing it via data-composition-src exactly as docs/guides/build-hyperframes-demo.md instructs",
+        "kind": "broken-install",
+        "detail": "Both `check` and `render` hard-fail on this file with: 'missing_or_empty_sub_composition: data-composition-src references \"compositions/claude-composed-app.html\", but the file has no <template> or <body> content to render.' This is not a soft lint warning — `hyperframes render` stops at 5% ('Compiling composition') with a hard 'Render failed' and produces no output frames at all when this block is included. The file installs fine (fonts, foundation CSS, component loader, all correct) and its DOM tags are balanced (28 open/28 close <div>, etc.), so the fragment itself looks structurally normal to a human reading it, yet the CLI's own compiler rejects it. I could not identify the exact parser trigger from the allowed docs; I had to swap in claude-cinematic (also cataloged as a Claude component) to get a successful render at all.",
+        "suggestedFix": "Fix compositions/claude-composed-app.html (or the registry 'add'/render-compiler's fragment-detection logic) so the catalog's flagship, most-recommended Claude component actually renders via the documented data-composition-src consumer path, and add exactly this scenario (fresh `hyperframes add claude-composed-app` -> compose -> render) to whatever pre-publish gate protects the registry, since it currently ships broken to external consumers."
+      },
+      {
+        "step": "Applying the README's documented '?page=home|chat|cowork|code on claude-composed-app' variant syntax to a registry-installed block referenced via data-composition-src",
+        "kind": "docs-gap",
+        "detail": "README.md states the variant exists but never shows where/how to attach it when a block is installed via the registry (only the internal in-repo pattern uses data-backlot-mount-src). The only place a query string could plausibly go is appended to the data-composition-src path itself; doing that (data-composition-src=\"compositions/claude-composed-app.html?page=chat\") makes `hyperframes check`/`render` treat the whole string including the query as a literal file path and report 'the file does not exist' — a second, different failure from the missing-body one above.",
+        "suggestedFix": "Add a worked example to docs/guides/build-hyperframes-demo.md (or README.md) showing the exact syntax for applying `?page=` / `?beat=` variants to a data-composition-src-installed block, or state explicitly that this mechanism only applies to the in-repo mount pattern."
+      },
+      {
+        "step": "npm run check after installing any block (mac-menu-bar, excel-workbook, claude-composed-app, claude-cinematic all triggered it) and, per the lint's own text, npm run dev / Studio preview",
+        "kind": "broken-asset",
+        "detail": "Every block `npx hyperframes add` installs ships styles/backlot-foundation.css with @font-face src url(\"../assets/fonts/...\") — a parent-relative path. `hyperframes check` flags this on every single install as 'invalid_parent_traversal_in_asset_path' (4 occurrences) and its own message says this 404s in 'Studio preview and other live consumers' (though it happened not to block the final `render` in this run). This file is generated by the installer, not authored by the consumer, so a stranger cannot fix it without already knowing the project's internal asset-path convention.",
+        "suggestedFix": "Have the registry publish styles/backlot-foundation.css (and any generator that produces it) with root-relative font paths (\"assets/fonts/...\") instead of \"../assets/fonts/...\", so a fresh `hyperframes add` doesn't fail the tool's own lint out of the box."
+      }
+    ]
+  },
+  "verify": {
+    "videoOk": true,
+    "installOk": true,
+    "details": [
+      "Video file exists at /Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4 with H.264 video stream, 10.0s duration (exceeds 2s minimum), 1920x1080px dimensions matching index.html composition stage",
+      "All 4 mounted block files exist and non-empty: mac-menu-bar.html (212 lines), excel-workbook.html (1067 lines), claude-cinematic.html (448 lines), claude-response-mark.html (113 lines)",
+      "All local file references verified: 11 local files resolve correctly (compositions, runtime/backlot-component-loader.js, styles/backlot-foundation.css)",
+      "All mounted block HTML contains proper structure with no missing src/href dependencies; external CDN URL (GSAP) acceptable for video render"
+    ],
+    "notes": "Consumer-smoke install and video output verified successfully. All artifact requirements met for /Users/conmeara/Projects/ui-backlot/workspace/smoke/demo."
+  }
+}

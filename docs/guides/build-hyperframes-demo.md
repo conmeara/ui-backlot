@@ -12,11 +12,11 @@ not shipped — stack the pieces the story needs in your own composition:
 - One or more app windows: `excel-workbook`, `word-editor`,
   `presentation-editor`, `figma-editor`, `premiere-editor`, `browser-app`,
   `finder-window`, `calendar-app`.
-- The AI layer: `claude-composed-app` (full app, `?page=chat|cowork|code`),
-  `claude-chat-pane` (sidebar-less pane to layer beside an app window),
-  `claude-cinematic` (zoomed conversation close-up,
-  `?beat=prompt|reply|complete`), `claude-code-terminal-session`,
-  `codex-app`, or `codex-terminal`.
+- The AI layer: `claude-composed-app` (full app, `data-page="chat|cowork|code"`,
+  `data-sidebar="off"` for a sidebar-less pane beside an app window — this
+  replaces the deprecated `claude-chat-pane` block), `claude-cinematic`
+  (zoomed conversation close-up, `data-beat="prompt|reply|complete"`),
+  `claude-code-terminal-session`, `codex-app`, or `codex-terminal`.
 
 Each entry's `recommendedUse` in the registry says when to reach for it.
 
@@ -28,8 +28,8 @@ components with:
 ```html
 <div
   class="component-frame claude-component"
-  data-backlot-mount-src="../compositions/claude-chat-pane.html"
-  data-backlot-mount-selector="#claude-chat-pane-surface"
+  data-backlot-mount-src="../compositions/claude-composed-app.html"
+  data-backlot-mount-selector="#claude-composed-app"
 ></div>
 ```
 
@@ -42,11 +42,62 @@ The snippet each `add` prints uses `data-composition-src` and omits
 host `<div>` yourself, or `hyperframes lint` fails with
 `host_missing_composition_id`.
 
-Include the component loader:
+Include the component loader **after** the mount `<div>`s, not in `<head>` —
+the loader runs immediately on parse and only finds `[data-backlot-mount-src]`
+elements already in the DOM:
 
 ```html
 <script src="../runtime/backlot-component-loader.js"></script>
 ```
+
+### Applying Page And Beat Variants
+
+`claude-composed-app` (`data-page="home|chat|cowork|code"`, `data-sidebar`,
+`data-rail`) and `claude-cinematic` (`data-beat="prompt|reply|complete"`) read
+their variant from a `data-*` attribute on their own composition root, with a
+baked-in default (`home` / `reply`). Two ways to set it, verified against the
+published registry install path:
+
+**Query string — direct-preview only.** Each of those compositions also reads
+`?page=`/`?beat=` from `window.location.search` on load and copies it onto its
+own root attribute. This only fires when you load the composition's own URL
+directly (what capture scripts do, e.g.
+`compositions/claude-composed-app.html?page=chat`). It does **not** work
+appended to a `data-composition-src` value
+(`data-composition-src="compositions/claude-composed-app.html?page=chat"`) —
+`hyperframes check`/`render` resolve that whole string, query included, as a
+literal file path and fail with "the file does not exist". It also has no
+effect through `data-backlot-mount-src`, because the component loader strips
+`<script>` tags from whatever it fetches before mounting, so the
+composition's own query-reading script never runs.
+
+**`data-backlot-mount-src` + set the attribute after mount — works for
+registry consumers.** Mount with the component loader (installed automatically
+by `npx hyperframes add`) instead of `data-composition-src`, then set the
+variant attribute on the mounted element once `window.__backlotComponentsReady`
+resolves:
+
+```html
+<div
+  id="app-host"
+  data-backlot-mount-src="compositions/claude-composed-app.html"
+  data-backlot-mount-selector="#claude-composed-app"
+></div>
+
+<script src="runtime/backlot-component-loader.js"></script>
+<script>
+  (window.__backlotComponentsReady || Promise.resolve()).then(() => {
+    const app = document.querySelector("#app-host #claude-composed-app");
+    if (app) app.setAttribute("data-page", "chat");
+  });
+</script>
+```
+
+For a scene where the page should change mid-timeline rather than at load,
+set it through GSAP instead of a plain `setAttribute` so it lands on the
+timeline (see `examples/claude-chat-interaction.html`, which flips
+`data-page` from `"home"` to `"chat"` partway through with
+`tl.set(app, { attr: { "data-page": "chat" } }, atSeconds)`).
 
 ## 3. Animate Deterministically
 
@@ -82,9 +133,9 @@ registers. The general rule: ANY installed block whose `compositions/*.html`
 never assigns `window.__timelines[id] = ...` will stall ~45s per host with a
 "Sub-composition timelines not registered" warning unless flagged — check the
 block's HTML for a `__timelines` assignment before assuming it animates
-(`excel-workbook`, `mac-menu-bar`, and `claude-chat-pane` are known static
-blocks). The render still completes correctly via screenshot fallback, so a
-stall you do hit is slow, not broken.
+(`excel-workbook` and `mac-menu-bar` are known static blocks). The render
+still completes correctly via screenshot fallback, so a stall you do hit is
+slow, not broken.
 
 ## 5. Verify
 

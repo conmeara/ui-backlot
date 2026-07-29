@@ -72,8 +72,12 @@ npx hyperframes add excel-workbook
 # a "Claude working in Excel on a Mac" scene = three blocks you stack yourself
 npx hyperframes add mac-menu-bar
 npx hyperframes add excel-workbook
-npx hyperframes add claude-chat-pane
+npx hyperframes add claude-composed-app
 ```
+
+> Need just a chat pane next to an app window, no sidebar? `claude-composed-app`
+> covers that too — add `data-sidebar="off"` to its host `<div>` (replaces the
+> deprecated `claude-chat-pane` block).
 
 > `hyperframes init` also installs its agent skills into your global
 > `~/.claude/skills` — pass `--skip-skills` (or `HYPERFRAMES_SKIP_SKILLS=1`)
@@ -82,9 +86,18 @@ npx hyperframes add claude-chat-pane
 Each `add` prints a ready-to-paste snippet — scenes are composed by stacking
 blocks, not installed pre-baked. Give each pasted host `<div>` a unique
 `data-composition-id` (the printed snippet omits it, `hyperframes lint`
-requires it). Variants are parameters: `class="theme-dark"`
-on blocks tagged `dark-mode-ready`, `?page=home|chat|cowork|code` on
-`claude-composed-app`, `?beat=prompt|reply|complete` on `claude-cinematic`.
+requires it). Variants are parameters: `class="theme-dark"` on blocks tagged
+`dark-mode-ready` works on the printed snippet as-is. Page/beat variants
+(`?page=home|chat|cowork|code` on `claude-composed-app`,
+`?beat=prompt|reply|complete` on `claude-cinematic`) are a **direct-preview
+convenience only** — opening the composition file itself with that query
+string (what capture scripts do). Appending it to the printed
+`data-composition-src="compositions/....html"` snippet does not work (the CLI
+resolves the whole string, query and all, as a literal file path and fails).
+To pick a page/beat when composing from the registry, mount the block with
+`data-backlot-mount-src` instead and set `data-page`/`data-beat` on the
+mounted element once it loads — worked example in
+[build-hyperframes-demo.md](docs/guides/build-hyperframes-demo.md#applying-page-and-beat-variants).
 
 Complete starter projects scaffold with degit:
 

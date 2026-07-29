@@ -152,6 +152,32 @@
     document.body.appendChild(frame);
   });
 
+  // When a composition authored with nested "./"-relative mounts (e.g.
+  // claude-composed-app.html's sidebar/composer/thread/rail atoms) is
+  // consumed via HyperFrames' own data-composition-src inlining instead of
+  // being recursively fetched by this loader, the nested mounts land in the
+  // DOM as top-level document mounts with no recursion-derived baseUrl.
+  // HyperFrames stamps the element that originally carried
+  // data-composition-src with data-composition-file="<the same path>" once
+  // it inlines the template (removing data-composition-src in the process;
+  // verified against hyperframes@0.7.81's inlineSubCompositions, both the
+  // browser runtime bundle used by `hyperframes preview` and the Node-side
+  // compiler used by `hyperframes render` set it identically). Walk up to
+  // that ancestor and rebase against its path so "./" mounts resolve next to
+  // the composition file instead of against the host document.
+  const findInlinedCompositionBase = (mount) => {
+    const host = mount.closest(
+      "[data-composition-file], [data-composition-src], [data-backlot-base]"
+    );
+    if (!host) return null;
+    const compositionPath =
+      host.getAttribute("data-backlot-base") ||
+      host.getAttribute("data-composition-file") ||
+      host.getAttribute("data-composition-src");
+    if (!compositionPath) return null;
+    return new URL(compositionPath, document.baseURI).href;
+  };
+
   const mountComponent = async (mount, baseUrl) => {
     if (mount.getAttribute("data-backlot-mounted") === "ready") {
       return;
@@ -161,10 +187,15 @@
 
     // Nested "./" and "../" srcs are authored relative to the component file
     // they appear in, not the document; bare paths (the published-registry
-    // form) stay document-relative.
+    // form) stay document-relative. When this loader did not itself
+    // recursively arrive at `mount` (baseUrl is unset), fall back to the
+    // nearest HyperFrames-inlined composition ancestor before giving up and
+    // resolving against the document.
     const rawSrc = mount.getAttribute("data-backlot-mount-src");
-    const src = baseUrl && (rawSrc.startsWith("./") || rawSrc.startsWith("../"))
-      ? new URL(rawSrc, baseUrl).href
+    const isRelative = rawSrc.startsWith("./") || rawSrc.startsWith("../");
+    const effectiveBaseUrl = baseUrl || (isRelative ? findInlinedCompositionBase(mount) : null);
+    const src = effectiveBaseUrl && isRelative
+      ? new URL(rawSrc, effectiveBaseUrl).href
       : rawSrc;
     const selector = mount.getAttribute("data-backlot-mount-selector");
     let component;

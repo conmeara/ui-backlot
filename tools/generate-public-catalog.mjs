@@ -36,12 +36,12 @@ const tags = (surface) => (surface.tags || []).map((tag) => `\`${tag}\``).join("
 
 function row(surface) {
   const capture = surface.capture?.script ? `\`${surface.capture.script}\`` : surface.capture?.status || "";
-  return `| \`${surface.id}\` | ${surface.kind} | ${surface.title} | ${relLink(surface.source)} | ${capture} | ${tags(surface)} |`;
+  const title = surface.status === "deprecated" ? `${surface.title} _(deprecated${surface.replacedBy ? ` — use \`${surface.replacedBy}\`` : ""})_` : surface.title;
+  return `| \`${surface.id}\` | ${surface.kind} | ${title} | ${relLink(surface.source)} | ${capture} | ${tags(surface)} |`;
 }
 
 const recommended = [
   "claude-composed-app",
-  "claude-chat-pane",
   "claude-cinematic",
   "claude-code-terminal-session",
   "codex-app",

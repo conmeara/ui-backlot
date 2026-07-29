@@ -182,6 +182,7 @@
       "title": "Claude Chat Pane",
       "kind": "component",
       "status": "deprecated",
+      "replacedBy": "claude-composed-app",
       "fidelity": "no-sidebar chat pane composed from the shared claude-thread-core (cinematic scale) and claude-composer atoms via runtime/backlot-component-loader.js, poured into the Sonnet 4.6 launch-frame rhythm; the pane owns only its topbar chrome",
       "dimensions": {
         "width": 1180,

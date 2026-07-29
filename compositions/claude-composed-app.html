@@ -14,6 +14,7 @@
   }
 </style>
 
+<template id="claude-composed-app-template">
 <div id="claude-composed-app" data-composition-id="claude-composed-app" data-width="1440" data-height="900" data-start="0" data-duration="8" data-page="home">
   <svg style="display:none" aria-hidden="true">
     <symbol id="lucide-sidebar-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1114,7 +1115,6 @@
     color: #d6b250;
   }
 </style>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="../runtime/backlot-component-loader.js"></script>
@@ -1167,4 +1167,34 @@
     // Fully settled entrance state (all tweens complete by ~1.02s).
     tl.seek(1.45).pause();
   }
+</script>
+</div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-composed-app\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+
+    const mount = () => {
+      if (document.getElementById("claude-composed-app")) return;
+      const template = document.getElementById("claude-composed-app-template");
+      if (!template || !document.body) return;
+
+      document.body.appendChild(template.content.cloneNode(true));
+      // The cloned <script src> tags above (gsap, backlot-component-loader)
+      // never execute — only the inline script does (it already ran and set
+      // data-page/data-sidebar/data-rail from the URL). Recreate the loader
+      // script live so the mounted atoms (sidebar/thread/composer/rail)
+      // actually load for direct preview + capture, matching
+      // claude-cinematic.html's stamper.
+      window.__backlotComponentsState = "loading";
+      const componentLoader = document.createElement("script");
+      componentLoader.src = "../runtime/backlot-component-loader.js";
+      document.head.appendChild(componentLoader);
+    };
+
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
 </script>
