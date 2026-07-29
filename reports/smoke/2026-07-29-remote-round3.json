@@ -1,0 +1,47 @@
+{
+  "mode": "remote registry (raw.githubusercontent.com)",
+  "generatedAt": "2026-07-28T00:00:00Z",
+  "journey": {
+    "installed": [
+      "mac-menu-bar",
+      "excel-workbook",
+      "claude-composed-app"
+    ],
+    "composed": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/index.html",
+    "rendered": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+    "friction": [
+      {
+        "step": "README.md 'Use the surfaces in your own project' — copy-pasting the ```bash bootstrap block verbatim",
+        "kind": "docs-wrong",
+        "detail": "The prose right above the code block tells the agent to add `\"registry\": \"https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry\"` to hyperframes.json, but the runnable ```bash block directly below it skips that edit entirely — it goes straight from `npx hyperframes init my-video ...` to `npx hyperframes add excel-workbook`. I reproduced this literally (fresh init, no manual registry edit, ran the block's exact commands): `hyperframes.json` still had the default `https://raw.githubusercontent.com/heygen-com/hyperframes/main/registry`, and `npx hyperframes add excel-workbook` failed with `Item \"excel-workbook\" not found in registry`, dumping a long list of unrelated heygen stock items (warm-grain, play-mode, vignelli, us-map, caption-pill-karaoke, ...). A stranger who copies the fenced code block instead of reading the prose carefully hits a hard error on their very first install command.",
+        "suggestedFix": "In README.md, insert the hyperframes.json registry edit as an explicit step inside the ```bash block itself (e.g. a `jq`/sed one-liner or a comment-annotated manual-edit line) between `npx hyperframes init ...` and the first `npx hyperframes add ...`, so the block is actually copy-paste-safe and matches the prose above it."
+      },
+      {
+        "step": "docs/guides/build-hyperframes-demo.md, section '5. Verify'",
+        "kind": "docs-gap",
+        "detail": "The Verify step lists `npm run registry:check`, `npm run hf:lint`, `npm run hf:validate`, `npm run hf:inspect` as 'Before sharing a reusable demo workflow' with no caveat that these are ui-backlot-repo-internal npm scripts (defined in the monorepo's own package.json). None of them exist in a project scaffolded by `npx hyperframes init` — an external consumer's package.json only has `dev`/`check`/`render`/`publish`. Running any of the four listed commands in the consumer project fails with `npm error Missing script`. The doc never states the consumer-side equivalent (`npx hyperframes check .` / the scaffolded `npm run check`).",
+        "suggestedFix": "In docs/guides/build-hyperframes-demo.md section 5, split the Verify list into 'If you're working in this repo' (the four npm run commands) vs 'If you installed via the registry into your own project' (`npx hyperframes check .` or `npm run check`), so external consumers aren't pointed at commands that don't exist for them."
+      },
+      {
+        "step": "npx hyperframes add claude-composed-app",
+        "kind": "confusing",
+        "detail": "Installing claude-composed-app silently pulled in four extra composition files documented elsewhere in docs/catalog.md as deprecated: claude-agent-rail.html, claude-composer.html, claude-sidebar.html, claude-thread-core.html. README's 'one surface (foundation CSS + fonts install automatically)' callout only mentions fonts/CSS auto-installing, not extra deprecated composition HTML files landing in compositions/. Harmless (they're internal deps of the composed shell) but nothing in the allowed docs explains why deprecated-tagged files show up in a fresh install, which is disorienting when cross-referencing against docs/catalog.md's deprecation notes.",
+        "suggestedFix": "Add a line near the README 'one surface (foundation CSS + fonts install automatically)' note clarifying that some blocks also pull in internal sub-part dependencies (even ones separately catalogued as deprecated) and that's expected."
+      }
+    ]
+  },
+  "verify": {
+    "videoOk": true,
+    "installOk": true,
+    "details": [
+      "Video file exists at /Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+      "Video codec: H.264, dimensions 1920x1080 match composition stage",
+      "Video duration: 10.0 seconds (exceeds 2s requirement)",
+      "All mounted block files present and non-empty: mac-menu-bar.html, excel-workbook.html, claude-composed-app.html, claude-sidebar.html, claude-thread-core.html, claude-composer.html, claude-agent-rail.html",
+      "All runtime scripts present: backlot-component-loader.js (8396 bytes), gsap.js (CDN)",
+      "All CSS imports resolve: styles/backlot-foundation.css (3092 bytes), compositions/office-ribbon.css (11267 bytes)",
+      "No missing local asset references in HTML or CSS (all src/href attributes resolve)"
+    ],
+    "notes": "Consumer smoke test complete. Video composition successfully installed with all dependencies resolved. Ready for rendering/playback test phase."
+  }
+}
