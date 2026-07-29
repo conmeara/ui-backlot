@@ -1,0 +1,367 @@
+<style>
+      @import url("styles/backlot-foundation.css");
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #f8f8f6;
+  }
+</style>
+
+<template id="claude-agent-rail-template">
+  <div id="claude-agent-rail-surface" data-composition-id="claude-agent-rail-surface" data-width="380" data-height="860">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lucide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="lucide-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </symbol>
+      <symbol id="lucide-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      </symbol>
+      <symbol id="lucide-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </symbol>
+      <symbol id="lucide-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <path d="M10 9H8" />
+        <path d="M16 13H8" />
+        <path d="M16 17H8" />
+      </symbol>
+      <symbol id="lucide-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+      </symbol>
+    </svg>
+    <section class="claude-agent-rail-stage" data-primitive="claude-agent-rail-stage" aria-label="Editable Claude agent rail surface">
+      <aside class="agent-rail-panel" data-primitive="claude-agent-context-rail" aria-label="Claude task progress and context">
+        <section class="rail-card progress-card">
+          <div class="rail-head"><span class="rail-title">Progress</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+          <div class="rail-stepper">
+            <span class="rail-step done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="rail-step-line"></span>
+            <span class="rail-step done"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-check"/></svg></span>
+            <span class="rail-step-line"></span>
+            <span class="rail-step"></span>
+          </div>
+          <p class="rail-caption">Steps will show as the task unfolds.</p>
+        </section>
+
+        <section class="rail-card">
+          <div class="rail-head"><span class="rail-title">Artifacts</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>HTML</b></span><span data-copy="artifact-1">revenue-chart-q2.html</span></div>
+        </section>
+
+        <section class="rail-card">
+          <div class="rail-head"><span class="rail-title">Context</span><svg class="backlot-icon rail-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg></div>
+          <div class="rail-sub"><svg class="backlot-icon rail-sub-chev" aria-hidden="true"><use href="#lucide-chevron-down"/></svg><span>Selected folders</span><span class="rail-sub-count">1</span></div>
+          <div class="rail-row indent"><span class="rail-file-ico folder"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-folder"/></svg></span><span data-copy="context-folder">launch-deck</span></div>
+          <div class="rail-label">Connectors</div>
+          <div class="rail-row"><span class="rail-file-ico conn"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-globe"/></svg></span><span>Web search</span></div>
+          <div class="rail-label">Working files</div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>PPTX</b></span><span data-copy="context-file-1">Launch Deck.pptx</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>MD</b></span><span data-copy="context-file-2">slide-notes.md</span></div>
+          <div class="rail-row"><span class="rail-file-ico"><svg class="backlot-icon rail-file-glyph" aria-hidden="true"><use href="#lucide-file"/></svg><b>CSV</b></span><span data-copy="context-file-3">Q2 revenue.csv</span></div>
+        </section>
+      </aside>
+    </section>
+
+    <style>
+      #claude-agent-rail-surface {
+        width: 380px;
+        height: 860px;
+        overflow: visible;
+        color: var(--claude-ink-soft);
+        font-family: var(--font-claude-ui);
+      }
+
+      #claude-agent-rail-surface * {
+        box-sizing: border-box;
+      }
+
+      .claude-agent-rail-stage {
+        width: 380px;
+        height: 860px;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        background: var(--claude-paper);
+      }
+
+      .agent-rail-panel {
+        width: 324px;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .rail-card {
+        display: grid;
+        gap: 14px;
+        padding: 20px 22px;
+        border: 1px solid rgba(11, 11, 11, 0.1);
+        border-radius: 12px;
+        background: rgba(248, 248, 246, 0.94);
+        box-shadow: 0 1px 3px rgba(52, 43, 34, 0.04);
+      }
+
+      .rail-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .rail-title {
+        color: var(--claude-ink);
+        font-size: 17px;
+        font-weight: 550;
+      }
+
+      .rail-chev { width: 18px; height: 18px; color: #898781; }
+
+      .rail-stepper {
+        display: flex;
+        align-items: center;
+        padding: 2px 0;
+      }
+
+      .rail-step {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        padding: 9px;
+        border-radius: 50%;
+        border: 1.5px solid #d6d0c4;
+        color: #86806f;
+      }
+
+      .rail-step.done { border-color: #b9b3a6; }
+
+      .rail-step-line {
+        width: 20px;
+        height: 1.5px;
+        flex: 0 0 auto;
+        background: #ddd7cb;
+      }
+
+      .rail-caption {
+        margin: -4px 0 0;
+        color: #898781;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .rail-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 30px;
+        color: var(--claude-ink-soft);
+        font-size: 14.5px;
+      }
+
+      .rail-row.indent { padding-left: 18px; }
+
+      .rail-row span:last-child {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .rail-file-ico {
+        position: relative;
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: #ececea;
+        color: #7b7974;
+      }
+
+      .rail-file-ico > * { grid-area: 1 / 1; }
+
+      .rail-file-ico.folder svg,
+      .rail-file-ico.conn svg { width: 14px; height: 14px; }
+
+      .rail-file-glyph {
+        width: 16px;
+        height: 16px;
+        color: #7b7974;
+      }
+
+      .rail-file-ico b {
+        margin-top: 6px;
+        color: #7b7974;
+        font-size: 6px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.02em;
+      }
+
+      .rail-file-ico.folder { background: var(--claude-surface-raised); color: #8a8474; }
+      .rail-file-ico.conn { background: #f4efe8; color: #7b7974; }
+
+      .rail-sub {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #52514e;
+        font-size: 14.5px;
+        font-weight: 430;
+      }
+
+      .rail-sub-chev { width: 16px; height: 16px; color: #898781; }
+      .rail-sub-count { margin-left: auto; color: #898781; font-size: 13.5px; }
+
+      .rail-label {
+        margin-top: 6px;
+        color: #52514e;
+        font-size: 13.5px;
+        font-weight: 430;
+      }
+    </style>
+
+    <style class="theme-dark-block">
+      /* Scoped under .theme-dark so light rendering is byte-for-byte
+         unaffected. --root-class in capture-web-ui.mjs adds the class to the
+         capture selector element (.claude-agent-rail-stage) directly; the
+         composed-app mount may instead add it higher up the tree (e.g.
+         document.body or #claude-agent-rail-surface), so both the
+         self-class and descendant forms are covered. */
+      .theme-dark .claude-agent-rail-stage,
+      .claude-agent-rail-stage.theme-dark {
+        background: var(--claude-paper);
+      }
+
+      .theme-dark .rail-card,
+      .theme-dark.rail-card {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--claude-surface);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
+      }
+
+      .theme-dark .rail-title { color: var(--claude-ink); }
+      .theme-dark .rail-chev { color: var(--claude-text-faint); }
+
+      .theme-dark .rail-step {
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        color: var(--claude-text-muted);
+      }
+
+      .theme-dark .rail-step.done {
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .theme-dark .rail-step-line {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .theme-dark .rail-caption { color: var(--claude-text-faint); }
+      .theme-dark .rail-row { color: var(--claude-ink); }
+
+      .theme-dark .rail-file-ico {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-file-glyph,
+      .theme-dark .rail-file-ico b {
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-file-ico.folder {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-file-ico.conn {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--claude-text-faint);
+      }
+
+      .theme-dark .rail-sub { color: var(--claude-text-muted); }
+      .theme-dark .rail-sub-chev { color: var(--claude-text-faint); }
+      .theme-dark .rail-sub-count { color: var(--claude-text-faint); }
+      .theme-dark .rail-label { color: var(--claude-text-faint); }
+    </style>
+
+    <style>
+      /* ============ EMBED VARIANT (composed shells) ============
+         [data-embed="flat"] sits on a shell mount slot (an ancestor of the
+         mounted surface). The padded standalone stage collapses so the card
+         stack fills the slot; the shell slot supplies claude-desktop's
+         .cw-rail chrome (344px column, graph-paper background, border-left,
+         30/20/24 padding). Standalone captures are unaffected — the
+         attribute never exists there — and only stage geometry is
+         neutralized, never the dark colors. */
+      [data-embed="flat"] #claude-agent-rail-surface,
+      [data-embed="flat"] .claude-agent-rail-stage {
+        width: 100%;
+        height: 100%;
+      }
+
+      [data-embed="flat"] .claude-agent-rail-stage {
+        display: block;
+        padding: 0;
+        background: transparent;
+      }
+
+      [data-embed="flat"] .claude-agent-rail-stage .agent-rail-panel {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* In-shell dark card matches claude-desktop's #2f2e2b (.theme-dark
+         .cw-rail-card) instead of the standalone token value #262624, which
+         would blend into the shell's dark graph-paper column. */
+      .theme-dark [data-embed="flat"] .claude-agent-rail-stage .rail-card {
+        background: #2f2e2b;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+      tl.from(".agent-rail-panel", { opacity: 0, x: 18, filter: "blur(5px)", duration: 0.52, ease: "power3.out" }, 0.12);
+      tl.from(".rail-step", { opacity: 0, x: 9, stagger: 0.055, duration: 0.28, ease: "sine.out" }, 0.52);
+      tl.from(".rail-card:not(.progress-card)", { opacity: 0, y: 9, stagger: 0.06, duration: 0.3, ease: "power2.out" }, 0.86);
+      window.__timelines["claude-agent-rail-surface"] = tl;
+    </script>
+  </div>
+</template>
+
+<script>
+  (() => {
+    const isDirectPreview = /\/claude-agent-rail\.html$/.test(window.location.pathname);
+    if (!isDirectPreview) return;
+    const mount = () => {
+      const template = document.getElementById("claude-agent-rail-template");
+      if (!template || document.querySelector("#claude-agent-rail-surface")) return;
+      const fragment = template.content.cloneNode(true);
+      fragment.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.appendChild(fragment);
+    };
+    if (document.body) mount();
+    else window.addEventListener("DOMContentLoaded", mount, { once: true });
+  })();
+</script>

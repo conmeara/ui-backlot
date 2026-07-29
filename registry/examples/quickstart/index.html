@@ -26,9 +26,9 @@
 
         <div
           class="component-frame claude-component"
-          data-primitive="claude-chat-pane"
-          data-backlot-mount-src="compositions/claude-chat-pane.html"
-          data-backlot-mount-selector="#claude-chat-pane-surface"
+          data-primitive="claude-composed-app"
+          data-backlot-mount-src="compositions/claude-composed-app.html"
+          data-backlot-mount-selector="#claude-composed-app"
         ></div>
 
         <div class="workflow-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -124,14 +124,18 @@
         left: 126px;
         top: 118px;
         z-index: 14;
-        width: 900px;
-        height: 684px;
+        /* claude-composed-app is a fixed 1440x900 (8:5) — size the frame to
+           that exact ratio (1008x630, scale 0.7) so nothing is letterboxed
+           or cropped; same fit convention as
+           examples/mac-multi-app-demo.html's .claude-frame. */
+        width: 1008px;
+        height: 630px;
         border-radius: 26px;
         box-shadow: 0 46px 126px rgba(52, 39, 29, 0.24);
       }
 
       .claude-component > [data-backlot-mounted-component] {
-        transform: scale(0.762);
+        transform: scale(0.7);
       }
 
       .workflow-cursor {
@@ -162,6 +166,21 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script src="runtime/backlot-component-loader.js"></script>
     <script>
+      // claude-composed-app.html mounts as a bare template clone — its own
+      // inline script (which normally reads ?page=/?sidebar= from the URL)
+      // is stripped by the loader along with every other mounted <script>,
+      // so the working-task framing this scene wants (thread + composer,
+      // no sidebar — the shell's replacement for the deprecated
+      // claude-chat-pane) has to be set here, once mounting settles.
+      if (window.__backlotComponentsReady) {
+        window.__backlotComponentsReady.then(() => {
+          const claudeApp = document.querySelector(".claude-component #claude-composed-app");
+          if (!claudeApp) return;
+          claudeApp.setAttribute("data-page", "cowork");
+          claudeApp.setAttribute("data-sidebar", "off");
+        }).catch(() => {});
+      }
+
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
 
