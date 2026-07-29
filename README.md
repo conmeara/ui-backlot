@@ -75,6 +75,12 @@ npx hyperframes add excel-workbook
 npx hyperframes add claude-composed-app
 ```
 
+> `mac-menu-bar` (and `mac-dock`, `mac-wallpaper`, `calendar-app`,
+> `slack-app`) are static blocks — their `compositions/*.html` never
+> registers a GSAP timeline. Add `data-no-timeline` to the pasted host
+> `<div>` yourself; the printed snippet doesn't include it, so without it a
+> render stalls ~45s per host waiting for a timeline that never arrives.
+
 > Need just a chat pane next to an app window, no sidebar? `claude-composed-app`
 > covers that too — add `data-sidebar="off"` to its host `<div>` (replaces the
 > deprecated `claude-chat-pane` block).

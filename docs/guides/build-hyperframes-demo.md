@@ -20,6 +20,12 @@ not shipped — stack the pieces the story needs in your own composition:
 
 Each entry's `recommendedUse` in the registry says when to reach for it.
 
+Layered/overlapping app windows (e.g. "Excel on top" of the Claude app) trip
+`hyperframes check`'s `content_overlap`/`text_occluded` layout findings unless
+the covered window's clip sits outside its time window (non-overlapping
+`data-start`/`data-duration`) or is marked `data-layout-allow-overlap` /
+`data-layout-allow-occlusion`.
+
 ## 2. Mount Components
 
 `examples/quickstart-demo.html` is the simplest tracked example. It mounts
@@ -132,10 +138,23 @@ their host `<div>` so the renderer does not wait for a timeline that never
 registers. The general rule: ANY installed block whose `compositions/*.html`
 never assigns `window.__timelines[id] = ...` will stall ~45s per host with a
 "Sub-composition timelines not registered" warning unless flagged — check the
-block's HTML for a `__timelines` assignment before assuming it animates
-(`excel-workbook` and `mac-menu-bar` are known static blocks). The render
-still completes correctly via screenshot fallback, so a stall you do hit is
-slow, not broken.
+block's HTML for a `__timelines` assignment before assuming it animates. The
+render still completes correctly via screenshot fallback, so a stall you do
+hit is slow, not broken.
+
+**`npx hyperframes add` never adds this flag for you, and nothing on our side
+can make it.** Verified against the installed hyperframes@0.7.81 CLI: the `add`
+command's printed `<div>` snippet is built (`buildSnippet` in
+`dist/cli.js`) from only the registry item's `duration` and `dimensions`
+fields — there is no field in `surfaces/registry.json` or the generated
+`registry-item.json` that reaches that template, so `data-no-timeline` can't
+be injected from our side. Add it by hand to every static block's host
+`<div>` after pasting. Verified static blocks in this registry (no
+`__timelines` assignment anywhere in their `compositions/*.html`):
+`mac-menu-bar`, `mac-dock`, `mac-wallpaper`, `calendar-app`, `slack-app`.
+(`excel-workbook` and `claude-composed-app` DO register a timeline and do not
+need the flag — an earlier version of this doc incorrectly listed
+`excel-workbook` as static.)
 
 ## 5. Verify
 
@@ -153,10 +172,19 @@ Use `npm run open-source:check` for the standard source/catalog/HyperFrames
 gate. Add at least one relevant capture command and one draft render command
 for visual proof.
 
-Expect `hyperframes validate` to emit WCAG AA contrast *warnings* on stock
-surfaces (~75 on the menu-bar + Excel + Claude trio) — they come from the
-recreated apps' real color choices, are known, and are non-blocking. Only
-`error`-level findings mean something is wrong.
+This repo's `npm run hf:validate` already passes `--no-contrast` (see
+`package.json`), so the WCAG pass never runs in that gate. If you invoke
+`hyperframes check`/`validate` directly without that flag — e.g. following
+this guide from a fresh `npx hyperframes init` project, as an external
+consumer would — expect WCAG AA contrast findings on stock surfaces (~65 on
+the menu-bar + Excel + Claude trio, verified against hyperframes@0.7.81).
+They report as `✗` **errors** under a `Contrast` section, not warnings, and
+fail the exit code (`Check failed`) exactly like any other error — this
+changed from the pre-`check` `validate` behavior, where contrast was
+warning-only. A `check`/`validate` run failing *only* on Contrast findings on
+stock surfaces is expected and safe to ignore; it comes from the recreated
+apps' real color choices, not a regression. `--no-contrast` is the sanctioned
+flag to skip the pass outright, e.g. `npx hyperframes check . --no-contrast`.
 
 Capture PNGs are generated artifacts and are not committed. Use
 `npm run registry:check` for fresh-clone metadata validation, and use

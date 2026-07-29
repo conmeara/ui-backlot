@@ -154,7 +154,17 @@
         <button class="hc-nav hc-brief" type="button"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sunrise"/></svg></span><span>Get a morning brief</span><span class="hc-try">Try</span></button>
 
         <div class="hc-label"><span>Recents</span><svg class="backlot-icon hc-label-ico" aria-hidden="true"><use href="#lucide-sliders"/></svg></div>
-        <div class="hc-recents">
+        <!-- More history rows than fit — intentional: matches the real app's
+             clipped/scrollable recents list (see reference/claude/2026-07-13/
+             mac-app-home, which truncates with a "View all" link). hc-recents
+             clips them with overflow:hidden, so nothing renders past its box;
+             the rows below the fold still exist in the flex-column flow (for
+             the same reason a real scrollable list keeps off-screen rows in
+             the DOM), which the layout checker's overlap pass can't tell
+             apart from a real collision since it doesn't consider ancestor
+             overflow clipping — data-layout-allow-overlap opts out of that
+             check for this intentionally-clipped subtree. -->
+        <div class="hc-recents" data-layout-allow-overlap>
           <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Draft launch announcement</span></div>
           <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Trip packing checklist</span></div>
           <div class="hc-hist"><span class="hc-nav-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-message-circle"/></svg></span><span>Rename the product tiers</span></div>

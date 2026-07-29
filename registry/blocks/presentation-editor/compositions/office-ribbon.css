@@ -368,6 +368,18 @@
   font-size: 11px;
 }
 
+/* "Sensitivity" is the one wide-ribbon label that doesn't fit the shared
+   48px box at reference-measured font-size (real Office ribbon gives this
+   button more room than Add-ins/Claude — see reference/excel/2026-07-20/
+   blank-sheet-light). The label itself already renders unclipped at its
+   natural width; widen the box to legitimize that and use a negative
+   right margin so the extra width doesn't shift the Add-ins/Claude groups
+   that follow (their layout box stays 48px). */
+.ribbon-large.wide.sensitivity {
+  width: 58px;
+  margin-right: -10px;
+}
+
 .cmd-icon {
   width: 22px;
   height: 22px;

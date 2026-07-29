@@ -1,0 +1,60 @@
+{
+  "mode": "remote registry (raw.githubusercontent.com)",
+  "journey": {
+    "installed": [
+      "mac-menu-bar",
+      "excel-workbook",
+      "claude-composed-app"
+    ],
+    "composed": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/index.html",
+    "rendered": "/Users/conmeara/Projects/ui-backlot/workspace/smoke/demo/my-video/demo.mp4",
+    "friction": [
+      {
+        "step": "npm run check (hyperframes check) before rendering, per docs/guides/build-hyperframes-demo.md #5 Verify",
+        "kind": "docs-wrong",
+        "detail": "The guide states: 'Expect hyperframes validate to emit WCAG AA contrast warnings on stock surfaces (~75 on the menu-bar + Excel + Claude trio) — they come from the recreated apps' real color choices, are known, and are non-blocking. Only error-level findings mean something is wrong.' In practice, on a freshly scaffolded consumer project (npx hyperframes init + npx hyperframes add mac-menu-bar/excel-workbook/claude-composed-app, zero custom composition changes needed to trigger it), `npm run check` (hyperframes@0.7.81 check) reports these same findings as '65 error(s)' under a 'Contrast' section with ✗ markers and exits with 'Check failed' (exit code 1) — not warnings. A stranger following the docs literally would believe check should pass modulo informational notices, then be blocked wondering what they broke.",
+        "suggestedFix": "In docs/guides/build-hyperframes-demo.md's Verify section, correct the claim to match current CLI behavior: contrast findings show as ✗ error(s) under `hyperframes check`/`validate` and DO fail the exit code by default. Either document the `--no-contrast` flag as the sanctioned way to skip them for stock surfaces, or state plainly 'a failing `check` due only to Contrast errors on stock surfaces is expected and safe to ignore.'"
+      },
+      {
+        "step": "npm run check on a minimal composition using only stock mac-menu-bar/excel-workbook/claude-composed-app blocks, no custom overlap",
+        "kind": "broken-asset",
+        "detail": "Independent of any layout choices I made, hyperframes check's Layout pass reports 4 baked-in ✗ errors inside the stock compositions themselves: text_box_overflow on the Excel ribbon's 'Sensitivity' label (overflows its container by 8.26px), text_occluded on Excel's row-head '26' (hidden beneath the sheet-tab strip), and content_overlap between Claude's chat-history entry 'Rewrite the pricing FAQ' and its own footer-copy strong/em spans. These come from compositions/excel-workbook.html and compositions/claude-composed-app.html as shipped via the registry, not from anything I composed.",
+        "suggestedFix": "Fix the underlying layout in compositions/excel-workbook.html (widen/shrink the ribbon 'Sensitivity' button, fix row-head z-index vs. sheet-tab-strip) and compositions/claude-composed-app.html (chat-history entry overlapping its own footer copy) so a fresh registry install doesn't inherit pre-existing check failures; or note these known findings explicitly in docs/guides/build-hyperframes-demo.md next to the existing contrast caveat."
+      },
+      {
+        "step": "npx hyperframes add mac-menu-bar, then paste the printed snippet and render",
+        "kind": "docs-gap",
+        "detail": "The printed install snippet for mac-menu-bar is `<div data-composition-src=\"compositions/mac-menu-bar.html\" data-duration=\"10\" data-width=\"1920\" data-height=\"30\"></div>` — no `data-no-timeline`. mac-menu-bar.html never assigns `window.__timelines[...]` (it only carries `data-no-timeline` on its OWN internal root, which does not propagate to the host div in the composing project). Without `data-no-timeline` on the host, every render stalls on `[sub_timeline_readiness_timeout] Sub-composition timelines did not become ready within 45000ms` — confirmed directly: render time dropped from 59.7s to 10.7s after I added `data-no-timeline` to the host div myself. The guide does explain the general rule and names mac-menu-bar/excel-workbook as known-static blocks, but only after telling readers to 'check the block's HTML for a __timelines assignment' themselves — i.e. you must open and read the installed source (something outside what the README/quickstart guide otherwise requires) to discover this, and the `add` command — which already has this information (mac-menu-bar.html itself carries `data-no-timeline`) — doesn't put it in the snippet it prints.",
+        "suggestedFix": "Either have `hyperframes add` auto-emit `data-no-timeline` on the printed host-div snippet for blocks it knows are static, or add one line to the printed CLI output / to README.md's mac-menu-bar example: 'static block — add data-no-timeline to the host div you paste.'"
+      },
+      {
+        "step": "Composing three full-size app windows by pasting the printed snippets as-is, following the README's own inspirational prompt ('pulls the Claude app up from the dock, then opens Excel on top')",
+        "kind": "confusing",
+        "detail": "Literally stacking the printed snippets without individually reasoning about positioning/timing produces overlapping full-size windows, which trips hyperframes check's content_overlap/text_occluded Layout findings (I hit ~60 of these before staggering data-start/data-duration so only one app window is visible at a time). The README's own hero example describes exactly this 'Excel on top' overlapping-window scene, but neither README.md nor build-hyperframes-demo.md warns that overlapping clips need non-overlapping time windows or `data-layout-allow-overlap`/`data-layout-allow-occlusion` to pass check.",
+        "suggestedFix": "Add one sentence to docs/guides/build-hyperframes-demo.md: 'Layered/overlapping app windows will trip content_overlap/text_occluded layout findings unless the covered window's clip sits outside its time window, or is marked with data-layout-allow-overlap / data-layout-allow-occlusion.'"
+      }
+    ]
+  },
+  "verify": {
+    "videoOk": true,
+    "installOk": true,
+    "details": [
+      "demo.mp4 exists: 882226 bytes",
+      "Video stream present: H.264/AVC, 1920x1080, 30fps, 300 frames",
+      "Duration valid: 10.0 seconds (exceeds 2s minimum)",
+      "Dimensions match composition stage: 1920x1080 = 1920x1080",
+      "mac-menu-bar.html exists: 212 lines, 192 non-blank",
+      "excel-workbook.html exists: 1067 lines, 963 non-blank",
+      "claude-composed-app.html exists: 1201 lines, 1061 non-blank",
+      "claude-sidebar.html exists: 34318 bytes",
+      "claude-composer.html exists: 20743 bytes",
+      "claude-thread-core.html exists: 41114 bytes",
+      "claude-agent-rail.html exists: 14149 bytes",
+      "runtime/backlot-component-loader.js exists: 8396 bytes",
+      "All src/href attributes reference existing files or valid CDN URLs",
+      "No broken local asset references detected"
+    ],
+    "notes": "All consumer-smoke artifacts verified successfully. Video renders correctly to MP4 with proper codec, resolution, and duration. All mounted HyperFrames block compositions and sub-composition dependencies are present and non-empty. No missing local assets; external references resolve to CDN."
+  },
+  "generatedAt": "2026-07-29T00:00:00Z"
+}
