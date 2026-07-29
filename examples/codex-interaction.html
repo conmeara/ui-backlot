@@ -5,7 +5,7 @@
     <title>Codex — Interaction Demo</title>
   </head>
   <body>
-    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="7.2">
+    <div id="codex-interaction" data-composition-id="codex-interaction" data-width="1280" data-height="800" data-start="0" data-duration="7.9">
       <section class="cx-stage" data-primitive="codex-interaction" aria-label="Codex CLI finishing a command, running tools, and applying an edit">
         <div class="cx-window">
           <div
@@ -44,7 +44,7 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const DURATION = 7.2;
+      const DURATION = 7.9;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".cx-stage");
 
@@ -97,11 +97,19 @@
         // The pinned composer already carries a mid-typed sentence (the
         // reference capture's own state); this demo finishes it rather than
         // inventing a new one, same idiom as browser-interaction reading its
-        // URL out of the mount. Trimmed back a few extra characters from the
-        // pinned prefix (still the same final sentence) so the typing beat
-        // has enough characters to read as a person typing.
-        gsap.set(inputTextEl, { textContent: "Awesome! Let's implement the" });
-        const TAIL = " plan.";
+        // URL out of the mount. Pinned prefix trimmed to just the opening
+        // clause so most of the sentence types out live at CPS below,
+        // matching the real recording's ~4s typing beat (ref f-032→f-040)
+        // instead of popping in almost fully pre-filled.
+        // whiteSpace:pre is required here (not just on typedTail below) —
+        // composer-input is a flex row, so inputTextEl is itself a flex item
+        // and establishes its own inline formatting context; a plain
+        // trailing space at the end of that context collapses to 0px
+        // regardless of the sibling typedTail that follows it, which
+        // re-creates the exact "wordsruntogether" bug this pass is fixing,
+        // just at the prefix/tail boundary instead of inside the tail.
+        gsap.set(inputTextEl, { textContent: "Awesome! Let's ", whiteSpace: "pre" });
+        const TAIL = "implement the plan.";
 
         // Rewrite the live turn's content so the streamed response coheres
         // with the session prompt above it ("Make the Codex terminal
@@ -152,6 +160,13 @@
         // span would still eat a gap slot and nudge the pinned text/cursor).
         // Per-char spans flip display so the block cursor (a flex sibling
         // right after the typed text) rides the leading edge.
+        // TAIL contains interior word-boundary spaces ("implement the
+        // plan."); each character is its own span, and a space that is the
+        // sole content of an inline span can otherwise get collapsed away
+        // by normal HTML whitespace rules, reading as a wrong run-together
+        // word ("implementtheplan.") mid-type. white-space:pre forces every
+        // per-char space span to render as an actual gap.
+        gsap.set(typedTail, { whiteSpace: "pre" });
         const tailChars = [];
         for (const ch of TAIL) {
           const s = document.createElement("span");
@@ -191,7 +206,7 @@
         // 2) Send: the composer clears (message sent) while the terminal
         // moves on to running the turn.
         const submitAt = tailEndAt + 0.4;
-        tl.to(composerInput, { opacity: 0, duration: 0.15 }, submitAt);
+        tl.set(composerInput, { opacity: 0 }, submitAt);
 
         // 2b) The mounted terminal-screen has a hard fixed-height clip with
         // zero slack even for the OLD turn alone — the full new turn cannot
@@ -221,11 +236,14 @@
           tl.to(scrollEls, { y: -scrollDelta, duration: collapseFadeDur, ease: "power1.inOut" }, collapseAt);
         }
 
-        // 2c) The sent turn's own "> ..." prompt line appears right as the
-        // old turn's activity settles — the visible cause for the response
-        // that follows. ratatui repaints instantly (it never alpha-composites
-        // monospace glyphs), so this is a snap-in `tl.set`, not a fade.
-        const promptAt = collapseAt + collapseFadeDur + 0.05;
+        // 2c) The sent turn's own "> ..." prompt line repaints the instant
+        // the composer clears — simultaneously with the start of the scroll,
+        // not after it settles, so the sent message is never nowhere (not in
+        // the composer, not yet in the transcript) for a frame. ratatui
+        // repaints instantly (it never alpha-composites monospace glyphs),
+        // so this is a snap-in `tl.set`, not a fade; it rides up with the
+        // rest of the buffer as part of the same scroll tween.
+        const promptAt = collapseAt;
         tl.set(livePromptRow, { display: "grid", opacity: 1 }, promptAt);
 
         // 3) Tool-call results ("Explored") pop in as a completed block —
@@ -241,14 +259,14 @@
         // token by token, like AI prose.
         const appliedAt = planAt + 0.7;
         tl.set(liveApplied, { display: "grid", opacity: 1 }, appliedAt);
-        ix.stream(liveAppliedText, APPLIED, { at: appliedAt + 0.2, cps: 45, unit: "word" });
+        ix.stream(liveAppliedText, APPLIED, { at: appliedAt, cps: 45, unit: "word" });
 
         // 6) Composer resets to idle, ready for the next command. Hiding
         // input-bar alongside the text clear leaves exactly one caret
         // (cx-cursor) in the idle composer — with the pinned/typed text
         // gone, input-bar and cx-cursor would otherwise sit right next to
         // each other across only the flex gap, reading as a doubled cursor.
-        const doneAt = appliedAt + 0.2 + APPLIED.length / 45 + 0.3;
+        const doneAt = appliedAt + APPLIED.length / 45 + 0.3;
         tl.set(inputTextEl, { textContent: "" }, doneAt);
         tl.set(typedTail, { textContent: "", display: "none" }, doneAt);
         if (inputBar) tl.set(inputBar, { display: "none" }, doneAt);

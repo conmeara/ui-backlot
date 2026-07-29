@@ -301,8 +301,8 @@
           }
           assistantStack.appendChild(thinkDots);
           gsap.set(thinkDots, { autoAlpha: 0 });
-          tl.to(thinkDots, { autoAlpha: 1, duration: 0.2 }, FLIP_AT + 0.4);
-          tl.to(thinkDots, { opacity: 0.35, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, FLIP_AT + 0.6);
+          tl.to(thinkDots, { autoAlpha: 1, duration: 0.2 }, FLIP_AT + 0.2);
+          tl.to(thinkDots, { opacity: 0.35, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, FLIP_AT + 0.35);
           tl.to(thinkDots, { autoAlpha: 0, duration: 0.12 }, AI_AT);
         }
 
@@ -400,7 +400,7 @@
         // flip (the real app never swaps the user's selected model on
         // send), and run a small working spinner beside it for as long as
         // the reply/tool cards are streaming.
-        if (cwModelLabel) tl.set(cwModelLabel, { textContent: "Sonnet 5" }, FLIP_AT);
+        if (cwModelLabel) tl.set(cwModelLabel, { textContent: "Fable 5" }, FLIP_AT);
         const spinStart = FLIP_AT + 0.1;
         if (cwModelSpinner) {
           tl.to(cwModelSpinner, { autoAlpha: 1, duration: 0.15 }, spinStart);
