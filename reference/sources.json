@@ -145,6 +145,11 @@
       "availableOnThisMachine": false,
       "targets": [
         {
+          "label": "owner-native-inbox",
+          "method": "manual-inbox",
+          "notes": "Owner CleanShot drops via inbox/ import-reference flow. reference/word/2026-07-20/blank-doc-light is a real native macOS Word screenshot — strongest ground truth; outranks app-store/web targets whenever a dated native set exists."
+        },
+        {
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Word",
@@ -179,6 +184,11 @@
       "availableOnThisMachine": false,
       "targets": [
         {
+          "label": "owner-native-inbox",
+          "method": "manual-inbox",
+          "notes": "Owner CleanShot drops via inbox/ import-reference flow. reference/excel/2026-07-20/blank-sheet-light is a real native macOS Excel capture — strongest ground truth; outranks app-store/web targets whenever a dated native set exists."
+        },
+        {
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Excel",
@@ -209,6 +219,11 @@
       "tier": "online-only",
       "availableOnThisMachine": false,
       "targets": [
+        {
+          "label": "owner-native-inbox",
+          "method": "manual-inbox",
+          "notes": "Owner CleanShot drops via inbox/ import-reference flow. reference/powerpoint/2026-07-20/ is real native PowerPoint-for-Mac retina pixels — the family strongest ground truth; outranks app-store/web targets whenever a dated native set exists."
+        },
         {
           "label": "app-store-screens",
           "method": "app-store-api",
