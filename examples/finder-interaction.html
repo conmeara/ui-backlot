@@ -5,7 +5,7 @@
     <title>Finder — Interaction Demo</title>
   </head>
   <body>
-    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="3.4">
+    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="2.9">
       <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder (real component) with a scripted selection">
         <div class="wallpaper" aria-hidden="true"></div>
         <div class="fn-frame component-frame"
@@ -71,7 +71,7 @@
       // ready). Without the hold, a fast browser start races the mount and the
       // render fails with "Composition has zero duration".
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 3.4 }, 0);   // no-op hold → duration is always 3.4
+      tl.to(stage, { opacity: 1, duration: 2.9 }, 0);   // no-op hold → duration is always 2.9
       window.__timelines["finder-interaction"] = tl;
 
       // Park the click-ring hidden and off-stage at t=0 so it can never show
@@ -109,17 +109,18 @@
           // already-active leaf next to a column the app would never leave
           // blank.
           tl.set(launchDeck, { attr: { class: "file-row large" } }, 0);
-          // Preview pane: build it once (hidden) so its reveal at 2.15 is a
-          // pure opacity flip, never per-frame DOM construction. Column-view
-          // Finder always keeps a 4th preview column on screen once a leaf
-          // is selected, so at rest (3 full-width list columns fill nearly
-          // the whole 920px canvas) there is no free width for it — real
-          // Finder solves this by auto-scrolling the column stack left as
-          // the selection drills deeper, sliding the oldest column mostly
-          // out of view. We reproduce that: col1 (the ancestor listing,
-          // no longer the focus once a leaf 2 levels deep is active) is
-          // clipped to a sliver and col4 (`1fr`) absorbs the freed width —
-          // both driven by an inline override of .finder-content's own
+          // Preview pane: build it once (hidden) so its reveal on the
+          // second click is a pure opacity fade, never per-frame DOM
+          // construction. Column-view Finder always keeps a 4th preview
+          // column on screen once a leaf is selected, so at rest (3
+          // full-width list columns fill nearly the whole 920px canvas)
+          // there is no free width for it — real Finder solves this by
+          // auto-scrolling the column stack left as the selection drills
+          // deeper, scrolling the oldest column fully off the window's
+          // left edge. We reproduce that: col1 (the ancestor listing, no
+          // longer the focus once a leaf 2 levels deep is active) collapses
+          // to 0px and col4 (`1fr`) absorbs the freed width — both driven
+          // by an inline override of .finder-content's own
           // grid-template-columns, so col2/col3 stay exactly as wide as
           // they are today.
           if (preview) {
@@ -152,26 +153,55 @@
           //    selection breadcrumb stays coherent while only one leaf is
           //    blue at a time. Committed on the same beat as the click so
           //    the highlight never lags behind the mousedown.
-          ix.click(target, { at: 2.1, moveDur: 0.8, press: false });
-          tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 2.15);
-          tl.set(target, { attr: { class: "file-row selected large" } }, 2.15);
-          // Same beat: auto-scroll col1 down to a sliver (clipped, no fade —
-          // matches the instant class-flip above) so col4 has real width,
-          // then snap the preview in. No tween on either — real Finder's
-          // preview pane and column reflow both appear on the same frame
-          // the selection commits, never eased in.
+          ix.click(target, { at: 1.7, moveDur: 0.7, press: false });
+          // Mirror the first click's ring pulse explicitly: the shared
+          // .demo-click-ring element must re-telegraph this second discrete
+          // selection the same way it did the first (Launch Deck, 0.7s), so
+          // "design-feedback.txt" becoming selected isn't a state change
+          // with no cause. Position uses design-feedback.txt's PRE-shift
+          // stage coords (row center ~x1010,y238) since this pulse fires
+          // before the col1 auto-scroll below, and left/top are set here
+          // (rather than only inside the fromTo's "from") so the ring
+          // never inherits the first click's parked position.
+          tl.set(".demo-click-ring", { left: 1006, top: 232 }, 1.7);
+          tl.fromTo(".demo-click-ring", { opacity: 0.9, scale: 0.35 }, { opacity: 0, scale: 1, duration: 0.4, ease: "power2.out" }, 1.7);
+          tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 1.75);
+          tl.set(target, { attr: { class: "file-row selected large" } }, 1.75);
+          // Same beat: auto-scroll col1 fully off the window's inner-left
+          // edge (0px, not a partial sliver — real Finder clips the oldest
+          // column from its LEFT once a leaf 2 levels deep is active, so
+          // col2 sits flush left; a fixed narrow sliver would instead show
+          // a disembodied strip of row-head icons, which real Finder never
+          // renders) via a short slide — matching the app's quick
+          // horizontal column-scroll idiom rather than an instant snap.
+          // Selection class-flips above stay instant (selections ARE
+          // instant in Finder); only the reflow + preview fade animate.
           if (content) {
-            tl.set(content, { gridTemplateColumns: "32px 245px 245px 1fr" }, 2.15);
+            tl.to(content, { gridTemplateColumns: "0px 245px 245px 1fr", duration: 0.22, ease: "power2.inOut" }, 1.68);
+            // Grid items default to min-width:auto, so a 0px track alone
+            // does not clip col1's intrinsic content (icons/chevrons would
+            // spill into col2's area) — overflow:hidden is required to
+            // make the collapse read as col1 truly gone. Its own 10px
+            // horizontal padding must also go to 0: with box-sizing
+            // border-box, a 0px-wide box can't shrink below its own
+            // padding, so the padding alone would still render a ~20px
+            // sliver even while fully clipped otherwise. This is not the
+            // old 32px sliver: the track and the column's own box both
+            // collapse to 0, so nothing of col1 remains visible once the
+            // slide finishes.
+            if (cols[0]) tl.set(cols[0], { overflow: "hidden", paddingLeft: 0, paddingRight: 0 }, 1.68);
           }
           if (preview) {
-            tl.set(cols[0], { overflow: "hidden" }, 2.15);
-            tl.set(preview, { opacity: 1 }, 2.15);
+            // Real Finder (and this app's own preview swaps, f-001->f-005)
+            // renders the selection's preview instantly with no fade — commit
+            // it on the same beat the leaf becomes selected, not a ramp.
+            tl.set(preview, { opacity: 1 }, 1.75);
           }
         }
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(3.4).pause();
+      if (cap === "hero") tl.seek(2.9).pause();
     </script>
   </body>
 </html>

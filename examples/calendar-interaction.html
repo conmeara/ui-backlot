@@ -5,7 +5,7 @@
     <title>Calendar — Interaction Demo</title>
   </head>
   <body>
-    <div id="calendar-interaction" data-composition-id="calendar-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.3">
+    <div id="calendar-interaction" data-composition-id="calendar-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6.0">
       <section class="cal-stage" data-primitive="calendar-interaction" aria-label="macOS Calendar week view with a scripted new-event creation">
         <div class="wallpaper" aria-hidden="true"></div>
 
@@ -598,10 +598,11 @@
       ix.type('[data-role="new-event-title"]', "Product sync", { at: 3.35, cps: 17 });
 
       // 4) Commit: Return finalizes the new event ~0.4s after typing settles —
-      //    the selection ring fades away and the block drops its solid-fill
-      //    editing state for the same light tint every neighboring event uses.
+      //    the selection ring fades away. The event itself stays SELECTED
+      //    (solid --event-color fill) since no click-away is scripted; real
+      //    macOS Calendar only reverts to the light unselected tint when the
+      //    user clicks elsewhere.
       ix.hide('[data-role="new-event-ring"]', { at: 4.46, dur: 0.2 });
-      tl.set('[data-role="new-event"]', { attr: { class: "week-event is-committed" } }, 4.46);
 
       // Pin the shared click-ring hidden at t=0 (see note above) so the
       // opening at-rest frames render clean before the click at 4.0.

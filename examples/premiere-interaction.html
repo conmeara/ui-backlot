@@ -41,15 +41,20 @@
       }
       .program-monitor .program-frame.scrub-b {
         background:
-          radial-gradient(circle at 62% 26%, rgba(255, 235, 190, 0.42), transparent 30%),
-          linear-gradient(180deg, #4c6a48 0%, #3c5a2e 38%, #23371c 62%, #12200e 100%),
-          radial-gradient(circle at 50% 108%, rgba(0, 0, 0, 0.55), transparent 62%);
+          radial-gradient(ellipse 46px 128px at 27% 66%, rgba(18, 14, 9, 0.6), rgba(18, 14, 9, 0.32) 55%, transparent 75%),
+          radial-gradient(ellipse 38px 104px at 61% 60%, rgba(16, 13, 8, 0.55), rgba(16, 13, 8, 0.28) 55%, transparent 72%),
+          radial-gradient(ellipse 30px 82px at 78% 70%, rgba(20, 16, 10, 0.5), transparent 70%),
+          radial-gradient(circle at 62% 24%, rgba(255, 240, 200, 0.55), rgba(255, 235, 190, 0.18) 22%, transparent 34%),
+          linear-gradient(180deg, #dfe9ba 0%, #b9d189 16%, #86b25c 34%, #5c8f3e 50%, #3c6e2a 66%, #234e19 82%, #12300d 100%),
+          radial-gradient(circle at 50% 112%, rgba(0, 0, 0, 0.6), transparent 58%);
       }
       .program-monitor .program-frame.scrub-c {
         background:
-          radial-gradient(circle at 32% 34%, rgba(255, 214, 158, 0.34), transparent 26%),
-          linear-gradient(180deg, #42604a 0%, #33502a 40%, #1c2f16 64%, #0f1a0a 100%),
-          radial-gradient(circle at 46% 110%, rgba(0, 0, 0, 0.6), transparent 60%);
+          radial-gradient(ellipse 42px 118px at 36% 62%, rgba(16, 13, 8, 0.58), rgba(16, 13, 8, 0.3) 55%, transparent 74%),
+          radial-gradient(ellipse 34px 96px at 70% 56%, rgba(18, 14, 9, 0.52), transparent 72%),
+          radial-gradient(circle at 32% 30%, rgba(255, 224, 172, 0.46), rgba(255, 214, 158, 0.14) 20%, transparent 30%),
+          linear-gradient(180deg, #d4e2ae 0%, #a8c67c 18%, #78a850 36%, #4f8534 52%, #326523 68%, #1c4715 84%, #0e2a0a 100%),
+          radial-gradient(circle at 46% 114%, rgba(0, 0, 0, 0.62), transparent 56%);
       }
     </style>
 
@@ -143,7 +148,7 @@
         const END_PCT = 82;
         const SEC_PER_PCT = 31.5 / 52; // anchors to the static "00:00:31:12" @ 52%
 
-        ix.click(".playhead span", { at: DRAG_START, moveDur: 0.75, press: false });
+        ix.click(".playhead span", { at: 3.0, moveDur: 0.7, press: false });
 
         const stageRect = stage.getBoundingClientRect();
         const tracksRect = tracksEl.getBoundingClientRect();
@@ -160,14 +165,14 @@
         // (post-scale) drag distance by the mount scale to get the pre-scale distance that keeps the
         // rendered playhead glued under the (unscaled) cursor for the whole drag.
         const dragPx = tracksRect.width * ((END_PCT - START_PCT) / 100) / MOUNT_SCALE;
-        tl.to(playhead, { x: dragPx, duration: DRAG_DUR, ease: "power1.inOut" }, DRAG_START);
-        tl.to(".demo-cursor", { left: endX, top: endY, duration: DRAG_DUR, ease: "power1.inOut" }, DRAG_START);
+        tl.to(playhead, { x: dragPx, duration: DRAG_DUR, ease: "none" }, DRAG_START);
+        tl.to(".demo-cursor", { left: endX, top: endY, duration: DRAG_DUR, ease: "none" }, DRAG_START);
 
         const tcState = { pct: START_PCT };
         tl.to(tcState, {
           pct: END_PCT,
           duration: DRAG_DUR,
-          ease: "power1.inOut",
+          ease: "none",
           onUpdate: () => {
             tcEl.textContent = formatTimecode(tcState.pct * SEC_PER_PCT);
             // Re-composite the Program monitor at each clip boundary the
