@@ -32,16 +32,26 @@
       <main class="terminal-screen">
         <section class="codex-splash" data-primitive="codex-session-header">
           <div class="splash-row">
+            <span class="rail" aria-hidden="true">|</span>
             <span class="prompt-glyph">&gt;_</span>
             <strong>OpenAI Codex</strong>
             <span class="version">(v0.139.0)</span>
+            <span class="rail" aria-hidden="true">|</span>
           </div>
           <div class="meta-grid">
-            <span>model:</span>
-            <strong>5.6-sol-ultra</strong>
-            <em>/model to change</em>
-            <span>directory:</span>
-            <strong>~/Projects/ui-backlot</strong>
+            <div class="meta-row">
+              <span class="rail" aria-hidden="true">|</span>
+              <span>model:</span>
+              <strong>gpt-5.2-codex medium</strong>
+              <em>/model to change</em>
+              <span class="rail" aria-hidden="true">|</span>
+            </div>
+            <div class="meta-row">
+              <span class="rail" aria-hidden="true">|</span>
+              <span>directory:</span>
+              <strong class="value-full">~/Projects/ui-backlot</strong>
+              <span class="rail" aria-hidden="true">|</span>
+            </div>
           </div>
         </section>
 
@@ -295,22 +305,44 @@
         color: var(--terminal-muted);
       }
 
+      .rail {
+        color: var(--terminal-faint, #5f5f6b);
+      }
+
+      .splash-row .rail:last-child {
+        margin-left: auto;
+      }
+
       .meta-grid {
-        display: grid;
-        grid-template-columns: 78px max-content 1fr;
-        column-gap: 8px;
+        display: flex;
+        flex-direction: column;
         row-gap: 6px;
-        align-items: baseline;
         color: var(--terminal-muted);
         font-size: 14px;
+      }
+
+      .meta-row {
+        display: grid;
+        grid-template-columns: 14px 78px max-content 1fr 14px;
+        column-gap: 8px;
+        align-items: baseline;
+      }
+
+      .meta-row .rail:first-child {
+        grid-column: 1;
+      }
+
+      .meta-row .rail:last-child {
+        grid-column: 5;
+        margin-left: 0;
       }
 
       .meta-grid strong {
         color: var(--terminal-text);
       }
 
-      .meta-grid strong:last-child {
-        grid-column: 2 / 4;
+      .meta-grid .value-full {
+        grid-column: 3 / 5;
         white-space: nowrap;
       }
 
@@ -336,14 +368,19 @@
         display: flex;
         align-items: center;
         gap: 9px;
-        margin: 0 0 22px;
-        padding: 0;
+        margin: 4px -20px 22px;
+        padding: 11px 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
         color: var(--terminal-text);
         font-size: 15px;
       }
 
       .user-prompt span {
         color: var(--terminal-muted);
+      }
+
+      .user-prompt strong {
+        font-weight: 400;
       }
 
       .transcript {

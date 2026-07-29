@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-29T03:47:18.296Z",
+  "entries": [
+    {
+      "label": "mac-app-code-dark",
+      "method": "video-frame-mine",
+      "source": "reference/claude/videos/2026-04-14-claude-code-desktop-redesign.mp4 (official Anthropic Claude Code desktop-redesign launch video, frame at ~28s; local cache already used for frame-study/code-desktop-redesign, exact original YouTube URL not recorded from the earlier acquisition pass)",
+      "capturedAt": "2026-07-29T03:47:18.296Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "First-ever DARK-THEME capture of the Claude desktop Code page in any dated set (2026-07-13 and 2026-07-20 mac-app-code entries are all light theme). Full window incl. traffic-light title bar: split two-pane session view (main session left: file edits, alignment-grid table, terminal, tasks panel; second session right: 'Migrate API client' with its own composer), 'Auto accept edits' composer footer, model label 'Opus 4.6', card-on-card panel stacking (Preview/diff/terminal/tasks as separate dark cards over the base session pane), orange accent color unchanged from light theme. Real official-video pixels of the current redesigned Code UI, not a marketing mockup -- fills the mac-app dark-theme gap from the 2026-07-28 health check for the Code page. Home page dark theme is still NOT covered by any local video (this video is Code-page-only branded 'Claude Code'); that gap remains open.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    },
+    {
+      "label": "web-app-home-light-docs",
+      "method": "docs-press",
+      "source": "https://claude.com/resources/tutorials/getting-started-with-claude-ai (Anthropic's own 'Getting started with Claude.ai' tutorial page, redirected from support.claude.com/en/articles/12997377; image dated 2025-12-15 in its filename)",
+      "capturedAt": "2026-07-29T03:47:18.322Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Official vendor screenshot, LIGHT theme, full composer + Home greeting: '(asterisk) Back at it, Zoe', composer 'How can I help you today?' with +/sliders/history icon row, model selector reading 'Sonnet 4.5' (one generation behind current Sonnet 5 -- treat model label as directional/dated only), row of quick-action chips below composer: Code / Write / Create / From Drive / From Calendar (the Drive and Calendar connector chips are NOT yet reflected in our mac-app-home-empty-light 2026-07-20 manual-inbox capture -- worth checking against the current surface). CAVEAT: the crop includes macOS traffic-light window chrome + a sidebar-toggle icon, so this may be a stylized desktop-app rendering used for marketing rather than a pure browser-tab capture; treat window chrome as directional, trust the composer/greeting/quick-action content as real product copy and layout. This is a docs-press rung fallback, not a true live-web capture -- claude-in-chrome had zero connected browsers this session (list_connected_browsers returned []), so the higher-rung live-web capture with measured tokens.json (per reference/sources.json target 'web-app-home') is STILL not filled; that requires either a reconnected Chrome extension session or a user-provided screenshot.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

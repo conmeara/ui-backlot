@@ -26,6 +26,8 @@
       <path d="M3 12a9 9 0 1 0 9-9a9.75 9.75 0 0 0-6.74 2.74L3 8" />
       <path d="M3 3v5h5" />
       </symbol>
+      <symbol id="f7-pencil" viewBox="0 0 56 56"><path fill="currentColor" d="m43.293 16.926l2.367-2.32c1.196-1.196 1.242-2.485.188-3.563l-.797-.797c-1.055-1.055-2.344-.937-3.54.211l-2.367 2.344ZM15.66 44.488l25.57-25.547l-4.101-4.125l-25.594 25.57L9.31 45.59c-.211.562.375 1.219.937.984Z"/></symbol>
+      <symbol id="f7-hand-raised-fill" viewBox="0 0 56 56"><path fill="currentColor" d="M9.121 36.25c0 11.555 6.399 16.734 15.328 16.734c5.672 0 9.89-1.875 13.266-5.414c4.687-4.968 6.234-12.492 7.125-15.445c.703-2.32 2.039-5.297 2.039-6.867c0-1.008-1.336-1.899-2.227-1.899c-2.015 0-2.765.914-3.96 3.446c-1.313 2.789-2.907 7.992-4.172 7.992c-.727 0-.985-1.29-.985-3.75V8.43c0-1.242-.75-2.367-2.344-2.367c-1.57 0-2.343 1.125-2.343 2.367v18.515c-.75-.21-1.617-.375-2.555-.515V5.36c0-1.243-.773-2.344-2.344-2.344s-2.344 1.101-2.344 2.343v20.907c-.867.047-1.71.14-2.554.28V7.165c0-1.242-.797-2.367-2.344-2.367s-2.344 1.125-2.344 2.367V27.86a16.3 16.3 0 0 0-2.554 1.313v-14.72c0-1.242-.727-2.367-2.297-2.367c-1.617 0-2.39 1.125-2.39 2.367Z"/></symbol>
     </svg>
     <section class="premiere-window" data-primitive="premiere-video-editor-window" aria-label="Editable Premiere-style video editor surface">
       <header class="premiere-titlebar" data-primitive="premiere-titlebar">
@@ -66,7 +68,7 @@
           </div>
           <div class="monitor-frame source-frame">
             <div class="video-still interview">
-              <div class="source-timecode">00:01:14:09</div>
+              <div class="source-timecode">00:00:14:18</div>
             </div>
             <div class="source-waveform" aria-hidden="true">
               <span class="scrub-tick"></span>
@@ -81,7 +83,7 @@
             <button type="button" class="control insert" aria-label="Insert"></button>
             <button type="button" class="control overwrite" aria-label="Overwrite"></button>
             <span class="monitor-scale">Fit</span>
-            <span class="duration">00:00:08:07</span>
+            <span class="duration">00:05:15:00</span>
           </div>
         </section>
 
@@ -158,8 +160,8 @@
           <button class="tool track" type="button" aria-label="Track select tool"></button>
           <button class="tool ripple" type="button" aria-label="Ripple edit tool"></button>
           <button class="tool razor" type="button" aria-label="Razor tool"></button>
-          <button class="tool pen" type="button" aria-label="Pen tool"></button>
-          <button class="tool hand" type="button" aria-label="Hand tool"></button>
+          <button class="tool pen" type="button" aria-label="Pen tool"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-pencil"/></svg></button>
+          <button class="tool hand" type="button" aria-label="Hand tool"><svg class="backlot-icon" aria-hidden="true"><use href="#f7-hand-raised-fill"/></svg></button>
           <button class="tool text" type="button" aria-label="Text tool"></button>
         </aside>
 
@@ -199,7 +201,7 @@
           <div class="timeline-body">
             <div class="track-headers">
               <div class="track-header video"><strong>V4</strong><em class="track-eye"></em><em class="track-lock"></em></div>
-              <div class="track-header video targeted"><strong>V3</strong><em class="track-eye"></em><em class="track-lock"></em></div>
+              <div class="track-header video"><strong>V3</strong><em class="track-eye"></em><em class="track-lock"></em></div>
               <div class="track-header video"><strong>V2</strong><em class="track-eye"></em><em class="track-lock"></em></div>
               <div class="track-header video targeted"><strong>V1</strong><em class="track-eye"></em><em class="track-lock"></em></div>
               <div class="track-header audio targeted"><strong>A1</strong><em>M</em><em>S</em><em class="track-lock"></em></div>
@@ -254,12 +256,11 @@
           <section class="property-stack">
             <div class="property-heading"><strong>funding_card.png</strong><i></i></div>
             <div class="disclosure open">Transform</div>
-            <div class="mini-icons"><span></span><span></span></div>
             <div class="prop-line keyframed"><span>Position</span><strong>320.0</strong><strong>180.0</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="prop-line keyframed"><span>Anchor point</span><strong>320.0</strong><strong>180.0</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="prop-line"><span>Scale</span><strong>100.0%</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
-            <div class="prop-line"><span>Rotation</span><strong>0°</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
-            <div class="prop-line"><span>Opacity</span><strong>100%</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line"><span>Rotation</span><strong>0.0°</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
+            <div class="prop-line"><span>Opacity</span><strong>100.0%</strong><strong></strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="disclosure open audio">Audio</div>
             <div class="prop-line volume"><span>Volume</span><strong>0.0 dB</strong><i><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-rotate-ccw"/></svg></i></div>
             <div class="audio-slider"><span></span></div>
@@ -1120,6 +1121,9 @@
         border-radius: 2px;
         background: transparent;
         color: #c7c7c7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .tool.active {
@@ -1180,19 +1184,10 @@
         transform: translate(-50%, -50%) rotate(-28deg);
       }
 
-      .tool.pen::before {
+      .tool.pen .backlot-icon,
+      .tool.hand .backlot-icon {
         width: 15px;
         height: 15px;
-        border-left: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: translate(-50%, -50%) rotate(-45deg);
-      }
-
-      .tool.hand::before {
-        width: 13px;
-        height: 16px;
-        border: 2px solid currentColor;
-        border-radius: 7px 7px 5px 5px;
       }
 
       .tool.text::before {
@@ -1402,10 +1397,6 @@
       .track-header.targeted strong {
         background: var(--accent);
         color: #fff;
-      }
-
-      .track-header.audio strong {
-        color: #aee0b7;
       }
 
       .track-header.video .track-lock {

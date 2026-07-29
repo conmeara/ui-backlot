@@ -240,16 +240,16 @@
          pure CSS via data-page on #claude-sidebar-surface; any value other
          than "code" shows the Home sidebar. Measured palette:
          sidebar #fcfcf9, active row #e8e8e8, accent #d87959. Text-muted
-         #898782 (scorecard-sampled) is distinct from icon-stroke #7b7a75 —
-         both are set here as local overrides so the shared foundation
-         tokens stay untouched. */
+         #7b7974 (re-measured 2026-07-28; the prior #898782 read too light
+         vs. live) is distinct from icon-stroke #7b7a75 — both are set here
+         as local overrides so the shared foundation tokens stay untouched. */
       #claude-sidebar-surface {
         width: 360px;
         height: 840px;
         overflow: visible;
         color: var(--claude-ink);
         font-family: var(--font-claude-ui);
-        --claude-text-muted: #898782;
+        --claude-text-muted: #7b7974;
         --claude-icon-stroke: #7b7a75;
       }
 

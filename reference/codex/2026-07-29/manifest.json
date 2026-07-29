@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-29T03:42:31.806Z",
+  "entries": [
+    {
+      "label": "cli-splash-plan-status",
+      "method": "docs-press",
+      "source": "https://github.com/openai/codex/blob/main/.github/codex-cli-splash.png (openai/codex GitHub repo README hero image, official/current)",
+      "capturedAt": "2026-07-29T03:42:31.806Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Fills codex-terminal gap: real terminal session showing codex CLI commands+output (welcome header box with model/directory, tip text, user turn, assistant reasoning bullet, bold 'Updated Plan' checkbox todo list, bold 'Explored' section header) -- the app-screenshots set only had the DESKTOP APP's integrated terminal drawer (integrated-terminal-light.webp), not the standalone CLI. This is a real macOS Terminal window (title bar shows 'codex-rs — codex — 119x30'), not a mockup. Caveat: it is a splash/hero image (curated single frame), not a live session capture, and does not show colored git-diff/patch output or a test-run scroll -- those remain uncaptured within this pass's budget (see skipped).",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

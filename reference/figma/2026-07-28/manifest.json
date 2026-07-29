@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-29T03:48:27.052Z",
+  "entries": [
+    {
+      "label": "desktop-app-editor-refresh",
+      "method": "screencapture",
+      "source": "screencapture of installed Figma.app (retina 3024x1898), logged in, Untitled draft open, UI3 chrome",
+      "capturedAt": "2026-07-29T03:48:27.052Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Fresh native-local re-capture (following the validated 2026-07-13 recipe: open -a Figma, osascript front-window bounds, screencapture -x -R) acquired to ground-truth the CURRENT dark editor chrome/canvas that the figma-onboarding-editor variant's sole visual source (reference/claude/videos/2026-02-18-claude-code-to-figma.mp4, now 160+ days old) can no longer be assumed to represent. Confirms UI3 chrome (icon rail File/Agents/Assets/Tools/Variables, light attached panels, dark canvas, Design/Prototype tabs, bottom floating toolbar) is unchanged from the 2026-07-13 capture -- no drift in the base editor shell. The onboarding variant's SPECIFIC content (stacked mobile welcome/signup frames) is staged/illustrative and not reproducible from the owner's real files, so the Feb video remains the only source for that composition; this capture only refreshes the surrounding chrome grounding. Real tab strip shows the owner's private file names (Interview, AI Advantage, Workflow Build - Fox, DP&I Airtable Build, Flow, Experience Agency, Nozzle v2) -- pixels stay local/gitignored, discount file names as private/transient.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
