@@ -256,17 +256,22 @@
         tl.set(livePlan, { display: "grid", opacity: 1 }, planAt);
 
         // 5) The applied summary block also snaps in; only its text streams
-        // token by token, like AI prose.
+        // token by token, like AI prose. The stream starts a beat after the
+        // header lands (rather than in the same instant) so a sampled frame
+        // never shows the "Applied" header stacked directly on top of the
+        // streamed body's first word, which is also "Applied" — that
+        // coincidence reads as a duplicated line if both appear together.
         const appliedAt = planAt + 0.7;
+        const appliedStreamAt = appliedAt + 0.2;
         tl.set(liveApplied, { display: "grid", opacity: 1 }, appliedAt);
-        ix.stream(liveAppliedText, APPLIED, { at: appliedAt, cps: 45, unit: "word" });
+        ix.stream(liveAppliedText, APPLIED, { at: appliedStreamAt, cps: 45, unit: "word" });
 
         // 6) Composer resets to idle, ready for the next command. Hiding
         // input-bar alongside the text clear leaves exactly one caret
         // (cx-cursor) in the idle composer — with the pinned/typed text
         // gone, input-bar and cx-cursor would otherwise sit right next to
         // each other across only the flex gap, reading as a doubled cursor.
-        const doneAt = appliedAt + APPLIED.length / 45 + 0.3;
+        const doneAt = appliedStreamAt + APPLIED.length / 45 + 0.3;
         tl.set(inputTextEl, { textContent: "" }, doneAt);
         tl.set(typedTail, { textContent: "", display: "none" }, doneAt);
         if (inputBar) tl.set(inputBar, { display: "none" }, doneAt);

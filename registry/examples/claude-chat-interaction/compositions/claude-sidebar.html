@@ -240,16 +240,19 @@
          pure CSS via data-page on #claude-sidebar-surface; any value other
          than "code" shows the Home sidebar. Measured palette:
          sidebar #fcfcf9, active row #e8e8e8, accent #d87959. Text-muted
-         #7b7974 (re-measured 2026-07-28; the prior #898782 read too light
-         vs. live) is distinct from icon-stroke #7b7a75 — both are set here
-         as local overrides so the shared foundation tokens stay untouched. */
+         #969491 (re-verified 2026-07-28 by pixel-sampling the "Recents"/
+         "Scheduled" section labels in reference/claude/2026-07-20/
+         mac-app-home-empty-light/screenshot.png — plateau RGB 150,148,145
+         both places; the interim #7b7974 overshot too dark) is distinct
+         from icon-stroke #7b7a75 — both are set here as local overrides so
+         the shared foundation tokens stay untouched. */
       #claude-sidebar-surface {
         width: 360px;
         height: 840px;
         overflow: visible;
         color: var(--claude-ink);
         font-family: var(--font-claude-ui);
-        --claude-text-muted: #7b7974;
+        --claude-text-muted: #969491;
         --claude-icon-stroke: #7b7a75;
       }
 

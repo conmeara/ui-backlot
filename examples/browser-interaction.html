@@ -5,7 +5,7 @@
     <title>Browser — Interaction Demo</title>
   </head>
   <body>
-    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="5.4">
+    <div id="browser-interaction" data-composition-id="browser-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6">
       <section class="br-stage" data-primitive="browser-interaction" aria-label="Browser typing a URL and loading a page">
         <div class="br-app-window">
           <div
@@ -44,7 +44,11 @@
     <script src="../runtime/backlot-interactions.js"></script>
     <script>
       window.__timelines = window.__timelines || {};
-      const DURATION = 5.4;
+      // Bumped from 5.4 -> 6 to fit the slower/two-beat URL typing pass
+      // (17cps + a hesitation beat at "?") added by the motion-judge polish
+      // pass; the settled end-of-load state still finishes with tail buffer
+      // to spare (last event ends ~5.72s).
+      const DURATION = 6;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
       const stage = document.querySelector(".br-stage");
 
@@ -100,20 +104,56 @@
         gsap.set(urlText, { textContent: "" });
         if (tabTitle) gsap.set(tabTitle, { textContent: "New Tab" });
         if (tabFaviconUse) gsap.set(tabFaviconUse, { opacity: 0 });
+        // Real Chrome shows an info/search glyph in the omnibox on a blank
+        // New Tab (and through typing) — the "loaded site" glyph only
+        // appears once a page has actually finished loading (set below at
+        // enterAt + 0.9). Pin the rest/typing state to the search glyph so
+        // it doesn't read as an already-loaded site-settings icon.
+        if (lockUse) gsap.set(lockUse, { attr: { href: "#lucide-search" } });
+        // The single suggestion row is a URL navigation match ("visit
+        // site"), not a Google-search suggestion, so its leading glyph
+        // should read as a site/favicon (globe), not a search magnifier.
+        const suggestIconUse = suggest && suggest.querySelector("use");
+        if (suggestIconUse) gsap.set(suggestIconUse, { attr: { href: "#lucide-globe" } });
 
         // 1) Click the omnibox, type the URL.
         const TYPE_AT = 1.0;
-        const TYPE_CPS = 20;
+        const TYPE_CPS = 17;
         ix.click(urlBar, { at: 0.7, moveDur: 0.5 });
         tl.to(urlBar, { borderColor: "#1a73e8", backgroundColor: "#ffffff", boxShadow: "0 1px 6px rgba(26,115,232,0.28)", duration: 0.15 }, TYPE_AT - 0.15);
         // The cursor stays exactly where it clicked (on the omnibox) for the
         // entire type+commit — a real hand-typed entry never chases the
         // mouse to a nearby control mid-keystroke.
-        ix.type(urlText, URLTXT, { at: TYPE_AT, cps: TYPE_CPS });
+        //
+        // Typed in two beats (path, then query string) with a short pause at
+        // the "?" boundary, rather than one perfectly uniform 20cps run —
+        // a hand-typed long URL naturally hesitates at a syntax boundary.
+        const QUERY_CHAR_IDX = URLTXT.indexOf("?");
+        const pathPart = QUERY_CHAR_IDX >= 0 ? URLTXT.slice(0, QUERY_CHAR_IDX) : URLTXT;
+        const queryPart = QUERY_CHAR_IDX >= 0 ? URLTXT.slice(QUERY_CHAR_IDX) : "";
+        const TYPE_BEAT = 0.1;
+        function typeSegment(text, atTime) {
+          const spans = [];
+          for (let i = 0; i < text.length; i++) {
+            const ch = text[i];
+            const s = document.createElement("span");
+            s.className = "bl-char";
+            if (ch === " ") s.style.whiteSpace = "pre";
+            s.textContent = ch;
+            urlText.appendChild(s);
+            spans.push(s);
+          }
+          gsap.set(spans, { opacity: 0 });
+          tl.to(spans, { opacity: 1, duration: 0.12, ease: "none", stagger: { each: 1 / TYPE_CPS } }, atTime);
+          return text.length / TYPE_CPS;
+        }
+        const pathDur = typeSegment(pathPart, TYPE_AT);
+        const queryAt = TYPE_AT + pathDur + TYPE_BEAT;
+        const queryDur = queryPart ? typeSegment(queryPart, queryAt) : 0;
+        const typeDur = pathDur + (queryPart ? TYPE_BEAT + queryDur : 0);
 
         // Autocomplete suggestion panel: fades in with focus, echoes the
         // typed value as it's revealed, and hides again once load starts.
-        const typeDur = URLTXT.length / TYPE_CPS;
         if (suggest && suggestText) {
           ix.show(suggest, { at: TYPE_AT - 0.1, dur: 0.12, from: { opacity: 0 } });
           tl.set(suggestText, { textContent: URLTXT.slice(0, 10) }, TYPE_AT + 0.05 * typeDur);
@@ -158,8 +198,8 @@
       window.__timelines["browser-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
       if (cap === "hero") {
-        tl.seek(5.2).pause();
-        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(5.2).pause(); }).catch(() => {});
+        tl.seek(DURATION - 0.2).pause();
+        window.__backlotComponentsReady.then(() => { tl.seek(0).seek(DURATION - 0.2).pause(); }).catch(() => {});
       }
     </script>
   </body>

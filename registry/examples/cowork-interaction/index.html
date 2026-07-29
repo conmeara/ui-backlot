@@ -123,15 +123,29 @@
         const railCheckIcons = railSteps.slice(0, 2).map((step) => step.querySelector("svg")).filter(Boolean);
         // The generated-file card ("Title-slide-cover.svg" / "Download and
         // open") that sits at the foot of the assistant turn, right above
-        // the fixed composer — visible at rest (pre-baked mount state).
-        const attachmentCard = stage.querySelector(".thread-slot .artifact-file-list .file-card");
+        // the fixed composer — visible at rest (pre-baked mount state). The
+        // mount pre-bakes three file-cards + a "Download all" button below
+        // it; this demo's story only ever shows the first — the other two
+        // (and the download-all button) are display:none below so the later
+        // thread-up-shift (which reveals more of the artifact list once the
+        // card is kept alive, see the SEND_AT fix below) can never scroll a
+        // second card half into view under the fixed composer.
+        const allFileCards = Array.from(stage.querySelectorAll(".thread-slot .artifact-file-list .file-card"));
+        const attachmentCard = allFileCards[0] || null;
+        const extraFileCards = allFileCards.slice(1);
+        const downloadAllBtn = stage.querySelector(".thread-slot .download-all");
+        if (extraFileCards.length) tl.set(extraFileCards, { display: "none" }, 0);
+        if (downloadAllBtn) tl.set(downloadAllBtn, { display: "none" }, 0);
         if (!input || !sendBtn || !bubble || !line1 || !thinkingCard || !toolCard || !commandCard) return;
 
         // The prompt typed must be the very message the mounted thread shows.
         const PROMPT = bubble.textContent.trim();
-        // reply-secondary wraps to two visual lines — captured now (before the
-        // stream() rebuild below clears it) so it can be revealed char-by-char
-        // in reading order instead of a rectangular clip wipe.
+        // line1 and reply-secondary are captured now (before the stream()
+        // rebuilds below clear them) so both can be revealed char-by-char in
+        // reading order, matching the summary line's idiom — one reveal
+        // idiom for the whole assistant turn instead of line1's separate
+        // clipPath wipe.
+        const LINE1_TEXT = line1 ? line1.textContent.trim() : "";
         const LINE2_TEXT = line2 ? line2.textContent.trim() : "";
         // Natural (un-collapsed) row heights, measured before the tool-card
         // rows are pinned to height:0 below, so each row can grow into place
@@ -236,7 +250,9 @@
         // .tool-row has CSS min-height:38px, which floors a height:0 tween
         // unless min-height is cleared too.
         tl.set(toolRows, { autoAlpha: 0, height: 0, minHeight: 0, overflow: "hidden" }, 0);
-        tl.set(line1, { clipPath: "inset(0 100% 0 0)" }, 0);
+        // line1 starts empty and hidden the same way line2/summaryEl do —
+        // its char-stream build (below) already sets each span to opacity:0
+        // at build time, so no separate rest-frame pin is needed here.
         // All three progress dots start hollow — the pre-baked 2-of-3-done
         // state is a mount artifact, not the true rest state for this demo.
         if (railCheckIcons.length) tl.set(railCheckIcons, { autoAlpha: 0 }, 0);
@@ -267,10 +283,11 @@
         tl.set(placeholder, { opacity: 1, visibility: "inherit" }, SEND_AT + 0.24);
         tl.to(bubble, { autoAlpha: 1, duration: 0.14 }, SEND_AT + 0.12);
         tl.to(contextStrip, { autoAlpha: 1, duration: 0.2 }, SEND_AT + 0.4);
-        // The attachment card clears as the send consumes it — the composer
-        // area clears together with the bubble flying up, instead of the
-        // stale generated-file card lingering above the composer forever.
-        if (attachmentCard) tl.to(attachmentCard, { autoAlpha: 0, duration: 0.2 }, SEND_AT);
+        // The attachment card stays in thread history above the new user
+        // bubble (a prior turn's generated output, not a staged-attachment
+        // remove affordance) — it scrolls up naturally with the rest of the
+        // thread via the SETTLE_AT threadWidth nudge below, instead of
+        // vanishing the instant the next message sends.
 
         // Cursor drifts off into the reading column while the task runs.
         tl.to(".demo-cursor", { left: 620, top: 430, duration: 0.7, ease: "power2.inOut" }, SEND_AT + 0.5);
@@ -294,24 +311,28 @@
         if (railCheckIcons[0]) tl.to(railCheckIcons[0], { autoAlpha: 1, duration: 0.15 }, GEN_AT + 1.0);
         if (railCheckIcons[1]) tl.to(railCheckIcons[1], { autoAlpha: 1, duration: 0.15 }, GEN_AT + 2.0);
 
-        // 3) Assistant turn: line1 wipes in as a single-line clip reveal;
-        //    line2 wraps to two visual lines, so it streams char-by-char in
-        //    reading order instead (a rectangular wipe would show the second
-        //    wrapped line's start before the first wrapped line finishes).
-        //    Then the Running-command card, then the progress card's rows
-        //    land one by one, then the last row settles to done.
+        // 3) Assistant turn: line1 and line2 both stream in char-by-char in
+        //    reading order (line2 wraps to two visual lines, so a rectangular
+        //    clip wipe would show its second wrapped line's start before the
+        //    first wrapped line finishes — the same reason line1 now shares
+        //    this idiom instead of its own clipPath wipe). Then the
+        //    Running-command card, then the progress card's rows land one by
+        //    one, then the last row settles to done.
         const AI_AT = SEND_AT + 0.8;
         tl.to(replyMark, { autoAlpha: 1, duration: 0.15 }, AI_AT);
-        tl.to(line1, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "none" }, AI_AT + 0.05);
+        const LINE1_AT = AI_AT + 0.05;
+        const LINE1_CPS = 48;
+        const LINE1_DUR = LINE1_TEXT.length / LINE1_CPS;
+        if (line1 && LINE1_TEXT) ix.stream(line1, LINE1_TEXT, { at: LINE1_AT, cps: LINE1_CPS });
         const LINE2_CPS = 48;
-        const LINE2_AT = AI_AT + 0.85;
+        const LINE2_AT = LINE1_AT + LINE1_DUR + 0.1;
         const LINE2_DUR = LINE2_TEXT.length / LINE2_CPS;
         if (line2 && LINE2_TEXT) ix.stream(line2, LINE2_TEXT, { at: LINE2_AT, cps: LINE2_CPS });
 
         const THINK_AT = LINE2_AT + LINE2_DUR + 0.2;
         tl.fromTo(thinkingCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, THINK_AT);
 
-        const TOOL_AT = THINK_AT + 0.85;
+        const TOOL_AT = THINK_AT + 0.5;
         tl.fromTo(toolCard, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3 }, TOOL_AT);
         // Every row passes through its own working -> done state, not just
         // the last one: rows 0/1 land in the active/coral-spinner state (the
@@ -320,9 +341,22 @@
         // done status just before the next row lands. The last row keeps its
         // existing behavior (it resolves at SETTLE_AT, once the whole card
         // is done — see step 4 below).
+        // Each row growing from height:0 pushes everything below it (the
+        // artifact card, now kept alive per the fix above) further down the
+        // thread — with the card sitting close to the composer's top edge
+        // at rest, that growth alone is enough to shove it under the fixed
+        // composer. Nudge threadWidth up by the same amount each row grows,
+        // in the same beat, so the thread visually keeps pace with its own
+        // growing content instead of the card sliding out of view underneath
+        // the composer.
+        let threadShift = 0;
         toolRows.forEach((row, i) => {
           const landAt = TOOL_AT + 0.3 + i * 0.5;
           tl.to(row, { autoAlpha: 1, height: toolRowHeights[i], duration: 0.22 }, landAt);
+          if (threadWidth) {
+            threadShift -= toolRowHeights[i];
+            tl.to(threadWidth, { y: threadShift, duration: 0.22, ease: "power2.out" }, landAt);
+          }
           const isLast = i === toolRows.length - 1;
           if (isLast) return;
           const status = row.querySelector(".tool-status");
@@ -341,16 +375,19 @@
         const LAST_ROW_AT = TOOL_AT + 0.3 + (toolRows.length - 1) * 0.5;
         const SETTLE_AT = LAST_ROW_AT + 0.4;
 
-        // The tool timer ("00:07" as-mounted) ticks up while the card is
-        // visibly still running, instead of sitting frozen for the whole
-        // card lifetime — a real Claude tool clock counts up one second per
-        // second of run time. Ticks are spaced across TOOL_AT..SETTLE_AT
-        // (the window the rows are actively landing in) and the last value
-        // is re-pinned at SETTLE_AT so the final held frame is still.
+        // The tool timer ("00:07" as-mounted) counts up from a low value as
+        // the card visibly starts running, instead of landing already
+        // mid-count (a freshly-snapped-in card reading 00:07 on arrival is a
+        // scripted-clock tell) — a real Claude tool clock counts up one
+        // second per second of run time. Ticks are spaced across
+        // TOOL_AT..SETTLE_AT (the window the rows are actively landing in)
+        // and the last value is re-pinned at SETTLE_AT so the final held
+        // frame is still.
         if (toolMeta) {
+          tl.set(toolMeta, { textContent: "00:01" }, TOOL_AT);
           const tickSpan = SETTLE_AT - TOOL_AT;
           const tickTimes = [TOOL_AT + tickSpan * 0.25, TOOL_AT + tickSpan * 0.55, TOOL_AT + tickSpan * 0.85];
-          const tickLabels = ["00:08", "00:09", "00:10"];
+          const tickLabels = ["00:02", "00:03", "00:04"];
           tickTimes.forEach((t, i) => tl.set(toolMeta, { textContent: tickLabels[i] }, t));
           tl.set(toolMeta, { textContent: tickLabels[tickLabels.length - 1] }, SETTLE_AT);
         }
@@ -378,13 +415,14 @@
           }
         }
 
-        // Nudge the thread up so the closing summary line (below) has room
-        // to land above the fixed composer — the progress card's last row
-        // already sits close to the composer's top edge, and the new line
-        // needs ~40-60px more. Starts at SETTLE_AT so it's mostly settled by
-        // the time the summary begins streaming.
+        // Nudge the thread up further so the closing summary line (below)
+        // has room to land above the fixed composer — the progress card's
+        // last row already sits close to the composer's top edge, and the
+        // new line needs ~40-60px more. Builds on the per-row shift above
+        // (threadShift) rather than resetting it. Starts at SETTLE_AT so
+        // it's mostly settled by the time the summary begins streaming.
         if (threadWidth) {
-          tl.to(threadWidth, { y: -50, duration: 0.4, ease: "power2.out" }, SETTLE_AT);
+          tl.to(threadWidth, { y: threadShift - 50, duration: 0.4, ease: "power2.out" }, SETTLE_AT);
         }
 
         // 5) Closing summary: once the progress card resolves, the turn

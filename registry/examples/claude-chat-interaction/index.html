@@ -418,6 +418,16 @@
           tl.set(cwSendArrow, { autoAlpha: 1 }, SETTLE_AT);
           tl.set(cwSendStop, { autoAlpha: 0 }, SETTLE_AT);
         }
+        // At the settled end state the reply field is still empty (no
+        // follow-up was typed), so the send button must read as disabled/
+        // muted rather than the atom's default filled accent-orange swatch
+        // — that swatch is only correct once the field actually has text.
+        // Mirror the home composer's own empty-state idiom (.hm-mic:
+        // transparent fill, muted-grey icon). Scoped to SETTLE_AT only —
+        // the brief pre-generation arrow window right after FLIP_AT is
+        // left untouched, as is the generating-state stop-square look,
+        // since neither was part of the flagged issue.
+        if (cwSendBtn) tl.set(cwSendBtn, { backgroundColor: "transparent", color: "var(--claude-text-muted)" }, SETTLE_AT);
         // The Response tool-card's "streaming" badge must settle in lockstep
         // with the composer spinner fade — an idle composer beside a still-
         // streaming card is a contradictory rest state.

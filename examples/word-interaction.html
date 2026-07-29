@@ -17,7 +17,7 @@
               <p class="doc-body" data-role="body2"></p>
             </div>
           </div>
-          <div class="wd-status"><span data-role="status">Page 1 of 1</span><span class="right"><b data-role="words">0</b> words</span></div>
+          <div class="wd-status"><span data-role="status">Page 1 of 1</span><span class="right"><b data-role="words">0</b> <span data-role="wlabel">words</span></span></div>
         </div>
         <div class="wd-caret" data-role="caret" aria-hidden="true"></div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
@@ -63,6 +63,7 @@
       const cursorEl = stage.querySelector(".demo-cursor");
       const caret = stage.querySelector('[data-role="caret"]');
       const wordsEl = stage.querySelector('[data-role="words"]');
+      const wlabelEl = stage.querySelector('[data-role="wlabel"]');
       const saveEl = stage.querySelector(".save");
 
       const TITLE = "Q2 Launch Brief";
@@ -88,7 +89,6 @@
         tl.set(ring, { left: clickPt.x - half, top: clickPt.y - half }, clickAt);
         tl.fromTo(ring, { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.45, ease: "sine.out" }, clickAt);
       }
-      tl.to(headingEl, { scale: 0.94, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 50%" }, clickAt);
       ix.type('[data-role="heading"]', TITLE, { at: 1.2, cps: 18, fade: 0 });
 
       // Once the caret is placed and the title starts typing, glide the
@@ -148,7 +148,7 @@
         const offs = [];
         const re = /\S+/g;
         let m;
-        while ((m = re.exec(text))) offs.push(m.index + m[0].length);
+        while ((m = re.exec(text))) offs.push({ offset: m.index + m[0].length, len: m[0].length });
         return offs;
       }
       const titleWords = TITLE.trim().split(/\s+/).length;
@@ -156,18 +156,25 @@
       // first character lands (real Word counts a live partial token), not
       // only once the whole token + its trailing boundary has been typed.
       tl.set(wordsEl, { textContent: "1" }, 1.2);
-      wordEndOffsets(TITLE).forEach((offset) => {
+      // Real Word's status bar uses the singular "1 word" while the count
+      // reads exactly 1; it flips to plural the instant a second word lands.
+      tl.set(wlabelEl, { textContent: "word" }, 1.2);
+      tl.set(wlabelEl, { textContent: "words" }, 1.2 + 9 / 18);
+      wordEndOffsets(TITLE).forEach(({ offset }) => {
         const c = TITLE.slice(0, offset).trim().split(/\s+/).length;
         tl.set(wordsEl, { textContent: String(c) }, 1.2 + offset / 18);
       });
       let wordCount = titleWords;
-      wordEndOffsets(BODY).forEach((offset) => {
+      // Tick the count on the word's last-char boundary (word-start ref
+      // point) rather than one char-interval after it, so a sampled frame
+      // never shows fully-typed text with a stale (one-low) count.
+      wordEndOffsets(BODY).forEach(({ offset, len }) => {
         wordCount = Math.min(40, wordCount + 1);
-        tl.set(wordsEl, { textContent: String(wordCount) }, bodyAt + offset / 40);
+        tl.set(wordsEl, { textContent: String(wordCount) }, bodyAt + (offset - len + 1) / 40);
       });
-      wordEndOffsets(BODY2).forEach((offset) => {
+      wordEndOffsets(BODY2).forEach(({ offset, len }) => {
         wordCount = Math.min(40, wordCount + 1);
-        tl.set(wordsEl, { textContent: String(wordCount) }, body2At + offset / 40);
+        tl.set(wordsEl, { textContent: String(wordCount) }, body2At + (offset - len + 1) / 40);
       });
 
       // The click-ring's and caret's fromTo tweens above render their "from"

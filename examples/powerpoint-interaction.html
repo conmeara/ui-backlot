@@ -5,10 +5,10 @@
     <title>PowerPoint — Interaction Demo</title>
   </head>
   <body>
-    <div id="powerpoint-interaction" data-composition-id="powerpoint-interaction" data-width="1280" data-height="800" data-start="0" data-duration="6">
+    <div id="powerpoint-interaction" data-composition-id="powerpoint-interaction" data-width="1280" data-height="800" data-start="0" data-duration="4.8">
       <section class="pp-stage" data-primitive="powerpoint-interaction" aria-label="PowerPoint editing a slide title">
         <div class="pp-window">
-          <div class="pp-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Launch Deck.pptx</span></div>
+          <div class="pp-titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="fname">Launch Deck.pptx</span><span class="autosave-chip" data-role="status">Editing</span></div>
           <div class="pp-tabs"><span>File</span><span class="active">Home</span><span>Insert</span><span>Design</span><span>Transitions</span><span>View</span></div>
           <div class="pp-body">
             <div class="pp-rail">
@@ -31,7 +31,7 @@
               </div>
             </div>
           </div>
-          <div class="pp-status"><span>Slide 1 of 3</span><span class="right" data-role="status">Editing</span></div>
+          <div class="pp-status"><span>Slide 1 of 3</span><span class="right">100%</span></div>
         </div>
         <div class="demo-cursor" data-primitive="cursor" aria-hidden="true"></div>
         <div class="demo-click-ring" data-primitive="click-ring" aria-hidden="true"></div>
@@ -47,6 +47,7 @@
       .pp-titlebar { display:flex; align-items:center; gap:12px; padding:0 16px; background:#f7f7f7; border-bottom:1px solid rgba(20,30,48,0.08); }
       .dots { display:flex; gap:8px; } .dots i { width:12px; height:12px; border-radius:50%; } .dots i:nth-child(1){background:#ec6a5e;} .dots i:nth-child(2){background:#f4bf4f;} .dots i:nth-child(3){background:#61c554;}
       .fname { font-size:14px; font-weight:600; color:#c43e1c; }
+      .autosave-chip { font-size:11px; font-weight:500; color:#8a8a90; margin-left:2px; }
       .pp-tabs { display:flex; align-items:center; gap:20px; padding:0 18px; background:#fbfbfc; border-bottom:1px solid rgba(20,30,48,0.08); font-size:13px; color:#52514e; }
       .pp-tabs .active { color:#c43e1c; font-weight:600; border-bottom:2px solid #c43e1c; height:100%; display:flex; align-items:center; }
       .pp-body { display:grid; grid-template-columns:150px 1fr; background:#f1f2f4; overflow:hidden; }
@@ -69,7 +70,7 @@
       .handle-sw { left:0; top:100%; } .handle-w { left:0; top:50%; }
       .handle-rotate-stem { position:absolute; left:50%; top:-20px; width:1px; height:20px; margin-left:-0.5px; background:rgba(255,255,255,0.7); }
       .handle-rotate { position:absolute; left:50%; top:-24px; width:9px; height:9px; margin:-4.5px; border-radius:50%; background:#fff; border:1px solid #3a3a3a; }
-      .slide-title { font-size:38px; font-weight:700; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; white-space:nowrap; }
+      .slide-title { font-size:38px; font-weight:300; color:#fff; margin:0; letter-spacing:-.01em; min-height:46px; white-space:nowrap; }
       .title-ph { color:rgba(255,255,255,0.4); }
       /* Text reveals by clipping width (overflow hidden), so the caret sibling
          after it rides the leading edge -- a real typewriter, seek-safe. */
@@ -131,7 +132,7 @@
 
       window.__timelines["powerpoint-interaction"] = tl;
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(5.5).pause();
+      if (cap === "hero") tl.seek(4.5).pause();
     </script>
   </body>
 </html>

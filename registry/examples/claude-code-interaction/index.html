@@ -118,11 +118,14 @@
         }
         gsap.set(typedChars, { display: "none" });
 
-        // 1) Click the input row, type the command.
+        // 1) Move the cursor to the prompt, then type — no click-ring pulse.
+        // A CLI terminal is always focused; there is no click-to-focus
+        // response in the real app, so the cursor arrives at the prompt
+        // without the web-UI focus gesture (ring pulse / press dip).
         const CLICK_AT = 0.6;
         const TYPE_AT = 1.0;
         const CPS = 22;
-        ix.click(inputRow, { at: CLICK_AT, moveDur: 0.6 });
+        ix.moveTo(inputRow, { at: Math.max(0, CLICK_AT - 0.6), dur: 0.6 });
         for (let i = 0; i < typedChars.length; i++) {
           tl.set(typedChars[i], { display: "inline" }, TYPE_AT + i / CPS);
         }
@@ -142,6 +145,16 @@
         // stops contributing footer height.
         tl.set(workingEl, { display: "block" }, submitAt);
         ix.show(workingEl, { at: submitAt, dur: 0.2 });
+
+        // The prompt row (and cursor's parked position) scrolls down as the
+        // transcript grows, but the cursor itself doesn't track it — nudge
+        // it down a small amount so it drifts toward the settled prompt
+        // instead of floating over the streaming tool/reply text for the
+        // rest of the turn.
+        const demoCursor = stage.querySelector(".demo-cursor");
+        if (demoCursor) {
+          tl.to(demoCursor, { top: "+=40", duration: 0.4, ease: "power2.out" }, submitAt + 0.3);
+        }
 
         // 3) Tool calls snap in one by one — label then its result ~0.35s
         // later, staggered ~0.4s tool-to-tool, reading as the agent

@@ -5,7 +5,7 @@
     <title>Finder — Interaction Demo</title>
   </head>
   <body>
-    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="2.9">
+    <div id="finder-interaction" data-composition-id="finder-interaction" data-width="1280" data-height="800" data-start="0" data-duration="3.2">
       <section class="fn-stage" data-primitive="finder-interaction" aria-label="Finder (real component) with a scripted selection">
         <div class="wallpaper" aria-hidden="true"></div>
         <div class="fn-frame component-frame"
@@ -71,7 +71,7 @@
       // ready). Without the hold, a fast browser start races the mount and the
       // render fails with "Composition has zero duration".
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
-      tl.to(stage, { opacity: 1, duration: 2.9 }, 0);   // no-op hold → duration is always 2.9
+      tl.to(stage, { opacity: 1, duration: 3.2 }, 0);   // no-op hold → duration is always 3.2
       window.__timelines["finder-interaction"] = tl;
 
       // Park the click-ring hidden and off-stage at t=0 so it can never show
@@ -153,7 +153,13 @@
           //    selection breadcrumb stays coherent while only one leaf is
           //    blue at a time. Committed on the same beat as the click so
           //    the highlight never lags behind the mousedown.
-          ix.click(target, { at: 1.7, moveDur: 0.7, press: false });
+          // Beat pushed from 0.7->1.7 (1.0s) to 0.7->2.0 (1.3s): the real
+          // recording paces successive column selections ~1.5s apart
+          // (reference f-001/f-004/f-007), so 1.0s between drilling into
+          // Launch Deck and selecting the leaf inside it read marginally
+          // brisk for a deliberate drill-then-pick action. Every beat that
+          // depends on this click's timestamp shifts by the same +0.3s.
+          ix.click(target, { at: 2.0, moveDur: 0.7, press: false });
           // Mirror the first click's ring pulse explicitly: the shared
           // .demo-click-ring element must re-telegraph this second discrete
           // selection the same way it did the first (Launch Deck, 0.7s), so
@@ -163,10 +169,10 @@
           // before the col1 auto-scroll below, and left/top are set here
           // (rather than only inside the fromTo's "from") so the ring
           // never inherits the first click's parked position.
-          tl.set(".demo-click-ring", { left: 1006, top: 232 }, 1.7);
-          tl.fromTo(".demo-click-ring", { opacity: 0.9, scale: 0.35 }, { opacity: 0, scale: 1, duration: 0.4, ease: "power2.out" }, 1.7);
-          tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 1.75);
-          tl.set(target, { attr: { class: "file-row selected large" } }, 1.75);
+          tl.set(".demo-click-ring", { left: 1006, top: 232 }, 2.0);
+          tl.fromTo(".demo-click-ring", { opacity: 0.9, scale: 0.35 }, { opacity: 0, scale: 1, duration: 0.4, ease: "power2.out" }, 2.0);
+          tl.set(launchDeck, { attr: { class: "file-row selected large ancestor" } }, 2.05);
+          tl.set(target, { attr: { class: "file-row selected large" } }, 2.05);
           // Same beat: auto-scroll col1 fully off the window's inner-left
           // edge (0px, not a partial sliver — real Finder clips the oldest
           // column from its LEFT once a leaf 2 levels deep is active, so
@@ -177,7 +183,7 @@
           // Selection class-flips above stay instant (selections ARE
           // instant in Finder); only the reflow + preview fade animate.
           if (content) {
-            tl.to(content, { gridTemplateColumns: "0px 245px 245px 1fr", duration: 0.22, ease: "power2.inOut" }, 1.68);
+            tl.to(content, { gridTemplateColumns: "0px 245px 245px 1fr", duration: 0.22, ease: "power2.inOut" }, 1.98);
             // Grid items default to min-width:auto, so a 0px track alone
             // does not clip col1's intrinsic content (icons/chevrons would
             // spill into col2's area) — overflow:hidden is required to
@@ -189,19 +195,27 @@
             // old 32px sliver: the track and the column's own box both
             // collapse to 0, so nothing of col1 remains visible once the
             // slide finishes.
-            if (cols[0]) tl.set(cols[0], { overflow: "hidden", paddingLeft: 0, paddingRight: 0 }, 1.68);
+            if (cols[0]) tl.set(cols[0], { overflow: "hidden", paddingLeft: 0, paddingRight: 0 }, 1.98);
           }
           if (preview) {
             // Real Finder (and this app's own preview swaps, f-001->f-005)
             // renders the selection's preview instantly with no fade — commit
             // it on the same beat the leaf becomes selected, not a ramp.
-            tl.set(preview, { opacity: 1 }, 1.75);
+            tl.set(preview, { opacity: 1 }, 2.05);
           }
+          // Cursor-follow polish: a stationary mouse while content
+          // auto-scrolls is physically correct (real Finder does exactly
+          // this), but leaving the cursor parked in the blank preview pane
+          // ~300px right of the just-selected row for the remaining settle
+          // draws the eye. Drift it a small amount left toward the
+          // selected row once the col1 collapse finishes (1.98+0.22=2.20)
+          // rather than teleporting it there.
+          tl.to(".demo-cursor", { left: 900, duration: 0.18, ease: "power2.out" }, 2.22);
         }
       }).catch(() => {});
 
       const cap = new URLSearchParams(location.search).get("capture");
-      if (cap === "hero") tl.seek(2.9).pause();
+      if (cap === "hero") tl.seek(3.2).pause();
     </script>
   </body>
 </html>

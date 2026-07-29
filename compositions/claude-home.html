@@ -174,16 +174,8 @@
       <symbol id="lucide-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
       </symbol>
-      <symbol id="lucide-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v8" />
-        <path d="m4.93 10.93 1.41 1.41" />
-        <path d="M2 18h2" />
-        <path d="M20 18h2" />
-        <path d="m19.07 10.93-1.41 1.41" />
-        <path d="M22 22H2" />
-        <path d="m8 6 4-4 4 4" />
-        <path d="M16 18a4 4 0 0 0-8 0" />
-      </symbol>
+      <!-- ph:sun-horizon via @iconify/json (matches claude-composed-app.html #ph-sun-horizon) -->
+      <symbol id="ph-sun-horizon" viewBox="0 0 256 256"><path fill="currentColor" d="M240 152h-40.45a74 74 0 0 0 .45-8a72 72 0 0 0-144 0a74 74 0 0 0 .45 8H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16m-168-8a56 56 0 1 1 111.41 8H72.59a56 56 0 0 1-.59-8m144 56a8 8 0 0 1-8 8H48a8 8 0 0 1 0-16h160a8 8 0 0 1 8 8M72.84 43.58a8 8 0 0 1 14.32-7.16l8 16a8 8 0 0 1-14.32 7.16Zm-56 48.84a8 8 0 0 1 10.74-3.57l16 8a8 8 0 0 1-7.16 14.31l-16-8a8 8 0 0 1-3.58-10.74m192 15.16a8 8 0 0 1 3.58-10.73l16-8a8 8 0 1 1 7.16 14.31l-16 8a8 8 0 0 1-10.74-3.58m-48-55.16l8-16a8 8 0 0 1 14.32 7.16l-8 16a8 8 0 1 1-14.32-7.16"/></symbol>
       <!-- ph:chats via @iconify/json (matches claude-composed-app.html #ph-chats) -->
       <symbol id="ph-chats" viewBox="0 0 256 256"><path fill="currentColor" d="M216 80h-32V48a16 16 0 0 0-16-16H40a16 16 0 0 0-16 16v128a8 8 0 0 0 13 6.22L72 154v30a16 16 0 0 0 16 16h93.59L219 230.22a8 8 0 0 0 5 1.78a8 8 0 0 0 8-8V96a16 16 0 0 0-16-16M66.55 137.78L40 159.25V48h128v88H71.58a8 8 0 0 0-5.03 1.78M216 207.25l-26.55-21.47a8 8 0 0 0-5-1.78H88v-32h80a16 16 0 0 0 16-16V96h32Z"/></symbol>
       <!-- composite: lucide file-text outline (folded corner + text lines) with a
@@ -246,7 +238,7 @@
           </div>
           <div class="home-ideas">
             <div class="home-ideas-label">Ideas for you</div>
-            <div class="home-idea"><span class="home-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-sunrise"/></svg></span><span>Send me a daily briefing</span></div>
+            <div class="home-idea"><span class="home-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#ph-sun-horizon"/></svg></span><span>Send me a daily briefing</span></div>
             <div class="home-idea"><span class="home-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#ph-chats"/></svg></span><span>Organize my inbox</span></div>
             <div class="home-idea"><span class="home-idea-ico"><svg class="backlot-icon" aria-hidden="true"><use href="#lucide-file-reply"/></svg></span><span>Customize Cowork for me</span></div>
           </div>

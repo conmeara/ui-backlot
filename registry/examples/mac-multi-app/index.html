@@ -436,8 +436,12 @@
       // Windows start hidden (they "open" from the dock). A subtle grow-in
       // (not a launch-from-far-below) — real macOS scales a window up from
       // ~90% with a fade, no overshoot.
-      gsap.set(".win-claude", { opacity: 0, scale: 0.9, y: 30, transformOrigin: "50% 100%" });
-      gsap.set(".win-excel", { opacity: 0, scale: 0.9, y: 30, transformOrigin: "50% 100%" });
+      // Anchor each window's grow-in to its own dock icon x (a real macOS
+      // launch scales OUT of the dock icon, not from a generic center-bottom
+      // point) — Claude icon x715 within window left150/width1008 ≈ 57%;
+      // Excel icon x991 within window left726/width922 ≈ 29%.
+      gsap.set(".win-claude", { opacity: 0, scale: 0.86, y: 30, transformOrigin: "57% 100%" });
+      gsap.set(".win-excel", { opacity: 0, scale: 0.86, y: 30, transformOrigin: "29% 100%" });
 
       // Click-ring stays fully hidden until its first real pulse — otherwise
       // gsap's fromTo immediateRender paints the ring's "from" state (visible)
@@ -464,20 +468,24 @@
       // y = 140 + 355*0.70 ≈ 389.
       tl.to(".workflow-cursor", { left: 746, top: 389, duration: 1.0, ease: "power2.inOut" }, 3.1);
 
-      // Move to the Excel dock icon and click.
-      tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.8);
-      tl.set(".click-ring", { left: 969, top: 988 }, 5.68);
-      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.65, ease: "power1.out", immediateRender: false }, 5.7);
+      // Move to the Excel dock icon and click. Trimmed 0.4s earlier than a
+      // strict "compose glance, then leave" beat would land — the cursor
+      // arrives at the composer at 4.1 and previously hovered idle for 0.7s
+      // before departing; departing at 4.4 keeps the glance legible without
+      // the aimless dwell.
+      tl.to(".workflow-cursor", { left: 991, top: 1010, duration: 0.9, ease: "power2.inOut" }, 4.4);
+      tl.set(".click-ring", { left: 969, top: 988 }, 5.28);
+      tl.fromTo(".click-ring", { opacity: 0.95, scale: 0.6 }, { opacity: 0, scale: 1.5, duration: 0.65, ease: "power1.out", immediateRender: false }, 5.3);
 
       // Excel opens on top of Claude (grow-in, no rubber-band overshoot).
       // Opens slightly later than the click so the lengthened launch bounce
       // below reads before the window appears.
-      tl.to(".win-excel", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 6.1);
+      tl.to(".win-excel", { opacity: 1, scale: 1, y: 0, duration: 0.72, ease: "power2.out" }, 5.7);
 
       // The system menu bar swaps to the newly-focused app the instant its
       // window takes focus — crossfade the Excel variant over the mounted
       // (Claude) menu bar on the same beat as the Excel window opening.
-      tl.set(".menu-bar-excel-overlay", { opacity: 1 }, 6.15);
+      tl.set(".menu-bar-excel-overlay", { opacity: 1 }, 5.75);
 
       // Cursor moves into Excel and settles into the grid. No click here —
       // the grid's active cell / Name Box are not scripted to move, so an
@@ -519,9 +527,9 @@
         tl.to(".dock-run-claude", { opacity: 1, duration: 0.2 }, 2.95);
 
         if (excelIcon) {
-          tl.to(excelIcon, { y: -18, duration: 0.32, ease: "power2.out", yoyo: true, repeat: 3 }, 5.7);
+          tl.to(excelIcon, { y: -18, duration: 0.32, ease: "power2.out", yoyo: true, repeat: 3 }, 5.3);
         }
-        tl.to(".dock-run-excel", { opacity: 1, duration: 0.2 }, 6.85);
+        tl.to(".dock-run-excel", { opacity: 1, duration: 0.2 }, 6.45);
 
         // Excel takes focus: the background Claude window's traffic-light
         // controls dim to the inactive-window grey macOS uses for controls
@@ -529,7 +537,7 @@
         // claude-composed-app composition, so it's scripted here (post-mount) like
         // the dock icons above rather than on the synchronously-built tl.
         if (claudeTraffic) {
-          tl.to(claudeTraffic, { filter: "grayscale(1) opacity(0.55)", duration: 0.15 }, 6.1);
+          tl.to(claudeTraffic, { filter: "grayscale(1) opacity(0.55)", duration: 0.15 }, 5.7);
         }
 
         // Crossfade the mounted (Claude) menu-bar cluster out as the Excel
@@ -537,7 +545,7 @@
         // transparent wallpaper backdrop, so this reads as one bar swapping
         // app name + menus rather than a panel appearing over the old text.
         if (menuBarLeft) {
-          tl.set(menuBarLeft, { opacity: 0 }, 6.15);
+          tl.set(menuBarLeft, { opacity: 0 }, 5.75);
         }
       }).catch(() => {});
 

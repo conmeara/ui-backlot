@@ -139,13 +139,13 @@
         const dragStart = 4.10;
         const dragDur = 0.9;
         const grabPoint = centerOf(fundingCard);
-        tl.to(fundingCard, { x: 8, y: 4, duration: dragDur, ease: "power2.inOut" }, dragStart);
-        tl.to(cursorEl, { left: grabPoint.x + 8, top: grabPoint.y + 4, duration: dragDur, ease: "power2.inOut" }, dragStart);
+        tl.to(fundingCard, { x: 14, y: 7, duration: dragDur, ease: "power2.inOut" }, dragStart);
+        tl.to(cursorEl, { left: grabPoint.x + 14, top: grabPoint.y + 7, duration: dragDur, ease: "power2.inOut" }, dragStart);
         if (xSpan && ySpan) {
           const posX = { v: 984 };
           const posY = { v: 232 };
-          tl.to(posX, { v: 999, duration: dragDur, ease: "power2.inOut", onUpdate() { xSpan.textContent = String(Math.round(posX.v)); } }, dragStart);
-          tl.to(posY, { v: 240, duration: dragDur, ease: "power2.inOut", onUpdate() { ySpan.textContent = String(Math.round(posY.v)); } }, dragStart);
+          tl.to(posX, { v: 1010, duration: dragDur, ease: "power2.inOut", onUpdate() { xSpan.textContent = String(Math.round(posX.v)); } }, dragStart);
+          tl.to(posY, { v: 244, duration: dragDur, ease: "power2.inOut", onUpdate() { ySpan.textContent = String(Math.round(posY.v)); } }, dragStart);
         }
 
         // Red spacing-guide chrome (mirrors Figma's own move-object guides):
