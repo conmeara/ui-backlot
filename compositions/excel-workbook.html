@@ -208,6 +208,8 @@
         <symbol id="fluent-arrow-download-16-regular" viewBox="0 0 16 16"><path fill="currentColor" d="M3.5 13h9a.5.5 0 0 1 .09.992L12.5 14h-9a.5.5 0 0 1-.09-.992zh9zM7.91 1.008L8 1a.5.5 0 0 1 .492.41l.008.09v8.792l2.682-2.681a.5.5 0 0 1 .638-.058l.07.058a.5.5 0 0 1 .057.638l-.058.069l-3.535 3.536a.5.5 0 0 1-.638.057l-.07-.057l-3.535-3.536a.5.5 0 0 1 .638-.765l.069.058L7.5 10.292V1.5a.5.5 0 0 1 .41-.492L8 1z"/></symbol>
         <!-- f7:funnel via @iconify/json -->
         <symbol id="f7-funnel" viewBox="0 0 56 56"><path fill="currentColor" d="M45.956 7a4 4 0 0 1 3.149 6.467l-13.38 17.075a4 4 0 0 0-.851 2.467v11.223a4 4 0 0 1-5.314 3.778l-5.479-1.906a4 4 0 0 1-2.686-3.778v-9.293a4 4 0 0 0-.878-2.5L6.877 13.5A4 4 0 0 1 10 7zm-2.055 4H12.082a1 1 0 0 0-.78 1.625L23.64 28.032a8 8 0 0 1 1.749 4.68l.006.321v8.582a1 1 0 0 0 .672.944l3.478 1.21a1 1 0 0 0 1.329-.944v-9.816a8 8 0 0 1 1.502-4.666l.2-.268l12.112-15.458A1 1 0 0 0 43.9 11"/></symbol>
+        <!-- fluent:accessibility-checkmark-20-regular via @iconify/json -->
+        <symbol id="fluent-accessibility-checkmark-20-regular" viewBox="0 0 20 20"><path fill="currentColor" d="M8.5 4.498a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0m1.5-2.5a2.5 2.5 0 0 0-2.43 3.086L5.471 4.15a1.76 1.76 0 0 0-2.317.88c-.4.882-.008 1.917.877 2.31L7 8.662v2.287l-1.877 4.645a1.75 1.75 0 0 0 3.245 1.311l.086-.213a5.5 5.5 0 0 1-.424-1.618l-.589 1.457a.75.75 0 1 1-1.39-.562l1.876-4.645A1 1 0 0 0 8 10.949V8.662a1 1 0 0 0-.593-.914L4.438 6.427a.74.74 0 0 1-.373-.983a.76.76 0 0 1 1-.38l3.918 1.744a2.5 2.5 0 0 0 2.034 0l3.918-1.744a.76.76 0 0 1 1 .38a.74.74 0 0 1-.373.983l-2.969 1.321a1 1 0 0 0-.593.914v.545a5.5 5.5 0 0 1 1-.185v-.36l2.968-1.322a1.74 1.74 0 0 0 .877-2.31a1.76 1.76 0 0 0-2.317-.88l-2.097.934a2.5 2.5 0 0 0-2.43-3.086M18 14.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m-2.146-1.854a.5.5 0 0 0-.708 0L12.5 15.293l-.646-.647a.5.5 0 0 0-.708.708l1 1a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0 0-.708"/></symbol>
       </svg>
       <header class="excel-titlebar">
         <div class="excel-traffic" aria-hidden="true"></div>
@@ -220,7 +222,7 @@
           <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-arrow-clockwise-16-regular"></use></svg>
           <svg class="office-icon" viewBox="0 0 16 16"><use href="#fluent-more-horizontal-16-regular"></use></svg>
         </div>
-        <div class="workbook-title">Launch Metrics</div>
+        <div class="workbook-title-wrap"><span class="workbook-title">Launch Metrics</span><span class="save-state">Saved<svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-chevron-down-12-filled"></use></svg></span></div>
         <div class="title-search"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg>Search (Cmd + Ctrl + U)</div>
       </header>
 
@@ -315,17 +317,13 @@
 
         <aside class="insights-pane">
           <div class="insights-title">Analyze Data<span class="dismiss"><svg class="office-icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#fluent-dismiss-12-filled"></use></svg></span></div>
+          <div class="ask-field"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-search-16-regular"></use></svg>What are the total values by row?</div>
           <div class="insight-card active">
             <strong>Revenue is above goal</strong>
             <p>Q2 revenue is tracking 16% above the target used in the launch deck.</p>
           </div>
           <div class="mini-chart" aria-label="Revenue chart">
             <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span><span class="bar b4"></span>
-          </div>
-          <div class="insight-list">
-            <div><span class="dot good"></span>2 checklist rows on target</div>
-            <div><span class="dot warn"></span>Chart update in progress</div>
-            <div><span class="dot blue"></span>Deck checklist selected</div>
           </div>
         </aside>
       </div>
@@ -335,7 +333,7 @@
         <div class="sheet-tabs"><span class="active">Launch metrics</span><span>Revenue</span><span>Feedback</span><button type="button">+</button></div>
       </div>
       <footer class="excel-statusbar">
-        <span class="status-ready">Ready</span><span class="status-a11y"><svg class="office-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#fluent-tag-16-regular"></use></svg>Accessibility: Good to go</span>
+        <span class="status-ready">Ready</span><span class="status-a11y"><svg class="office-icon" viewBox="0 0 20 20" aria-hidden="true"><use href="#fluent-accessibility-checkmark-20-regular"></use></svg>Accessibility: Good to go</span>
         <span class="status-spacer"></span>
         <span>Average: 5.5</span><span>Count: 8</span><span>Sum: 44</span>
         <span class="view-modes">
@@ -468,18 +466,57 @@
         font-size: 13px;
       }
 
-      .workbook-title {
+      .workbook-title-wrap {
         justify-self: center;
-        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .workbook-title {
+        font-weight: 500;
         font-size: 13px;
         color: #1a1a1a;
         white-space: nowrap;
+      }
+
+      .save-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        color: #8a8a8a;
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .save-state .office-icon {
+        width: 11px;
+        height: 11px;
+        color: #8a8a8a;
       }
 
       /* Title bar toggle, quick-access, search, tab strip, title-actions,
          and the whole ribbon system (groups/buttons/stacks/fields/toggles)
          live in office-ribbon.css, shared with word-editor and
          presentation-editor. */
+
+      /* Excel-only override: real Mac Excel renders the titlebar search as a
+         faint bordered pill, not floating text. office-ribbon.css is shared
+         with word-editor/presentation-editor and out of this surface's edit
+         scope, so the box treatment is layered on here — this block comes
+         after the office-ribbon.css @import above, so it wins the cascade
+         for this surface only. */
+      .title-search {
+        justify-self: end;
+        height: 26px;
+        padding: 0 10px;
+        border: 1px solid #dcdcdc;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.45);
+        gap: 6px;
+        color: #8a8a8a;
+        font-size: 12px;
+      }
 
       /* ---------- Formula bar ---------- */
 
@@ -637,6 +674,26 @@
       .insights-title .dismiss .office-icon {
         width: 16px;
         height: 16px;
+      }
+
+      .ask-field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 30px;
+        padding: 0 10px;
+        margin: 2px 16px 10px;
+        border: 1px solid #d4d4d4;
+        border-radius: 6px;
+        color: #8a8a8a;
+        font-size: 12px;
+        flex: none;
+      }
+
+      .ask-field .office-icon {
+        width: 13px;
+        height: 13px;
+        color: #8a8a8a;
       }
 
       .sheet-stage {
@@ -803,30 +860,6 @@
       .bar.b2 { height: 68px; }
       .bar.b3 { height: 88px; }
       .bar.b4 { height: 104px; }
-
-      .insight-list {
-        display: grid;
-        gap: 10px;
-        padding: 14px 16px 16px;
-        color: #424242;
-        font-size: 12px;
-      }
-
-      .insight-list div {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-      }
-
-      .dot.good { background: var(--green); }
-      .dot.warn { background: var(--amber); }
-      .dot.blue { background: var(--blue); }
 
       /* ---------- Footer: sheet tabs + status bar ---------- */
 
@@ -1005,7 +1038,7 @@
       tl.from(".selection-outline", { opacity: 0, scale: 0.96, duration: 0.3, ease: "power2.out" }, 1.62);
       tl.from(".insight-card.active", { opacity: 0, x: 12, duration: 0.3, ease: "power2.out" }, 1.86);
       tl.from(".bar", { scaleY: 0.15, transformOrigin: "bottom center", stagger: 0.08, duration: 0.42, ease: "power3.out" }, 2.12);
-      tl.from(".insight-list div", { opacity: 0, x: 8, stagger: 0.07, duration: 0.22, ease: "power2.out" }, 2.52);
+      tl.from(".ask-field", { opacity: 0, x: 8, duration: 0.22, ease: "power2.out" }, 2.52);
 
       window.__timelines["excel-workbook-surface"] = tl;
     </script>

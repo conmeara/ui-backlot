@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-29T03:46:46.108Z",
+  "entries": [
+    {
+      "label": "help-center-explore-design-files",
+      "method": "docs-official",
+      "source": "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files (current live Help Center article; replaces the dead 23954856027159-Navigating-UI3 article, which 404s as of 2026-07-28)",
+      "capturedAt": "2026-07-29T03:46:46.108Z",
+      "files": [
+        "screenshot-1.png",
+        "screenshot-2.png",
+        "screenshot-3.png"
+      ],
+      "note": "REPLACEMENT for the dead Navigating-UI3 fallback article (help.figma.com/hc/en-us/articles/23954856027159-Navigating-UI3 confirmed HTTP 404 on 2026-07-28). This live article ('Figma Design > Tour the interface > Explore') covers the same UI3 overview ground: toolbar/nav-bar/sidebars/canvas diagram (explore-design-file-annotation.png, labels A-E) plus dedicated left-navbar.png and left-sidebar.png crops. left-navbar.png confirms the icon rail is unchanged since the 2026-07-13 native Figma.app capture: File/Agents/Assets/Tools/Variables, no new/removed items. Images are official Figma Help Center attachments (article_attachments CDN), downloaded directly via curl, no auth/login/bot-check involved.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}

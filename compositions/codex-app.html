@@ -127,6 +127,8 @@
       <symbol id="lucide-square-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></g></symbol>
       <!-- lucide:clock via @iconify/json -->
       <symbol id="lucide-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></g></symbol>
+      <!-- lucide:zap via @iconify/json -->
+      <symbol id="lucide-zap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
       <!-- lucide:folder via @iconify/json -->
       <symbol id="lucide-folder" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></symbol>
       <!-- lucide:folder-open via @iconify/json (real "Open" badge glyph, replaces mis-cast OpenAI mark) -->
@@ -162,10 +164,9 @@
 
         <nav class="primary-nav" aria-label="Codex navigation">
           <button type="button"><svg class="glyph"><use href="#lucide-square-pen"></use></svg>New chat</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-git-pull-request"></use></svg>Pull requests</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-layout-dashboard"></use></svg>Sites</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-clock"></use></svg>Scheduled</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-search"></use></svg>Search</button>
           <button type="button"><svg class="glyph"><use href="#f7-at-circle"></use></svg>Plugins</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-zap"></use></svg>Automations</button>
         </nav>
 
         <section class="sidebar-group projects">
@@ -281,12 +282,12 @@
           </div>
 
           <footer class="composer" data-primitive="codex-composer">
-            <div class="composer-input">Do anything</div>
+            <div class="composer-input">Ask for follow-up changes</div>
             <div class="composer-bottom">
               <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#lucide-plus"></use></svg></button>
               <button class="permission-select" type="button"><svg class="hand-icon"><use href="#lucide-shield-alert"></use></svg>Full access</button>
               <span class="composer-fill"></span>
-              <button class="model-select" type="button"><span class="model-spinner"></span>5.6 Sol <span class="model-tier">Ultra</span> <span class="chev"></span></button>
+              <button class="model-select" type="button"><span class="model-spinner"></span>GPT-5.4 <span class="model-tier">Extra High</span> <span class="chev"></span></button>
               <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#lucide-mic"></use></svg></button>
               <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#lucide-arrow-up"></use></svg></button>
             </div>

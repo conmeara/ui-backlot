@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). Additional no-auth methods: app-store-api (iTunes lookup screenshotUrls \u2014 real current-version UI), yt-dlp+ffmpeg (frame-mining official vendor videos). Recipes + acquisition ladder: docs/reference-and-asset-sourcing.md; loop design: docs/fidelity-loop-plan-2026-07-05.md.",
+  "description": "Acquisition manifest for real-app ground truth. Each family declares how its references are captured on this machine. Tiers: live-web (agent-driven browser capture), native-local (installed macOS app, pixels only), online-only (official docs/press/video scrape), manual-inbox (human-provided screenshots filed via tools/import-reference.mjs). Additional no-auth methods: app-store-api (iTunes lookup screenshotUrls — real current-version UI), yt-dlp+ffmpeg (frame-mining official vendor videos). Recipes + acquisition ladder: docs/reference-and-asset-sourcing.md; loop design: docs/fidelity-loop-plan-2026-07-05.md.",
   "families": [
     {
       "family": "claude",
@@ -41,7 +41,9 @@
         "codex computer-use: delegate app-state navigation + screenshots to Codex when a page can't be captured without UI driving",
         "manual-inbox: user screenshots of the desktop app (chat/cowork/code pages)",
         "reference/claude/frame-study/ launch-video extracts",
-        "docs-press: support.claude.com Help Center articles ship official illustration crops of real components (e.g. articles/8887527-customizing-your-appearance-settings 'Color mode' card shows the composer in light/dark) -- no-auth, useful for chrome-color grounding when claude-in-chrome isn't connected, but these are small staged crops, not full-page captures"
+        "docs-press: support.claude.com Help Center articles ship official illustration crops of real components (e.g. articles/8887527-customizing-your-appearance-settings 'Color mode' card shows the composer in light/dark) -- no-auth, useful for chrome-color grounding when claude-in-chrome isn't connected, but these are small staged crops, not full-page captures",
+        "docs-press: claude.com/resources/tutorials/ vendor tutorial pages (e.g. getting-started-with-claude-ai, redirected from support.claude.com/en/articles/12997377) embed FULL-page marketing screenshots of the Home composer, not just small crops -- validated 2026-07-28, no-auth, good light-theme fallback when claude-in-chrome has no connected browser, but check the model-selector label for dating and note these may render desktop-app chrome (traffic lights) as a stylized composite rather than a pure browser capture",
+        "video-frame-mine: reference/claude/videos/ already has 8 locally-cached official launch videos (yt-dlp'd in a prior pass) -- re-mine them before spending a new yt-dlp fetch; 2026-04-14-claude-code-desktop-redesign.mp4 is the best source for Code-page DARK theme (validated 2026-07-28, frame ~28s)"
       ]
     },
     {
@@ -63,7 +65,8 @@
         }
       ],
       "fallbacks": [
-        "reference/codex/app-screenshots/ (12 shots, light/dark)"
+        "reference/codex/app-screenshots/ (12 shots, light/dark)",
+        "https://github.com/openai/codex (README hero image .github/codex-cli-splash.png — real standalone CLI terminal session: welcome header, plan/todo checklist, 'Explored' status section; no-auth, official, current; distinct from the desktop app's integrated-terminal drawer shot)"
       ]
     },
     {
@@ -91,7 +94,9 @@
         }
       ],
       "fallbacks": [
-        "reference/figma/actual-app/source-index.json (Help Center scrape, refreshable via online-only pass)"
+        "reference/figma/actual-app/source-index.json (Help Center scrape, refreshable via online-only pass) — NOTE: the Navigating-UI3 article (23954856027159) it cites 404s as of 2026-07-28; superseded by the entry below",
+        "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files (current UI3 interface-tour article: toolbar/nav-bar/sidebars/canvas overview + annotated diagram; verified live 2026-07-28, filed reference/figma/2026-07-29/help-center-explore-design-files) — replacement for the dead Navigating-UI3 article",
+        "https://help.figma.com/hc/en-us/sections/13148571463703-Tour-the-interface (durable section index listing the current set of interface-tour articles; safer long-term anchor than a single numbered article since Figma periodically merges/renames articles)"
       ]
     },
     {
@@ -143,14 +148,14 @@
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Word",
-          "notes": "curl 'https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us' -> results[0].screenshotUrls (validated 2026-07-09). Edit the mzstatic size suffix upward (800x500bb.jpg -> 2400x1500bb.png) for full res. Real current Word-for-Mac UI; content is lightly staged \u2014 trust chrome/geometry/colors, discount document content."
+          "notes": "curl 'https://itunes.apple.com/lookup?bundleId=com.microsoft.Word&country=us' -> results[0].screenshotUrls (validated 2026-07-09). Edit the mzstatic size suffix upward (800x500bb.jpg -> 2400x1500bb.png) for full res. Real current Word-for-Mac UI; content is lightly staged — trust chrome/geometry/colors, discount document content."
         },
         {
           "label": "web-app",
           "url": "https://www.office.com",
           "auth": "user-session",
           "method": "claude-in-chrome",
-          "notes": "Word for the web is free with a personal Microsoft account. Canvas, typography, comment balloons, dialogs = ground truth; web ribbon and window chrome differ from Mac desktop \u2014 record that caveat in the manifest note. Flip tier to live-web once a Microsoft session exists in Chrome."
+          "notes": "Word for the web is free with a personal Microsoft account. Canvas, typography, comment balloons, dialogs = ground truth; web ribbon and window chrome differ from Mac desktop — record that caveat in the manifest note. Flip tier to live-web once a Microsoft session exists in Chrome."
         },
         {
           "label": "docs-scrape",
@@ -177,7 +182,7 @@
           "label": "app-store-screens",
           "method": "app-store-api",
           "bundleId": "com.microsoft.Excel",
-          "notes": "Re-validated 2026-07-13: still v16.110.3 (currentVersionReleaseDate 2026-07-07), same 6 screenshotUrls, upsize to 2400x1500bb.png for full res. Local pixels restored for all 3 originally-described shots (app-store-mac-grid-formula-bar, app-store-mac-sheet-tabs-status-bar, app-store-mac-chart-contextual-ribbon; reference/excel/2026-07-09/, content unchanged from 2026-07-09 filing) plus a 4th NEW shot filed to reference/excel/2026-07-13/app-store-mac-titlebar-comments-pane (screenshotUrls[4] 'Collaborate in real time') -- the only App Store shot showing the full title bar (traffic lights, AutoSave, editable doc title, Saved indicator, Search box) and the Comments pane + Review-tab comment controls. 2 shots remain unfiled: screenshotUrls[0] 'Get insights on your data' (tilted 3D hero, low value) and screenshotUrls[5] 'Professionally curated templates' (File > New template-gallery picker, moderate value -- candidate for a future pass if that surface state is needed)."
+          "notes": "Re-validated 2026-07-13: still v16.110.3 (currentVersionReleaseDate 2026-07-07), same 6 screenshotUrls, upsize to 2400x1500bb.png for full res. Local pixels restored for all 3 originally-described shots (app-store-mac-grid-formula-bar, app-store-mac-sheet-tabs-status-bar, app-store-mac-chart-contextual-ribbon; reference/excel/2026-07-09/, content unchanged from 2026-07-09 filing) plus a 4th NEW shot filed to reference/excel/2026-07-13/app-store-mac-titlebar-comments-pane (screenshotUrls[4] 'Collaborate in real time') -- the only App Store shot showing the full title bar (traffic lights, AutoSave, editable doc title, Saved indicator, Search box) and the Comments pane + Review-tab comment controls. 2 shots remain unfiled: screenshotUrls[0] 'Get insights on your data' (tilted 3D hero, low value) and screenshotUrls[5] 'Professionally curated templates' (File > New template-gallery picker, moderate value -- candidate for a future pass if that surface state is needed). UPDATED 2026-07-29: app version bumped to 16.111.1 (currentVersionReleaseDate 2026-07-21) -- same 6 screenshotUrls slots, same underlying images (Data/Formulas/Chart Design/Review tab shots unchanged from 2026-07-09/2026-07-13 filings, not re-filed). Re-examined screenshotUrls[0] (\"Get insights on your data\" hero) previously dismissed as low-value tilted 3D marketing shot -- it is actually the ONLY App Store screenshot with the Home tab active, showing the full Home ribbon control suite (Clipboard, Font, Alignment, Number, Styles, Cells, Editing, Add-ins, Analyze/Copilot Data) plus formula bar and grid headers in one frame, close to flat and fully legible at 2400x1500. Filed 2026-07-29/app-store-mac-home-ribbon-full-suite. screenshotUrls[5] (\"Professionally curated templates\", File > New gallery) remains unfiled/low-priority."
         },
         {
           "label": "web-app",
@@ -242,7 +247,7 @@
             "https://www.youtube.com/@AdobeVideo"
           ],
           "method": "yt-dlp+ffmpeg",
-          "notes": "Adobe's official video channel: 1080p-4K tutorials showing the real Premiere UI at rest \u2014 the best real-pixel source for this family (not on the Mac App Store, app not installed here). Pick frames with no overlays/zooms; file with --source '<video url> @ <timestamp>'. Recipe: docs/reference-and-asset-sourcing.md Part 1.4."
+          "notes": "Adobe's official video channel: 1080p-4K tutorials showing the real Premiere UI at rest — the best real-pixel source for this family (not on the Mac App Store, app not installed here). Pick frames with no overlays/zooms; file with --source '<video url> @ <timestamp>'. Recipe: docs/reference-and-asset-sourcing.md Part 1.4."
         },
         {
           "label": "docs-scrape",
@@ -256,7 +261,7 @@
       "fallbacks": [
         "press: news.adobe.com press images / Adobe brand kit",
         "manual-inbox: 7-day Premiere trial screenshots if the user opts in",
-        "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) \u2014 short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
+        "yt-dlp+ffmpeg on Adobe Video's periodic 'What's New in Premiere | <Year> Updates' uploads (@AdobeVideo) — short (~4min), title-carded with the exact version number (e.g. '26.0'), and cycles through several panels at rest (Effect Controls/Motion, Timeline, Lumetri Color > Curves, in-app Adobe Stock panel) with few overlays; best single video to re-mine each refresh. If yt-dlp isn't on PATH and `brew install yt-dlp` fails to link (e.g. an unrelated keg permission error), `python3 -m pip install --user --break-system-packages yt-dlp` works standalone and needs no linking."
       ]
     },
     {

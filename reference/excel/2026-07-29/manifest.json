@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-29T03:41:18.350Z",
+  "entries": [
+    {
+      "label": "app-store-mac-home-ribbon-full-suite",
+      "method": "app-store-api",
+      "source": "https://itunes.apple.com/lookup?bundleId=com.microsoft.Excel&country=us -> screenshotUrls[0] 'Get insights on your data' hero shot, Microsoft Excel v16.111.1 (currentVersionReleaseDate 2026-07-21), upsized to 2400x1500bb.png",
+      "capturedAt": "2026-07-29T03:41:18.350Z",
+      "files": [
+        "screenshot.png"
+      ],
+      "note": "Fills the Home-ribbon gap: only App Store shot with the Home tab active (bold/underlined), showing the FULL control suite in one frame -- Clipboard/Paste, Font (Aptos Body, size, B/I/U, borders, fill, font color), Alignment (wrap text, horiz/vert align, merge & center, indent), Number (General format, currency/percent/decimal), Styles (Conditional Formatting, Format as Table), Cells (Insert/Delete/Format), Editing (AutoSum, Fill, Sort & Filter, Find & Select), Add-ins, and Analyze/Copilot Data -- plus the name box + fx formula bar and column/row grid headers, all in the same frame. Image is a tilted 3D marketing hero (isometric product shot on a staged pedestal), so treat as directional for perspective/shadow but the ribbon face is captured close to flat and every label is legible at full res -- crop workspace/scratch/excel-refresh/hero-ribbon-crop.png demonstrates readability. Marketing-staged workbook content (Classroom Collaboration chart); discount data, trust chrome/geometry/typography. Complements (does not replace) the existing 2026-07-09 Data-tab and 2026-07-13 Review-tab shots -- together the three now cover Home/Data/Review tabs, formula bar, and grid in real current-version pixels.",
+      "assetDecision": "Ground-truth reference of the real application for fidelity work — recreate the surface as closely as possible from it. Logged-in captures may contain the owner's private content; keep those local and use synthetic demo content in tracked surfaces."
+    }
+  ]
+}
