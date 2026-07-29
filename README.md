@@ -66,7 +66,13 @@ composed parts) come with it. Tell your coding agent:
 npx hyperframes init my-video --example blank --non-interactive
 cd my-video
 
-# one surface (foundation CSS + fonts install automatically)
+# point the project at the ui-backlot registry (init defaults to the
+# hyperframes stock registry, where these blocks don't exist)
+node -e 'const fs=require("fs");const j=JSON.parse(fs.readFileSync("hyperframes.json","utf8"));j.registry="https://raw.githubusercontent.com/conmeara/ui-backlot/main/registry";fs.writeFileSync("hyperframes.json",JSON.stringify(j,null,2)+"\n")'
+
+# one surface (foundation CSS + fonts install automatically; some blocks
+# also pull in their internal sub-part compositions — including ones the
+# catalog lists as deprecated standalone surfaces — that's expected)
 npx hyperframes add excel-workbook
 
 # a "Claude working in Excel on a Mac" scene = three blocks you stack yourself

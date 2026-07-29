@@ -158,7 +158,7 @@ need the flag — an earlier version of this doc incorrectly listed
 
 ## 5. Verify
 
-Before sharing a reusable demo workflow:
+**If you're working in this repo**, before sharing a reusable demo workflow:
 
 ```bash
 npm run registry:check
@@ -166,6 +166,14 @@ npm run hf:lint
 npm run hf:validate
 npm run hf:inspect
 git diff --check
+```
+
+**If you installed via the registry into your own project**, the commands
+above are this monorepo's internal npm scripts and do not exist in a project
+scaffolded by `npx hyperframes init` — use the consumer equivalents instead:
+
+```bash
+npx hyperframes check .   # or the scaffolded `npm run check`
 ```
 
 Use `npm run open-source:check` for the standard source/catalog/HyperFrames
