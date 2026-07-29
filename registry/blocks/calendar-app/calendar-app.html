@@ -125,99 +125,27 @@
         color: rgba(0, 0, 0, 0.72);
       }
 
-      .status-dot {
+      .backlot-icon.status-icon {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        flex: none;
+        fill: currentColor;
+      }
+
+      .control-center-glyph {
         width: 14px;
         height: 14px;
-        border: 0;
-        position: relative;
       }
 
-      .status-dot.control-center {
-        width: 18px;
-        height: 14px;
+      .wifi-glyph {
+        width: 16px;
+        height: 16px;
       }
 
-      .status-dot.control-center::before,
-      .status-dot.control-center::after {
-        content: "";
-        position: absolute;
-        left: 1px;
-        width: 15px;
-        height: 5px;
-        border: 1.6px solid currentColor;
-        border-radius: 8px;
-      }
-
-      .status-dot.control-center::before {
-        top: 1px;
-        box-shadow: inset 7px 0 0 currentColor;
-      }
-
-      .status-dot.control-center::after {
-        bottom: 1px;
-        box-shadow: inset -7px 0 0 currentColor;
-      }
-
-      .status-dot.wifi {
-        width: 19px;
+      .battery-glyph {
+        width: 22px;
         height: 15px;
-        background:
-          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
-      }
-
-      .status-dot.wifi::before,
-      .status-dot.wifi::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        border: 2px solid currentColor;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-top-color: transparent;
-        border-radius: 50%;
-        transform: translateX(-50%);
-      }
-
-      .status-dot.wifi::before {
-        bottom: 0;
-        width: 18px;
-        height: 13px;
-      }
-
-      .status-dot.wifi::after {
-        bottom: 0;
-        width: 9px;
-        height: 7px;
-      }
-
-      .status-pill {
-        position: relative;
-        width: 26px;
-        height: 14px;
-        border: 1.7px solid currentColor;
-        border-radius: 4px;
-      }
-
-      .status-pill::before {
-        content: "";
-        position: absolute;
-        right: -4px;
-        top: 4px;
-        width: 2px;
-        height: 5px;
-        border-radius: 0 2px 2px 0;
-        background: currentColor;
-      }
-
-      .status-pill::after {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        width: 17px;
-        height: 8px;
-        border-radius: 2px;
-        background: currentColor;
       }
 
       .calendar-window {
@@ -832,7 +760,7 @@
         gap: 5px;
         min-width: 0;
         overflow: hidden;
-        border-radius: 9px;
+        border-radius: 5px;
         padding: 0 7px;
         background: color-mix(in srgb, var(--event-color) 15%, transparent);
         color: color-mix(in srgb, var(--event-color), black 60%);
@@ -1618,6 +1546,22 @@
   </head>
   <body>
     <main id="calendar-app-surface" data-composition-id="calendar-app-surface" data-width="1920" data-height="1080" aria-label="macOS Calendar editable surface">
+      <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <symbol id="f7-control-center" viewBox="0 0 13 14" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="0.6" y="0.6" width="11.8" height="4.8" rx="2.4" />
+          <circle cx="9.75" cy="3" r="1.75" fill="currentColor" stroke="none" />
+          <rect x="0.6" y="8.6" width="11.8" height="4.8" rx="2.4" />
+          <circle cx="3.25" cy="11" r="1.75" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="f7-wifi" viewBox="0 0 56 56">
+          <path d="M 5.4648 25.0352 C 5.9102 25.4805 6.5664 25.4571 6.9882 25.0118 C 12.5195 19.1289 19.8320 16.0352 28.0117 16.0352 C 36.2382 16.0352 43.5742 19.1523 49.0819 25.0352 C 49.4803 25.4336 50.1135 25.4336 50.5354 24.9883 L 53.6525 21.8711 C 54.0274 21.4727 54.0274 20.9571 53.7226 20.5820 C 48.4258 14.0664 38.4648 9.2617 28.0117 9.2617 C 17.5586 9.2617 7.5976 14.0664 2.3007 20.5820 C 1.9726 20.9571 1.9961 21.4727 2.3711 21.8711 Z M 14.8398 34.4336 C 15.3086 34.9258 15.9180 34.8789 16.3633 34.3633 C 19.0820 31.3398 23.4882 29.1602 28.0117 29.2071 C 32.5820 29.1602 36.9648 31.4102 39.7070 34.4336 C 40.1523 34.9023 40.7382 34.9023 41.1836 34.4102 L 44.6758 30.9649 C 45.0507 30.5898 45.0976 30.0977 44.7461 29.6992 C 41.3476 25.5039 35.0429 22.4102 28.0117 22.4102 C 20.9804 22.4102 14.6758 25.5274 11.2773 29.6992 C 10.9258 30.0977 10.9726 30.5664 11.3476 30.9649 Z M 28.0117 46.7383 C 28.5039 46.7383 28.9492 46.4805 29.8164 45.6367 L 35.3007 40.3633 C 35.6523 40.0352 35.7226 39.5196 35.4180 39.1211 C 33.9414 37.2227 31.1758 35.5820 28.0117 35.5820 C 24.7773 35.5820 21.9648 37.2930 20.5117 39.2617 C 20.3007 39.5898 20.3711 40.0352 20.7226 40.3633 L 26.2070 45.6367 C 27.0742 46.4805 27.5195 46.7383 28.0117 46.7383 Z"/>
+        </symbol>
+        <symbol id="f7-battery" viewBox="0 0 56 56">
+          <rect x="2" y="14" width="46" height="28" rx="7" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <rect x="8" y="20" width="27" height="16" rx="2.5" fill="currentColor"/>
+          <path d="M 52.7216 32.4835 C 54.1214 32.3949 56 30.6051 56 27.8937 C 56 25.2000 54.1214 23.4101 52.7216 23.3215 Z" fill="currentColor"/>
+        </symbol>
+      </svg>
       <nav class="menu-bar" aria-label="macOS menu bar">
         <div class="menu-left">
           <span class="apple-glyph" aria-hidden="true"></span>
@@ -1631,9 +1575,9 @@
         <div></div>
         <div class="menu-right">
           <span class="status-icons" aria-hidden="true">
-            <span class="status-dot control-center"></span>
-            <span class="status-dot wifi"></span>
-            <span class="status-pill"></span>
+            <svg class="backlot-icon status-icon control-center-glyph"><use href="#f7-control-center"/></svg>
+            <svg class="backlot-icon status-icon wifi-glyph"><use href="#f7-wifi"/></svg>
+            <svg class="backlot-icon status-icon battery-glyph"><use href="#f7-battery"/></svg>
           </span>
           <span>Wed Jun 17 4:15 PM</span>
         </div>

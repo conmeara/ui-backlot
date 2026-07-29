@@ -19,11 +19,13 @@ npm run hf:inspect
 Node.js 22 or newer and FFmpeg are recommended for HyperFrames rendering.
 
 `npx hyperframes lint` (the `hf:lint` script) exits 1 whenever it finds ANY
-error, including a small set this repo carries on purpose — currently 7×
+error, including a small set this repo carries on purpose — currently 11×
 `invalid_parent_traversal_in_asset_path` across `index.html`,
 `compositions/browser-app.html`, `compositions/calendar-app.html`,
-`compositions/claude-cinematic.html`, `compositions/claude-composed-app.html`,
-`compositions/mac-dock.html`, and `compositions/mac-wallpaper.html` (in-repo
+`compositions/claude-cinematic.html`, `compositions/claude-code-terminal-session.html`,
+`compositions/claude-composed-app.html`, `compositions/excel-workbook.html`,
+`compositions/mac-dock.html`, `compositions/presentation-editor.html`,
+`compositions/word-editor.html`, and `compositions/mac-wallpaper.html` (in-repo
 compositions use `../` paths
 because the capture pipeline loads them via `file://`; the published
 `registry/` copies are rewritten root-relative for consumers). `npm run

@@ -127,6 +127,8 @@
       <symbol id="lucide-square-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></g></symbol>
       <!-- lucide:clock via @iconify/json -->
       <symbol id="lucide-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></g></symbol>
+      <!-- lucide:zap via @iconify/json -->
+      <symbol id="lucide-zap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
       <!-- lucide:folder via @iconify/json -->
       <symbol id="lucide-folder" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></symbol>
       <!-- lucide:folder-open via @iconify/json (real "Open" badge glyph, replaces mis-cast OpenAI mark) -->
@@ -162,10 +164,9 @@
 
         <nav class="primary-nav" aria-label="Codex navigation">
           <button type="button"><svg class="glyph"><use href="#lucide-square-pen"></use></svg>New chat</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-git-pull-request"></use></svg>Pull requests</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-layout-dashboard"></use></svg>Sites</button>
-          <button type="button"><svg class="glyph"><use href="#lucide-clock"></use></svg>Scheduled</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-search"></use></svg>Search</button>
           <button type="button"><svg class="glyph"><use href="#f7-at-circle"></use></svg>Plugins</button>
+          <button type="button"><svg class="glyph"><use href="#lucide-zap"></use></svg>Automations</button>
         </nav>
 
         <section class="sidebar-group projects">
@@ -204,6 +205,16 @@
           <button class="vscode-pill" type="button" aria-label="Environment"><span class="vscode-mark"><svg><use href="#lucide-folder-open"></use></svg></span><span class="chev"></span></button>
           <button class="layout-toggle icon-button" type="button" aria-label="Toggle steps"><svg><use href="#lucide-list"></use></svg></button>
         </header>
+
+        <div class="viewer-tabs">
+          <div class="viewer-tab"><svg class="tab-doc"><use href="#lucide-file"></use></svg><span>OVERVIEW.next.md</span></div>
+          <div class="viewer-tab active"><svg class="tab-doc"><use href="#lucide-file"></use></svg><em>README.md</em><svg class="tab-close"><use href="#lucide-x"></use></svg></div>
+          <button class="tab-add icon-button" type="button" aria-label="New tab"><svg><use href="#lucide-plus"></use></svg></button>
+          <span class="viewer-tabs-fill"></span>
+          <button class="tab-icon icon-button" type="button" aria-label="Expand"><svg><use href="#lucide-maximize-2"></use></svg></button>
+          <button class="tab-icon icon-button" type="button" aria-label="Minimize"><svg><use href="#lucide-square-minus"></use></svg></button>
+          <button class="tab-icon icon-button active" type="button" aria-label="Toggle side panel"><svg><use href="#lucide-panel-right"></use></svg></button>
+        </div>
 
         <main class="thread-pane" data-primitive="codex-active-thread">
           <aside class="env-panel" data-primitive="codex-environment-panel">
@@ -271,12 +282,12 @@
           </div>
 
           <footer class="composer" data-primitive="codex-composer">
-            <div class="composer-input">Do anything</div>
+            <div class="composer-input">Ask for follow-up changes</div>
             <div class="composer-bottom">
               <button class="plus-button icon-button" type="button" aria-label="Attach"><svg><use href="#lucide-plus"></use></svg></button>
-              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#lucide-circle-alert"></use></svg>Full access</button>
+              <button class="permission-select" type="button"><svg class="hand-icon"><use href="#lucide-shield-alert"></use></svg>Full access</button>
               <span class="composer-fill"></span>
-              <button class="model-select" type="button"><span class="model-spinner"></span>5.6 Sol <span class="model-tier">Ultra</span> <span class="chev"></span></button>
+              <button class="model-select" type="button"><span class="model-spinner"></span>GPT-5.4 <span class="model-tier">Extra High</span> <span class="chev"></span></button>
               <button class="mic-button icon-button" type="button" aria-label="Voice"><svg><use href="#lucide-mic"></use></svg></button>
               <button class="send-button icon-button" type="button" aria-label="Send"><svg><use href="#lucide-arrow-up"></use></svg></button>
             </div>
@@ -284,16 +295,6 @@
         </main>
 
         <aside class="viewer-pane" data-primitive="codex-viewer-pane">
-          <div class="viewer-tabs">
-            <div class="viewer-tab"><svg class="tab-doc"><use href="#lucide-file"></use></svg><span>OVERVIEW.next.md</span></div>
-            <div class="viewer-tab active"><svg class="tab-doc"><use href="#lucide-file"></use></svg><em>README.md</em><svg class="tab-close"><use href="#lucide-x"></use></svg></div>
-            <button class="tab-add icon-button" type="button" aria-label="New tab"><svg><use href="#lucide-plus"></use></svg></button>
-            <span class="viewer-tabs-fill"></span>
-            <button class="tab-icon icon-button" type="button" aria-label="Expand"><svg><use href="#lucide-maximize-2"></use></svg></button>
-            <button class="tab-icon icon-button" type="button" aria-label="Minimize"><svg><use href="#lucide-square-minus"></use></svg></button>
-            <button class="tab-icon icon-button active" type="button" aria-label="Toggle side panel"><svg><use href="#lucide-panel-right"></use></svg></button>
-          </div>
-
           <div class="viewer-crumbs">
             <div class="crumb-path"><span>prism</span><svg class="crumb-chev"><use href="#lucide-chevron-right"></use></svg><span class="crumb-file">README.md</span></div>
             <div class="crumb-actions">
@@ -843,7 +844,8 @@
       }
 
       .topbar {
-        grid-column: 1 / 3;
+        grid-column: 1 / 2;
+        grid-row: 1;
         min-width: 0;
         display: grid;
         grid-template-columns: minmax(0, auto) 30px minmax(20px, 1fr) auto 30px;
@@ -998,6 +1000,8 @@
       }
 
       .thread-pane {
+        grid-column: 1 / 2;
+        grid-row: 2;
         min-width: 0;
         position: relative;
         overflow: hidden;
@@ -1329,7 +1333,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        border: 1.4px solid rgba(29, 34, 41, 0.16);
+        border: 1.5px solid #d9d9dc;
         border-top-color: transparent;
         flex: 0 0 auto;
       }
@@ -1385,20 +1389,27 @@
       }
 
       .viewer-pane {
+        grid-column: 2 / 3;
+        grid-row: 2;
         min-width: 0;
         overflow: hidden;
         display: grid;
-        grid-template-rows: 34px 30px 1px minmax(0, 1fr);
+        grid-template-rows: 30px 1px minmax(0, 1fr);
         background: var(--window);
         border-left: 1px solid var(--line);
       }
 
       .viewer-tabs {
+        grid-column: 2 / 3;
+        grid-row: 1;
         min-width: 0;
+        height: 72px;
         display: flex;
         align-items: center;
         gap: 3px;
         padding: 0 8px;
+        border-bottom: 1px solid var(--line);
+        border-left: 1px solid var(--line);
         background: var(--window);
       }
 
@@ -1612,6 +1623,7 @@
       .v-line.add em {
         background: #f1f9f0;
         color: var(--green);
+        box-shadow: inset 3px 0 0 var(--green);
       }
 
       .v-line .tk-h {
@@ -1651,7 +1663,8 @@
         display: none;
       }
 
-      #codex-app-surface[data-pane="environment"] .viewer-pane {
+      #codex-app-surface[data-pane="environment"] .viewer-pane,
+      #codex-app-surface[data-pane="environment"] .viewer-tabs {
         display: none;
       }
 
@@ -2037,7 +2050,8 @@
     </style>
 
     <style>
-      .codex-app-window.theme-dark {
+      .codex-app-window.theme-dark,
+      .theme-dark .codex-app-window {
         --window: #212019;
         --sidebar: #212019;
         --sidebar-deeper: #2c2b24;
@@ -2055,256 +2069,324 @@
         box-shadow: 0 32px 95px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
       }
 
-      .codex-app-window.theme-dark .codex-sidebar {
+      .codex-app-window.theme-dark .codex-sidebar,
+      .theme-dark .codex-app-window .codex-sidebar {
         background: var(--sidebar);
         border-right-color: var(--line);
         color: #d8d5cc;
       }
 
       .codex-app-window.theme-dark .sidebar-icon,
-      .codex-app-window.theme-dark .nav-arrow {
+      .theme-dark .codex-app-window .sidebar-icon,
+      .codex-app-window.theme-dark .nav-arrow,
+      .theme-dark .codex-app-window .nav-arrow {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .primary-nav button,
+      .theme-dark .codex-app-window .primary-nav button,
       .codex-app-window.theme-dark .user-name,
-      .codex-app-window.theme-dark .workspace-title {
+      .theme-dark .codex-app-window .user-name,
+      .codex-app-window.theme-dark .workspace-title,
+      .theme-dark .codex-app-window .workspace-title {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .glyph {
+      .codex-app-window.theme-dark .glyph,
+      .theme-dark .codex-app-window .glyph {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .sidebar-label {
+      .codex-app-window.theme-dark .sidebar-label,
+      .theme-dark .codex-app-window .sidebar-label {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .sidebar-row {
+      .codex-app-window.theme-dark .sidebar-row,
+      .theme-dark .codex-app-window .sidebar-row {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .sidebar-row.selected {
+      .codex-app-window.theme-dark .sidebar-row.selected,
+      .theme-dark .codex-app-window .sidebar-row.selected {
         background: #2c2b24;
       }
 
-      .codex-app-window.theme-dark .sidebar-row time {
+      .codex-app-window.theme-dark .sidebar-row time,
+      .theme-dark .codex-app-window .sidebar-row time {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .pin,
+      .theme-dark .codex-app-window .pin,
       .codex-app-window.theme-dark .project-icon,
+      .theme-dark .codex-app-window .project-icon,
       .codex-app-window.theme-dark .mini-action,
-      .codex-app-window.theme-dark .workspace-search {
+      .theme-dark .codex-app-window .mini-action,
+      .codex-app-window.theme-dark .workspace-search,
+      .theme-dark .codex-app-window .workspace-search {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .project-item.selected {
+      .codex-app-window.theme-dark .project-item.selected,
+      .theme-dark .codex-app-window .project-item.selected {
         background: #2c2b24;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .project-item {
+      .codex-app-window.theme-dark .project-item,
+      .theme-dark .codex-app-window .project-item {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .empty-chat {
+      .codex-app-window.theme-dark .empty-chat,
+      .theme-dark .codex-app-window .empty-chat {
         color: #6f6c61;
       }
 
-      .codex-app-window.theme-dark .codex-workspace {
+      .codex-app-window.theme-dark .codex-workspace,
+      .theme-dark .codex-app-window .codex-workspace {
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .topbar {
+      .codex-app-window.theme-dark .topbar,
+      .theme-dark .codex-app-window .topbar {
         border-bottom-color: var(--line);
         background: rgba(33, 32, 25, 0.96);
       }
 
-      .codex-app-window.theme-dark .title-wrap h1 {
+      .codex-app-window.theme-dark .title-wrap h1,
+      .theme-dark .codex-app-window .title-wrap h1 {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .folder-glyph {
+      .codex-app-window.theme-dark .folder-glyph,
+      .theme-dark .codex-app-window .folder-glyph {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .more-button,
+      .theme-dark .codex-app-window .more-button,
       .codex-app-window.theme-dark .layout-toggle,
+      .theme-dark .codex-app-window .layout-toggle,
       .codex-app-window.theme-dark .review-menu,
+      .theme-dark .codex-app-window .review-menu,
       .codex-app-window.theme-dark .expand-button,
-      .codex-app-window.theme-dark .add-review {
+      .theme-dark .codex-app-window .expand-button,
+      .codex-app-window.theme-dark .add-review,
+      .theme-dark .codex-app-window .add-review {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .vscode-pill {
+      .codex-app-window.theme-dark .vscode-pill,
+      .theme-dark .codex-app-window .vscode-pill {
         border-color: var(--line);
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .thread-pane {
+      .codex-app-window.theme-dark .thread-pane,
+      .theme-dark .codex-app-window .thread-pane {
         border-right-color: var(--line);
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .prompt-bubble {
+      .codex-app-window.theme-dark .prompt-bubble,
+      .theme-dark .codex-app-window .prompt-bubble {
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .previous-link {
+      .codex-app-window.theme-dark .previous-link,
+      .theme-dark .codex-app-window .previous-link {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .assistant-response {
+      .codex-app-window.theme-dark .assistant-response,
+      .theme-dark .codex-app-window .assistant-response {
         border-top-color: var(--line);
       }
 
-      .codex-app-window.theme-dark .assistant-response p {
+      .codex-app-window.theme-dark .assistant-response p,
+      .theme-dark .codex-app-window .assistant-response p {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark code {
+      .codex-app-window.theme-dark code,
+      .theme-dark .codex-app-window code {
         background: #2a2922;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-card {
+      .codex-app-window.theme-dark .change-card,
+      .theme-dark .codex-app-window .change-card {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
       }
 
-      .codex-app-window.theme-dark .change-card header {
+      .codex-app-window.theme-dark .change-card header,
+      .theme-dark .codex-app-window .change-card header {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-icon {
+      .codex-app-window.theme-dark .change-icon,
+      .theme-dark .codex-app-window .change-icon {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
       }
 
-      .codex-app-window.theme-dark .change-title {
+      .codex-app-window.theme-dark .change-title,
+      .theme-dark .codex-app-window .change-title {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-undo {
+      .codex-app-window.theme-dark .change-undo,
+      .theme-dark .codex-app-window .change-undo {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .change-review {
+      .codex-app-window.theme-dark .change-review,
+      .theme-dark .codex-app-window .change-review {
         background: #322f26;
         border-color: rgba(255, 255, 255, 0.12);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .change-row {
+      .codex-app-window.theme-dark .change-row,
+      .theme-dark .codex-app-window .change-row {
         border-top-color: rgba(255, 255, 255, 0.08);
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .change-row .path {
+      .codex-app-window.theme-dark .change-row .path,
+      .theme-dark .codex-app-window .change-row .path {
         color: #8a877c;
       }
 
       .codex-app-window.theme-dark .bubble-time,
+      .theme-dark .codex-app-window .bubble-time,
       .codex-app-window.theme-dark .bubble-meta,
+      .theme-dark .codex-app-window .bubble-meta,
       .codex-app-window.theme-dark .worked-row,
-      .codex-app-window.theme-dark .feedback-row svg {
+      .theme-dark .codex-app-window .worked-row,
+      .codex-app-window.theme-dark .feedback-row svg,
+      .theme-dark .codex-app-window .feedback-row svg {
         color: #8a877c;
       }
 
-      .codex-app-window.theme-dark .thread-hairline {
+      .codex-app-window.theme-dark .thread-hairline,
+      .theme-dark .codex-app-window .thread-hairline {
         background: var(--line);
       }
 
-      .codex-app-window.theme-dark .composer {
+      .codex-app-window.theme-dark .composer,
+      .theme-dark .codex-app-window .composer {
         border-color: var(--line-strong);
         background: #2a2922;
         box-shadow: 0 9px 26px rgba(0, 0, 0, 0.35);
       }
 
-      .codex-app-window.theme-dark .composer-input {
+      .codex-app-window.theme-dark .composer-input,
+      .theme-dark .codex-app-window .composer-input {
         color: #6f6c61;
       }
 
       .codex-app-window.theme-dark .plus-button,
-      .codex-app-window.theme-dark .mic-button {
+      .theme-dark .codex-app-window .plus-button,
+      .codex-app-window.theme-dark .mic-button,
+      .theme-dark .codex-app-window .mic-button {
         color: #b5b2a6;
       }
 
-      .codex-app-window.theme-dark .permission-select {
+      .codex-app-window.theme-dark .permission-select,
+      .theme-dark .codex-app-window .permission-select {
         color: #e8a25c;
       }
 
-      .codex-app-window.theme-dark .model-select {
+      .codex-app-window.theme-dark .model-select,
+      .theme-dark .codex-app-window .model-select {
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .model-tier {
+      .codex-app-window.theme-dark .model-tier,
+      .theme-dark .codex-app-window .model-tier {
         color: #8ea1ff;
       }
 
-      .codex-app-window.theme-dark .model-spinner {
+      .codex-app-window.theme-dark .model-spinner,
+      .theme-dark .codex-app-window .model-spinner {
         border-color: rgba(255, 255, 255, 0.2);
         border-top-color: transparent;
       }
 
-      .codex-app-window.theme-dark .user-avatar {
+      .codex-app-window.theme-dark .user-avatar,
+      .theme-dark .codex-app-window .user-avatar {
         background: #c9a233;
       }
 
-      .codex-app-window.theme-dark .send-button {
+      .codex-app-window.theme-dark .send-button,
+      .theme-dark .codex-app-window .send-button {
         background: #3a3830;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .send-button::before {
+      .codex-app-window.theme-dark .send-button::before,
+      .theme-dark .codex-app-window .send-button::before {
         border-left-color: #ece9dd;
         border-top-color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .viewer-pane {
+      .codex-app-window.theme-dark .viewer-pane,
+      .theme-dark .codex-app-window .viewer-pane {
         background: var(--window);
         border-left-color: var(--line);
       }
 
-      .codex-app-window.theme-dark .viewer-tab.active {
+      .codex-app-window.theme-dark .viewer-tab.active,
+      .theme-dark .codex-app-window .viewer-tab.active {
         background: var(--soft);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .tab-icon.active {
+      .codex-app-window.theme-dark .tab-icon.active,
+      .theme-dark .codex-app-window .tab-icon.active {
         background: #2c2b24;
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .crumb-open {
+      .codex-app-window.theme-dark .crumb-open,
+      .theme-dark .codex-app-window .crumb-open {
         background: #2a2922;
         border-color: rgba(255, 255, 255, 0.12);
         color: #ece9dd;
       }
 
-      .codex-app-window.theme-dark .viewer-code {
+      .codex-app-window.theme-dark .viewer-code,
+      .theme-dark .codex-app-window .viewer-code {
         background: var(--window);
       }
 
-      .codex-app-window.theme-dark .v-line code {
+      .codex-app-window.theme-dark .v-line code,
+      .theme-dark .codex-app-window .v-line code {
         color: #d8d5cc;
       }
 
-      .codex-app-window.theme-dark .v-line .tk-b {
+      .codex-app-window.theme-dark .v-line .tk-b,
+      .theme-dark .codex-app-window .v-line .tk-b {
         color: #d0a24c;
       }
 
-      .codex-app-window.theme-dark .v-line.add {
+      .codex-app-window.theme-dark .v-line.add,
+      .theme-dark .codex-app-window .v-line.add {
         background: rgba(111, 191, 142, 0.16);
         box-shadow: inset 4px 0 0 #6fbf8e;
       }
 
-      .codex-app-window.theme-dark .v-line.add em {
+      .codex-app-window.theme-dark .v-line.add em,
+      .theme-dark .codex-app-window .v-line.add em {
         background: rgba(111, 191, 142, 0.1);
         color: #8fcf9c;
+        box-shadow: inset 3px 0 0 #6fbf8e;
       }
     </style>
 

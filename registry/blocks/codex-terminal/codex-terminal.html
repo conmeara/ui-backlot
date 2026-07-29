@@ -32,16 +32,26 @@
       <main class="terminal-screen">
         <section class="codex-splash" data-primitive="codex-session-header">
           <div class="splash-row">
+            <span class="rail" aria-hidden="true">|</span>
             <span class="prompt-glyph">&gt;_</span>
             <strong>OpenAI Codex</strong>
             <span class="version">(v0.139.0)</span>
+            <span class="rail" aria-hidden="true">|</span>
           </div>
           <div class="meta-grid">
-            <span>model:</span>
-            <strong>5.6-sol-ultra</strong>
-            <em>/model to change</em>
-            <span>directory:</span>
-            <strong>~/Projects/ui-backlot</strong>
+            <div class="meta-row">
+              <span class="rail" aria-hidden="true">|</span>
+              <span>model:</span>
+              <strong>gpt-5.2-codex medium</strong>
+              <em>/model to change</em>
+              <span class="rail" aria-hidden="true">|</span>
+            </div>
+            <div class="meta-row">
+              <span class="rail" aria-hidden="true">|</span>
+              <span>directory:</span>
+              <strong class="value-full">~/Projects/ui-backlot</strong>
+              <span class="rail" aria-hidden="true">|</span>
+            </div>
           </div>
         </section>
 
@@ -295,22 +305,44 @@
         color: var(--terminal-muted);
       }
 
+      .rail {
+        color: var(--terminal-faint, #5f5f6b);
+      }
+
+      .splash-row .rail:last-child {
+        margin-left: auto;
+      }
+
       .meta-grid {
-        display: grid;
-        grid-template-columns: 78px max-content 1fr;
-        column-gap: 8px;
+        display: flex;
+        flex-direction: column;
         row-gap: 6px;
-        align-items: baseline;
         color: var(--terminal-muted);
         font-size: 14px;
+      }
+
+      .meta-row {
+        display: grid;
+        grid-template-columns: 14px 78px max-content 1fr 14px;
+        column-gap: 8px;
+        align-items: baseline;
+      }
+
+      .meta-row .rail:first-child {
+        grid-column: 1;
+      }
+
+      .meta-row .rail:last-child {
+        grid-column: 5;
+        margin-left: 0;
       }
 
       .meta-grid strong {
         color: var(--terminal-text);
       }
 
-      .meta-grid strong:last-child {
-        grid-column: 2 / 4;
+      .meta-grid .value-full {
+        grid-column: 3 / 5;
         white-space: nowrap;
       }
 
@@ -336,8 +368,9 @@
         display: flex;
         align-items: center;
         gap: 9px;
-        margin: 0 0 22px;
-        padding: 0;
+        margin: 4px -20px 22px;
+        padding: 11px 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
         color: var(--terminal-text);
         font-size: 15px;
       }
@@ -346,13 +379,17 @@
         color: var(--terminal-muted);
       }
 
+      .user-prompt strong {
+        font-weight: 400;
+      }
+
       .transcript {
         display: grid;
         gap: 19px;
         max-width: 1048px;
         color: var(--terminal-muted);
         font-size: 14px;
-        line-height: 1.38;
+        line-height: 1.3;
       }
 
       .transcript article {
@@ -371,7 +408,7 @@
         display: inline-block;
         color: var(--terminal-muted);
         font-size: 14px;
-        line-height: 1.38;
+        line-height: 1.3;
       }
 
       .bullet.amber {
@@ -466,7 +503,7 @@
         min-height: 19px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0;
         padding: 0;
         color: var(--terminal-text);
         font-size: 14px;
@@ -476,6 +513,7 @@
         width: 4px;
         height: 1.2em;
         flex: 0 0 auto;
+        margin-right: 8px;
         background: #8fb8d8;
       }
 
@@ -484,10 +522,10 @@
         font-weight: 700;
       }
 
-      /* display:none at rest (not just empty text) — composer-input is a
-         flex row with `gap`, so an empty-but-present span would still eat a
-         gap slot and nudge the cursor right of the pinned reference text.
-         The interaction demo flips this to inline right as typing starts. */
+      /* display:none at rest — kept out of flow so the block cursor abuts
+         the pinned reference text (ref f-035: cursor occupies the very next
+         character cell after the last glyph, no extra gap). The interaction
+         demo flips this to inline right as typing starts. */
       .typed-tail {
         display: none;
         color: var(--terminal-text);
@@ -513,13 +551,25 @@
         min-height: 28px;
         display: flex;
         align-items: end;
-        gap: 28px;
+        gap: 0;
         color: var(--terminal-faint);
         font-size: 13px;
       }
 
+      /* Ref f-035 footer: everything runs inline-left — hint items sit
+         ~6.3 character cells apart (36px at the ref's 5.75px cell → 51px at
+         our 8.125px cell); the token/context stats follow "⌃C quit" with a
+         narrower ~3.5-cell gap (20px ref → 28px ours), nothing flush-right. */
+      .shortcut-row span + span {
+        margin-left: 51px;
+      }
+
+      .shortcut-row .tokens,
+      .shortcut-row .tokens + span {
+        margin-left: 28px;
+      }
+
       .shortcut-row .tokens {
-        margin-left: auto;
         color: var(--terminal-muted);
       }
     </style>
