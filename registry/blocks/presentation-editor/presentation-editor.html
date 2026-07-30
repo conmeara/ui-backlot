@@ -280,15 +280,8 @@
         --claude: #c65b47;
         --coral: #cd6e57;
         --sage: #bdd4c7;
-        --powerpoint: #c9472b;
         --powerpoint-dark: #9a321f;
-        width: 836px;
-        height: 438px;
         overflow: hidden;
-        border-radius: 14px;
-        background: #f4f5f7;
-        color: #16120f;
-        font-family: var(--font-office-ui);
       }
 
       #presentation-editor-surface * {
@@ -296,11 +289,8 @@
       }
 
       .presentation-editor-surface {
-        width: 100%;
         height: 100%;
         overflow: hidden;
-        border-radius: 14px;
-        background: #f4f5f7;
       }
 
       .powerpoint-titlebar {
@@ -321,161 +311,38 @@
 
       .presentation-name {
         font-weight: 600;
-        font-size: 13px;
         color: #1a1a1a;
         white-space: nowrap;
       }
 
       .powerpoint-body {
-        height: 294px;
-        display: grid;
         grid-template-columns: 112px 1fr 172px;
-        background: #e9edf2;
       }
 
       .slide-rail {
         display: grid;
-        grid-template-columns: 16px 1fr;
         grid-auto-rows: min-content;
-        column-gap: 5px;
-        row-gap: 6px;
-        padding: 11px 10px 10px;
         border-right: 1px solid #cfd5dc;
-        background: #f7f8fa;
-      }
-
-      .section-chip {
-        grid-column: 1 / -1;
-        height: 15px;
-        display: flex;
-        align-items: center;
-        padding-left: 4px;
-        border-radius: 4px;
-        color: #8b4a3c;
-        background: #fff0e9;
-        font-size: 7px;
-        font-weight: 820;
-        text-transform: uppercase;
-        letter-spacing: 0;
-      }
-
-      .rail-header {
-        grid-column: 1 / -1;
-        height: 17px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #636b74;
-        font-size: 9px;
-        font-weight: 760;
-      }
-
-      .rail-header b {
-        min-width: 17px;
-        height: 15px;
-        display: grid;
-        place-items: center;
-        border-radius: 8px;
-        background: #e8ecf1;
-        color: #7c858f;
-        font-size: 8px;
       }
 
       .thumb-label {
-        color: #8b929a;
-        font-size: 9px;
-        line-height: 43px;
         text-align: right;
       }
 
       .slide-thumb {
-        height: 43px;
-        border-radius: 4px;
         position: relative;
-        overflow: hidden;
-        background:
-          linear-gradient(90deg, rgba(205, 110, 87, 0.92) 0 31%, rgba(205, 110, 87, 0) 31%),
-          #fffaf2;
-        border: 1px solid rgba(222, 96, 46, 0.38);
-        box-shadow: inset 0 0 0 2px rgba(222, 96, 46, 0.42);
-      }
-
-      .slide-thumb em {
-        position: absolute;
-        left: 33px;
-        bottom: 3px;
-        color: #92877f;
-        font-size: 6px;
-        font-style: normal;
-        font-weight: 740;
-      }
-
-      .slide-thumb.muted {
-        border-color: rgba(0, 0, 0, 0.09);
-        box-shadow: none;
-        background:
-          linear-gradient(90deg, rgba(210, 213, 216, 0.86) 0 31%, rgba(210, 213, 216, 0) 31%),
-          #ffffff;
-      }
-
-      .slide-thumb span,
-      .slide-thumb b {
-        position: absolute;
-        left: 33px;
-        height: 5px;
-        border-radius: 3px;
-        background: #c8b7a7;
-      }
-
-      .slide-thumb span {
-        top: 13px;
-        width: 37px;
-      }
-
-      .slide-thumb b {
-        top: 24px;
-        width: 22px;
-      }
-
-      .slide-thumb.chart b {
-        top: 28px;
-        width: 30px;
-        height: 8px;
-        background: linear-gradient(90deg, #ccb8a7 0 28%, #cd6e57 28% 60%, #ccb8a7 60%);
-      }
-
-      .slide-thumb.text span {
-        width: 34px;
-        box-shadow: 0 9px 0 #d7d9dd;
       }
 
       .slide-stage {
         position: relative;
-        height: 294px;
         min-height: 0;
         overflow: hidden;
-        display: grid;
         justify-items: center;
-        align-items: start;
-        padding-top: 14px;
-        background:
-          linear-gradient(rgba(145, 154, 166, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(145, 154, 166, 0.1) 1px, transparent 1px),
-          linear-gradient(#dde2e8 1px, rgba(221, 226, 232, 0) 1px),
-          linear-gradient(90deg, #dde2e8 1px, rgba(221, 226, 232, 0) 1px),
-          #edf0f3;
         background-size: 16px 16px, 16px 16px, 64px 64px, 64px 64px, auto;
       }
 
       .slide-canvas {
-        position: relative;
-        width: 456px;
-        height: 256px;
-        border-radius: 3px;
-        background: #fffaf2;
         border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 13px 30px rgba(0, 0, 0, 0.17);
-        overflow: hidden;
       }
 
       .slide-ruler {
@@ -530,61 +397,20 @@
         background: var(--coral);
       }
 
-      .alignment-guide {
-        position: absolute;
-        z-index: 8;
-        background: rgba(29, 134, 232, 0.46);
-        opacity: 0.55;
-      }
-
-      .alignment-guide.vertical {
-        left: 283px;
-        top: 13px;
-        width: 1px;
-        height: 228px;
-      }
-
-      .alignment-guide.horizontal {
-        left: 13px;
-        top: 116px;
-        width: 418px;
-        height: 1px;
-      }
-
       .selection-box {
         position: absolute;
-        left: 158px;
-        top: 42px;
-        width: 248px;
-        height: 148px;
         z-index: 12;
-        border: 1.5px solid #1d86e8;
-        border-radius: 2px;
-        opacity: 0.84;
       }
 
       .selection-box .handle {
         position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #fff;
-        border: 1.5px solid #1d86e8;
       }
 
       .selection-box .rotate-handle {
         position: absolute;
-        left: calc(50% - 5px);
-        top: -21px;
-        width: 10px;
-        height: 10px;
-        border: 1.5px solid #1d86e8;
-        border-radius: 50%;
-        background: #fff;
       }
 
       .selection-box .rotate-handle::after {
-        content: "";
         position: absolute;
         left: 4px;
         top: 9px;
@@ -593,67 +419,25 @@
         background: #1d86e8;
       }
 
-      .selection-box .nw { left: -5px; top: -5px; }
-      .selection-box .n { left: calc(50% - 4px); top: -5px; }
-      .selection-box .ne { right: -5px; top: -5px; }
-      .selection-box .e { right: -5px; top: calc(50% - 4px); }
-      .selection-box .se { right: -5px; bottom: -5px; }
-      .selection-box .s { left: calc(50% - 4px); bottom: -5px; }
-      .selection-box .sw { left: -5px; bottom: -5px; }
-      .selection-box .w { left: -5px; top: calc(50% - 4px); }
-
       .slide-comment-pin {
         position: absolute;
-        right: 42px;
-        top: 34px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #c65b47;
-        box-shadow: 0 0 0 3px rgba(198, 91, 71, 0.16);
         opacity: 0.92;
       }
 
       .slide-comment-pin::before {
         content: "";
         position: absolute;
-        left: 5px;
-        top: 5px;
-        width: 8px;
-        height: 6px;
         border-radius: 2px;
-        background: #fffaf6;
       }
 
       .slide-comment-pin::after {
         content: "";
         position: absolute;
-        left: 10px;
-        top: 10px;
-        width: 4px;
-        height: 4px;
-        background: #fffaf6;
         clip-path: polygon(0 0, 100% 0, 0 100%);
       }
 
       .slide-title {
         position: absolute;
-        left: 168px;
-        top: 49px;
-        width: 230px;
-        height: 62px;
-        color: #2a241f;
-        font-family: var(--font-office-ui);
-        font-size: 31px;
-        line-height: 1.02;
-        font-weight: 760;
-      }
-
-      .slide-title span {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 230px;
       }
 
       .after-title {
@@ -662,73 +446,14 @@
 
       .slide-subtitle {
         position: absolute;
-        left: 168px;
-        top: 121px;
-        width: 220px;
-        color: #81756c;
-        font-size: 13px;
-        line-height: 1.35;
-      }
-
-      .slide-chart {
-        position: absolute;
-        left: 168px;
-        bottom: 24px;
-        width: 206px;
-        height: 52px;
-        display: flex;
-        align-items: end;
-        gap: 10px;
-      }
-
-      .chart-labels {
-        position: absolute;
-        left: 163px;
-        bottom: 80px;
-        width: 216px;
-        display: flex;
-        gap: 5px;
-        color: #8a7b70;
-        font-size: 7px;
-        font-weight: 760;
-      }
-
-      .chart-labels span {
-        width: 45px;
-        text-align: center;
-      }
-
-      .slide-axis {
-        position: absolute;
-        left: 164px;
-        bottom: 23px;
-        width: 236px;
-        height: 1px;
-        background: rgba(42, 36, 31, 0.16);
       }
 
       .speaker-notes {
-        position: absolute;
         left: 20px;
         right: 20px;
         bottom: 27px;
         z-index: 22;
-        height: 30px;
         display: flex;
-        align-items: center;
-        padding: 0 11px;
-        border: 1px solid rgba(167, 174, 183, 0.7);
-        border-radius: 4px;
-        background: rgba(255, 255, 255, 0.76);
-        color: #8b929a;
-        font-size: 10px;
-      }
-
-      .speaker-notes strong {
-        margin-right: 8px;
-        color: #59616b;
-        font-size: 9px;
-        text-transform: uppercase;
       }
 
       .speaker-notes span {
@@ -737,274 +462,21 @@
         text-overflow: ellipsis;
       }
 
-      .bar {
-        width: 30px;
-        border-radius: 6px 6px 0 0;
-        background: #d8c7b5;
-      }
-
-      .bar:nth-child(1) { height: 30px; }
-      .bar:nth-child(2) { height: 40px; }
-      .bar:nth-child(3) { height: 24px; }
-      .bar:nth-child(4) { height: 34px; background: var(--claude); }
-
-      .inspector {
-        padding: 10px 13px;
-        border-left: 1px solid #cfd5dc;
-        color: #5e6670;
-        font-size: 10px;
-        background: #f9fafb;
-      }
-
-      .pane-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-      }
-
-      .inspector strong {
-        display: block;
-        color: #393f46;
-        font-size: 12px;
-      }
-
-      .pane-title button {
-        height: 19px;
-        min-width: 44px;
-        padding: 0 6px;
-        border: 1px solid #d9dee4;
-        border-radius: 5px;
-        background: #fff;
-        color: #58616c;
-        font-size: 8px;
-        font-weight: 760;
-      }
-
-      .inspector-breadcrumb {
-        margin: 3px 0 7px;
-        color: #8a929c;
-        font-size: 8px;
-        font-weight: 650;
-      }
-
-      .inspector-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3px;
-        margin-bottom: 8px;
-      }
-
-      .inspector-tabs span {
-        height: 18px;
-        display: grid;
-        place-items: center;
-        border-radius: 5px;
-        background: #eef1f4;
-        color: #6e7680;
-        font-size: 8px;
-        font-weight: 720;
-      }
-
-      .inspector-tabs .active {
-        color: #fff;
-        background: #c65b47;
-      }
-
-      .inspector label {
-        display: block;
-        margin-top: 6px;
-        color: #7b838d;
-        font-size: 8px;
-        font-weight: 760;
-        text-transform: uppercase;
-      }
-
-      .inspector-line {
-        height: 9px;
-        margin: 5px 0;
-        border-radius: 5px;
-        background: rgba(86, 96, 108, 0.14);
-      }
-
-      .inspector-line.color { width: 68%; }
-      .inspector-line.coral { background: #cd6e57; }
-
-      .inspector-select,
-      .size-grid span {
-        height: 20px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 5px;
-        padding: 0 7px;
-        border: 1px solid #dfe4e9;
-        border-radius: 5px;
-        background: #fff;
-        color: #4d5661;
-        font-size: 8px;
-        font-weight: 720;
-      }
-
-      .inspector-select::after {
-        content: "";
-        margin-left: auto;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 4px solid #7e8791;
-      }
-
-      .inspector-select i {
-        width: 10px;
-        height: 10px;
-        border-radius: 3px;
-      }
-
-      .fill-dot { background: #cd6e57; }
-
-      .outline-dot {
-        border: 2px solid #9ca5af;
-        background: transparent;
-      }
-
-      .size-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5px;
-        margin-top: 5px;
-      }
-
-      .quick-actions {
-        margin-top: 8px;
-        display: flex;
-        gap: 5px;
-      }
-
-      .quick-actions span {
-        height: 18px;
-        display: grid;
-        place-items: center;
-        padding: 0 7px;
-        border: 1px solid #e0e4e9;
-        border-radius: 5px;
-        background: #eef1f4;
-        color: #5e6670;
-        font-size: 8px;
-        font-weight: 720;
-      }
-
-      .comments-card {
-        margin-top: 8px;
-        min-height: 42px;
-        display: grid;
-        grid-template-columns: 18px 1fr;
-        gap: 8px;
-        padding: 7px 8px;
-        border-radius: 8px;
-        background: #fff;
-        border: 1px solid #e2e5e9;
-        color: #4c545d;
-        font-size: 9px;
-        line-height: 1.25;
-      }
-
-      .comments-card p {
-        margin: 0;
-      }
-
-      .comments-card p em {
-        display: block;
-        margin-top: 4px;
-        color: #9a4c3c;
-        font-size: 8px;
-        font-style: normal;
-        font-weight: 820;
-      }
-
-      .comments-card b {
-        color: #343b43;
-      }
-
-      .comment-dot {
-        width: 18px;
-        height: 18px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--claude);
-        color: #fff;
-        font-size: 8px;
-        font-weight: 820;
-      }
-
-      .reply-field {
-        height: 19px;
-        margin-top: 6px;
-        display: flex;
-        align-items: center;
-        padding: 0 8px;
-        border: 1px solid #dfe4e9;
-        border-radius: 6px;
-        background: #fff;
-        color: #9aa2ac;
-        font-size: 8px;
-        font-weight: 650;
-      }
-
       .slide-status {
-        position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 24;
-        height: 22px;
         display: grid;
-        grid-template-columns: 1fr auto auto auto auto auto 92px;
         align-items: center;
-        gap: 9px;
-        padding: 0 12px;
-        color: #6f7780;
-        background: #f6f7f8;
-        border-top: 1px solid #d8dde3;
-        font-size: 9px;
-      }
-
-      .status-chip {
-        color: #9a4c3c;
-        font-weight: 740;
-      }
-
-      .status-chip.good {
-        color: #467666;
-      }
-
-      .view-buttons {
-        display: flex;
-        align-items: center;
-        gap: 3px;
       }
 
       .view-buttons i {
-        width: 14px;
-        height: 12px;
-        border-radius: 2px;
-        background:
-          linear-gradient(90deg, #6f7780 0 3px, transparent 3px),
-          linear-gradient(#6f7780 0 2px, transparent 2px 5px, #6f7780 5px 7px, transparent 7px 10px, #6f7780 10px 12px);
         opacity: 0.7;
       }
 
       .zoom-percent {
-        min-width: 26px;
         text-align: right;
-        font-weight: 720;
-      }
-
-      .zoom-track {
-        width: 82px;
-        height: 4px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #c65b47 0 58%, #d7dce1 58%);
       }
 
       /* Structural overhaul pass (2026-07-20): real Mac PowerPoint window
@@ -1039,11 +511,6 @@
         box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.13);
       }
 
-      .ribbon-tabs .file-tab {
-        color: #222;
-        font-weight: 500;
-      }
-
       /* Two-word ribbon-large labels ("New Slide", "Convert to SmartArt")
          need more room than the shared .wide modifier to stay on one line
          per phrase instead of wrapping into 3-4 lines and clipping. */
@@ -1062,7 +529,6 @@
 
       .slide-rail {
         flex: 0 0 200px;
-        width: 200px;
         grid-template-columns: 16px 1fr;
         row-gap: 8px;
         column-gap: 6px;
@@ -1072,14 +538,11 @@
         overflow: hidden;
       }
 
-      .section-chip { display: none; }
-
       .thumb-label {
         color: #404040;
         font-size: 11px;
         line-height: 14px;
         padding-top: 2px;
-        font-weight: 400;
       }
 
       .slide-thumb {
@@ -1093,7 +556,6 @@
 
       .slide-thumb.active {
         border: 2px solid var(--powerpoint);
-        box-shadow: none;
       }
 
       .slide-thumb .mini {
@@ -1102,20 +564,14 @@
         background: #fff;
       }
 
-      .slide-thumb .mini.dark {
-        background: #fff;
-      }
-
       .m-title {
         position: absolute;
         left: 0;
         right: 0;
         top: 26px;
-        color: #1d1d1f;
         font-family: "Aptos Display", var(--font-office-ui);
         font-size: 10px;
         font-style: normal;
-        font-weight: 400;
         text-align: center;
         white-space: nowrap;
       }
@@ -1126,10 +582,8 @@
         right: 4%;
         top: 43px;
         color: rgba(29, 29, 31, 0.55);
-        font-family: var(--font-office-ui);
         font-size: 5px;
         font-style: normal;
-        font-weight: 400;
         text-align: center;
         white-space: nowrap;
         overflow: hidden;
@@ -1162,7 +616,6 @@
       .m-bars u {
         width: 10px;
         text-decoration: none;
-        background: #4f6a7c;
       }
 
       .m-bars.accent u { background: #1d86e8; }
@@ -1250,7 +703,6 @@
         height: 174px;
         border: 1px solid #7f7f7f;
         border-radius: 0;
-        box-shadow: none;
         opacity: 1;
       }
 
@@ -1260,7 +712,6 @@
         border-radius: 0;
         background: #fff;
         border: 1px solid #7f7f7f;
-        box-shadow: none;
       }
 
       .selection-box .rotate-handle {
@@ -1353,15 +804,12 @@
         font-family: "Aptos", var(--font-office-ui);
         font-size: 24px;
         line-height: 1.3;
-        font-weight: 400;
         text-align: center;
       }
 
       .speaker-notes {
         position: static;
         flex: 0 0 44px;
-        height: 44px;
-        width: auto;
         align-items: flex-start;
         padding: 10px 0 0 8px;
         border: 0;
@@ -1372,14 +820,10 @@
         font-size: 13px;
       }
 
-      .speaker-notes strong { display: none; }
-
       /* ---- Status bar (27px, full window width) ---- */
       .slide-status {
         position: static;
         flex: 0 0 27px;
-        height: 27px;
-        width: auto;
         grid-template-columns: auto auto 1fr auto auto auto auto auto 100px;
         gap: 12px;
         padding: 0 14px;
@@ -1390,7 +834,6 @@
       }
 
       .status-chip {
-        color: #222;
         font-weight: 500;
       }
 
@@ -1449,7 +892,6 @@
         width: 11px;
         height: 11px;
         color: #555;
-        flex: none;
       }
 
       .fit-glyph {
@@ -1466,7 +908,6 @@
 
       .zoom-track {
         position: relative;
-        display: inline-block;
         flex: none;
         width: 70px;
         height: 4px;
@@ -1496,16 +937,10 @@
          (Drawing | Sensitivity | Add-ins | Design Suggestions | Claude),
          which share one .large-buttons group container. */
       .ribbon-group + .ribbon-group:not(.col)::before {
-        content: "";
-        width: 1px;
         height: 44px;
         background: #e1e1e1;
         margin-right: 6px;
         flex-shrink: 0;
-      }
-
-      .ribbon-group.large-buttons .ribbon-large + .ribbon-large {
-        position: relative;
       }
 
       .ribbon-group.large-buttons .ribbon-large + .ribbon-large::before {
