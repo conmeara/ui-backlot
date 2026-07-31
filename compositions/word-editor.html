@@ -247,8 +247,6 @@
       }
 
       #word-editor-surface {
-        --word-blue: #185abd;
-        --word-blue-2: #2b7cd3;
         --accent: var(--word-blue);
         --accent-dark: var(--word-blue);
         --share: var(--word-blue);
@@ -260,11 +258,7 @@
         --paper: #ffffff;
         --green: #43b875;
         --clay: #c65b47;
-        width: 1280px;
-        height: 760px;
         overflow: hidden;
-        color: var(--ink);
-        font-family: var(--font-office-ui);
       }
 
       #word-editor-surface * {
@@ -295,29 +289,20 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        border-radius: 15px;
-        background: #eef1f5;
-        border: 1px solid rgba(20, 30, 48, 0.12);
-        box-shadow: 0 32px 96px rgba(28, 34, 46, 0.22);
       }
 
       .word-symbols {
         position: absolute;
         width: 0;
         height: 0;
-        overflow: hidden;
       }
 
       .document-workspace {
         display: grid;
-        grid-template-columns: 216px 1fr 262px;
-        background: #e8ebef;
       }
 
       .nav-pane,
       .review-pane {
-        padding: 18px 16px;
-        background: #f8f9fb;
         border-right: 1px solid #d4d9e0;
       }
 
@@ -326,78 +311,33 @@
         border-left: 1px solid #d4d9e0;
       }
 
-      .pane-title,
-      .review-title {
-        margin-bottom: 10px;
-        color: #2d3540;
-        font-size: 15px;
-        font-weight: 760;
-      }
-
       .pane-tabs,
       .comment-view-toggle {
         display: flex;
-        gap: 3px;
-        margin-bottom: 11px;
-        padding: 3px;
-        border-radius: 8px;
-        background: #eceff3;
       }
 
       .pane-tabs span,
       .comment-view-toggle span {
         flex: 1;
-        height: 22px;
         display: grid;
         place-items: center;
-        border-radius: 6px;
-        color: #68727e;
-        font-size: 10px;
-        font-weight: 650;
-      }
-
-      .pane-tabs .active,
-      .comment-view-toggle .active {
-        color: var(--word-blue);
-        background: #fff;
-        box-shadow: 0 1px 3px rgba(39, 49, 63, 0.08);
       }
 
       .search-doc {
-        height: 28px;
         display: flex;
         align-items: center;
         padding: 0 10px;
-        margin-bottom: 16px;
-        border-radius: 8px;
-        background: #eef1f4;
-        color: #76818d;
-        font-size: 11px;
       }
 
       .nav-heading {
-        min-height: 31px;
         display: grid;
-        grid-template-columns: 13px 1fr;
         align-items: center;
-        gap: 8px;
-        padding: 0 9px;
-        border-radius: 8px;
         color: #4d5964;
-        font-size: 12px;
       }
 
       .nav-heading span {
-        width: 7px;
-        height: 7px;
         border-radius: 50%;
         background: #aeb8c2;
-      }
-
-      .nav-heading.active {
-        background: #e7f0fb;
-        color: var(--word-blue);
-        font-weight: 690;
       }
 
       .nav-heading.active span {
@@ -407,98 +347,32 @@
       .document-stage {
         position: relative;
         overflow: hidden;
-        padding: 33px 46px 30px 58px;
-        background: #e3e7ec;
       }
 
       .page {
         position: relative;
-        width: 586px;
-        height: 714px;
         margin: 0 auto;
-        padding: 74px 64px 54px 72px;
         background: var(--paper);
-        box-shadow:
-          0 1px 0 rgba(24, 35, 48, 0.04),
-          0 26px 58px rgba(44, 51, 61, 0.22);
-        border: 1px solid rgba(29, 39, 55, 0.08);
-      }
-
-      .page-margin {
-        position: absolute;
-        pointer-events: none;
-        border-color: rgba(24, 90, 189, 0.12);
-      }
-
-      .page-margin.top {
-        left: 30px;
-        right: 30px;
-        top: 54px;
-        border-top: 1px dashed rgba(24, 90, 189, 0.16);
-      }
-
-      .page-margin.left {
-        top: 30px;
-        bottom: 30px;
-        left: 52px;
-        border-left: 1px dashed rgba(24, 90, 189, 0.16);
       }
 
       .page h1 {
         position: relative;
-        min-height: 37px;
         margin: 0 0 18px;
-        font-family: Calibri, "Segoe UI", system-ui, sans-serif;
-        font-size: 30px;
-        line-height: 1.12;
-        letter-spacing: 0;
       }
 
       .revision-delete {
-        color: #a4262c;
         text-decoration: line-through;
-        text-decoration-thickness: 2px;
         text-decoration-color: #a4262c;
       }
 
       .revision-insert {
         margin-left: 4px;
-        color: #a4262c;
         text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 4px;
       }
 
       .page p {
         margin: 0 0 14px;
         color: #2f3640;
-        font-family: Calibri, "Segoe UI", system-ui, sans-serif;
-        font-size: 13.4px;
-        line-height: 1.62;
-      }
-
-      .lede {
-        font-size: 14px;
-        color: #252b32;
-      }
-
-      .text-selection {
-        background: rgba(128, 184, 255, 0.42);
-        box-shadow: 0 0 0 1px rgba(24, 90, 189, 0.12);
-      }
-
-      .comment-highlight {
-        background: rgba(255, 231, 153, 0.76);
-        box-shadow: inset 0 -2px 0 rgba(229, 170, 46, 0.64);
-      }
-
-      .caret {
-        display: inline-block;
-        width: 1.5px;
-        height: 17px;
-        margin: 0 1px -3px;
-        background: #111827;
-        animation: wordCaret 1.1s steps(1) infinite;
       }
 
       @keyframes wordCaret {
@@ -507,7 +381,6 @@
 
       .revision-insert-block {
         position: relative;
-        color: #a4262c;
         text-decoration: underline;
         text-decoration-thickness: 1.4px;
         text-underline-offset: 2px;
@@ -515,12 +388,10 @@
 
       .revision-insert-block strong {
         color: #a4262c;
-        font-weight: 700;
       }
 
       .change-bar {
         position: absolute;
-        left: -34px;
         top: 0;
         bottom: 0;
         width: 2px;
@@ -538,77 +409,30 @@
         width: 100%;
         border-collapse: collapse;
         color: #2f3640;
-        font-family: Calibri, "Segoe UI", system-ui, sans-serif;
-        font-size: 11.6px;
       }
 
       .doc-table th,
       .doc-table td {
-        height: 30px;
         padding: 0 9px;
         border: 1px solid #d7dce2;
         text-align: left;
       }
 
-      .doc-table th {
-        background: #edf4fd;
-        color: var(--word-blue);
-        font-weight: 720;
-      }
-
-      .review-header button {
-        height: 22px;
-        border: 0;
-        border-radius: 5px;
-        background: #e8f1ff;
-        color: var(--word-blue);
-        font: 700 10px Inter, system-ui, sans-serif;
-      }
-
-      .comment-card {
-        padding: 12px;
-        margin-bottom: 12px;
-        border-radius: 9px;
-        background: #fff;
-        border: 1px solid #d9dde4;
-        box-shadow: 0 8px 22px rgba(44, 51, 61, 0.06);
-      }
-
       .comment-card.active {
         border-color: #aac8ef;
-        box-shadow:
-          0 0 0 1px rgba(24, 90, 189, 0.12),
-          0 10px 24px rgba(44, 51, 61, 0.08);
       }
 
       .review-header {
-        display: flex;
         justify-content: space-between;
-        align-items: center;
-      }
-
-      .review-header button {
-        width: 44px;
-      }
-
-      .comment-author {
-        color: var(--word-blue);
-        font-size: 12px;
-        font-weight: 760;
       }
 
       .comment-meta {
         display: grid;
-        grid-template-columns: 24px 1fr 16px;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
       }
 
       .comment-meta small {
         color: #7a8490;
-        font-size: 9px;
-        font-weight: 600;
       }
 
       .comment-meta i {
@@ -630,70 +454,41 @@
       }
 
       .avatar {
-        width: 24px;
-        height: 24px;
         display: grid;
         place-items: center;
         border-radius: 50%;
-        background: #dbeafe;
         color: var(--word-blue);
-        font-size: 11px;
         font-weight: 800;
       }
 
       .avatar.review {
-        background: #f7e4df;
         color: #9b3a2b;
       }
 
       .comment-card p {
         margin: 0;
-        color: #4c5661;
-        font-size: 12px;
-        line-height: 1.42;
       }
 
       .comment-actions {
         display: flex;
-        gap: 7px;
-        margin-top: 10px;
       }
 
       .comment-actions span {
-        height: 23px;
         display: inline-flex;
         align-items: center;
         padding: 0 8px;
-        border-radius: 7px;
-        background: #eef4fc;
-        color: var(--word-blue);
-        font-size: 11px;
-        font-weight: 650;
       }
 
       .reply-field {
-        height: 27px;
         display: flex;
         align-items: center;
         margin-top: 11px;
         padding: 0 9px;
-        border-radius: 7px;
-        border: 1px solid #dce1e8;
-        color: #8a94a0;
-        font-size: 10px;
-        background: #fbfcfd;
       }
 
       .word-statusbar {
-        height: 24px;
         display: flex;
         align-items: center;
-        gap: 16px;
-        padding: 0 13px;
-        background: #f8f9fb;
-        border-top: 1px solid #d4d9e0;
-        color: #5e6974;
-        font-size: 11px;
       }
 
       .status-spacer {
@@ -711,14 +506,11 @@
       .status-icon svg,
       .status-a11y svg,
       .status-focus svg {
-        width: 13px;
         height: 13px;
         flex: 0 0 auto;
       }
 
       .zoom-line {
-        width: 88px;
-        height: 3px;
         border-radius: 999px;
         position: relative;
         background: #c9d0d8;
@@ -727,9 +519,6 @@
       .zoom-line i {
         position: absolute;
         left: 62%;
-        top: -4.5px;
-        width: 12px;
-        height: 12px;
         border-radius: 50%;
         background: #fff;
         border: 1px solid #c9d0d8;
@@ -738,8 +527,6 @@
 
       .zoom-minus,
       .zoom-plus {
-        width: 14px;
-        height: 14px;
         position: relative;
       }
 
@@ -774,26 +561,14 @@
       }
 
       .view-mode {
-        width: 16px;
-        height: 16px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 0;
-        border-radius: 4px;
-        background: transparent;
         color: #6b6b6b;
       }
 
       .view-mode svg {
-        width: 100%;
-        height: 100%;
-        color: currentColor;
         fill: currentColor;
-      }
-
-      .view-mode.active {
-        color: #242424;
       }
 
       /* Word for Mac fidelity pass: native macOS chrome, no Windows caption row. */
@@ -837,27 +612,18 @@
 
       .word-title {
         font-weight: 600;
-        font-size: 13px;
         color: #1a1a1a;
         white-space: nowrap;
       }
 
       .title-actions .avatar-stack {
-        display: inline-flex;
-        align-items: center;
         margin-right: 2px;
       }
 
       .avatar-chip {
         width: 22px;
-        height: 22px;
         border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
-        font-size: 10px;
-        font-weight: 700;
-        color: #fff;
         background: #d13438;
         border: 1.5px solid var(--chrome);
       }
@@ -867,11 +633,6 @@
         background: #5b5fc7;
       }
 
-      .title-actions .chev {
-        width: 9px;
-        height: 9px;
-      }
-
       /* Fidelity fix: the share pill's leading glyph has no size rule in the
          shared sheet, so its 300px default SVG basis squeezes the 9px chevron
          to zero width, and .office-icon's #424242 out-cascades the pill's
@@ -879,13 +640,11 @@
          9px) — reference glyphs are pure white on the #2c59b7 fill. */
       #word-editor-surface .title-actions .share .office-icon {
         flex: none;
-        width: 14px;
         height: 14px;
         color: #fff;
       }
 
       #word-editor-surface .title-actions .share .chev {
-        width: 9px;
         height: 9px;
       }
 
@@ -904,7 +663,6 @@
       }
 
       .track-command .office-icon {
-        width: 14px;
         height: 14px;
         color: var(--word-blue);
       }
@@ -986,7 +744,6 @@
       .pane-title,
       .review-title {
         margin-bottom: 10px;
-        font-size: 16px;
         font-weight: 590;
         color: #2d2b28;
       }
@@ -994,26 +751,20 @@
       .pane-tabs,
       .comment-view-toggle {
         gap: 0;
-        padding: 0;
         margin-bottom: 10px;
-        border-radius: 0;
-        background: transparent;
         border-bottom: 1px solid var(--mac-hairline);
       }
 
       .pane-tabs span,
       .comment-view-toggle span {
         height: 25px;
-        border-radius: 0;
         color: var(--mac-muted);
         font-size: 11px;
-        font-weight: 400;
       }
 
       .pane-tabs .active,
       .comment-view-toggle .active {
         color: var(--word-blue);
-        background: transparent;
         box-shadow: inset 0 -2px 0 var(--word-blue);
         font-weight: 600;
       }
@@ -1061,10 +812,6 @@
         border: 1px solid var(--mac-hairline);
       }
 
-      .page-margin {
-        display: none;
-      }
-
       .page h1 {
         min-height: 30px;
         margin-bottom: 14px;
@@ -1086,10 +833,6 @@
         line-height: 1.45;
       }
 
-      .lede {
-        font-size: 12.5px;
-      }
-
       .revision-delete {
         color: #a4262c;
         text-decoration-thickness: 1.4px;
@@ -1099,22 +842,6 @@
         color: #a4262c;
         text-decoration-thickness: 1.4px;
         text-underline-offset: 2px;
-      }
-
-      .text-selection {
-        background: rgba(0, 120, 212, 0.25);
-        box-shadow: none;
-      }
-
-      .comment-highlight {
-        background: rgba(255, 201, 214, 0.45);
-        box-shadow: none;
-      }
-
-      .caret {
-        width: 1px;
-        height: 14px;
-        margin-bottom: -2px;
       }
 
       .change-bar {
@@ -1136,7 +863,6 @@
       }
 
       .doc-table th {
-        background: transparent;
         color: #323130;
         font-weight: 600;
       }
@@ -1150,7 +876,6 @@
       }
 
       .review-header button {
-        width: auto;
         height: 24px;
         padding: 0 10px;
         border-radius: 6px;
@@ -1172,7 +897,6 @@
       }
 
       .pane-close {
-        width: 18px;
         height: 18px;
         position: relative;
       }
