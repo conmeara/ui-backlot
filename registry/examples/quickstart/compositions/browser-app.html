@@ -386,205 +386,15 @@
         box-sizing: border-box;
       }
 
-      /* Self-contained fallback so icons stay correctly sized wherever this
-         surface is mounted, even when the host page doesn't itself import
-         styles/backlot-foundation.css (the top-level @import above this
-         template only applies to a direct, top-level preview of this file —
-         data-backlot-mount-src consumers clone only the <template> content).
-         Mirrors backlot-foundation.css's .backlot-icon rule; more specific
-         per-icon rules below (.tab-favicon, .nav-button .backlot-icon, etc.)
-         still win on the cascade. */
-      .backlot-icon {
-        display: inline-block;
-        flex: 0 0 auto;
-        width: 1em;
-        height: 1em;
-        color: currentColor;
-        fill: currentColor;
-      }
-
       #browser-app-surface {
         position: relative;
-        width: var(--stage-w);
-        height: var(--stage-h);
         overflow: hidden;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0) 160px),
-          #e8ebef;
-      }
-
-      .paper-field {
-        position: absolute;
-        inset: -80px;
-        opacity: 0.26;
-        background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.38) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.34) 1px, transparent 1px);
-        background-size: 48px 48px;
-      }
-
-      .menu-bar {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 30;
-        width: 100%;
-        height: 28px;
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        padding: 0 18px;
-        background: rgba(247, 251, 252, 0.68);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.38);
-        backdrop-filter: blur(18px) saturate(1.25);
-        color: rgba(0, 0, 0, 0.82);
-        font-size: 15px;
-        font-weight: 560;
-      }
-
-      .menu-left,
-      .menu-right {
-        display: flex;
-        align-items: center;
-        gap: 22px;
-        white-space: nowrap;
-      }
-
-      .apple-glyph {
-        width: 18px;
-        height: 100%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #050505;
-      }
-
-      .apple-glyph::before {
-        content: "";
-        display: block;
-        width: 15px;
-        height: 17px;
-        background: currentColor;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5M13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
-      }
-
-      .apple-glyph::after {
-        content: none;
-      }
-
-      .status-icons {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .status-dot {
-        width: 14px;
-        height: 14px;
-        border: 0;
-        position: relative;
-      }
-
-      .status-dot.control-center {
-        width: 18px;
-        height: 14px;
-      }
-
-      .status-dot.control-center::before,
-      .status-dot.control-center::after {
-        content: "";
-        position: absolute;
-        left: 1px;
-        width: 15px;
-        height: 5px;
-        border: 1.6px solid currentColor;
-        border-radius: 8px;
-      }
-
-      .status-dot.control-center::before {
-        top: 1px;
-        box-shadow: inset 7px 0 0 currentColor;
-      }
-
-      .status-dot.control-center::after {
-        bottom: 1px;
-        box-shadow: inset -7px 0 0 currentColor;
-      }
-
-      .status-dot.wifi {
-        width: 19px;
-        height: 15px;
-        background:
-          radial-gradient(circle at 50% 94%, currentColor 0 2px, transparent 2.2px);
-      }
-
-      .status-dot.wifi::before,
-      .status-dot.wifi::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        border: 2px solid currentColor;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-top-color: transparent;
-        border-radius: 50%;
-        transform: translateX(-50%);
-      }
-
-      .status-dot.wifi::before {
-        bottom: 0;
-        width: 18px;
-        height: 13px;
-      }
-
-      .status-dot.wifi::after {
-        bottom: 0;
-        width: 9px;
-        height: 7px;
-      }
-
-      .status-pill {
-        position: relative;
-        width: 26px;
-        height: 14px;
-        border: 1.7px solid currentColor;
-        border-radius: 4px;
-      }
-
-      .status-pill::before {
-        content: "";
-        position: absolute;
-        right: -4px;
-        top: 4px;
-        width: 2px;
-        height: 5px;
-        border-radius: 0 2px 2px 0;
-        background: currentColor;
-      }
-
-      .status-pill::after {
-        content: "";
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        width: 17px;
-        height: 8px;
-        border-radius: 2px;
-        background: currentColor;
       }
 
       .browser-window {
         position: absolute;
-        left: 104px;
-        top: 66px;
-        width: 1712px;
-        height: 944px;
-        border: none;
-        border-radius: 12px;
         overflow: hidden;
         background: #fff;
-        box-shadow: var(--shadow-window);
       }
 
       .traffic {
@@ -614,7 +424,6 @@
         gap: 0;
         padding: 0 14px 0 86px;
         background: #d6e3fb;
-        border-bottom: none;
         overflow: hidden;
       }
 
@@ -657,14 +466,6 @@
         user-select: none;
       }
 
-      .tab:first-child {
-        margin-left: 0;
-      }
-
-      .tab:not(.active):hover {
-        --tab-bg: rgba(32, 33, 36, 0.08);
-      }
-
       .tab.active {
         --tab-bg: #fff;
         z-index: 4;
@@ -698,19 +499,12 @@
         content: "";
         position: absolute;
         right: 8px;
-        top: 12px;
         height: 12px;
-        bottom: auto;
         width: 1px;
         background: rgba(60, 64, 67, 0.12);
       }
 
-      .tab:not(.active):last-of-type::after {
-        content: none;
-      }
-
       .tab-favicon {
-        width: 16px;
         height: 16px;
         flex: 0 0 16px;
         color: #5f6368;
@@ -771,10 +565,6 @@
         font-family: var(--font-browser);
       }
 
-      .tab-add:hover {
-        background: rgba(32, 33, 36, 0.08);
-      }
-
       .tab-spacer {
         flex: 1;
       }
@@ -787,7 +577,6 @@
         gap: 13px;
         padding: 0 14px;
         background: #ffffff;
-        border-bottom: none;
       }
 
       .nav-controls,
@@ -802,7 +591,6 @@
         width: 30px;
         height: 30px;
         border-radius: 8px;
-        background: transparent;
         border: 1px solid transparent;
         position: relative;
         display: grid;
@@ -828,7 +616,6 @@
       }
 
       .url-bar {
-        width: 100%;
         height: 34px;
         display: flex;
         align-items: center;
@@ -865,7 +652,6 @@
       .omnibox-suggest .backlot-icon {
         width: 14px;
         height: 14px;
-        flex: 0 0 auto;
         color: #9aa1ab;
       }
 
@@ -877,8 +663,6 @@
 
       .load-bar {
         position: absolute;
-        left: 0;
-        top: 120px;
         z-index: 6;
         width: 100%;
         height: 3px;
@@ -928,24 +712,11 @@
       }
 
       .toolbar-button.profile {
-        display: grid;
-        place-items: center;
         border-radius: 50%;
         color: #fff;
         background: #da4f7a;
-        border-color: transparent;
         font-size: 12px;
         font-weight: 760;
-      }
-
-      .toolbar-button.capture,
-      .toolbar-button.more {
-        color: #474747;
-        font-size: 18px;
-      }
-
-      .toolbar-button.extensions {
-        color: #474747;
       }
 
       .toolbar-button.extensions .backlot-icon {
@@ -998,8 +769,6 @@
       .bookmark-icon {
         width: 16px;
         height: 16px;
-        flex: 0 0 auto;
-        color: #5f6368;
       }
 
       .bookmark-icon.sheets { color: #0f9d58; }
@@ -1638,36 +1407,6 @@
 
       .field-row span:first-child {
         color: #8a929c;
-      }
-
-      .activity-row {
-        display: grid;
-        grid-template-columns: 18px 1fr auto;
-        gap: 9px;
-        align-items: start;
-        min-height: 32px;
-        color: #4c535c;
-        font-size: 12px;
-      }
-
-      .check {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--green);
-        position: relative;
-      }
-
-      .check::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 5px;
-        width: 7px;
-        height: 4px;
-        border-left: 2px solid #fff;
-        border-bottom: 2px solid #fff;
-        transform: rotate(-45deg);
       }
 
       .edit-badge {
